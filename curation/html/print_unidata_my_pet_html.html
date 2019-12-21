@@ -1,0 +1,174 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>print_unidata_my_pet_html</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-16"><meta name="DC.source" content="print_unidata_my_pet_html.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1>print_unidata_my_pet_html</h1><!--introduction--><p>read and write unidata_my_pet.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li><li><a href="#7">content of results_my_pet</a></li><li><a href="#8">Print out all of the graphs with captions:</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p><a href="../print_results_my_pet_html.m"><b>print_results_my_pet_html</b></a> (metaData, metaPar)</p><h2>Description<a name="4"></a></h2><p>Prints an html file which compares metaPar.model predictions with data</p><p>Input:</p><div><ul><li>metaData: structure</li><li>metaPar:  structure</li></ul></div><h2>Remarks<a name="5"></a></h2><p>Keep in mind that this function is specifically designed for created the webpage of add-my-pet -</p><h2>Example of use<a name="6"></a></h2><p>load('results_my_pet.mat'); print_results_my_pet_html(metaData, metaPar)</p><h2>content of results_my_pet<a name="7"></a></h2><h2>Print out all of the graphs with captions:<a name="8"></a></h2><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% print_unidata_my_pet_html
+% read and write unidata_my_pet.html
+
+%%
+function print_unidata_my_pet_html(metaData, metaPar)
+% created 2015/04/11 by Starrlight & Goncalo Marques; modified 2015/08/23 Starrlight 
+
+%% Syntax
+% <../print_results_my_pet_html.m *print_results_my_pet_html*> (metaData, metaPar) 
+
+%% Description
+% Prints an html file which compares metaPar.model predictions with data
+%
+% Input:
+%
+% * metaData: structure
+% * metaPar:  structure
+
+%% Remarks
+% Keep in mind that this function is specifically designed for created the
+% webpage of add-my-pet -
+
+%% Example of use
+% load('results_my_pet.mat');
+% print_results_my_pet_html(metaData, metaPar)
+
+[data, auxData, metaData, txtData, weights] = feval(['mydata_',metaData.species]);
+% remove pseudodata:
+data    = rmfield_wtxt(data, 'psd');
+txtData    = rmfield_wtxt(txtData, 'psd');
+
+% cell array of string with fieldnames of data.weight
+[nm, nst] = fieldnmnst_st(data);
+
+speciesprintnm = strrep(metaData.species, '_', ' ');
+
+oid = fopen(['unidata_', metaData.species, '.html'], 'w+'); % open file for reading and writing, delete existing content
+fprintf(oid, '%s\n' ,'<!DOCTYPE html>');
+fprintf(oid, '%s\n' ,'<HTML>');
+fprintf(oid, '%s\n' ,'  <HEAD>');
+fprintf(oid,['    <TITLE>add-my-pet: results ', speciesprintnm, '</TITLE>\n']);
+fprintf(oid, '%s'   ,'    <META NAME = "keywords" ');
+fprintf(oid, '%s\n' ,'     CONTENT="add-my-pet, Dynamic Energy Budget theory, DEBtool">');
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH calls the cascading style sheet (found in subfolder css):
+fprintf(oid, '%s\n' ,'<link rel="stylesheet" type="text/css" href="../../css/collectionstyle.css">'); 
+
+fprintf(oid, '%s\n' , ' </HEAD>');
+fprintf(oid, '%s\n\n','  <BODY>');
+  
+%% content of results_my_pet
+fprintf(oid, ['<H2>Univarariate data and ',metaPar.model,' model predictions for ', speciesprintnm,' &nbsp;</a></H2>']);
+
+%%% Print out all of the graphs with captions:
+unidta = [];
+
+for j = 1:nst
+[aux, k] = size(data.(nm{j})); % number of data points per set
+  if k >1
+  unidta = [unidta;j];
+  end
+end
+
+ex = 1;
+counter = 0;
+
+  while ex 
+  test = counter + 1;
+    if test < 10
+    fullnm = ['results_',metaData.species, '_0', num2str(test), '.png'];
+    else
+    fullnm = ['results_',metaData.species, '_', num2str(test), '.png'];
+    end
+    if exist(fullnm, 'file')
+    counter = counter +1;
+    n = iscell(txtData.bibkey.(nm{unidta(counter)}));
+      if n
+      n = length(txtData.bibkey.(nm{unidta(counter)}));
+      REF = [];
+        for i = 1:n
+        ref = txtData.bibkey.(nm{unidta(counter)});
+          if i == 1
+          REF = [REF,' ',ref];
+          else
+          REF = [REF,', ',ref];
+          end
+        end
+      else
+      REF = txtData.bibkey.(nm{unidta(counter)});    
+      end
+      fprintf(oid, '<div class="figure">\n');
+      fprintf(oid, ['<p><img src="',fullnm,'" width = "380px" alt="Fig ',num2str(test),' 1"> \n']);
+      fprintf(oid,[' <p>Fig. ', num2str(test),': symbols: data from ', REF,'. \n']);
+      fprintf(oid,'Lines: %s model predictions. \n', metaPar.model); 
+      if isfield(txtData.comment, nm{unidta(counter)})
+      str = txtData.comment.(nm{unidta(counter)});
+      fprintf(oid,str);     
+      end
+      fprintf(oid,'</div> \n');   
+    else
+    ex = 0;
+    end
+  end
+
+
+% close the file:
+
+fprintf(oid, '  </BODY>\n');
+fprintf(oid, '  </HTML>\n');
+fclose(oid);
+
+
+##### SOURCE END #####
+--></body></html>

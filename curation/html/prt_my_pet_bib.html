@@ -1,0 +1,130 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_my_pet_bib</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-08-20"><meta name="DC.source" content="prt_my_pet_bib.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_my_pet_bib</h1><!--introduction--><p>read results_my_pet.mat to write my_pet_bib.bib</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_bib.m"><b>prt_my_pet_bib</b></a> (species, biblist, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_bib.bib with the entry's bibliography from results_my_pet.mat</p><p>Input:</p><div><ul><li>species: string with latin name of species</li><li>biblist:  structure with each field containing a reference in bibtext format.</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>The name of the key corresponds to the bibtex key. The structure metaData.biblist is output from mydata_my_pet file If you load results_my_pet.mat then species is found in metaData.species and biblist is metaData.biblist.</p><h2 id="6">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_bib(metaData.species,metaData.biblist) if you wish to print in the current folder else prt_my_pet_bib(metaData.species,metaData.biblist, '../myFolder/')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_my_pet_bib
+% read results_my_pet.mat to write my_pet_bib.bib
+
+%%
+function prt_my_pet_bib(species, biblist, destinationFolder)
+% created 2015/07/17 by Starrlight ; modified 2016/11/03 Starrlight, 2017/05/18 Bas Kooijman, 2018/08/17 Bas Kooijman
+
+%% Syntax
+% <../prt_my_pet_bib.m *prt_my_pet_bib*> (species, biblist, destinationFolder) 
+
+%% Description
+% Prints my_pet_bib.bib with the entry's bibliography from results_my_pet.mat
+%
+% Input:
+%
+% * species: string with latin name of species 
+% * biblist:  structure with each field containing a reference in bibtext format. 
+% * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
+
+%% Remarks
+% The name of the key corresponds to the bibtex key. The structure metaData.biblist is output from mydata_my_pet file
+% If you load results_my_pet.mat then species is found in metaData.species and biblist is metaData.biblist. 
+
+%% Example of use
+% load('results_my_pet.mat');
+% prt_my_pet_bib(metaData.species,metaData.biblist) if you wish to print in the current folder
+% else prt_my_pet_bib(metaData.species,metaData.biblist, '../myFolder/') 
+
+if exist('destinationFolder','var') && isempty('destinationFolder')
+  oid = [];
+elseif exist('destinationFolder','var') 
+  oid = fopen([destinationFolder, species, '_bib.bib'], 'w+'); % open file for reading and writing and deletes old content
+else
+  oid = fopen([species, '_bib.bib'], 'w+');                    % open file for reading and writing and deletes old content   
+end
+
+[nm, nst] = fieldnmnst_st(biblist);
+
+for j = 1:nst 
+  try
+    str = biblist.(nm{j}); str(1) = []; str(end) = []; str(end) = []; 
+    str = strrep(str,'},', ['},', char(10)]); str= strrep(str, '–', '-');
+    index = strfind(str,','); first = index(1); str = [str(1:first), char(10), str(first+1:end)];  
+    index = strfind(str,'}}'); last = index(end); str = [str(1:last-1), '}', char(10), '}'];
+    if ~isempty(oid)
+      fprintf(oid, '%s \n\n', str);
+    end
+  catch
+    fprintf(['Error in prt_my_pet_bib, item ', num2str(j), ': check closing }\n']);
+    if ~isempty(oid)
+      fclose(oid);
+    end
+    return
+  end
+end
+    
+fclose(oid); % close my_pet_bib.bib  
+
+##### SOURCE END #####
+--></body></html>

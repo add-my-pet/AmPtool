@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<HTML>
+<!--------------------------------------------------------------------------->
+<!-- Copyright (c) 2006 by Conor O'Mahony.                                 -->
+<!-- For enquiries, please email GubuSoft@GubuSoft.com.                    -->
+<!-- Please keep all copyright notices below.                              -->
+<!-- Original author of TreeView script is Marcelino Martins.              -->
+<!--------------------------------------------------------------------------->
+<!-- This document includes the TreeView script.  The TreeView             -->
+<!-- script can be found at http://www.TreeView.net.  The                  -->
+<!-- script is Copyright (c) 2006 by Conor O'Mahony.                       -->
+<!--------------------------------------------------------------------------->
+<!-- Searching, scrolling and painting by Bas Kooijman & Bernd Brandt 2018 -->
+<!---------------------------------------------------------------------------> 
+
+<HEAD>
+  <title>Species Tree Taxon</title>
+  
+  <style>
+   
+    /*                                                          */
+    /* Styles for the tree.                                     */
+    /*                                                          */
+
+    SPAN.TreeviewSpanArea A {
+      font-size: 16px; 
+      font-family: verdana,helvetica; 
+      text-decoration: none;
+      color: black;}
+    SPAN.TreeviewSpanArea A:hover {
+      color: '#820082';}
+
+    /*                                                          */
+    /* Styles for the remainder of the document.                */
+    /*                                                          */
+
+    BODY {
+      background-color: white;}
+
+    TD {
+      font-size: 10pt; 
+      font-family: verdana,helvetica;}
+
+    /*                                                          */
+    /*  Styles for dropDown menu                                */
+    /*                                                          */
+
+    .TreeSearch_dropbtn {
+       background-color: #fff;  
+         color: black;
+         padding: 16px;
+         font-size: 1.2em;
+         border: none;
+         cursor: pointer;  
+    }
+
+    .TreeSearch_dropbtn:hover, .TreeSearch_dropbtn:focus {
+      background-color: #f9f9f9;
+    }
+
+    .TreeSearch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .TreeSearch-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    }
+
+    .TreeSearch-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .show {display:block;}
+
+    div.TreeSearch {
+        padding: 0px 0px 0px 0px
+        margin: 0px;
+        float: left;
+    }
+
+    div.TreeTable {
+       clear: left;
+    }
+
+   ul.TreeSearch {
+     list-style-type: none;
+     font-size: 14px;
+     margin: 0;
+     padding: 0;
+     line-height: 10%;
+     max-width: 150px;
+   }
+
+    #TaxonDropdownInput {
+      background-image: url('searchicon.png'); /* Add a search icon to input */
+      background-position: 2px -10px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 60%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 10px 7px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+  </style> 
+  <link rel="stylesheet" type="text/css" href="treeview_taxa.css"></link>
+
+  <SCRIPT src="ua.js"></SCRIPT> <!-- browser detection -->
+  <SCRIPT src="ftiens4.js"></SCRIPT> <!-- infrastructure for TreeView -->
+  <SCRIPT src="treeview_taxa.js"></SCRIPT> <!-- tree definition -->
+  <script src="w3data.js"></script> <!-- inclusion of htlm snippets -->
+  <script src="w3color.js"></script> <!-- conversion from rgb to hex -->
+  <script src="dropdown.js"></script> <!-- dropbox -->
+
+  <SCRIPT>
+    if (document.taxonSearch == undefined){
+      document.taxonSearch = "";     
+    }
+    
+    function getNumberOfShownTaxa (taxon) {
+      var nodeObj = findObj(taxon);
+      var idCurrent = nodeObj.id;               // local id of taxa
+      var string = GetCookie("clickedFolder");  // list of opened folders
+      var taxonss = string.split(cookieCutter); // last substring is empty
+      var n = taxonss.length - 1;               // number of opened folders
+      var nShownTaxa = 2; // initiate counter for shown taxa above taxon
+ 
+      for (i=0; i < n; i++) {
+        nodeObj = findObj(taxonss[i]);
+        if (nodeObj.id < idCurrent) {
+          nShownTaxa = nShownTaxa + nodeObj.nChildren;
+        }
+      }   
+      return nShownTaxa;              
+    }
+
+    function getQueryString(index) {
+      var paramExpressions = window.location.search.substr(1).split("&");
+      if (index < paramExpressions.length) {
+        var param = paramExpressions[index]; 
+        if (param.length > 0) {
+          return eval(unescape(param));
+        }
+      }
+      return ""
+    }
+
+    function TreeSearch(taxon) { 
+      SetCookie("clickedFolder", taxon); // open tree
+      window.location = window.location.href.split('?')[0]  + '?pic="' + taxon + '.jpg"'
+      document.taxonSearch = taxon;
+    }
+
+    function InputTreeSearch(Dropdown) {
+      var input, filter, ul, li, tage, i, n;
+      input = document.getElementById(Dropdown+'Input');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById(Dropdown+'Searchlist');
+      li = ul.getElementsByTagName("li");
+ 
+      for (i = 0; i < li.length; i++) {
+        tag = li[i].getElementsByTagName("a")[0];
+        if (tag.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "block";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+
+  </SCRIPT>  
+
+</HEAD>
+ 
+<BODY>
+	
+  <div id = "main">
+    <div id = "main-wrapper">    
+      <div id="contentFull">
+
+       <!-- TreeSearch -->
+       <div w3-include-html="treeview_taxa_search.html"></div>
+       <script>w3IncludeHTML();</script>
+
+       <!-- tree table -->
+       <div class="TreeTable">
+         <TABLE cellpadding="0" cellspacing="0" border="0" width="772">
+           <TR>
+             <TD width="300" valign="top">
+
+               <TABLE cellpadding="4" cellspacing="0" border="0" width="100%">
+                 <TR>
+                   <TD bgcolor="#ECECD9">
+
+                     <TABLE cellspacing="0" cellpadding="2" border="0" width="100%">
+                       <TR>
+                         <TD bgcolor="white">
+                           <!------------------------------------------------------------->
+                           <!-- IMPORTANT NOTICE:                                       -->
+                           <!-- Removing the following link will prevent this script    -->
+                           <!-- from working.  Unless you purchase the registered       -->
+                           <!-- version of TreeView, you must include this link.        -->
+                           <!-- If you make any unauthorized changes to the following   -->
+                           <!-- code, you will violate the user agreement.  If you want -->
+                           <!-- to remove the link, see the online FAQ for instructions -->
+                           <!-- on how to obtain a version without the link.            -->
+                           <!------------------------------------------------------------->
+                           <TABLE border=0>
+                             <TR><TD>
+                               <FONT size=-2><A style="font-size:7pt;text-decoration:none;color:silver" href="http://www.treemenu.net/" target="_blank">Javascript Tree Menu</A></FONT>
+                             </TD></TR>
+                           </TABLE>
+
+                           <SPAN class=TreeviewSpanArea>
+                             <script>initializeDocument()</script>
+                             <NOSCRIPT>
+                               A tree for site navigation will open here if you enable JavaScript in your browser.
+                             </NOSCRIPT>
+                           </SPAN>
+                         </TD>
+                       </TR>
+                     </TABLE>
+
+                   </TD>
+                 </TR>
+               </TABLE>
+
+             </TD>
+             <TD bgcolor="white" valign="top">
+               <div id="pictxt"><TABLE><TR><TD>
+                 <img id="pic" src="" width = 400><p><embed id="txt" src="" width=400></img>
+                 <script> // show picture + legend
+                   var path = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/"
+                   if (document.taxonSearch.length == 0) { // result of clicking in tree
+                     var picURL = getQueryString(0);
+                   }
+                   else {                                  // result of searching
+                     var picURL = (document.taxonSearch + '.jpg');
+                   }           
+                   if (picURL.length == 0){               
+                     picURL = foldersTree.xID + '.jpg';
+                   }
+                   document.getElementById('pic').src = path + picURL;
+                   document.getElementById('txt').src = path + picURL + '.txt';
+                   document.taxonSearch = ""; // empty search string for further clicking on tree
+                   var taxon = picURL.split('.')[0];
+                   clickOnFolder(taxon);      // set highlight
+                 </script>
+               </TD></TR></TABLE></div>
+
+               <SCRIPT> // scroll page and picture  
+                 var n = getNumberOfShownTaxa(taxon);  
+                 var height = Math.max(0,25*n-200);
+                 document.getElementById('pictxt').style.marginTop = height + 'px';
+                 window.scrollTo(0,height+200);
+               </SCRIPT>
+               
+
+             </TD>
+           </TR>
+         </TABLE><!-- end of Tree Table -->
+
+
+      </div><!-- end of Tree Table -->		
+
+    </div> <!-- end of content -->
+									
+    <div id="footer" w3-include-html="sys/footer_amp.html"></div>
+    <script>w3IncludeHTML();</script>
+			
+  </div> <!-- main wrapper -->
+</div> <!-- main -->
+
+</BODY>
+</HTML>

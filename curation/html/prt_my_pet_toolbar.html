@@ -1,0 +1,152 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_my_pet_toolbar</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-04-28"><meta name="DC.source" content="prt_my_pet_toolbar.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_my_pet_toolbar</h1><!--introduction--><p>prints the menu bar which is used for the pages which are specific for a given species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_toolbar.m"><b>prt_my_pet_toolbar</b></a> (species, species_en, date_acc, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html,</p><p>Input:</p><div><ul><li>species: string, scientific name of the species (Genus_species)</li><li>species_en: string, common name of the species</li><li>date_acc: 3-vector with date of acceptance (from metaData.date_acc)</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>Indent of 2 spaces used for printing to html page Edit /sys/drowdown.js for adding dropdwn's</p><h2 id="6">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc) if you wish to print in the current folder</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_my_pet_toolbar
+% prints the menu bar which is used for the pages which are specific for a given species
+
+%%
+function  prt_my_pet_toolbar(species, species_en, date_acc, destinationFolder)
+% created 2018/04/27 Bas Kooijman 
+
+%% Syntax
+% <../prt_my_pet_toolbar.m *prt_my_pet_toolbar*> (species, species_en, date_acc, destinationFolder)
+
+%% Description
+% Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html, 
+%
+% Input:
+%
+% * species: string, scientific name of the species (Genus_species)
+% * species_en: string, common name of the species 
+% * date_acc: 3-vector with date of acceptance (from metaData.date_acc)
+% * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
+
+%% Remarks
+% Indent of 2 spaces used for printing to html page
+% Edit /sys/drowdown.js for adding dropdwn's
+
+%% Example of use
+% load('results_my_pet.mat');
+% prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc) if you wish to print in the current folder
+
+if exist('destinationFolder','var') && isempty('destinationFolder')
+  oid = [];
+elseif exist('destinationFolder','var') 
+  oid = fopen([destinationFolder, species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
+else
+  oid = fopen([species, '_toolbar.html'], 'w+');                    % open file for reading and writing and deletes old content   
+end
+
+fprintf(oid, '  <h1 class="alignleft2">\n');
+fprintf(oid,['    <a href="../../species_list.html#', species,'"> &nbsp; ', species, '</a> (', species_en, '): &nbsp;\n']);
+fprintf(oid, '  </h1>\n\n');
+
+fprintf(oid, '  <div id="navwrapper">\n');
+fprintf(oid, '    <div class = "dropdown"><button onclick="species()" class="dropbtn">Results</button>\n');
+fprintf(oid, '      <div id="speciesDropdown" class="dropdown-content">\n');
+fprintf(oid,['        <a href="', species, '_par.html">Parameters</a>\n']);
+fprintf(oid,['        <a href="', species, '_stat.html">Implied properties</a>\n']);    
+fprintf(oid,['        <a href="', species, '_res.html">Predictions & Data</a>\n']);
+fprintf(oid,['        <a href="', species, '_bib.bib">Bibliography</a>\n']);
+fprintf(oid, '      </div>\n');
+fprintf(oid, '    </div>\n\n');
+
+zip = get_zip(species); n_zip = size(zip, 1); % see if there are any obsolete zip's in the archive
+fprintf(oid, '    <div class = "dropdown"><button onclick="code()" class="dropbtn">Code</button>\n');
+fprintf(oid, '      <div id="codeDropdown" class="dropdown-content">\n');
+fprintf(oid,['        <a href="../../entries/',species,'/mydata_',species,'.m" target="_blank">mydata</a>\n']);
+fprintf(oid,['        <a href="../../entries/',species,'/pars_init_',species,'.m" target="_blank">pars_init</a>\n']);
+fprintf(oid,['        <a href="../../entries/',species,'/predict_',species,'.m" target="_blank">predict</a>\n']);
+fprintf(oid,['        <a HREF="../../entries_zip/',species,'_', datestr(datenum(date_acc), 'yyyymmdd'), '.zip" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n']);
+fprintf(oid,['          <IMG SRC="../../img/zipicon.png" WIDTH="30px"  BORDER="0" >', datestr(datenum(date_acc), 'yyyymmdd'), '</a>\n']);
+for i = 1:n_zip % work from bottom to top to get oldest zip's on bottom
+fprintf(oid,['        <a HREF="../../entries_archive/', zip{n_zip-i+1,1}, '" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n']);
+fprintf(oid,['          <IMG SRC="../../img/zipicon.png" WIDTH="30px"  BORDER="0" >', zip{n_zip-i+1,2}, '</a>\n']);
+end
+fprintf(oid, '      </div>\n');
+fprintf(oid, '    </div>\n\n');
+
+links = get_link(species); n_link = size(links,1);
+fprintf(oid, '    <div class = "dropdown"><button onclick="link()" class="dropbtn">Links</button>\n');
+fprintf(oid, '      <div id="linkDropdown" class="dropdown-content">\n');
+for i = 1:n_link
+fprintf(oid,['        <a href="', links{i,1}, '" target="_blank">', links{i,2}, '</a>\n']);
+end
+fprintf(oid, '      </div>\n');
+fprintf(oid, '    </div>\n\n');
+
+fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH end of navwrapper REPLACE_WITH_DASH_DASH>\n');
+
+fclose(oid);
+end
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,172 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>run_collection_pop</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-08-03"><meta name="DC.source" content="run_collection_pop.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>run_collection_pop</h1><!--introduction--><p>generates files for AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../run_collection.m"><b>run_collection</b></a> (varargin)</p><h2 id="4">Description</h2><p>Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip. Deletes .cache, .wn, .asv, .bib,  .bbl', .html files from entries. Calls function bib2html, which writes and deletes the .aux file as source for Bibtex, runs Bibtex, which writes a bbl-file, which is also deleted. Writes my_pet_toolbar.html, which is included by my_pet_res.html, my_pet_par.html, my_pet_stat.html and my_pet_pop.html.</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Output:</p><div><ul><li>1 bib-file, 4 html-files and 4 png-files per entry are written in ../entries_web</li><li>1 zip-file is written in ../entries_zip</li></ul></div><h2 id="5">Remarks</h2><p>make sure that get_eco gives non-empty values for all species in varargin. run_collection_intro to generate about and access files for the collection</p><h2 id="6">Example of use</h2><p>run_collection or run_collection('Mola_mola') or run_collection('Mola_mola', 'Molva_molva') or run_collection({'Mola_mola', 'Molva_molva'}) or run_collection('Clitellata');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% run_collection_pop
+% generates files for AmP website 
+
+%%
+function run_collection_pop(varargin)
+% created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21 Bas Kooijman
+
+%% Syntax
+% <../run_collection.m *run_collection*> (varargin)
+
+%% Description
+% Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip.
+% Deletes .cache, .wn, .asv, .bib,  .bbl', .html files from entries.
+% Calls function bib2html, which writes and deletes the .aux file as source for Bibtex, runs Bibtex, which writes a bbl-file, which is also deleted.
+% Writes my_pet_toolbar.html, which is included by my_pet_res.html, my_pet_par.html, my_pet_stat.html and my_pet_pop.html.
+%
+% Input:
+%
+% * varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')
+%
+% Output:
+%
+% * 1 bib-file, 4 html-files and 4 png-files per entry are written in ../entries_web 
+% * 1 zip-file is written in ../entries_zip
+
+%% Remarks
+% make sure that get_eco gives non-empty values for all species in varargin.
+% run_collection_intro to generate about and access files for the collection
+
+%% Example of use
+% run_collection or 
+% run_collection('Mola_mola') or
+% run_collection('Mola_mola', 'Molva_molva') or
+% run_collection({'Mola_mola', 'Molva_molva'}) or 
+% run_collection('Clitellata');
+
+if isempty(varargin)
+  varargin = select('Animalia');
+elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))
+  varargin = select(varargin{1});
+elseif iscell(varargin{1})    
+  varargin = varargin{:}; % unpack cell string  
+end
+
+nargin = length(varargin); % number of entries to scan    
+WD = pwd; % store current path
+path = which('run_collection'); ind = strfind(path,'\');
+cd(path(1:ind(end)));
+
+for i = 1:nargin 
+  destinationFolder = ['../../entries_web/', varargin{i},'/']; % target for html and png files
+  fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
+  
+  cd(['../../entries/', varargin{i}]) % goto entry i in dir entries
+
+  %feval(['run_', varargin{i}]); close all;
+  load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
+  %[data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
+  %prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
+  %prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
+  %delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
+  cd(WD) % goto orginal path, but print to destinationFolder
+
+  %cd('../../entries_zip');
+  %filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry en save
+  % !Rscript zip2DataOne.r
+  %doi = 'xxxxxx';
+  %cd(WD)  % goto original path    
+
+  % get reprodCode, which is used in prt_my_pet_pop
+  [~, ~, ~, ~, ~, ~, ~, reprodCode] = get_eco(varargin{i});
+  
+  if strcmp(metaPar.model,'stx')
+  mkdir(destinationFolder);
+  
+  % print files
+  prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc, destinationFolder) % my_pet_toolbar.html
+  %prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
+  %bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
+  %prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
+  %prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)         % my_pet_res.html
+  %prt_my_pet_par(metaData, metaPar, par, txtPar, destinationFolder)                             % my_pet_par.html
+  %prt_my_pet_stat(metaData, metaPar, par, destinationFolder)                                    % my_pet_stat.html, including pie-png's
+  
+  if any(ismember({'z_m','E_Hbm','E_Hsm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
+    male = 1; % male and females parameters differ
+  else
+    male = 0; % male and females parameters are the same
+  end
+
+  if male
+    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
+  else
+    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
+  end
+  end
+end
+    
+close all
+
+##### SOURCE END #####
+--></body></html>

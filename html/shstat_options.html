@@ -1,0 +1,171 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>shstat_options</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-04-23"><meta name="DC.source" content="shstat_options.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1>shstat_options</h1><!--introduction--><p>Sets options for function 'shstat' one by one.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p><a href="../shstat_options.m"><b>shstat_options</b></a> (key, val)</p><h2>Description<a name="4"></a></h2><p>Sets options for function <a href="shstat.html"><b>shstat</b></a> one by one. Type 'shstat_options' to see values or  type 'shstat_options('default') to set options at default values</p><p>Input</p><div><ul><li>no input: print values to screen</li><li>one input:</li></ul></div><pre class="language-matlab"><span class="string">'default'</span>: sets options <span class="string">at</span> <span class="string">default</span> <span class="string">values</span>
+any <span class="string">other</span> <span class="string">key</span> <span class="string">(see below):</span> <span class="string">print</span> <span class="string">value</span> <span class="string">to</span> <span class="string">screen</span>
+</pre><div><ul><li>two inputs</li></ul></div><pre class="language-matlab"><span class="string">'x_transform'</span>, default: <span class="string">'log10'</span>
+<span class="string">'y_transform'</span>, default: <span class="string">'log10'</span>
+</pre><p>Output</p><div><ul><li>no output, but globals are set to values or values are printed to screen</li></ul></div><h2>Example of use<a name="5"></a></h2><p>shstat_options('default'); shstat_options('x_transform', 'none')</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% shstat_options
+% Sets options for function 'shstat' one by one.
+
+%%
+function shstat_options (key, val)
+  %  created at 2016/04/28 by Bas Kooijman
+  
+  %% Syntax
+  % <../shstat_options.m *shstat_options*> (key, val)
+  
+  %% Description
+  % Sets options for function <shstat.html *shstat*> one by one.
+  % Type 'shstat_options' to see values or
+  %  type 'shstat_options('default') to set options at default values
+  % 
+  % Input
+  %
+  % * no input: print values to screen
+  % * one input:
+  %
+  %   'default': sets options at default values
+  %   any other key (see below): print value to screen
+  %
+  % * two inputs
+  %
+  %   'x_transform', default: 'log10'
+  %   'y_transform', default: 'log10'
+  %
+  % Output
+  %
+  % * no output, but globals are set to values or values are printed to screen
+
+  %% Example of use
+  % shstat_options('default'); shstat_options('x_transform', 'none')
+
+    global x_transform y_transform x_label y_label
+
+    if ~exist('key', 'var')
+      key = 'unkown';
+    end
+     
+    switch key
+	
+      case 'default'
+	    x_transform = 'log10';
+	    y_transform = 'log10';
+        x_label = 'off';
+        y_label = 'off';
+
+      case 'x_transform'
+	    if ~exist('val','var')
+	      if numel(x_transform) ~= 0
+	        fprintf(['x_transform = ', x_transform,' \n']);  
+	      else
+            fprintf('x_transform = unknown \n');
+	      end	      
+	    else
+	      x_transform = val;
+	    end
+
+      case 'y_transform'
+	    if ~exist('val','var')
+	      if numel(y_transform) ~= 0
+	        fprintf(['y_transform = ', y_transform,' \n']);  
+	      else
+            fprintf('y_transform = unknown \n');
+	      end	      
+	    else
+	      y_transform = val;
+        end
+
+      case 'x_label'
+	    if ~exist('val','var')
+	      if numel(x_label) ~= 0
+	        fprintf(['x_label', x_label,' \n']);  
+	      else
+            fprintf('x_label = unknown \n');
+	      end	      
+	    else
+	      x_label = val;
+        end
+
+      case 'y_label'
+	    if ~exist('val','var')
+	      if numel(xylabel) ~= 0
+	        fprintf(['y_label', y_label,' \n']);  
+	      else
+            fprintf('y_label = unknown \n');
+	      end	      
+	    else
+	      y_label = val;
+	    end
+
+      otherwise 
+	    if numel(x_transform) ~= 0
+          fprintf(['x_transform = ', x_transform,' \n']);
+	    else
+	      fprintf('x_transform = unknown \n');
+	    end	      
+	    if numel(y_transform) ~= 0
+	      fprintf(['y_transform = ', y_transform,' \n']);
+	    else
+	      fprintf('y_transform = unkown \n');
+	    end
+     end
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,201 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>shstat_taxa</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-12-16"><meta name="DC.source" content="shstat_taxa.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">shstat_taxa</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="1">shstat_taxa</h2><p>plots statistics and/or parameters for a taxon as function of taxonomic distance</p><h2 id="3">Syntax</h2><p>[Hfig val entries] =  <a href="../shstat_taxa.m"><b>shstat_taxa</b></a>(vars, legend, label_title, Hfig)</p><h2 id="4">Description</h2><p>Plots statistics and/or parameters using allStat.mat as source (which must exist) for a taxon specified in legend{end,2} as function of normalised taxonomic distance. These distances are computed with <a href="dist_taxa.html"><b>dist_taxa</b></a>, on the basis of the classification, as specified in the lists-of-lists for subsequent pairs of entries.</p><p>Input vars can also be a numerical (n,k)-matrix for n = length(select) and f = size(vars,2), but the labels on the yxis are then empty and output val equals input vars. In that case, read_allStat is bypassed and labels must be set by user afterwards, see mydata_shstat.</p><p>Input:</p><div><ul><li>vars: k-cell string with name(s) of independent variables, or (n,k) matrix of values with n = length(select)</li><li>legend: (m,2)-array with legend: (marker, taxon)-pairs; taxon legend{end,2) must include all other taxa</li><li>label_title: optional string or k-cell string for title of figure</li><li>Hfig: optional k-vector with figure handles (to get the plot in a specified figure). Default 1,2,.,k</li></ul></div><p>Output</p><div><ul><li>Hfig: k-vector with figure handles for plots (equal to input, if specified there)</li><li>Hleg: scalar with figure handle for legend</li><li>val: (n,k)-matrix with untransformed y-values (depending on the spefication of vars)</li><li>entries: n-cell string with names of entries</li><li>missing: cell string with names of entries that should have been plotted, but are missing (because of lack of data in allStat.mat)</li></ul></div><h2 id="5">Remarks</h2><p>The computation of taxonomic distances might take some time. Legend can be set/modified with <a href="../../DEBtool_M/taxa/html/select_legend.html"><b>select_legend</b></a>. In the case that a taxon is included in another one, double plotting is suppressed from first-to-last column of selection matrix, and plotting is done for last-to-first column. So, if Aves and Animalia are in legend in this sequence, Animalia-markers are not plotted for Aves, and Aves-markers are on top of Animalia-markers in case of crowding. If Animalia is in legend before Aves, no Aves-markers are shown.</p><p>No transformation is done in this function, so, if required, do it outside and use numerical mode.</p><p>Make sure that allStat has been generated at the correct temperature (for times and rates); all parameters are at T_ref, but statistics at T_typical. Make sure that allStat is consistent with select('Animalia'); can be done via <a href="write_allStat.html"><b>write_allStat</b></a>.</p><p>Set options with <a href="shstat_options,.html"><b>shstat_options</b></a> (such as logarithmic transformation of axes). Symbols and units are always plotted on the axes in non-numerical mode, but descriptions only if x_label, and/or y_label and/or z_label is 'on'.</p><p>See shstat for further details</p><h2 id="6">Example of use</h2><p>shstat_taxa({'kap', 'p_M', 'v'}, legend_actino) kvp = read_allStat({'kap', 'p_M', 'v'}); kvp(:,[2 3]) = log10(kvp(:,[2 3]); shstat_taxa( kvp, legend_actino)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% shstat_taxa
+% plots statistics and/or parameters for a taxon as function of taxonomic distance
+
+function [Hfig Hleg val entries missing] = shstat_taxa(vars, legend, label_title, Hfig)
+% created 2017/04/22 by Bas Kooijman
+
+%% Syntax
+% [Hfig val entries] =  <../shstat_taxa.m *shstat_taxa*>(vars, legend, label_title, Hfig)
+
+%% Description
+% Plots statistics and/or parameters using allStat.mat as source (which must exist) for a taxon specified in legend{end,2} as function of normalised taxonomic distance.
+% These distances are computed with <dist_taxa.html *dist_taxa*>, on the basis of the classification, as specified in the lists-of-lists for subsequent pairs of entries.
+%
+% Input vars can also be a numerical (n,k)-matrix for n = length(select) and f = size(vars,2), but the labels on the yxis are then empty and output val equals input vars.
+% In that case, read_allStat is bypassed and labels must be set by user afterwards, see mydata_shstat.
+%
+% Input:
+%
+% * vars: k-cell string with name(s) of independent variables, or (n,k) matrix of values with n = length(select) 
+% * legend: (m,2)-array with legend: (marker, taxon)-pairs; taxon legend{end,2) must include all other taxa
+% * label_title: optional string or k-cell string for title of figure
+% * Hfig: optional k-vector with figure handles (to get the plot in a specified figure). Default 1,2,.,k
+%
+% Output
+%
+% * Hfig: k-vector with figure handles for plots (equal to input, if specified there)
+% * Hleg: scalar with figure handle for legend 
+% * val: (n,k)-matrix with untransformed y-values (depending on the spefication of vars)
+% * entries: n-cell string with names of entries
+% * missing: cell string with names of entries that should have been plotted, but are missing (because of lack of data in allStat.mat) 
+
+%% Remarks
+% The computation of taxonomic distances might take some time.
+% Legend can be set/modified with <../../DEBtool_M/taxa/html/select_legend.html *select_legend*>.  
+% In the case that a taxon is included in another one, double plotting is suppressed from first-to-last column of selection matrix, and plotting is done for last-to-first column.
+% So, if Aves and Animalia are in legend in this sequence, Animalia-markers are not plotted for Aves, and Aves-markers are on top of Animalia-markers in case of crowding.
+% If Animalia is in legend before Aves, no Aves-markers are shown.
+%
+% No transformation is done in this function, so, if required, do it outside and use numerical mode.
+%
+% Make sure that allStat has been generated at the correct temperature (for times and rates); all parameters are at T_ref, but statistics at T_typical.
+% Make sure that allStat is consistent with select('Animalia'); can be done via <write_allStat.html *write_allStat*>.
+%
+% Set options with <shstat_options,.html *shstat_options*> (such as logarithmic transformation of axes).
+% Symbols and units are always plotted on the axes in non-numerical mode, but descriptions only if x_label, and/or y_label and/or z_label is 'on'.
+%
+% See shstat for further details
+
+%% Example of use
+% shstat_taxa({'kap', 'p_M', 'v'}, legend_actino)
+% kvp = read_allStat({'kap', 'p_M', 'v'}); kvp(:,[2 3]) = log10(kvp(:,[2 3]); shstat_taxa( kvp, legend_actino)
+
+  % get x-values, label
+  taxon = legend{end,2}; i_sel = select_01('Animalia', taxon);
+  %TD = 1:length(select(taxon));
+  TD = dist_taxa(taxon);
+  dist = zeros(length(i_sel),1); dist(i_sel) = TD; % expand distances to size of Animalia
+  label_x = ['relative taxon distances for ', taxon];
+
+  % get y-values, units, label
+  if isnumeric(vars) % numerical mode, read_allStat is bypassed
+    val = vars;
+    [n_entries n_vars] = size(vars); 
+    units_y = []; label_y = [];
+    entries = select;
+    if ~(n_entries == length(entries))
+      fprintf('Warning from shstat_taxa: number data-points is not equal to number of entries\n');
+    end
+  else % read values of variables, units and labels using read_allStat
+    n_vars = length(vars);
+    [val entries units_y label_y] = read_allStat(vars);
+    n_entries = length(entries); 
+  end
+
+  % compose selection matrix, missing entries
+  missing = entries(isnan(val)); % determine missing entries
+  n_taxa = size(legend, 1); % number of taxa to be plotted  
+  if n_taxa > 1
+    sel = zeros(n_entries, n_taxa);
+    [sel(:,1) entries_sel] = select_01('Animalia', legend{1,2});
+    if ~isequaln(entries, entries_sel)
+      fprintf('Error in shstat_taxa: entries in allStat do not correspond with entries in select(''Animalia'')\n')
+      Hfig = []; missing = []; return
+    end
+    for i = 2:n_taxa
+      sel(:,i) = select_01('Animalia', legend{i,2});
+    end
+  end     
+
+  % edit y-label symbol as text on y-axis
+  if isnumeric(vars)
+    symbol_y = []; label_y = []; units_y = [];
+  else
+    symbol_y = vars;  % initiate text for symbols
+    for i = 1:n_vars
+      [nm1 nm2] = strtok(symbol_y{i},'_');
+      if ~isempty(nm2)
+        symbol_y{i} = [nm1, '_{', nm2(2:end), '}'];
+      end
+      label_y{i} = [label_y{i}, ', ', symbol_y{i}, ', ', units_y{i}];
+    end
+  end
+  
+  if ~exist('Hfig','var') || isempty(Hfig)
+    Hfig = 1:n_vars; % assign handles
+  end
+
+  ssel = sum(sel,2) ~= 0; % sum select
+  
+  for k = 1:n_vars
+    figure(Hfig(k))
+    hold on
+    for j = 1:n_taxa % scan taxa
+      i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
+      marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3}; MEC = marker{4}; MFC = marker{5};  
+      plot(dist(sel(:,i)==1), val(sel(:,i)==1,k), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC)
+    end
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel(label_x)  
+    ylabel(label_y{k})
+      
+    h = datacursormode(Hfig(k));
+    data = [dist, val(:,k)]; 
+    h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries(ssel), data(ssel,:));
+    datacursormode on % mouse click on plot
+  end
+
+  Hleg = shlegend(legend);
+
+##### SOURCE END #####
+--></body></html>

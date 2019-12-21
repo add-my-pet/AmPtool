@@ -1,0 +1,185 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>get_allStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-02-06"><meta name="DC.source" content="get_allStat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>get_allStat</h1><!--introduction--><p>obtain a structure with all pars and stats for all entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="get_allStat"><b>get_allStat</b></a> (T, f)</p><h2 id="4">Description</h2><p>Gets lineage, model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics and biblist of all entries. It does so by directory-hopping using ../../entries, which must contain all entries, and visiting the results_my_pet.mat files. This assumes that the content of this .mat file is consistent with the mydata_my_pet and the pars_init_my_pet files. Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.</p><p>Input:</p><div><ul><li>T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Output:</p><div><ul><li>allStat: structure with all parameters and statistics values, including their units and labels</li></ul></div><h2 id="5">Remarks</h2><p>Statistics are given at T_typical or T. Meant to be used in combination with <a href="write_allStat.html"><b>write_allStat</b></a> and <a href="../../html/read_allStat.html"><b>read_allStat</b></a>. Since running this function takes some time, progress is written to screen.</p><h2 id="6">Example of use</h2><p>allStat = get_allStat; see mydata_shstat</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% get_allStat
+% obtain a structure with all pars and stats for all entries
+
+%%
+function allStat = get_allStat(T, f)
+% created 2016/04/22 by Bas Kooijman, modified 2018/01/23
+
+%% Syntax
+% allStat = <get_allStat *get_allStat*> (T, f)
+
+%% Description
+% Gets lineage, model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics and biblist of all entries.
+% It does so by directory-hopping using ../../entries, which must contain all entries, and visiting the results_my_pet.mat files.
+% This assumes that the content of this .mat file is consistent with the mydata_my_pet and the pars_init_my_pet files.
+% Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.
+%
+% Input:
+%
+% * T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)
+% * f: optional scalar with scaled functional response (default 1)
+%
+% Output:
+% 
+% * allStat: structure with all parameters and statistics values, including their units and labels
+
+%% Remarks
+% Statistics are given at T_typical or T. 
+% Meant to be used in combination with <write_allStat.html *write_allStat*> and <../../html/read_allStat.html *read_allStat*>.
+% Since running this function takes some time, progress is written to screen.
+
+%% Example of use
+% allStat = get_allStat; see mydata_shstat
+
+  if ~exist('T', 'var') || isempty(T)
+    set_T = 0; % identyfier for temperature setting
+  else 
+    set_T = 1;
+  end
+ 
+  if ~exist('f', 'var') || isempty(f) 
+    f = 1;
+  end
+
+  entries = select('Animalia');
+  ne = length(entries);
+   
+  WD = pwd;                % store current path
+  cd(['../../entries/',entries{1}]) % goto entries
+
+  try
+    for i = 1:ne
+      cd (['../', entries{i}])
+      fprintf([entries{i}, '\n']); % show progress on screen (takes some time)
+      load (['results_', entries{i}])
+      
+      % metaData
+      allStat.(entries{i}).species = metaData.species; allStat.(entries{i}).units.species = '-'; allStat.(entries{i}).label.species = 'taxon';
+      allStat.(entries{i}).species_en = metaData.species_en; allStat.(entries{i}).units.species_en = '-'; allStat.(entries{i}).label.species_en = 'common name';
+      allStat.(entries{i}).family  = metaData.family;  allStat.(entries{i}).units.family = '-';  allStat.(entries{i}).label.family = 'taxon';
+      allStat.(entries{i}).order   = metaData.order;   allStat.(entries{i}).units.order = '-';   allStat.(entries{i}).label.order = 'taxon';
+      allStat.(entries{i}).class   = metaData.class;   allStat.(entries{i}).units.class = '-';   allStat.(entries{i}).label.class = 'taxon';
+      allStat.(entries{i}).phylum  = metaData.phylum;  allStat.(entries{i}).units.phylum = '-';  allStat.(entries{i}).label.phylum = 'taxon';
+      % data/model
+      allStat.(entries{i}).model = metaPar.model; allStat.(entries{i}).units.model = '-'; allStat.(entries{i}).label.model = 'DEB model';
+      allStat.(entries{i}).MRE = metaPar.MRE; allStat.(entries{i}).units.MRE = '-'; allStat.(entries{i}).label.MRE = 'Mean Relative Error';
+      allStat.(entries{i}).SMSE = metaPar.SMSE; allStat.(entries{i}).units.SMSE = '-'; allStat.(entries{i}).label.SMSE = 'Symmetric Mean Squared Error';
+      allStat.(entries{i}).COMPLETE = metaData.COMPLETE; allStat.(entries{i}).units.COMPLETE = '-'; allStat.(entries{i}).label.COMPLETE = 'completeness';
+      allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; allStat.(entries{i}).units.data = '-'; allStat.(entries{i}).label.data = 'data types';
+      % submission
+      allStat.(entries{i}).author = metaData.author(:)'; allStat.(entries{i}).units.author = '-'; allStat.(entries{i}).label.author = 'submitting author';
+      allStat.(entries{i}).date_subm = metaData.date_subm; allStat.(entries{i}).units.date_subm = '-'; allStat.(entries{i}).label.date_subm = 'submitting date';
+      % modification
+      author_date_mod = get_author_date_mod(metaData);
+      allStat.(entries{i}).author_mod = author_date_mod(:,1); allStat.(entries{i}).units.author_mod = '-'; allStat.(entries{i}).label.author_mod = 'modification author';
+      allStat.(entries{i}).date_mod = author_date_mod(:,2); allStat.(entries{i}).units.date_mod = '-'; allStat.(entries{i}).label.date_mod = 'modification date';
+      % acceptance
+      allStat.(entries{i}).date_acc = metaData.date_acc; allStat.(entries{i}).units.date_acc = '-'; allStat.(entries{i}).label.date_acc = 'acceptance date';
+      % typical body temp
+      allStat.(entries{i}).T_typical = metaData.T_typical;  allStat.(entries{i}).units.T_typical = 'K';
+        allStat.(entries{i}).label.T_typical = 'typical body temperature';
+
+      % parameters
+      par = rmfield_wtxt(par, 'free');   % remove substructure free from par
+      [nm nst] = fieldnmnst_st(par);     % get number of parameter fields
+      for j = 1:nst % add all parameters at T_ref
+        allStat.(entries{i}).(nm{j}) = par.(nm{j});
+        allStat.(entries{i}).units.(nm{j}) = txtPar.units.(nm{j});
+        allStat.(entries{i}).label.(nm{j}) = txtPar.label.(nm{j});
+      end
+      
+      % statistics
+      allStat.(entries{i}).f = f; % overwrite scaled function response
+      if set_T == 0
+        [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
+      else
+        [stat, txtStat] = statistics_st(metaPar.model, par, T, f);
+      end
+      [nm nst] = fieldnmnst_st(stat);    % get number of parameter fields
+      for j = 1:nst % add all statistis at T or T_typical
+        allStat.(entries{i}).(nm{j}) = stat.(nm{j});
+        allStat.(entries{i}).units.(nm{j}) = txtStat.units.(nm{j});
+        allStat.(entries{i}).label.(nm{j}) = txtStat.label.(nm{j});
+      end
+    end
+   
+  catch 
+    disp(['Statistics of entry ', entries{i},' could not be extracted'])
+  end
+   
+  cd(WD)                   % goto original path
+end
+
+
+##### SOURCE END #####
+--></body></html>

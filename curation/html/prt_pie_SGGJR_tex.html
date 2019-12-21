@@ -1,0 +1,149 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_pie_SGGJR_tex</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-16"><meta name="DC.source" content="prt_pie_SGGJR_tex.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1>prt_pie_SGGJR_tex</h1><!--introduction--><p>presents pies for allocation at birth, puberty, ultimate &amp; cum investment at birth</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p>pSGGJR = <a href="../prt_pie_SGGJR_tex.m"><b>prt_pie_SGGJR_tex</b></a> (path_in, path_out)</p><h2>Description<a name="4"></a></h2><p>Writes 4 tex-documents that present the pies of output of <a href="../pie_SGGJR.m"><b>pie_SGGJR</b></a> for all entries in parent dir of entrie_admin</p><p>Input:</p><div><ul><li>path_in: optional character string path to input png-files (default 'http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/')</li><li>path_out: optional character string path for output tex-files (default '../entries_pie'</li></ul></div><p>Output:</p><div><ul><li>writes files pie_pSGJRb.tex, pie_pSGJRp.tex, pie_pSGJRi.tex, pie_SGJRb.tex</li><li>copies png files for all pies to path_out/img</li></ul></div><h2>Remarks<a name="5"></a></h2><p>Function prt_pie_SGGJR_tex is   assumed to be ran in entries_admin,   using <a href="../select.m"><b>select</b></a> to identify entry names.</p><h2>Example of use<a name="6"></a></h2><p>prt_pie_SGGJR_tex</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_pie_SGGJR_tex
+% presents pies for allocation at birth, puberty, ultimate & cum investment at birth
+
+%%
+function  prt_pie_SGGJR_tex(path_in, path_out)
+% created 2017/05/11 by Bas Kooijman
+
+%% Syntax
+% pSGGJR = <../prt_pie_SGGJR_tex.m *prt_pie_SGGJR_tex*> (path_in, path_out)
+
+%% Description
+% Writes 4 tex-documents that present the pies of output of <../pie_SGGJR.m *pie_SGGJR*> for all entries in parent dir of entrie_admin
+%
+% Input:
+%
+% * path_in: optional character string path to input png-files (default 'http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/')
+% * path_out: optional character string path for output tex-files (default '../entries_pie'
+%
+% Output: 
+% 
+% * writes files pie_pSGJRb.tex, pie_pSGJRp.tex, pie_pSGJRi.tex, pie_SGJRb.tex
+% * copies png files for all pies to path_out/img
+
+%% Remarks
+% Function prt_pie_SGGJR_tex is 
+%   assumed to be ran in entries_admin, 
+%   using <../select.m *select*> to identify entry names.
+
+%% Example of use
+% prt_pie_SGGJR_tex
+
+  if ~exist('path_in', 'var') || isempty('path_in')
+    path_in = 'http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+  end
+  if ~exist('path_out', 'var') || isempty('path_out')
+    path_out = '../../entries_pie/';
+  end
+
+  pie = {'pie_pSGJRb', 'pie_pSGJRp', 'pie_pSGJRi', 'pie_SGJRb'}; n_pie = length(pie);
+  entries = select; n_entries = length(entries);
+    
+  for i = 1:n_pie
+    fid_out = fopen([path_out, pie{i}, '.tex'], 'w+'); % open file for writing, delete existing content
+
+    % write header
+    fprintf(fid_out, '\\documentclass[12pt]{article}\n\n');
+    fprintf(fid_out, '\\pdfoutput=1\n');
+    fprintf(fid_out, '\\usepackage{fullpage,graphicx}\n\n');
+    fprintf(fid_out, '\\begin{document}\n\n');
+    fprintf(fid_out, '\\pagestyle{myheadings}\n');
+    header = [datestr(date,26), ' ', strrep(pie{i},'_',' ')];
+    fprintf(fid_out,['\\markboth{', header, '}{', header, '}\n']);
+    fprintf(fid_out, '\\setlength{\\unitlength}{1cm}\n\n');
+ 
+    % write pictures
+    for j = 1:n_entries
+      % copy png from web to local
+      imwrite(imread([path_in, entries{j}, '_', pie{i}, '.png']), [path_out, '/img/', entries{j}, '_', pie{i}, '.png']);
+      
+      % set offset for 3 png's per row
+      if mod(j,3) == 1
+        x_png = num2str(-0.5); x_txt = num2str(1.5);
+      elseif mod(j,3) == 2;
+        x_png = num2str(0); x_txt = num2str(2);
+      else
+        x_png = num2str(0.5); x_txt = num2str(2.5);
+      end
+      
+      % write to tex file
+      fprintf(fid_out, '\\begin{picture}(5.3,7)\n');
+      fprintf(fid_out,['  \\put(', x_png,',0){\\scalebox{.23}{\\includegraphics{img/', entries{j}, '_', pie{i}, '.png}}}\n']);
+      fprintf(fid_out,['  \\put(', x_txt,',0){\\emph{', strrep(entries{j},'_',' '),'}}\n']);
+      fprintf(fid_out, '\\end{picture}\n');
+      if mod(j,3) == 0
+        fprintf(fid_out, '\n\n');  
+      end
+    end
+
+    % write tail
+    fprintf(fid_out, '\\end{document}\n\n');
+    fclose(fid_out);
+
+  end
+
+end
+
+
+##### SOURCE END #####
+--></body></html>

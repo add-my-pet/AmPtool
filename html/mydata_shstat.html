@@ -1,0 +1,224 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>mydata_shstat: demo script for using plotting tool shstat</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-06"><meta name="DC.source" content="mydata_shstat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1>mydata_shstat: demo script for using plotting tool shstat</h1><p>see shprimpar for more examples of 1D plotting</p><p>generate updated allStat if necessary write_allStat(C2K(20),1); % notice that default allStat is at T=T_typical and f=1 allStat has fields for the tmep-correction c_T, so divide rates by c_T to go from T_typical to T_ref</p><p>compose/modify your legend if you wish. You can also do this on-the-fly by selecting an empty legend. mylegend = select_legend; replace legend_* by mylegend in the examples below, if you active this. If your desired legend is close to an existing one, e.g. legend_fish, you can modify it by: mylegend = select_legend(legend_fish)</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% mydata_shstat: demo script for using plotting tool shstat
+% see shprimpar for more examples of 1D plotting
+%
+% generate updated allStat if necessary
+% write_allStat(C2K(20),1); % notice that default allStat is at T=T_typical and f=1
+% allStat has fields for the tmep-correction c_T, so divide rates by c_T to go from T_typical to T_ref
+%
+% compose/modify your legend if you wish. You can also do this on-the-fly by selecting an empty legend.
+% mylegend = select_legend; replace legend_* by mylegend in the examples below, if you active this.
+% If your desired legend is close to an existing one, e.g. legend_fish, you can modify it by: mylegend = select_legend(legend_fish)
+
+close all % remove any existing figure
+
+example = 8; % edit this number to see the various examples
+switch example
+  case 1 % 2D: use default settings
+    shstat_options('default');
+    shstat({'g', 'g_Hb'}, legend_RSED); 
+
+  case 2 % 2D: more tricks: no transformation (default is log10), description enabled
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    shstat_options('y_transform', 'none');
+    shstat_options('x_label', 'on');
+    shstat_options('y_label', 'on');
+    [Hfig Hleg] = shstat({'s_s', 'kap'}, legend_vert, date); % set title, output handle for adding items
+    
+    figure(Hfig) % add items to figure
+    kap = linspace(0, 1, 100); ss = kap.^2 .* (1 - kap); 
+    plot(ss, kap, 'k', 'Linewidth', 2)
+    xlim([0 4/27]); ylim([0 1]);
+
+  case 3 % 2D: like 2, but with logarithmic transformation on independent variable only
+    shstat_options('default');
+    shstat_options('y_transform', 'none');
+    shstat_options('x_label', 'on');
+    shstat_options('y_label', 'on');
+    [Hfig Hleg] = shstat({'s_s', 'kap'}, legend_RSED); % output handle for adding items
+
+    figure(Hfig) % add items to figure
+    kap = linspace(1e-6,1,100); ss = kap.^2 .* (1 - kap); 
+    plot(log10(ss), kap, 'k', 'Linewidth', 2)
+    ylim([0 1]);
+    
+  case 4 % 3D: hit rotation-tool in the toolbar of the figure    
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    shstat_options('y_transform', 'none');
+    shstat_options('z_transform', 'none');
+    [Hfig Hleg] = shstat({'kap', 'ep_min', 's_s'}, legend_vert); % output handle for adding items
+
+    figure(Hfig) % add items to figure
+    kap = linspace(0, 1, 15)'; f = kap'; ss = kap.^2 .* (1 - kap) * f.^3; % set x,y,z values
+    mesh(kap, f, ss'); % add surface to figure
+    % define colormap for mesh: k->b->m->r->white
+    Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
+    colormap(Hfig, Colmap) % set color map to add_my_pet colors 
+    zlim([0 4/27])
+
+  case 5 % 2D: numerical mode because of computations: setting of xlabel and ylabel required
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    shstat_options('y_transform', 'none');
+    essk = read_allStat('ep_min', 's_s', 's_M', 'kap'); ep_min = essk(:,1); s_s = essk(:,2); s_M = essk(:,3);  kap = essk(:,4);
+    [Hfig Hleg] = shstat([ep_min, (s_s ./ (kap.^2 .* (1 - kap))) .^(1/3)], legend_vert); % output handle for setting labels
+
+    figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
+    xlabel('e_p^{min}, -')      
+    ylabel('max e_p^{min}, -')
+   
+  case 6 % 1D: single variable with default colors
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    shstat_options('y_label', 'on'); % if 'off' (default), no `survivor function' shown on yaxis
+    shstat({'kap'});      
+
+  case 7 % 1D: numerical mode because of computations: setting of xlabel required
+    vsM = read_allStat('v', 's_M'); sM = vsM(:,2); vj = prod(vsM,2); v = vj(sM == 1); vj = vj(sM > 1);
+    shstat_options('default');
+    shstat_options('y_label', 'on'); % if 'off' (default), no `survivor function' shown on yaxis
+    Hfig = shstat(vj, {'r', 'r'});   % output handle for adding items to same figure and set colors
+    shstat(v, {'b', 'b'}, 'post-metam v at T_{ref} and f=1, without and with acceleration', Hfig);
+    % setting of figure handle not required, because legend is not shown in new figure, and first figure is still active
+    xlabel('_{10}log v, cm/d') 
+ 
+  case 8 % 1D: single variable for several taxa with line specs specified by llegend_ACP
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    shstat_options('y_label', 'on'); % if 'off' (default), no `survivor function' shown on yaxis
+    shstat({'kap'}, llegend_ACP);      
+        
+  case 9 % 2D: selection of different model types, rather than taxa; bypass shstat
+      
+    % type, size, linewidth, edge color and face color of a marker, model
+    legend = {...
+      {'o', 8, 3, [0 0 0], [0 0 0]}, 'hep'; ...
+      {'o', 8, 3, [0 0 1], [0 0 1]}, 'hex'; ...
+      {'o', 8, 3, [0 0 1], [0 0 0]}, 'abj'; ...
+      {'o', 8, 3, [0 0 1], [1 0 1]}, 'asj'; ....
+      {'o', 8, 3, [0 0 1], [1 0 0]}, 'sbp'; ....
+      {'o', 8, 3, [1 0 1], [1 0 1]}, 'abp'; ....
+      {'o', 8, 3, [1 0 1], [1 0 0]}, 'ssj'; ....
+      {'o', 8, 3, [1 0 0], [0 0 0]}, 'stx'; ....
+      {'o', 8, 3, [1 0 0], [0 0 1]}, 'stf'; ....
+      {'.', 8, 3, [0 0 0], [0 0 0]}, 'std'; ....
+    };  
+    n_model = size(legend,1);
+    
+    vars = read_allStat('kap','v','s_M'); val_plot = [vars(:,1), log10(vars(:,2) .* vars(:,3))];
+    model = read_allStat('model'); % don't combine num and str in 1 call to read_allStat
+    entries = select; % assign entry names for clicking in plot
+    
+    Hfig = 1; % set figure handle
+    figure(Hfig)
+    hold on
+
+    for j=1:n_model
+      i = n_model - j + 1; % reverse sequence of plotting in case markers overlap
+      marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3}; MEC = marker{4}; MFC = marker{5};  
+      sel = strcmp(model, legend{i,2}); % select model type
+      plot(val_plot(sel,1), val_plot(sel,2), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC)
+    end
+        
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel('\kappa, -')  
+    ylabel('_{10}log v at T_{ref} post metam, cm/d')
+
+    h = datacursormode(Hfig); % write entry names under plot coordinates
+    h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries, val_plot);
+    datacursormode on % mouse click on plot
+
+    Hleg = shlegend(legend);
+
+  case 10 % 2D
+    shstat_options('default');
+    LmEm = read_allStat('L_m', 'E_m'); L_m = LmEm(:,1); E_m = LmEm(:,2);
+
+    [Hfig, Hleg] = shstat([L_m.^3, E_m], legend_fish, 'Data at T_{typical}'); 
+    figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
+    xlabel('_{10} log max structural volume, cm^3')      
+    ylabel('_{10} log max reserve capacity, J/cm^3')
+
+  case 11 % 2D
+    shstat_options('default');
+    LmpM = read_allStat('L_m', 'p_M'); L_m = LmpM(:,1); p_M = LmpM(:,2);
+
+    [Hfig, Hleg] = shstat([L_m.^3, p_M], legend_RSED, 'Data at T_{typical}'); 
+    figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
+    xlabel('_{10} log max structural volume, cm^3')      
+    ylabel('_{10} log spec som maintenance, J/d.cm^3')
+
+  case 12 % 2D
+    shstat_options('default');
+    shstat_options('x_transform', 'none');
+    kEmdV = read_allStat('kap', 'E_m', 'd_V'); kap = kEmdV(:,1); E_m = kEmdV(:,2); d_V = kEmdV(:,3);
+
+    [Hfig, Hleg] = shstat([kap, E_m./d_V], legend_fish); 
+    figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
+    xlabel('kappa, -')      
+    ylabel('_{10}log [E_m]/d_V , J/g')
+
+end
+##### SOURCE END #####
+--></body></html>

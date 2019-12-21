@@ -1,0 +1,10 @@
+Pterodroma_phaeopygia
+Pterodroma_atrata
+Pterodroma_incerta
+Pterodroma_macroptera
+Pterodroma_solandri
+Pterodroma_pycrofti
+Pterodroma_nigripennis
+Pterodroma_axillaris
+Pterodroma_hypoleuca
+Pterodroma_leucoptera

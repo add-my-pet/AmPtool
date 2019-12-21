@@ -1,0 +1,133 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>get_COMPLETE</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-21"><meta name="DC.source" content="get_COMPLETE.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>get_COMPLETE</h1><!--introduction--><p>gets value for COMPLETE, given data types</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>COMPLETE = <a href="../get_COMPLETE.m"><b>get_COMPLETE</b></a>(data, n)</p><h2 id="4">Description</h2><p>Sets value for COMPLETE. The general criteria for the std model are</p><div><ul><li>0 maximum length and body weight; length as function of weight</li><li>1 age, length and weight at birth and puberty for one food level</li><li>2 growth (curve) at one food level: length and weight as function of age at constant (or abundant) food level</li><li>3 reproduction and feeding as function of age, length and/or weight at one food level</li><li>4 growth (curve) at several (&gt; 1) food levels; age, length and weight at birth and puberty at several food levels</li><li>5 reproduction and feeding as function of age, length and/or weight at several (&gt; 1) food levels</li><li>6 respiration as function of length or weight and life span at several (&gt; 1) food levels</li><li>7 elemental composition at one food level, survival due to ageing as function of age</li><li>8 elemental composition at several (&gt; 1) food levels, including composition of food</li><li>9 elemental balances for C, H, O and N at several body sizes and several food levels</li><li>10 energy balance at several body sizes and several food levels (including heat)</li></ul></div><p>Other models have more demands on data, so lower completeness levels, and guesses for data might reduce the level also.</p><p>Input:</p><div><ul><li>data: cell string with names of zero- and uni-variate data labels</li><li>n: optional value to correct for guesses of model type (default 0)</li></ul></div><p>Output:</p><div><ul><li>COMPLETE: scalar for COMPLETE</li></ul></div><h2 id="5">Remarks</h2><p>calls function COMPLETE_data to set COMPLETE-data combinations Before adding a data-combination, make sure that it not already exists, by running this function with NaN as result. Before changing either a combination of a COMPLETE setting, first find out which entries are affected,   by running <a href="../../html/select_data.html"><b>select_data</b></a>, with a copy-paste of the combination to be changed. All changes should be carried through systematically.</p><h2 id="6">Example of use</h2><p>get_COMPLETE('std', sort({'ab', 'am', 'Wwi'}))</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% get_COMPLETE
+% gets value for COMPLETE, given data types
+
+%%
+function COMPLETE = get_COMPLETE(data, n)
+% created 2018/01/05 by Bas Kooijman
+
+%% Syntax
+% COMPLETE = <../get_COMPLETE.m *get_COMPLETE*>(data, n)
+
+%% Description
+% Sets value for COMPLETE. The general criteria for the std model are
+%
+% * 0 maximum length and body weight; length as function of weight
+% * 1 age, length and weight at birth and puberty for one food level
+% * 2 growth (curve) at one food level: length and weight as function of age at constant (or abundant) food level
+% * 3 reproduction and feeding as function of age, length and/or weight at one food level
+% * 4 growth (curve) at several (> 1) food levels; age, length and weight at birth and puberty at several food levels
+% * 5 reproduction and feeding as function of age, length and/or weight at several (> 1) food levels
+% * 6 respiration as function of length or weight and life span at several (> 1) food levels
+% * 7 elemental composition at one food level, survival due to ageing as function of age
+% * 8 elemental composition at several (> 1) food levels, including composition of food
+% * 9 elemental balances for C, H, O and N at several body sizes and several food levels
+% * 10 energy balance at several body sizes and several food levels (including heat)
+%
+% Other models have more demands on data, so lower completeness levels, and guesses for data might reduce the level also.
+%
+% Input:
+%
+% * data: cell string with names of zero- and uni-variate data labels
+% * n: optional value to correct for guesses of model type (default 0)
+%
+% Output:
+% 
+% * COMPLETE: scalar for COMPLETE
+
+%% Remarks
+% calls function COMPLETE_data to set COMPLETE-data combinations
+% Before adding a data-combination, make sure that it not already exists, by running this function with NaN as result.
+% Before changing either a combination of a COMPLETE setting, first find out which entries are affected, 
+%   by running <../../html/select_data.html *select_data*>, with a copy-paste of the combination to be changed.
+% All changes should be carried through systematically.
+
+%% Example of use
+% get_COMPLETE('std', sort({'ab', 'am', 'Wwi'}))
+
+if ~exist('n','var')
+  n = 0;
+end
+
+Cd = COMPLETE_data; n_Cd = size(Cd,1); COMPLETE = NaN;
+
+for i = 1:n_Cd
+  if STRCMP(Cd{i,2},data)
+    COMPLETE = Cd{i,1};
+    break
+  end
+end
+
+COMPLETE = COMPLETE - n; % reduce for punish points 
+
+##### SOURCE END #####
+--></body></html>

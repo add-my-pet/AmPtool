@@ -1,0 +1,201 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_pie_SGGJR</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-14"><meta name="DC.source" content="prt_pie_SGGJR.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1>prt_pie_SGGJR</h1><!--introduction--><p>Creates pie_pSGGJRb.html, pie_pSGGJRp.html, pie_pSGGJRp.html, pie_SGGJRb.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p><a href="../prt_pie_SGGJR.m"><b>prt_pie_SGGJR</b></a></p><h2>Description<a name="4"></a></h2><p>Writes html files that present 4 types of allocation pies (png files) that are in dir add_py_pet/entries_web. These html-files should be parked in dir add_my_pet. Function select is used to identify all entries</p><h2>Example of use<a name="5"></a></h2><p>prt_pie_SGGJR</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_pie_SGGJR
+% Creates pie_pSGGJRb.html, pie_pSGGJRp.html, pie_pSGGJRp.html, pie_SGGJRb.html    
+
+%%
+function prt_pie_SGGJR
+% created 2017/05/12 Bas Kooijman, modified 2017/10/14
+
+%% Syntax
+% <../prt_pie_SGGJR.m *prt_pie_SGGJR*> 
+
+%% Description
+% Writes html files that present 4 types of allocation pies (png files) that are in dir
+% add_py_pet/entries_web. These html-files should be parked in dir add_my_pet.
+% Function select is used to identify all entries
+
+%% Example of use
+% prt_pie_SGGJR
+
+  
+  [nms_en entries] = read_allStat('species_en'); n_entries = length(entries);
+  pie = {'pie_pSGJRb', 'pie_pSGJRp', 'pie_pSGJRi', 'pie_SGJRb'}; n_pie = length(pie);
+  header = {'Energy budget at birth','Energy budget at puberty','Energy budget at ultimate','Cumulated energy budget over embryo period'};
+  header_txt = {...
+      ['Exploding sectors mean dissipation; numbers denote fractions of mobilized reserve.\n', ...
+       'Endpoints are somatic maintenance S, growth G, maturity maintenance J, maturity R.\n', ...
+       'Allocation to growth is splitted into overheads and the part that is fixed in tissue.\n', ...
+       'The change in reserve equals assimilation p_A minus mobilization p_C. ', ...
+       'Wet weight W_w and total energy E_W quantify body size. Pies link to entry pages.\n'], ...
+      ['Exploding sectors mean dissipation; numbers denote fractions of mobilized reserve.\n', ...
+       'Endpoints are somatic maintenance S, growth G, maturity maintenance J, maturity R.\n', ...
+       'Allocation to growth is splitted into overheads and the part that is fixed in tissue.\n', ...
+       'The change in reserve equals assimilation p_A minus mobilization p_C.\n', ...
+       'Wet weight W_w and total energy E_W quantify body size. Pies link to entry pages.\n'], ...
+      ['Exploding sectors mean dissipation; numbers denote fractions of mobilized reserve.\n', ...
+       'Endpoints are somatic maintenance S, growth G, maturity maintenance J, reproduction R.\n', ...
+       'Reproduction overheads are not plotted, since they are payed at the conversion of buffer contents to eggs/foetuses.\n', ...
+       'The change in reserve equals assimilation p_A minus mobilization p_C.\n', ...
+       'Wet weight W_w and total energy E_W exclude the reproduction buffer. Pies link to entry pages.'], ...
+      ['Exploding sectors mean dissipation; numbers denote fractions of initial reserve E_0.\n', ...
+       'The scaled reserve density at birth is e_b. Pies link to entry pages.\n']};
+
+for  j = 1:4 % scan pies
+    
+oid = fopen(['../../', pie{j}, '.html'], 'w+'); % open file for writing, delete existing content
+
+fprintf(oid, '<!DOCTYPE html>\n');
+fprintf(oid, '<HTML>\n');
+fprintf(oid, '<HEAD>\n');
+fprintf(oid,['  <TITLE>',pie{j},'</TITLE>\n']);
+fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n'); 
+fprintf(oid, '  <script src="sys/dropdown.js"></script>\n');
+fprintf(oid, '  <script src="sys/w3data.js"></script>\n');
+fprintf(oid, '  <style>\n');
+fprintf(oid, '    .pierow{\n');
+fprintf(oid, '      max-width: 1080px;\n');
+fprintf(oid, '      float: left;\n');
+fprintf(oid, '    }\n');
+fprintf(oid, '    .pie{\n');
+fprintf(oid, '      position: relative;\n');
+fprintf(oid, '      display: inline-block;\n');
+fprintf(oid, '      float: left;\n');
+fprintf(oid, '      padding: 5px;\n');
+fprintf(oid, '    }\n');
+fprintf(oid, '    .piecap{\n');
+fprintf(oid, '      text-align: center;\n');
+fprintf(oid, '    }\n');
+fprintf(oid, '    .headercap{\n');
+fprintf(oid, '      text-align: center;\n');
+fprintf(oid, '      max-width: 1000px;\n');
+fprintf(oid, '    }\n');
+fprintf(oid, '  </style>\n');
+fprintf(oid, '</HEAD>\n\n');
+fprintf(oid, '<BODY>\n\n');
+
+fprintf(oid, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
+fprintf(oid, '<div w3-include-html="sys/toolbar_budget.html"></div>\n');
+fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
+
+fprintf(oid, '<!REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   PART main                                               REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   Where all of the text is placed                         REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   use "contentFull" for 1 column                          REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   use "content" if you want two columns"                  REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->\n\n');
+
+fprintf(oid, '<div id = "main">\n');
+fprintf(oid, '  <div id = "main-wrapper">\n');
+fprintf(oid, '    <div id="contentFull">\n');
+fprintf(oid,['      <H1 id = "pie" align = "center">', header{j}, '</H1>\n']);	
+fprintf(oid, '      <div class = "headercap">\n');	
+fprintf(oid,['        ', header_txt{j}, '<br>\n']);	
+fprintf(oid, '      </div>\n');	
+			
+
+for i = 1:n_entries % print SGJR pies
+nm_en = nms_en{i};  % get common name
+if nm_en(1)>='a' && nm_en(1)<='z' % replace lower case by uppercase if necessary
+  nm_en(1)=char(nm_en(1)-32);
+end
+if mod(i,4) == 1
+fprintf(oid, '      <div class = "pierow">\n');
+end
+fprintf(oid,['        <div class = "pie" id = "', entries{i},'">\n']);
+fprintf(oid,['          <a href = "entries_web/', entries{i}, '/', entries{i},'_stat.html">\n']);
+fprintf(oid,['          <img src="entries_web/', entries{i}, '/', entries{i}, '_', pie{j}, '.png"  width="260px"></a>\n']);
+fprintf(oid,'           <div class = "piecap">\n');
+fprintf(oid,['             <i>', strrep(entries{i}, '_', ' '), '</i><br>\n']);
+fprintf(oid,['             ', nm_en, '\n']);
+fprintf(oid,'           </div>\n');
+fprintf(oid, '        </div><!REPLACE_WITH_DASH_DASH end of pie REPLACE_WITH_DASH_DASH>\n');
+
+if mod(i,4) == 0 
+fprintf(oid, '      </div><!REPLACE_WITH_DASH_DASH end of pierow REPLACE_WITH_DASH_DASH>\n\n');
+end
+end % end of entry scan
+
+if mod(i,4) > 0 % close last div if necessary
+fprintf(oid, '      </div><!REPLACE_WITH_DASH_DASH end of pierow REPLACE_WITH_DASH_DASH>\n\n');    
+end
+
+fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
+
+fprintf(oid, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
+fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
+
+fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
+
+fprintf(oid, '</BODY>\n');
+fprintf(oid, '</HTML>\n');
+
+fclose(oid);
+
+end
+
+end
+
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,524 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_my_pet_res</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-06-21"><meta name="DC.source" content="prt_my_pet_res.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_my_pet_res</h1><!--introduction--><p>read and write my_pet_res.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_res.m"><b>prt_my_pet_res</b></a> (data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_res.html file which compares metapar.model predictions with data</p><p>Input:</p><div><ul><li>data: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet_par</b></a> file)</li><li>prdData: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Predict_file"><b>predict_my_pet_par</b></a> file)</li><li>auxData: structure  (output of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet_par</b></a> file)</li><li>metaData: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet_par</b></a> file)</li><li>txtData:  structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet_par</b></a> file)</li><li>metaPar: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Pars_init_file"><b>pars_init_my_pet_par</b></a> file)</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Example of use</h2><p>[data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]);</p><p>prdData = feval(['predict_',metaData.species], par, data, auxData);</p><p>prdData = predict_pseudodata(par, data, prdData);</p><p>load(['results_',entries{i},'.mat']) % load results_my_pet.mat</p><p>prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_my_pet_res
+% read and write my_pet_res.html
+
+%%
+function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
+% created 2015/04/11 by Starrlight & Goncalo Marques; modified 2015/08/23 Starrlight augustine; 
+% modified 2016/03/09 Bas Kooijman; 2016/09/21 Starrlight Augustine;
+% 2016/11/05, 2017/01/04, 2017/08/21, 2017/09/29, 2017/10/13, 2017/10/26, 2018/02/06, 2018/04/28, 2018/05/05, 2018/06/21 Bas Kooijman
+
+%% Syntax
+% <../prt_my_pet_res.m *prt_my_pet_res*> (data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
+
+%% Description
+% Prints my_pet_res.html file which compares metapar.model predictions with data
+%
+% Input:
+%
+% * data: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
+% * prdData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Predict_file *predict_my_pet_par*> file)
+% * auxData: structure  (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
+% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
+% * txtData:  structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
+% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * destinationFolder : optional string with destination folder the files
+% are printed to (default: current folder)
+
+
+%% Example of use
+% [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); 
+%
+% prdData = feval(['predict_',metaData.species], par, data, auxData);
+%
+% prdData = predict_pseudodata(par, data, prdData); 
+%
+% load(['results_',entries{i},'.mat']) % load results_my_pet.mat
+%
+% prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
+
+% Remove underscore and capitalize first letter of english :
+speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
+speciesprintnm_en = strrep(metaData.species_en, '_', ' ');
+if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
+  speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);
+end
+
+n_author = length(metaData.author); % number of authors
+
+switch n_author
+    
+    case 1
+    txt_author = metaData.author{1};
+
+    case 2
+    txt_author = [metaData.author{1}, ', ', metaData.author{2}];
+    
+    case 3
+    txt_author = [metaData.author{1}, ', ', metaData.author{2}, ' &', metaData.author{3}];
+ 
+    otherwise    
+    txt_author = [metaData.author{1}, ', et al.'];
+  
+end
+
+txt_date = datestr(datenum(metaData.date_subm), 'yyyy/mm/dd'); 
+txt_date_acc = datestr(datenum(metaData.date_acc), 'yyyy/mm/dd'); 
+
+% modifications
+mod = 0; % latest modification version
+for i = 1:10 % identify latest modification
+  if isfield(metaData,['author_mod_', num2str(i)])
+    mod = i;
+  end
+end
+if mod > 0
+  author_mod = ['author_mod_', num2str(mod)]; 
+  n_author_mod = length(metaData.(author_mod));
+  switch n_author_mod
+    case 1
+      txt_author_mod = metaData.(author_mod){1};
+    case 2
+      txt_author_mod = [metaData.(author_mod){1}, ', ', metaData.(author_mod){2}];
+    otherwise    
+      txt_author_mod = [metaData.(author_mod){1}, ', et al.'];
+  end
+  date_mod = ['date_mod_', num2str(mod)]; date_mod = metaData.(date_mod);
+  txt_date_mod = datestr(datenum(date_mod),'yyyy/mm/dd'); 
+end    
+
+% remove the underscore in the species name
+if exist('destinationFolder','var')
+  fileName = [destinationFolder, metaData.species, '_res.html'];
+else
+  fileName = [metaData.species, '_res.html'];    
+end
+oid = fopen(fileName, 'w+'); % open file for reading and writing, delete existing content
+
+fprintf(oid, '<!DOCTYPE html>\n');
+fprintf(oid, '<HTML>\n');
+fprintf(oid, '<HEAD>\n');
+fprintf(oid,['  <TITLE>',metaData.species,'</TITLE>\n']);
+fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
+
+fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/ftiens4.js"></srcipt>\n');
+fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
+
+fprintf(oid, '  <script>\n');
+fprintf(oid, '    function OpenTreeAtTaxon(taxon) {\n');
+fprintf(oid, '      window.open("treeview_taxa.html");\n');
+fprintf(oid, '      window.location.reload(true)\n');      
+fprintf(oid, '      SetCookie("clickedFolder", taxon);\n');
+fprintf(oid, '      clickOnFolder(taxon);\n');
+fprintf(oid, '    }\n\n');
+
+fprintf(oid, '    function OpenListAtTaxon(taxon) {\n');
+fprintf(oid, '      window.open("treeview_taxa.html#"taxon);\n');
+fprintf(oid, '      window.scrollBy(0, 100);\n');      
+fprintf(oid, '    }\n\n');
+fprintf(oid, '  </script>\n\n');
+
+fprintf(oid, '  <style>\n');
+fprintf(oid, '    ul.ref{\n');
+fprintf(oid, '      list-style-type: square;\n');
+fprintf(oid, '    }\n');
+fprintf(oid, '  </style>\n');
+fprintf(oid, '</HEAD>\n\n');
+
+fprintf(oid, '<BODY>\n\n');
+
+fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
+fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
+fprintf(oid,['<div id="top2" w3-include-html="', metaData.species, '_toolbar.html"></div>\n']);
+fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
+
+fprintf(oid, '<!REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   PART main                                               REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   Where all of the text is placed                         REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   use "contentFull" for 1 column                          REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASH   use "content" if you want two columns"                  REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '<!REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->\n\n');	
+
+fprintf(oid, '<div id = "main">\n');
+fprintf(oid, '  <div id = "main-wrapper">\n');
+fprintf(oid, '    <div id="contentFull">\n');
+fprintf(oid, '      <H1 id = "portaltop">Predictions & Data for this entry</H1>\n\n');	
+
+fclose(oid);
+
+% table with model, COMPLETE, MRE, SMSE, eco-codes, classification
+prt_my_pet_eco(metaData, metaPar, destinationFolder);
+fopen(fileName, 'a'); % further append to my_pet_res.html
+
+% make structure for 'real' and predicted pseudodata:
+pseudo = data.psd;
+prdPseudo = prdData.psd;
+psTxtData.units = txtData.units.psd;
+psTxtData.label = txtData.label.psd;
+
+% remove pseudodata:
+data       = rmfield_wtxt(data, 'psd');
+prdData    = rmfield_wtxt(prdData, 'psd');
+txtData    = rmfield_wtxt(txtData, 'psd');
+
+
+%  make table for zero-variate data set:
+fprintf(oid, '      <p>\n');
+fprintf(oid, '      <TABLE id="t01">\n');
+fprintf(oid, '        <TR BGCOLOR = "#FFE7C6"><TH colspan="7"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data" >Zero-variate</a> data</TH></TR>\n');
+fprintf(oid, '        <TR BGCOLOR = "#FFE7C6"><TD><b>Data</b></TD><TD><b>Observed</b></TD><TD><b>Predicted</b></TD><TD><b>(RE)</b></TD><TD><b>Unit</b></TD><TD><b>Description</b></TD><TD><b>Reference</b></TD></TR>\n');
+[nm, nst] = fieldnmnst_st(data); % cell array of string with fieldnames of data
+
+for j = 1:nst
+  [~, k] = size(data.(nm{j})); % number of data points per set
+  if k == 1   
+    if isfield(auxData.temp, nm{j})
+        temp = auxData.temp.(nm{j});
+        if strcmp(txtData.units.temp.(nm{j}), 'K')
+          temp = K2C(temp);
+        end
+        name = ['<a href="" title="Temperature: ', num2str(temp), ' C">', nm{j}, '</a>'];
+    else
+        name = nm{j};
+    end
+    dta   = data.(nm{j}); 
+    prdta = prdData.(nm{j});
+    re    = metaPar.RE(j); 
+    unit  = txtData.units.(nm{j});
+    if isfield(txtData, 'comment') && isfield(txtData.comment, nm{j})
+      des   = ['<a href="" title="', txtData.comment.(nm{j}), '">', txtData.label.(nm{j}), '</a>'];
+    else
+      des   = txtData.label.(nm{j});
+    end        
+    n = iscell(txtData.bibkey.(nm{j}));  % if 1 then there are several references for this data
+    if n % if there are several references
+      n = length(txtData.bibkey.(nm{j})); % number of references
+      REF = [];
+      for i = 1:n
+        ref = txtData.bibkey.(nm{j}){i};
+        if i == 1
+          REF = [REF,' ',ref];
+        else
+          REF = [REF,', ',ref];
+        end
+      end
+    else
+      REF = txtData.bibkey.(nm{j});      
+    end
+    fprintf(oid, '        <TR > <TD>%s</TD><TD>%3.4g</TD> <TD>%3.4g</TD> <TD>(%3.4g)</TD><TD>%s</TD><TD>%s</TD><TD>%s</TD></TR>\n',...
+      name, dta, prdta, re, unit, des, REF);
+  end
+ end
+fprintf(oid, '        <TR><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TF></TR>\n');
+fprintf(oid, '      </TABLE>\n\n');  
+
+% print table with uni-variate data :
+if isempty(metaData.data_1) == 0
+  fprintf(oid, '      <TABLE id="t01">\n');
+  fprintf(oid, '        <TR BGCOLOR = "#FFE7C6"><TH colspan="6"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Univariate_data" >Uni-variate</a> data </TH></TR>\n');
+  fprintf(oid, '        <TR BGCOLOR = "#FFE7C6"><TD><b>Dataset</b></TD><TD><b>Figure</b></TD><TD><b>(RE)</b></TD><TD><b>Independent variable</b></TD><TD><b>Dependent variable</b></TD><TD><b>Reference</b></TD></TR>\n');  
+ 
+  % select the positions of univariate data 
+  uniData = [];
+  for j = 1:nst
+    eval(['[aux, k] = size(data.', nm{j}, ');']) % number of data points per set 
+    if k >1 
+      uniData = [uniData;j]; 
+    end
+  end
+  n_uniData = length(uniData);  
+  % number of each figure in the absense of grouped plots
+  % in this case there is the same amount of figures as grouped plots
+  ID = (1:n_uniData)';   % fig number = index of uniData 
+   
+  if isfield(metaData,'grp')   
+    n_GrpPlots = length(metaData.grp.sets);  % number of grouped plots
+    uniDataNames = cell(0);  % initiate cell array with names of all uni variate data sets:
+    for i = 1:n_uniData
+      uniDataNames{i} = nm{uniData(i)};
+    end 
+    % fill selection-matrix to identify grp plot members
+    % it assumes that all univariate datasets occur in exactly 1 figure
+    % sequence of data-sets in grp plots doesn't need to match sequence in uniData 
+    sel = zeros(n_uniData,n_GrpPlots);          % initiate selection grp plot members
+    for j = 1:n_GrpPlots                        % scan grouped plots
+      set_j =  metaData.grp.sets{j}';           % cell-string with names of datasets in grp j  
+      for i = 1: length(set_j)                  % scan datasets in grp j
+        sel(:,j) = sel(:,j) + strcmp(uniDataNames,set_j{i})'; % add tot grp plot members 
+      end
+    end
+    sel_tot = sum(sel,2) == 1;                  % booleans with grp plot members in uniData in any grp plot
+    sel = sel == 1;                             % booleans with grp plot members in uniData in grp 1,2,..
+  
+    j_grp = (1:n_GrpPlots)';                    % compose grp id's
+    ID = zeros(n_uniData,1);                    % initiate fig id
+  
+    if sel_tot(1)                               % first unidata set is member of grp plots
+      ID(sel(:,j_grp(sel(1,:)))) = 1;           % set all members of that grp
+    else                                        % first unidataset not a member of any grp plot
+      ID(1) = 1;                                % 
+    end
+  
+    for i = 2:n_uniData                         % scan other uniData sets
+      if sel_tot(i) && ID(i) == 0               % new member of grp data
+        ID(sel(:,j_grp(sel(i,:)))) = ID(i - 1) + 1; % set all members of that grp
+      elseif ID(i) == 0                        % not a member of any grp data
+        ID(i) = ID(i - 1) + 1;                  % increase fig id counter
+      end
+    end
+               
+  end
+ 
+  % print out columns in the univariate data set table:
+  for j = 1: n_uniData % for each univariate data set
+    if isfield(auxData.temp, nm{uniData(j)}) % label = nm
+      temp = auxData.temp.(nm{uniData(j)});
+      if length(temp) == 1
+        if strcmp(txtData.units.temp.(nm{uniData(j)}), 'K')
+          temp = K2C(temp);
+        end
+        label = ['<a href="" title="Temperature: ', num2str(temp), ' C">', nm{uniData(j)}, '</a>'];
+      else
+        label = ['<a href="" title="Temperature varies">', nm{uniData(j)}, '</a>'];
+      end
+    else
+      label  = nm{uniData(j)}; % "Data set"
+    end
+    re     = metaPar.RE(uniData(j)); % "relative error"
+    ivar   = txtData.label.(nm{uniData(j)}){1}; % independent variable
+    % dependent variable
+    if isfield(txtData, 'comment') && isfield(txtData.comment, nm{uniData(j)})
+      dvar   = ['<a href="" title="', txtData.comment.(nm{uniData(j)}), '">', txtData.label.(nm{uniData(j)}){2}, '</a>'];
+    else
+      dvar   = txtData.label.(nm{uniData(j)}){2};
+    end        
+
+
+    if ID(j) < 10
+      fig   = ['see <A href = "../../entries/',metaData.species,'/results_',metaData.species,'_0',num2str(ID(j)),'.png"> Fig. ',num2str(ID(j)),'</A>'];
+    else
+      fig   = ['see <A href = "../../entries/',metaData.species,'/results_',metaData.species,'_',num2str(ID(j)),'.png"> Fig. ',num2str(ID(j)),'</A>'];
+    end        
+    n = iscell(txtData.bibkey.(nm{uniData(j)}));
+    if n
+      n = length(txtData.bibkey.(nm{uniData(j)}));
+      REF = [];
+      for i = 1:n
+        ref = txtData.bibkey.(nm{uniData(j)}){i};
+        if i == 1
+          REF = [REF,' ',ref];
+        else
+          REF = [REF,', ',ref];
+        end
+      end
+    else
+      REF = txtData.bibkey.(nm{uniData(j)});    
+    end
+    fprintf(oid, '        <TR > <TD>%s</TD> <TD>%s</TD> <TD>(%3.4g)</TD><TD>%s</TD><TD>%s</TD><TD>%s</TD></TR>\n',...
+      label, fig, re, ivar, dvar, REF);        
+  end
+  fprintf(oid, '        <TR><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>\n');
+  fprintf(oid, '      </TABLE>\n\n'); 
+end
+
+% Print table with pseudo-data:
+[nm, nst] = fieldnmnst_st(pseudo);
+fprintf(oid, '      <TABLE id="t01">\n');
+fprintf(oid, '        <TR BGCOLOR = "#FFE7C6"><TH colspan="5"> Pseudo-data at T<sub>ref</sub></TH></TR>\n');
+fprintf(oid,['        <TR BGCOLOR = "#FFE7C6"><TD><B>Data</B></TD><TD><B>Generalised animal</B></TD><TD><B>',strrep(metaData.species, '_', ' '),'</B></TD><TD><B>Unit</B></TD><TD><B>Description</B></TD></TR>\n']);
+  for j = 1:nst
+       name = nm{j};
+       dta   = pseudo.(nm{j});
+       prdta = prdPseudo.(nm{j});
+       unit  = psTxtData.units.(nm{j});
+       des   = psTxtData.label.(nm{j});
+       fprintf(oid, '        <TR ><TD>%s</TD> <TD>%3.4g</TD> <TD>%3.4g</TD><TD>%s</TD><TD>%s</TD></TR>\n',...
+       name, dta, prdta, unit, des);       
+  end
+ fprintf(oid, '      </TABLE>\n\n'); 
+ 
+%  work in progress : (it is to make a link to html page with all of the figures on it)
+%  if isempty(metaData.data_1) == 0
+%    prt_unidata_my_pet_html(metaData, metaPar)
+%  end  
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Facts:
+if isfield(metaData, 'facts') 
+  fprintf(oid, '      <H3 style="clear:both" class="pet">Facts</H3>\n');
+  fprintf(oid, '      <ul> \n');     % open the unordered list
+  [nm, nst] = fieldnmnst_st(metaData.facts);
+  for i = 1:nst
+    fprintf(oid, '        <li>\n'); % open bullet point
+    str1 = metaData.facts.(nm{i});
+    if isfield(metaData.bibkey,(nm{i}))
+      bib = metaData.bibkey.(nm{i}); 
+      if ~iscell(bib)
+        str2 = bib;
+      else
+        n_bib = length(bib);
+        str2 = bib{1};
+        for j = 2:n_bib
+          str2 = [str2, ', ', bib{j}];
+        end            
+      end
+      fprintf(oid, ['          ', str1,' (ref: ',str2, ')\n']);
+    else
+      fprintf(oid, ['          ', str1, '\n']);  
+    end
+    fprintf(oid, '        </li>\n' ); % close bullet point
+  end
+  fprintf(oid,'      </ul>\n');       % close the unordered list    
+end
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Discussion
+if isfield(metaData, 'discussion') == 1
+  fprintf(oid, '      <H3 style="clear:both" class="pet">Discussion</H3>\n');
+  fprintf(oid, '      <ul> \n');     % open the unordered list
+  [nm, nst] = fieldnmnst_st(metaData.discussion);
+  for i = 1:nst
+    fprintf(oid, '        <li>\n'); % open bullet point
+    str = metaData.discussion.(nm{i});
+    if isfield(txtData.bibkey,nm{i})
+      str2 = metaData.bibkey.(nm{i});
+      fprintf(oid, ['          ', str,' (',str2,') \n']);
+    else
+      fprintf(oid, ['          ', str, '\n']);
+    end
+    fprintf(oid, '        </li>\n' ); % close bullet point
+  end
+  fprintf(oid,'      </ul>\n\n');     % open the unordered list      
+end
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Acknowledgment:
+if isfield(metaData, 'acknowledgment') == 1
+  fprintf(oid, '      <H3 style="clear:both" class="pet">Acknowledgment</H3>\n');
+  fprintf(oid, '        <ul> \n');     % open the unordered list
+    
+  fprintf(oid, '          <li>\n');    % open bullet point
+  str = metaData.acknowledgment;
+  fprintf(oid, ['          ', str, '\n']);
+  fprintf(oid, '          </li>\n' );  % close bullet point
+   
+  fprintf(oid,'         </ul>\n\n\n'); % close the unordered list      
+end
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% Bibliography:
+fprintf(oid, '      <H3 style="clear:both" class="pet">Bibliography</H3>\n');
+[nm, nst] = fieldnmnst_st(metaData.biblist);
+
+fclose(oid); % insert biblist in ul format
+bib2bbl([metaData.species, '_bib'], [ '../../entries_web/', metaData.species, '/']);
+bbl2html([metaData.species, '_bib'], [ '../../entries_web/', metaData.species, '/'], [metaData.species, '_res']);
+oid = fopen(fileName, 'a'); % open file for appending
+
+fprintf(oid, '      <p>\n');
+fprintf(oid,['        <A class="link" href = "',metaData.species,'_bib.bib" target = "_blank">Bibtex file with references for this entry</A> <BR>\n']);
+fprintf(oid, '      </p>\n\n' );
+  
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% Authors and last date of modification
+fprintf(oid, '      <HR> \n');
+
+if mod == 0 % no modifications exist
+  fprintf(oid,['      <H3 ALIGN="CENTER">', txt_author, ', ', txt_date,'</H3>\n\n']);
+else % modifications do exist
+  fprintf(oid,['      <H3 ALIGN="CENTER">', txt_author, ', ', txt_date, ...
+    ' (last modified by ', txt_author_mod, '\n', txt_date_mod,')','</H3>\n\n']);
+end
+  fprintf(oid,['      <H3 ALIGN="CENTER"> accepted: ', txt_date_acc,'</H3>\n\n']);
+  fprintf(oid,['      <H3 ALIGN="CENTER"> refer to this entry as: AmP ', speciesprintnm, ' version ' txt_date_acc,' bio.vu.nl/thb/deb/deblab/add_my_pet/</H3>\n\n']);
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
+
+fprintf(oid, '    <div w3-include-html="../../sys/footer_amp.html"></div>\n');
+fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
+
+fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
+fprintf(oid, '</BODY>\n');
+fprintf(oid, '</HTML>\n');
+fclose(oid);
+
+
+
+##### SOURCE END #####
+--></body></html>

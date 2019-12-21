@@ -1,0 +1,326 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_authors</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-11-30"><meta name="DC.source" content="prt_authors.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_authors</h1><!--introduction--><p>prints authors.html with submitting/modification authors and their entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/23 by Bas Kooijman, modified 2016/12/24, 2017/07/30, 2017/10/20. 2017/11/30</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li><li><a href="#8">subfunction</a></li></ul></div><h2 id="2">created 2016/02/23 by Bas Kooijman, modified 2016/12/24, 2017/07/30, 2017/10/20. 2017/11/30</h2><h2 id="3">Syntax</h2><p><a href="../prt_authors.m"><b>prt_authors</b></a></p><h2 id="4">Description</h2><p>Writes ../authors.html with all authors and their submitted/modified entries</p><h2 id="5">Remarks</h2><p>allStat.mat always has fields author and date_subm for each entry, but not always field(s) author_mod_*. If author_mod_* exists, date_mod_* must exist as well with a valid date-specification. Each author_mod_* field can have one or more authors</p><h2 id="6">Example of use</h2><p>prt_authors</p><h2 id="8">subfunction</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_authors
+% prints authors.html with submitting/modification authors and their entries
+
+%%
+function prt_authors
+%% created 2016/02/23 by Bas Kooijman, modified 2016/12/24, 2017/07/30, 2017/10/20. 2017/11/30
+
+%% Syntax
+% <../prt_authors.m *prt_authors*>
+
+%% Description
+% Writes ../authors.html with all authors and their submitted/modified entries
+
+%% Remarks
+% allStat.mat always has fields author and date_subm for each entry, but not always field(s) author_mod_*.
+% If author_mod_* exists, date_mod_* must exist as well with a valid date-specification.
+% Each author_mod_* field can have one or more authors
+
+%% Example of use
+% prt_authors
+
+  % get basic data
+  [adad entries] = read_allStat('author', 'date_subm', 'author_mod', 'date_mod'); 
+  ne = length(entries);   
+  % authors
+  authors = adad(:,[1 3]);                % (ne,>0)-cell array with all authors
+  author = cell(0, 1); % convert (2*ne,1)-cell array, to (n,1)-cell array by vertcat all cell-arrays 
+  for i=1:ne % scan entries
+    author1 = authors{i,1}; author2 = authors{i,2}; % submit-, mod-authors
+    author = [author; author1(:); author2(:)];
+  end
+  [author fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
+  na = length(author);   
+  % dates
+  dates = adad(:,[2 4]);                  % (ne,>0)-cell array with all dates
+    
+  % prepare for writing authors.html
+  fid_authors = fopen('../../authors.html', 'w+'); % open file for writing, delete existing content
+  
+% write header for authors.html :
+fprintf(fid_authors, '<!DOCTYPE html>\n');
+fprintf(fid_authors, '<HTML>\n');
+fprintf(fid_authors, '<HEAD>\n');
+fprintf(fid_authors, '  <TITLE>AmP authors</TITLE>\n');
+fprintf(fid_authors, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
+fprintf(fid_authors, '  <style>\n');
+fprintf(fid_authors, '    .newspaper {\n');
+fprintf(fid_authors, '      -webkit-column-count: 4; /* Chrome, Safari, Opera */\n');
+fprintf(fid_authors, '      -moz-column-count: 4; /* Firefox */\n');
+fprintf(fid_authors, '      column-count: 4;\n');
+fprintf(fid_authors, '      width: 1000px;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    * {\n');
+fprintf(fid_authors, '      box-sizing: border-box;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropbtn {\n');
+fprintf(fid_authors, '      color: black;\n');
+fprintf(fid_authors, '      padding: 0px;\n');
+fprintf(fid_authors, '      font-size: 16px;\n');
+fprintf(fid_authors, '      border: none;\n');
+fprintf(fid_authors, '      cursor: pointer;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropbtn:hover, .author_dropbtn:focus {\n');
+fprintf(fid_authors, '      background-color: #C6EFF7;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropdown {\n');
+fprintf(fid_authors, '      position: relative;\n');
+fprintf(fid_authors, '      display: inline-block;\n');
+fprintf(fid_authors, '      width: 240px;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropdown-content {\n');
+fprintf(fid_authors, '      display: none;\n');
+fprintf(fid_authors, '      position: absolute;\n');
+fprintf(fid_authors, '      background-color: #f9f9f9;\n');
+fprintf(fid_authors, '      min-width: 380px;\n');
+fprintf(fid_authors, '      overflow: auto;\n');
+fprintf(fid_authors, '      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n');
+fprintf(fid_authors, '      z-index: 1;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropdown-content a {\n');
+fprintf(fid_authors, '      color: black;\n');
+fprintf(fid_authors, '      padding: 12px 16px;\n');
+fprintf(fid_authors, '      text-decoration: none;\n');
+fprintf(fid_authors, '      display: block;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    .author_dropdown a:hover {background-color: #f1f1f1}\n\n');
+
+fprintf(fid_authors, '    .show {display:block;}\n\n');
+
+fprintf(fid_authors, '    #Input_an {\n');
+fprintf(fid_authors, '      background-image: url(''img/searchicon.png'');\n');
+fprintf(fid_authors, '      background-position: 2px -10px;\n');
+fprintf(fid_authors, '      background-repeat: no-repeat;\n');
+fprintf(fid_authors, '      width: 18%%;\n');
+fprintf(fid_authors, '      font-size: 14px;\n');
+fprintf(fid_authors, '      padding: 5px 10px 7px 40px;\n');
+fprintf(fid_authors, '      border: 1px solid #ddd;\n');
+fprintf(fid_authors, '      margin-bottom: 12px;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    #author_nm {\n');
+fprintf(fid_authors, '      list-style-type: none;\n');
+fprintf(fid_authors, '      padding: 0;\n');
+fprintf(fid_authors, '      margin: 0;\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '    #author_nm li a {\n');
+fprintf(fid_authors, '      border: 1px solid #ddd;\n');
+fprintf(fid_authors, '      margin-top: -1px; /* Prevent double borders */\n');
+fprintf(fid_authors, '      background-color: #f6f6f6;\n');
+fprintf(fid_authors, '      padding: 12px;\n');
+fprintf(fid_authors, '      text-decoration: none;\n');
+fprintf(fid_authors, '      font-size: 16px;\n');
+fprintf(fid_authors, '      color: black;\n');
+fprintf(fid_authors, '      display: block\n');
+fprintf(fid_authors, '    }\n\n');
+
+fprintf(fid_authors, '  </style>\n');
+fprintf(fid_authors, '  <script src="sys/dropdown.js"></script>\n');
+fprintf(fid_authors, '  <script src="sys/w3data.js"></script>\n');
+fprintf(fid_authors, '</HEAD>\n\n');
+fprintf(fid_authors, '<BODY>\n\n');
+
+fprintf(fid_authors, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
+fprintf(fid_authors, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
+fprintf(fid_authors, '<script>w3IncludeHTML();</script>\n\n');
+	
+fprintf(fid_authors, '<div id = "main">\n');
+fprintf(fid_authors, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_authors, '    <div id="contentFull">\n\n');
+fprintf(fid_authors, '      <H2><a href="" title="Locate entries via authors and submission/modification dates by clicking on names.\n');
+fprintf(fid_authors, '           Click on entry names to goto entries.">Authors and their submitted entries</a></H2>\n\n');
+
+fprintf(fid_authors, '      <div>\n');
+fprintf(fid_authors, '        <input type="text" id="Input_an" onkeyup="Function_an()" placeholder="Search for author names.." title="Type in a name">\n');
+fprintf(fid_authors, '      </div>\n\n');
+
+fprintf(fid_authors, '      <div class = "newspaper">\n');  
+fprintf(fid_authors, '        <ul id="author_nm">\n');
+for i = 1:na % scan all authors
+fprintf(fid_authors, '          <li>\n');
+fprintf(fid_authors, '            <div class = "author_dropdown">\n');
+
+    % get lists of entries and dates for current author
+    txt_entry = cell(0); txt_date = cell(0); date_num = [];
+    for k = 1:ne % scan all entries
+      if sum(strcmp(author{i}, authors{k,1})) 
+        txt_entry = [txt_entry; entries{k}];
+        date_num = [date_num; datenum(dates{k,1})];
+        txt_date = [txt_date; datestr(date_num(end), 'yyyy/mm/dd')];
+      end
+      
+      authors_mod = authors{k,2}; n_mod = length(authors_mod);
+      for l = 1:n_mod
+        date_mod = dates{k,2};
+        if sum(strcmp(author{i}, authors_mod{l})) 
+          txt_entry = [txt_entry; entries{k}];
+          date = date_mod{l}; date_num = [date_num; datenum(date{1})];
+          txt_date = [txt_date; datestr(date_num(end), 'yyyy/mm/dd')];
+        end
+      end
+    end
+    nr = length(date_num);
+    
+    % sort entries on dates for current author
+    [nm ind] = sort(date_num,'descend');
+    txt_entry = txt_entry(ind); txt_date = txt_date(ind);
+    
+fprintf(fid_authors,['              <button onclick="entries(''', fam{i}, ''')" class="author_dropbtn"><a href="#">', num2str(nr), ' ', author{i}, '</a></button>\n']);
+fprintf(fid_authors,['              <div id="', fam{i}, '" class="author_dropdown-content">\n']);
+
+    for k = 1:nr % scan all dates/entries for current author
+fprintf(fid_authors,['                 <a target="_top" href="entries_web/', txt_entry{k}, '/', txt_entry{k}, '_res.html">', txt_date{k}, ' ', txt_entry{k}, '</a>\n']);
+    end
+ 
+fprintf(fid_authors, '              </div>\n');
+fprintf(fid_authors, '            </div>\n');
+fprintf(fid_authors, '          </li>\n\n');
+end
+fprintf(fid_authors, '        </ul>\n');
+fprintf(fid_authors, '      </div> <!REPLACE_WITH_DASH_DASH end of newspaper REPLACE_WITH_DASH_DASH>\n\n'); 
+
+fprintf(fid_authors, '      <script>\n');
+fprintf(fid_authors, '        function Function_an() {\n');
+fprintf(fid_authors, '          var input, filter, ul, li, a, i;\n');
+fprintf(fid_authors, '          input = document.getElementById("Input_an");\n');
+fprintf(fid_authors, '          filter = input.value.toUpperCase();\n');
+fprintf(fid_authors, '          ul = document.getElementById("author_nm");\n');
+fprintf(fid_authors, '          li = ul.getElementsByTagName("li");\n');
+fprintf(fid_authors, '          for (i = 0; i < li.length; i++) {\n');
+fprintf(fid_authors, '            a = li[i].getElementsByTagName("a")[0];\n');
+fprintf(fid_authors, '            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
+fprintf(fid_authors, '              li[i].style.display = "";\n');
+fprintf(fid_authors, '            } else {\n');
+fprintf(fid_authors, '              li[i].style.display = "none";\n');
+fprintf(fid_authors, '            }\n');
+fprintf(fid_authors, '          }\n');
+fprintf(fid_authors, '        }\n\n');
+
+fprintf(fid_authors, '        function entries(fam) {\n');
+fprintf(fid_authors,['          document.getElementById(fam).classList.toggle("show");\n']);
+fprintf(fid_authors, '        }\n\n');
+
+fprintf(fid_authors, '        // Close the dropdown if the user clicks outside of it\n');
+fprintf(fid_authors, '        window.onclick = function(event) {\n');
+fprintf(fid_authors, '          if (!event.target.matches(''.author_dropbtn'')) {\n');
+fprintf(fid_authors, '            var dropdowns = document.getElementsByClassName("author_dropdown-content");\n');
+fprintf(fid_authors, '            var i;\n');
+fprintf(fid_authors, '            for (i = 0; i < dropdowns.length; i++) {\n');
+fprintf(fid_authors, '              var openDropdown = dropdowns[i];\n');
+fprintf(fid_authors, '              if (openDropdown.classList.contains(''show'')) {\n');
+fprintf(fid_authors, '                openDropdown.classList.remove(''show'');\n');
+fprintf(fid_authors, '              }\n');
+fprintf(fid_authors, '            }\n');
+fprintf(fid_authors, '          }\n');
+fprintf(fid_authors, '        }\n');
+fprintf(fid_authors, '      </script>\n\n');
+
+fprintf(fid_authors, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
+
+fprintf(fid_authors, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
+fprintf(fid_authors, '    <script>w3IncludeHTML();</script>\n\n');
+
+fprintf(fid_authors, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
+fprintf(fid_authors, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
+
+fprintf(fid_authors, '</BODY>\n');
+fprintf(fid_authors, '</HTML>\n');
+fclose(fid_authors);
+  
+end
+
+%% subfunction
+
+function [sauthor sfam] = sort_fam(author)
+  % orders a cell-array of authors to their names after the last space
+  
+  n = length(author); fam = author;
+  for i = 1:n
+    name = author(i); name = name{:}; 
+    name(1:max(strfind(name, ' '))) = [];
+    fam(i) = {name};
+  end
+  [nm index] = sort(fam);
+  sauthor = author(index);
+  sfam = fam(index);
+end
+##### SOURCE END #####
+--></body></html>

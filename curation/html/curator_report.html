@@ -1,0 +1,260 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>curator_report</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-08-21"><meta name="DC.source" content="curator_report.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>curator_report</h1><!--introduction--><p>Produces a report to help curators review an entry that has been submitted to the AmP collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Examples of use</a></li><li><a href="#7">Step 1: Check species name and lineage</a></li><li><a href="#8">Step 2: run check_data for data_0, data_1 and COMPLETE</a></li><li><a href="#9">Step 3: check bibliography and url's</a></li><li><a href="#10">Step 4: check extra parameters</a></li><li><a href="#11">Step 5: check which parameters were estimated:</a></li><li><a href="#12">Step 6: check implied properties</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../curator_report.m"><b>curator_report</b></a> (speciesnm)</p><h2 id="4">Description</h2><p>Produces step by step instuctions and informations to help curators analyse a submission.</p><p>Input</p><div><ul><li>speciesnm: string with species name</li><li>stepnb: scalar with the step number the report should execute</li></ul></div><p>Output is printed to screen</p><h2 id="5">Remarks</h2><p>This function is supposed to be run in the directory of the source files: mydata_speciesnm, pars_init_speciesnm,</p><h2 id="6">Examples of use</h2><div><ul><li>curator_report('my_pet')</li><li>curator_report('my_pet', 2) : and then only start the report at step 2 -</li></ul></div><h2 id="7">Step 1: Check species name and lineage</h2><h2 id="8">Step 2: run check_data for data_0, data_1 and COMPLETE</h2><h2 id="9">Step 3: check bibliography and url's</h2><h2 id="10">Step 4: check extra parameters</h2><h2 id="11">Step 5: check which parameters were estimated:</h2><h2 id="12">Step 6: check implied properties</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% curator_report
+% Produces a report to help curators review an entry that has been submitted to the AmP collection 
+
+%%
+function curator_report(speciesnm, stepnb)
+  % created 2015/08/01 by Goncalo Marques
+  % modified 2015/08/06 Dina Lika, 2018/01/23 by Bas Kooijman, 2018/04/15
+  % Starrlight, 2018/08/20 Starrlight
+  
+  %% Syntax 
+  % <../curator_report.m *curator_report*> (speciesnm)
+
+  %% Description
+  % Produces step by step instuctions and informations to help curators analyse a submission.
+  %
+  % Input
+  %
+  % * speciesnm: string with species name
+  % * stepnb: scalar with the step number the report should execute
+  %  
+  % Output is printed to screen
+
+  %% Remarks
+  % This function is supposed to be run in the directory of the source
+  % files: mydata_speciesnm, pars_init_speciesnm, 
+  
+  %% Examples of use
+  %
+  % * curator_report('my_pet') 
+  % * curator_report('my_pet', 2) : and then only start the report at step
+  % 2 - 
+
+if  ~exist('stepnb', 'var')
+    stepnb = [];
+elseif stepnb > 6
+    warning('The maximum step number for the curation report is 6')
+end
+  
+[data, auxData, metaData, txtData, weights] = feval(['mydata_', speciesnm]);
+[par, metaPar, txtPar] = feval(['pars_init_', speciesnm], metaData);
+
+%%% Step 1: Check species name and lineage
+pointNumber = 1; 
+
+if isempty(stepnb) || stepnb == 1 
+fprintf('\n Step %d. Checking if the species is already in AmP:\n\n', pointNumber);
+check_speciesnm(speciesnm);
+end 
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+end
+
+%%% Step 2: run check_data for data_0, data_1 and COMPLETE
+pointNumber = pointNumber + 1; 
+
+if   isempty(stepnb) || stepnb == 2
+fprintf('\n Step %d. Data types:\n\n', pointNumber);
+check_data(speciesnm);
+fprintf('\nCheck the consistency between metaData and data.\n');
+fprintf('Check that the labels for each data type are used and consistent with the contents.\n');
+fprintf('Contact the web administrator with any new labels that should be added to the table. \n');
+fprintf('http://www.debtheory.org/wiki/index.php?title=Add-my-pet_Introduction)\n');
+end
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+end
+
+%%% Step 3: check bibliography and url's
+pointNumber = pointNumber + 1; 
+
+if   isempty(stepnb) || stepnb == 3
+    
+fprintf( '\n Step %d. Check Bibliography', pointNumber);
+[data, auxData, metaData] = feval(['mydata_', speciesnm]); % get metaData.biblist
+prt_my_pet_bib(speciesnm, metaData.biblist) % biblist2bib
+% bib2bbl([speciesnm,'_bib']);                % runs Bibtex to convert bib to bbl
+bib2html([speciesnm,'_bib']);               % converts bbl to html
+web([speciesnm,'_bib.html'],'-browser');    % open html of bibliography in system browser
+
+end
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+    delete([speciesnm,'_bib.bib'],[speciesnm,'_bib.html']); % delete produced files
+end
+
+
+%%% Step 4: check extra parameters
+pointNumber = pointNumber + 1; 
+
+if   isempty(stepnb) || stepnb == 4
+    
+fprintf('\n Step %d. Checking extra parameters:\n\n', pointNumber);
+standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
+parFields = fields(par);        standChemFields = fields(standChem);
+parFields  = setdiff(parFields, {'free'});
+nonChemParFields = setdiff(parFields, standChemFields);
+
+EparFields = get_parfields(metaPar.model);
+extraParFields = setdiff(nonChemParFields, EparFields);
+extraParFields = setdiff(extraParFields, {'T_ref', 'T_A', 'f'});
+
+fprintf('Extra parameters\n');
+for i = 1:length(extraParFields)
+  fprintf([extraParFields{i}, ', ', txtPar.label.(extraParFields{i}), '\n']);
+end
+
+fprintf('\nCheck if these are all used in predict.\n');
+fprintf('Check if there should exist customized filters involving these parameters. \n Check that there is a discussion point relating to the use of these parameters. \n');
+
+end
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+end
+
+
+%%% Step 5: check which parameters were estimated:
+pointNumber = pointNumber + 1; 
+
+if   isempty(stepnb) || stepnb == 5
+fprintf('\n Step %d. Checking choice of free parameters:\n\n', pointNumber);
+
+standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
+parFields = fields(par);        standChemFields = fields(standChem);
+parFields  = setdiff(parFields, {'free'});
+
+freeFixedFields = fields(par.free);
+
+freeFields = freeFixedFields(structfun(@(s) s==1, par.free));
+fixedFields = setdiff(freeFixedFields, freeFields);
+
+fprintf('Fixed parameters (excluding standard chemical pars with standard values)\n');
+for i = 1:length(fixedFields)
+  if ~ismember(fixedFields{i}, standChemFields) || par.(fixedFields{i}) ~= standChem.(fixedFields{i}) % print if is not standard chemical or if it standard but with non-standard value
+    fprintf([fixedFields{i}, ' = ', num2str(par.(fixedFields{i})), ' ', txtPar.units.(fixedFields{i}), ', ' , txtPar.label.(fixedFields{i}), '\n'])
+  end
+end
+
+fprintf('\nCheck if the values above are standard or have been substantiated.\n\n');
+
+fprintf('Free parameters\n');
+for i = 1:length(freeFields)
+  fprintf([freeFields{i}, ' = ', num2str(par.(freeFields{i})), ' ', txtPar.units.(freeFields{i}), ', ' , txtPar.label.(freeFields{i}), '\n']);
+end
+
+fprintf('\nCheck if the values above are reasonable and if there is enough data to estimate them.\n\n');
+
+end
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+end
+
+%%% Step 6: check implied properties 
+pointNumber = pointNumber + 1; 
+
+if   isempty(stepnb) || stepnb == 6
+fprintf('\n Step %d. Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', pointNumber);
+prnt = input('Enter: 1 to compute statistics else 0 to continue: ');
+
+if prnt
+  [stat, txt_stat] = statistics_st(metaPar.model, par, metaData.T_typical, 1);
+  display(stat)
+  
+  prt_report_my_pet(metaData, metaPar, par, metaData.T_typical, 1);
+  web(['report_',speciesnm,'.html'],'-browser');    % open html of bibliography in system browser
+  
+end
+
+end
+
+if isempty(stepnb)
+    fprintf('Hit a key to continue\n'); pause
+   delete(['report_',speciesnm,'.html']); % delete produced file
+end
+
+% Step 7: make sure figures are saved (this only prints if the full reprot
+% is executed)
+
+pointNumber = pointNumber + 1;
+
+if isempty(stepnb)
+fprintf('\n Step %d. Please after the curation process execute the run file with estim_option, results_output=2 \n\n', pointNumber);
+end
+
+##### SOURCE END #####
+--></body></html>
