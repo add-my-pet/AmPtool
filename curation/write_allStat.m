@@ -59,6 +59,6 @@ function allStat = write_allStat(T, f)
   curation = curation(1:end - 15);         
   cd(curation)                     % goto taxa
 
-  save('../../AmPdata/allStat.mat','allStat')
+  save('../../add_my_pet/AmPdata/allStat.mat','allStat')
   
   cd(WD);

@@ -87,5 +87,5 @@ function popStat = write_popStat_loc(varargin)
   end
   cd(WD)
   popStat = popStatLoc;
-  save('../../AmPdata/popStat.mat','popStat') % run from /AmPtool/curation
+  save('../../add_my_pet/AmPdata/popStat.mat','popStat') % run from /AmPtool/curation
 

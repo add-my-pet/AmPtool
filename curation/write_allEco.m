@@ -39,7 +39,7 @@ function allEco = write_allEco
   curation = curation(1:end - 15);         
   cd(curation)                     % goto taxa
 
-  save('../../AmPdata/allEco.mat', 'allEco')
+  save('../../add_my_pet/AmPdata/allEco.mat', 'allEco')
   
   cd(WD);
   
