@@ -1,10 +1,10 @@
 %% prt_species_list
-%  deletes and writes ../../species_list.html 
+%  deletes and writes ../../add_my_pet/species_list.html 
 
 %%
 function prt_species_list
 % created by Bas Kooijman; modified 2015/04/14 Starrlight Augustine & Goncalo Marques; 
-%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25 Bas Kooijman
+%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25, 2019/12/22 Bas Kooijman
 
 %% Syntax
 % <../prt_species_list.m *prt_species_list*>
@@ -35,7 +35,7 @@ end
 function fid_Spec = open_species_list_html
 % opens up species_list.html for reading and writing
 
-fid_Spec = fopen('../../add_my_pet_web/species_list.html', 'w+'); % open file for writing, delete existing content
+fid_Spec = fopen('../../add_my_pet/species_list.html', 'w+'); % open file for writing, delete existing content
   
 % make head and header for species_list.html :
 fprintf(fid_Spec, '<!DOCTYPE html>\n');

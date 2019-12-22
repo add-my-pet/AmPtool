@@ -45,12 +45,12 @@ function allStat = get_allStat(T, f)
   ne = length(entries);
    
   WD = pwd;                % store current path
-  cd(['../../entries/',entries{1}]) % goto entries
+  cd(['../../add_my_pet/entries/',entries{1}]) % goto entries
 
   try
     for i = 1:ne
       cd (['../', entries{i}])
-      fprintf([entries{i}, '\n']); % show progress on screen (takes some time)
+      fprintf([num2str(i), ': ',  entries{i}, '\n']); % show progress on screen (takes some time)
       load(['results_', entries{i}])
       
       % metaData

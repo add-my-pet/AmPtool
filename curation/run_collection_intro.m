@@ -3,7 +3,7 @@
 
 %% before running this script
 % make sure that AmPtool/taxa/ is updated
-% make sure that ../../img/tree is updated
+% make sure that ../../add_my_pet/img/tree is updated
 % make sure that AmPtool/curation/get_link is updated
 % make sure that AmPtool/curation/get_eco is updated
 % run_collection(taxa-names) to generate files in entries_zip and entries_web
@@ -15,8 +15,12 @@ cd(path(1:ind(end)));
 
 clear all; % allStat is persistent in read_allStat and read_stat
 
-write_allStat; 
-write_allEco;
+write_allStat; load ../../add_my_pet/AmPdata/allStat
+write_allEco; load ../../add_my_pet/AmPdata/allEco
+write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
+filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
+prt_toolbar('../../add_my_pet/sys')
+
 prt_species_names;
 prt_species_list;
 prt_species_tree_taxa_js;

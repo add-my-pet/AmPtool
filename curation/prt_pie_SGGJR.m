@@ -41,7 +41,7 @@ function prt_pie_SGGJR
 
 for  j = 1:4 % scan pies
     
-oid = fopen(['../../add_my_pet_web/', pie{j}, '.html'], 'w+'); % open file for writing, delete existing content
+oid = fopen(['../../add_my_pet/', pie{j}, '.html'], 'w+'); % open file for writing, delete existing content
 
 fprintf(oid, '<!DOCTYPE html>\n');
 fprintf(oid, '<HTML>\n');

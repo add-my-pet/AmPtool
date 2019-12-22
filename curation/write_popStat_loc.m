@@ -38,8 +38,10 @@ function popStat = write_popStat_loc(varargin)
   WD = pwd;
 
   n_spec = length(varargin); 
+  cd(['../../add_my_pet/entries_web/',varargin{1}])
+  
   for i = 1:n_spec
-    cd(['../../entries_web/',varargin{i}])
+    cd(['../',varargin{i}])
     load([varargin{i}, '_pop.mat'])
     spec = fieldnames(popStat); spec = spec{1};
     

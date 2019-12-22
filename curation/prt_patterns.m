@@ -25,6 +25,8 @@ function prt_patterns(index)
 % /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
 % Display in entries_admin/patterns.html
 
+path = '../../add_my_pet/img/patterns/';
+
 close all
 
 if exist('index','var')
@@ -49,8 +51,8 @@ for i = 1:n
       xlabel('_{10}log weight at max growth, g')      
       ylabel('_{10}log max growth, g/d')
 
-      saveas(Hfig, '../../img/patterns/logW-logdW.png')
-      saveas(Hleg, '../../img/patterns/legends_logW-logdW.png')
+      saveas(Hfig, [path, 'logW-logdW.png'])
+      saveas(Hleg, [path, 'legends_logW-logdW.png'])
 
     case 2 % Fig 2: log W-log J_O
       shstat_options('default');
@@ -64,8 +66,8 @@ for i = 1:n
       xlabel('_{10}log max adult weight, g')      
       ylabel('_{10}log O_2 consumption, mol/d')
 
-      saveas(Hfig, '../../img/patterns/logW-logJO.png')
-      saveas(Hleg, '../../img/patterns/legends_logW-logJO.png')
+      saveas(Hfig, [path, 'logW-logJO.png'])
+      saveas(Hleg, [path, 'legends_logW-logJO.png'])
 
     case 3 % Fig 3: log V_m - log [E_m]
       shstat_options('default');
@@ -76,8 +78,8 @@ for i = 1:n
       xlabel('_{10}log ultimate structural volume, cm^3')      
       ylabel('_{10}log max reserve capacity, J/cm^3')
 
-      saveas(Hfig, '../../img/patterns/logV-logEm.png')
-      saveas(Hleg, '../../img/patterns/legends_logV-logEm.png')
+      saveas(Hfig, [path, 'logV-logEm.png'])
+      saveas(Hleg, [path, 'legends_logV-logEm.png'])
 
     case 4 % Fig 4: log V_m - log [p_M] ([p_M] is given at T_ref)
       shstat_options('default');
@@ -88,8 +90,8 @@ for i = 1:n
       xlabel('_{10}log ultimate structural volume, cm^3')      
       ylabel('_{10}log spec som maint, J/d.cm^3')
 
-      saveas(Hfig, '../../img/patterns/logV-logpM.png')
-      saveas(Hleg, '../../img/patterns/legends_logV-logpM.png')
+      saveas(Hfig, [path, 'logV-logpM.png'])
+      saveas(Hleg, [path, 'legends_logV-logpM.png'])
 
     case 5 % Fig 5: low p_M- log RW
       shstat_options('default');
@@ -100,8 +102,8 @@ for i = 1:n
       xlabel('_{10}log spec som maintenance, J/d.cm^3')      
       ylabel('_{10}log max reprod rate \times W_d^b/ W_d^\infty, 1/d')
 
-      saveas(Hfig, '../../img/patterns/logpM-logRW.png')
-      saveas(Hleg, '../../img/patterns/legends_logpM-logRW.png')
+      saveas(Hfig, [path, 'logpM-logRW.png'])
+      saveas(Hleg, [path, 'legends_logpM-logRW.png'])
 
     case 6 % Fig 6: log p_M - log dW/W
       shstat_options('default');
@@ -112,8 +114,8 @@ for i = 1:n
       xlabel('_{10}log spec som maintenance, J/d.cm^3')      
       ylabel('_{10}log spec max growth rate, 1/d')
 
-      saveas(Hfig, '../../img/patterns/logpM-logdWW.png')
-      saveas(Hleg, '../../img/patterns/legends_logpM-logdWW.png')
+      saveas(Hfig, [path, 'logpM-logdWW.png'])
+      saveas(Hleg, [path, 'legends_logpM-logdWW.png'])
 
     case 7 % Fig 7: log ss - kap
       shstat_options('default');
@@ -127,8 +129,8 @@ for i = 1:n
       kap = linspace(1e-6,1,100); ss = kap.^2 .* (1 - kap); 
       plot(log10(ss), kap, 'k', 'Linewidth', 2)
       ylim([0 1]);
-      saveas(Hfig, '../../img/patterns/logss-kap.png')
-      saveas(Hleg, '../../img/patterns/legends_logss-kap.png')
+      saveas(Hfig, [path, 'logss-kap.png'])
+      saveas(Hleg, [path, 'legends_logss-kap.png'])
 
     case 8 % Fig 8: ss - kap
       shstat_options('x_transform', 'none');
@@ -142,9 +144,9 @@ for i = 1:n
       kap = linspace(0, 1, 100); ss = kap.^2 .* (1 - kap); 
       plot(ss, kap, 'k', 'Linewidth', 2)
       xlim([0 4/27]); ylim([0 1]);
-      saveas(Hfig, '../../img/patterns/ss-kap.png')
+      saveas(Hfig, [path, 'ss-kap.png'])
       Hleg = shlegend(legend_vert, [], [0.9 0.25]); % reduce height of legend
-      saveas(Hleg, '../../img/patterns/legends_ss-kap.png')
+      saveas(Hleg, [path, 'legends_ss-kap.png'])
   end
 end
 

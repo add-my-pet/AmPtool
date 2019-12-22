@@ -41,14 +41,15 @@ close all
 
 % write_allStat; % update Staristics structure allStat.mat
 
+path = '../../add_my_pet/img/about/';
 pie_Animalia;
 tightfig;
-saveas (gca, '../../img/about/pie_Animalia.png')
+saveas (gca, [path, 'pie_Animalia.png'])
 close all
 
 pie_model;
 tightfig;
-saveas (gca, '../../img/about/pie_model.png')
+saveas (gca, [path, 'pie_model.png'])
 close all
 
 % # of entries in time
@@ -63,7 +64,7 @@ xlabel('time, yr')
 ylabel('# of AmP entries')
 xlim([2009; max(dates)])
 title([num2str(n), ' @ ', datestr(date,26)])
-saveas (gca,'../../img/about/entries.png')
+saveas (gca, [path, 'entries.png'])
 close all
 
 % COMPLETE, MRE plots
@@ -72,21 +73,21 @@ C_median = median(CMS(:,1)); M_median = median(CMS(:,2)); S_median = median(CMS(
 plot(CMS(:,1), CMS(:,2), '.b', 'MarkerSize', 20)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('COMPLETE'); ylabel('MRE')
-saveas (gca,'../../img/about/COMPLETE_MRE.png')
+saveas (gca, [path, 'COMPLETE_MRE.png'])
 close all
 
 plot(CMS(:,2), CMS(:,3), '.b', 'MarkerSize', 20)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('MRE'); ylabel('SMSE')
 xlim([0 0.55]); ylim([0 0.55])
-saveas (gca,'../../img/about/MRE_SMSE.png')
+saveas (gca, [path, 'MRE_SMSE.png'])
 close all
 
 surv_COMPLETE = surv(CMS(:,1),0);
 plot([0; C_median; C_median], [0.5;0.5;0], 'r', surv_COMPLETE(:,1), surv_COMPLETE(:,2), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('COMPLETE'); ylabel('survivor function')
-saveas (gca,'../../img/about/COMPLETE.png')
+saveas (gca, [path, 'COMPLETE.png'])
 close all
 
 surv_MRE = surv(CMS(:,2),0);
@@ -97,7 +98,7 @@ set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('(Symmetic) Mean (Squared) Relative Error')
 ylabel('survivor function')
 xlim([0 0.55])
-saveas (gca,'../../img/about/MRE.png')
+saveas (gca, [path, 'MRE.png'])
 close all
 
 % # of DEB papers in time
@@ -113,12 +114,12 @@ xlabel('time, yr')
 ylabel('# of DEB publications')
 xlim([1979; max(dates)])
 title([num2str(n), ' @ ', datestr(date,26)])
-saveas (gca,'../../img/about/DEBlib.png')
+saveas (gca, [path, 'DEBlib.png'])
 close all
 
 % Write about.html
 path = 'entries_web/'; % path to entries
-fid_about = fopen('../../add_my_pet_web/about.html', 'w+'); % open file for writing, delete existing content
+fid_about = fopen('../../add_my_pet/about.html', 'w+'); % open file for writing, delete existing content
 
 fprintf(fid_about, '<!DOCTYPE html>\n');
 fprintf(fid_about, '<HTML>\n');

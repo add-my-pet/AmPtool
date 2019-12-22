@@ -19,16 +19,16 @@ function prt_species_tree_taxa_js(taxa)
 %
 % Output:
 % 
-% * writes files ../../species_tree_taxa{i}_taxon.html for i = 1, 2, ..
-% * writes files ../../sys/species_tree_taxa{i}_search.html for i = 1, 2, ..
-% * writes files ../../sys/species_tree_taxa{i}.js for i = 1, 2, ..
+% * writes files ../../add_my_pet/species_tree_taxa{i}_taxon.html for i = 1, 2, ..
+% * writes files ../../add_my_pet/sys/species_tree_taxa{i}_search.html for i = 1, 2, ..
+% * writes files ../../add_my_pet/sys/species_tree_taxa{i}.js for i = 1, 2, ..
 
 %% Remarks
-% file ../../species_tree_taxa{i}.html calls 
-%  - java-scripts ../../sys/ftiens4.js, ua.js
-%  - gif's ../../img/nm.gif
-%  - jpg's ../../img/tree/nm.jpg
-%  - txt's ../../img/tree/nm.txt
+% file ../../add_my_pet/species_tree_taxa{i}.html calls 
+%  - java-scripts ../../add_my_pet/sys/ftiens4.js, ua.js
+%  - gif's ../../add_my_pet/img/nm.gif
+%  - jpg's ../../add_my_pet/img/tree/nm.jpg
+%  - txt's ../../add_my_pet/img/tree/nm.txt
 
 %% Example of use
 % prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results
@@ -44,7 +44,7 @@ function prt_species_tree_taxa_js(taxa)
     
   for i = 1:n
     pedigree_taxa = pedigree(taxa{i});
-    fid_tv = fopen(['../../sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../add_my_pet/sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
 
     % write header
     fprintf(fid_tv, '//\n');
@@ -98,7 +98,7 @@ function prt_species_tree_taxa_js(taxa)
     
     % write species_tree_taxa{i}_search.html, which is used by species_tree_taxa{i}.html for searching taxon, genus, family, order, class
     
-    fid_tv = fopen(['../../sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../add_my_pet/sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
 
     % taxon 
     fprintf(fid_tv, '<div class="TreeSearch"> <!-- taxon -->\n');

@@ -35,7 +35,7 @@ function prt_authors
   dates = adad(:,[2 4]);                  % (ne,>0)-cell array with all dates
     
   % prepare for writing authors.html
-  fid_authors = fopen('../../add_my_pet_web/authors.html', 'w+'); % open file for writing, delete existing content
+  fid_authors = fopen('../../add_my_pet/authors.html', 'w+'); % open file for writing, delete existing content
   
 % write header for authors.html :
 fprintf(fid_authors, '<!DOCTYPE html>\n');

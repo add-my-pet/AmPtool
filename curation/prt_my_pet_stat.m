@@ -1,5 +1,5 @@
 %% prt_my_pet_stat
-% Creates my_pet_stat.html 
+% Prints my_pet_stat.html 
 
 %%
 function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
@@ -30,6 +30,8 @@ function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
 % if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
 %   speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);
 % end
+
+path = '../../add_my_pet/';
 
 f = 1; % ad libitum feeding
 [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
@@ -114,7 +116,7 @@ fprintf(oid, '      </TABLE>\n\n');
 
 fprintf(oid, '    </div> <!-- end of content -->\n\n');
 
-fprintf(oid, '    <div w3-include-html="../../sys/footer_amp.html"></div>\n');
+fprintf(oid, '    <div w3-include-html="../../add_my_pet/sys/footer_amp.html"></div>\n');
 fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '  </div> <!-- main wrapper -->\n');
