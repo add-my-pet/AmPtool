@@ -19,7 +19,7 @@ write_allStat; load ../../add_my_pet/AmPdata/allStat
 write_allEco; load ../../add_my_pet/AmPdata/allEco
 write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
 filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
-prt_toolbar('../../add_my_pet/sys')
+prt_toolbar
 
 prt_species_names;
 prt_species_list;
@@ -29,7 +29,6 @@ prt_pars;
 prt_patterns;
 prt_pie_SGGJR;
 prt_about;
-
 
 %% cp files to server after running this script
 
@@ -42,6 +41,9 @@ prt_about;
 
 % ../sys/species_tree_Animalia.js
 % ../sys/species_tree_Animalia_search.html
+% ../sys/toolbar_*.html
+
+% ../AmPdata/AmPdata.zip
 
 % ../img/about/*.png 
 % ../img/pars/*.png

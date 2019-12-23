@@ -2,7 +2,7 @@
 % prints the menu bar that is used for the whole collection
 
 %%
-function  prt_toolbar(destinationFolder)
+function  prt_toolbar
 % created 2019/12/22 Bas Kooijman
 
 %% Syntax
@@ -21,20 +21,6 @@ function  prt_toolbar(destinationFolder)
 %% Example of use
 % prt_toolbar([2019 12 27]) if you wish to print in the current folder
 
-if exist('destinationFolder','var') && isempty('destinationFolder')
-  oid_amp = []; oid_app = []; oid_budget = []; oid_entry = [];
-elseif exist('destinationFolder','var') 
-  oid_amp = fopen([destinationFolder, 'toolbar_amp.html'], 'w+');       % open file for reading and writing and deletes old content
-  oid_app = fopen([destinationFolder, 'toolbar_app.html'], 'w+');       % open file for reading and writing and deletes old content
-  oid_budget = fopen([destinationFolder, 'toolbar_budget.html'], 'w+'); % open file for reading and writing and deletes old content
-  oid_entry = fopen([destinationFolder, 'toolbar_entry.html'], 'w+');   % open file for reading and writing and deletes old content
-else
-  oid_amp = fopen('toolbar_amp.html', 'w+');       % open file for reading and writing and deletes old content
-  oid_app = fopen('toolbar_app.html', 'w+');       % open file for reading and writing and deletes old content
-  oid_budget = fopen('toolbar_budget.html', 'w+'); % open file for reading and writing and deletes old content
-  oid_entry = fopen('toolbar_entry.html', 'w+');   % open file for reading and writing and deletes old content
-end
-
 tb = []; tbb = []; tbt = []; % initialize
 % insert "?", which is below replaced by '', or '../' or '../../'
 % head
@@ -49,7 +35,7 @@ tb = [tb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</
 tb = [tb, '        <div id="deb" class="dropdown-content">\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/" target="_blank">DEB Portal</a>\n'];
 tb = [tb, '          <a href="https://en.wikipedia.org/wiki/Dynamic_energy_budget_theory" target="_blank">DEB Wikipedia</a>\n'];
-tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/" target="_blank">DEB Tool</a>\n'];
+tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/docs/index.html" target="_blank">DEB Tool</a>\n'];
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/deb/deblab/" target="_blank">DEB Laboratory</a>\n'];
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 tb = [tb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];
@@ -61,7 +47,7 @@ tb = [tb, '        <button onclick="showDropdown(''context'')" class="dropbtn">C
 tb = [tb, '        <div id="context" class="dropdown-content">\n'];
 tb = [tb, '          <a href="?index.html">AmP Portal</a>\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure" target="_blank">AmP Estimation</a>\n'];
-tb = [tb, '          <a href="https://add-my-pet.github.io/index.html" target="_blank">AmP Tool</a>\n'];
+tb = [tb, '          <a href="https://add-my-pet.github.io/AmPtool/docs/index.html" target="_blank">AmP Tool</a>\n'];
 tb = [tb, '          <a href="?AmPeco.html">AmP Ecology</a>\n'];
 tb = [tb, '          <a href="?phyla.html">Phyla</a>\n'];
 tb = [tb, '          <a href="?pars.html">Parameters</a>\n'];
@@ -108,11 +94,23 @@ tbt = [tbt, '      </div>\n\n'];
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
 
+% write toolbars
+oid_amp = fopen('toolbar_amp.html', 'w+');       % open file for reading and writing and deletes old content
+oid_app = fopen('toolbar_app.html', 'w+');       % open file for reading and writing and deletes old content
+oid_budget = fopen('toolbar_budget.html', 'w+'); % open file for reading and writing and deletes old content
+oid_entry = fopen('toolbar_entry.html', 'w+');   % open file for reading and writing and deletes old content
+
 fprintf(oid_amp, strrep([tb, tbt], '?', ''));
 fprintf(oid_budget, strrep([tb, tbb, tbt], '?', ''));
 fprintf(oid_app, strrep([tb, tbt], '?', '../'));
 fprintf(oid_entry, strrep([tb, tbt], '?', '../../'));
 
 fclose all;
+
+movefile toolbar_amp.html '../../add_my_pet/sys/'
+movefile toolbar_budget.html '../../add_my_pet/sys/'
+movefile toolbar_app.html '../../add_my_pet/sys/'
+movefile toolbar_entry.html '../../add_my_pet/sys/'
+
 end
 
