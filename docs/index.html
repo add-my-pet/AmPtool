@@ -52,11 +52,11 @@
     All data (i.e. meta-data, parameters, meta-parameters, 
       <A HREF = "http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/statistics_st.html" target = "_top">implied traits</A>, 
       but no empirical data) of all entries are collected by function 
-      <a href = "../AmPtool/curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
+      <a href = "../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
     Only curators who have all entries locally can run this function, but the result is available for anybody.
-    To read data directly, use <code>load allStat</code>, or better <a href = "../AmPtool/html/read_allStat.html">read_allStat</a> for all entries, 
-      or <a href = "../AmPtool/html/read_stat.html">read_stat</a> for specified entries.
-    The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href = "../AmPtool/html/select.html">select</a> (see below).
+    To read data directly, use <code>load allStat</code>, or better <a href = "../html/read_allStat.html">read_allStat</a> for all entries, 
+      or <a href = "../html/read_stat.html">read_stat</a> for specified entries.
+    The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href = "../html/select.html">select</a> (see below).
     As the AmP collection grows, lists-of-lists change (see below), so does <code>allStat</code>; these two should be seen as a couple that should not be uncoupled.
     All rates and times that are not primary parameters are given at temperature <code>T_typical</code>, which is entry-specific; 
       use temperature correction factor <code>c_T</code> to convert to the reference temperatures and temperature parameters to other temperatures.
@@ -64,7 +64,7 @@
 
     <p>
     All functions that analyse data read in <code>allStat</code>, using function 
-      <a href="../AmPtool/html/read_allStat.html">read_allStat</a> or <a href="../AmPtool/html/read_stat.html">read_stat</a>.
+      <a href="../html/read_allStat.html">read_allStat</a> or <a href="../html/read_stat.html">read_stat</a>.
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code>; convert to temperature <code>T_ref</code> with
       <code>[var, nm] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print to screen with <code>printpar(nm, tg_Tref)</code>.
     Oviparous species will have value <code>NaN</code> (Not-a-Number).
@@ -73,11 +73,11 @@
     <p>
     Apart from <code>allStat</code>, the Matlab-structure <b>allEco.mat</b> exists for codes that specify climate, ecozone, habitat, embryo environment, 
       migration/torpor, food, gender and reproduction mode for each entry.
-    The codes are explained in <a href="AmPeco.html">AmPeco</a>, assigned by function 
-      <a href="../AmPtool/curation/html/get_eco.html">get_eco</a> and the Matlab-structure is written by  
-      <a href="../AmPtool/curation/html/write_allEco.html">write_allEco</a>.
+    The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned by function 
+      <a href="../curation/html/get_eco.html">get_eco</a> and the Matlab-structure is written by  
+      <a href="../curation/html/write_allEco.html">write_allEco</a>.
     All functions that analyse data and read in <code>allEco</code> use function 
-      <a href="../AmPtool/html/read_allEco.html">read_allEco</a> or <a href="../AmPtool/html/read_eco.html">read_eco</a>.
+      <a href="../html/read_allEco.html">read_allEco</a> or <a href="../AmPtool/html/read_eco.html">read_eco</a>.
    
     <p>
     <a href = "../debtool/DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and implied traits for specific entries.
@@ -89,7 +89,7 @@
     In this application the data are not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
     This is handy for checking that a particular parameter combination is yes or no realistic.
     With <code>estim_options('results_output', 4);</code>, related species are included in the report to compare parameters and implied traits.
-    These related species in the collection are identified with function <a href="../AmPtool/html/clade.html">clade</a> (see below), and if two or more related species are found, 
+    These related species in the collection are identified with function <a href="../html/clade.html">clade</a> (see below), and if two or more related species are found, 
       color coding is applied to highlight eccentricity of values.
 
     <H2 id="tree">Taxonomic tree: lists-of-lists</H2>
@@ -101,7 +101,7 @@
       and the default nitrogen waste by function <a href="http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/get_N_waste.html">get_N_waste</a>. 
     A list is a simple text-file in subdirectory taxa. 
     Several functions link these lists into a tree. 
-    The tree has a root, here called <a href="../AmPtool/taxa/Animalia.txt">Animalia</a>, nodes, which are names of taxa, and leaves, which are names of entries.
+    The tree has a root, here called <a href="../taxa/Animalia.txt">Animalia</a>, nodes, which are names of taxa, and leaves, which are names of entries.
     Most entries represent a species, but some species have multiple entries, such as geographical races. 
     Each node once occurs in a list and once as name of a list; the root only occurs once as a name of a list. 
     All entry (= leaf) names have an underscore in their name, while no node has an underscore.
@@ -118,20 +118,20 @@
     It can also show the distribution of some statistic, i.e. parameter or implied trait, among the taxa in the (small) tree with background colour gradients.
     This statistic can be symbolic, with a name matching some field in <code>allStat</code>, or numeric, e.g. computed from values in <code>allStat</code>: 
       <code>treeview_taxa('Cladocera', 'kap')</code>.
-    Function <a href="../AmPtool/html/select_taxon.html">select_taxon</a> let you choose a taxon from a list of all possibilities.
+    Function <a href="../html/select_taxon.html">select_taxon</a> let you choose a taxon from a list of all possibilities.
     If you are not sure about the possible nodes, or want to avoid spelling errors: 
       <code>treeview_taxa(select_taxon('Arthropoda', 5))</code> let you choose from all arthropod orders.
 
     <p>
-    The tree can be read in the direction from leaves to root with the function <a href="../AmPtool/html/lineage.html">lineage</a>,
-      and in the direction from root to leaves with the function <a href="../AmPtool/html/pedigree.html">pedigree</a>. 
+    The tree can be read in the direction from leaves to root with the function <a href="../html/lineage.html">lineage</a>,
+      and in the direction from root to leaves with the function <a href="../html/pedigree.html">pedigree</a>. 
     The default input of pedigree is the root Animalia, but can also be any node, which becomes the root of the output-tree.
     The (character) string produced by pedigree can directly be printed to the screen, which is useful for small trees. 
     The tree can be used to identify useful taxa for analysis.
 
     <div>
       <div class="sidelement2">
-         <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/AmPtool/branches_per_node.png" width="250px" hspace="30">
+         <img src="branches_per_node.png" width="250px" hspace="30">
       </div>
 
 
@@ -144,7 +144,7 @@
       </div>
 
       <div class="sidelement2">
-         <img hspace="30" src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/AmPtool/nodes_leaves_root.png" width="250px">
+         <img hspace="30" src="nodes_leaves_root.png" width="250px">
       </div>
     </div>
 
@@ -167,24 +167,24 @@
     presents the AmP species that are most related.
 
     <p>
-    Print (compound) parameters or statistics of selected entries to screen with <a href="../AmPtool/html/prtStat.html">prtStat</a>, or, 
-      including the tree-structure, with <a href="../AmPtool/html/pedigree.html">pedigree</a>.
+    Print (compound) parameters or statistics of selected entries to screen with <a href="../html/prtStat.html">prtStat</a>, or, 
+      including the tree-structure, with <a href="../html/pedigree.html">pedigree</a>.
     Use <a href="../AmPtool/html/clade.html">clade</a> to select related entries and catenate with prtStat by e.g. <code>prtStat(clade('Lemmus_trimucronatus'),'p_M');</code>.<br>
     Include the tree as well by e.g. <code>[~, taxon] = clade('Lemmus_trimucronatus'); pedigree(taxon,'p_M')</code>.
 
     <h4>Selection on eco-codes</h4>
 
     A motivation for this type of selection could be to study ecological adaptations of parameter values.
-    Selection on eco-codes is done with function <a href="../AmPtool/html/select_eco.html">select_eco</a>. 
+    Selection on eco-codes is done with function <a href="../html/select_eco.html">select_eco</a>. 
     It allows selection for a single variable, and multiple codes in OR mode.
     Apart from the names of the entries, it returns selection identifiers (booleans) for the whole collection, allowing to combine the result with multiple calls to this function.
     For example all species in the collection that eat invertebrates (in some stage) and occur in the North-Atlantic are found with: 
       <code>[nm, s1] = select_eco('food',{'Ci'}); [nm, s2] = select_eco('ecozone',{'MAN'}); nm = select; nm(s1&s2)</code>.
     While food-code <code>Cim</code> selects for feeding on molluscs, entries with code <code>Ci</code> will not be selected, but some of them might eat molluscs as well.
     In reverse, entries with code <code>Cim</code> will be selected if <code>Ci</code> is specified, due to the hierarchical nature of the coding system.
-    Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../AmPtool/html/get_eco.html">get_eco</a>: 
+    Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../html/get_eco.html">get_eco</a>: 
       <code>[climate, ecozone, habitat, embryo, migrate, food, gender, reprod] = get_eco(my_pet)</code>.
-    Possible variables and codes are given on the <a href="AmPeco.html" target="_blank">AmP ecology page</a>.
+    Possible variables and codes are given on the <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html" target="_blank">AmP ecology page</a>.
     Although the codes for food and habitat have stage-identifiers, they are presently not used in <code>select_eco</code>.
     Print, e.g. the value of reproduction efficiency <code>kap_R</code> for all entries that are simultaneous hermaphrodite: <code>prtStat(select_eco('gender','Hh'),'kap_R');</code>
     
@@ -203,11 +203,11 @@
 
      A motivation for this type of selection could be the question 'which entries have a changing (scaled) function response in time' and 
        which of these entries have  males and females with different parameters)? 
-     The answer involves <a href="../AmPtool/html/select_predict.html">select_predict</a>, using the knowlegde that such predict files make use of 
+     The answer involves <a href="../html/select_predict.html">select_predict</a>, using the knowlegde that such predict files make use of 
        the string 'f = spline1(t, tf)' and 'male', respectively. 
      The required code is <code>[species, nm] = select_predict('f = spline1(t, tf)'); select_predict(nm, 'males')</code>. 
      Notice that the default first argument of <code>select_predict</code> is absent in the first call (so 'Animalia' is assumed), but present in the second call. 
-     Similarly, <a href="../AmPtool/html/select_mydata.html">select_mydata</a> can be used for mydata files, e.g. to search for particular authors in references.
+     Similarly, <a href="../html/select_mydata.html">select_mydata</a> can be used for mydata files, e.g. to search for particular authors in references.
 
     <h4>Selection in general</h4>
 
@@ -220,7 +220,7 @@
       the three types of selection can be combined.
 
     <p>
-    <a href="../AmPtool/html/select_mydata.html">select_mydata</a> and <a href="../AmPtool/html/select_predict.html">select_predict</a> have selection-booleans as
+    <a href="../AmPtool/html/select_mydata.html">select_mydata</a> and <a href="../html/select_predict.html">select_predict</a> have selection-booleans as
        third output, which can be used for more advanced and/or conditions. 
     The code for answering the question 'which birds have males different from females or varying body temperature during development' could read
        <code>[x nm sel1] = select_predict('Aves','male'); [x nm sel2] = select_predict(nm,'del_l'); nm(sel1|sel2)</code>.
@@ -228,17 +228,17 @@
 
     <H2 id="legend">Legends exploit selections</H2>
 
-    Spotting patterns in (functions of) parameters of entries starts with plot function <a href="../AmPtool/html/shstat.html">shstat</a> 
+    Spotting patterns in (functions of) parameters of entries starts with plot function <a href="../html/shstat.html">shstat</a> 
       (see below; the name stands for "show statistics"), which has inputs data and legend (and optional further inputs).
 
     <p>
     A (marker) legend is a (n,2)-array of cells specifiying markers and taxa (= nodes and/or leaves as character strings) or eco-codes (as cell strings).
     A line legend, called <code>llegend</code>,  does this for lines and taxa; it is used for 1-variate data, e.g. survivor functions.
     Several legends are available as input-free functions that output the required cell-array, 
-      such as <a href="../AmPtool/html/legend_RSED.html">legend_RSED</a> and <a href="../AmPtool/html/legend_fish.html">legend_fish</a>.
+      such as <a href="../html/legend_RSED.html">legend_RSED</a> and <a href="../html/legend_fish.html">legend_fish</a>.
     Customised legends can be composed by functions 
-      <a href="../AmPtool/html/select_legend.html">select_legend</a>, <a href="../AmPtool/html/select_legend_eco.html">select_legend_eco</a> and 
-      <a href="../AmPtool/html/select_llegend.html">select_llegend</a>.
+      <a href="../html/select_legend.html">select_legend</a>, <a href="../html/select_legend_eco.html">select_legend_eco</a> and 
+      <a href="../html/select_llegend.html">select_llegend</a>.
     The choice of possible taxa is restricted to the ones present in the lists-of-lists and that of eco-codes to the codes mentioned in 
       <a href = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>.
     Legends can be shown in a figure with DEBtool_M functions <a href="https://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/misc/html/shlegend.html">shlegend</a> and 
@@ -248,7 +248,7 @@
 
     <H2 id="plotting">Spotting patterns in data with legends</H2>
 
-    Function <a href="../AmPtool/html/shstat.html">shstat</a> can be used in symbolic mode for 1-, 2- and 3-variate data, as given in <code>allStat</code>.
+    Function <a href="../html/shstat.html">shstat</a> can be used in symbolic mode for 1-, 2- and 3-variate data, as given in <code>allStat</code>.
     In this mode, shstat is using <code>read_allStat</code> to read in <code>allStat</code>; 
       a large number of symbols for (functions of) parameters is available, following <a href="http://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf">DEB notation</a>.
     Functions of parameters that do not depend on food, called compound parameters, were computed with DEBtool_M function 
@@ -264,19 +264,19 @@
 
     <p>
     Markers in plots can be clicked to show the names of the corresponding entries.
-    The script <a href="../AmPtool/mydata_shstat.m">mydata_shstat</a> gives examples of use of <code>shstat</code> and 
+    The script <a href="../mydata_shstat.m">mydata_shstat</a> gives examples of use of <code>shstat</code> and 
       shows how items can be added to figures that have been produced by shstat.
     If markers in 3D plots do not have color specifications, the third variable is used to set the colors in the lava color scheme, see
     <A HREF = "http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/misc/html/shcolor_lava.html" target = "_top">shcolor_lava</A>, using
     <A HREF = "http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/misc/html/color_lava.html" target = "_top">color_lava</A>. 
 
     <p>
-    Get a rapid overview of distributions of a number of (compound) parameters or statistics for selected taxa with <a href="../AmPtool/html/compare_taxa.html">compare_taxa</a>.
-    Plot (compound) parameters or statistics as function of normalised taxonomic distance with function <a href="../AmPtool/html/shstat_taxa.html">shstat_taxa</a>.
+    Get a rapid overview of distributions of a number of (compound) parameters or statistics for selected taxa with <a href="../html/compare_taxa.html">compare_taxa</a>.
+    Plot (compound) parameters or statistics as function of normalised taxonomic distance with function <a href="../html/shstat_taxa.html">shstat_taxa</a>.
 
     </div> <!-- end of content -->
  
-    <div w3-include-html="sys/footer_amp.html"></div>
+    <div w3-include-html=""https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/footer_amp.html"></div>
     <script>w3IncludeHTML();</script>
 
   </div> <!-- end of main wrapper -->
