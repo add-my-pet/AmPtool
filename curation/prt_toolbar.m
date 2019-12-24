@@ -9,13 +9,14 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> (destinationFolder)
 
 %% Description
-% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html 
+% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html 
 %
 % Input:
 %
 % * destinationFolder: optional string with destination folder the files are printed to (default: current folder)
 
 %% Remarks
+% Sync Github after running this file
 % Indent of 2 spaces used for printing to html page
 
 %% Example of use
@@ -95,15 +96,17 @@ tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
 
 % write toolbars
-oid_amp = fopen('toolbar_amp.html', 'w+');       % open file for reading and writing and deletes old content
-oid_app = fopen('toolbar_app.html', 'w+');       % open file for reading and writing and deletes old content
-oid_budget = fopen('toolbar_budget.html', 'w+'); % open file for reading and writing and deletes old content
-oid_entry = fopen('toolbar_entry.html', 'w+');   % open file for reading and writing and deletes old content
+oid_amp = fopen('toolbar_amp.html', 'w+');       
+oid_app = fopen('toolbar_app.html', 'w+');       
+oid_budget = fopen('toolbar_budget.html', 'w+'); 
+oid_entry = fopen('toolbar_entry.html', 'w+');   
+oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 
 fprintf(oid_amp, strrep([tb, tbt], '?', ''));
 fprintf(oid_budget, strrep([tb, tbb, tbt], '?', ''));
 fprintf(oid_app, strrep([tb, tbt], '?', '../'));
 fprintf(oid_entry, strrep([tb, tbt], '?', '../../'));
+fprintf(oid_AmPtool, strrep([tb, tbt], '?', 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/'));
 
 fclose all;
 
@@ -111,6 +114,7 @@ movefile toolbar_amp.html '../../add_my_pet/sys/'
 movefile toolbar_budget.html '../../add_my_pet/sys/'
 movefile toolbar_app.html '../../add_my_pet/sys/'
 movefile toolbar_entry.html '../../add_my_pet/sys/'
+movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 
 end
 
