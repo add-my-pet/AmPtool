@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_date_subm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="get_date_subm.m"><style type="text/css">
+      --><title>prt_my_pet_cit</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_my_pet_cit.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,50 +66,73 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_date_subm</h1><!--introduction--><p>gets sumbission dates of entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/21 by Bas Kooijman</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/21 by Bas Kooijman</h2><h2 id="3">Syntax</h2><p>[dates taxa_new dates_new] = <a href="../get_date_subm.m"><b>get_date_subm</b></a>(n_new)</p><h2 id="4">Description</h2><p>Gets the submission dates of entries in add_my_pet collection</p><p>Input:</p><div><ul><li>n_new: optional scalar with number of latest entries (default 5)</li></ul></div><p>Output:</p><div><ul><li>dates: n-vector with submission dates of add_my_pet entries</li><li>taxa_new: n_new-vector with names of n_new latest taxa</li><li>date_new: n_new-vector with date-strings when latest taxa were submitted</li></ul></div><h2 id="5">Remarks</h2><p>about_add_my_pet makes a plot of this</p><h2 id="6">Example of use</h2><p>get_date_subm</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_cit</h1><!--introduction--><p>read results_my_pet.mat to write my_pet_cit.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_cit.m"><b>prt_my_pet_cit</b></a> (metaData, doi, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_cit.html with citation from results_my_pet.mat</p><p>Input:</p><div><ul><li>metaData:  structure with fields species, author, author_mod* and date_acc</li><li>doi:  character string with doi</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>metaData is found from loading results_my_pet.mat</p><h2 id="6">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_cit(metaData, doi) if you wish to print in the current folder else prt_my_pet_cit(metaData, doi, '../myFolder/')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_date_subm
-% gets sumbission dates of entries
+%% prt_my_pet_cit
+% read results_my_pet.mat to write my_pet_cit.html
 
 %%
-function [dates taxa_new dates_new] = get_date_subm(n_new)
-%% created 2016/02/21 by Bas Kooijman
+function prt_my_pet_cit(metaData, doi, destinationFolder)
+% created 2018/08/17 by Bas Kooijman
 
 %% Syntax
-% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_subm*>(n_new)
+% <../prt_my_pet_cit.m *prt_my_pet_cit*> (metaData, doi, destinationFolder) 
 
 %% Description
-% Gets the submission dates of entries in add_my_pet collection
+% Prints my_pet_cit.html with citation from results_my_pet.mat
 %
 % Input:
 %
-% * n_new: optional scalar with number of latest entries (default 5)
-%
-% Output:
-% 
-% * dates: n-vector with submission dates of add_my_pet entries
-% * taxa_new: n_new-vector with names of n_new latest taxa
-% * date_new: n_new-vector with date-strings when latest taxa were submitted
+% * metaData:  structure with fields species, author, author_mod* and date_acc
+% * doi:  character string with doi
+% * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
 
 %% Remarks
-% about_add_my_pet makes a plot of this
-%
+% metaData is found from loading results_my_pet.mat
+
 %% Example of use
-% get_date_subm
+% load('results_my_pet.mat');
+% prt_my_pet_cit(metaData, doi) if you wish to print in the current folder
+% else prt_my_pet_cit(metaData, doi, '../myFolder/') 
 
-  if ~exist('n_new', 'var')
-    n_new = 5;
+species = metaData.species; txt_species = strrep(species, '_', ' ');
+date = metaData.date_acc;
+txt_date_acc = datestr(datenum(date), 'yyyy/mm/dd'); 
+
+author = metaData.author(:);  % initiate author list
+% modifications
+if isfield(metaData,'author_mod')
+  author = [author; metaData.author_mod(:)];
+end
+for i = 1:100 % identify latest modification
+  mod = ['author_mod_', num2str(i)];
+  if isfield(metaData, mod)
+    authormod = metaData.(mod);
+    author = [author; authormod(:)];
+  else
+    break
   end
+end
+author = unique(author, 'stable'); n_author = length(author);
 
-  [dates entries] = read_allStat('date_subm'); 
-  dates = datenum(dates); 
-  
-  [sdates I] = sort(dates,1,'descend'); 
-  taxa_new = entries(I(1:n_new)); 
-  dates_new = datestr(dates(I(1:n_new)), 26);
-    
-  dates = 2006 + (dates - datenum([2006 01 01]))/ 365;
-    
+% write citation
+if exist('destinationFolder','var')
+  fileName = [destinationFolder, species, '_cit.html'];
+else
+  fileName = [species, '_cit.html'];    
+end
+oid = fopen(fileName, 'w+'); % open file for reading and writing, delete existing content
+
+fprintf(oid, author{1});
+for i = 2:n_author
+  fprintf(oid, [', ', author{i}]);
+end
+fprintf(oid, ['. ', num2str(date(1)), '. \n']);
+fprintf(oid, ['AmP <i>', txt_species, '</i>, version ', txt_date_acc, ', \n']);
+%fprintf(oid, ['<a href="http://www.doi.org/', doi, '">doi: ', doi, '</a>\n']);
+
+fclose(oid);
+
 
 ##### SOURCE END #####
 --></body></html>

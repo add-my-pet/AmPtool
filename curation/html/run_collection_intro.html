@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-07-05"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
+      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,21 +66,31 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">before running this script</a></li><li><a href="#2">cp files to server after running this script</a></li></ul></div><h2 id="1">before running this script</h2><p>make sure that AmPtool/taxa/ is updated make sure that ../../img/tree is updated make sure that AmPtool/curation/get_link is updated make sure that AmPtool/curation/get_eco is updated run_collection(taxa-names) to generate files in entries_zip and entries_web make sure to export bibtex from Zotero to debtool/DEB library.bib</p><h2 id="2">cp files to server after running this script</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">before running this script</a></li><li><a href="#2">cp files to server after running this script</a></li></ul></div><h2 id="1">before running this script</h2><p>make sure that AmPtool/taxa/ is updated make sure that ../../add_my_pet/img/tree is updated make sure that AmPtool/curation/get_link is updated make sure that AmPtool/curation/get_eco is updated run_collection(taxa-names) to generate files in entries_zip and entries_web make sure to export bibtex from Zotero to debtool/DEB library.bib</p><h2 id="2">cp files to server after running this script</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% run_collection_intro
 % runs functions for collection overhead
 
 %% before running this script
 % make sure that AmPtool/taxa/ is updated
-% make sure that ../../img/tree is updated
+% make sure that ../../add_my_pet/img/tree is updated
 % make sure that AmPtool/curation/get_link is updated
 % make sure that AmPtool/curation/get_eco is updated
 % run_collection(taxa-names) to generate files in entries_zip and entries_web
 % make sure to export bibtex from Zotero to debtool/DEB library.bib
 
-write_allStat;
-write_allEco;
+WD = pwd;
+path = which('run_collection'); ind = strfind(path,'\');
+cd(path(1:ind(end)));
+
+clear all; % allStat is persistent in read_allStat and read_stat
+
+write_allStat; load ../../add_my_pet/AmPdata/allStat
+write_allEco; load ../../add_my_pet/AmPdata/allEco
+write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
+filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
+prt_toolbar
+
 prt_species_names;
 prt_species_list;
 prt_species_tree_taxa_js;
@@ -101,6 +111,9 @@ prt_about;
 
 % ../sys/species_tree_Animalia.js
 % ../sys/species_tree_Animalia_search.html
+% ../sys/toolbar_*.html
+
+% ../AmPdata/AmPdata.zip
 
 % ../img/about/*.png 
 % ../img/pars/*.png

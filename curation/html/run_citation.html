@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_date_subm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="get_date_subm.m"><style type="text/css">
+      --><title>run_citation</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="run_citation.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,50 +66,53 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_date_subm</h1><!--introduction--><p>gets sumbission dates of entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/21 by Bas Kooijman</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/21 by Bas Kooijman</h2><h2 id="3">Syntax</h2><p>[dates taxa_new dates_new] = <a href="../get_date_subm.m"><b>get_date_subm</b></a>(n_new)</p><h2 id="4">Description</h2><p>Gets the submission dates of entries in add_my_pet collection</p><p>Input:</p><div><ul><li>n_new: optional scalar with number of latest entries (default 5)</li></ul></div><p>Output:</p><div><ul><li>dates: n-vector with submission dates of add_my_pet entries</li><li>taxa_new: n_new-vector with names of n_new latest taxa</li><li>date_new: n_new-vector with date-strings when latest taxa were submitted</li></ul></div><h2 id="5">Remarks</h2><p>about_add_my_pet makes a plot of this</p><h2 id="6">Example of use</h2><p>get_date_subm</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>run_citation</h1><!--introduction--><p>generates citation files for AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../run_citatation.m"><b>run_citation</b></a></p><h2 id="4">Description</h2><p>Writes citation.html a Output:</p><div><ul><li>1 html-file is written in ../entries_web</li></ul></div><h2 id="5">Example of use</h2><p>run_cit</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_date_subm
-% gets sumbission dates of entries
+%% run_citation
+% generates citation files for AmP website 
 
 %%
-function [dates taxa_new dates_new] = get_date_subm(n_new)
-%% created 2016/02/21 by Bas Kooijman
+function run_citation
+% created 2019/02/09 Bas Kooijman 
 
 %% Syntax
-% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_subm*>(n_new)
+% <../run_citatation.m *run_citation*> 
 
 %% Description
-% Gets the submission dates of entries in add_my_pet collection
-%
-% Input:
-%
-% * n_new: optional scalar with number of latest entries (default 5)
-%
+% Writes citation.html a
 % Output:
-% 
-% * dates: n-vector with submission dates of add_my_pet entries
-% * taxa_new: n_new-vector with names of n_new latest taxa
-% * date_new: n_new-vector with date-strings when latest taxa were submitted
-
-%% Remarks
-% about_add_my_pet makes a plot of this
 %
+% * 1 html-file is written in ../entries_web 
+
+
 %% Example of use
-% get_date_subm
+% run_cit
 
-  if ~exist('n_new', 'var')
-    n_new = 5;
-  end
+varargin = select('Animalia');
 
-  [dates entries] = read_allStat('date_subm'); 
-  dates = datenum(dates); 
+nargin = length(varargin); % number of entries to scan    
+WD = pwd; % store current path
+
+for i = 1:nargin 
+  destinationFolder = ['../../entries_web/', varargin{i},'/']; % target for html and png files
+  mkdir(destinationFolder);
+  fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
   
-  [sdates I] = sort(dates,1,'descend'); 
-  taxa_new = entries(I(1:n_new)); 
-  dates_new = datestr(dates(I(1:n_new)), 26);
+  cd(['../../entries/', varargin{i}]) % goto entry i in dir entries
+  %
+  load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
+  [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
+  cd(WD) % goto orginal path, but print to destinationFolder
+
+  % !Rscript zip2DataOne.r
+  doi = 'xxxxxx';
+  cd(WD)  % goto original path    
+
+  % print files
+  prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
+end
     
-  dates = 2006 + (dates - datenum([2006 01 01]))/ 365;
-    
+close all
 
 ##### SOURCE END #####
 --></body></html>

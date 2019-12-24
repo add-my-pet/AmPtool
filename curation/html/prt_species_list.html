@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_species_list</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-25"><meta name="DC.source" content="prt_species_list.m"><style type="text/css">
+      --><title>prt_species_list</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_species_list.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,15 +66,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_species_list</h1><!--introduction--><pre>deletes and writes ../../species_list.html</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#7">subfunction open_species_list_html</a></li><li><a href="#8">subfunction prt_species_row</a></li><li><a href="#9">subfunction close_species_list</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_species_list.m"><b>prt_species_list</b></a></p><h2 id="4">Description</h2><p>deletes and writes ../../species_list.html</p><h2 id="5">Remarks</h2><p>Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html Reads from allStat and each row in the table has an id</p><h2 id="7">subfunction open_species_list_html</h2><h2 id="8">subfunction prt_species_row</h2><h2 id="9">subfunction close_species_list</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_species_list</h1><!--introduction--><pre>deletes and writes ../../add_my_pet/species_list.html</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#7">subfunction open_species_list_html</a></li><li><a href="#8">subfunction prt_species_row</a></li><li><a href="#9">subfunction close_species_list</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_species_list.m"><b>prt_species_list</b></a></p><h2 id="4">Description</h2><p>deletes and writes ../../species_list.html</p><h2 id="5">Remarks</h2><p>Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html Reads from allStat and each row in the table has an id</p><h2 id="7">subfunction open_species_list_html</h2><h2 id="8">subfunction prt_species_row</h2><h2 id="9">subfunction close_species_list</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_species_list
-%  deletes and writes ../../species_list.html 
+%  deletes and writes ../../add_my_pet/species_list.html 
 
 %%
 function prt_species_list
 % created by Bas Kooijman; modified 2015/04/14 Starrlight Augustine & Goncalo Marques; 
-%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25 Bas Kooijman
+%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25, 2019/12/22 Bas Kooijman
 
 %% Syntax
 % <../prt_species_list.m *prt_species_list*>
@@ -86,19 +86,17 @@ function prt_species_list
 % Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
 % Reads from allStat and each row in the table has an id
 
-load allStat % collect data
-entries = fieldnames(allStat); 
-n = length(entries);
+% get basic data for species_list
+data = read_allStat('phylum', 'class', 'order', 'family', 'species', 'species_en', 'model', 'MRE', 'SMSE', 'COMPLETE', 'data'); 
+n = size(data,1); % number of entries
 
 fid_Spec = open_species_list_html; % open up species_list.html for writing and delete the old file
 
 for i = 1:n % scan entries
-  id = allStat.(entries{i});
-  prt_species_row(fid_Spec, id.phylum, id.class, id.order, id.family, id.species,...
-    id.species_en, id.model, id.MRE, id.SMSE, id.COMPLETE, id.data)
+  prt_species_row(fid_Spec, data(i,:)) % write species row
 end 
 
-close_species_list(fid_Spec); % close species_list.html
+close_species_list(fid_Spec);      % close species_list.html
 
 end
 
@@ -107,12 +105,12 @@ end
 function fid_Spec = open_species_list_html
 % opens up species_list.html for reading and writing
 
-fid_Spec = fopen('../../species_list.html', 'w+'); % open file for writing, delete existing content
+fid_Spec = fopen('../../add_my_pet/species_list.html', 'w+'); % open file for writing, delete existing content
   
-% make the header for species_list.html :
+% make head and header for species_list.html :
 fprintf(fid_Spec, '<!DOCTYPE html>\n');
-fprintf(fid_Spec, '<HTML>\n');
-fprintf(fid_Spec, '<HEAD>\n');
+fprintf(fid_Spec, '<HTML>\n\n'); % open html
+fprintf(fid_Spec, '<HEAD>\n');   % open head
 fprintf(fid_Spec, '  <TITLE>Species List</TITLE>\n');
 fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css"> \n');
 fprintf(fid_Spec, '  <script src="sys/dropdown.js"></script>\n');
@@ -200,8 +198,9 @@ fprintf(fid_Spec, '      background-color: #f1f1f1;\n');
 fprintf(fid_Spec, '    }\n');
 fprintf(fid_Spec, '  </style>\n');
 
-fprintf(fid_Spec, '</HEAD>\n');
-fprintf(fid_Spec, '<BODY>\n\n');
+fprintf(fid_Spec, '</HEAD>\n\n'); % close head
+
+fprintf(fid_Spec, '<BODY>\n\n');  % open body
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
@@ -213,15 +212,15 @@ fprintf(fid_Spec, '    <div id="contentFull">\n\n');
 fprintf(fid_Spec, '      <H2><a href="" title="Goto entries by clicking on entry names">Species list: taxonomic view</a></H2>\n\n');
 
 fprintf(fid_Spec, '      <div>\n');
-fprintf(fid_Spec, '        <input type="text" id="InputPhylum" onkeyup="FunctionPhylum()" placeholder="Search for phylum ..">\n');
-fprintf(fid_Spec, '        <input type="text" id="InputClass"  onkeyup="FunctionClass()"  placeholder="Search for class ..">\n');
-fprintf(fid_Spec, '        <input type="text" id="InputOrder"  onkeyup="FunctionOrder()"  placeholder="Search for order ..">\n');
-fprintf(fid_Spec, '        <input type="text" id="InputFamily" onkeyup="FunctionFamily()" placeholder="Search for family ..">\n');
-fprintf(fid_Spec, '        <input type="text" id="InputSname"  onkeyup="FunctionSname()"  placeholder="Search for species ..">\n');
-fprintf(fid_Spec, '        <input type="text" id="InputCname"  onkeyup="FunctionCname()"  placeholder="Search for common name ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputPhylum" onkeyup="FunctionPhylum()" placeholder="Phylum ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputClass"  onkeyup="FunctionClass()"  placeholder="Class ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputOrder"  onkeyup="FunctionOrder()"  placeholder="Order ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputFamily" onkeyup="FunctionFamily()" placeholder="Family ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputSname"  onkeyup="FunctionSname()"  placeholder="Species ..">\n');
+fprintf(fid_Spec, '        <input type="text" id="InputCname"  onkeyup="FunctionCname()"  placeholder="Common name ..">\n');
 fprintf(fid_Spec, '      </div>\n\n');
 
-fprintf(fid_Spec, '      <table id="speciesTable">\n');
+fprintf(fid_Spec, '      <table id="speciesTable">\n'); % open species table
 fprintf(fid_Spec, '        <TR HEIGHT=60 BGCOLOR = "#FFE7C6">\n');
 fprintf(fid_Spec, '          <TH><a class="link" target = "_blank" href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/phyla.html">phylum</a></TH>\n');
 fprintf(fid_Spec, '          <TH>class</TH> <TH>order</TH> <TH>family</TH> <TH>species</TH> <TH>common name</TH>\n');
@@ -236,15 +235,18 @@ end
 
 %% subfunction prt_species_row
 
-function prt_species_row(fid_Spec, phylum, class, order, family, species, species_en, model, MRE, SMSE, COMPLETE, data)
-% places a line in species_list.html which has previously been opened for reading and writing
+function prt_species_row(fid_Spec, id)
+% places a row in species_list.html which has previously been opened for reading and writing
 
-  fprintf(fid_Spec,['        <TR id = "', species, '">\n']);
+  % unpack data
+  phylum = id{1}; class = id{2}; order = id{3}; family = id{4}; species = id{5}; species_en = id{6}; 
+  model = id{7}; MRE = id{8}; SMSE = id{9}; COMPLETE = id{10}; data = id{11};
+  
+  fprintf(fid_Spec,['        <TR id = "', species, '">\n']); % open and identify the species row
 
   % edit species and species_en
-  species = strrep(species, '_', ' '); % Remove underscores 
-  species_en = strrep(species_en, '_', ' '); % Remove underscores 
-  if species_en(1) >= 'a' && species_en(1)<='z' % Puts first letter of common name in capital
+  species_prt = strrep(species, '_', ' ');      % remove underscores 
+  if species_en(1) >= 'a' && species_en(1)<='z' % put first letter of common name in capital
     species_en(1) = char(species_en(1) - 32);
   end
 
@@ -252,20 +254,19 @@ function prt_species_row(fid_Spec, phylum, class, order, family, species, specie
   sel = cellfun(@isempty, strfind(data, '-')); data_0 = data(sel); data_1 = data(~sel);
   n_data_0 = length(data_0); n_data_1 = length(data_1); 
   
-
   fprintf(fid_Spec,['          <TD>', phylum, '</TD>  <TD>', class, '</TD> <TD>', order, '</TD> <TD>', family, '</TD>\n']);
-  fprintf(fid_Spec,['          <TD><A TARGET="_top" HREF="entries_web/', species, '/', species, '_res.html">', species, '</A></TD> <TD>', species_en, '</TD>\n']);
+  fprintf(fid_Spec,['          <TD><A TARGET="_top" HREF="entries_web/', species, '/', species, '_res.html">', species_prt, '</A></TD> <TD>', species_en, '</TD>\n']);
   fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFC6A5">%s</TD>\n', model);
   fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFE7C6">%8.3f</TD>\n', MRE);
-   fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFE7C6">%8.3f</TD>\n', SMSE);
+  fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFE7C6">%8.3f</TD>\n', SMSE);
   fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFCE9C">%g</TD>\n', COMPLETE);
-  for i = 1:n_data_0
+  for i = 1:n_data_0 % scan zero-variate data
     fprintf(fid_Spec, '          <TD BGCOLOR = "#FFFFC6">%s</TD>\n', data_0{i});      
   end
-  for i = 1:n_data_1
+  for i = 1:n_data_1 % scan univariate data
     fprintf(fid_Spec, '          <TD BGCOLOR = "#FFFF9C">%s</TD>\n', data_1{i});  
   end
-  fprintf(fid_Spec, '        </TR>\n\n');
+  fprintf(fid_Spec, '        </TR>\n\n'); % close the species row
   
 end
 
@@ -274,7 +275,7 @@ end
 function close_species_list(fid_Spec)
 % completes the table of species and closes species_list.html
 
-fprintf(fid_Spec, '      </table>\n\n');
+fprintf(fid_Spec, '      </table>\n\n'); % close species table
 
 fprintf(fid_Spec, '      <script>\n');
 fprintf(fid_Spec, '        function FunctionPhylum() {\n');
@@ -412,8 +413,8 @@ fprintf(fid_Spec, '    <script>w3IncludeHTML();</script>\n\n');
 fprintf(fid_Spec, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
 fprintf(fid_Spec, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
 
-fprintf(fid_Spec, '</BODY>\n');
-fprintf(fid_Spec, '</HTML>\n');
+fprintf(fid_Spec, '</BODY>\n'); % close body
+fprintf(fid_Spec, '</HTML>\n'); % close html
 fclose(fid_Spec);
 
 end

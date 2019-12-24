@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_date_DEB</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-02-28"><meta name="DC.source" content="get_date_DEB.m"><style type="text/css">
+      --><title>get_date_DEB</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="get_date_DEB.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -94,9 +94,14 @@ function dates = get_date_DEB(sourcefile)
 
 bib = fileread(sourcefile);
 bib = strrep(bib, 'urldate', 'url'); % avoid confusion between urldate and date
-index = 7 + strfind(bib, 'date = {'); n = length(index); dates = zeros(n,1);
+index = 7 + strfind(bib, 'date = {');
+n = length(index'); 
+dates = zeros(n,1);
 for  i = 1:n
-   date_i = bib; date_i(1:index(i)) = []; date_i = date_i(1: (strfind(date_i, '}') - 1)); j = strfind(date_i, '-');
+   date_i = bib;
+   date_i(1:index(i)) = []; 
+   date_i = date_i(1: (strfind(date_i, '}') - 1)); 
+   j = strfind(date_i, '-');
    if isempty(j) 
      dates(i) = str2double(date_i);
    else

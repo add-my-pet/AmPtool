@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>sort_get_link_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-29"><meta name="DC.source" content="sort_get_link_eco.m"><style type="text/css">
+      --><title>sort_get_link_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="sort_get_link_eco.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,20 +66,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>sort_get_link_eco</h1><!--introduction--><p>sorts cases in functions get_link and get_eco, according to select</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="sort_get_link_eco"><b>sort_get_link_eco</b></a></p><h2 id="4">Description</h2><p>sorts casea in functions get_link and get_eco, according to select, overwriting the existinf functions</p><h2 id="5">Remarks</h2><p>checks the equality of cases and entries; no overwrite while failing</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>sort_get_link_eco</h1><!--introduction--><p>sorts cases in functions get_link and get_eco, according to select</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="sort_get_link_eco"><b>sort_get_link_eco</b></a></p><h2 id="4">Description</h2><p>sorts cases in functions get_link and get_eco, according to select, overwriting the existing functions</p><h2 id="5">Remarks</h2><p>checks the equality of cases and entries; no overwrite while failing</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% sort_get_link_eco
 % sorts cases in functions get_link and get_eco, according to select
 
 %%
 function sort_get_link_eco
-% created 2019/03/28 by Bas Kooijman
+% created 2019/03/28 by Bas Kooijman, modified 2019/06/10
 
 %% Syntax
 % <sort_get_link_eco *sort_get_link_eco*>
 
 %% Description
-% sorts casea in functions get_link and get_eco, according to select, overwriting the existinf functions
+% sorts cases in functions get_link and get_eco, according to select, overwriting the existing functions
 
 %% Remarks
 % checks the equality of cases and entries; no overwrite while failing
@@ -102,24 +102,31 @@ function sort_entries(entries, fnNm)
 body = fileread(fnNm);
 
 % split the text of fnNm in head, tail and structure txt
-ind = [strfind(body,' case '), strfind(body,' otherwise ')]; n_ind = length(ind) - 1;
+ind = [strfind(body,' case '), strfind(body,' otherwise')]; n_ind = length(ind) - 1;
 head = body(1:ind(1)-1); tail = body(ind(end):end);
 for i = 1:n_ind
-  case_i = body(ind(i):ind(i+1)); nm_i = strfind(case_i,''''); nm_i = case_i(nm_i(1)+1:nm_i(2)-1);
+  case_i = body(ind(i):ind(i+1)-1); 
+  nm_i = strfind(case_i,''''); 
+  if isempty(nm_i)
+    fprintf(['Warning from sort_entries: case is not properly specified; ', fnNm, ' was not written \n']);
+    case_i
+    return
+  end
+  nm_i = case_i(nm_i(1)+1:nm_i(2)-1);
   txt.(nm_i) = case_i;
 end
-nm = fieldnames(txt); % species-name as they occur in fnNm
+nm = fieldnames(txt); % species-names as they occur in fnNm
 
-% check for differences
+% check for differences in species names
 diff = setdiff(entries, nm);
 if ~isempty(diff)
-  fprintf('warning from sort_get_link_eco: present in select, but not in get_link\n');
+  fprintf(['Warning from sort_get_link_eco: present in select, but not in ', fnNm, '; ', fnNm, ' was not written \n']);
   diff
   return
 end
 diff = setdiff(nm, entries);
 if ~isempty(diff)
-  fprintf('warning from sort_get_link_eco: present in get_link, but not in select\n');
+  fprintf(['Warning from sort_get_link_eco: present in ', fnNm, '; ', fnNm, ' was not written \n']);
   diff
   return
 end

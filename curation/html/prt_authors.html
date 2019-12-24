@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_authors</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-11-30"><meta name="DC.source" content="prt_authors.m"><style type="text/css">
+      --><title>prt_authors</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_authors.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -90,7 +90,7 @@ function prt_authors
 % prt_authors
 
   % get basic data
-  [adad entries] = read_allStat('author', 'date_subm', 'author_mod', 'date_mod'); 
+  [adad, entries] = read_allStat('author', 'date_subm', 'author_mod', 'date_mod'); 
   ne = length(entries);   
   % authors
   authors = adad(:,[1 3]);                % (ne,>0)-cell array with all authors
@@ -99,13 +99,13 @@ function prt_authors
     author1 = authors{i,1}; author2 = authors{i,2}; % submit-, mod-authors
     author = [author; author1(:); author2(:)];
   end
-  [author fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
+  [author, fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
   na = length(author);   
   % dates
   dates = adad(:,[2 4]);                  % (ne,>0)-cell array with all dates
     
   % prepare for writing authors.html
-  fid_authors = fopen('../../authors.html', 'w+'); % open file for writing, delete existing content
+  fid_authors = fopen('../../add_my_pet/authors.html', 'w+'); % open file for writing, delete existing content
   
 % write header for authors.html :
 fprintf(fid_authors, '<!DOCTYPE html>\n');
@@ -146,7 +146,6 @@ fprintf(fid_authors, '    }\n\n');
 fprintf(fid_authors, '    .author_dropdown-content {\n');
 fprintf(fid_authors, '      display: none;\n');
 fprintf(fid_authors, '      position: absolute;\n');
-fprintf(fid_authors, '      background-color: #f9f9f9;\n');
 fprintf(fid_authors, '      min-width: 380px;\n');
 fprintf(fid_authors, '      overflow: auto;\n');
 fprintf(fid_authors, '      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n');
@@ -184,12 +183,13 @@ fprintf(fid_authors, '    }\n\n');
 fprintf(fid_authors, '    #author_nm li a {\n');
 fprintf(fid_authors, '      border: 1px solid #ddd;\n');
 fprintf(fid_authors, '      margin-top: -1px; /* Prevent double borders */\n');
-fprintf(fid_authors, '      background-color: #f6f6f6;\n');
+fprintf(fid_authors, '      background-color: #FFFFFF;\n');
+fprintf(fid_authors, '      border-color: #FFFFFF;\n');
 fprintf(fid_authors, '      padding: 12px;\n');
 fprintf(fid_authors, '      text-decoration: none;\n');
 fprintf(fid_authors, '      font-size: 16px;\n');
 fprintf(fid_authors, '      color: black;\n');
-fprintf(fid_authors, '      display: block\n');
+fprintf(fid_authors, '      display: block;\n');
 fprintf(fid_authors, '    }\n\n');
 
 fprintf(fid_authors, '  </style>\n');
@@ -278,19 +278,6 @@ fprintf(fid_authors, '        function entries(fam) {\n');
 fprintf(fid_authors,['          document.getElementById(fam).classList.toggle("show");\n']);
 fprintf(fid_authors, '        }\n\n');
 
-fprintf(fid_authors, '        // Close the dropdown if the user clicks outside of it\n');
-fprintf(fid_authors, '        window.onclick = function(event) {\n');
-fprintf(fid_authors, '          if (!event.target.matches(''.author_dropbtn'')) {\n');
-fprintf(fid_authors, '            var dropdowns = document.getElementsByClassName("author_dropdown-content");\n');
-fprintf(fid_authors, '            var i;\n');
-fprintf(fid_authors, '            for (i = 0; i < dropdowns.length; i++) {\n');
-fprintf(fid_authors, '              var openDropdown = dropdowns[i];\n');
-fprintf(fid_authors, '              if (openDropdown.classList.contains(''show'')) {\n');
-fprintf(fid_authors, '                openDropdown.classList.remove(''show'');\n');
-fprintf(fid_authors, '              }\n');
-fprintf(fid_authors, '            }\n');
-fprintf(fid_authors, '          }\n');
-fprintf(fid_authors, '        }\n');
 fprintf(fid_authors, '      </script>\n\n');
 
 fprintf(fid_authors, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');

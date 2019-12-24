@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_date_subm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="get_date_subm.m"><style type="text/css">
+      --><title>count_data</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="count_data.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,50 +66,55 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_date_subm</h1><!--introduction--><p>gets sumbission dates of entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/21 by Bas Kooijman</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/21 by Bas Kooijman</h2><h2 id="3">Syntax</h2><p>[dates taxa_new dates_new] = <a href="../get_date_subm.m"><b>get_date_subm</b></a>(n_new)</p><h2 id="4">Description</h2><p>Gets the submission dates of entries in add_my_pet collection</p><p>Input:</p><div><ul><li>n_new: optional scalar with number of latest entries (default 5)</li></ul></div><p>Output:</p><div><ul><li>dates: n-vector with submission dates of add_my_pet entries</li><li>taxa_new: n_new-vector with names of n_new latest taxa</li><li>date_new: n_new-vector with date-strings when latest taxa were submitted</li></ul></div><h2 id="5">Remarks</h2><p>about_add_my_pet makes a plot of this</p><h2 id="6">Example of use</h2><p>get_date_subm</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>count_data</h1><!--introduction--><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>n = <a href="../count_data.m"><b>count_data</b></a> (varargin)</p><h2 id="4">Description</h2><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets for entries</p><p>Input</p><div><ul><li>varargin: optional character or cell string with name(s) of taxa (default 'Animalia')</li></ul></div><p>Output</p><div><ul><li>n: (n,3)-matrix with pseudo, zero- and uni-variate data sets</li></ul></div><h2 id="5">Example of use</h2><p>n = count_data('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_date_subm
-% gets sumbission dates of entries
+%% count_data
+% counts number of pseudodata sets, zero-variate data sets and univariate data sets
 
 %%
-function [dates taxa_new dates_new] = get_date_subm(n_new)
-%% created 2016/02/21 by Bas Kooijman
+function n = count_data(varargin)
+% created 2018/04/24 by Bas Kooijman
 
 %% Syntax
-% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_subm*>(n_new)
+% n = <../count_data.m *count_data*> (varargin)
 
 %% Description
-% Gets the submission dates of entries in add_my_pet collection
+% counts number of pseudodata sets, zero-variate data sets and univariate data sets for entries
 %
-% Input:
+% Input
 %
-% * n_new: optional scalar with number of latest entries (default 5)
+% * varargin: optional character or cell string with name(s) of taxa (default 'Animalia')
 %
-% Output:
-% 
-% * dates: n-vector with submission dates of add_my_pet entries
-% * taxa_new: n_new-vector with names of n_new latest taxa
-% * date_new: n_new-vector with date-strings when latest taxa were submitted
+% Output
+%
+% * n: (n,3)-matrix with pseudo, zero- and uni-variate data sets
 
-%% Remarks
-% about_add_my_pet makes a plot of this
-%
 %% Example of use
-% get_date_subm
+% n = count_data('Daphnia_magna')
 
-  if ~exist('n_new', 'var')
-    n_new = 5;
+if isempty(varargin)
+  taxa = select;
+elseif isempty(strfind(varargin{1}, '_'))
+  taxa = select(varargin{1});
+else
+  taxa = varargin(1);
+end
+
+WD = pwd;
+
+n = zeros(length(taxa),3); % initiate counting
+for i = 1:size(n,1) % scan taxa
+  cd(['../../entries/', taxa{i}])
+  eval(['data = mydata_', taxa{i},';']);
+  n(i,1) = length(fieldnmnst_st(data.psd)); % get number of pseudo data sets
+  data = rmfield_wtxt(data, 'psd'); % remove psd from structure data
+  nms = fieldnmnst_st(data); n_nms = length(nms);
+  for j = 1:n_nms % scan zero- and uni-variate data 
+    k = 1 + min(2, size(data.(nms{j}),2));
+    n(i,k) = n(i,k) + 1;
   end
+end
 
-  [dates entries] = read_allStat('date_subm'); 
-  dates = datenum(dates); 
-  
-  [sdates I] = sort(dates,1,'descend'); 
-  taxa_new = entries(I(1:n_new)); 
-  dates_new = datestr(dates(I(1:n_new)), 26);
-    
-  dates = 2006 + (dates - datenum([2006 01 01]))/ 365;
-    
-
+cd(WD);
 ##### SOURCE END #####
 --></body></html>

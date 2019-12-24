@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>write_allStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-10"><meta name="DC.source" content="write_allStat.m"><style type="text/css">
+      --><title>write_allStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="write_allStat.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>write_allStat</h1><!--introduction--><p>writes a structure with all pars and stats for all entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="write_allStat"><b>write_allStat</b></a> (T, f)</p><h2 id="4">Description</h2><p>Writes result of <a href="get_allStat.html"><b>get_allStat</b></a> to file allStat.mat in parent dir of curation</p><p>Input:</p><div><ul><li>T: optional scalar with body temperature in Kelvin (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Ouput:</p><div><ul><li>allStat: stucture with all parameters and statistics of all entries</li></ul></div><h2 id="5">Remarks</h2><p>See <a href="write_addStat.html"><b>write_addStat</b></a> for appending a few entries to allStat. For 411 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate. See <a href="read_allStat.html"><b>read_allStat</b></a> for extracting values from allStat.mat.</p><h2 id="6">Example of use</h2><p>write_allStat;</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>write_allStat</h1><!--introduction--><p>writes a structure with all pars and stats for all entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="write_allStat"><b>write_allStat</b></a> (T, f)</p><h2 id="4">Description</h2><p>Writes result of <a href="get_allStat.html"><b>get_allStat</b></a> to file allStat.mat in parent dir of curation</p><p>Input:</p><div><ul><li>T: optional scalar with body temperature in Kelvin (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Ouput:</p><div><ul><li>allStat: stucture with all parameters and statistics of all entries</li></ul></div><h2 id="5">Remarks</h2><p>See <a href="write_addStat.html"><b>write_addStat</b></a> for appending a few entries to allStat. For a11 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate. See <a href="read_allStat.html"><b>read_allStat</b></a> for extracting values from allStat.mat.</p><h2 id="6">Example of use</h2><p>write_allStat;</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% write_allStat
 % writes a structure with all pars and stats for all entries
@@ -92,7 +92,7 @@ function allStat = write_allStat(T, f)
 
 %% Remarks
 % See <write_addStat.html *write_addStat*> for appending a few entries to allStat.
-% For 411 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate.
+% For a11 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate.
 % See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
 
 %% Example of use
@@ -108,8 +108,8 @@ function allStat = write_allStat(T, f)
     allStat = get_allStat(T, f);
   end
   
-  % check if allStat and local dir ../../entries have the same entries
-  entries_local = cellstr(ls('../../entries')); entries_local(1:2) = []; % remove '.' and '..'
+  % check if allStat and local dir ../../add_my_pet/entries have the same entries
+  entries_local = cellstr(ls('../../add_my_pet/entries')); entries_local(1:2) = []; % remove '.' and '..'
   entries_allStat = fieldnames(allStat); 
   diff = setdiff(entries_allStat, entries_local);
   if ~isempty(diff)
@@ -123,13 +123,12 @@ function allStat = write_allStat(T, f)
     diff
   end
 
-
   WD = pwd;                        % store current path
   curation = which('write_allStat');   
   curation = curation(1:end - 15);         
   cd(curation)                     % goto taxa
 
-  save('../allStat.mat','allStat')
+  save('../../add_my_pet/AmPdata/allStat.mat','allStat')
   
   cd(WD);
 ##### SOURCE END #####

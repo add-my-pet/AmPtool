@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_entries</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-24"><meta name="DC.source" content="check_entries.m"><style type="text/css">
+      --><title>check_entries</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="check_entries.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -54,16 +55,25 @@ span.syscmd { color:#B28C00 }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
 
-  </style></head><body><div class="content"><h1>check_entries</h1><!--introduction--><p>Checks entries for member inconsistencies</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p>[tree local server] = <a href="../check_entries.m"><b>check_entries</b></a></p><h2>Description<a name="4"></a></h2><p>checks tree leaves against subdirectories of entries, local and on server</p><p>Output:</p><div><ul><li>tree, local, server: cell strings with names of entries</li><li>prints warnings on screen</li></ul></div><h2>Remarks<a name="5"></a></h2><p>The root of the tree is Animalia. The dates are not checked Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool Assumes that path to entries on server is: <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/">http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/</a></p><h2>Example of use<a name="6"></a></h2><p>check_entries</p><p class="footer"><br>
-      Published with MATLAB&reg; 7.14<br></p></div><!--
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>check_entries</h1><!--introduction--><p>Checks entries for member inconsistencies</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[tree local server] = <a href="../check_entries.m"><b>check_entries</b></a></p><h2 id="4">Description</h2><p>checks tree leaves against subdirectories of entries, local and on server</p><p>Output:</p><div><ul><li>tree, local, server: cell strings with names of entries</li><li>prints warnings on screen</li></ul></div><h2 id="5">Remarks</h2><p>The root of the tree is Animalia. The dates are not checked Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool Assumes that path to entries on server is: <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/">http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/</a></p><h2 id="6">Example of use</h2><p>check_entries</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_entries
 % Checks entries for member inconsistencies
 
 %%
 function [tree local server] = check_entries
-% created 2017/04/07 by Bas Kooijman
+% created 2017/04/07 by Bas Kooijman, modified 2018/12/18
 
 %% Syntax
 % [tree local server] = <../check_entries.m *check_entries*>
@@ -89,13 +99,37 @@ local = cellstr(ls('../../entries')); local([1 2]) = []; n_local = length(local)
 stat = read_allStat('species');
 
 % cell string with server entries stored on server
-txt = urlread('http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/');
+txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/');
 head = strfind(txt,'folder.gif'); txt(1:head(1)) = []; 
 n_server = length(strfind(txt,'href="')); server = cell(n_server,1);
 for i = 1:n_server
   kill = strfind(txt,'href="'); txt(1:kill(1) + 5)= [];
   server{i} = txt(1:strfind(txt,'/"') - 1);
 end
+
+% cell string with server entries_web stored on server
+txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/');
+head = strfind(txt,'folder.gif'); txt(1:head(1)) = []; 
+n_server_web = length(strfind(txt,'href="')); server_web = cell(n_server_web,1);
+for i = 1:n_server_web
+  kill = strfind(txt,'href="'); txt(1:kill(1) + 5)= [];
+  server_web{i} = txt(1:strfind(txt,'/"') - 1);
+end
+
+% cell string with server entries_zip stored on server
+txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_zip/');
+n_zip = strfind(txt,'/icons/compressed.gif'); 
+n_server_zip = length(n_zip); server_zip = cell(n_server_zip,1); n_zip = [n_zip, length(txt) - 1];
+for i = 1:n_server_zip
+  txt_i = txt(n_zip(i):n_zip(i+1));
+  txt_0 = strfind(txt_i,'href="'); 
+  txt_1 = strfind(txt_i,'_2');
+  server_zip{i} = txt_i(txt_0+6:txt_1-1);
+  if i > 1 && strcmp(server_zip{i},server_zip{i-1})
+    fprintf(['warning from check_entries: double zip for ', server_zip{i}, '\n']);
+  end
+end
+server_zip = unique(server_zip);
 
 diff = setdiff(stat, local);
 if ~isempty(diff)
@@ -133,5 +167,28 @@ if ~isempty(diff)
   diff
 end
 
+diff = setdiff(server, server_web);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries on server, but not in entries_web on server\n');
+  diff
+end
+
+diff = setdiff(server_web, server);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries_web on server, but not in entries on server\n');
+  diff
+end
+
+diff = setdiff(server_zip, server_web);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries_zip on server, but not in entries_web on server\n');
+  diff
+end
+
+diff = setdiff(server_web, server_zip);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries_web on server, but not in entries_zip on server\n');
+  diff
+end
 ##### SOURCE END #####
 --></body></html>

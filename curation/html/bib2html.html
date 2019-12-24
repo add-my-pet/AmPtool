@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>bib2html</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-08-20"><meta name="DC.source" content="bib2html.m"><style type="text/css">
+      --><title>bib2html</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="bib2html.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>bib2html</h1><!--introduction--><p>translates .bib to .html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="bib2html"><b>bib2html</b></a>(my_pet_bib, destinationFolder)</p><h2 id="4">Description</h2><p>Translates a bib-file into a html-file</p><p>Input:</p><div><ul><li>bib: bib.file without extension</li><li>destinationFolder: optional specification of destination folder (default: local)</li><li>filenm: optional file name to append (default: my_pet_bib.html)</li></ul></div><h2 id="5">Remarks</h2><p>Calls bib2bbl and bbl2html, which writes and deletes .uax and .bbl files</p><h2 id="6">example</h2><p>bib2html(my_pet_bib) for printing in local directory bib2html(my_pet_bib, ../../myFolder) or for printing in myFolder</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>bib2html</h1><!--introduction--><p>translates .bib to .html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="bib2html"><b>bib2html</b></a>(my_pet_bib, destinationFolder)</p><h2 id="4">Description</h2><p>Translates a bib-file into a html-file</p><p>Input:</p><div><ul><li>bib: bib.file without extension</li><li>destinationFolder: optional specification of destination folder (default: local)</li></ul></div><h2 id="5">Remarks</h2><p>Calls bib2bbl and bbl2html, which writes and deletes .uax and .bbl files</p><h2 id="6">example</h2><p>bib2html(my_pet_bib) for printing in local directory bib2html(my_pet_bib, ../../myFolder) or for printing in myFolder</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% bib2html
 % translates .bib to .html
@@ -85,7 +85,6 @@ function bib2html(my_pet_bib, destinationFolder, filenm)
 %
 % * bib: bib.file without extension
 % * destinationFolder: optional specification of destination folder (default: local)
-% * filenm: optional file name to append (default: my_pet_bib.html)
 
 %% Remarks
 % Calls bib2bbl and bbl2html, which writes and deletes .uax and .bbl files
@@ -95,8 +94,16 @@ function bib2html(my_pet_bib, destinationFolder, filenm)
 % bib2html(my_pet_bib, ../../myFolder) or for printing in myFolder
 
 % write my_pet_bib.html from my_pet_bib.bib
-bib2bbl(my_pet_bib, destinationFolder);
-bbl2html(my_pet_bib, destinationFolder, filenm);
+WD = pwd;
+
+if exist('destinationFolder','var')
+  cd(destinationFolder)
+end
+
+bib2bbl(my_pet_bib);
+bbl2html(my_pet_bib);
+
+cd(WD);
 
 
 ##### SOURCE END #####

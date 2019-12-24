@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>write_allEco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-10"><meta name="DC.source" content="write_allEco.m"><style type="text/css">
+      --><title>write_allEco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="write_allEco.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,7 +73,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 %%
 function allEco = write_allEco
-% created 2018/04/04 by Bas Kooijman, modified 2018/05/10
+% created 2018/04/04 by Bas Kooijman, modified 2018/05/10, 2018/10/23
 
 %% Syntax
 % allEco = <write_allEco *write_allEco*>
@@ -94,19 +94,24 @@ function allEco = write_allEco
   entries = select; n = length(entries);
   
   for i = 1:n
-    [ ...
-     allEco.(entries{i}).climate, ...
+    [allEco.(entries{i}).climate, ...
      allEco.(entries{i}).ecozone, ...
      allEco.(entries{i}).habitat, ...
      allEco.(entries{i}).embryo, ...
      allEco.(entries{i}).migrate, ...
      allEco.(entries{i}).food, ...
      allEco.(entries{i}).gender, ...
-     allEco.(entries{i}).reprod, ...
-    ] = get_eco(entries{i});
+     allEco.(entries{i}).reprod] = get_eco(entries{i});
   end
 
-  save('../allEco.mat', 'allEco')
+  WD = pwd;                        % store current path
+  curation = which('write_allEco');   
+  curation = curation(1:end - 15);         
+  cd(curation)                     % goto taxa
+
+  save('../../add_my_pet/AmPdata/allEco.mat', 'allEco')
+  
+  cd(WD);
   
 ##### SOURCE END #####
 --></body></html>

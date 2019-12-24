@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_species_tree_taxa_js</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-07-03"><meta name="DC.source" content="prt_species_tree_taxa_js.m"><style type="text/css">
+      --><title>prt_species_tree_taxa_js</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_species_tree_taxa_js.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_species_tree_taxa_js</h1><!--introduction--><p>writes species_tree_taxa{i}.js and species_tree_taxa{i}_taxon.html that are used by species_tree_taxa{i}.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_species_tree_taxa_js.m"><b>prt_species_tree_taxa_js</b></a> (taxa)</p><h2 id="4">Description</h2><p>Clears and creates files that are used by  species_tree_taxa{i}.html for tree navigation. These support files are a js-file that defined the tree and a search.html files that define the search dropdowns</p><p>Input:</p><div><ul><li>taxa: optional cell string with taxa of the roots of the trees, default: 'Animalia'</li></ul></div><p>Output:</p><div><ul><li>writes files ../../species_tree_taxa{i}_taxon.html for i = 1, 2, ..</li><li>writes files ../../sys/species_tree_taxa{i}_search.html for i = 1, 2, ..</li><li>writes files ../../sys/species_tree_taxa{i}.js for i = 1, 2, ..</li></ul></div><h2 id="5">Remarks</h2><p>file ../../species_tree_taxa{i}.html calls  - java-scripts ../../sys/ftiens4.js, ua.js  - gif's ../../img/nm.gif  - jpg's ../../img/tree/nm.jpg  - txt's ../../img/tree/nm.txt</p><h2 id="6">Example of use</h2><p>prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results prt_species_tree_taxa_js({'Tetrapoda'}); open ../../species_tree_Tetrapoda.html to see the result</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_species_tree_taxa_js</h1><!--introduction--><p>writes species_tree_taxa{i}.js and species_tree_taxa{i}_taxon.html that are used by species_tree_taxa{i}.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_species_tree_taxa_js.m"><b>prt_species_tree_taxa_js</b></a> (taxa)</p><h2 id="4">Description</h2><p>Clears and creates files that are used by  species_tree_taxa{i}.html for tree navigation. These support files are a js-file that defined the tree and a search.html files that define the search dropdowns</p><p>Input:</p><div><ul><li>taxa: optional cell string with taxa of the roots of the trees, default: 'Animalia'</li></ul></div><p>Output:</p><div><ul><li>writes files ../../add_my_pet/species_tree_taxa{i}_taxon.html for i = 1, 2, ..</li><li>writes files ../../add_my_pet/sys/species_tree_taxa{i}_search.html for i = 1, 2, ..</li><li>writes files ../../add_my_pet/sys/species_tree_taxa{i}.js for i = 1, 2, ..</li></ul></div><h2 id="5">Remarks</h2><p>file ../../add_my_pet/species_tree_taxa{i}.html calls  - java-scripts ../../add_my_pet/sys/ftiens4.js, ua.js  - gif's ../../add_my_pet/img/nm.gif  - jpg's ../../add_my_pet/img/tree/nm.jpg  - txt's ../../add_my_pet/img/tree/nm.txt</p><h2 id="6">Example of use</h2><p>prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results prt_species_tree_taxa_js({'Tetrapoda'}); open ../../species_tree_Tetrapoda.html to see the result</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_species_tree_taxa_js
 % writes species_tree_taxa{i}.js and species_tree_taxa{i}_taxon.html that are used by species_tree_taxa{i}.html
@@ -89,16 +89,16 @@ function prt_species_tree_taxa_js(taxa)
 %
 % Output:
 % 
-% * writes files ../../species_tree_taxa{i}_taxon.html for i = 1, 2, ..
-% * writes files ../../sys/species_tree_taxa{i}_search.html for i = 1, 2, ..
-% * writes files ../../sys/species_tree_taxa{i}.js for i = 1, 2, ..
+% * writes files ../../add_my_pet/species_tree_taxa{i}_taxon.html for i = 1, 2, ..
+% * writes files ../../add_my_pet/sys/species_tree_taxa{i}_search.html for i = 1, 2, ..
+% * writes files ../../add_my_pet/sys/species_tree_taxa{i}.js for i = 1, 2, ..
 
 %% Remarks
-% file ../../species_tree_taxa{i}.html calls 
-%  - java-scripts ../../sys/ftiens4.js, ua.js
-%  - gif's ../../img/nm.gif
-%  - jpg's ../../img/tree/nm.jpg
-%  - txt's ../../img/tree/nm.txt
+% file ../../add_my_pet/species_tree_taxa{i}.html calls 
+%  - java-scripts ../../add_my_pet/sys/ftiens4.js, ua.js
+%  - gif's ../../add_my_pet/img/nm.gif
+%  - jpg's ../../add_my_pet/img/tree/nm.jpg
+%  - txt's ../../add_my_pet/img/tree/nm.txt
 
 %% Example of use
 % prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results
@@ -114,7 +114,7 @@ function prt_species_tree_taxa_js(taxa)
     
   for i = 1:n
     pedigree_taxa = pedigree(taxa{i});
-    fid_tv = fopen(['../../sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../add_my_pet/sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
 
     % write header
     fprintf(fid_tv, '//\n');
@@ -168,12 +168,12 @@ function prt_species_tree_taxa_js(taxa)
     
     % write species_tree_taxa{i}_search.html, which is used by species_tree_taxa{i}.html for searching taxon, genus, family, order, class
     
-    fid_tv = fopen(['../../sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../add_my_pet/sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
 
     % taxon 
     fprintf(fid_tv, '<div class="TreeSearch"> <!REPLACE_WITH_DASH_DASH taxon REPLACE_WITH_DASH_DASH>\n');
     fprintf(fid_tv, '  <input id="TaxonDropdownInput" class="TreeSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputTreeSearch(''TaxonDropdown'')" \n');
-    fprintf(fid_tv, '    placeholder="Search for taxon.." type="text" title="Type part of name and click on list"></input>\n');
+    fprintf(fid_tv, '    placeholder="Taxon.." type="text" title="Type part of name and click on list"></input>\n');
     fprintf(fid_tv, '  <div id="TaxonDropdown" class="TreeSearch-content">\n');
     fprintf(fid_tv, '    <ul id="TaxonDropdownSearchlist" class="TreeSearch">\n');
  
@@ -190,7 +190,7 @@ function prt_species_tree_taxa_js(taxa)
     % genus
     fprintf(fid_tv, '<div class="TreeSearch"> <!REPLACE_WITH_DASH_DASH genus REPLACE_WITH_DASH_DASH>\n');
     fprintf(fid_tv, '  <input id="GenusDropdownInput" class="TreeSearch_dropbtn" onclick="showDropdown(''GenusDropdown'')" onkeyup="InputTreeSearch(''GenusDropdown'')" \n');
-    fprintf(fid_tv, '    placeholder="Search for genus.." type="text" title="Type part of name and click on list"></input>\n');
+    fprintf(fid_tv, '    placeholder="Genus.." type="text" title="Type part of name and click on list"></input>\n');
     fprintf(fid_tv, '  <div id="GenusDropdown" class="TreeSearch-content">\n');
     fprintf(fid_tv, '    <ul id="GenusDropdownSearchlist" class="TreeSearch">\n');
  
@@ -207,7 +207,7 @@ function prt_species_tree_taxa_js(taxa)
     % family
     fprintf(fid_tv, '<div class="TreeSearch"> <!REPLACE_WITH_DASH_DASH family REPLACE_WITH_DASH_DASH>\n');
     fprintf(fid_tv, '  <input id="FamilyDropdownInput" class="TreeSearch_dropbtn" onclick="showDropdown(''FamilyDropdown'')" onkeyup="InputTreeSearch(''FamilyDropdown'')" \n');
-    fprintf(fid_tv, '    placeholder="Search for family.." type="text" title="Type part of name and click on list"></input>\n');
+    fprintf(fid_tv, '    placeholder="Family.." type="text" title="Type part of name and click on list"></input>\n');
     fprintf(fid_tv, '  <div id="FamilyDropdown" class="TreeSearch-content">\n');
     fprintf(fid_tv, '    <ul id="FamilyDropdownSearchlist" class="TreeSearch">\n');
  
@@ -224,7 +224,7 @@ function prt_species_tree_taxa_js(taxa)
     % order
     fprintf(fid_tv, '<div class="TreeSearch"> <!REPLACE_WITH_DASH_DASH order REPLACE_WITH_DASH_DASH>\n');
     fprintf(fid_tv, '  <input id="OrderDropdownInput" class="TreeSearch_dropbtn" onclick="showDropdown(''OrderDropdown'')" onkeyup="InputTreeSearch(''OrderDropdown'')" \n');
-    fprintf(fid_tv, '    placeholder="Search for order.." type="text" title="Type part of name and click on list"></input>\n');
+    fprintf(fid_tv, '    placeholder="Order.." type="text" title="Type part of name and click on list"></input>\n');
     fprintf(fid_tv, '  <div id="OrderDropdown" class="TreeSearch-content">\n');
     fprintf(fid_tv, '    <ul id="OrderDropdownSearchlist" class="TreeSearch">\n');
  
@@ -242,7 +242,7 @@ function prt_species_tree_taxa_js(taxa)
     if strcmp(taxa{i},'Animalia') || strcmp(taxa{i},'Mollusca') || strcmp(taxa{i},'Tetrapoda')
     fprintf(fid_tv, '<div class="TreeSearch"> <!REPLACE_WITH_DASH_DASH class REPLACE_WITH_DASH_DASH>\n');
     fprintf(fid_tv, '  <input id="ClassDropdownInput" class="TreeSearch_dropbtn" onclick="showDropdown(''ClassDropdown'')" onkeyup="InputTreeSearch(''ClassDropdown'')" \n');
-    fprintf(fid_tv, '    placeholder="Search for class.." type="text" title="Type part of name and click on list"></input>\n');
+    fprintf(fid_tv, '    placeholder="Class.." type="text" title="Type part of name and click on list"></input>\n');
     fprintf(fid_tv, '  <div id="ClassDropdown" class="TreeSearch-content">\n');
     fprintf(fid_tv, '    <ul id="ClassDropdownSearchlist" class="TreeSearch">\n');
  

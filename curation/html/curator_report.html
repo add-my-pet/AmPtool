@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>curator_report</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-08-21"><meta name="DC.source" content="curator_report.m"><style type="text/css">
+      --><title>curator_report</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="curator_report.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>curator_report</h1><!--introduction--><p>Produces a report to help curators review an entry that has been submitted to the AmP collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Examples of use</a></li><li><a href="#7">Step 1: Check species name and lineage</a></li><li><a href="#8">Step 2: run check_data for data_0, data_1 and COMPLETE</a></li><li><a href="#9">Step 3: check bibliography and url's</a></li><li><a href="#10">Step 4: check extra parameters</a></li><li><a href="#11">Step 5: check which parameters were estimated:</a></li><li><a href="#12">Step 6: check implied properties</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../curator_report.m"><b>curator_report</b></a> (speciesnm)</p><h2 id="4">Description</h2><p>Produces step by step instuctions and informations to help curators analyse a submission.</p><p>Input</p><div><ul><li>speciesnm: string with species name</li><li>stepnb: scalar with the step number the report should execute</li></ul></div><p>Output is printed to screen</p><h2 id="5">Remarks</h2><p>This function is supposed to be run in the directory of the source files: mydata_speciesnm, pars_init_speciesnm,</p><h2 id="6">Examples of use</h2><div><ul><li>curator_report('my_pet')</li><li>curator_report('my_pet', 2) : and then only start the report at step 2 -</li></ul></div><h2 id="7">Step 1: Check species name and lineage</h2><h2 id="8">Step 2: run check_data for data_0, data_1 and COMPLETE</h2><h2 id="9">Step 3: check bibliography and url's</h2><h2 id="10">Step 4: check extra parameters</h2><h2 id="11">Step 5: check which parameters were estimated:</h2><h2 id="12">Step 6: check implied properties</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>curator_report</h1><!--introduction--><p>Produces a report to help curators review an entry that has been submitted to the AmP collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Examples of use</a></li><li><a href="#7">Step 1: Check species name and lineage</a></li><li><a href="#8">Step 2: run check_data for data_0, data_1 and COMPLETE</a></li><li><a href="#9">Step 3: check bibliography and url's</a></li><li><a href="#10">Step 4: check extra parameters</a></li><li><a href="#11">Step 5: check which parameters were estimated:</a></li><li><a href="#12">Step 6: check implied properties</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../curator_report.m"><b>curator_report</b></a> (speciesnm)</p><h2 id="4">Description</h2><p>Produces step by step instuctions and informations to help curators analyse a submission.</p><p>Input</p><div><ul><li>speciesnm: string with species name</li><li>stepnb: scalar with the step number the report should execute</li></ul></div><p>Output is printed to screen</p><h2 id="5">Remarks</h2><p>This function is supposed to be run in the directory of the source files: mydata_speciesnm, pars_init_speciesnm,</p><h2 id="6">Examples of use</h2><div><ul><li>curator_report('my_pet')</li><li>curator_report('my_pet', 2) : and then only start the report at step 2 -</li></ul></div><h2 id="7">Step 1: Check species name and lineage</h2><h2 id="8">Step 2: run check_data for data_0, data_1 and COMPLETE</h2><h2 id="9">Step 3: check bibliography and url's</h2><h2 id="10">Step 4: check extra parameters</h2><h2 id="11">Step 5: check which parameters were estimated:</h2><h2 id="12">Step 6: check implied properties</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% curator_report
 % Produces a report to help curators review an entry that has been submitted to the AmP collection 
@@ -130,7 +130,7 @@ check_data(speciesnm);
 fprintf('\nCheck the consistency between metaData and data.\n');
 fprintf('Check that the labels for each data type are used and consistent with the contents.\n');
 fprintf('Contact the web administrator with any new labels that should be added to the table. \n');
-fprintf('http://www.debtheory.org/wiki/index.php?title=Add-my-pet_Introduction)\n');
+fprintf('http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure)\n');
 end
 
 if isempty(stepnb)
@@ -148,6 +148,32 @@ prt_my_pet_bib(speciesnm, metaData.biblist) % biblist2bib
 % bib2bbl([speciesnm,'_bib']);                % runs Bibtex to convert bib to bbl
 bib2html([speciesnm,'_bib']);               % converts bbl to html
 web([speciesnm,'_bib.html'],'-browser');    % open html of bibliography in system browser
+fprintf('*****************************************************************  \n');
+fprintf('*********** Check the bibliography very carefully **************  \n');
+fprintf('*****************************************************************  \n');
+fprintf('Formatting problems that appear in the html come from formatting errors in the mydata files.\n');
+fprintf('Title field: \n');
+fprintf('Species (and genus) names are in italic and the first character of the genus name is in upper case.\n');
+fprintf('Species names in the title field are italisized using \\emph{}\n');
+fprintf('Other taxa (family, order, class etc) should not be in italics, but the first character in upper case.  \n');
+fprintf('Common names in lower case. \n');
+fprintf('First character of country and site names require upper cases. \n');
+fprintf('Do not use nested braces in \\emph or \\textit; \\em accepts nested braces \n')
+fprintf('Put braces around the letters than need to be upper case: e.g. {Y}ellow {S}tone {N}ational {P}ark  \n');
+fprintf('Authors field: Check that names appear correctly \n');
+fprintf('Howpublished field:  make sure url''s do not contain the character %% \n');
+fprintf('DOI field: this is obligatory when applicable (most articles) and must be implemented if absent \n');
+fprintf('ISBN field: this is obligatory when applicable (books) and must be implemented if absent  \n');
+fprintf('General things:\n');
+fprintf('Some bib''s might be used in pars_init; check_my_pet does not check this. Make sure those ref are in the mydata file. \n');
+fprintf('Use Latex-rules to construct special characters (such as accents), else html cannot show them.  \n');
+fprintf('Like in standard Bibtex, authors and journals should only have first characters in uppercase, the rest in lower case.     \n');
+fprintf('Check the standard entry types here: https://en.wikipedia.org/wiki/BibTeX#Bibliographic_information_file \n');
+fprintf('Check that the links to web pages in the references list actually work. \n');
+fprintf('*****************************************************************  \n');
+fprintf('*****************************************************************  \n');
+% fprintf(' \n');
+
 
 end
 
@@ -177,8 +203,15 @@ for i = 1:length(extraParFields)
   fprintf([extraParFields{i}, ', ', txtPar.label.(extraParFields{i}), '\n']);
 end
 
-fprintf('\nCheck if these are all used in predict.\n');
-fprintf('Check if there should exist customized filters involving these parameters. \n Check that there is a discussion point relating to the use of these parameters. \n');
+fprintf('*****************************************************************  \n');
+fprintf('*****************************************************************  \n');
+fprintf('Check if these extra paramaters are indeed used in predict.\n');
+fprintf('If it isn''t delete it from the pars_init.\n');
+fprintf('Check if there should exist customized filters involving these parameters.\n');
+fprintf('Check that there is a discussion point (in mydata) relating to the use of these extra parameters.\n');
+fprintf('Make sure that the labels for the scaled functional response specify\n which datasets they were used for.\n Look at the predict file and then add the datasets in the label in pars_init. \n');
+fprintf('*****************************************************************  \n');
+fprintf('*****************************************************************  \n');
 
 end
 
@@ -216,7 +249,12 @@ for i = 1:length(freeFields)
   fprintf([freeFields{i}, ' = ', num2str(par.(freeFields{i})), ' ', txtPar.units.(freeFields{i}), ', ' , txtPar.label.(freeFields{i}), '\n']);
 end
 
-fprintf('\nCheck if the values above are reasonable and if there is enough data to estimate them.\n\n');
+fprintf('********************************************************************  \n');
+fprintf('********************************************************************  \n');
+fprintf('Check if the values above are reasonable and if there is enough data to estimate them.\n');
+fprintf('If kappa < 0.3, or energy cond. v > 0.5 cm/d other local minima might exist with more realistic parameters\n');
+fprintf('*****************************************************************  \n');
+fprintf('*****************************************************************  \n');
 
 end
 
@@ -247,7 +285,7 @@ if isempty(stepnb)
    delete(['report_',speciesnm,'.html']); % delete produced file
 end
 
-% Step 7: make sure figures are saved (this only prints if the full reprot
+% Step 7: make sure figures are saved (this only prints if the full report
 % is executed)
 
 pointNumber = pointNumber + 1;

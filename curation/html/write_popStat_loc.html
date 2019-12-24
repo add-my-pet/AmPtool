@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>write_popStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="write_popStat.m"><style type="text/css">
+      --><title>write_popStat_loc</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="write_popStat_loc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,20 +66,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>write_popStat</h1><!--introduction--><p>writes a structure with all population stats for all entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>popStat = <a href="write_popStat"><b>write_popStat</b></a> (varargin)</p><h2 id="4">Description</h2><p>collects all popStat.mat files from all add_my_pet/entries_web subdirectories of the AmP site into a single structure. Apart from a direct output, file popStat.mat is written in the parent directory of the current one. Meant to be run from AmPtool/curation</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Ouput:</p><div><ul><li>popStatLoc: stucture with all population statistics of all entries</li></ul></div><h2 id="5">Remarks</h2><p>This function uses wget under Windows powershell, to copy .mat files from the web to local.</p><h2 id="6">Example of use</h2><p>popStat = write_popStat;</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>write_popStat_loc</h1><!--introduction--><p>writes a structure with all population stats for all entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>popStat = <a href="write_popStat_loc"><b>write_popStat_loc</b></a> (varargin)</p><h2 id="4">Description</h2><p>collects all popStat.mat files from all ../entries_web subdirectories of the local AmP depository into a single structure. Apart from a direct output, file popStat.mat is written in the parent directory of the current one. Meant to be run from AmPtool/curation</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Ouput:</p><div><ul><li>popStatLoc: stucture with all population statistics of all entries</li></ul></div><h2 id="5">Remarks</h2><p>This function uses wget under Windows powershell, to copy .mat files from the web to local.</p><h2 id="6">Example of use</h2><p>popStat = write_popStat;</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% write_popStat
+%% write_popStat_loc
 % writes a structure with all population stats for all entries
 
 %%
-function popStat = write_popStat(varargin)
+function popStat = write_popStat_loc(varargin)
 % created 2019/08/02 by Bas Kooijman
 
 %% Syntax
-% popStat = <write_popStat *write_popStat*> (varargin)
+% popStat = <write_popStat_loc *write_popStat_loc*> (varargin)
 
 %% Description
-% collects all popStat.mat files from all add_my_pet/entries_web subdirectories of the AmP site into a single structure.
+% collects all popStat.mat files from all ../entries_web subdirectories of the local AmP depository into a single structure.
 % Apart from a direct output, file popStat.mat is written in the parent directory of the current one.
 % Meant to be run from AmPtool/curation 
 %
@@ -105,11 +105,14 @@ function popStat = write_popStat(varargin)
     varargin = varargin{:}; % unpack cell string  
   end
 
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+  WD = pwd;
+
   n_spec = length(varargin); 
+  cd(['../../add_my_pet/entries_web/',varargin{1}])
+  
   for i = 1:n_spec
-    eval(['!powershell wget ', [path, varargin{i}, '/', varargin{i}, ], '_pop.mat -O popStat.mat'])
-    load popStat
+    cd(['../',varargin{i}])
+    load([varargin{i}, '_pop.mat'])
     spec = fieldnames(popStat); spec = spec{1};
     
     % remove graphics
@@ -154,6 +157,7 @@ function popStat = write_popStat(varargin)
     popStatLoc.(spec) = popStat.(spec);
     fprintf('%g: %s\n', i, spec);
   end
+  cd(WD)
   popStat = popStatLoc;
   save('../../add_my_pet/AmPdata/popStat.mat','popStat') % run from /AmPtool/curation
 

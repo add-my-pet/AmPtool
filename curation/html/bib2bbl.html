@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>bib2bbl</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-02-13"><meta name="DC.source" content="bib2bbl.m"><style type="text/css">
+      --><title>bib2bbl</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="bib2bbl.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,17 +66,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>bib2bbl</h1><!--introduction--><p>translates .bib to .bbl by running Latex under Matlab</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="bib2bbl"><b>bib2bbl</b></a>(my_pet_bib, destinationFolder)</p><h2 id="4">Description</h2><p>Translates a bib-file into a bbl-file</p><p>Input:</p><div><ul><li>my_pet_bib: bib-file name without extension</li><li>destinationFolder: optional specification of destinations folder (default: empty)</li></ul></div><h2 id="5">Remarks</h2><p>assumes that Bibtex can be ran onder dos. The intended use is</p><div><ul><li>convert biblist in results_my_pet.mat to bib by prt_my_pet_bib</li><li>convert bib to bbl by bib2bbl</li><li>convert bbl to html by bbl2html</li><li>insert html-snippet in results_my_pet.html by prt_my_pet_res</li></ul></div><p>Notice that</p><div><ul><li>{\em ...} can have an arbitrary number of nested {}, but \emph{} and \textit{} cannot handle nested {}</li><li>web-adress cannot contain spaces or %20; use ~ instead; this will be replaced by a space in function bbl2html</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>bib2bbl</h1><!--introduction--><p>translates .bib to .bbl by running Latex under Matlab</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="bib2bbl"><b>bib2bbl</b></a>(my_pet_bib)</p><h2 id="4">Description</h2><p>Translates a bib-file into a bbl-file</p><p>Input:</p><div><ul><li>my_pet_bib: bib-file name without extension</li></ul></div><h2 id="5">Remarks</h2><p>assumes that Bibtex can be ran under dos and operations occurs in current directory The intended use is</p><div><ul><li>convert biblist in results_my_pet.mat to bib by prt_my_pet_bib</li><li>convert bib to bbl by bib2bbl</li><li>convert bbl to html by bbl2html</li><li>insert html-snippet in results_my_pet.html by prt_my_pet_res</li></ul></div><p>Notice that</p><div><ul><li>{\em ...} can have an arbitrary number of nested {}, but \emph{} and \textit{} cannot handle nested {}</li><li>web-adress cannot contain spaces or %20; use ~ instead; this will be replaced by a space in function bbl2html</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% bib2bbl
 % translates .bib to .bbl by running Latex under Matlab
 
 %%
-function bib2bbl(my_pet_bib, destinationFolder)
+function bib2bbl(my_pet_bib)
 % created 2018/02/03 by Bas Kooijman
 
 %% Syntax
-% <bib2bbl *bib2bbl*>(my_pet_bib, destinationFolder)
+% <bib2bbl *bib2bbl*>(my_pet_bib)
 
 %% Description
 % Translates a bib-file into a bbl-file
@@ -84,10 +84,9 @@ function bib2bbl(my_pet_bib, destinationFolder)
 % Input:
 %
 % * my_pet_bib: bib-file name without extension
-% * destinationFolder: optional specification of destinations folder (default: empty)
 
 %% Remarks
-% assumes that Bibtex can be ran onder dos.
+% assumes that Bibtex can be ran under dos and operations occurs in current directory
 % The intended use is 
 % 
 % * convert biblist in results_my_pet.mat to bib by prt_my_pet_bib
@@ -102,28 +101,59 @@ function bib2bbl(my_pet_bib, destinationFolder)
 
 % create aux file
 
-if ~exist('destinationFolder', 'var')
-  destinationFolder = '';
-end
-fid = fopen([destinationFolder, my_pet_bib, '.aux'], 'w+'); % open file for reading and writing and deletes old content
+fid = fopen([my_pet_bib, '.aux'], 'w+'); % open file for reading and writing and deletes old content
 
 fprintf(fid,[ ...
    '\\relax\n' ...
    '\\citation{*}\n' ...
-   '\\bibstyle{plain}\n' ...
+   '\\bibstyle{apalike}\n' ...
    '\\bibdata{', my_pet_bib, '}\n']);
-fclose(fid);
+fclose(fid); 
 
 % run bibtex
-WD = pwd;
-if ~isempty(destinationFolder)
-  cd(destinationFolder)
-end
 dos(['bibtex ', my_pet_bib]);
-cd(WD)
 
 % remove help files
-delete([destinationFolder, my_pet_bib, '.aux'], [destinationFolder, my_pet_bib, '.blg'])
+delete([my_pet_bib, '.aux'])
+
+% search for doi's in my_pet_bib.bib to add in my_pet_bib.bbl
+bib = fileread([my_pet_bib, '.bib']);
+bib = strrep(bib, 'DOI', 'doi');
+bib = strrep(bib, 'Doi', 'doi');
+ind = strfind(bib, 'doi ');
+if isempty(ind) % no doi's
+  return
+else % doi's present
+  % construct (n,2)-table with bibkey's and doi's
+  n = length(ind);  doi = cell(n,2);
+  for i = 1:n
+    str = bib(ind(i):end); ind0 = strfind(str, '{'); ind1 = strfind(str, '}');
+    doi{i,2} = str(ind0(1)+1:ind1(1)-1);
+    str = bib(1:ind(i)); ind0 = strfind(str, '@'); str = str(ind0(end):end); ind0 = strfind(str, '{'); ind1 = strfind(str, ',');
+    doi{i,1} = str(ind0(1)+1:ind1(1)-1);
+  end
+end
+% add doi's to my_pet_bib.bbl
+bbl = fileread([my_pet_bib, '.bbl']); % read bbl-file
+bbl = strrep(bbl,'\','\\'); % replace \ by \\ else fprintf will protest
+for i = 1:n
+  % find index ind of insertion of doi i
+  ind0 = strfind(bbl, [doi{i,1},'}']); ind1 = strfind(bbl, '\bibitem'); 
+  if ~isempty(ind0)
+    ind1 = ind1(ind1 > ind0); ind0 = strfind(bbl, '.');
+    if ~isempty(ind1) % not last \bibitem
+      ind1 = ind1(1); ind0 = ind0(ind0 < ind1); 
+    end
+    ind = 1 + ind0(end);
+    % insert
+    bbl = [bbl(1:ind), '<a href="http://www.doi.org/', doi{i,2}, '"  target="_blanc"> doi:', doi{i,2}, '</a>.', bbl(ind+1:end)];
+  end
+end
+
+% overwrite bbl file
+fid = fopen([my_pet_bib, '.bbl'], 'w+');
+fprintf(fid, bbl);
+fclose(fid);
 
 ##### SOURCE END #####
 --></body></html>

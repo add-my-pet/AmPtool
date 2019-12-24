@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_date_subm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="get_date_subm.m"><style type="text/css">
+      --><title>check_dates</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="check_dates.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,50 +66,91 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_date_subm</h1><!--introduction--><p>gets sumbission dates of entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/21 by Bas Kooijman</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/21 by Bas Kooijman</h2><h2 id="3">Syntax</h2><p>[dates taxa_new dates_new] = <a href="../get_date_subm.m"><b>get_date_subm</b></a>(n_new)</p><h2 id="4">Description</h2><p>Gets the submission dates of entries in add_my_pet collection</p><p>Input:</p><div><ul><li>n_new: optional scalar with number of latest entries (default 5)</li></ul></div><p>Output:</p><div><ul><li>dates: n-vector with submission dates of add_my_pet entries</li><li>taxa_new: n_new-vector with names of n_new latest taxa</li><li>date_new: n_new-vector with date-strings when latest taxa were submitted</li></ul></div><h2 id="5">Remarks</h2><p>about_add_my_pet makes a plot of this</p><h2 id="6">Example of use</h2><p>get_date_subm</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>check_dates</h1><!--introduction--><p>checks that dates of submission, modification and acceptance are in the correct sequence</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>entries = <a href="../check_dates.m"><b>check_dates</b></a></p><h2 id="4">Description</h2><p>checks that dates of submission, modification and acceptance are in the correct sequence</p><p>Output:</p><div><ul><li>entries: cell string with entries, where dates are not in the correct sequence</li></ul></div><h2 id="5">Remarks</h2><p>date of accepetance might equal date of last modification</p><h2 id="6">Example of use</h2><p>check_dates</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_date_subm
-% gets sumbission dates of entries
+%% check_dates
+% checks that dates of submission, modification and acceptance are in the correct sequence
 
 %%
-function [dates taxa_new dates_new] = get_date_subm(n_new)
-%% created 2016/02/21 by Bas Kooijman
+function entries = check_dates
+% created 2018/01/18 by Bas Kooijman
 
 %% Syntax
-% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_subm*>(n_new)
+% entries = <../check_dates.m *check_dates*>
 
 %% Description
-% Gets the submission dates of entries in add_my_pet collection
+% checks that dates of submission, modification and acceptance are in the correct sequence
 %
-% Input:
 %
-% * n_new: optional scalar with number of latest entries (default 5)
-%
-% Output:
+% Output: 
 % 
-% * dates: n-vector with submission dates of add_my_pet entries
-% * taxa_new: n_new-vector with names of n_new latest taxa
-% * date_new: n_new-vector with date-strings when latest taxa were submitted
+% * entries: cell string with entries, where dates are not in the correct sequence
 
 %% Remarks
-% about_add_my_pet makes a plot of this
-%
+% date of accepetance might equal date of last modification
+
 %% Example of use
-% get_date_subm
+% check_dates
 
-  if ~exist('n_new', 'var')
-    n_new = 5;
-  end
+load allStat
 
-  [dates entries] = read_allStat('date_subm'); 
-  dates = datenum(dates); 
+nm = fieldnames(allStat); n = length(nm); % all entries
+entries = cell(0); % initiate output
+
+for i = 1:n % scan all entries
   
-  [sdates I] = sort(dates,1,'descend'); 
-  taxa_new = entries(I(1:n_new)); 
-  dates_new = datestr(dates(I(1:n_new)), 26);
+  % collect dates and check for existence
+  if isempty(allStat.(nm{i}).date_subm) % date_sub must exist
+    entries = [entries; nm(i)];
+  else
+    date_subm = datenum(allStat.(nm{i}).date_subm);
+  end
+  
+  if isfield(allStat.(nm{i}), 'date_mod') && ~isempty(allStat.(nm{i}).date_mod)
+    if iscell(allStat.(nm{i}).date_mod)
+      mod = allStat.(nm{i}).date_mod{:}; n_mod = length(mod); date_mod = zeros(n_mod,1);
+      for j = 1:n_mod
+        date_mod(j) = datenum(mod{j});
+      end
+    else
+      date_mod = datenum(allStat.(nm{i}).date_mod);
+      n_mod = 1;
+    end
+  else
+    date_mod = [];
+    n_mod = 0;
+  end
+  
+  if isempty(allStat.(nm{i}).date_acc) % date_acc must exist
+    entries = [entries; nm(i)];
+  else
+    date_acc = datenum(allStat.(nm{i}).date_acc);
+  end
     
-  dates = 2006 + (dates - datenum([2006 01 01]))/ 365;
-    
+  % check sequences
+  if n_mod == 0 
+    if date_acc < date_subm
+      entries = [entries; nm(i)];
+    end
+  elseif n_mod == 1
+    if date_acc < date_mod | date_mod <= date_subm
+      entries = [entries; nm(i)];
+    end
+  else % n_mod > 1
+    if date_acc < date_mod(end) | date_mod(1) <= date_subm
+      entries = [entries; nm(i)];
+      [date_sub; date_mod; date_acc]
+    end   
+    for j = 2:n_mod
+      if date_mod(j) <= date_mod(j-1)
+        entries = [entries; nm(i)];
+      end
+    end
+  end
+end
+
+entries = unique(entries);
+
 
 ##### SOURCE END #####
 --></body></html>
