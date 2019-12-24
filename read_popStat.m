@@ -2,11 +2,11 @@
 % read statistics and/or parameters in popStat.mat
 
 %%
-function [var, entries, units, label] = read_popStat(popStat, varargin)
-% created 2019/08/04 by Bas Kooijman
+function [var, entries, units, label] = read_popStat(varargin)
+% created 2019/08/04 by Bas Kooijman, modified 2019/12/24
 
 %% Syntax
-% [var entries units label] = <../read_popStat.m *read_popStat*>(varargin)
+% [var, entries, units, label] = <../read_popStat.m *read_popStat*>(varargin)
 
 %% Description
 % read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic.
@@ -23,16 +23,16 @@ function [var, entries, units, label] = read_popStat(popStat, varargin)
 % * entries: n-cell string with names of entries
 
 %% Remarks
-% If particular filed don't exist, empty is outputted 
+% If particular field don't exist, empty is outputted 
 
 %% Example of use
 % [r, nm] = read_popStat('f1.thin0.f.r','c_T'); 
   
-%  global popStat
+  persistent popStat
   
-%   if ~exist('popStat','var') || length(popStat) == 0
-%     load  popStat        % get all parameters and statistics in structure popStat
-%   end
+  if ~exist('popStat','var') || length(popStat) == 0
+    load  popStat        % get all parameters and statistics in structure popStat
+  end
   
   entries = fieldnames(popStat); n = length(entries);
   if iscell(varargin{1})    
