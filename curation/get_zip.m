@@ -3,7 +3,7 @@
 
 %%
 function zip = get_zip(my_pet)
-% created 2017/10/25 by Bas Kooijman
+% created 2017/10/25 by Bas Kooijman, modified 2019/12/25
 
 %% Syntax
 % zip = <get_zip *get_zip*>(my_pet)
@@ -17,12 +17,12 @@ function zip = get_zip(my_pet)
 %
 % Output:
 %
-% * zip: (n,2)-cell array  with zip-names and acceptance dates of type yyymmdd
+% * zip: (n,2)-cell array  with zip-names and acceptance dates of type yyyymmdd
 
 %% Example of use
 % zip = get_zip('Bufo_bufo')
 
-zip = cellstr(ls('../../entries_archive/')); % get ls of all files in subdir
+zip = cellstr(ls('../../add_my_pet/entries_archive/')); % get ls of all files in subdir
 % append _2 to name of mypet to avoid selection of subspecies/races
 zip = zip(~cellfun('isempty',strfind(zip, [my_pet, '_2']))); % all my_pet_yyyymmdd.zip 's
 date = zip; n = length(zip); ntxt = 1 + length(my_pet);

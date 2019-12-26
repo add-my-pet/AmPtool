@@ -15,8 +15,7 @@ cd(path(1:ind(end)));
 
 clear all; % allStat is persistent in read_allStat and read_stat
 
-write_allStat; load ../../add_my_pet/AmPdata/allStat
-write_allEco; load ../../add_my_pet/AmPdata/allEco
+write_allStat;     load ../../add_my_pet/AmPdata/allStat
 write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
 filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
 prt_toolbar

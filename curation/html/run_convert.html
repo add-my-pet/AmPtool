@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_zip</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-25"><meta name="DC.source" content="get_zip.m"><style type="text/css">
+      --><title>run_convert</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-25"><meta name="DC.source" content="run_convert.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,43 +66,60 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_zip</h1><!--introduction--><p>gets zip names from archive</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>zip = <a href="get_zip"><b>get_zip</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Gets acceptance dates (= version numbers) of zips in ../entries_archive</p><p>Input:</p><div><ul><li>my_pet: character string with name of an entry</li></ul></div><p>Output:</p><div><ul><li>zip: (n,2)-cell array  with zip-names and acceptance dates of type yyyymmdd</li></ul></div><h2 id="5">Example of use</h2><p>zip = get_zip('Bufo_bufo')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>run_convert</h1><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_zip
-% gets zip names from archive
+%% run_convert
 
-%%
-function zip = get_zip(my_pet)
-% created 2017/10/25 by Bas Kooijman, modified 2019/12/25
+function run_convert(varargin)
+% inserts ecoCode and links in metaData of mydata
+% writes .mat and zip
 
-%% Syntax
-% zip = <get_zip *get_zip*>(my_pet)
-
-%% Description
-% Gets acceptance dates (= version numbers) of zips in ../entries_archive
-%
-% Input:
-%
-% * my_pet: character string with name of an entry
-%
-% Output:
-%
-% * zip: (n,2)-cell array  with zip-names and acceptance dates of type yyyymmdd
-
-%% Example of use
-% zip = get_zip('Bufo_bufo')
-
-zip = cellstr(ls('../../add_my_pet/entries_archive/')); % get ls of all files in subdir
-% append _2 to name of mypet to avoid selection of subspecies/races
-zip = zip(~cellfun('isempty',strfind(zip, [my_pet, '_2']))); % all my_pet_yyyymmdd.zip 's
-date = zip; n = length(zip); ntxt = 1 + length(my_pet);
-for i = 1:n
-  txt = zip{i}; 
-  txt(1:ntxt) = ''; txt(end - (0:3)) = ''; % remove "my_pet_" and ".zip"
-  date(i) = {txt};
+if isempty(varargin)
+  varargin = select('Animalia');
+elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))
+  varargin = select(varargin{1});
+elseif iscell(varargin{1})    
+  varargin = varargin{:}; % unpack cell string  
 end
-zip = [zip, date];
 
+nargin = length(varargin); % number of entries to scan    
+WD = pwd; % store current path
+cd(['../../add_my_pet/entries/', varargin{1}]); % goto entry i in dir entries
+
+for i = 1:nargin 
+  
+  % write mydata_my_pet
+  fprintf(' %g : %s \n', i, varargin{i}); % report progress to screen 
+  cd(['../', varargin{i}]); WDi = pwd; % goto entry i 
+  [mydata, info] = convert_mydata(varargin{i});
+  if info == 0
+    return
+  end
+  oid = fopen(['mydata_', varargin{i}, '.m'], 'w+'); 
+  fprintf(oid, '%s', mydata);
+  fclose(oid);
+  
+  % write results_my_pet.mat
+  load(['results_', varargin{i}]);
+  eval(['[~, ~, metaData, ~, ~] = mydata_', varargin{i},';']);
+  save(['results_', varargin{i}, '.mat'], 'par', 'txtPar', 'metaPar', 'metaData');
+  
+  % write my_pet_yyyymmdd.zip
+  cd('../../entries_zip');
+  nms = cellstr(ls);
+  nm = nms(~cellfun(@isempty,strfind(nms,varargin{i})));
+  unzip(nm{1}); % creates folder that will be removed
+  cd(varargin{i});
+  oid = fopen(['mydata_', varargin{i}, '.m'], 'w+'); 
+  fprintf(oid, '%s', mydata);
+  fclose(oid);
+  cd ../;
+  zip(nm{1}, varargin{i}); 
+  rmdir(varargin{i},'s');
+  cd(WDi); % go back ti current entry
+
+end
+cd(WD);
 
 ##### SOURCE END #####
 --></body></html>

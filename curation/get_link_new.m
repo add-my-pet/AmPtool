@@ -2,7 +2,7 @@
 % gets links to web-pages for AmP entries
 
 %%
-function [links = get_link(taxon, open)
+function [links, id] = get_link(taxon, open)
 % created 2017/06/14 by Bas Kooijman, modified 2017/07/11, 2018/01/30
 
 %% Syntax
@@ -1369,7 +1369,7 @@ function [links = get_link(taxon, open)
        
     case 'Gammarus_fossarum'
       id_CoL = '0c4aab57a19008a9ba9db20ce769e337';
-      id_WoRMS = ''; % not present 2017/06/15
+      id_WoRMS = '478934';
       id_Taxo = '';  % not present 2017/06/15
       id_Wiki = 'Gammarus';
       id_EoL = '4248761';
@@ -1377,7 +1377,7 @@ function [links = get_link(taxon, open)
       
     case 'Gammarus_pseudolimnaeus'
       id_CoL = '46665c47e08b50e65aa372a80c3e2436';
-      id_WoRMS = ''; % not present 2017/06/15
+      id_WoRMS = '490303'; 
       id_Taxo = '';  % not present 2017/06/15    
       id_Wiki = 'Gammarus';
       id_EoL = '344046';
@@ -1389,14 +1389,14 @@ function [links = get_link(taxon, open)
       id_EoL = '344717';
        
     case 'Gammarus_roeselii' 
-      id_CoL = '33e236cbe375b3ba9a83fbd08c672d40';   % not present 2017/06/15
-      id_WoRMS = ''; % not present 2017/06/15
+      id_CoL = '33e236cbe375b3ba9a83fbd08c672d40';
+      id_WoRMS = '478923'; 
       id_Taxo = '';  % not present 2017/06/15 
       id_EoL = '4248762';
       id_ADW = ''; % not present at 2017/08/09 
       
     case 'Dikerogammarus_villosus' 
-      id_CoL = '';   % not present 2017/10/27
+      id_CoL = '427547d9bbcf027501d5f6060891a906'; 
       id_WoRMS = '148586'; 
       id_Taxo = '';  % not present 2017/06/15 
       id_EoL = '3033511';
@@ -15289,6 +15289,24 @@ function [links = get_link(taxon, open)
     id_CoL, id_EoL, id_Wiki, id_ADW, id_Taxo, id_WoRMS, ...                                                  % general/animal web sites
     id_molluscabase, id_fishbase, id_amphweb, id_ReptileDB, id_avibase, id_birdlife, id_MSW3, id_AnAge}),:); % taxon web sites
   n_links = size(links,1); 
+  
+  id = [...
+      {'id_CoL', id_CoL}; 
+      {'id_EoL', id_EoL};
+      {'id_Wiki', id_Wiki};
+      {'id_ADW', id_ADW};
+      {'id_Taxo', id_Taxo};
+      {'id_WoRMS', id_WoRMS};
+      {'id_molluscabase', id_molluscabase};
+      {'id_fishbase', id_fishbase}; 
+      {'id_amphweb', id_amphweb}; 
+      {'id_ReptileDB', id_ReptileDB}; 
+      {'id_avibase', id_avibase}; 
+      {'id_birdlife', id_birdlife};
+      {'id_MSW3', id_MSW3};
+      {'id_AnAge', id_AnAge}
+      ];
+  id = id(~cellfun(@isempty, id(:,2)),:);
   
   if n_links == 0
     fprintf(['warning from get_link for ', taxon, ': no links specified\n']);
