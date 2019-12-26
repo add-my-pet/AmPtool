@@ -9,7 +9,7 @@ function [codes, entries] = read_allEco(varargin)
 % [codes, entries] = <../read_allEco.m *read_allEco*>(varargin)
 
 %% Description
-% read eco-codes in allEco.mat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.
+% read eco-codes in allStat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.
 %
 % Input:
 %
@@ -26,13 +26,13 @@ function [codes, entries] = read_allEco(varargin)
 %% Example of use
 % gender_embryo = read_allEco('gender', 'embryo'); 
   
-  persistent allEco
-  
-  if ~exist('allEco','var') || length(allEco) == 0
-    load('allEco')        % get all parameters and statistics in structure allStat
+  persistent allStat
+
+  if ~exist('allStat','var') || length(allStat) == 0
+    load('allStat')        % get all parameters and statistics in structure allStat
   end
 
-  entries = fieldnames(allEco); n = length(entries); 
+  entries = fieldnames(allStat); n = length(entries); 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
@@ -49,7 +49,7 @@ function [codes, entries] = read_allEco(varargin)
   
   for i = 1:n
     for j = 1:nargin
-      codes{i,j} = allEco.(entries{i}).(varargin{j});
+      codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
     end
   end
   end
