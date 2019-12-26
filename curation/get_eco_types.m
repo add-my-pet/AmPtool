@@ -14,9 +14,11 @@ function get_eco_types(localPath)
 %
 % Input
 %
-% * localPath: optional path to local AmPeco.html for local file read (for off-line use, e.g. '../../')
+% * localPath: optional path to local AmPeco.html for local file read (for off-line use, e.g. '../../add_my_pet/')
 
 %% Remarks
+% Writes to global eco_types; type "global eco_types" to access the result.
+% eco_types is a structure with the ecoCodes as first-level fields, and all codes with descriptions as next fields.
 % Re-check this function after edits of AmPeco.html for eco-types
 %
 % * https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html

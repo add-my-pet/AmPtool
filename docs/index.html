@@ -33,10 +33,10 @@
     All parameters and traits, population traits and eco-codes for all entries are available in dropdown <code>COLLECTION/AmPdata</code> as a zip-file.
     Save the files <code>allStat.mat</code> and <code>popStat.mat</code> from the linked zip into one directory.
     Open Matlab and set paths to AmPtool, DEBtool_M (including subdirectories) and to the directory with the <code>.mat</code> files. 
-    Make sure to work with the latest versions.
+    Make sure to work with the latest versions; check the date of the latest version in dropdown <code>COLLECTION</code>.
     If you downloaded new <code>.mat</code> versions during a Matlab-session (rather than before the start), don't forget to <code>clear all</code> in Matlab.
     This is because structures allStat and popStat are made persistent to avoid repeated loading of these large files.
-    Subdirectory <code>curation</code> of AmPtool is only meant for curators to maintain the collection. 
+    Subdirectory <code>AmPtool/curation</code> is only meant for curators to maintain the collection. 
     This page describes how to use AmPtool (in combination with DEBtool_M) for analysis of data in 4 stacked steps: 
       <a href = "#tree">tree</a>, <a href = "#selection">selections</a>, <a href = "#legend">legends</a> and <a href = "#plotting">plotting</a>.
 
@@ -64,7 +64,7 @@
     Find all entries that have model <code>std</code> with <code>[model, nms] = read_allStat('model'); nms(strcmp('std', model))</code>.
 
     <p>
-    Subfields <b>ecoCodes</b> in <code>allStat</code> specify climate, ecozone, habitat, embryo environment, 
+    Subfields <b>ecoCode</b> in <code>allStat</code> specifies climate, ecozone, habitat, embryo environment, 
       migration/torpor, food, gender and reproduction mode for each entry.
     The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned in the mydata-files.
     All functions that analyse data use function 
@@ -73,9 +73,10 @@
     <p>
     <a href = "http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
       implied traits for specific entries.
-    <code>prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars".
+    <code>prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars"
+      to reduce the length of the table.
     The "implied traits"-pages on the AmP-website present a subset of the shown list (but has no searching facilities).
-    The function reads parameters in <code>allStat</code>  and specifies scaled functional response and temperature for each trait.
+    The function reads parameters in <code>allStat</code> and specifies scaled functional response and temperature for each trait.
     The function is also used during the parameter estimation procedure for entries that are not yet in the collection with 
       <code>estim_options('results_output', 3);</code> in the <code>run_my_pet</code> file.
     In this application the data are not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
@@ -87,11 +88,11 @@
     <H2 id="tree">Taxonomic tree: lists-of-lists</H2>
 
     Entries are organised according to the taxonomic position of the taxa that they represent. 
-    This position is determined in lists-of-lists; the taxonomic info in the mydata-files is only used for presentation in 
+    This position is determined in lists-of-lists, stored in <code>AmPtool/taxa</code>; the taxonomic info in the mydata-files is only used for presentation in 
       the <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/species_list.html">species-list</a> and 
       for the default value of the water content by function <a href="http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/get_d_V.html">get_d_V</a>
       and the default nitrogen waste by function <a href="http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/get_N_waste.html">get_N_waste</a>. 
-    A list is a simple text-file in subdirectory taxa. 
+    A list is a simple text-file. 
     Several functions link these lists into a tree. 
     The tree has a root, here called <a href="../taxa/Animalia.txt">Animalia</a>, nodes, which are names of taxa, and leaves, which are names of entries.
     Most entries represent a species, but some species have multiple entries, such as geographical races. 

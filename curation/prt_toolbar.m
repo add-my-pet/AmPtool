@@ -36,7 +36,7 @@ tb = [tb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</
 tb = [tb, '        <div id="deb" class="dropdown-content">\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/" target="_blank">DEB Portal</a>\n'];
 tb = [tb, '          <a href="https://en.wikipedia.org/wiki/Dynamic_energy_budget_theory" target="_blank">DEB Wikipedia</a>\n'];
-tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/docs/index.html" target="_blank">DEB Tool</a>\n'];
+tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/index.html" target="_blank">DEB Tool</a>\n'];
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/deb/deblab/" target="_blank">DEB Laboratory</a>\n'];
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 tb = [tb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];

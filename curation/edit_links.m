@@ -1,5 +1,5 @@
 %% edit_links
-% changes one or more links in mydata_my_pet.m results_my_pet.mat  my_pet.zip and my_pet_toolbar.html
+% changes one or more links in mydata_my_pet.m results_my_pet.mat  my_pet_yyyymmdd.zip and my_pet_toolbar.html
 
 %%
 function edit_links(my_pet, id)
