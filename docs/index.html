@@ -30,8 +30,8 @@
     <a href = "http://www.github.com/add-my-pet/AmPtool/" target = "_top">AmPtool</a> 
        contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection.
     It is an extension of <A HREF = "http://www.github.com/add-my-pet/DEBtool_M/" target = "_top">DEBtool_M</A>, and makes frequent use of it.
-    All parameters and traits, population traits and eco-codes for all entries are available in dropdown <code>COLLECTION/AmPdata</code>.
-    Save the files from the linked zip into one directory.
+    All parameters and traits, population traits and eco-codes for all entries are available in dropdown <code>COLLECTION/AmPdata</code> as a zip-file.
+    Save the files <code>allStat.mat</code> and <code>popStat.mat</code> from the linked zip into one directory.
     Open Matlab and set paths to AmPtool, DEBtool_M (including subdirectories) and to the directory with the <code>.mat</code> files. 
     Make sure to work with the latest versions.
     If you downloaded new <code>.mat</code> versions during a Matlab-session (rather than before the start), don't forget to <code>clear all</code> in Matlab.
@@ -64,12 +64,10 @@
     Find all entries that have model <code>std</code> with <code>[model, nms] = read_allStat('model'); nms(strcmp('std', model))</code>.
 
     <p>
-    Apart from <code>allStat</code>, the Matlab-structure <b>allEco.mat</b> exists for codes that specify climate, ecozone, habitat, embryo environment, 
+    Subfields <b>ecoCodes</b> in <code>allStat</code> specify climate, ecozone, habitat, embryo environment, 
       migration/torpor, food, gender and reproduction mode for each entry.
-    The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned by function 
-      <a href="../curation/html/get_eco.html">get_eco</a> and the Matlab-structure is written by  
-      <a href="../curation/html/write_allEco.html">write_allEco</a>.
-    All functions that analyse data and read in <code>allEco</code> use function 
+    The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned in the mydata-files.
+    All functions that analyse data use function 
       <a href="../html/read_allEco.html">read_allEco</a> or <a href="../html/read_eco.html">read_eco</a>.
    
     <p>
@@ -150,7 +148,7 @@
     Inclusion of very unrelated species in plots of traits typically results in a blurr that is not very informative.  
     Selection of entries via the tree is done with the functions <a href="../html/select.html">select</a> and <a href="../html/select_01.html">select_01</a>.
     Select returns a cell-string with names of selected entries, <code>select_01</code> a vector of booleans and a cell-string with the names of all entries.
-    Notice that <code>allStat</code>, <code>allEco</code> and the lists-of-lists change continuously, so do the results of <code>select</code> and <code>select_01</code>.
+    Notice that <code>allStat</code> and the lists-of-lists change continuously, so do the results of <code>select</code> and <code>select_01</code>.
     
     <p>
     Function <a href="../html/clade.html">clade</a> finds the lowest taxon (node) that contains a set of specified taxa, and all its members.
