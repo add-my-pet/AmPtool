@@ -21,13 +21,26 @@ function [links, id] = get_links(my_pet, open)
 % * links: (n,2)-cell array with links and names for links
 % * id: (n,2)-cell array with id's and values, as in metaData.links of mydata
 
+%% Remarks
+% This function first tries to find results_my_pet.mat in local directory entries (typically only for curators); 
+% in failure, it downloads it from the web via powershell function wget
+
   % set all id's on empty
   id_CoL=[]; id_EoL=[]; id_Wiki=[]; id_ADW=[]; id_Taxo=[]; id_WoRMS=[];                                                 
   id_molluscabase=[]; id_fishbase=[]; id_amphweb=[]; id_ReptileDB=[]; id_avibase=[]; id_birdlife=[]; id_MSW3=[]; id_AnAge=[];
   
   % overwrite id's with those in mydata_my_pet
-  load(['../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
-  id = metaData.links; vars_pull(id);
+  try % locally present in dir entries (mostly for curators)
+    load(['../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
+    id = metaData.links; vars_pull(id);
+  catch % get results_my_pet.mat from web
+    fnmmat = ['results_', my_pet,'.mat'];
+    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    eval(['!powershell wget ', path, my_pet, '/', fnmmat, ' -O ', fnmmat])
+    load(fnmmat)
+    id = metaData.links; vars_pull(id);
+    delete(fnmmat) 
+  end
        
   % compose (n,2) cell-array with links and descriptions
   links = { ...

@@ -21,9 +21,6 @@ function popStat = write_popStat_loc(varargin)
 %
 % * popStatLoc: stucture with all population statistics of all entries
 
-%% Remarks
-% This function uses wget under Windows powershell, to copy .mat files from the web to local.
-
 %% Example of use
 % popStat = write_popStat;
 
