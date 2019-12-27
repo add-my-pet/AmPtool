@@ -6,7 +6,7 @@ function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
 % created 2019/12/26 by Bas Kooijman
 
 %% Syntax
-% [data, auxData, metaData, txtData, weights]  = <get_data *get_data*>(taxon)
+% [data, auxData, metaData, txtData, weights]  = <get_data *get_data*>(my_pet)
 
 %% Description
 % Gets all data set by mydata for any entry
