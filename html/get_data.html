@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_data</h1><!--introduction--><p>gets data from mydata_my_pet.m</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p>[data, auxData, metaData, txtData, weights]  = <a href="get_data"><b>get_data</b></a>(taxon)</p><h2 id="4">Description</h2><p>Gets all data set by mydata for any entry</p><p>Input:</p><div><ul><li>my_pet: character string with name of entry</li></ul></div><p>Output:</p><div><ul><li>data:     cell array with emperical data</li><li>auxdata:  cell array with auxiliary data</li><li>metaData: cell array with meta-data</li><li>txtData:  cell array with text labels for data</li><li>weights:  cell array with weight coefficient used for parameter estimation</li></ul></div><h2 id="5">Remarks</h2><p>This function first tries to find mydata_my_pet in local directory entries (typically only for curators); in failure, it downloads it from the web via powershell function wget Make sure the your current directory does not have mydata_my_pet.m, since this file will be overwritten and deleted.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_data</h1><!--introduction--><p>gets data from mydata_my_pet.m</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p>[data, auxData, metaData, txtData, weights]  = <a href="get_data"><b>get_data</b></a>(taxon)</p><h2 id="4">Description</h2><p>Gets all data set by mydata for any entry</p><p>Input:</p><div><ul><li>my_pet: character string with name of entry</li></ul></div><p>Output:</p><div><ul><li>data:     cell array with empirical data</li><li>auxdata:  cell array with auxiliary data</li><li>metaData: cell array with meta-data</li><li>txtData:  cell array with text labels for data</li><li>weights:  cell array with weight coefficient used for parameter estimation</li></ul></div><h2 id="5">Remarks</h2><p>This function first tries to find mydata_my_pet in local directory entries (typically only for curators); in failure, it downloads it from the web via powershell function wget. Make sure the your current directory does not have mydata_my_pet.m, since this file will be overwritten and deleted.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_data
 % gets data from mydata_my_pet.m
@@ -87,7 +87,7 @@ function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
 %
 % Output:
 %
-% * data:     cell array with emperical data
+% * data:     cell array with empirical data
 % * auxdata:  cell array with auxiliary data
 % * metaData: cell array with meta-data
 % * txtData:  cell array with text labels for data
@@ -95,7 +95,7 @@ function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
 
 %% Remarks
 % This function first tries to find mydata_my_pet in local directory entries (typically only for curators); 
-% in failure, it downloads it from the web via powershell function wget
+% in failure, it downloads it from the web via powershell function wget.
 % Make sure the your current directory does not have mydata_my_pet.m, since this file will be overwritten and deleted.
 
  get_mydata_my_pet(my_pet); % write mydata_my_pet

@@ -17,7 +17,7 @@ function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
 %
 % Output:
 %
-% * data:     cell array with emperical data
+% * data:     cell array with empirical data
 % * auxdata:  cell array with auxiliary data
 % * metaData: cell array with meta-data
 % * txtData:  cell array with text labels for data
@@ -25,7 +25,7 @@ function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
 
 %% Remarks
 % This function first tries to find mydata_my_pet in local directory entries (typically only for curators); 
-% in failure, it downloads it from the web via powershell function wget
+% in failure, it downloads it from the web via powershell function wget.
 % Make sure the your current directory does not have mydata_my_pet.m, since this file will be overwritten and deleted.
 
  get_mydata_my_pet(my_pet); % write mydata_my_pet
