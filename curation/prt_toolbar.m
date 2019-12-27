@@ -23,11 +23,11 @@ function  prt_toolbar
 % prt_toolbar([2019 12 27]) if you wish to print in the current folder
 
 tb = []; tbb = []; tbt = []; % initialize
-% insert "?", which is below replaced by '', or '../' or '../../'
+% insert "??", which is below replaced by '', or '../' or '../../'
 % head
 tb = [tb, '  <div id="top">\n'];
 tb = [tb, '    <div class="logo">\n'];		
-tb = [tb, '      <a href="http://www.bio.vu.nl/thb/deb/deblab/"><img src="?img/bannercycle.png"  height = "60px"></a>\n'];
+tb = [tb, '      <a href="http://www.bio.vu.nl/thb/deb/deblab/"><img src="??img/bannercycle.png"  height = "60px"></a>\n'];
 tb = [tb, '    </div>\n\n'];
 
 tb = [tb, '    <div id="navwrapper">\n'];
@@ -46,25 +46,25 @@ tb = [tb, '      </div>\n\n'];
 tb = [tb, '      <div class = "dropdown">\n'];
 tb = [tb, '        <button onclick="showDropdown(''context'')" class="dropbtn">CONTEXT</button>\n'];
 tb = [tb, '        <div id="context" class="dropdown-content">\n'];
-tb = [tb, '          <a href="?index.html">AmP Portal</a>\n'];
+tb = [tb, '          <a href="??index.html">AmP Portal</a>\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure" target="_blank">AmP Estimation</a>\n'];
 tb = [tb, '          <a href="https://add-my-pet.github.io/AmPtool/docs/index.html" target="_blank">AmP Tool</a>\n'];
-tb = [tb, '          <a href="?AmPeco.html">AmP Ecology</a>\n'];
-tb = [tb, '          <a href="?phyla.html">Phyla</a>\n'];
-tb = [tb, '          <a href="?pars.html">Parameters</a>\n'];
-tb = [tb, '          <a href="?patterns.html">Patterns</a>\n'];
-tb = [tb, '          <a href="?about.html">About</a>\n'];
+tb = [tb, '          <a href="??AmPeco.html">AmP Ecology</a>\n'];
+tb = [tb, '          <a href="??phyla.html">Phyla</a>\n'];
+tb = [tb, '          <a href="??pars.html">Parameters</a>\n'];
+tb = [tb, '          <a href="??patterns.html">Patterns</a>\n'];
+tb = [tb, '          <a href="??about.html">About</a>\n'];
 tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];
 	
 tb = [tb, '      <div class = "dropdown">'];
 tb = [tb, '        <button onclick="showDropdown(''collection'')" class="dropbtn">COLLECTION</button>\n'];
 tb = [tb, '        <div id="collection" class="dropdown-content">\n'];
-tb = [tb, '          <a href="?species_list.html">Species List</a>\n'];
-tb = [tb, '          <a href="?species_tree_Animalia.html">Species Tree</a>\n'];
-tb = [tb, '          <a href="?species_names.html">Species Names</a>\n'];
-tb = [tb, '          <a href="?authors.html">Authors</a>\n'];
-tb = [tb, '          <a href="?pie_pSGJRi.html">Energy Budgets</a>\n'];
+tb = [tb, '          <a href="??species_list.html">Species List</a>\n'];
+tb = [tb, '          <a href="??species_tree_Animalia.html">Species Tree</a>\n'];
+tb = [tb, '          <a href="??species_names.html">Species Names</a>\n'];
+tb = [tb, '          <a href="??authors.html">Authors</a>\n'];
+tb = [tb, '          <a href="??pie_pSGJRi.html">Energy Budgets</a>\n'];
 img_zip = '<IMG SRC="?img/zipicon.png" WIDTH="30px"  BORDER="0">';
 table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
 tb = [tb, '          <a href="?AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
@@ -86,9 +86,9 @@ tbb = [tbb, '      </div>\n\n'];
 tbt = [tbt, '      <div class = "dropdown">\n'];
 tbt = [tbt, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPLICATIONS</button>\n'];
 tbt = [tbt, '        <div id="applications" class="dropdown-content">\n'];
-tbt = [tbt, '          <a href="?popDyn/popDyn.html">Population Dynamics</a>\n'];
-tbt = [tbt, '          <a href="?physBiol/physBiol.html">Physical Biology</a>\n'];
-tbt = [tbt, '          <a href="?ecoTox/ecoTox.html">Ecotoxicity</a>\n'];
+tbt = [tbt, '          <a href="??popDyn/popDyn.html">Population Dynamics</a>\n'];
+tbt = [tbt, '          <a href="??physBiol/physBiol.html">Physical Biology</a>\n'];
+tbt = [tbt, '          <a href="??ecoTox/ecoTox.html">Ecotoxicity</a>\n'];
 tbt = [tbt, '        </div>\n'];
 tbt = [tbt, '      </div>\n\n'];
 
@@ -102,11 +102,11 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 
-fprintf(oid_amp, strrep([tb, tbt], '?', ''));
-fprintf(oid_budget, strrep([tb, tbb, tbt], '?', ''));
-fprintf(oid_app, strrep([tb, tbt], '?', '../'));
-fprintf(oid_entry, strrep([tb, tbt], '?', '../../'));
-fprintf(oid_AmPtool, strrep([tb, tbt], '?', 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/'));
+fprintf(oid_amp, strrep([tb, tbt], '??', ''));
+fprintf(oid_budget, strrep([tb, tbb, tbt], '??', ''));
+fprintf(oid_app, strrep([tb, tbt], '??', '../'));
+fprintf(oid_entry, strrep([tb, tbt], '??', '../../'));
+fprintf(oid_AmPtool, strrep([tb, tbt], '??', 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/'));
 
 fclose all;
 
