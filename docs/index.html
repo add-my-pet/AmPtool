@@ -56,6 +56,13 @@
     The primary parameters are given at <code>T_ref = 20</code> C, but only those with time in their dimensions depend on temperature.
 
     <p>
+    Empirical data is only stored in the mydata-files, so not collected in some huge structure.
+    One way to get this data is to copy a mydata-file to local and run it; mydata-files require no input.
+    Function <a href = "../curation/html/get_data.html">get_data</a> does the same and deletes the local mydata-file after running it:
+    <code>vars_pull(get_data('Daphnia_magna'))</code> assigns all data specified in <code>mydata_Daphnia_magna.m</code> directly to variables in your work directory.
+    The rest of this guidance page focusses on meta-data and derived data: parameters, meta-parameters and implied traits.
+
+    <p>
     All functions that analyse data read in <code>allStat</code>, using function 
       <a href="../html/read_allStat.html">read_allStat</a> or <a href="../html/read_stat.html">read_stat</a>.
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code>; convert to temperature <code>T_ref</code> with
@@ -67,7 +74,7 @@
     Subfields <b>ecoCode</b> in <code>allStat</code> specifies climate, ecozone, habitat, embryo environment, 
       migration/torpor, food, gender and reproduction mode for each entry.
     The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned in the mydata-files.
-    All functions that analyse data use function 
+    All functions that analyse eco-codes use function 
       <a href="../html/read_allEco.html">read_allEco</a> or <a href="../html/read_eco.html">read_eco</a>.
    
     <p>
