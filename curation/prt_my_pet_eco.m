@@ -3,7 +3,7 @@
 
 %%
 function prt_my_pet_eco(metaData, metaPar, destinationFolder)
-% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05
+% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05, 2019/12/28
 
 %% Syntax
 % <prt_my_pet_eco *prt_my_pet_eco*>(metaData, metaPar, destinationFolder)
@@ -21,7 +21,6 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 % Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
 % This latter function reads codes and labels in url AmPeco.html.
 % Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists.
-% This function is also called by update_eco.
 
 global eco_types
 
@@ -33,10 +32,9 @@ end
 species = metaData.species; family = metaData.family; order = metaData.order; class = metaData.class; phylum = metaData.phylum; 
 COMPLETE = metaData.COMPLETE;
 model = metaPar.model; MRE = metaPar.MRE; SMSE = metaPar.SMSE;
+vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
 
 oid = fopen([destinationFolder, species, '_res.html'], 'a'); % open file for appending
-
-[climate, ecozone, habitat, embryo, migrate, food, gender, reprod] = get_eco(species);
 
 % write eco-labels in hover-text of eco-codes in html
 % climate

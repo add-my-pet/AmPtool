@@ -6,23 +6,20 @@ function  prt_toolbar
 % created 2019/12/22 Bas Kooijman
 
 %% Syntax
-% <../prt_toolbar.m *prt_toolbar*> (destinationFolder)
+% <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
 % Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html 
-%
-% Input:
-%
-% * destinationFolder: optional string with destination folder the files are printed to (default: current folder)
 
 %% Remarks
 % Sync Github after running this file
 % Indent of 2 spaces used for printing to html page
 
 %% Example of use
-% prt_toolbar([2019 12 27]) if you wish to print in the current folder
+% prt_toolbar 
 
-tb = []; tbb = []; tbt = []; % initialize
+tb = []; tbb = []; tbt = []; % initialize character vectors
+
 % insert "??", which is below replaced by '', or '../' or '../../'
 % head
 tb = [tb, '  <div id="top">\n'];

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_my_pet_eco.m"><style type="text/css">
+      --><title>prt_my_pet_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-28"><meta name="DC.source" content="prt_my_pet_eco.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,14 +66,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_eco</h1><!--introduction--><p>writes html table with model, COMPLETE, MRE, SMRE  and eco-codes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_my_pet_eco"><b>prt_my_pet_eco</b></a>(metaData, metaPar, destinationFolder)</p><h2 id="4">Description</h2><p>Writes html table with model, MRE, SMRE, COMPLETE, eco-codes, classification</p><p>Input:</p><div><ul><li>metaData: structure as specified by results_my_pet.mat in directory entries</li><li>metaPar: structure as specified by results_my_pet.mat in directory entries</li><li>destinationFolder: specification of destination folder</li></ul></div><h2 id="5">Remarks</h2><p>Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types. This latter function reads codes and labels in url AmPeco.html. Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists. This function is also called by update_eco.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_eco</h1><!--introduction--><p>writes html table with model, COMPLETE, MRE, SMRE  and eco-codes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_my_pet_eco"><b>prt_my_pet_eco</b></a>(metaData, metaPar, destinationFolder)</p><h2 id="4">Description</h2><p>Writes html table with model, MRE, SMRE, COMPLETE, eco-codes, classification</p><p>Input:</p><div><ul><li>metaData: structure as specified by results_my_pet.mat in directory entries</li><li>metaPar: structure as specified by results_my_pet.mat in directory entries</li><li>destinationFolder: specification of destination folder</li></ul></div><h2 id="5">Remarks</h2><p>Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types. This latter function reads codes and labels in url AmPeco.html. Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_eco
 % writes html table with model, COMPLETE, MRE, SMRE  and eco-codes
 
 %%
 function prt_my_pet_eco(metaData, metaPar, destinationFolder)
-% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05
+% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05, 2019/12/28
 
 %% Syntax
 % <prt_my_pet_eco *prt_my_pet_eco*>(metaData, metaPar, destinationFolder)
@@ -91,7 +91,6 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 % Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
 % This latter function reads codes and labels in url AmPeco.html.
 % Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists.
-% This function is also called by update_eco.
 
 global eco_types
 
@@ -103,10 +102,9 @@ end
 species = metaData.species; family = metaData.family; order = metaData.order; class = metaData.class; phylum = metaData.phylum; 
 COMPLETE = metaData.COMPLETE;
 model = metaPar.model; MRE = metaPar.MRE; SMSE = metaPar.SMSE;
+vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
 
 oid = fopen([destinationFolder, species, '_res.html'], 'a'); % open file for appending
-
-[climate, ecozone, habitat, embryo, migrate, food, gender, reprod] = get_eco(species);
 
 % write eco-labels in hover-text of eco-codes in html
 % climate

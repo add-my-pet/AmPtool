@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_toolbar</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_toolbar.m"><style type="text/css">
+      --><title>prt_toolbar</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-28"><meta name="DC.source" content="prt_toolbar.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_toolbar</h1><!--introduction--><p>prints the menu bar that is used for the whole collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_toolbar.m"><b>prt_toolbar</b></a> (destinationFolder)</p><h2 id="4">Description</h2><p>Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html</p><p>Input:</p><div><ul><li>destinationFolder: optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>Sync Github after running this file Indent of 2 spaces used for printing to html page</p><h2 id="6">Example of use</h2><p>prt_toolbar([2019 12 27]) if you wish to print in the current folder</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_toolbar</h1><!--introduction--><p>prints the menu bar that is used for the whole collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_toolbar.m"><b>prt_toolbar</b></a></p><h2 id="4">Description</h2><p>Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html</p><h2 id="5">Remarks</h2><p>Sync Github after running this file Indent of 2 spaces used for printing to html page</p><h2 id="6">Example of use</h2><p>prt_toolbar</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_toolbar
 % prints the menu bar that is used for the whole collection
@@ -76,28 +76,25 @@ function  prt_toolbar
 % created 2019/12/22 Bas Kooijman
 
 %% Syntax
-% <../prt_toolbar.m *prt_toolbar*> (destinationFolder)
+% <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
 % Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html 
-%
-% Input:
-%
-% * destinationFolder: optional string with destination folder the files are printed to (default: current folder)
 
 %% Remarks
 % Sync Github after running this file
 % Indent of 2 spaces used for printing to html page
 
 %% Example of use
-% prt_toolbar([2019 12 27]) if you wish to print in the current folder
+% prt_toolbar 
 
-tb = []; tbb = []; tbt = []; % initialize
-% insert "?", which is below replaced by '', or '../' or '../../'
+tb = []; tbb = []; tbt = []; % initialize character vectors
+
+% insert "??", which is below replaced by '', or '../' or '../../'
 % head
 tb = [tb, '  <div id="top">\n'];
 tb = [tb, '    <div class="logo">\n'];		
-tb = [tb, '      <a href="http://www.bio.vu.nl/thb/deb/deblab/"><img src="img/bannercycle.png"  height = "60px"></a>\n'];
+tb = [tb, '      <a href="http://www.bio.vu.nl/thb/deb/deblab/"><img src="??img/bannercycle.png"  height = "60px"></a>\n'];
 tb = [tb, '    </div>\n\n'];
 
 tb = [tb, '    <div id="navwrapper">\n'];
@@ -116,26 +113,26 @@ tb = [tb, '      </div>\n\n'];
 tb = [tb, '      <div class = "dropdown">\n'];
 tb = [tb, '        <button onclick="showDropdown(''context'')" class="dropbtn">CONTEXT</button>\n'];
 tb = [tb, '        <div id="context" class="dropdown-content">\n'];
-tb = [tb, '          <a href="?index.html">AmP Portal</a>\n'];
+tb = [tb, '          <a href="??index.html">AmP Portal</a>\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure" target="_blank">AmP Estimation</a>\n'];
 tb = [tb, '          <a href="https://add-my-pet.github.io/AmPtool/docs/index.html" target="_blank">AmP Tool</a>\n'];
-tb = [tb, '          <a href="?AmPeco.html">AmP Ecology</a>\n'];
-tb = [tb, '          <a href="?phyla.html">Phyla</a>\n'];
-tb = [tb, '          <a href="?pars.html">Parameters</a>\n'];
-tb = [tb, '          <a href="?patterns.html">Patterns</a>\n'];
-tb = [tb, '          <a href="?about.html">About</a>\n'];
+tb = [tb, '          <a href="??AmPeco.html">AmP Ecology</a>\n'];
+tb = [tb, '          <a href="??phyla.html">Phyla</a>\n'];
+tb = [tb, '          <a href="??pars.html">Parameters</a>\n'];
+tb = [tb, '          <a href="??patterns.html">Patterns</a>\n'];
+tb = [tb, '          <a href="??about.html">About</a>\n'];
 tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];
 	
 tb = [tb, '      <div class = "dropdown">'];
 tb = [tb, '        <button onclick="showDropdown(''collection'')" class="dropbtn">COLLECTION</button>\n'];
 tb = [tb, '        <div id="collection" class="dropdown-content">\n'];
-tb = [tb, '          <a href="?species_list.html">Species List</a>\n'];
-tb = [tb, '          <a href="?species_tree_Animalia.html">Species Tree</a>\n'];
-tb = [tb, '          <a href="?species_names.html">Species Names</a>\n'];
-tb = [tb, '          <a href="?authors.html">Authors</a>\n'];
-tb = [tb, '          <a href="?pie_pSGJRi.html">Energy Budgets</a>\n'];
-img_zip = '<IMG SRC="img/zipicon.png" WIDTH="30px"  BORDER="0">';
+tb = [tb, '          <a href="??species_list.html">Species List</a>\n'];
+tb = [tb, '          <a href="??species_tree_Animalia.html">Species Tree</a>\n'];
+tb = [tb, '          <a href="??species_names.html">Species Names</a>\n'];
+tb = [tb, '          <a href="??authors.html">Authors</a>\n'];
+tb = [tb, '          <a href="??pie_pSGJRi.html">Energy Budgets</a>\n'];
+img_zip = '<IMG SRC="?img/zipicon.png" WIDTH="30px"  BORDER="0">';
 table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
 tb = [tb, '          <a href="?AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
 tb = [tb, '        </div>\n'];
@@ -156,9 +153,9 @@ tbb = [tbb, '      </div>\n\n'];
 tbt = [tbt, '      <div class = "dropdown">\n'];
 tbt = [tbt, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPLICATIONS</button>\n'];
 tbt = [tbt, '        <div id="applications" class="dropdown-content">\n'];
-tbt = [tbt, '          <a href="?popDyn/popDyn.html">Population Dynamics</a>\n'];
-tbt = [tbt, '          <a href="?physBiol/physBiol.html">Physical Biology</a>\n'];
-tbt = [tbt, '          <a href="?ecoTox/ecoTox.html">Ecotoxicity</a>\n'];
+tbt = [tbt, '          <a href="??popDyn/popDyn.html">Population Dynamics</a>\n'];
+tbt = [tbt, '          <a href="??physBiol/physBiol.html">Physical Biology</a>\n'];
+tbt = [tbt, '          <a href="??ecoTox/ecoTox.html">Ecotoxicity</a>\n'];
 tbt = [tbt, '        </div>\n'];
 tbt = [tbt, '      </div>\n\n'];
 
@@ -172,11 +169,11 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 
-fprintf(oid_amp, strrep([tb, tbt], '?', ''));
-fprintf(oid_budget, strrep([tb, tbb, tbt], '?', ''));
-fprintf(oid_app, strrep([tb, tbt], '?', '../'));
-fprintf(oid_entry, strrep([tb, tbt], '?', '../../'));
-fprintf(oid_AmPtool, strrep([tb, tbt], '?', 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/'));
+fprintf(oid_amp, strrep([tb, tbt], '??', ''));
+fprintf(oid_budget, strrep([tb, tbb, tbt], '??', ''));
+fprintf(oid_app, strrep([tb, tbt], '??', '../'));
+fprintf(oid_entry, strrep([tb, tbt], '??', '../../'));
+fprintf(oid_AmPtool, strrep([tb, tbt], '??', 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/'));
 
 fclose all;
 
