@@ -52,7 +52,7 @@ for i = 1:nargin
   mkdir(destinationFolder);
   fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
   
-  cd(['../../entries/', varargin{i}]) % goto entry i in dir entries
+  cd(['../../add_my_pet/entries/', varargin{i}]) % goto entry i in dir entries
 
   feval(['run_', varargin{i}]); close all;
   load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
@@ -62,14 +62,14 @@ for i = 1:nargin
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
   cd(WD) % goto orginal path, but print to destinationFolder
 
-  cd('../../entries_zip');
+  cd('../../add_my_pet/entries_zip');
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
   cd(WD)  % goto original path    
   
   % print files
-  prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc, destinationFolder) % my_pet_toolbar.html
+  prt_my_pet_toolbar(varargin{i}, destinationFolder) % my_pet_toolbar.html
   prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
   bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
   prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
@@ -79,7 +79,7 @@ for i = 1:nargin
    
   % get reprodCode, which is used in prt_my_pet_pop
   close all
-  [~, ~, ~, ~, ~, ~, ~, reprodCode] = get_eco(varargin{i});
+  reprodCode = metaData.ecoCode.reprod;
   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
     prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
   else
