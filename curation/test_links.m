@@ -22,7 +22,7 @@ function [info, id] = test_links(my_pet)
 
 %% Remarks
 % Uses <get_links.html *get_links*> to get links
-% Warning: EoL returns true, even if entry is not found
+% Warning: EoL and Wiki return false, since these sites do not allow urlread
 
 %% Example of use
 % test_link('Daphnia_magna')
