@@ -62,9 +62,9 @@ tb = [tb, '          <a href="??species_tree_Animalia.html">Species Tree</a>\n']
 tb = [tb, '          <a href="??species_names.html">Species Names</a>\n'];
 tb = [tb, '          <a href="??authors.html">Authors</a>\n'];
 tb = [tb, '          <a href="??pie_pSGJRi.html">Energy Budgets</a>\n'];
-img_zip = '<IMG SRC="?img/zipicon.png" WIDTH="30px"  BORDER="0">';
+img_zip = '<IMG SRC="??img/zipicon.png" WIDTH="30px"  BORDER="0">';
 table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
-tb = [tb, '          <a href="?AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
+tb = [tb, '          <a href="??AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
 tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];	
 
