@@ -3,7 +3,7 @@
 
 %%
 function codes = read_eco(entries, varargin)
-% created 2018/05/10 by Bas Kooijman
+% created 2018/05/10 by Bas Kooijman, modified 2019/12/29
 
 %% Syntax
 % codes = <../read_eco.m *read_eco*>(entries, varargin)
@@ -26,10 +26,10 @@ function codes = read_eco(entries, varargin)
 %% Example of use
 % embryo = read_eco(select('Aves'), 'embryo'); 
   
-  persistent allEco
+  persistent allStat
   
-  if ~exist('allEco','var') || length(allEco) == 0
-    load('allEco')        % get all parameters and statistics in structure allStat
+  if ~exist('allStat','var') || length(allStat) == 0
+    load('allstat')        % get all parameters and statistics in structure allStat
   end
   
   n = length(entries); 
@@ -49,7 +49,7 @@ function codes = read_eco(entries, varargin)
   
   for i = 1:n
     for j = 1:nargin
-      codes{i,j} = allEco.(entries{i}).(varargin{j});
+      codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
     end
   end
   

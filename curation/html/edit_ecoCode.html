@@ -1,0 +1,175 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>edit_ecoCode</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-29"><meta name="DC.source" content="edit_ecoCode.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>edit_ecoCode</h1><!--introduction--><p>changes one or more ecoCodes in mydata_my_pet.m, results_my_pet.mat, my_pet_yyyymmdd.zip and my_pet_res.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../edit_ecoCode.m"><b>edit_ecoCode</b></a> (my_pet, code)</p><h2 id="4">Description</h2><p>changes one or more ecoCodes in mydata_my_pet.m, results_my_pet.mat, my_pet.zip and my_pet_toolbar.html</p><p>Input:</p><div><ul><li>my_pet: character string with name of entry</li><li>code: (n,2)-cell array with fields and values, as in metaData.ecoCode.field of mydata</li></ul></div><h2 id="5">Remarks</h2><p>fields and codes must occur in <a href="www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html"><b>AmPeco</b></a> Run run_collection_intro to update allStat.mat and AmPdata. Sync files with server after running this function</p><h2 id="6">Example of use</h2><p>edit_ecoCode('Abramis_brama', {'climate', {'Cfb', 'Dfb'}})</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% edit_ecoCode
+% changes one or more ecoCodes in mydata_my_pet.m, results_my_pet.mat, my_pet_yyyymmdd.zip and my_pet_res.html
+
+%%
+function edit_ecoCode(my_pet, code)
+% created 2019/12/26 Bas Kooijman
+
+%% Syntax
+% <../edit_ecoCode.m *edit_ecoCode*> (my_pet, code)
+
+%% Description
+% changes one or more ecoCodes in mydata_my_pet.m, results_my_pet.mat, my_pet.zip and my_pet_toolbar.html
+%
+% Input:
+%
+% * my_pet: character string with name of entry
+% * code: (n,2)-cell array with fields and values, as in metaData.ecoCode.field of mydata
+
+%% Remarks
+% fields and codes must occur in <www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html *AmPeco*> 
+% Run run_collection_intro to update allStat.mat and AmPdata.
+% Sync files with server after running this function 
+
+%% Example of use
+% edit_ecoCode('Abramis_brama', {'climate', {'Cfb', 'Dfb'}})
+
+  eol = char([13 10]); % end-of-line in .m files
+  n = size(code, 1);
+
+  WD = pwd; % store current path
+  cd(['../../add_my_pet/entries/', my_pet]); % goto dir entries
+
+  % write mydata_my_pet.m
+  mydata = fileread(['mydata_', my_pet, '.m']);
+  for i = 1:n
+    ecoCode = code{i,2}; ni = length(ecoCode); txt = '{';
+    for j = 1:ni
+      txt = [txt, '''', ecoCode{j},''','];
+    end
+    txt(end) = []; txt = [txt, '};'];
+    in0 = strfind(mydata, ['metaData.ecoCode.', code{i,1}]);
+    in = strfind(mydata(in0:end), ' = '); in0 = in0 + in(1);
+    in1 = in0 + strfind(mydata(in0:end), eol); in1 = in1(1)-1;
+    mydata = [mydata(1:in0+1), txt, mydata(in1:end)];
+  end
+  oid = fopen(['mydata_', my_pet, '.m'], 'w+'); 
+  fprintf(oid, '%s', mydata);
+  fclose(oid);
+    
+  % write results_my_pet.mat
+  load(['results_', my_pet]);
+  eval(['[~, ~, metaData, ~, ~] = mydata_', my_pet,';']);
+  save(['results_', my_pet, '.mat'], 'par', 'txtPar', 'metaPar', 'metaData');
+    
+  % write my_pet_yyyymmdd.zip
+  cd('../../entries_zip');
+  nms = cellstr(ls);
+  nm = nms(~cellfun(@isempty,strfind(nms, my_pet)));
+  unzip(nm{1}); % creates folder that will be removed
+  cd(my_pet)
+  oid = fopen(['mydata_', my_pet, '.m'], 'w+'); 
+  fprintf(oid, '%s', mydata);
+  fclose(oid);
+  cd ../; % go to entries_zip
+  zip(nm{1}, my_pet); 
+  rmdir(my_pet,'s');
+  
+  % write my_pet_res.html
+  % get head, table_old and tail
+  cd(['../../entries_web/', my_pet]);
+  % get head, tail and old table from my_pet_res.html
+  my_pet_res = fileread([my_pet, '_res.html']);
+  table_start = strfind(my_pet_res,'<table>'); head = my_pet_res(1:table_start - 7); % notice removal of leading spaces to get outline correct
+  table_end = 8 + strfind(my_pet_res,'</table>'); tail = my_pet_res(table_end:end);
+  table_old = my_pet_res(table_start:table_end); % text with old table only
+  % 
+  % get model, COMPLETE, MRE, and SMSE from old table; notice that pieces of text are deleted after reading
+  % model 
+  index = 10 + strfind(table_old,'Model: </a>');     table_old(1:index) = []; model = table_old(1: strfind(table_old, '</td>') - 1);
+  % COMPLETE
+  index = 14 + strfind(table_old,'COMPLETE</a> = '); table_old(1:index) = []; COMPLETE = str2num(table_old(1: strfind(table_old, '</td>') - 1));
+  % MRE
+  index = 10 + strfind(table_old,'MRE</a> = ');      table_old(1:index) = []; MRE = str2num(table_old(1: strfind(table_old, '</td>') - 1));
+  % SMSE
+  index = 11 + strfind(table_old,'SMSE</a> = ');     table_old(1:index) = []; SMSE = str2num(table_old(1: strfind(table_old, '</td>') - 1));
+  %
+  % write head, table_new and tail
+  fileName = [my_pet, '_res.html'];   
+  % head
+  oid = fopen(fileName, 'w+');   % open file for reading and writing, delete existing content
+  fprintf(oid, '%s', head);
+  fclose(oid);
+  % new table
+  prt_my_pet_eco(metaData, metaPar, ''); % write new table
+  % tail
+  oid = fopen(fileName, 'a');    % open file for appending
+  fprintf(oid, '%s', tail);
+  fclose(oid);
+
+  cd(WD)
+
+  
+
+##### SOURCE END #####
+--></body></html>

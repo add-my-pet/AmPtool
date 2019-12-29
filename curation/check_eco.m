@@ -57,62 +57,62 @@ stage = { ...
 
 for i = 1:n % scan entries
   load(['../../add_my_pet/entries/', varargin{i}, '/results_', varargin{i}])
-  ecoCode = metaData.ecoCode; % keep structure since ecoCode.reprod conflicts with function reprod
+  reprod = ''; vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod]
  
-  n_C = length(ecoCode.climate);
+  n_C = length(climate);
   for j = 1:n_C 
-    if ~ismember(ecoCode.climate{j},C)
-      fprintf(['Warning from check_eco for ', varargin{i}, ': the climate-code ', ecoCode.climate{j}, ' is not recognized\n']);
+    if ~ismember(climate{j},C)
+      fprintf(['Warning from check_eco for ', varargin{i}, ': the climate-code ', climate{j}, ' is not recognized\n']);
     end
   end
 
-  n_E = length(ecoCode.ecozone);
+  n_E = length(ecozone);
   for j = 1:n_E 
-    if ~ismember(ecoCode.ecozone{j},E)
-      fprintf(['Warning from check_eco for ', varargin{i}, ': the ecozone-code ', ecoCode.ecozone{j}, ' is not recognized\n']);
+    if ~ismember(ecozone{j},E)
+      fprintf(['Warning from check_eco for ', varargin{i}, ': the ecozone-code ', ecozone{j}, ' is not recognized\n']);
     end
   end
 
-  n_H = length(ecoCode.habitat);
+  n_H = length(habitat);
   for j = 1:n_H 
-    code = ecoCode.habitat{j}; code_stage = code(1:2); code_H = code(3:end);
+    code = habitat{j}; code_stage = code(1:2); code_H = code(3:end);
     if ~ismember(code_H,H) || ~ismember(code_stage,stage)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the habitat-code ', code, ' is not recognized\n']);
     end
   end
 
-  n_B = length(ecoCode.embryo);
+  n_B = length(embryo);
   for j = 1:n_B 
-    if ~ismember(ecoCode.embryo{j},B)
-      fprintf(['Warning from check_eco for ', varargin{i}, ': the embryo-code ', ecoCode.embryo{j}, ' is not recognized\n']);
+    if ~ismember(embryo{j},B)
+      fprintf(['Warning from check_eco for ', varargin{i}, ': the embryo-code ', embryo{j}, ' is not recognized\n']);
     end
   end
 
-  n_M = length(ecoCode.migrate);
+  n_M = length(migrate);
   for j = 1:n_M 
-    if ~ismember(ecoCode.migrate{j},M)
-      fprintf(['Warning from check_eco for ', varargin{i}, ': the migrate-code ', ecoCode.migrate{j}, ' is not recognized\n']);
+    if ~ismember(migrate{j},M)
+      fprintf(['Warning from check_eco for ', varargin{i}, ': the migrate-code ', migrate{j}, ' is not recognized\n']);
     end
   end
 
-  n_F = length(ecoCode.food);
+  n_F = length(food);
   for j = 1:n_F 
-    code = ecoCode.food{j}; code_stage = code(1:2); code_F = code(3:end);
+    code = food{j}; code_stage = code(1:2); code_F = code(3:end);
     if ~ismember(code_F,F) || ~ismember(code_stage,stage) || ~isempty(strfind(code_stage,'0'))
       fprintf(['Warning from check_eco for ', varargin{i}, ': the food-code ', code, ' is not recognized\n']);
     end
   end
 
-  n_G = length(ecoCode.gender);
+  n_G = length(gender);
   for j = 1:n_G 
-    if ~ismember(ecoCode.gender{j},G)
+    if ~ismember(gender{j},G)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the gender-code ', ecoCode.gender{j}, ' is not recognized\n']);
     end
   end
 
-  n_R = length(ecoCode.reprod);
+  n_R = length(reprod);
   for j = 1:n_R 
-   if ~ismember(ecoCode.reprod{j},R)
+   if ~ismember(reprod{j},R)
      fprintf(['Warning from check_eco for ', varargin{i}, ': the reprod-code ', ecoCode.reprod{j}, ' is not recognized\n']);
    end
   end

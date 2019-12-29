@@ -32,7 +32,7 @@ end
 species = metaData.species; family = metaData.family; order = metaData.order; class = metaData.class; phylum = metaData.phylum; 
 COMPLETE = metaData.COMPLETE;
 model = metaPar.model; MRE = metaPar.MRE; SMSE = metaPar.SMSE;
-vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
+reprod = ''; vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
 
 oid = fopen([destinationFolder, species, '_res.html'], 'a'); % open file for appending
 
