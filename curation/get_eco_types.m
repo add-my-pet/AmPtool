@@ -2,7 +2,7 @@
 % copies ecotypes from AmPeco.html to global eco_types
 %%
 function get_eco_types(localPath)
-% created 2018/04/12 by Bas Kooijman, modified 2018/06/02
+% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29
 
 %% Syntax
 % <../get_eco_types.m *get_eco_types*>(localPath)
@@ -31,7 +31,9 @@ global eco_types
 if exist('localPath','var')
   url = fileread([localPath, 'AmPeco.html']);
 else
-  url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html');
+  % url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); % gives error
+  eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+  url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
 
 % climate

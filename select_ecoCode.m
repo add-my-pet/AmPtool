@@ -45,8 +45,13 @@ global eco_types
 
 % make labels for types
 if isempty(eco_types)
-   get_eco_types('../../')
+   try
+     get_eco_types('../../') % local path, assuming AmPtool/curation 
+   catch
+     get_eco_types % via web
+   end
 end
+
 types = fieldnames(eco_types); 
 typeCode = {'C','E','H','E','M','F','G','R'};
 typeLabels = types; n_types = length(types);
