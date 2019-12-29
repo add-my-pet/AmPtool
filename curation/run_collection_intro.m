@@ -13,8 +13,7 @@ WD = pwd;
 path = which('run_collection'); ind = strfind(path,'\');
 cd(path(1:ind(end)));
 
-clear all; % allStat is persistent in read_allStat and read_stat
-
+% allStat and popStat are made persistent 
 write_allStat;     load ../../add_my_pet/AmPdata/allStat
 write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
 filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
@@ -28,6 +27,8 @@ prt_pars;
 prt_patterns;
 prt_pie_SGGJR;
 prt_about;
+
+cd(WD);
 
 %% cp files to server after running this script
 

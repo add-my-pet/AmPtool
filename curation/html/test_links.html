@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>test_links</h1><!--introduction--><p>tests links to web-pages for AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[info, id] = <a href="../test_links.m"><b>test_links</b></a>(my_pet)</p><h2 id="4">Description</h2><p>gets cell strings with links and descriptions for an entry</p><p>Input:</p><div><ul><li>my_pet: character  with name of an entry</li></ul></div><p>Output:</p><div><ul><li>info: (n,1)-array with booleans for true or false</li><li>id: (n,1)-cell array with short names of website</li></ul></div><h2 id="5">Remarks</h2><p>Uses <a href="get_links.html"><b>get_links</b></a> to get links Warning: EoL and Wiki return false, since these sites do not allow urlread</p><h2 id="6">Example of use</h2><p>test_link('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>test_links</h1><!--introduction--><p>tests links to web-pages for AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[info, id] = <a href="../test_links.m"><b>test_links</b></a>(my_pet)</p><h2 id="4">Description</h2><p>gets cell strings with links and descriptions for an entry</p><p>Input:</p><div><ul><li>my_pet: character with name of an entry</li></ul></div><p>Output:</p><div><ul><li>info: (n,1)-array with booleans for true or false</li><li>id: (n,1)-cell array with short names of website</li></ul></div><h2 id="5">Remarks</h2><p>Uses <a href="get_links.html"><b>get_links</b></a> to get links. Warning: EoL results in true, even if it should be false</p><h2 id="6">Example of use</h2><p>test_link('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% test_links
 % tests links to web-pages for AmP entries
@@ -83,7 +83,7 @@ function [info, id] = test_links(my_pet)
 %
 % Input:
 %
-% * my_pet: character  with name of an entry
+% * my_pet: character with name of an entry
 %
 % Output:
 %
@@ -91,11 +91,15 @@ function [info, id] = test_links(my_pet)
 % * id: (n,1)-cell array with short names of website
 
 %% Remarks
-% Uses <get_links.html *get_links*> to get links
-% Warning: EoL and Wiki return false, since these sites do not allow urlread
+% Uses <get_links.html *get_links*> to get links.
+% Warning: EoL results in true, even if it should be false
 
 %% Example of use
 % test_link('Daphnia_magna')
+
+WD = pwd;
+path = which('run_collection'); ind = strfind(path,'\');
+cd(path(1:ind(end)));
 
 [links, id] = get_links(my_pet); n = size(links,1);
 id = fieldnames(id); info = false(n,1);
@@ -103,7 +107,12 @@ txt = strsplit(my_pet, '_'); txt = txt(2);
 
 for i=1:n
     try 
-      url = urlread(links{i,1});
+      if strcmp(id{i},'id_WoRMS')
+        url = urlread(links{i,1});
+      else % WoRMS gives lots of output if copied via wget
+        eval(['!powershell wget ', links{i,1}, ' -O url_local.html;']);
+        url = fileread('url_local.html'); 
+      end
       in = strfind(url, txt);
       info(i) = in(1) > 0;
     catch
@@ -111,6 +120,7 @@ for i=1:n
     end      
 end
 
-
+delete('url_local.html');
+cd (WD);
 ##### SOURCE END #####
 --></body></html>

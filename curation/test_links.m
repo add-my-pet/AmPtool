@@ -13,7 +13,7 @@ function [info, id] = test_links(my_pet)
 %
 % Input:
 %
-% * my_pet: character  with name of an entry
+% * my_pet: character with name of an entry
 %
 % Output:
 %
@@ -21,11 +21,15 @@ function [info, id] = test_links(my_pet)
 % * id: (n,1)-cell array with short names of website
 
 %% Remarks
-% Uses <get_links.html *get_links*> to get links
-% Warning: EoL and Wiki return false, since these sites do not allow urlread
+% Uses <get_links.html *get_links*> to get links.
+% Warning: EoL results in true, even if it should be false
 
 %% Example of use
 % test_link('Daphnia_magna')
+
+WD = pwd;
+path = which('run_collection'); ind = strfind(path,'\');
+cd(path(1:ind(end)));
 
 [links, id] = get_links(my_pet); n = size(links,1);
 id = fieldnames(id); info = false(n,1);
@@ -33,7 +37,12 @@ txt = strsplit(my_pet, '_'); txt = txt(2);
 
 for i=1:n
     try 
-      url = urlread(links{i,1});
+      if strcmp(id{i},'id_WoRMS')
+        url = urlread(links{i,1});
+      else % WoRMS gives lots of output if copied via wget
+        eval(['!powershell wget ', links{i,1}, ' -O url_local.html;']);
+        url = fileread('url_local.html'); 
+      end
       in = strfind(url, txt);
       info(i) = in(1) > 0;
     catch
@@ -41,3 +50,5 @@ for i=1:n
     end      
 end
 
+delete('url_local.html');
+cd (WD);
