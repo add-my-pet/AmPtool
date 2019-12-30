@@ -9,9 +9,7 @@
 % run_collection(taxa-names) to generate files in entries_zip and entries_web
 % make sure to export bibtex from Zotero to debtool/DEB library.bib
 
-WD = pwd;
-path = which('run_collection'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+WD = pwd; cdCur
 
 % allStat and popStat are made persistent 
 write_allStat;     load ../../add_my_pet/AmPdata/allStat

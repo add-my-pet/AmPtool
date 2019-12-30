@@ -27,9 +27,7 @@ function [info, id] = test_links(my_pet)
 %% Example of use
 % test_link('Daphnia_magna')
 
-WD = pwd;
-path = which('run_collection'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+WD = pwd; cdCur
 
 [links, id] = get_links(my_pet); n = size(links,1);
 id = fieldnames(id); info = false(n,1);

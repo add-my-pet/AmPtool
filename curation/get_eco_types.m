@@ -28,9 +28,13 @@ function get_eco_types(localPath)
 
 global eco_types
 
-if exist('localPath','var')
+if ~exist('localPath','var')
+  localPath = '';
+end
+    
+try
   url = fileread([localPath, 'AmPeco.html']);
-else
+catch
   % url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); % gives error
   eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
