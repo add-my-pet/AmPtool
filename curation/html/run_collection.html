@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="run_collection.m"><style type="text/css">
+      --><title>run_collection</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-30"><meta name="DC.source" content="run_collection.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,7 +73,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 %%
 function run_collection(varargin)
-% created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21 Bas Kooijman
+% created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30 Bas Kooijman
 
 %% Syntax
 % <../run_collection.m *run_collection*> (varargin)
@@ -113,16 +113,14 @@ elseif iscell(varargin{1})
 end
 
 nargin = length(varargin); % number of entries to scan    
-WD = pwd; % store current path
-path = which('run_collection'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+WD = pwd; cdCur
 
 for i = 1:nargin 
-  destinationFolder = ['../../entries_web/', varargin{i},'/']; % target for html and png files
+  destinationFolder = ['../../add_my_pet/entries_web/', varargin{i},'/']; % target for html and png files
   mkdir(destinationFolder);
   fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
   
-  cd(['../../entries/', varargin{i}]) % goto entry i in dir entries
+  cd(['../../add_my_pet/entries/', varargin{i}]) % goto entry i in dir entries
 
   feval(['run_', varargin{i}]); close all;
   load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
@@ -130,16 +128,16 @@ for i = 1:nargin
   prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
-  cd(WD) % goto orginal path, but print to destinationFolder
+  cdCur % cd to curation, but print to destinationFolder
 
-  cd('../../entries_zip');
+  cd('../../add_my_pet/entries_zip');
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cd(WD)  % goto original path    
+  cdCur  % cd to curation   
   
   % print files
-  prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc, destinationFolder) % my_pet_toolbar.html
+  prt_my_pet_toolbar(varargin{i}, destinationFolder) % my_pet_toolbar.html
   prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
   bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
   prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
@@ -149,13 +147,14 @@ for i = 1:nargin
    
   % get reprodCode, which is used in prt_my_pet_pop
   close all
-  [~, ~, ~, ~, ~, ~, ~, reprodCode] = get_eco(varargin{i});
+  reprodCode = metaData.ecoCode.reprod;
   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
     prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
   else
     prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
   end
   close all
+  cd(WD)
 end
     
 
