@@ -24,7 +24,6 @@ function run_collection(varargin)
 % * 1 zip-file is written in ../entries_zip
 
 %% Remarks
-% make sure that get_eco gives non-empty values for all species in varargin.
 % run_collection_intro to generate about and access files for the collection
 
 %% Example of use
