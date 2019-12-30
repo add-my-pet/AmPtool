@@ -43,12 +43,10 @@ elseif iscell(varargin{1})
 end
 
 nargin = length(varargin); % number of entries to scan    
-WD = pwd; % store current path
-path = which('run_collection'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+WD = pwd; cdCur
 
 for i = 1:nargin 
-  destinationFolder = ['../../entries_web/', varargin{i},'/']; % target for html and png files
+  destinationFolder = ['../../add_my_pet/entries_web/', varargin{i},'/']; % target for html and png files
   mkdir(destinationFolder);
   fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
   
@@ -60,13 +58,13 @@ for i = 1:nargin
   prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
-  cd(WD) % goto orginal path, but print to destinationFolder
+  cdCur % cd to curation, but print to destinationFolder
 
   cd('../../add_my_pet/entries_zip');
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cd(WD)  % goto original path    
+  cdCur  % cd to curation   
   
   % print files
   prt_my_pet_toolbar(varargin{i}, destinationFolder) % my_pet_toolbar.html
@@ -86,5 +84,6 @@ for i = 1:nargin
     prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
   end
   close all
+  cd(WD)
 end
     
