@@ -21,11 +21,11 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
 % * par: structure with all core parameters
 % * metaPar: structure with model, MRE, SMSE
 % * txtPar: structure with units and labels for all core parameters
-% * metaData: structure with taxonomy, T_typical, COMPLETE
-
+% * metaData: structure with taxonomy, ecoCode, T_typical, COMPLETE, links
 
 %% Remarks
-% used in prt_report_my_pet
+% used in prt_report_my_pet; 
+% biblist is not in allStat, so not in output metaData
 
 %% Example of use
 % [par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');
@@ -75,4 +75,5 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
   metaData.T_typical = allStat.(my_pet).T_typical;
   metaData.COMPLETE = allStat.(my_pet).COMPLETE;
   metaData.links = allStat.(my_pet).links;
+  metaData.biblist = allStat.(my_pet).biblist;
 
