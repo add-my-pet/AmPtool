@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>allStat2par</h1><!--introduction--><p>obtain a structure with all core pars for an entry with context</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[par, metaPar, txtPar, metaData] = <a href="allStat2par"><b>allStat2par</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Read par, metaPar and metaData from allStat for entry my_pet Parameters are always expressed at T_ref</p><p>Input:</p><div><ul><li>my_pet: string with name of entry</li></ul></div><p>Output:</p><div><ul><li>par: structure with all core parameters</li><li>metaPar: structure with model, MRE, SMSE</li><li>txtPar: structure with units and labels for all core parameters</li><li>metaData: structure with taxonomy, ecoCode, T_typical, COMPLETE, links</li></ul></div><h2 id="5">Remarks</h2><p>used in prt_report_my_pet; biblist is not in allStat, so not in output metaData</p><h2 id="6">Example of use</h2><p>[par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>allStat2par</h1><!--introduction--><p>obtain a structure with all core pars for an entry with context</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[par, metaPar, txtPar, metaData] = <a href="allStat2par"><b>allStat2par</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Read par, metaPar and metaData from allStat for entry my_pet Parameters are always expressed at T_ref</p><p>Input:</p><div><ul><li>my_pet: string with name of entry</li></ul></div><p>Output:</p><div><ul><li>par: structure with all core parameters</li><li>metaPar: structure with model, MRE, SMSE</li><li>txtPar: structure with units and labels for all core parameters</li><li>metaData: structure with taxonomy, ecoCode, T_typical, COMPLETE</li></ul></div><h2 id="5">Remarks</h2><p>used in prt_report_my_pet; links and biblist is not in allStat, so not in output metaData</p><h2 id="6">Example of use</h2><p>[par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% allStat2par
 % obtain a structure with all core pars for an entry with context
@@ -91,11 +91,11 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
 % * par: structure with all core parameters
 % * metaPar: structure with model, MRE, SMSE
 % * txtPar: structure with units and labels for all core parameters
-% * metaData: structure with taxonomy, ecoCode, T_typical, COMPLETE, links
+% * metaData: structure with taxonomy, ecoCode, T_typical, COMPLETE
 
 %% Remarks
 % used in prt_report_my_pet; 
-% biblist is not in allStat, so not in output metaData
+% links and biblist is not in allStat, so not in output metaData
 
 %% Example of use
 % [par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');
