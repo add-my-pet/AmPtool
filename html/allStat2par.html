@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>allStat2par</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-24"><meta name="DC.source" content="allStat2par.m"><style type="text/css">
+      --><title>allStat2par</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-31"><meta name="DC.source" content="allStat2par.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,7 +73,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 %%
 function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
-% created 2019/02/20 by Bas Kooijman
+% created 2019/02/20 by Bas Kooijman, modified 2019/12/31
 
 %% Syntax
 % [par, metaPar, txtPar, metaData] = <allStat2par *allStat2par*> (my_pet)
@@ -107,20 +107,21 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
   end
 
   % par, txtPar
-  parFields = get_parfields(allStat.(my_pet).model); 
-  chem = { ...
-    'd_X'; 'd_V'; 'd_E'; 'd_P';
-    'mu_X'; 'mu_V'; 'mu_E'; 'mu_P'; 
-    'mu_C'; 'mu_H'; 'mu_O'; 'mu_N';
-    'n_CX'; 'n_HX'; 'n_OX'; 'n_NX';
-    'n_CV'; 'n_HV'; 'n_OV'; 'n_NV';
-    'n_CE'; 'n_HE'; 'n_OE'; 'n_NE';
-    'n_CP'; 'n_HP'; 'n_OP'; 'n_NP';
-    'n_CC'; 'n_HC'; 'n_OC'; 'n_NC';
-    'n_CH'; 'n_HH'; 'n_OH'; 'n_NH';
-    'n_CO'; 'n_HO'; 'n_OO'; 'n_NO';
-    'n_CN'; 'n_HN'; 'n_ON'; 'n_NN'};
-  parFields = [parFields'; chem];
+  parFields = ['T_ref'; get_parfields(allStat.(my_pet).model, 1)']; % include chemical parameters and T_ref
+  % add male parameters, if present
+  if isfield(allStat.(my_pet), 'z_m')
+    parFields = [parFields;'z_m'];
+  end
+  if isfield(allStat.(my_pet), 'E_Hbm')
+    parFields = [parFields;'E_Hbm'];
+  end
+  if isfield(allStat.(my_pet), 'E_Hjm')
+    parFields = [parFields;'E_Hjm'];
+  end
+  if isfield(allStat.(my_pet), 'E_Hpm')
+    parFields = [parFields;'E_Hpm'];
+  end
+  %
   n_parFields = length(parFields);
   for i = 1:n_parFields
     par.(parFields{i}) = allStat.(my_pet).(parFields{i});
@@ -140,8 +141,10 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
   metaData.family = allStat.(my_pet).family;
   metaData.species = allStat.(my_pet).species;
   metaData.species_en = allStat.(my_pet).species_en;
+  metaData.ecoCode = allStat.(my_pet).ecoCode;
   metaData.T_typical = allStat.(my_pet).T_typical;
   metaData.COMPLETE = allStat.(my_pet).COMPLETE;
+  metaData.links = allStat.(my_pet).links;
 
 
 ##### SOURCE END #####
