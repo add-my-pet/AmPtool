@@ -46,10 +46,12 @@ if isempty(stepnb) || stepnb == 1
 fprintf('\n Step %d. Checking if the species is already in AmP:\n\n', pointNumber);
 check_speciesnm(speciesnm);
 end 
+% presence of ecoCodes eco_types is done automatically in run_collection, with the creation of my_pet_res.html
 
 if isempty(stepnb)
     fprintf('Hit a key to continue\n'); pause
 end
+
 
 %%% Step 2: run check_data for data_0, data_1 and COMPLETE
 pointNumber = pointNumber + 1; 
@@ -67,11 +69,13 @@ if isempty(stepnb)
     fprintf('Hit a key to continue\n'); pause
 end
 
-%%% Step 3: check bibliography and url's
+%%% Step 3: check links, bibliography and url's
 pointNumber = pointNumber + 1; 
 
 if   isempty(stepnb) || stepnb == 3
     
+get_links(speciesnm, 1); % opens all links in your system-browser; in failure use edit_links
+
 fprintf( '\n Step %d. Check Bibliography', pointNumber);
 [data, auxData, metaData] = feval(['mydata_', speciesnm]); % get metaData.biblist
 prt_my_pet_bib(speciesnm, metaData.biblist) % biblist2bib
@@ -149,7 +153,6 @@ if isempty(stepnb)
     fprintf('Hit a key to continue\n'); pause
 end
 
-
 %%% Step 5: check which parameters were estimated:
 pointNumber = pointNumber + 1; 
 
@@ -215,11 +218,10 @@ if isempty(stepnb)
    delete(['report_',speciesnm,'.html']); % delete produced file
 end
 
-% Step 7: make sure figures are saved (this only prints if the full report
-% is executed)
+% Step 7: make sure figures are saved (this only prints if the full report is executed)
 
 pointNumber = pointNumber + 1;
 
 if isempty(stepnb)
-fprintf('\n Step %d. Please after the curation process execute the run file with estim_option, results_output=2 \n\n', pointNumber);
+fprintf('\n Step %d. Please after the curation process execute the run file with estim_option, results_output=3 \n\n', pointNumber);
 end

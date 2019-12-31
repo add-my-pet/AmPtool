@@ -42,7 +42,7 @@ elseif iscell(varargin{1})
 end
 
 nargin = length(varargin); % number of entries to scan    
-WD = pwd; cdCur
+WD = cdCur;
 
 for i = 1:nargin 
   destinationFolder = ['../../add_my_pet/entries_web/', varargin{i},'/']; % target for html and png files

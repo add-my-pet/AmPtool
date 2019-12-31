@@ -3,7 +3,7 @@
 
 %%
 function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
-% created 2019/02/20 by Bas Kooijman
+% created 2019/02/20 by Bas Kooijman, modified 2019/12/31
 
 %% Syntax
 % [par, metaPar, txtPar, metaData] = <allStat2par *allStat2par*> (my_pet)
@@ -71,6 +71,8 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
   metaData.family = allStat.(my_pet).family;
   metaData.species = allStat.(my_pet).species;
   metaData.species_en = allStat.(my_pet).species_en;
+  metaData.ecoCode = allStat.(my_pet).ecoCode;
   metaData.T_typical = allStat.(my_pet).T_typical;
   metaData.COMPLETE = allStat.(my_pet).COMPLETE;
+  metaData.links = allStat.(my_pet).links;
 

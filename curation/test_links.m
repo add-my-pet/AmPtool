@@ -27,7 +27,7 @@ function [info, id] = test_links(my_pet)
 %% Example of use
 % test_link('Daphnia_magna')
 
-WD = pwd; cdCur
+WD = cdCur;
 
 [links, id] = get_links(my_pet); n = size(links,1);
 id = fieldnames(id); info = false(n,1);

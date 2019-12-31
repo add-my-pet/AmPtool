@@ -1,7 +1,7 @@
 %% cdCur
 % cd to the AmPtool/curation directory
 
-function cdCur
+function WD = cdCur
 % created 2019/12/30 by Bas Kooijman
 
 %% Syntax
@@ -9,6 +9,12 @@ function cdCur
 
 %% Description
 % cd to the AmPtool/curation directory
+%
+% Output
+%
+% * WD: current path 
 
-path = which('cdCur'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+%% Remarks
+% Intended use: WD = cdCur; ..code.. cd(WD)
+
+WD = pwd; path = which('cdCur'); ind = strfind(path,'\'); cd(path(1:ind(end)));
