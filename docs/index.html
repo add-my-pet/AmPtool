@@ -179,11 +179,11 @@
     It allows selection for a single variable, and multiple codes in OR mode.
     Apart from the names of the entries, it returns selection identifiers (booleans) for the whole collection, allowing to combine the result with multiple calls to this function.
     For example all species in the collection that eat invertebrates (in some stage) and occur in the North-Atlantic are found with: 
-      <code>[nm, s1] = select_eco('food',{'Ci'}); [nm, s2] = select_eco('ecozone',{'MAN'}); nm = select; nm(s1&s2)</code>.
+      <code>[nm, s1] = select_eco('food',{'Ci'}); [nm, s2] = select_eco('ecozone', {'MAN'}); nm = select; nm(s1&s2)</code>.
     While food-code <code>Cim</code> selects for feeding on molluscs, entries with code <code>Ci</code> will not be selected, but some of them might eat molluscs as well.
     In reverse, entries with code <code>Cim</code> will be selected if <code>Ci</code> is specified, due to the hierarchical nature of the coding system.
     Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../html/read_stat.html">read_stat</a>: 
-      <code>eco = read_stat({my_pet},'ecoCode'); eco{1}</code>.
+      <code>eco = read_stat({my_pet}, 'ecoCode'); eco{1}</code>.
     Possible variables and codes are given on the <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html" target="_blank">AmP ecology page</a>.
     Although the codes for food and habitat have stage-identifiers, they are presently not used in <code>select_eco</code>.
     Print, e.g. the value of reproduction efficiency <code>kap_R</code> for all entries that are simultaneous hermaphrodite: <code>prtStat(select_eco('gender','Hh'),'kap_R');</code>
