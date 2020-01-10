@@ -76,13 +76,12 @@ for i = 1:nargin
    
   % get reprodCode, which is used in prt_my_pet_pop
   close all
-  reprodCode = metaData.ecoCode.reprod;
   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
-    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
+    prt_my_pet_pop({metaData, metaPar, par}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
   else
-    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
+    prt_my_pet_pop({metaData, metaPar, par}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
   end
   close all
-  cd(WD)
 end
-    
+
+cd(WD)

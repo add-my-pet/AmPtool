@@ -49,7 +49,12 @@ function codes = read_eco(entries, varargin)
   
   for i = 1:n
     for j = 1:nargin
-      codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
+      try
+        codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
+      catch
+        feval(['[~, ~, metaData, ~, ~] = mydata_', entries{i}])
+        codes{i,j} = metaData.ecoCode.(varargin{j});
+      end
     end
   end
   

@@ -24,7 +24,7 @@ function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
 %
 % Input:
 %
-% * species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par, reprod-code, gender-code}
+% * species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par}
 % * T: optional scalar with temperature in Kelvin (default: T_typical if metaData is specified or 20 C is character string is specified)
 % * f: optional scalar scaled functional response (default: 1) or character string representing a fraction
 % * h_B: optional vector with background hazards of length equal to the number of stages (depending on the model) 
@@ -76,17 +76,9 @@ end
 % get parameters (2 possible routes for getting pars)
 if iscell(species) 
   metaData = species{1}; metaPar = species{2}; par = species{3};  
-  if length(species) == 3
-    reprodCode = 'O';
-    genderCode = 'D';
-  elseif length(species) == 4
-    reprodCode = species{4}; 
-    genderCode = 'D';
-  else
-    reprodCode = species{4}; 
-    genderCode = species{5};
-  end
   species = metaData.species;
+  par.reprodCode = metaData.ecoCode.reprod(1);
+  par.genderCode = metaData.ecoCode.gender(1);
   datePrintNm = ['date: ',datestr(date, 'yyyy/mm/dd')];
   n_fVal = 3; % 3 f- values: min, f and max
   if ~exist('f', 'var') || isempty(f) || (~ischar(f) && f == 1)
@@ -94,15 +86,13 @@ if iscell(species)
     f = 1;
   end
 else  % use allStat.mat as parameter source 
-  reprodCode = read_eco({species}, 'reprod'); reprodCode = reprodCode{1}; reprodCode = reprodCode{1};
-  genderCode = read_eco({species}, 'gender'); genderCode = genderCode{1}; genderCode = genderCode{1};
+  reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode(1);
+  genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode(1);
   [par, metaPar, txtPar, metaData] = allStat2par(species); 
   allStatInfo = dir(which('allStat.mat')); datePrintNm = strsplit(allStatInfo.date, ' '); 
   datePrintNm = ['allStat version: ', datestr(datePrintNm(1), 'yyyy/mm/dd')];
 end
 
-par.reprodCode = read_eco({species},'reprod'); par.reprodCode = par.reprodCode{1};
-par.genderCode = read_eco({species},'gender'); par.genderCode = par.genderCode{1};
 if any(ismember({'z_m','E_Hpm'},fieldnames(par)))
   male = 1; % male and females parameters differ
 else
@@ -402,25 +392,25 @@ fprintf(oid, '      </div>\n\n');
 fprintf(oid, '      <div>\n');
 fprintf(oid, '        <h2>Remarks</h2>\n');
 fprintf(oid, '        <ul>\n');
-if ~isempty(strfind(reprodCode, 'O'))
+if ~isempty(strfind(par.reprodCode, 'O'))
   if male % male differs from female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', reprodCode);
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
     else
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', reprodCode);
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
     end
   else % no difference between male and female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', reprodCode);
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
     else 
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', reprodCode);
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
     end
   end
 else
   if AmP
-    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', reprodCode);
+    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
   else
-    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', reprodCode);
+    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
   end
 end
 fprintf(oid, '          <li>Buffer handling rule: release each egg as soon as reproduction buffer allows</li>\n');

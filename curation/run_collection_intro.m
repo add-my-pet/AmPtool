@@ -4,16 +4,15 @@
 %% before running this script
 % make sure that AmPtool/taxa/ is updated
 % make sure that ../../add_my_pet/img/tree is updated
-% make sure that AmPtool/curation/get_link is updated
-% make sure that AmPtool/curation/get_eco is updated
 % run_collection(taxa-names) to generate files in entries_zip and entries_web
 % make sure to export bibtex from Zotero to debtool/DEB library.bib
 
 WD = cdCur;
 
 % allStat and popStat are made persistent 
-write_allStat;     load ../../add_my_pet/AmPdata/allStat
-write_popStat_loc; load ../../add_my_pet/AmPdata/popStat
+clear all
+write_allStat;     % load ../../add_my_pet/AmPdata/allStat
+write_popStat_loc; % load ../../add_my_pet/AmPdata/popStat
 filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
 prt_toolbar
 
