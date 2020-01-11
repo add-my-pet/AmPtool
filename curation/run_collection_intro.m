@@ -7,12 +7,12 @@
 % run_collection(taxa-names) to generate files in entries_zip and entries_web
 % make sure to export bibtex from Zotero to debtool/DEB library.bib
 
+clear all % else allStat.mat and popStat.mat don't load properly
 WD = cdCur;
 
 % allStat and popStat are made persistent 
-clear all
-write_allStat;     % load ../../add_my_pet/AmPdata/allStat
-write_popStat_loc; % load ../../add_my_pet/AmPdata/popStat
+write_allStat;     
+write_popStat_loc;
 filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
 prt_toolbar
 
