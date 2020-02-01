@@ -13,7 +13,7 @@ WD = cdCur;
 % allStat and popStat are made persistent 
 write_allStat;     
 write_popStat_loc;
-filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); movefile AmPdata.zip '../../add_my_pet/AmPdata/'
+filenm = zip('AmPdata', '*.mat' , '../../add_my_pet/AmPdata/'); 
 prt_toolbar
 
 prt_species_names;
