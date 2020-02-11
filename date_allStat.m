@@ -15,7 +15,7 @@ function date = date_allStat
   %
   % * date string
 
-  %% remark
+  %% Remark
   % convert to yyyy/mm/dd with datestr(datenum(date_allStat), 'yyyy/mm/dd')
   
   allStatInfo = dir(which('allStat.mat')); date = allStatInfo.date; 
