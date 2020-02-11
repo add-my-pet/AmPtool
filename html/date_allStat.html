@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">date_allStat</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remark</a></li></ul></div><h2 id="1">date_allStat</h2><p>get date of allStat.mat file</p><h2 id="3">Syntax</h2><p>date = <a href="date_allStat.m"><b>date_allStat</b></a></p><h2 id="4">Description</h2><p>Get date of allStat.mat</p><p>Output</p><div><ul><li>date string</li></ul></div><h2 id="5">Remark</h2><p>convert to yyyy/mm/dd with datestr(datenum(date_allStat), 'yyyy/mm/dd')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">date_allStat</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remark</a></li></ul></div><h2 id="1">date_allStat</h2><p>get date of allStat.mat file</p><h2 id="3">Syntax</h2><p>date = <a href="date_allStat.m"><b>date_allStat</b></a></p><h2 id="4">Description</h2><p>Get date of allStat.mat</p><p>Output</p><div><ul><li>date string</li></ul></div><h2 id="5">Remark</h2><p>convert to yyyy/mm/dd with datestr(date_allStat, 'yyyy/mm/dd')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% date_allStat
 % get date of allStat.mat file
@@ -86,7 +86,7 @@ function date = date_allStat
   % * date string
 
   %% Remark
-  % convert to yyyy/mm/dd with datestr(datenum(date_allStat), 'yyyy/mm/dd')
+  % convert to yyyy/mm/dd with datestr(date_allStat, 'yyyy/mm/dd')
   
   allStatInfo = dir(which('allStat.mat')); date = allStatInfo.date; 
 ##### SOURCE END #####

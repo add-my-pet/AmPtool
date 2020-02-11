@@ -16,6 +16,6 @@ function date = date_popStat
   % * date string
 
   %% Remark
-  % convert to yyyy/mm/dd with datestr(datenum(date_popStat), 'yyyy/mm/dd')
+  % convert to yyyy/mm/dd with datestr(date_popStat, 'yyyy/mm/dd')
   
   popStatInfo = dir(which('popStat.mat')); date = popStatInfo.date; 
