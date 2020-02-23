@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>cdCur</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-30"><meta name="DC.source" content="cdCur.m"><style type="text/css">
+      --><title>cdCur</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-02-22"><meta name="DC.source" content="cdCur.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,22 +66,28 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdCur</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li></ul></div><h2 id="1">cdCur</h2><p>cd to the AmPtool/curation directory</p><h2 id="3">Syntax</h2><p><a href="../cdCur.m"><b>cdCur</b></a></p><h2 id="4">Description</h2><p>cd to the AmPtool/curation directory</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdCur</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="1">cdCur</h2><p>cd to the AmPtool/curation directory</p><h2 id="3">Syntax</h2><p><a href="../cdAmPcur.m"><b>cdCur</b></a></p><h2 id="4">Description</h2><p>cd to the AmPdata directory</p><p>Output</p><div><ul><li>WD: current path</li></ul></div><h2 id="5">Remarks</h2><p>Intended use: WD = cdCur; ..code.. cd(WD)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% cdCur
 % cd to the AmPtool/curation directory
 
-function cdCur
-% created 2019/12/30 by Bas Kooijman
+function WD = cdCur
+% created 2020/01/12 by Bas Kooijman
 
 %% Syntax
-% <../cdCur.m *cdCur*>
+% <../cdAmPcur.m *cdCur*>
 
 %% Description
-% cd to the AmPtool/curation directory
+% cd to the AmPdata directory
+%
+% Output
+%
+% * WD: current path 
 
-path = which('cdCur'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+%% Remarks
+% Intended use: WD = cdCur; ..code.. cd(WD)
+
+WD = pwd; path = which('cdCur'); ind = strfind(path,'\'); cd(path(1:ind(end)));
 
 ##### SOURCE END #####
 --></body></html>

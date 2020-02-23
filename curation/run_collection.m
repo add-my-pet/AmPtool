@@ -63,10 +63,10 @@ for i = 1:nargin
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cdCur  % cd to curation   
+  cdCur;  % cd to curation   
   
   % print files
-  prt_my_pet_toolbar(varargin{i}, destinationFolder) % my_pet_toolbar.html
+  prt_my_pet_toolbar(varargin{i}, destinationFolder)                                            % my_pet_toolbar.html
   prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
   bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
   prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html

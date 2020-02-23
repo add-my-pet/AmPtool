@@ -1,11 +1,11 @@
-%% cdAmPdata
-% cd to the AmPdata directory
+%% cdCur
+% cd to the AmPtool/curation directory
 
-function WD = cdAmPdata
+function WD = cdCur
 % created 2020/01/12 by Bas Kooijman
 
 %% Syntax
-% <../cdAmPdata.m *cdData*>
+% <../cdAmPcur.m *cdCur*>
 
 %% Description
 % cd to the AmPdata directory
@@ -15,6 +15,6 @@ function WD = cdAmPdata
 % * WD: current path 
 
 %% Remarks
-% Intended use: WD = cdAmPdata; ..code.. cd(WD)
+% Intended use: WD = cdCur; ..code.. cd(WD)
 
-WD = pwd; path = which('cdAmPdata'); ind = strfind(path,'\'); cd(path(1:ind(end)));
+WD = pwd; path = which('cdCur'); ind = strfind(path,'\'); cd(path(1:ind(end)));

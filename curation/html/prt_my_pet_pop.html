@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_pop</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_my_pet_pop.m"><style type="text/css">
+      --><title>prt_my_pet_pop</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-02-22"><meta name="DC.source" content="prt_my_pet_pop.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,14 +66,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_pop</h1><!--introduction--><p>Creates my_pet_pop.html in specified directory</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_pop.m"><b>prt_my_pet_pop</b></a> (species, T, f, destinationFolder)</p><h2 id="4">Description</h2><p>Writes my_pet_pop.html with a list of population traits for selected species. This function just composes the html page; all statistics are computed in popStatistics_st. The parameters of species are obtained either from allStat.mat (and the reprod-code from allEco.mat), or from a cell-string {par, metaPar, metaData, reprod-code}. The first 3 cells are output structures of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet</b></a> and <a href="http://www.debtheory.org/wiki/index.php?title=Pars_init_file"><b>pars_init_my_pet</b></a>, as part of the parameter estimation process. Structure metadata is required to get species-name and T_typical, metaPar to get model. The last cell is a character string with the reprod-code as specified on the AmPeco.html page ('A' for heterogamy, 'O' for homogamy). If omitted, 'O' is assumed. If dioecy applies, the sex-ratio is assumed to be 1:1 and fertilisation is assumed to be sure. The energy cost for male-production is taken into account by halving kap_R. Male-specific parameters, i.e. z_m and E_Hpm, affect reported statistics. If 3rd input is a character string, it should specify a fraction for f in the interval (f_min, 1) If specified background hazards in 4th input are too high, no positive specific growth rate exists and errors can occur.</p><p>Input:</p><div><ul><li>species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par, reprod-code, gender-code}</li><li>T: optional scalar with temperature in Kelvin (default: T_typical if metaData is specified or 20 C is character string is specified)</li><li>f: optional scalar scaled functional response (default: 1) or character string representing a fraction</li><li>h_B: optional vector with background hazards of length equal to the number of stages (depending on the model)</li><li>destinationFolder: optional string with destination folder the output html-file (default: current folder)</li><li>AmP: optional boolean (default false), if true then output my_pet_pop.html follows markup of the AmP collection</li></ul></div><p>Output:</p><div><ul><li>no Malab output, but write files my_pet_pop.html, my_pet_pop_01.png, my_pet_pop_02.png and my_pet_pop.mat.   The html-file opens automatically in the system browser if AmP=0 (default)</li></ul></div><h2 id="5">Remarks</h2><p>If species is specified by string (rather than by data), its parameters are obtained from allStat.mat and the reprod-code is read from allEco.mat.</p><p>The search boxes in the top-line of the report can be used to select symbols, units, descriptions, but also (on the top-right) to make selections from the statictics. nan means "not a number": the model for that species does not have that field.</p><h2 id="6">Example of use</h2><div><ul><li>If results_My_Pet.mat exists in current directory (where "My_Pet" is replaced by the name of some species, but don't replace "my_pet"):   load('results_My_Pet.mat'); prt_my_pet_pop({metaData, metaPar, par}, [], T, f, destinationFolder)</li><li>prt_my_pet_pop('Rana_temporaria')</li><li>prt_my_pet_pop('Rana_temporaria', C2K(22))</li><li>prt_my_pet_pop('Rana_temporaria', [], 0.9)</li><li>prt_my_pet_pop('Rana_temporaria', [], '0.5')</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_pop</h1><!--introduction--><p>Creates my_pet_pop.html in specified directory</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_pop.m"><b>prt_my_pet_pop</b></a> (species, T, f, destinationFolder)</p><h2 id="4">Description</h2><p>Writes my_pet_pop.html with a list of population traits for selected species. This function just composes the html page; all statistics are computed in popStatistics_st. The parameters of species are obtained either from allStat.mat (and the reprod-code from allEco.mat), or from a cell-string {par, metaPar, metaData, reprod-code}. The first 3 cells are output structures of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet</b></a> and <a href="http://www.debtheory.org/wiki/index.php?title=Pars_init_file"><b>pars_init_my_pet</b></a>, as part of the parameter estimation process. Structure metadata is required to get species-name and T_typical, metaPar to get model. The last cell is a character string with the reprod-code as specified on the AmPeco.html page ('A' for heterogamy, 'O' for homogamy). If omitted, 'O' is assumed. If dioecy applies, the sex-ratio is assumed to be 1:1 and fertilisation is assumed to be sure. The energy cost for male-production is taken into account by halving kap_R. Male-specific parameters, i.e. z_m and E_Hpm, affect reported statistics. If 3rd input is a character string, it should specify a fraction for f in the interval (f_min, 1) If specified background hazards in 4th input are too high, no positive specific growth rate exists and errors can occur.</p><p>Input:</p><div><ul><li>species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par}</li><li>T: optional scalar with temperature in Kelvin (default: T_typical if metaData is specified or 20 C is character string is specified)</li><li>f: optional scalar scaled functional response (default: 1) or character string representing a fraction</li><li>h_B: optional vector with background hazards of length equal to the number of stages (depending on the model)</li><li>destinationFolder: optional string with destination folder the output html-file (default: current folder)</li><li>AmP: optional boolean (default false), if true then output my_pet_pop.html follows markup of the AmP collection</li></ul></div><p>Output:</p><div><ul><li>no Malab output, but write files my_pet_pop.html, my_pet_pop_01.png, my_pet_pop_02.png and my_pet_pop.mat.   The html-file opens automatically in the system browser if AmP=0 (default)</li></ul></div><h2 id="5">Remarks</h2><p>If species is specified by string (rather than by data), its parameters are obtained from allStat.mat and the reprod-code is read from allEco.mat.</p><p>The search boxes in the top-line of the report can be used to select symbols, units, descriptions, but also (on the top-right) to make selections from the statictics. nan means "not a number": the model for that species does not have that field.</p><h2 id="6">Example of use</h2><div><ul><li>If results_My_Pet.mat exists in current directory (where "My_Pet" is replaced by the name of some species, but don't replace "my_pet"):   load('results_My_Pet.mat'); prt_my_pet_pop({metaData, metaPar, par}, [], T, f, destinationFolder)</li><li>prt_my_pet_pop('Rana_temporaria')</li><li>prt_my_pet_pop('Rana_temporaria', C2K(22))</li><li>prt_my_pet_pop('Rana_temporaria', [], 0.9)</li><li>prt_my_pet_pop('Rana_temporaria', [], '0.5')</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_pop
 % Creates my_pet_pop.html in specified directory
 
 %%
 function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
-% created 2019/07/08 Bas Kooijman
+% created 2019/07/08 Bas Kooijman, modified 2020/02/20
 
 %% Syntax
 % <../prt_my_pet_pop.m *prt_my_pet_pop*> (species, T, f, destinationFolder) 
@@ -94,7 +94,7 @@ function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
 %
 % Input:
 %
-% * species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par, reprod-code, gender-code}
+% * species: character-string with name of entry or cellstring with structures: {metaData, metaPar, par}
 % * T: optional scalar with temperature in Kelvin (default: T_typical if metaData is specified or 20 C is character string is specified)
 % * f: optional scalar scaled functional response (default: 1) or character string representing a fraction
 % * h_B: optional vector with background hazards of length equal to the number of stages (depending on the model) 
@@ -146,17 +146,9 @@ end
 % get parameters (2 possible routes for getting pars)
 if iscell(species) 
   metaData = species{1}; metaPar = species{2}; par = species{3};  
-  if length(species) == 3
-    reprodCode = 'O';
-    genderCode = 'D';
-  elseif length(species) == 4
-    reprodCode = species{4}; 
-    genderCode = 'D';
-  else
-    reprodCode = species{4}; 
-    genderCode = species{5};
-  end
   species = metaData.species;
+  par.reprodCode = metaData.ecoCode.reprod(1);
+  par.genderCode = metaData.ecoCode.gender(1);
   datePrintNm = ['date: ',datestr(date, 'yyyy/mm/dd')];
   n_fVal = 3; % 3 f- values: min, f and max
   if ~exist('f', 'var') || isempty(f) || (~ischar(f) && f == 1)
@@ -164,15 +156,12 @@ if iscell(species)
     f = 1;
   end
 else  % use allStat.mat as parameter source 
-  reprodCode = read_eco({species}, 'reprod'); reprodCode = reprodCode{1}; reprodCode = reprodCode{1};
-  genderCode = read_eco({species}, 'gender'); genderCode = genderCode{1}; genderCode = genderCode{1};
+  reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode(1);
+  genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode(1);
   [par, metaPar, txtPar, metaData] = allStat2par(species); 
-  allStatInfo = dir(which('allStat.mat')); datePrintNm = strsplit(allStatInfo.date, ' '); 
-  datePrintNm = ['allStat version: ', datestr(datePrintNm(1), 'yyyy/mm/dd')];
+  datePrintNm = ['allStat version: ', datestr(date_allStat, 'yyyy/mm/dd')];
 end
 
-par.reprodCode = read_eco({species},'reprod'); par.reprodCode = par.reprodCode{1};
-par.genderCode = read_eco({species},'gender'); par.genderCode = par.genderCode{1};
 if any(ismember({'z_m','E_Hpm'},fieldnames(par)))
   male = 1; % male and females parameters differ
 else
@@ -181,7 +170,7 @@ end
 
 model = metaPar.model;
 switch model
-  case {'std','stf','sbp','abp','hep'}
+  case {'std','stf','sbp','abp'}
     if ~exist('h_B','var') || isempty(h_B)
       par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpi = 0; 
     else
@@ -195,7 +184,7 @@ switch model
     end
   case 'ssj'
     if ~exist('h_B','var') || isempty(h_B)
-      par.h_B0b = 0; par.h_Bbs = 0; par.h_Bsp = 0; par.h_Bpi = 0; 
+      par.h_B0b = 0; par.h_Bbs = 0; par.h_Bsj = 0; par.h_Bjp = 0; par.h_Bpi = 0; 
     else
       par.h_B0b = h_B(1); par.h_Bbs = h_B(2); par.h_Bsp = h_B(3); par.h_Bpi = h_B(4);       
     end
@@ -210,6 +199,12 @@ switch model
       par.h_B0b = 0; par.h_Bbs = 0;par.h_Bsj = 0; par.h_Bjp = 0; par.h_Bpi = 0; 
     else
       par.h_B0b = h_B(1); par.h_Bbs = h_B(2); par.h_Bsj = h_B(3); par.h_Bjp = h_B(4); par.h_Bpi = h_B(5);       
+    end
+  case 'hep'
+    if ~exist('h_B','var') || isempty(h_B)
+      par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpj = 0; par.h_Bji = 0; 
+    else
+      par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3);  par.h_Bji = h_B(4);       
     end
   case 'hex'
     if ~exist('h_B','var') || isempty(h_B)
@@ -235,12 +230,12 @@ end
 % species: get statistics
 [stat, txtStat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
 % save statistics in structure popStat
-popStat.(species) = stat; popStat.(species).label = txtStat; 
+popStat.(species) = stat; popStat.(species).label = txtStat.label; 
 popStat.(species).model = model; popStat.(species).par = par; popStat.(species).T = T; 
 save([destinationFolder, species, '_pop.mat'], 'popStat');
 %
 stat = rmfield(stat, {'T', 'c_T'}); 
-fldsStat = fieldnames(stat.f1.thin1.f); % fieldnames of all statistics
+fldsStat = fieldnames(stat.f1.thin0.f); % fieldnames of all statistics
 fldsStat(ismember(fldsStat,'tS')) = []; fldsStat(ismember(fldsStat,'tSs')) = [];
 
 % write table
@@ -350,28 +345,47 @@ fprintf(oid, '    <div id="contentFull">\n');
 end
 
 % title
-fprintf(oid,'    <h1 align="center">%s: Population traits</h1>\n', species);
+fprintf(oid,'    <h1 align="center">%s: Population traits</h1>\n', strrep(species, '_', ' '));
 switch model
-  case {'std','stf','sbp','abp','hep'}
+  case {'std','stf','sbp','abp'}
 fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, juv, adult: %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbp, par.h_Bpi);
   case 'stx'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, baby, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbx, par.h_Bxp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, baby, juv, adult: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbx, par.h_Bxp, par.h_Bpi);
   case 'ssj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, leptocephalus, shrink, post-shrink juv, adult: %g, %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
   case 'abj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bjp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bjp, par.h_Bpi);
   case 'asj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, pre-larva, larva, juv, adult: %g %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, pre-larva, larva, juv, adult: %g %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
+  case 'hep'
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, juv-larva, adult-larva, imago: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbp, par.h_Bpj, par.h_Bji);
   case 'hex'
 fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, pupa, imago: %g %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bje, par.h_Bei);
 end			
+
+% graphics
+fprintf(oid, '      <div class="fig">\n'); % survival probability
+fprintf(oid, '        <img src="%s_pop_01.png" width="425px"> \n', species);
+fprintf(oid, '        <div id="caption">\n');
+fprintf(oid, '          Ln survival probability as function of age, \n');
+fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
+fprintf(oid, '        </div>\n');
+fprintf(oid, '      </div>\n\n');
+
+fprintf(oid, '      <div class="fig">\n'); % stable age distribution
+fprintf(oid, '        <img src="%s_pop_02.png" width="425px"> \n', species);
+fprintf(oid, '        <div id="caption">\n');
+fprintf(oid, '          Ln survivor function of the stable age distribution as function of age, \n');
+fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
+fprintf(oid, '        </div>\n');
+fprintf(oid, '      </div>\n\n');
 
 % search boxes above the table
 fprintf(oid, '      <div>\n');
 fprintf(oid, '        <input type="text" id="InputSymbol" onkeyup="FunctionSymbol()" placeholder="Search for symbol ..">\n');
 fprintf(oid, '        <input type="text" id="InputUnits"  onkeyup="FunctionUnits()"  placeholder="Search for units ..">\n');
 fprintf(oid, '        <input type="text" id="InputLabel"  onkeyup="FunctionLabel()"  placeholder="Search for label ..">\n');
-fprintf(oid, '        <input type="text" id="InputShort"  onkeyup="FunctionShort()"  placeholder="Short/Medium" title="Type S or M">\n');
+fprintf(oid, '        <input type="text" id="InputShort"  onkeyup="FunctionShort()"  placeholder="Short/Medium/Yields" title="Type S or M or Y">\n');
 fprintf(oid, '      </div>\n\n');
 
 % open table, number of columns depends on n_fVal (2 or 3) and male (0 or 1)
@@ -451,49 +465,37 @@ saveas (Hfig_surv,[destinationFolder, species, '_pop_01.png']);
 saveas (Hfig_stab,[destinationFolder, species, '_pop_02.png']);
 close all
 
-% graphics
-fprintf(oid, '      <div class="fig">\n'); % survival probability
-fprintf(oid, '        <img src="%s_pop_01.png" width="425px"> \n', species);
-fprintf(oid, '        <div id="caption">\n');
-fprintf(oid, '          Ln survival probability as function of age, \n');
-fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
-fprintf(oid, '        </div>\n');
-fprintf(oid, '      </div>\n\n');
-
-fprintf(oid, '      <div class="fig">\n'); % stable age distribution
-fprintf(oid, '        <img src="%s_pop_02.png" width="425px"> \n', species);
-fprintf(oid, '        <div id="caption">\n');
-fprintf(oid, '          Ln survivor function of the stable age distribution as function of age, \n');
-fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
-fprintf(oid, '        </div>\n');
-fprintf(oid, '      </div>\n\n');
-
 % remarks
 fprintf(oid, '      <div>\n');
 fprintf(oid, '        <h2>Remarks</h2>\n');
 fprintf(oid, '        <ul>\n');
-if ~isempty(strfind(reprodCode, 'O'))
+if ~isempty(strfind(par.reprodCode, 'O'))
   if male % male differs from female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', reprodCode);
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
     else
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', reprodCode);
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
     end
   else % no difference between male and female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', reprodCode);
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
     else 
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', reprodCode);
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
     end
   end
 else
   if AmP
-    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', reprodCode);
+    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
   else
-    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', reprodCode);
+    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
   end
 end
+switch model
+  case {'hep','hex'}
+fprintf(oid, '          <li>Buffer handling rule: imago deposits eggs at constant rate during lifetime as imago</li>\n');
+  otherwise 
 fprintf(oid, '          <li>Buffer handling rule: release each egg as soon as reproduction buffer allows</li>\n');
+end
 fprintf(oid, '          <li>Weights of adults do not include reproduction buffer</li>\n');
 fprintf(oid, '        </ul>\n');
 fprintf(oid, '      </div>\n');
@@ -563,7 +565,7 @@ fprintf(oid, '              }\n');
 fprintf(oid, '            }\n');
 fprintf(oid, '          }\n');
 fprintf(oid, '        }\n\n');
-% selection for short/medium/long/pars
+% selection for short/medium/yields
 fprintf(oid, '        function FunctionShort() {\n');
 fprintf(oid, '          // Declare variables\n');
 fprintf(oid, '          var input, filter, table, tr, td, i;\n');
@@ -582,8 +584,9 @@ fprintf(oid, '                if (\n');
 fprintf(oid, '                    td.innerHTML == "f" ||\n');
 fprintf(oid, '                    td.innerHTML == "r" ||\n');
 fprintf(oid, '                    td.innerHTML == "t2" ||\n');
-fprintf(oid, '                    td.innerHTML == "EWw_bi" ||\n');
-fprintf(oid, '                    td.innerHTML == "EJ_X" \n');
+fprintf(oid, '                    td.innerHTML == "Ww_bi" ||\n');
+fprintf(oid, '                    td.innerHTML == "R" ||\n');
+fprintf(oid, '                    td.innerHTML == "J_X" \n');
 fprintf(oid, '                  ) {\n');
 fprintf(oid, '                  tr[i].style.display = "";\n');
 fprintf(oid, '                } else {\n');
@@ -600,12 +603,39 @@ fprintf(oid, '                if (\n');
 fprintf(oid, '                    td.innerHTML == "f" ||\n');
 fprintf(oid, '                    td.innerHTML == "r" ||\n');
 fprintf(oid, '                    td.innerHTML == "t2" ||\n');
-fprintf(oid, '                    td.innerHTML == "S_p" ||\n');
-fprintf(oid, '                    td.innerHTML == "theta_jp" ||\n');
-fprintf(oid, '                    td.innerHTML == "del_ea" ||\n');
-fprintf(oid, '                    td.innerHTML == "ER" ||\n');
-fprintf(oid, '                    td.innerHTML == "EWw_bi" ||\n');
-fprintf(oid, '                    td.innerHTML == "EJ_X" \n');
+for i = 1:length(fldsStat)
+  if ~isempty(strfind(fldsStat{i}, 'S_')) || ~isempty(strfind(fldsStat{i}, 'theta_'))
+fprintf(oid, '                    td.innerHTML == "%s" ||\n', fldsStat{i});
+  end
+end
+fprintf(oid, '                    td.innerHTML == "Ww_bi" ||\n');
+fprintf(oid, '                    td.innerHTML == "R" ||\n');
+fprintf(oid, '                    td.innerHTML == "J_X" \n');
+fprintf(oid, '                  ) {\n');
+fprintf(oid, '                  tr[i].style.display = "";\n');
+fprintf(oid, '                } else {\n');
+fprintf(oid, '                  tr[i].style.display = "none";\n');
+fprintf(oid, '                }\n');
+fprintf(oid, '              }\n');
+fprintf(oid, '            }\n');
+% filter Y: yield selection
+fprintf(oid, '          } else if (filter == "Y") {\n');
+fprintf(oid, '            for (i = 0; i < tr.length; i++) {\n');
+fprintf(oid, '              td = tr[i].getElementsByTagName("td")[0];\n');
+fprintf(oid, '              if (td) {\n');
+fprintf(oid, '                if (\n');
+fprintf(oid, '                    td.innerHTML == "f" ||\n');
+fprintf(oid, '                    td.innerHTML == "r" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_PX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_VX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_VX_d" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_EX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_EX_d" ||\n');
+fprintf(oid, '                    td.innerHTML == "mu_hX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_CX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_HX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_OX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_NX" \n');
 fprintf(oid, '                  ) {\n');
 fprintf(oid, '                  tr[i].style.display = "";\n');
 fprintf(oid, '                } else {\n');

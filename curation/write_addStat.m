@@ -47,8 +47,8 @@ function allStat = write_addStat(taxa, T, f)
   present = isfield(allStat, taxa);
   if sum(present) > 0
     fprintf('Not all members of taxa are absent in existing allStat.mat\n');
-    taxa = taxa{present};
-    return
+    %taxa = taxa{present};
+    %return
   end
   
   % check if all members of taxa are in entries
@@ -78,7 +78,6 @@ function allStat = write_addStat(taxa, T, f)
     allStat = get_addStat(taxa, T, f);
   end
 
-  curation = which('write_allStat');   
-  cd(curation(1:end - 15))                         
+  cdCur;                        
   save('../../add_my_pet/AmPdata/allStat.mat','allStat') % overwrite allStat.mat
   cd(WD)

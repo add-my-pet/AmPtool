@@ -3,7 +3,7 @@
 
 %%
 function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
-% created 2019/07/08 Bas Kooijman
+% created 2019/07/08 Bas Kooijman, modified 2020/02/20
 
 %% Syntax
 % <../prt_my_pet_pop.m *prt_my_pet_pop*> (species, T, f, destinationFolder) 
@@ -89,8 +89,7 @@ else  % use allStat.mat as parameter source
   reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode(1);
   genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode(1);
   [par, metaPar, txtPar, metaData] = allStat2par(species); 
-  allStatInfo = dir(which('allStat.mat')); datePrintNm = strsplit(allStatInfo.date, ' '); 
-  datePrintNm = ['allStat version: ', datestr(datePrintNm(1), 'yyyy/mm/dd')];
+  datePrintNm = ['allStat version: ', datestr(date_allStat, 'yyyy/mm/dd')];
 end
 
 if any(ismember({'z_m','E_Hpm'},fieldnames(par)))
@@ -101,7 +100,7 @@ end
 
 model = metaPar.model;
 switch model
-  case {'std','stf','sbp','abp','hep'}
+  case {'std','stf','sbp','abp'}
     if ~exist('h_B','var') || isempty(h_B)
       par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpi = 0; 
     else
@@ -115,7 +114,7 @@ switch model
     end
   case 'ssj'
     if ~exist('h_B','var') || isempty(h_B)
-      par.h_B0b = 0; par.h_Bbs = 0; par.h_Bsp = 0; par.h_Bpi = 0; 
+      par.h_B0b = 0; par.h_Bbs = 0; par.h_Bsj = 0; par.h_Bjp = 0; par.h_Bpi = 0; 
     else
       par.h_B0b = h_B(1); par.h_Bbs = h_B(2); par.h_Bsp = h_B(3); par.h_Bpi = h_B(4);       
     end
@@ -130,6 +129,12 @@ switch model
       par.h_B0b = 0; par.h_Bbs = 0;par.h_Bsj = 0; par.h_Bjp = 0; par.h_Bpi = 0; 
     else
       par.h_B0b = h_B(1); par.h_Bbs = h_B(2); par.h_Bsj = h_B(3); par.h_Bjp = h_B(4); par.h_Bpi = h_B(5);       
+    end
+  case 'hep'
+    if ~exist('h_B','var') || isempty(h_B)
+      par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpj = 0; par.h_Bji = 0; 
+    else
+      par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3);  par.h_Bji = h_B(4);       
     end
   case 'hex'
     if ~exist('h_B','var') || isempty(h_B)
@@ -155,12 +160,12 @@ end
 % species: get statistics
 [stat, txtStat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
 % save statistics in structure popStat
-popStat.(species) = stat; popStat.(species).label = txtStat; 
+popStat.(species) = stat; popStat.(species).label = txtStat.label; 
 popStat.(species).model = model; popStat.(species).par = par; popStat.(species).T = T; 
 save([destinationFolder, species, '_pop.mat'], 'popStat');
 %
 stat = rmfield(stat, {'T', 'c_T'}); 
-fldsStat = fieldnames(stat.f1.thin1.f); % fieldnames of all statistics
+fldsStat = fieldnames(stat.f1.thin0.f); % fieldnames of all statistics
 fldsStat(ismember(fldsStat,'tS')) = []; fldsStat(ismember(fldsStat,'tSs')) = [];
 
 % write table
@@ -270,28 +275,47 @@ fprintf(oid, '    <div id="contentFull">\n');
 end
 
 % title
-fprintf(oid,'    <h1 align="center">%s: Population traits</h1>\n', species);
+fprintf(oid,'    <h1 align="center">%s: Population traits</h1>\n', strrep(species, '_', ' '));
 switch model
-  case {'std','stf','sbp','abp','hep'}
+  case {'std','stf','sbp','abp'}
 fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, juv, adult: %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbp, par.h_Bpi);
   case 'stx'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, baby, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbx, par.h_Bxp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, baby, juv, adult: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbx, par.h_Bxp, par.h_Bpi);
   case 'ssj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, leptocephalus, shrink, post-shrink juv, adult: %g, %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
   case 'abj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bjp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, juv, adult: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bjp, par.h_Bpi);
   case 'asj'
-fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, pre-larva, larva, juv, adult: %g %g, %g, %g %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, pre-larva, larva, juv, adult: %g %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbs, par.h_Bsj, par.h_Bjp, par.h_Bpi);
+  case 'hep'
+fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, juv-larva, adult-larva, imago: %g, %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbp, par.h_Bpj, par.h_Bji);
   case 'hex'
 fprintf(oid,'    <h3 align="center">at T = %g &deg;C with background hazards for embryo, larva, pupa, imago: %g %g, %g, %g 1/d</h3>\n', K2C(T), par.h_B0b, par.h_Bbj, par.h_Bje, par.h_Bei);
 end			
+
+% graphics
+fprintf(oid, '      <div class="fig">\n'); % survival probability
+fprintf(oid, '        <img src="%s_pop_01.png" width="425px"> \n', species);
+fprintf(oid, '        <div id="caption">\n');
+fprintf(oid, '          Ln survival probability as function of age, \n');
+fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
+fprintf(oid, '        </div>\n');
+fprintf(oid, '      </div>\n\n');
+
+fprintf(oid, '      <div class="fig">\n'); % stable age distribution
+fprintf(oid, '        <img src="%s_pop_02.png" width="425px"> \n', species);
+fprintf(oid, '        <div id="caption">\n');
+fprintf(oid, '          Ln survivor function of the stable age distribution as function of age, \n');
+fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
+fprintf(oid, '        </div>\n');
+fprintf(oid, '      </div>\n\n');
 
 % search boxes above the table
 fprintf(oid, '      <div>\n');
 fprintf(oid, '        <input type="text" id="InputSymbol" onkeyup="FunctionSymbol()" placeholder="Search for symbol ..">\n');
 fprintf(oid, '        <input type="text" id="InputUnits"  onkeyup="FunctionUnits()"  placeholder="Search for units ..">\n');
 fprintf(oid, '        <input type="text" id="InputLabel"  onkeyup="FunctionLabel()"  placeholder="Search for label ..">\n');
-fprintf(oid, '        <input type="text" id="InputShort"  onkeyup="FunctionShort()"  placeholder="Short/Medium" title="Type S or M">\n');
+fprintf(oid, '        <input type="text" id="InputShort"  onkeyup="FunctionShort()"  placeholder="Short/Medium/Yields" title="Type S or M or Y">\n');
 fprintf(oid, '      </div>\n\n');
 
 % open table, number of columns depends on n_fVal (2 or 3) and male (0 or 1)
@@ -371,23 +395,6 @@ saveas (Hfig_surv,[destinationFolder, species, '_pop_01.png']);
 saveas (Hfig_stab,[destinationFolder, species, '_pop_02.png']);
 close all
 
-% graphics
-fprintf(oid, '      <div class="fig">\n'); % survival probability
-fprintf(oid, '        <img src="%s_pop_01.png" width="425px"> \n', species);
-fprintf(oid, '        <div id="caption">\n');
-fprintf(oid, '          Ln survival probability as function of age, \n');
-fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
-fprintf(oid, '        </div>\n');
-fprintf(oid, '      </div>\n\n');
-
-fprintf(oid, '      <div class="fig">\n'); % stable age distribution
-fprintf(oid, '        <img src="%s_pop_02.png" width="425px"> \n', species);
-fprintf(oid, '        <div id="caption">\n');
-fprintf(oid, '          Ln survivor function of the stable age distribution as function of age, \n');
-fprintf(oid, '          with (dashed) and without (solid) thinning at max (red) and min (blue) scaled functional response for females.\n');
-fprintf(oid, '        </div>\n');
-fprintf(oid, '      </div>\n\n');
-
 % remarks
 fprintf(oid, '      <div>\n');
 fprintf(oid, '        <h2>Remarks</h2>\n');
@@ -413,7 +420,12 @@ else
     fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
   end
 end
+switch model
+  case {'hep','hex'}
+fprintf(oid, '          <li>Buffer handling rule: imago deposits eggs at constant rate during lifetime as imago</li>\n');
+  otherwise 
 fprintf(oid, '          <li>Buffer handling rule: release each egg as soon as reproduction buffer allows</li>\n');
+end
 fprintf(oid, '          <li>Weights of adults do not include reproduction buffer</li>\n');
 fprintf(oid, '        </ul>\n');
 fprintf(oid, '      </div>\n');
@@ -483,7 +495,7 @@ fprintf(oid, '              }\n');
 fprintf(oid, '            }\n');
 fprintf(oid, '          }\n');
 fprintf(oid, '        }\n\n');
-% selection for short/medium/long/pars
+% selection for short/medium/yields
 fprintf(oid, '        function FunctionShort() {\n');
 fprintf(oid, '          // Declare variables\n');
 fprintf(oid, '          var input, filter, table, tr, td, i;\n');
@@ -502,8 +514,9 @@ fprintf(oid, '                if (\n');
 fprintf(oid, '                    td.innerHTML == "f" ||\n');
 fprintf(oid, '                    td.innerHTML == "r" ||\n');
 fprintf(oid, '                    td.innerHTML == "t2" ||\n');
-fprintf(oid, '                    td.innerHTML == "EWw_bi" ||\n');
-fprintf(oid, '                    td.innerHTML == "EJ_X" \n');
+fprintf(oid, '                    td.innerHTML == "Ww_bi" ||\n');
+fprintf(oid, '                    td.innerHTML == "R" ||\n');
+fprintf(oid, '                    td.innerHTML == "J_X" \n');
 fprintf(oid, '                  ) {\n');
 fprintf(oid, '                  tr[i].style.display = "";\n');
 fprintf(oid, '                } else {\n');
@@ -520,12 +533,39 @@ fprintf(oid, '                if (\n');
 fprintf(oid, '                    td.innerHTML == "f" ||\n');
 fprintf(oid, '                    td.innerHTML == "r" ||\n');
 fprintf(oid, '                    td.innerHTML == "t2" ||\n');
-fprintf(oid, '                    td.innerHTML == "S_p" ||\n');
-fprintf(oid, '                    td.innerHTML == "theta_jp" ||\n');
-fprintf(oid, '                    td.innerHTML == "del_ea" ||\n');
-fprintf(oid, '                    td.innerHTML == "ER" ||\n');
-fprintf(oid, '                    td.innerHTML == "EWw_bi" ||\n');
-fprintf(oid, '                    td.innerHTML == "EJ_X" \n');
+for i = 1:length(fldsStat)
+  if ~isempty(strfind(fldsStat{i}, 'S_')) || ~isempty(strfind(fldsStat{i}, 'theta_'))
+fprintf(oid, '                    td.innerHTML == "%s" ||\n', fldsStat{i});
+  end
+end
+fprintf(oid, '                    td.innerHTML == "Ww_bi" ||\n');
+fprintf(oid, '                    td.innerHTML == "R" ||\n');
+fprintf(oid, '                    td.innerHTML == "J_X" \n');
+fprintf(oid, '                  ) {\n');
+fprintf(oid, '                  tr[i].style.display = "";\n');
+fprintf(oid, '                } else {\n');
+fprintf(oid, '                  tr[i].style.display = "none";\n');
+fprintf(oid, '                }\n');
+fprintf(oid, '              }\n');
+fprintf(oid, '            }\n');
+% filter Y: yield selection
+fprintf(oid, '          } else if (filter == "Y") {\n');
+fprintf(oid, '            for (i = 0; i < tr.length; i++) {\n');
+fprintf(oid, '              td = tr[i].getElementsByTagName("td")[0];\n');
+fprintf(oid, '              if (td) {\n');
+fprintf(oid, '                if (\n');
+fprintf(oid, '                    td.innerHTML == "f" ||\n');
+fprintf(oid, '                    td.innerHTML == "r" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_PX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_VX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_VX_d" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_EX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_EX_d" ||\n');
+fprintf(oid, '                    td.innerHTML == "mu_hX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_CX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_HX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_OX" ||\n');
+fprintf(oid, '                    td.innerHTML == "Y_NX" \n');
 fprintf(oid, '                  ) {\n');
 fprintf(oid, '                  tr[i].style.display = "";\n');
 fprintf(oid, '                } else {\n');
