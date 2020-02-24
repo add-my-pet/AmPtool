@@ -52,7 +52,7 @@ for i = 1:nargin
   cd(['../../add_my_pet/entries/', varargin{i}]) % goto entry i in dir entries
 
   feval(['run_', varargin{i}]); close all;
-  load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
+    load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
   [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
   prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
@@ -63,7 +63,7 @@ for i = 1:nargin
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cdCur;  % cd to curation   
+    cdCur;  % cd to curation   
   
   % print files
   prt_my_pet_toolbar(varargin{i}, destinationFolder)                                            % my_pet_toolbar.html
