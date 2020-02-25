@@ -75,8 +75,8 @@ function [x taxa] = pie_Animalia (n)
       for i = 1:n
         y(i) = length(select(taxa{i}));
       end
-      x(1) = sum(y(1:4)); taxa{1} = 'para + rad + proto';
-      x(2) = sum(y(5:7));  taxa{2} = 'acraniate deut';
+      x(1) = sum(y(1:4)); taxa{1} = ['parazoa + radiata + ', char(10), 'protostomata'];
+      x(2) = sum(y(5:7));  taxa{2} = ['acraniate', char(10), 'deuterostomata'];
       x(3) = sum(y(8:12)); taxa{3} = 'fish';
       x(4) = sum(y(13:14)) - y(15); taxa{4} = 'herps';
       x(5) = y(15); taxa{5} = 'birds';
@@ -89,7 +89,7 @@ function [x taxa] = pie_Animalia (n)
       end
       x(1) = sum(y(1:2));  taxa{1} = 'Parazoa + Radiata';
       x(2) = sum(y(3:4));  taxa{2} = 'Protostomata';
-      x(3) = sum(y(5:7));  taxa{3} = 'acraniate deut';
+      x(3) = sum(y(5:7));  taxa{3} = ['acraniate', char(10), 'deuterost'];
       x(4) = sum(y(8:12)); taxa{4} = 'fish';
       x(5) = sum(y(13:14)) - y(15); taxa{5} = 'herps';
       x(6) = y(15); taxa{6} = 'birds';
