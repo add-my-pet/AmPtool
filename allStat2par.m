@@ -74,6 +74,6 @@ function [par, metaPar, txtPar, metaData] = allStat2par(my_pet)
   metaData.ecoCode = allStat.(my_pet).ecoCode;
   metaData.T_typical = allStat.(my_pet).T_typical;
   metaData.COMPLETE = allStat.(my_pet).COMPLETE;
-  metaData.links = allStat.(my_pet).links;
-  metaData.biblist = allStat.(my_pet).biblist;
+  metaData.id_CoL = allStat.(my_pet).id_CoL;
+  %metaData.biblist = allStat.(my_pet).biblist;
 

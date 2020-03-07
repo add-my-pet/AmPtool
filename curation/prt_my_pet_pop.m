@@ -11,10 +11,10 @@ function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
 %% Description
 % Writes my_pet_pop.html with a list of population traits for selected species. 
 % This function just composes the html page; all statistics are computed in popStatistics_st.
-% The parameters of species are obtained either from allStat.mat (and the reprod-code from allEco.mat), or from a cell-string {par, metaPar, metaData, reprod-code}.
-% The first 3 cells are output structures of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet*> and
+% The parameters of species are obtained either from allStat.mat, or from a cell-string {par, metaPar, metaData}.
+% The 3 cells are output structures of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet*> and
 % <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet*>, as part of the parameter estimation process.
-% Structure metadata is required to get species-name and T_typical, metaPar to get model.
+% Structure metadata is required to get species-name, T_typical, ecoCode, metaPar to get model.
 % The last cell is a character string with the reprod-code as specified on the AmPeco.html page ('A' for heterogamy, 'O' for homogamy). If omitted, 'O' is assumed.
 % If dioecy applies, the sex-ratio is assumed to be 1:1 and fertilisation is assumed to be sure.
 % The energy cost for male-production is taken into account by halving kap_R.
@@ -37,7 +37,7 @@ function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
 %   The html-file opens automatically in the system browser if AmP=0 (default)
 %
 %% Remarks
-% If species is specified by string (rather than by data), its parameters are obtained from allStat.mat and the reprod-code is read from allEco.mat.
+% If species is specified by string (rather than by data), its parameters are obtained from allStat.mat.
 % 
 % The search boxes in the top-line of the report can be used to select symbols, units, descriptions, but also (on the top-right) to make selections from the statictics.
 % nan means "not a number": the model for that species does not have that field.
