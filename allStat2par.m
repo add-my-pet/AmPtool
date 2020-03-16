@@ -6,7 +6,7 @@ function [par, metaPar, txtPar, metaData, info] = allStat2par(my_pet)
 % created 2019/02/20 by Bas Kooijman, modified 2019/12/31
 
 %% Syntax
-% [par, metaPar, txtPar, metaData] = <allStat2par *allStat2par*> (my_pet)
+% [par, metaPar, txtPar, metaData, info] = <allStat2par *allStat2par*> (my_pet)
 
 %% Description
 % Read par, metaPar and metaData from allStat for entry my_pet
@@ -25,8 +25,8 @@ function [par, metaPar, txtPar, metaData, info] = allStat2par(my_pet)
 % * info: boolean with failure (0) or success (1)
 
 %% Remarks
-% used in prt_report_my_pet; 
-% links and biblist is not in allStat, so not in output metaData
+% used in prt_report_my_pet, prt_my_pet_pop, cpm. 
+% links (except to CoL) and biblist is not in allStat, so not in output metaData
 
 %% Example of use
 % [par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');
