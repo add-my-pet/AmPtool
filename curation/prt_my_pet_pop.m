@@ -88,7 +88,10 @@ if iscell(species)
 else  % use allStat.mat as parameter source 
   reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode(1);
   genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode(1);
-  [par, metaPar, txtPar, metaData] = allStat2par(species); 
+  [par, metaPar, txtPar, metaData, info] = allStat2par(species);
+  if info == 0
+    return
+  end
   datePrintNm = ['allStat version: ', datestr(date_allStat, 'yyyy/mm/dd')];
 end
 

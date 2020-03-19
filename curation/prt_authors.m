@@ -28,6 +28,7 @@ function prt_authors
   for i=1:ne % scan entries
     author1 = authors{i,1}; author2 = authors{i,2}; % submit-, mod-authors
     author = [author; author1(:); author2(:)];
+    i
   end
   [author, fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
   na = length(author);   
