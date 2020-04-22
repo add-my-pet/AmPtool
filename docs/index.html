@@ -86,10 +86,10 @@
     The "implied traits"-pages on the AmP-website present a subset of the shown list (but has no searching facilities).
     The function reads parameters in <code>allStat</code> and specifies scaled functional response and temperature for each trait.
     The function is also used during the parameter estimation procedure for entries that are not yet in the collection with 
-      <code>estim_options('results_output', 3);</code> in the <code>run_my_pet</code> file.
+      <code>estim_options('results_output', 4);</code> in the <code>run_my_pet</code> file.
     In this application the data are not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
     This is handy for checking that a particular parameter combination is yes or no realistic.
-    With <code>estim_options('results_output', 4);</code>, related species are included in the report to compare parameters and implied traits.
+    With <code>estim_options('results_output', 5);</code>, related species are included in the report to compare parameters and implied traits.
     These related species in the collection are identified with function <a href="../html/clade.html">clade</a> (see below), and if two or more related species are found, 
       color coding is applied to highlight eccentricity of values.
 
