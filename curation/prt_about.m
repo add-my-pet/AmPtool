@@ -135,7 +135,7 @@ fprintf(fid_about, '    }\n');
 fprintf(fid_about, '  </script>\n');
 fprintf(fid_about, '</HEAD>\n\n');
 fprintf(fid_about, '<BODY>\n\n');
-
+% ----------------------------------------------------------
 fprintf(fid_about, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_about, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
 fprintf(fid_about, '<script>w3IncludeHTML();</script>\n\n');
@@ -147,35 +147,33 @@ fprintf(fid_about, '<!--   use "contentFull" for 1 column                       
 fprintf(fid_about, '<!--   use "content" if you want two columns"                  -->\n');
 fprintf(fid_about, '<!--------------------------------------------------------------->\n'); 
 fprintf(fid_about, '<div id = "main">\n');
-fprintf(fid_about, '  <div id = "main-wrapper">    \n');
+fprintf(fid_about, '  <div id = "main-wrapper">\n');
 fprintf(fid_about, '    <div id="content">\n');
-
-%%
 fprintf(fid_about, '      <H1 id = "portaltop">About Add-my-Pet</H1>\n'); 
 fprintf(fid_about, '      <H2 id = "aims">Overview of the collection</H2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">\n');
-fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>. \n');
-fprintf(fid_about, '          Chordates are complete at order level, primates at family level.\n');
+fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.\n');
+fprintf(fid_about, '          Chordates are complete at order level,<br> primates at family level.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
-fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px"> \n');
-fprintf(fid_about, '        <div class = "caption"><font color = "magenta">\n');
-fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a> \n');
-fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.</font>\n');
+fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px">\n');
+fprintf(fid_about, '        <div class = "caption">\n');
+fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a>\n');
+fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <h2 class="clear"></h2>\n');
-fprintf(fid_about, '      Although <a href = "http://www.debtheory.org/wiki/" target = "_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms, \n');
-fprintf(fid_about, '        the AmP collection only deals with <a href="phyla.html">animals</a>. \n');
+fprintf(fid_about, '      Although <a href = "http://www.debtheory.org/wiki/" target = "_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms,\n');
+fprintf(fid_about, '        the AmP collection only deals with <a href="phyla.html">animals</a>.\n');
 fprintf(fid_about, '      The reason is that animals eat other organisms, which don''t vary that much in chemical composition. \n');
-fprintf(fid_about, '      Given the habitat, their environment can be characterized by the variables food availability and temperature as a first rough approximation. \n');
-fprintf(fid_about, '      This characterisation is hard to make "complete" for other organisms, which hampers comparison. \n');
+fprintf(fid_about, '      Given the habitat, their environment can be characterized by the variables food availability and temperature as a first rough approximation.\n');
+fprintf(fid_about, '      This characterisation is hard to make "complete" for other organisms, which hampers comparison.\n');
 fprintf(fid_about, '      Comparison is the most useful asset of this collection.\n\n');
 
 fprintf(fid_about, '      <p>\n');
@@ -218,7 +216,7 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE_MRE.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">   \n');
-fprintf(fid_about, '          The relationship between mean relative error and data completeness. \n');
+fprintf(fid_about, '          The relationship between mean relative<br> error and data completeness. \n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -233,7 +231,7 @@ fprintf(fid_about, '      <div w3-include-html="sys/disclaimer.html"></div>\n');
 fprintf(fid_about, '      <script>w3IncludeHTML();</script>\n\n');
 
 fprintf(fid_about, '    </div> <!-- end of content -->\n\n');
-%%
+
 fprintf(fid_about, '    <!--------------------------------------------------------------->\n');
 fprintf(fid_about, '    <!--   Sidebar                                                 -->\n');
 fprintf(fid_about, '    <!--------------------------------------------------------------->\n');
