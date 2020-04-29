@@ -63,7 +63,7 @@ set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('time, yr')
 ylabel('# of AmP entries')
 xlim([2009; max(dates)])
-title([num2str(n), ' @ ', datestr(date,26)])
+title([num2str(length(dates)), ' @ ', datestr(date,26)])
 saveas (gca, [path, 'entries.png'])
 close all
 
@@ -306,7 +306,7 @@ fprintf(fid_about, '      An increasing number of papers has been published on t
 fprintf(fid_about, '        both on the methodology and ecological and evolutionary patterns in parameter values among species.</a>\n\n');
 
 fprintf(fid_about, '      <p>\n');
-fprintf(fid_about, '      Many papers have been written on specific entries, which have been cited at entry-pages. \n');
+fprintf(fid_about, '      Many papers have been written on specific entries, which have been cited at entry-pages.\n');
 
 fprintf(fid_about, '    </div> <!-- end of sidebar -->\n\n');
 
