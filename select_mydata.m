@@ -43,11 +43,14 @@ function [species, nm, sel] = select_mydata(varargin)
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    mydata = urlread([path, nm{i}, '/mydata_', nm{i}, '.m']);
+    fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
+    eval(['!powershell wget ', fnm, ' -o mydata_my_pet.txt']);
+    mydata = fileread('mydata_my_pet.txt'); 
     if ~isempty(strfind(mydata, str))
       sel(i) = true;
     end
   end
+  delete('mydata_my_pet.txt'); 
 
   species = nm(sel);
 
