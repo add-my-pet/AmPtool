@@ -84,4 +84,4 @@ for i = 1:nargin
   close all
 end
 
-cd(WD)
+cd(WD);
