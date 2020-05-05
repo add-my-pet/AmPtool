@@ -301,7 +301,7 @@ fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <H2 class="clear">Background documentation </H2>\n\n');
     
-fprintf(fid_about, '      <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure#References:_Add-my-pet_papers" TARGET="_blank">\n');
+fprintf(fid_about, '      <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure#References" TARGET="_blank">\n');
 fprintf(fid_about, '      An increasing number of papers has been published on the add-my-pet collection, \n');
 fprintf(fid_about, '        both on the methodology and ecological and evolutionary patterns in parameter values among species.</a>\n\n');
 
