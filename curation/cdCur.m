@@ -17,4 +17,10 @@ function WD = cdCur
 %% Remarks
 % Intended use: WD = cdCur; ..code.. cd(WD)
 
-WD = pwd; path = which('cdCur'); ind = strfind(path,'\'); cd(path(1:ind(end)));
+WD = pwd; path = which('cdCur'); 
+if ismac
+ ind = strfind(path,'/'); 
+else
+ ind = strfind(path,'\');
+end
+cd(path(1:ind(end)));
