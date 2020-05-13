@@ -206,7 +206,7 @@ if prnt
   [stat, txt_stat] = statistics_st(metaPar.model, par, metaData.T_typical, 1);
   display(stat)
   
-  prt_report_my_pet(metaData, metaPar, par, metaData.T_typical, 1);
+  prt_report_my_pet({par, metaPar, txtPar, metaData}, [], metaData.T_typical, 1);
   web(['report_',speciesnm,'.html'],'-browser');    % open html of bibliography in system browser
   
 end
