@@ -34,11 +34,11 @@ function [links, id] = get_links(my_pet, open)
   
   
   % overwrite id's with those in mydata_my_pet
+  fnmmat = ['results_', my_pet,'.mat'];  
   try % locally present in dir entries (mostly for curators)
-    load(['../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
+    load(which(fnmmat))
     id = metaData.links; vars_pull(id);
   catch % get results_my_pet.mat from web
-    fnmmat = ['results_', my_pet,'.mat'];
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
     eval(['!powershell wget ', path, my_pet, '/', fnmmat, ' -O ', fnmmat])
     load(fnmmat)
