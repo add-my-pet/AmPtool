@@ -52,7 +52,6 @@ if isempty(stepnb)
     fprintf('Hit a key to continue\n'); pause
 end
 
-
 %%% Step 2: run check_data for data_0, data_1 and COMPLETE
 pointNumber = pointNumber + 1; 
 
