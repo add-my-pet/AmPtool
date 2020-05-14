@@ -10,10 +10,11 @@ function [links, id] = get_links(my_pet, open)
 
 %% Description
 % Gets cell strings with links and descriptions for an entry and open the webpages.
+% Without inputs, the function will open all websites that are supported by AmP.
 %
 % Input:
 %
-% * my_pet: character string with name of entry
+% * my_pet: optional character string with name of entry
 % * open: optional boolean for opening the web pages (default 0: not open)
 %
 % Output:
@@ -26,7 +27,33 @@ function [links, id] = get_links(my_pet, open)
 % in failure, it downloads it from the web via powershell function wget
 
 %% Example
-% edit_links('Daphnia_magna',{'id_EoL', '46498265'})
+% get_links('Daphnia_magna',1)
+
+  if ~exist('my_pet','var') || isempty(my_pet)
+   id = [];
+   links = { ...
+   % general links
+     'http://www.catalogueoflife.org/'; ...
+     'http://eol.org/'; ...
+     'http://en.wikipedia.org/wiki/'; ...
+     'http://animaldiversity.org/'; ...
+     'http://taxonomicon.taxonomy.nl/'; ...
+     'http://marinespecies.org/'; ...
+   % taxon-specific links
+     'http://www.molluscabase.org/'; ...
+     'http://www.fishbase.org/'; ...
+     'http://amphibiaweb.org/'; ...
+     'http://reptile-database.reptarium.cz/'; ...
+     'https://avibase.bsc-eoc.org/'; ...
+     'http://datazone.birdlife.org/'; ...
+     'https://www.departments.bucknell.edu/biology/resources/msw3/'; ...
+     'http://genomics.senescence.info/'};
+   n_links = length(links);
+   for i= 1:n_links 
+     web(links{i},'-browser');
+   end
+   return
+  end
 
   % set all id's on empty
   id_CoL=[]; id_EoL=[]; id_Wiki=[]; id_ADW=[]; id_Taxo=[]; id_WoRMS=[];                                                 
