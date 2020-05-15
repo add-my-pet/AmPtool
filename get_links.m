@@ -3,10 +3,10 @@
 
 %%
 function [links, id] = get_links(my_pet, open)
-% created 2019/12/25 by Bas Kooijman
+% created 2019/12/25 by Bas Kooijman, modified 2020/05/15
 
 %% Syntax
-% [links, id] = <get_link *get_link*>(taxon, open)
+% [links, id] = <get_links *get_links*>(taxon, open)
 
 %% Description
 % Gets cell strings with links and descriptions for an entry and open the webpages.
@@ -23,7 +23,7 @@ function [links, id] = get_links(my_pet, open)
 % * id: (n,2)-cell array with id's and values, as in metaData.links of mydata
 
 %% Remarks
-% This function first tries to find results_my_pet.mat in local directory entries (typically only for curators); 
+% This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
 % in failure, it downloads it from the web via powershell function wget
 
 %% Example
@@ -33,7 +33,7 @@ function [links, id] = get_links(my_pet, open)
    id = [];
    links = { ...
    % general links
-     'http://www.catalogueoflife.org/'; ...
+     'http://www.catalogueoflife.org/col/'; ...
      'http://eol.org/'; ...
      'http://en.wikipedia.org/wiki/'; ...
      'http://animaldiversity.org/'; ...
@@ -42,7 +42,7 @@ function [links, id] = get_links(my_pet, open)
    % taxon-specific links
      'http://www.molluscabase.org/'; ...
      'http://www.fishbase.org/'; ...
-     'http://amphibiaweb.org/'; ...
+     'http://amphibiaweb.org/search/'; ...
      'http://reptile-database.reptarium.cz/'; ...
      'https://avibase.bsc-eoc.org/'; ...
      'http://datazone.birdlife.org/'; ...
@@ -63,7 +63,17 @@ function [links, id] = get_links(my_pet, open)
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
   try % locally present in dir entries (mostly for curators)
-    load(which(fnmmat))
+    path_fnmmat = which(fnmmat);
+    if isempty(path_fnmmat) && ~isempty(which(['mydata_', my_pet]))
+      fprintf(['Warning from get_links: no ', fnmmat, ' but we will use mydata_', my_pet, '\n']);
+      eval(['[~, ~, metaData] = mydata_', my_pet, ';']);
+    else
+      load(path_fnmmat)
+    end
+    if ~isfield(metaData,'links')
+      fprintf(['Warning from get_links: no links specified in ', fnnmat, '\n']);
+      links = [];  id = []; return
+    end
     id = metaData.links; vars_pull(id);
   catch % get results_my_pet.mat from web
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
