@@ -24,13 +24,14 @@ function  prt_my_pet_toolbar(my_pet, destinationFolder)
 %% Example of use
 % prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder
 
-load(['../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
+%load(['../../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
+load(['/results_', my_pet,'.mat']);
 genus = strsplit(my_pet,'_'); genus = genus{1}; % identify genus for link to species_tree_Animalia
 
-if exist('destinationFolder','var') && isempty('destinationFolder')
+if exist('destinationFolder','var') && isempty(destinationFolder)
   oid = [];
 elseif exist('destinationFolder','var') 
-  oid = fopen([destinationFolder, metaData.species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
+  oid = fopen(['../', destinationFolder, metaData.species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
 else
   oid = fopen([my_pet, '_toolbar.html'], 'w+');                    % open file for reading and writing and deletes old content   
 end
@@ -68,6 +69,7 @@ fprintf(oid, '      </div>\n');
 fprintf(oid, '    </div>\n\n');
 
 links = get_links(my_pet); n_links = size(links,1);
+
 fprintf(oid, '    <div class = "dropdown"><button onclick="showDropdown(''link'')" class="dropbtn">Links</button>\n');
 fprintf(oid, '      <div id="link" class="dropdown-content">\n');
 for i = 1:n_links

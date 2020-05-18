@@ -63,12 +63,17 @@ function [links, id] = get_links(my_pet, open)
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
   try % locally present in dir entries (mostly for curators)
-    path_fnmmat = which(fnmmat);
-    if isempty(path_fnmmat) && ~isempty(which(['mydata_', my_pet]))
-      fprintf(['Warning from get_links: no ', fnmmat, ' but we will use mydata_', my_pet, '\n']);
-      eval(['[~, ~, metaData] = mydata_', my_pet, ';']);
-    else
-      load(path_fnmmat)
+    if ~exist('metaData','var')
+      if ~isempty(which(['mydata_', my_pet]))
+         eval(['[~, ~, metaData] = mydata_', my_pet, ';']);
+      else
+        path_fnmmat = which(fnmmat);
+        if isempty(path_fnmmat) 
+          fprintf(['Warning from get_links: no ', fnmmat, 'or metaData or mydata_', my_pet, '\n']);
+        else
+          load(path_fnmmat)
+        end
+      end
     end
     if ~isfield(metaData,'links')
       fprintf(['Warning from get_links: no links specified in ', fnnmat, '\n']);

@@ -3,7 +3,8 @@
 
 %%
 function run_collection(varargin)
-% created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30 Bas Kooijman
+% created 2016/11/13 Bas Kooijman and Starrlight Augustine
+% modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30, 2020/05/17 Bas Kooijman
 
 %% Syntax
 % <../run_collection.m *run_collection*> (varargin)
@@ -47,32 +48,34 @@ WD = cdCur;
 for i = 1:nargin 
   destinationFolder = ['../../add_my_pet/entries_web/', varargin{i},'/']; % target for html and png files
   mkdir(destinationFolder);
-  fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
+  sourceFolder = ['../../add_my_pet/entries/', varargin{i},'/']; % location of .mat files
+  cd(sourceFolder); % goto entry i in dir entries
+  fprintf(' %g : %s \n', i, varargin{i}); % report progress to screen 
   
-  cd(['../../add_my_pet/entries/', varargin{i}]) % goto entry i in dir entries
-
   feval(['run_', varargin{i}]); close all;
-    load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
+    load(['results_', varargin{i}, '.mat']); % load results_my_pet.mat 
   [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
   prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
-  cdCur % cd to curation, but print to destinationFolder
 
+  cdCur; % cd to curation, but print to destinationFolder
   cd('../../add_my_pet/entries_zip');
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-    cdCur;  % cd to curation   
+  cdCur;  % cd to curation   
   
   % print files
-  prt_my_pet_toolbar(varargin{i}, destinationFolder)                                            % my_pet_toolbar.html
-  prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
-  bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
-  prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
-  prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)         % my_pet_res.html
-  prt_my_pet_par(metaData, metaPar, par, txtPar, destinationFolder)                             % my_pet_par.html
-  prt_my_pet_stat(metaData, metaPar, par, destinationFolder)                                    % my_pet_stat.html, including pie-png's
+  cd(sourceFolder);
+  prt_my_pet_toolbar(varargin{i}, destinationFolder);                                      % my_pet_toolbar.html
+  cdCur;
+  prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder);                   % my_pet_bib.bib 
+  bib2html([metaData.species, '_bib'], destinationFolder);                                 % my_pet_bib.html 
+  prt_my_pet_cit(metaData, doi, destinationFolder);                                        % citation.html
+  prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder);   % my_pet_res.html
+  prt_my_pet_par(metaData, metaPar, par, txtPar, destinationFolder);                       % my_pet_par.html
+  prt_my_pet_stat(metaData, metaPar, par, destinationFolder);                              % my_pet_stat.html, including pie-png's
    
   % get reprodCode, which is used in prt_my_pet_pop
   close all
@@ -82,6 +85,7 @@ for i = 1:nargin
     prt_my_pet_pop({metaData, metaPar, par}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
   end
   close all
+  fclose all;
 end
 
 cd(WD);
