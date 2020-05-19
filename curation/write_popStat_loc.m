@@ -82,7 +82,6 @@ function popStat = write_popStat_loc(varargin)
     end
 
     popStatLoc.(spec) = popStat.(spec);
-    fprintf('%g: %s\n', i, spec);
   end
   cd(WD)
   popStat = popStatLoc;
