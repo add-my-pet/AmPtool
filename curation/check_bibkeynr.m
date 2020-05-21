@@ -21,7 +21,7 @@ function [nm nr] = check_bibkeynr(species)
 % * nr: (n,2) array with corresponding numbers of bib items in mydata and .bib
 
 %% Remarks
-% Assumes to be run from AmPtool/curation and entries are in sister-directory entries for mydata-files.
+% Assumes to be run from AmPtool/curation and entries are in sister-directory add_my_pet/entries for mydata-files.
 % reads bib-files from the web. Assumes that bibkey = " only occurs in the references.
 
 %% Example of use
@@ -31,7 +31,7 @@ path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
 
 WD = pwd;
 
-if exist('species', 'var') == 0
+if ~exist('species', 'var')
    species = select;
 elseif ~iscell(species)
    if isempty(strfind(species, '_'))
@@ -42,17 +42,19 @@ elseif ~iscell(species)
 end
 nm = species; n_spec = length(species); sel = false(n_spec,1); nr = zeros(n_spec, 2);
 for i = 1: n_spec
-  cd(['../../entries/', species{i}])
+  cd(['../../add_my_pet/entries/', species{i}])
   mydata = fileread(['mydata_',species{i}, '.m']);
   nr(i,1) = length(strfind(mydata, 'bibkey = '''));
+  %bib = urlread([path, species{i}, '/', species{i}, '_bib.bib']);
   txt = [path, species{i}, '/', species{i}, '_bib.bib'];
-  bib = urlread([path, species{i}, '/', species{i}, '_bib.bib']);
+  eval(['!Powershell wget ', txt, ' -o bib.bib']); bib = fileread('bib.bib'); delete('bib.bib');
   nr(i,2) = length(strfind(bib, '@'));
   if nr(i,1) ~= nr(i,2)
     sel(i) = true;
   end
   cd (WD);
 end
+
 
 nm = nm(sel); nr = nr(sel,:);
 
