@@ -23,7 +23,7 @@ function [tree local server] = check_entries
 % VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
-% check_entries
+% check_entries;
 
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
 local = cellstr(ls('../../add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
@@ -63,6 +63,18 @@ for i = 1:n_server_zip
   end
 end
 server_zip = unique(server_zip);
+
+% entries_archive
+local_archive = cellstr(ls('../../add_my_pet/entries_archive')); local_archive([1 2]) = []; n_local_archive = length(local_archive); % cell string with local entry names 
+eval(['!Powershell wget ', path, 'entries_archive/ -o txt.html']); txt = fileread('txt.html');
+n_zip = strfind(txt,'/icons/compressed.gif'); 
+n_server_archive = length(n_zip); server_archive = cell(n_server_archive,1); n_zip = [n_zip, length(txt) - 1];
+for i = 1:n_server_archive
+  txt_i = txt(n_zip(i):n_zip(i+1));
+  txt_0 = strfind(txt_i,'href="'); 
+  txt_1 = 2+strfind(txt_i,'zip');
+  server_archive{i} = txt_i(txt_0+6:txt_1);
+end
 
 delete('txt.html'); % delete local copies of html pages on VU server
 
@@ -123,5 +135,17 @@ end
 diff = setdiff(server_web, server_zip);
 if ~isempty(diff)
   fprintf('warning from check_entries: present in entries_web on server, but not in entries_zip on server\n');
+  diff
+end
+
+diff = setdiff(server_archive, local_archive);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries_archive on server, but not in entries_archive local\n');
+  diff
+end
+
+diff = setdiff(local_archive, server_archive);
+if ~isempty(diff)
+  fprintf('warning from check_entries: present in entries_archive local, but not in entries_archive on server\n');
   diff
 end
