@@ -20,25 +20,28 @@ function [tree local server] = check_entries
 % The root of the tree is Animalia. The dates are not checked
 % Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
 % Assumes that path to entries on server is: http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/
+% VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
 % check_entries
 
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
-local = cellstr(ls('../../entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
+local = cellstr(ls('../../add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
+path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';
 
 % cell string with server entries stored on server
-txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/');
+eval(['!Powershell wget ', path, 'entries/ -o txt.html']); txt = fileread('txt.html');
 head = strfind(txt,'folder.gif'); txt(1:head(1)) = []; 
 n_server = length(strfind(txt,'href="')); server = cell(n_server,1);
 for i = 1:n_server
   kill = strfind(txt,'href="'); txt(1:kill(1) + 5)= [];
   server{i} = txt(1:strfind(txt,'/"') - 1);
 end
+server(end) = []; % this last element is "entries"
 
 % cell string with server entries_web stored on server
-txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/');
+eval(['!Powershell wget ', path, 'entries_web/ -o txt.html']); txt = fileread('txt.html');
 head = strfind(txt,'folder.gif'); txt(1:head(1)) = []; 
 n_server_web = length(strfind(txt,'href="')); server_web = cell(n_server_web,1);
 for i = 1:n_server_web
@@ -47,7 +50,7 @@ for i = 1:n_server_web
 end
 
 % cell string with server entries_zip stored on server
-txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_zip/');
+eval(['!Powershell wget ', path, 'entries_zip/ -o txt.html']); txt = fileread('txt.html');
 n_zip = strfind(txt,'/icons/compressed.gif'); 
 n_server_zip = length(n_zip); server_zip = cell(n_server_zip,1); n_zip = [n_zip, length(txt) - 1];
 for i = 1:n_server_zip
@@ -60,6 +63,8 @@ for i = 1:n_server_zip
   end
 end
 server_zip = unique(server_zip);
+
+delete('txt.html'); % delete local copies of html pages on VU server
 
 diff = setdiff(stat, local);
 if ~isempty(diff)
