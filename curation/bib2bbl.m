@@ -29,25 +29,28 @@ function bib2bbl(my_pet_bib)
 % * {\em ...} can have an arbitrary number of nested {}, but \emph{} and \textit{} cannot handle nested {}
 % * web-adress cannot contain spaces or %20; use ~ instead; this will be replaced by a space in function bbl2html
 
-% create aux file
+my_bib = fileread([my_pet_bib, '.bib']);
+my_bib = strrep(my_bib, '\~{', '\={'); % replace \~{*} by \={*} because BibTex interpretes ~ as space
+my_bib = strrep(my_bib, '\', '\\');    % replace \ by \\ else fprintf will protest
+fid = fopen('my_bib.bib', 'w+'); % open file for reading and writing and deletes old content
+fprintf(fid, my_bib);
+fclose(fid);
 
-fid = fopen([my_pet_bib, '.aux'], 'w+'); % open file for reading and writing and deletes old content
+% create aux file
+fid = fopen('my_bib.aux', 'w+'); % open file for reading and writing and deletes old content
 
 fprintf(fid,[ ...
    '\\relax\n' ...
    '\\citation{*}\n' ...
    '\\bibstyle{apalike}\n' ...
-   '\\bibdata{', my_pet_bib, '}\n']);
+   '\\bibdata{my_bib}\n']);
 fclose(fid); 
 
 % run bibtex
-dos(['bibtex ', my_pet_bib]);
-
-% remove help files
-delete([my_pet_bib, '.aux'])
+dos('bibtex my_bib');
 
 % search for doi's in my_pet_bib.bib to add in my_pet_bib.bbl
-bib = fileread([my_pet_bib, '.bib']);
+bib = fileread('my_bib.bib');
 bib = strrep(bib, 'DOI', 'doi');
 bib = strrep(bib, 'Doi', 'doi');
 ind = strfind(bib, 'doi ');
@@ -63,8 +66,8 @@ else % doi's present
     doi{i,1} = str(ind0(1)+1:ind1(1)-1);
   end
 end
-% add doi's to my_pet_bib.bbl
-bbl = fileread([my_pet_bib, '.bbl']); % read bbl-file
+% add doi's to my_bib.bbl
+bbl = fileread('my_bib.bbl'); % read bbl-file
 bbl = strrep(bbl,'\','\\'); % replace \ by \\ else fprintf will protest
 for i = 1:n
   % find index ind of insertion of doi i
@@ -81,6 +84,10 @@ for i = 1:n
 end
 
 % overwrite bbl file
-fid = fopen([my_pet_bib, '.bbl'], 'w+');
+fid = fopen('my_bib.bbl', 'w+');
 fprintf(fid, bbl);
 fclose(fid);
+
+% delete help files
+delete('my_bib.aux', 'my_bib.bib')
+

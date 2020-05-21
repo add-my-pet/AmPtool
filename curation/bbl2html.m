@@ -34,20 +34,13 @@ if ~exist('filenm', 'var')
 else
    fid = fopen([filenm, '.html'], 'a'); % open file for appending
 end
-bbl = fileread([my_pet_bib, '.bbl']); 
+bbl = fileread('my_bib.bbl'); 
 
 % general edits for whole bbl
 bbl = strrep(bbl, '\begin{thebibliography}{1}', ''); 
 bbl = strrep(bbl, '\end{thebibliography}', '');
 i = strfind(bbl, '\bibitem'); bbl(1:i-1) = []; % remove heading stuff
 bbl = strrep(bbl, char(13), '');               % remove unnecessary new lines
-% Although special characters are dealt with below, \~{x} is an exception, due to double-use as spacing character
-bbl = strrep(bbl, '\~', '&~'); % tilde above characters must be replaced before tilde as space is replaced
-x =  regexp(bbl, '&~{.}', 'match'); n = length(x);
-for j=1:n
-   txt = x{j}; txt(1:3) = []; txt(end) = [];
-   bbl = strrep(bbl, ['&~{', txt, '}'], ['&', txt, 'tilde;']);
-end
 bbl = strrep(bbl, '~', ' '); bbl = strrep(bbl, '\newblock', ' ');
 
 % number of bibitems
@@ -102,7 +95,7 @@ for i = 1:n_bib % scan bibitems
   bibitem_i = strrep(bibitem_i, '\Gamma','&Gamma;');
   bibitem_i = strrep(bibitem_i, '\delta','&delta;');
   bibitem_i = strrep(bibitem_i, '\Delta','&Delta;');
-  bibitem_i = strrep(bibitem_i, '\~{n}', '&#241;');
+  bibitem_i = strrep(bibitem_i, '\={n}', '&#241;');
   bibitem_i = strrep(bibitem_i, '{\l}',  '&#322;');
   bibitem_i = strrep(bibitem_i, '{\L}',  '&#321;');
   bibitem_i = strrep(bibitem_i, '\v{c}', '&#269;');
@@ -180,7 +173,7 @@ fprintf(fid, '      </ul>\n\n'); % close unordered list
 fclose(fid);
 
 % remove bbl file
-delete([my_pet_bib, '.bbl'], [my_pet_bib, '.blg']);
+delete('my_bib.bbl', 'my_bib.blg');
 end
 
 

@@ -20,7 +20,7 @@ function [species, nm, sel] = select_bib(varargin)
 % 
 % * cell string with all species in the add_my_pet collection that belong to that taxon and have a bib-file that contains str
 % * nm string with names of entries that were subjected to selection
-% * sel vector of bouleans, which entries are selected or not
+% * sel vector of booleans, which entries are selected or not
 
 %% Remarks
 % This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all predict-files are read from the web
