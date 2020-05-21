@@ -18,7 +18,8 @@ function model_types = get_model_types
 %% Example of use
 % get_model_types
 
-url = urlread('http://www.debtheory.org/wiki/index.php?title=Typified_models#Model_codes');
+txtModel = 'http://www.debtheory.org/wiki/index.php?title=Typified_models#Model_codes';
+eval(['!Powershell wget ', txtModel, ' -o txt.html']); url = fileread('txt.html'); delete('txt.html');
 
 % select text with table of model codes
 i = strfind(url, '<p>Available model codes'); url(1:i) = []; 

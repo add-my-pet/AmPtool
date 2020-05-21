@@ -65,3 +65,10 @@ if ~j
 else  
   rank(1:i-1) = []; lineage(1:i-1) = [];
 end
+
+n_lin = length(lineage);
+for i=1:n_lin
+  lineage(i) = strrep(lineage(i), '<b>', '');
+  lineage(i) = strrep(lineage(i), '</b>', '');
+  rank(i) = strrep(rank(i), '<i>', '');
+end

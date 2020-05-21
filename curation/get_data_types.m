@@ -25,7 +25,8 @@ function get_data_types
 global data_types_0 data_types_1
 
 % zerovariate data types
-url = urlread('http://www.debtheory.org/wiki/index.php?title=Zero-variate_data');
+url = 'http://www.debtheory.org/wiki/index.php?title=Zero-variate_data';
+eval(['!Powershell wget ', url, ' -o txt.html']); url = fileread('txt.html'); delete('txt.html');
 i_1 = strfind(url, '</table>') + 8; url(1:i_1(end-1)) = []; % remove txt till after first table
 i_0 = 25 + strfind(url, '<table class="wikitable">'); i_1 = strfind(url, '</table>') - 1;
 url = url(i_0:i_1); % substring between <table>...</table>
@@ -41,7 +42,8 @@ for i = 2:n % scan rows
 end
 
 % univariate data types
-url = urlread('http://www.debtheory.org/wiki/index.php?title=Univariate_data');
+url = 'http://www.debtheory.org/wiki/index.php?title=Univariate_data';
+eval(['!Powershell wget ', url, ' -o txt.html']); url = fileread('txt.html'); delete('txt.html');
 i_0 = 25 + strfind(url, '<table class="wikitable">'); i_1 = strfind(url, '</table>') - 1;
 url = url(i_0:i_1(end)); % substring between <table>...</table>
 

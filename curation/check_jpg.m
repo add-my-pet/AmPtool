@@ -75,7 +75,8 @@ end
 
 if info > 0
   % cell string with server nodes stored in server
-  txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/');
+  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/';
+  eval(['!Powershell wget ', path, ' -o txt.html']); txt = fileread('txt.html'); delete('txt.html');
   head = strfind(txt,'[IMG]'); txt(1:head(1)) = []; 
   n_server = length(strfind(txt,'href="')); server = cell(n_server,1);
   for i = 1:n_server

@@ -43,7 +43,8 @@ function [species, nm, sel] = select_bib(varargin)
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    bib = urlread([path, nm{i}, '/', nm{i}, '_bib.bib']);
+    bib = [path, nm{i}, '/', nm{i}, '_bib.bib'];
+    eval(['!Powershell wget ', bib, ' -o txt.html']); bib = fileread('txt.html'); delete('txt.html');
     if ~isempty(strfind(bib, str))
       sel(i) = true;
     end
