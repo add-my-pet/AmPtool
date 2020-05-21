@@ -1,5 +1,5 @@
 %% bib2bbl
-% translates .bib to .bbl by running Latex under Matlab
+% translates .bib to .bbl by running BibTex under Matlab
 
 %%
 function bib2bbl(my_pet_bib)
@@ -47,10 +47,10 @@ fprintf(fid,[ ...
 fclose(fid); 
 
 % run bibtex
-dos('bibtex my_bib');
+dos('bibtex my_bib'); delete('my_bib.aux');
 
 % search for doi's in my_pet_bib.bib to add in my_pet_bib.bbl
-bib = fileread('my_bib.bib');
+bib = fileread('my_bib.bib'); delete('my_bib.bib');
 bib = strrep(bib, 'DOI', 'doi');
 bib = strrep(bib, 'Doi', 'doi');
 ind = strfind(bib, 'doi ');
@@ -87,7 +87,4 @@ end
 fid = fopen('my_bib.bbl', 'w+');
 fprintf(fid, bbl);
 fclose(fid);
-
-% delete help files
-delete('my_bib.aux', 'my_bib.bib')
 

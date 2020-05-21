@@ -2,31 +2,26 @@
 % gets list of species that belongs to a taxon and has a specified string in its predict-file
 
 %%
-function [species, nm, sel] = select_bib(varargin)
+function = select_bib(nm)
 % created 2019/03/13 by  Bas Kooijman
 
 %% Syntax
-% [species, nm, sel]  = <../select_predict.m *select_bib*> (varargin) 
+% <../repair_bib.m *repair_bib*> (nms) 
 
 %% Description
-% gets all species in the add_my_pet collection with bib files that contain a character string.
-%
+% runs 
 % Input:
 %
-% * taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')
-% * str: character string
+% * nm: character string or cell string with name of taxon 
 %
 % Output:
 % 
-% * cell string with all species in the add_my_pet collection that belong to that taxon and have a bib-file that contains str
-% * nm string with names of entries that were subjected to selection
-% * sel vector of booleans, which entries are selected or not
-
+% * no put, but my_pet_bib.bib and my_pet_bib.html are replaced in add_my_pet/entries_web
 %% Remarks
-% This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all predict-files are read from the web
+% This function assumes to be run from AmPtool/curation
 
 %% Example of use
-% nm = select_bib('%')
+% repair_bib('%')
 
   if nargin == 1
     nm = select('Animalia');
