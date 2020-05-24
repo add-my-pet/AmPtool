@@ -13,7 +13,7 @@ function bib2bbl(my_pet_bib)
 %
 % Input:
 %
-% * my_pet_bib: bib-file name without extension
+% * my_pet_bib: character string with bib-file name without extension
 
 %% Remarks
 % assumes that Bibtex can be ran under dos and operations occurs in current directory

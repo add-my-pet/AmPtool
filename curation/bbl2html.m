@@ -13,7 +13,7 @@ function bbl2html(my_pet_bib, filenm)
 %
 % Input:
 %
-% * bbl: bbl.file without extension
+% * bbl: character strin with name of bbl.file without extension
 % * destinationFolder: optional specification of destination folder (default: local)
 % * filnm: optional file name to append (default: my_pet_bib.html)
 
@@ -54,7 +54,7 @@ for i = 1:n_bib % scan bibitems
   bibkey_i = bibitem_i(i_0:i_1);
   
   % edit bibitem_i
-  j = strfind(bibitem_i, bibkey_i); bibitem_i(1:j(end) + 1 + length(bibkey_i)) = []; % remove header from content
+  j = strfind(bibitem_i, ['{', bibkey_i, '}']); bibitem_i(1:j(end) + 1 + length(bibkey_i)) = []; % remove header from content
   
   url = regexp(bibitem_i, '\url{\S.*}', 'match'); n = length(url);
   for j=1:n

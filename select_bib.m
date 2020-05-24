@@ -2,26 +2,31 @@
 % gets list of species that belongs to a taxon and has a specified string in its predict-file
 
 %%
-function = select_bib(nm)
+function [species, nm, sel] = select_bib(varargin)
 % created 2019/03/13 by  Bas Kooijman
 
 %% Syntax
-% <../repair_bib.m *repair_bib*> (nms) 
+% [species, nm, sel]  = <../select_predict.m *select_bib*> (varargin) 
 
 %% Description
-% runs 
+% gets all species in the add_my_pet collection with bib files that contain a character string.
+%
 % Input:
 %
-% * nm: character string or cell string with name of taxon 
+% * taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')
+% * str: character string
 %
 % Output:
 % 
-% * no put, but my_pet_bib.bib and my_pet_bib.html are replaced in add_my_pet/entries_web
+% * cell string with all species in the add_my_pet collection that belong to that taxon and have a bib-file that contains str
+% * nm string with names of entries that were subjected to selection
+% * sel vector of bouleans, which entries are selected or not
+
 %% Remarks
-% This function assumes to be run from AmPtool/curation
+% This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all predict-files are read from the web
 
 %% Example of use
-% repair_bib('%')
+% nm = select_bib('%')
 
   if nargin == 1
     nm = select('Animalia');
@@ -38,13 +43,13 @@ function = select_bib(nm)
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    bib = [path, nm{i}, '/', nm{i}, '_bib.bib'];
-    eval(['!Powershell wget ', bib, ' -o txt.html']); bib = fileread('txt.html'); delete('txt.html');
+    eval(['!powershell wget ', path, nm{i}, '/', nm{i}, '_bib.bib -o my_bib.bib']);
+    bib = fileread('my_bib.bib');
     if ~isempty(strfind(bib, str))
       sel(i) = true;
     end
   end
-
   species = nm(sel);
+  delete('my_bib.bib');
 
   
