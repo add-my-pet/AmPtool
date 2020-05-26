@@ -1,3 +1,2 @@
-Sorex
-Crocidura
-Neomys
+Crocidurinae
+Soricinae
