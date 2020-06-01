@@ -1,5 +1,6 @@
-Bubo
-Ninox
-Asio
-Otus
 Athene
+Otus
+Asio
+Bubo
+Strix
+Ninox
