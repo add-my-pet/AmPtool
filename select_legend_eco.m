@@ -29,7 +29,7 @@ function legend = select_legend_eco(legend, taxon)
 % Input:
 %
 % * legend: optional (n,2)-matrix with markers (5-vector of cells) and eco-codes (cell string)
-% * taxon: character strin with name of taxon
+% * taxon: character string with name of taxon
 %
 % Output: 
 % 

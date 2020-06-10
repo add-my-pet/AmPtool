@@ -18,7 +18,7 @@ function legend = select_legend(legend, k)
 % Input:
 %
 % * legend: optional (n,2)-matrix with markers (5-vector of cells) and taxa (string)
-% * k: boolean for ommiting color setting (default false)
+% * k: optional boolean for ommiting color setting (default false)
 %
 % Output: 
 % 
