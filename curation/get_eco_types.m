@@ -36,7 +36,11 @@ try
   url = fileread([localPath, 'AmPeco.html']);
 catch
   % url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); % gives error
-  eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+  if ismac
+    system('/usr/local/bin/wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+  else
+    eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+  end
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
 
