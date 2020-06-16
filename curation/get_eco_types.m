@@ -39,7 +39,7 @@ catch
   if ismac
     system('/usr/local/bin/wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
   else
-    eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+    system('powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
   end
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
