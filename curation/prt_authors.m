@@ -170,7 +170,7 @@ fprintf(fid_authors, '            <div class = "author_dropdown">\n');
     nr = length(date_num);
     
     % sort entries on dates for current author
-    [nm ind] = sort(date_num,'descend');
+    [nm, ind] = sort(date_num,'descend');
     txt_entry = txt_entry(ind); txt_date = txt_date(ind);
     
 fprintf(fid_authors,['              <button onclick="entries(''', fam{i}, ''')" class="author_dropbtn"><a href="#">', num2str(nr), ' ', author{i}, '</a></button>\n']);
