@@ -2,29 +2,30 @@
 % runs functions for collection overhead
 
 %%
-function allStat = run_collection_intro(taxa)
+function allStat = run_collection_intro(entries)
 % created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26
 
 %% Syntax
-% allStat = <run_collection_intro *run_collection_intro*> (taxa)
+% allStat = <run_collection_intro *run_collection_intro*> (entries)
 
 %% Description
 % runs functions for collection overhead, but before running this script
 %
-%  * make sure that AmPtool/taxa/ is updated
-%  * make sure that ../../add_my_pet/img/tree is updated
-%  * run_collection(taxa-names) to generate files in entries_zip and entries_web
-%  * make sure to export bibtex from Zotero to debtool/DEB library.bib
+%  * update lists-of-lists in AmPtool/taxa
+%  * upade AmPtool/entries/ 
+%  * pudate ../../add_my_pet/img/tree 
+%  * run_collection(entries-names) to generate files in entries_zip and entries_web
+%  * export bibtex from Zotero to debtool/DEB library.bib
 %
 % Input:
 %
-% * taxa: optional cell array with names of entries. Runs all entries if absent
+% * entries: optional cell array with names of entries. Runs all entries if absent
 %
 % Ouput:
 %
-% * no explicit output, bt many files are written
+% * no explicit output, but many files are written
 
-%% Remaks
+%% Remarks
 % After running this function copy files to server 
 %
 % ../about.html
@@ -51,11 +52,10 @@ function allStat = run_collection_intro(taxa)
 
 WD = cdCur;
 
-clear global % remove allStat and popStat
+clear global allStat popStat % allStat and popStat are made persistent 
 
-% allStat and popStat are made persistent 
-if exist('taxa','var')
-  [allStat, info] = write_addStat(taxa); % this adds/modifies allStat for selected entries
+if exist('entries','var')
+  [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
 else
   [allStat, info] = write_allStat; % this overwrites allStat
 end
@@ -70,7 +70,7 @@ prt_toolbar
 
 prt_species_names;
 prt_species_list;
-prt_species_tree_taxa_js;
+prt_species_tree_entries_js;
 prt_authors;
 prt_pars;
 prt_patterns;

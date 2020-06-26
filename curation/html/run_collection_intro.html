@@ -66,38 +66,40 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remaks</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="run_collection_intro"><b>run_collection_intro</b></a> (taxa)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* make sure that AmPtool/taxa/ is updated
-* make sure that ../../add_my_pet/img/tree is updated
-* run_collection(taxa-names) to generate files in entries_zip and entries_web
-* make sure to export bibtex from Zotero to debtool/DEB library.bib</pre><p>Input:</p><div><ul><li>taxa: optional cell array with names of entries. Runs all entries if absent</li></ul></div><p>Ouput:</p><div><ul><li>no explicit output, bt many files are written</li></ul></div><h2 id="5">Remaks</h2><p>After running this function copy files to server</p><p>../about.html ../authors.html ../pars.html ../pie_*.html ../species_list.html ../species_names.html</p><p>../sys/species_tree_Animalia.js ../sys/species_tree_Animalia_search.html ../sys/toolbar_*.html</p><p>../AmPdata/AmPdata.zip</p><p>../img/about/*.png ../img/pars/*.png ../img/patterns/*.png ../img/tree/*.jpg and *.jpg.txt</p><p>../entries/* ../entries_web/* ../entries_zip/*</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="run_collection_intro"><b>run_collection_intro</b></a> (entries)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* update lists-of-lists in AmPtool/taxa
+* upade AmPtool/entries/
+* pudate ../../add_my_pet/img/tree
+* run_collection(entries-names) to generate files in entries_zip and entries_web
+* export bibtex from Zotero to debtool/DEB library.bib</pre><p>Input:</p><div><ul><li>entries: optional cell array with names of entries. Runs all entries if absent</li></ul></div><p>Ouput:</p><div><ul><li>no explicit output, but many files are written</li></ul></div><h2 id="5">Remarks</h2><p>After running this function copy files to server</p><p>../about.html ../authors.html ../pars.html ../pie_*.html ../species_list.html ../species_names.html</p><p>../sys/species_tree_Animalia.js ../sys/species_tree_Animalia_search.html ../sys/toolbar_*.html</p><p>../AmPdata/AmPdata.zip</p><p>../img/about/*.png ../img/pars/*.png ../img/patterns/*.png ../img/tree/*.jpg and *.jpg.txt</p><p>../entries/* ../entries_web/* ../entries_zip/*</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% run_collection_intro
 % runs functions for collection overhead
 
 %%
-function allStat = run_collection_intro(taxa)
+function allStat = run_collection_intro(entries)
 % created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26
 
 %% Syntax
-% allStat = <run_collection_intro *run_collection_intro*> (taxa)
+% allStat = <run_collection_intro *run_collection_intro*> (entries)
 
 %% Description
 % runs functions for collection overhead, but before running this script
 %
-%  * make sure that AmPtool/taxa/ is updated
-%  * make sure that ../../add_my_pet/img/tree is updated
-%  * run_collection(taxa-names) to generate files in entries_zip and entries_web
-%  * make sure to export bibtex from Zotero to debtool/DEB library.bib
+%  * update lists-of-lists in AmPtool/taxa
+%  * upade AmPtool/entries/ 
+%  * pudate ../../add_my_pet/img/tree 
+%  * run_collection(entries-names) to generate files in entries_zip and entries_web
+%  * export bibtex from Zotero to debtool/DEB library.bib
 %
 % Input:
 %
-% * taxa: optional cell array with names of entries. Runs all entries if absent
+% * entries: optional cell array with names of entries. Runs all entries if absent
 %
 % Ouput:
 %
-% * no explicit output, bt many files are written
+% * no explicit output, but many files are written
 
-%% Remaks
+%% Remarks
 % After running this function copy files to server 
 %
 % ../about.html
@@ -122,13 +124,12 @@ function allStat = run_collection_intro(taxa)
 % ../entries_web/*
 % ../entries_zip/*
 
-
-clear all % else allStat.mat and popStat.mat don't load properly
 WD = cdCur;
 
-% allStat and popStat are made persistent 
-if exist('taxa','var')
-  [allStat, info] = write_addStat(taxa); % this adds/modifies allStat for selected entries
+clear global allStat popStat % allStat and popStat are made persistent 
+
+if exist('entries','var')
+  [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
 else
   [allStat, info] = write_allStat; % this overwrites allStat
 end
@@ -143,7 +144,7 @@ prt_toolbar
 
 prt_species_names;
 prt_species_list;
-prt_species_tree_taxa_js;
+prt_species_tree_entries_js;
 prt_authors;
 prt_pars;
 prt_patterns;
