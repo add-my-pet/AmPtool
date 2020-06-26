@@ -56,21 +56,23 @@ clear global allStat popStat % allStat and popStat are made persistent
 
 if exist('entries','var')
   [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
+   write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 else
   [allStat, info] = write_allStat; % this overwrites allStat
+  write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
 end
 if ~info
   return
 end
 
-write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
+
 
 cdAmPdata; zip('AmPdata', '*.mat'); cdCur; % creates AmPdata/AmPdata.zip
 prt_toolbar
 
 prt_species_names;
 prt_species_list;
-prt_species_tree_entries_js;
+prt_species_tree_taxa_js;
 prt_authors;
 prt_pars;
 prt_patterns;

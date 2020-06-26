@@ -19,28 +19,27 @@ function popStat = write_popStat_loc(varargin)
 %
 % Ouput:
 %
-% * popStatLoc: stucture with all population statistics of all entries
+% * popStat: stucture with all population statistics of all entries
 
 %% Example of use
 % popStat = write_popStat;
 
   if isempty(varargin)
     varargin = select('Animalia');
-  elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))
+  elseif ischar(varargin) && isempty(strfind(varargin{1},'_'))
     varargin = select(varargin{1});
-  elseif iscell(varargin{1})    
-    varargin = varargin{:}; % unpack cell string  
   end
 
-  WD = pwd;
-
+  WD = cdCur; load popStat
+  locPopStat = popStat; % copy popStat in temprary varibal locPopStat, since collection popStat will be overwritten by that of species 
+  
   n_spec = length(varargin); 
   cd(['../../add_my_pet/entries_web/',varargin{1}])
   
   for i = 1:n_spec
     cd(['../',varargin{i}])
-    load([varargin{i}, '_pop.mat'])
-    spec = fieldnames(popStat); spec = spec{1};
+    load([varargin{i}, '_pop.mat']) % creates variable popStat
+    spec = fields(popStat); spec = spec{1};
     
     % remove graphics
     if isfield(popStat.(spec).f0.thin1.f, 'tS')
@@ -80,10 +79,14 @@ function popStat = write_popStat_loc(varargin)
     if isfield(popStat.(spec).f1.thin0.f, 'tSs')
         popStat.(spec).f1.thin0.f = rmfield(popStat.(spec).f1.thin0.f, 'tSs');
     end
-
-    popStatLoc.(spec) = popStat.(spec);
+    locPopStat.(spec) = popStat.(spec); % add species to collection
   end
-  cd(WD)
-  popStat = popStatLoc;
-  save('../../add_my_pet/AmPdata/popStat.mat','popStat') % run from /AmPtool/curation
+  popStat = locPopStat; % copy collection popStat back in valriable popStat
+  % check if length of popStat corresponds with number of entries in lists-of-lists
+  entries = select; n_entries = length(entries); n_popStat = length(fields(popStat));
+  if ~(n_popStat == n_entries)
+    fprintf(['Warning from write_popStat_loc:  popStat has ', num2str(n_popStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
+  end
+  popStat = orderfields(popStat, entries);
+  cdAmPdata; save('popStat.mat','popStat'); cd(WD); % run from /AmPtool/curation
 

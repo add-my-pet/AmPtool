@@ -85,5 +85,5 @@ function popStat = write_popStat(varargin)
     fprintf('%g: %s\n', i, spec);
   end
   popStat = popStatLoc;
-  save('../../add_my_pet/AmPdata/popStat.mat','popStat') % run from /AmPtool/curation
+  WD = cdAmPdata; save('popStat.mat','popStat'); cd(WD); % run from /AmPtool/curation
 
