@@ -1,16 +1,16 @@
 %% write_addStat
-% writes a structure with all pars and stats for all entries
+% writes a structure with all pars and stats for selected entries
 
 %%
-function allStat = write_addStat(taxa, T, f)
+function [allStat, info] = write_addStat(taxa, T, f)
 % created 2016/11/18 by Bas Kooijman, modified 2017/08/16
 
 %% Syntax
-% allStat = <write_addStat *write_addStat*> (T, f)
+% [allStat, info] = <write_addStat *write_addStat*> (taxa, T, f)
 
 %% Description
-% Appends result of <get_addStat.html *get_addStat*> to file allStat.mat, which is loaded and overwritten.
-% Members of taxa should also be members of select and do not exist yet in allStat.
+% Appends/overwrites result of <get_addStat.html *get_addStat*> to file allStat.mat, which is loaded and overwritten.
+% Members of taxa should also be members of select.
 % They should occur in sister-directory entries.
 % If T and f are specified, all members of taxa are added with the same values; consider multiple calls otherwise.
 %
@@ -22,6 +22,7 @@ function allStat = write_addStat(taxa, T, f)
 % Ouput:
 %
 % * allStat: stucture with all parameters and statistics of all entries
+% * info: boolean for species in taxa present in  lists-of-lists (1), or not (0)
 
 %% Remarks
 % See <write_allStat.html *write_allStat*> for writing allStat from fresh for all entries.
@@ -30,8 +31,12 @@ function allStat = write_addStat(taxa, T, f)
 %% Example of use
 % write_addStat({'Regulus_regulus'})
 
+  if ischar(taxa)    
+    taxa = {taxa};
+  end
+  
   % check if all members of taxa are in select('Animalia')
-  n = length(taxa); taxa_src = select; absent = 0;
+  n = length(taxa); taxa_src = select; absent = 0; info = true;
   for i = 1:n
     if ~(strcmp(taxa_src, taxa{i}))
       fprintf([taxa{i}, ' is not in select\n']);
@@ -39,16 +44,14 @@ function allStat = write_addStat(taxa, T, f)
     end
   end
   if absent > 0
-    return
+    info = false; return
   end
   
   % check if some members of taxa are already in allStat
   load allStat.mat
   present = isfield(allStat, taxa);
-  if sum(present) > 0
-    fprintf('Not all members of taxa are absent in existing allStat.mat\n');
-    %taxa = taxa{present};
-    %return
+  if any(present)
+    fprintf('Warning from write_addStat: Not all members of taxa are absent in existing allStat.mat\n');
   end
   
   % check if all members of taxa are in entries
@@ -56,9 +59,9 @@ function allStat = write_addStat(taxa, T, f)
   absent = 0;
   for i = 1:n
     try % goto entries
-      cd(['../../entries/', taxa{i}]) 
+      cd(['../../add_my_pet/entries/', taxa{i}]) 
     catch
-      fprintf([taxa{i}, ' does not occur in sister-directory entries\n']);
+      fprintf(['Warning from write_addStat: ', taxa{i}, ' does not occur in sister-directory entries\n']);
       absent = absent + 1;
     end
     cd(WD)                 % goto original path
@@ -77,7 +80,14 @@ function allStat = write_addStat(taxa, T, f)
   else
     allStat = get_addStat(taxa, T, f);
   end
+  
+  % check if length of allStat corresponds with number of entries in lists-of-lists
+  n_entries = length(taxa_src); n_allStat = length(fields(allStat));
+  if ~(n_allStat == n_entries)
+    fprintf(['Warning from write_addStat:  allStat has ', num2str(n_allStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
+  end
+  allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
-  cdCur;                        
-  save('../../add_my_pet/AmPdata/allStat.mat','allStat') % overwrite allStat.mat
+  cdAmPdata;                        
+  save('allStat.mat','allStat') % overwrite allStat.mat
   cd(WD)

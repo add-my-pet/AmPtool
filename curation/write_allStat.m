@@ -2,11 +2,11 @@
 % writes a structure with all pars and stats for all entries
 
 %%
-function allStat = write_allStat(T, f)
-% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16
+function [allStat, info] = write_allStat(T, f)
+% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16, 2020/08/26
 
 %% Syntax
-% allStat = <write_allStat *write_allStat*> (T, f)
+% [allStat, info] = <write_allStat *write_allStat*> (T, f)
 
 %% Description
 % Writes result of <get_allStat.html *get_allStat*> to file allStat.mat in parent dir of curation
@@ -19,6 +19,7 @@ function allStat = write_allStat(T, f)
 % Ouput:
 %
 % * allStat: stucture with all parameters and statistics of all entries
+% * info: boolean for all species in lists-of-lists are present in dir entries (1) or not (0)
 
 %% Remarks
 % See <write_addStat.html *write_addStat*> for appending a few entries to allStat.
@@ -39,12 +40,14 @@ function allStat = write_allStat(T, f)
   end
   
   % check if allStat and local dir ../../add_my_pet/entries have the same entries
+  info = true;
   entries_local = cellstr(ls('../../add_my_pet/entries')); entries_local(1:2) = []; % remove '.' and '..'
   entries_allStat = fieldnames(allStat); 
   diff = setdiff(entries_allStat, entries_local);
   if ~isempty(diff)
     fprintf('warning from write_allStat: present in allStat, but not in debtool/entries\n');
     diff
+    info = false;
   end
   %
   diff = setdiff(entries_local, entries_allStat);

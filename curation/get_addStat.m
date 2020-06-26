@@ -1,21 +1,20 @@
-%% get_allStat
-% obtain a structure with all pars and stats for all entries
+%% get_addStat
+% adds all pars and stats to allStat.mat for specified entries
 
 %%
-function allStat = get_allStat(T, f)
-% created 2016/04/22 by Bas Kooijman, modified 2018/01/23, 2019/12/25
+function allStat = get_addStat(entries, T, f)
+% created 2016/04/22 by Bas Kooijman
 
 %% Syntax
-% allStat = <get_allStat *get_allStat*> (T, f)
+% allStat = <get_addStat *get_addStat*> (taxa, T, f)
 
 %% Description
-% Gets lineage, model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics and biblist of all entries.
-% It does so by directory-hopping using ../../entries, which must contain all entries, and visiting the results_my_pet.mat files.
-% This assumes that the content of this .mat file is consistent with the mydata_my_pet and the pars_init_my_pet files.
+% gets model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics of specified entries.
 % Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.
 %
 % Input:
 %
+% * entries: cell string with taxa to be added
 % * T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)
 % * f: optional scalar with scaled functional response (default 1)
 %
@@ -25,11 +24,11 @@ function allStat = get_allStat(T, f)
 
 %% Remarks
 % Statistics are given at T_typical or T. 
-% Meant to be used in combination with <write_allStat.html *write_allStat*> and <../../html/read_allStat.html *read_allStat*>.
-% Since running this function takes some time, progress is written to screen.
+% Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
+% See <get_addStat.html *get_addStat*> for all entries of select.
 
 %% Example of use
-% allStat = get_allStat; see mydata_shstat
+% see write_addStat
 
   if ~exist('T', 'var') || isempty(T)
     set_T = 0; % identyfier for temperature setting
@@ -41,17 +40,17 @@ function allStat = get_allStat(T, f)
     f = 1;
   end
 
-  entries = select('Animalia');
+  load allStat.mat
+  
   ne = length(entries);
-   
-  WD = pwd;                % store current path
+  WD = cdCur; % store current path and goto AmP/curation
   cd(['../../add_my_pet/entries/',entries{1}]) % goto entries
 
   try
     for i = 1:ne
       cd (['../', entries{i}])
-      fprintf([num2str(i), ': ',  entries{i}, '\n']); % show progress on screen (takes some time)
-      load(['results_', entries{i}])
+      fprintf([num2str(i), ': ', entries{i}, '\n']); % show progress on screen (takes some time)
+      load (['results_', entries{i}])
       
       % metaData
       allStat.(entries{i}).species = metaData.species; allStat.(entries{i}).units.species = '-'; allStat.(entries{i}).label.species = 'taxon';
@@ -92,7 +91,7 @@ function allStat = get_allStat(T, f)
       % typical body temp
       allStat.(entries{i}).T_typical = metaData.T_typical;  allStat.(entries{i}).units.T_typical = 'K';
         allStat.(entries{i}).label.T_typical = 'typical body temperature';
-
+            
       % parameters
       par = rmfield_wtxt(par, 'free');   % remove substructure free from par
       [nm, nst] = fieldnmnst_st(par);     % get number of parameter fields
@@ -124,3 +123,14 @@ function allStat = get_allStat(T, f)
   cd(WD)                   % goto original path
 end
 
+function author_mod = get_author_mod(metaData)
+  author_mod = cell(0);
+  [nm nr] = fieldnmnst_st(metaData); 
+  n = strfind(nm, 'author_'); 
+  for i = 1:nr
+    if ~isempty(n{i})
+      authors = metaData.(nm{i});
+      author_mod = [author_mod, authors(:)'];
+    end
+  end
+end
