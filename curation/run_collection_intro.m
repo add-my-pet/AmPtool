@@ -51,7 +51,7 @@ function allStat = run_collection_intro(taxa)
 
 WD = cdCur;
 
-clear allStat popStat
+clear global % remove allStat and popStat
 
 % allStat and popStat are made persistent 
 if exist('taxa','var')
