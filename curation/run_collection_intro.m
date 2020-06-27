@@ -52,7 +52,7 @@ function allStat = run_collection_intro(entries)
 
 WD = cdCur;
 
-clear global allStat popStat % allStat and popStat are made persistent 
+clear global % allStat and popStat are made persistent 
 
 if exist('entries','var')
   [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries

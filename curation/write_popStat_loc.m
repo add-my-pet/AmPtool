@@ -24,10 +24,14 @@ function popStat = write_popStat_loc(varargin)
 %% Example of use
 % popStat = write_popStat;
 
+  clear global
+  
   if isempty(varargin)
     varargin = select('Animalia');
-  elseif ischar(varargin) && isempty(strfind(varargin{1},'_'))
+  elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))
     varargin = select(varargin{1});
+  elseif iscell(varargin{1})    
+    varargin = varargin{:}; % unpack cell string  
   end
 
   WD = cdCur; load popStat

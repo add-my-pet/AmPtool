@@ -29,7 +29,7 @@ function allStat = get_addStat(entries, T, f)
 
 %% Example of use
 % see write_addStat
-
+  
   if ~exist('T', 'var') || isempty(T)
     set_T = 0; % identyfier for temperature setting
   else 

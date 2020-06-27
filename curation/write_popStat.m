@@ -27,6 +27,8 @@ function popStat = write_popStat(varargin)
 %% Example of use
 % popStat = write_popStat;
 
+  clear global
+  
   if isempty(varargin)
     varargin = select('Animalia');
   elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))

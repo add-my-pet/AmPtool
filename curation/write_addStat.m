@@ -29,9 +29,13 @@ function [allStat, info] = write_addStat(taxa, T, f)
 % See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
 
 %% Example of use
-% write_addStat({'Regulus_regulus'})
+% write_addStat('Regulus_regulus') or write_addStat('Etheostoma') 
+  
+  clear global
 
-  if ischar(taxa)    
+  if ischar(taxa)  && isempty(strfind(taxa,'_'))
+    taxa = select(taxa);
+  elseif ischar(taxa)
     taxa = {taxa};
   end
   
@@ -44,7 +48,7 @@ function [allStat, info] = write_addStat(taxa, T, f)
     end
   end
   if absent > 0
-    info = false; return
+    info = false; allStat = []; return
   end
   
   % check if some members of taxa are already in allStat
