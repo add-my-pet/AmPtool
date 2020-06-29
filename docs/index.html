@@ -221,7 +221,7 @@
       <code>h=datacursormode(Hfig);h.UpdateFcn=@(obj,event_obj)xylabels(obj,event_obj,nm,pM_v);datacursormode on</code>.
     Select North American freshwater fish with <code>[sel,nm]=select_01('Pisces'); [~,sel_TH]=select_eco('ecozone','TH'); [~,sel_THp]=select_eco('ecozone','THp');
     nm=nm(sel&sel_TH&~sel_THp)</code>. 
-    (Notice that the holarctic, TH, comprises the palaearctic, THp, and the nearctic, THn.
+    (Notice that the holarctic, TH, comprises the palearctic, THp, and the nearctic, THn.
     Selection for nearctic species would miss the holarctic ones. 
     Although Pisces is not a natural taxon, so not part of lists-of-lists, it can serve handy functions.)
     Since the selection-booleans that result from <code>select</code>, <code>select_eco</code> and <code>select_data</code> all have the same sequence of entries, 
