@@ -215,13 +215,8 @@
     A general multi-step way of selecting entries on the basis of a variety of criteria is, e.g. mammals that have a <code>COMPLETE</code> score larger than 2.6: 
       <code>[s1,nm]=select_01('Mammalia');s2=read_allStat('COMPLETE')>2.6;nm=nm(s1&s2)</code>.
     Plot for those entries e.g. energy conductance as function of specific somatic maintenance <code>pM_v=read_stat(nm,'p_M','v')</code> with: 
-      <code>Hfig=figure(1);plot(pM_v(:,1),pM_v(:,2),'or');</code>. 
-    See entry names by clicking on points in this figure with: 
+      <code>Hfig=figure(1);plot(pM_v(:,1),pM_v(:,2),'or');</code>. See entry names by clicking on points in this figure with: 
       <code>h=datacursormode(Hfig);h.UpdateFcn=@(obj,event_obj)xylabels(obj,event_obj,nm,pM_v);datacursormode on</code>.
-    Select North American freshwater fish with <code>[sel,nm]=select_01('Pisces'); [~,sel_TH]=select_eco('ecozone','TH'); [~,sel_THp]=select_eco('ecozone','THp');
-    nm=nm(sel&sel_TH&~sel_THp)</code>. 
-    (Notice that the holarctic, TH, comprises the palaearctic, THp, and the nearctic, THn. 
-    Although Pisces is not a natural taxon, so not part of lists-of-lists, it can serve handy functions.)
     Since the selection-booleans that result from <code>select</code>, <code>select_eco</code> and <code>select_data</code> all have the same sequence of entries, 
       the three types of selection can be combined.
 
