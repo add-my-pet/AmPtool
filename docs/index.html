@@ -178,6 +178,7 @@
     A motivation for this type of selection could be to study ecological adaptations of parameter values.
     Selection on eco-codes is done with function <a href="../html/select_eco.html">select_eco</a>. 
     It allows selection for a single variable, and multiple codes in OR mode.
+    Selection of all (terrestrial and marine) Antarctic species is done with <code>select_eco('ecozone', {'MS','TS'})</code>.
     Apart from the names of the entries, it returns selection identifiers (booleans) for the whole collection, allowing to combine the result with multiple calls to this function.
     For example all species in the collection that eat invertebrates (in some stage) and occur in the North-Atlantic are found with: 
       <code>[nm, s1] = select_eco('food',{'Ci'}); [nm, s2] = select_eco('ecozone', {'MAN'}); nm = select; nm(s1&s2)</code>.
