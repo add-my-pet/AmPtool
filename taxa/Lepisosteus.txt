@@ -1,1 +1,3 @@
 Lepisosteus_oculatus
+Lepisosteus_osseus
+Lepisosteus_platostomus

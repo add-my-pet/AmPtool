@@ -1,2 +1,4 @@
 Fundulus_parvipinnis
 Fundulus_heteroclitus
+Fundulus_dispar
+Fundulus_catenatus
