@@ -2,3 +2,5 @@ Alosa_alosa
 Alosa_sapidissima
 Alosa_saposchnikowii
 Alosa_chrysochloris
+Alosa_pseudoharengus
+Alosa_aestivalis
