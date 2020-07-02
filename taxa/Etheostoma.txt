@@ -2,3 +2,4 @@ Etheostoma_rubrum
 Etheostoma_cragini
 Etheostoma_spectabile
 Etheostoma_juliae
+Etheostoma_nigrum
