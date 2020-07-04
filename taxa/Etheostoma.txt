@@ -1,5 +1,14 @@
-Etheostoma_rubrum
-Etheostoma_cragini
 Etheostoma_spectabile
-Etheostoma_juliae
+Etheostoma_microperca
+Etheostoma_spectabile
+Etheostoma_asprigene
+Etheostoma_caeruleum
+Etheostoma_sagitta
+Etheostoma_blennioides
+Etheostoma_bellator
+Etheostoma_chermocki
+Etheostoma_raneyi
+Etheostoma_percnurum
+Etheostoma_cragini
 Etheostoma_nigrum
+Etheostoma_squamiceps
