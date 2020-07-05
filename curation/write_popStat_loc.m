@@ -28,13 +28,16 @@ function popStat = write_popStat_loc(varargin)
   
   if isempty(varargin)
     varargin = select('Animalia');
+    popStat = [];
   elseif ~iscell(varargin{1}) && isempty(strfind(varargin{1},'_'))
     varargin = select(varargin{1});
+    load popStat
   elseif iscell(varargin{1})    
-    varargin = varargin{:}; % unpack cell string  
+    varargin = varargin{:}; % unpack cell string
+    load popStat
   end
 
-  WD = cdCur; load popStat
+  WD = cdCur; 
   locPopStat = popStat; % copy popStat in temprary varibal locPopStat, since collection popStat will be overwritten by that of species 
   
   n_spec = length(varargin); 

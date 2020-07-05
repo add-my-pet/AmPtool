@@ -66,7 +66,6 @@ if ~info
 end
 
 
-
 cdAmPdata; zip('AmPdata', '*.mat'); cdCur; % creates AmPdata/AmPdata.zip
 prt_toolbar
 
