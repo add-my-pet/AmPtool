@@ -35,6 +35,8 @@ function popStat = write_popStat_loc(varargin)
   elseif iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
     load popStat
+  else
+    load popStat
   end
 
   WD = cdCur; 
