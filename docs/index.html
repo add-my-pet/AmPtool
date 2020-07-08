@@ -151,6 +151,9 @@
 
     <H2 class = "clear" id="selection">Selection of entries</H2>
 
+    AmP has a number of select-functions, i.e. functions that either return a cell-string of entry names or a vector of booleans (i.e. of the true/false type).
+    These functions scan the whole collection and select entries that comply to a variety of specified criteria.
+
     <h4>Selection on taxonomy</h4>
 
     A motivation for this type of selection could be to study evolutionary adaptations of parameter values and implied traits.
@@ -160,7 +163,7 @@
     Notice that <code>allStat</code> and the lists-of-lists change continuously, so do the results of <code>select</code> and <code>select_01</code>.
     
     <p>
-    Function <a href="../html/clade.html">clade</a> finds the lowest taxon (node) that contains a set of specified taxa, and all its members.
+    Function <a href="../html/clade.html">clade</a> finds the lowest taxon (= node in the tree) that contains a set of specified taxa, and all its members at exist in the collection.
     It combines functions <code>lineage</code> and <code>pedigree</code> and can also be used to find the closest relatives of a single specified taxon.
     If a species is not found in the AmP collection, 
     it searches the <a href="http://www.catalogueoflife.org/">Catalog of Life</a> and <a href="http://taxonomicon.taxonomy.nl/">the Taxonomicon</a> for lineages, 
@@ -223,7 +226,7 @@
     nm=nm(sel&sel_TH&~sel_THp)</code>. 
     (Notice that the holarctic, TH, comprises the palearctic, THp, and the nearctic, THn.
     Selection for nearctic species would miss the holarctic ones. 
-    Although Pisces is not a natural taxon, so not part of lists-of-lists, it can serve handy functions.)
+    Although Pisces is not a clade (= natural taxon), so not a node in the tree, it can serve handy functions.)
     Since the selection-booleans that result from <code>select</code>, <code>select_eco</code> and <code>select_data</code> all have the same sequence of entries, 
       the three types of selection can be combined.
 
