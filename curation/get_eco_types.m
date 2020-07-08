@@ -35,9 +35,9 @@ end
 try
   url = fileread([localPath, 'AmPeco.html']);
 catch
-  % url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); % gives error
+  % urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); gives error since new VU server
   if ismac
-    system('/usr/local/bin/wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+    system('curl https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
   else
     system('powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
   end
