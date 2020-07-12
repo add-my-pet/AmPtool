@@ -6,3 +6,4 @@ Acipenser_persicus
 Acipenser_stellatus
 Acipenser_oxyrinchus
 Acipenser_transmontanus
+Acipenser_medirostris
