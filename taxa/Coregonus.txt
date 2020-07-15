@@ -1,3 +1,5 @@
 Coregonus_albula
-Coregonus_lavaretus
+Coregonus_artedi
 Coregonus_autumnalis
+Coregonus_clupeaformis
+Coregonus_lavaretus
