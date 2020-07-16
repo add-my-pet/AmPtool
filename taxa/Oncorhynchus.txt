@@ -1,4 +1,7 @@
-Oncorhynchus_tshawytscha
-Oncorhynchus_mykiss
 Oncorhynchus_clarkii_stomias
+Oncorhynchus_gilae
+Oncorhynchus_gorbuscha
 Oncorhynchus_keta
+Oncorhynchus_mykiss
+Oncorhynchus_nerka
+Oncorhynchus_tshawytscha
