@@ -1,4 +1,6 @@
 Notropis_atherinoides
+Notropis_chalybaeus
 Notropis_chrosomus
 Notropis_sabinae
+Notropis_spectrunculus
 Notropis_stramineus
