@@ -27,13 +27,15 @@ function species_en = get_common_CoL(id_CoL)
 % nm = get_common_CoL(get_id_CoL('Passer_domesticus'))
 
 url = urlread(['http://www.catalogueoflife.org/col/details/species/id/', id_CoL]);
-i = strfind(url,'common-name'); 
+i = strfind(url, 'id="common-names"'); url(1:i) = [];
+i = strfind(url, 'id="taxonomic-classification"'); url(i:end) = [];
+
+i = strfind(url,'<td>English</td>'); 
 if isempty(i)
   species_en = []; return
 end
-
-url(1:i) = [];
-i = strfind(url, '<td>'); url(1:(i+3)) = [];
+url(i:end) = [];
+i = strfind(url, '<td>'); i = i(end); url(1:i+3) = [];
 i = strfind(url, '</td>'); 
 species_en = url(1:i-1);
 
