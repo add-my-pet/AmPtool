@@ -6,5 +6,6 @@ Notropis
 Luxilus
 Phenacobius
 Pimephales
+Platygobio
 Pogonichthys
 Rhinichthys
