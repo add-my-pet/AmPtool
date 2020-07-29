@@ -1,3 +1,6 @@
+Cyprinodon_bovinus
 Cyprinodon_diabolis
 Cyprinodon_elegans
+Cyprinodon_macularius
+Cyprinodon_nevadensis
 Cyprinodon_variegatus
