@@ -53,7 +53,7 @@ fprintf(oid, '        <a href="%s_cit.html">Citation</a>\n', my_pet);
 fprintf(oid, '      </div>\n');
 fprintf(oid, '    </div>\n\n');
 
-zip = get_zip(my_pet); n_zip = size(zip, 1); % see if there are any obsolete zip's in the archive
+WD = cdCur; zip = get_zip(my_pet); n_zip = size(zip, 1);cd(WD); % see if there are any obsolete zip's in the archive
 fprintf(oid, '    <div class = "dropdown"><button onclick="showDropdown(''code'')" class="dropbtn">Code</button>\n');
 fprintf(oid, '      <div id="code" class="dropdown-content">\n');
 fprintf(oid, '        <a href="../../entries/%s/mydata_%s.m" target="_blank">mydata</a>\n', my_pet, my_pet);
