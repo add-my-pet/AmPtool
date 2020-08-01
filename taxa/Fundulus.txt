@@ -1,4 +1,8 @@
-Fundulus_parvipinnis
-Fundulus_heteroclitus
-Fundulus_dispar
 Fundulus_catenatus
+Fundulus_diaphanus
+Fundulus_dispar
+Fundulus_julisia
+Fundulus_heteroclitus
+Fundulus_luciae
+Fundulus_parvipinnis
+Fundulus_stellifer
