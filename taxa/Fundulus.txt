@@ -3,6 +3,8 @@ Fundulus_diaphanus
 Fundulus_dispar
 Fundulus_julisia
 Fundulus_heteroclitus
+Fundulus_kansae
 Fundulus_luciae
 Fundulus_parvipinnis
+Fundulus_seminolis
 Fundulus_stellifer
