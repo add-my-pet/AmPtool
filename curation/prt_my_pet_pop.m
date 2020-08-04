@@ -180,9 +180,13 @@ fprintf(oid, '<HEAD>\n');
 fprintf(oid, '  <TITLE>%s pop</TITLE>\n', species);
 
 if AmP
-fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css"> \n');
+fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
+
 fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
 end
 
 fprintf(oid, '  <style>\n');
