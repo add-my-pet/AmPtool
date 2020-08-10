@@ -1,3 +1,4 @@
 Macrhybopsis_gelida
 Macrhybopsis_hyostoma
 Macrhybopsis_meeki
+Macrhybopsis_storeriana
