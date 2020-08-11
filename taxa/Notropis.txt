@@ -1,7 +1,17 @@
+Notropis_amabilis
 Notropis_atherinoides
+Notropis_atrocaudalis
+Notropis_blennius
+Notropis_buchanani
 Notropis_chalybaeus
 Notropis_chrosomus
+Notropis_girardi
+Notropis_jemezanus
+Notropis_maculatus
+Notropis_potteri
 Notropis_rafinesquei
 Notropis_sabinae
 Notropis_spectrunculus
 Notropis_stramineus
+Notropis_texanus
+Notropis_volucellus
