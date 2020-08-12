@@ -8,6 +8,7 @@ Lythrurus
 Macrhybopsis
 Moapa
 Notropis
+Opsopoeodus
 Phenacobius
 Pimephales
 Platygobio
