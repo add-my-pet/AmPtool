@@ -2,6 +2,8 @@ Noturus_baileyi
 Noturus_eleutherus
 Noturus_exilis
 Noturus_flavipinnis
+Noturus_gyrinus
 Noturus_hildebrandi
 Noturus_munitus
+Noturus_nocturnus
 Noturus_phaeus
