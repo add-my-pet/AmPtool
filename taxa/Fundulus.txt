@@ -1,4 +1,5 @@
 Fundulus_catenatus
+Fundulus_chrysotus
 Fundulus_diaphanus
 Fundulus_dispar
 Fundulus_julisia
