@@ -1,3 +1,10 @@
+Lepomis_auritus
 Lepomis_cyanellus
 Lepomis_gulosus
+Lepomis_humilis
 Lepomis_macrochirus
+Lepomis_marginatus
+Lepomis_megalotis
+Lepomis_microlophus
+Lepomis_miniatus
+Lepomis_symmetricus
