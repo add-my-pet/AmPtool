@@ -1,3 +1,7 @@
-Percina_tanasi
-Percina_phoxocephala
+Percina_caprodes
+Percina_macrolepida
 Percina_maculata
+Percina_phoxocephala
+Percina_sciera
+Percina_shumardi
+Percina_tanasi
