@@ -1,6 +1,7 @@
 Pomatoschistus
 Rhinogobius
 Gobius
+Gobiosoma
 Ponticola
 Neogobius
 Knipowitschia
