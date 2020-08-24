@@ -1,5 +1,10 @@
+Cottus_asperrimus
 Cottus_bairdii
+Cottus_beldingii
 Cottus_cognatus
 Cottus_extensus
+Cottus_hangiongensis
+Cottus_klamathensis
 Cottus_leiopomus
+Cottus_pitensis
 Cottus_volki
