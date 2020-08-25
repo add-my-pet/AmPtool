@@ -50,7 +50,7 @@ tb = [tb, '          <a href="??AmPeco.html">AmP Ecology</a>\n'];
 tb = [tb, '          <a href="??phyla.html">Phyla</a>\n'];
 tb = [tb, '          <a href="??pars.html">Parameters</a>\n'];
 tb = [tb, '          <a href="??patterns.html">Patterns</a>\n'];
-tb = [tb, '          <a href="??AmPeps.html">Entry prep</a>\n'];
+tb = [tb, '          <a href="??AmPeps.html">Entry prepare</a>\n'];
 tb = [tb, '          <a href="??about.html">About</a>\n'];
 tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];
