@@ -1,8 +1,12 @@
+Cottus_aleuticus
 Cottus_asperrimus
 Cottus_bairdii
 Cottus_beldingii
+Cottus_carolinae
 Cottus_cognatus
+Cottus_confusus
 Cottus_extensus
+Cottus_gobio
 Cottus_hangiongensis
 Cottus_klamathensis
 Cottus_leiopomus
