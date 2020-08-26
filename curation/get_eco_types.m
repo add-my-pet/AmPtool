@@ -2,7 +2,7 @@
 % copies ecotypes from AmPeco.html to global eco_types
 %%
 function get_eco_types(localPath)
-% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29
+% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29, 2020/08/26
 
 %% Syntax
 % <../get_eco_types.m *get_eco_types*>(localPath)
