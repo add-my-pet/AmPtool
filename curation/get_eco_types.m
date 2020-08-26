@@ -33,7 +33,7 @@ if exist('localPath','var')
 else
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
   if ismac
-    system(['curl ', path, 'AmPeco.html -O AmPeco_local.html;']);
+    system(['curl ', path, 'AmPeco.html -o AmPeco_local.html;']);
   else
     system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
   end
