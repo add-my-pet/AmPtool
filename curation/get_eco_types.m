@@ -28,18 +28,14 @@ function get_eco_types(localPath)
 
 global eco_types
 
-if ~exist('localPath','var')
-  localPath = '';
-end
-    
-try
+if exist('localPath','var')
   url = fileread([localPath, 'AmPeco.html']);
-catch
-  % urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); gives error since new VU server
+else
+  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
   if ismac
-    system('curl https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+    system(['curl ', path, 'AmPeco.html -O AmPeco_local.html;']);
   else
-    system('powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+    system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
   end
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
