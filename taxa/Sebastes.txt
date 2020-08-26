@@ -1,5 +1,7 @@
+Sebastes_auriculatus
 Sebastes_capensis
-Sebastes_rufus
 Sebastes_mentella
 Sebastes_minor
+Sebastes_rastrelliger
+Sebastes_rufus
 Sebastes_taczanowskii
