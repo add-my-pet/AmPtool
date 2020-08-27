@@ -1,3 +1,4 @@
 Catostomus_catostomus
+Catostomus_commersonii
 Catostomus_latipinnis
 Catostomus_santaanae

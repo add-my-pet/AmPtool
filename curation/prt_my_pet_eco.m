@@ -24,8 +24,8 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 
 global eco_types
 
-if length(eco_types) == 0 
-  get_eco_types('../../add_my_pet_web/');
+if isempty(eco_types)
+  get_eco_types('../../add_my_pet/');
 end
 
 % unpack metaData and metaPar
