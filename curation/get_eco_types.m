@@ -49,7 +49,7 @@ for i = 1:n
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
     %label = splitlines(label); label = label{1};
-    label = strsplit(label,char(10)); label = label{1};
+    label = strsplit(label,' '); label = label{1};
   end
   eco_types.climate.(code) = label;
 end
