@@ -28,6 +28,9 @@ function get_eco_types(localPath)
 
 global eco_types
 
+eco_types.climate = []; eco_types.ecozone = []; eco_types.habitat = []; eco_types.embryo = []; 
+eco_types.migrate = []; eco_types.food = [];    eco_types.gender = [];  eco_types.reprod = []; 
+
 if exist('localPath','var')
   url = fileread([localPath, 'AmPeco.html']);
 else
