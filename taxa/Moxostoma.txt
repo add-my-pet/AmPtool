@@ -1,4 +1,5 @@
 Moxostoma_carinatum
+Moxostoma_cervinum
 Moxostoma_duquesnii
 Moxostoma_macrolepidotum
 Moxostoma_poecilurum
