@@ -2,7 +2,7 @@
 % copies ecotypes from AmPeco.html to global eco_types
 %%
 function get_eco_types(localPath)
-% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29, 2020/08/26
+% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29, 2020/08/26, 2020/08/31
 
 %% Syntax
 % <../get_eco_types.m *get_eco_types*>(localPath)
@@ -36,7 +36,7 @@ if exist('localPath','var')
 else
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
   if ismac
-    system(['curl --trace-ascii -o AmPeco_local.html ', path, 'AmPeco.html;']);
+    system(['/usr/local/bin/wget -O AmPeco_local.html ', path, 'AmPeco.html;']);
   else
     system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
   end
