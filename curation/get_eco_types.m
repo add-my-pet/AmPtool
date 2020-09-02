@@ -37,7 +37,7 @@ else
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
   if ismac
     status = system('which wget');
-    if status ==0
+    if ~(status == 0)
       fprintf('Warning from get_eco_types: wget is not found, please install wget first and set a path to it \nl');
       fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
       return
