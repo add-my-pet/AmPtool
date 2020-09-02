@@ -38,11 +38,11 @@ else
   if ismac
     status = system('which wget');
     if status ==0
-      system('wget -O AmPeco_local.html ', path, 'AmPeco.html');
-    else
-      fprintf('Warning from get_eco_tpyes: wget is not found, please install wget first and set a path to it \nl');
+      fprintf('Warning from get_eco_types: wget is not found, please install wget first and set a path to it \nl');
       fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
       return
+    else
+      system('wget -O AmPeco_local.html ', path, 'AmPeco.html');
     end
   else
     system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
