@@ -3,7 +3,7 @@
 
 %%
 function [species, nm, sel] = select_mydata(varargin)
-% created 2019/03/14 by  Bas Kooijman
+% created 2019/03/14 by  Bas Kooijman, modofied 2020/09/03
 
 %% Syntax
 % [species, nm, sel]  = <../select_mydata.m *select_mydata*> (varargin) 
@@ -28,6 +28,16 @@ function [species, nm, sel] = select_mydata(varargin)
 %% Example of use
 % nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')
 
+  if ismac
+    PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
+    status = system('which wget');
+    if ~(status == 0)
+      fprintf('Warning from AmPeps: system-function wget is not found, please install wget first\nl');
+      fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
+      return
+    end
+  end
+
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
@@ -44,7 +54,11 @@ function [species, nm, sel] = select_mydata(varargin)
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
     fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
-    eval(['!powershell wget ', fnm, ' -o mydata_my_pet.txt']);
+    if ismac
+      eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
+    else
+      eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);
+    end
     mydata = fileread('mydata_my_pet.txt'); 
     if ~isempty(strfind(mydata, str))
       sel(i) = true;
