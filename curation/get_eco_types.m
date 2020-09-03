@@ -36,16 +36,17 @@ if exist('localPath','var')
 else
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
   if ismac
+    PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
     status = system('which wget');
     if ~(status == 0)
-      fprintf('Warning from get_eco_types: wget is not found, please install wget first and set a path to it \nl');
+      fprintf('Warning from get_eco_types: wget is not found, please install wget first\nl');
       fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
       return
     else
-      system('wget -O AmPeco_local.html ', path, 'AmPeco.html');
+      system(['wget -O AmPeco_local.html ', path, 'AmPeco.html']);
     end
   else
-    system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
+    system(['powershell wget -O AmPeco_local.html ', path, 'AmPeco.html']);
   end
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
