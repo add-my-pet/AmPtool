@@ -32,7 +32,7 @@ function [species, nm, sel] = select_predict(varargin)
     PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
     status = system('which wget');
     if ~(status == 0)
-      fprintf('Warning from AmPeps: system-function wget is not found, please install wget first\nl');
+      fprintf('Warning from select_predict: system-function wget is not found, please install wget first\nl');
       fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
       return
     end
