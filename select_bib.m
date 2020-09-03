@@ -28,6 +28,16 @@ function [species, nm, sel] = select_bib(varargin)
 %% Example of use
 % nm = select_bib('%')
 
+  if ismac
+    PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
+    status = system('which wget');
+    if ~(status == 0)
+      fprintf('Warning from select_predict: system-function wget is not found, please install wget first\nl');
+      fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
+      return
+    end
+  end
+
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
@@ -43,7 +53,11 @@ function [species, nm, sel] = select_bib(varargin)
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    eval(['!powershell wget ', path, nm{i}, '/', nm{i}, '_bib.bib -o my_bib.bib']);
+    if ismac
+      eval(['system(wget -O my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib)']);
+    else
+      eval(['!powershell wget -o my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib']);
+    end
     bib = fileread('my_bib.bib');
     if ~isempty(strfind(bib, str))
       sel(i) = true;
