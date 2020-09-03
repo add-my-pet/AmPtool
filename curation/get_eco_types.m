@@ -42,7 +42,7 @@ else
       fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
       return
     else
-      system(['wget -O AmPeco_local.html ', path, 'AmPeco.html']);
+      system('wget -O AmPeco_local.html ', path, 'AmPeco.html');
     end
   else
     system(['powershell wget ', path, 'AmPeco.html -O AmPeco_local.html;']);
