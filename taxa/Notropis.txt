@@ -3,6 +3,7 @@ Notropis_atherinoides
 Notropis_atrocaudalis
 Notropis_blennius
 Notropis_buccula
+Notropis_buccatus
 Notropis_buchanani
 Notropis_chalybaeus
 Notropis_chrosomus
