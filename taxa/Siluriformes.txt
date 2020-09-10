@@ -1,5 +1,4 @@
-Siluridae
-Pangasiidae
-Clariidae
-Ictaluridae
-Callichthyidae
+Loricarioidea
+Siluroidea
+Bagroidea
+Ictaluroidea
