@@ -1,2 +1,4 @@
-Channa_punctata
 Channa_argus
+Channa_marulius
+Channa_punctata
+Channa_striata

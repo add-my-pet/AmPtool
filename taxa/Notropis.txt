@@ -18,4 +18,5 @@ Notropis_sabinae
 Notropis_spectrunculus
 Notropis_stramineus
 Notropis_texanus
+Notropis_topeka
 Notropis_volucellus
