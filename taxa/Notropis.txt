@@ -1,6 +1,7 @@
 Notropis_amabilis
 Notropis_atherinoides
 Notropis_atrocaudalis
+Notropis_bifrenatus
 Notropis_blennius
 Notropis_buccula
 Notropis_buccatus
@@ -8,8 +9,10 @@ Notropis_buchanani
 Notropis_chalybaeus
 Notropis_chrosomus
 Notropis_girardi
+Notropis_heterolepis
 Notropis_hudsonius
 Notropis_jemezanus
+Notropis_longirostris
 Notropis_maculatus
 Notropis_oxyrhynchus
 Notropis_potteri
