@@ -15,6 +15,7 @@ Notropis_jemezanus
 Notropis_longirostris
 Notropis_maculatus
 Notropis_oxyrhynchus
+Notropis_petersoni
 Notropis_potteri
 Notropis_rafinesquei
 Notropis_sabinae
