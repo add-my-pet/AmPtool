@@ -3,6 +3,7 @@ Notropis_atherinoides
 Notropis_atrocaudalis
 Notropis_bifrenatus
 Notropis_blennius
+Notropis_boops
 Notropis_buccula
 Notropis_buccatus
 Notropis_buchanani
@@ -24,3 +25,4 @@ Notropis_stramineus
 Notropis_texanus
 Notropis_topeka
 Notropis_volucellus
+Notropis_xaenocephalus

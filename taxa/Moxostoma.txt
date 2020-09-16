@@ -3,6 +3,7 @@ Moxostoma_carinatum
 Moxostoma_cervinum
 Moxostoma_congestum
 Moxostoma_duquesnii
+Moxostoma_erythrurum
 Moxostoma_hubbsi
 Moxostoma_macrolepidotum
 Moxostoma_poecilurum
