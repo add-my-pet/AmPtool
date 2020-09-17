@@ -1,3 +1,5 @@
+Chrosomus_erythrogaster
 Chrosomus_neogaeus
 Chrosomus_oreas
 Chrosomus_saylori
+Chrosomus_tennesseensis
