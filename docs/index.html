@@ -27,31 +27,33 @@
     <H1 id="portaltop">AmPtool</H1>
 
     
-    <a href = "http://www.github.com/add-my-pet/AmPtool/" target = "_top">AmPtool</a> 
+    <a href="http://www.github.com/add-my-pet/AmPtool/" target="_top">AmPtool</a> 
        contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection.
-    It is an extension of <A HREF = "http://www.github.com/add-my-pet/DEBtool_M/" target = "_top">DEBtool_M</A>, and makes frequent use of it.
+    It is an extension of <A HREF="http://www.github.com/add-my-pet/DEBtool_M/" target="_top">DEBtool_M</A>, and makes frequent use of it.
     All parameters and (population) traits for all entries are available in dropdown <code>COLLECTION/AmPdata</code> as a zip-file.
     Save the files <code>allStat.mat</code> and <code>popStat.mat</code> from the linked zip into one directory.
     Open Matlab and set paths to AmPtool, DEBtool_M (including subdirectories) and to the directory with the <code>.mat</code> files. 
-    Make sure to work with the latest versions since <code>AmPtool/taxa</code> should correspond exactly with AmPdata and they both change frequently; 
+    Make sure to work with the latest versions since <code>AmPtool/taxa</code> should correspond exactly with <code>AmPdata</code> and they both change frequently; 
        check the date of the latest version in dropdown <code>COLLECTION</code> with 
        <a href="../html/date_allStat.html">date_allStat</a> and <a href="../html/date_popStat.html">date_popStat</a>.
     If you downloaded new <code>.mat</code> versions during a Matlab-session (rather than before the start), don't forget to <code>clear all</code> in Matlab.
-    This is because structures allStat and popStat are made persistent to avoid repeated loading of these large files.
+    This is because structures <code>allStat</code> and <code>popStat</code> are made persistent to avoid repeated loading of these large files.
     Subdirectory <code>AmPtool/curation</code> is only meant for curators to maintain the collection. 
+
+    <p>
     This page describes how to use AmPtool (in combination with DEBtool_M) for analysis of data in 4 stacked steps: 
-      <a href = "#tree">tree</a>, <a href = "#selection">selections</a>, <a href = "#legend">legend</a> and <a href = "#plotting">plotting</a>.
+      <a href="#tree">tree</a>, <a href="#selection">selections</a>, <a href="#legend">legend</a> and <a href="#plotting">plotting</a>.
 
     <H2 id="data">Data</H2>
 
     All data (i.e. meta-data, parameters, meta-parameters, 
-      <A HREF = "http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/statistics_st.html" target = "_top">implied traits</A>, 
+      <A href="http://www.bio.vu.nl/thb/deb/deblab/debtool/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</A>, 
       but no empirical data) of all entries are collected by function 
-      <a href = "../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
+      <a href="../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
     Only curators who have all entries locally can run this function, but the result is available for anybody.
-    To read data directly, use <code>load allStat</code>, or better <a href = "../html/read_allStat.html">read_allStat</a> for all entries, 
-      or <a href = "../html/read_stat.html">read_stat</a> for specified entries.
-    The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href = "../html/select.html">select</a> (see below).
+    To read data directly, use <code>load allStat</code>, or better <a href="../html/read_allStat.html">read_allStat</a> for all entries, 
+      or <a href="../html/read_stat.html">read_stat</a> for specified entries.
+    The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href="../html/select.html">select</a> (see below).
     As the AmP collection grows, lists-of-lists change (see below), so does <code>allStat</code>; these two should be seen as a couple that should not be uncoupled.
     All rates and times that are not primary parameters are given at temperature <code>T_typical</code>, which is entry-specific; 
       use temperature correction factor <code>c_T</code> to convert to the reference temperatures and temperature parameters to other temperatures.
@@ -60,7 +62,7 @@
     <p>
     Empirical data is only stored in the mydata-files, so not collected in some huge structure.
     One way to get this data is to copy a mydata-file to local and run it; mydata-files require no input.
-    Function <a href = "../html/get_data.html">get_data</a> does the same and deletes the local mydata-file after running it:
+    Function <a href="../html/get_data.html">get_data</a> does the same and deletes the local mydata-file after running it:
     <code>vars_pull(get_data('Daphnia_magna'))</code> assigns all data specified in <code>mydata_Daphnia_magna.m</code> directly to variables in your work directory.
     The rest of this guidance page focusses on meta-data and derived data: parameters, meta-parameters and implied traits.
 
@@ -80,7 +82,7 @@
       <a href="../html/read_allEco.html">read_allEco</a> or <a href="../html/read_eco.html">read_eco</a>.
    
     <p>
-    <a href = "../../DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
+    <a href="../../DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
       implied traits for specific entries.
     <code>prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars"
       to reduce the length of the table.
@@ -264,11 +266,11 @@
 
     Function <a href="../html/shstat.html">shstat</a> can be used in symbolic mode for 1-, 2- and 3-variate data, as given in <code>allStat</code>.
     In this mode, shstat is using <code>read_allStat</code> to read in <code>allStat</code>; 
-      a large number of symbols for (functions of) parameters is available, following <a href="http://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf">DEB notation</a>.
+      a large number of symbols for (functions of) parameters is available, following <a href="http://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf" target="_top">DEB notation</a>.
     Functions of parameters that do not depend on food, called compound parameters, were computed with DEBtool_M function 
-      <a href="https://add-my-pet.github.io/DEBtool_M/lib/pet/html/parscomp_st.html">parscomp_st</a>,
+      <a href="https://add-my-pet.github.io/DEBtool_M/lib/pet/html/parscomp_st.html" target="_top">parscomp_st</a>,
       and that do  with 
-      <a href="https://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html">statistics_st</a>.
+      <a href="https://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">statistics_st</a>.
     These functions briefly describe the various variables, which are presented in context in the <a href="http://www.bio.vu.nl/thb/research/bib/Kooy2010.pdf">DEB book</a>.
 
     <p>
@@ -281,8 +283,8 @@
     The script <a href="../mydata_shstat.m">mydata_shstat</a> gives examples of use of <code>shstat</code> and 
       shows how items can be added to figures that have been produced by shstat.
     If markers in 3D plots do not have color specifications, the third variable is used to set the colors in the lava color scheme, see
-    <A HREF = "https://add-my-pet.github.io/DEBtool_M//lib/misc/html/shcolor_lava.html" target = "_top">shcolor_lava</A>, using
-    <A HREF = "https://add-my-pet.github.io/DEBtool_M/lib/misc/html/color_lava.html" target = "_top">color_lava</A>. 
+    <A HREF="https://add-my-pet.github.io/DEBtool_M//lib/misc/html/shcolor_lava.html" target="_top">shcolor_lava</A>, using
+    <A HREF="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/color_lava.html" target="_top">color_lava</A>. 
 
     <p>
     Get a rapid overview of distributions of a number of (compound) parameters or statistics for selected taxa with <a href="../html/compare_taxa.html">compare_taxa</a>.
@@ -290,7 +292,7 @@
 
     <h2 id="context">Linked websites</h2>
 
-    Function <a href="../html/get_links.html">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
+    Function <a href="../html/get_links.html" target="_top">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
     type <code>get_links('Homo_sapiens', 1)</code> to open them all in your system-browser.
 
     </div> <!-- end of content -->
