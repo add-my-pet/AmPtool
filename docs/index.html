@@ -225,7 +225,7 @@
       <code>Hfig=figure(1);plot(pM_v(:,1),pM_v(:,2),'or');</code>. 
     See entry names by clicking on points in this figure with: 
       <code>h=datacursormode(Hfig);h.UpdateFcn=@(obj,event_obj)xylabels(obj,event_obj,nm,pM_v);datacursormode on</code>.
-    Select terrestrial Arthropods with <code>[sel_A nm]=select_01('Arthropoda'); [~, sel_T]=select_eco('habitat','T'); nm(sel_A & sel_T)</code>.
+    Select terrestrial Arthropods with <code>[sel_A nm]=select_01('Arthropoda'); [~,sel_T]=select_eco('habitat','T'); nm(sel_A&sel_T)</code>.
     (Notice that the stage-codes are not used in the selection, and that the result includes species that combine terrestrial with aquatic life stages.)
     Select North American freshwater fish with <code>[sel_P,nm]=select_01('Pisces'); [~,sel_TH]=select_eco('ecozone','TH'); [~,sel_THp]=select_eco('ecozone','THp');
     nm=nm(sel_P&sel_TH&~sel_THp)</code>. 
