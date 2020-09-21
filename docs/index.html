@@ -239,7 +239,7 @@
     <a href="../html/select_mydata.html">select_mydata</a> and <a href="../html/select_predict.html">select_predict</a> have selection-booleans as
        third output, which can be used for more advanced and/or conditions. 
     The code for answering the question 'which birds have males different from females or varying body temperature during development' could read
-       <code>[x, nm, sel_m] = select_predict('Aves','male'); [x, nm, sel_T] = select_predict(nm,'del_l'); nm(sel_m|sel_T)</code>.
+       <code>[x,nm,sel_m]=select_predict('Aves','male'); [x,nm,sel_T]=select_predict(nm,'del_l'); nm(sel_m|sel_T)</code>.
     
 
     <H2 id="legend">Legends exploit selections</H2>
