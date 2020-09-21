@@ -187,7 +187,7 @@
     Selection of all (terrestrial and marine) Antarctic species is done with <code>select_eco('ecozone', {'MS','TS'})</code>.
     Apart from the names of the entries, it returns selection identifiers (booleans) for the whole collection, allowing to combine the result with multiple calls to this function.
     For example all species in the collection that eat invertebrates (in some stage) and occur in the North-Atlantic are found with: 
-      <code>[nm, s1] = select_eco('food',{'Ci'}); [nm, s2] = select_eco('ecozone', {'MAN'}); nm = select; nm(s1&s2)</code>.
+      <code>[nm, s1]=select_eco('food',{'Ci'}); [nm,s2]=select_eco('ecozone',{'MAN'}); nm=select; nm(s1&s2)</code>.
     While food-code <code>Cim</code> selects for feeding on molluscs, entries with code <code>Ci</code> will not be selected, but some of them might eat molluscs as well.
     In reverse, entries with code <code>Cim</code> will be selected if <code>Ci</code> is specified, due to the hierarchical nature of the coding system.
     Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../html/read_stat.html">read_stat</a>: 
