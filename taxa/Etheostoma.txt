@@ -4,6 +4,7 @@ Etheostoma_blennioides
 Etheostoma_barbouri
 Etheostoma_caeruleum
 Etheostoma_chermocki
+Etheostoma_coosae
 Etheostoma_cragini
 Etheostoma_flabellare
 Etheostoma_gracile
