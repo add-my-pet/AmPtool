@@ -7,8 +7,11 @@ Etheostoma_chermocki
 Etheostoma_cragini
 Etheostoma_flabellare
 Etheostoma_gracile
+Etheostoma_kennicotti
 Etheostoma_microperca
 Etheostoma_nigrum
+Etheostoma_olivaceum
+Etheostoma_olmstedi
 Etheostoma_percnurum
 Etheostoma_perlongum
 Etheostoma_proeliare
@@ -18,8 +21,11 @@ Etheostoma_raneyi
 Etheostoma_sagitta
 Etheostoma_scotti
 Etheostoma_simoterum
+Etheostoma_smithi
 Etheostoma_spectabile
 Etheostoma_squamiceps
+Etheostoma_striatulum
+Etheostoma_swaini
 Etheostoma_tetrazonum
 Etheostoma_trisella
 Etheostoma_zonistium
