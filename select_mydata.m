@@ -14,7 +14,8 @@ function [species, nm, sel] = select_mydata(varargin)
 % Input:
 %
 % * taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')
-% * str: character string
+% * str: character string 
+% * info: optional boolean to search locally if true (only for curators)
 %
 % Output:
 % 
@@ -28,6 +29,7 @@ function [species, nm, sel] = select_mydata(varargin)
 %% Example of use
 % nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')
 
+  WD = pwd; info = false;
   if ismac
     PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
     status = system('which wget');
@@ -41,6 +43,7 @@ function [species, nm, sel] = select_mydata(varargin)
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
+    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
   else
     if iscell(varargin{1})
       nm = (varargin{1});
@@ -48,24 +51,33 @@ function [species, nm, sel] = select_mydata(varargin)
       nm = select(varargin{1});
     end
     str = varargin{2};
+    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    if length(varargin) == 3 && varargin{3} == true % for curators only
+       WD = cdCur; info = true;
+       path = '../../add_my_pet/entries/';
+    end
   end
   
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
     fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
-    if ismac
-      eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
+    if ~info
+      if ismac
+        eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
+      else
+        eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);
+      end
+      mydata = fileread('mydata_my_pet.txt'); 
     else
-      eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);
+      mydata = fileread(fnm);
     end
-    mydata = fileread('mydata_my_pet.txt'); 
     if ~isempty(strfind(mydata, str))
       sel(i) = true;
     end
   end
   delete('mydata_my_pet.txt'); 
 
-  species = nm(sel);
+  species = nm(sel); 
+  cd(WD);
 
   

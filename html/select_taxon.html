@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>select_taxon</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-06-19"><meta name="DC.source" content="select_taxon.m"><style type="text/css">
+      --><title>select_taxon</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-25"><meta name="DC.source" content="select_taxon.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>select_taxon</h1><!--introduction--><p>selects a taxon from list</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/25 by Bas Kooijman, modified 2018/06/14</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/25 by Bas Kooijman, modified 2018/06/14</h2><h2 id="3">Syntax</h2><p>[taxon, s, v] = <a href="../select_taxon.m"><b>select_taxon</b></a> (list, level)</p><h2 id="4">Description</h2><p>select a taxon from a list of all possibilities</p><p>Input:</p><div><ul><li>list: optional input with cell-vector of possible taxa (default: 'Animalia')</li><li>leaves: optional integer for level selection (default: 0)</li></ul></div><pre>  0 all taxa, including leaves
+  </style></head><body><div class="content"><h1>select_taxon</h1><!--introduction--><p>selects a taxon from list</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">created 2016/02/25 by Bas Kooijman, modified 2018/06/14</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="2">created 2016/02/25 by Bas Kooijman, modified 2018/06/14</h2><h2 id="3">Syntax</h2><p>[taxon, s, v] = <a href="../select_taxon.m"><b>select_taxon</b></a> (list, level)</p><h2 id="4">Description</h2><p>select a taxon from a list of all possibilities</p><p>Input:</p><div><ul><li>list: optional input with cell-vector of possible taxa (default: 'Animalia')</li><li>level: optional integer for level selection (default: 0)</li></ul></div><pre>  0 all taxa, including leaves
   1 all taxa, excluding leaves
   2 leaves (names with "_")
   3 genera only (names before first "_")
@@ -93,7 +93,7 @@ function [taxon, s, v] = select_taxon (list, level)
 % Input:
 % 
 % * list: optional input with cell-vector of possible taxa (default: 'Animalia')
-% * leaves: optional integer for level selection (default: 0)
+% * level: optional integer for level selection (default: 0)
 %
 %    0 all taxa, including leaves
 %    1 all taxa, excluding leaves

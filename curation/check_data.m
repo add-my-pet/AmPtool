@@ -27,7 +27,7 @@ function check_data(my_pet)
 
 global data_types_0 data_types_1
 
-if length(data_types_0) == 0 || length(data_types_1) == 0
+if isempty(data_types_0) || isempty(data_types_1)
   get_data_types
 end
 
@@ -119,7 +119,7 @@ data = [metaData.data_0(:); metaData.data_1(:)]; COMPLETE = get_COMPLETE(data);
 fprintf(['\nCOMPLETE = ', num2str(metaData.COMPLETE), '; expected COMPLETE = ', num2str(COMPLETE),'\n\n'])
 
 if isnan(COMPLETE)
-    fprintf('Add the new data combination to AmPtool routine COMPLETE_data \n\n')
+  fprintf('Add the new data combination to AmPtool routine COMPLETE_data \n\n')
 end
 %cd(WD)                   % goto original path
 

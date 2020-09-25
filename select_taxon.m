@@ -14,7 +14,7 @@ function [taxon, s, v] = select_taxon (list, level)
 % Input:
 % 
 % * list: optional input with cell-vector of possible taxa (default: 'Animalia')
-% * leaves: optional integer for level selection (default: 0)
+% * level: optional integer for level selection (default: 0)
 %
 %    0 all taxa, including leaves
 %    1 all taxa, excluding leaves
