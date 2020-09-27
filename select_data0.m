@@ -2,14 +2,14 @@
 % gets list of species that belongs to a taxon and has a specified string in its mydata-file
 
 %%
-function [species, nm, sel] = select_mydata(varargin)
+function [species, nm, sel] = select_data0(varargin)
 % created 2019/03/14 by  Bas Kooijman, modofied 2020/09/03
 
 %% Syntax
-% [species, nm, sel]  = <../select_mydata.m *select_mydata*> (varargin) 
+% [species, nm, sel]  = <../select_data0.m *select_data0*> (varargin) 
 
 %% Description
-% gets all species in the add_my_pet collection with mydata files that contain a character string.
+% gets all species in the add_my_pet collection with mydata files that contain a character string in data_0.
 %
 % Input:
 %
@@ -63,16 +63,18 @@ function [species, nm, sel] = select_mydata(varargin)
     fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
     if ~info
       if ismac
-        eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
+        eval(['system(wget -O mydata_my_pet.m ', fnm, ')']);
       else
-        eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);
+        eval(['!powershell wget -O mydata_my_pet.m ', fnm]);
+        [~, ~, metaData, ~, ~] = mydata_my_pet;
       end
-      mydata = fileread('mydata_my_pet.txt'); 
-      delete('mydata_my_pet.txt'); 
+      delete('mydata_my_pet.m'); 
     else
-      mydata = fileread(fnm);
+      cd([path, nm{i}]);
+      eval(['[~, ~, metaData, ~, ~] = mydata_', nm{i},';']);
+      cdCur;
     end
-    if ~isempty(strfind(mydata, str))
+    if ismember(str, metaData.data_0)
       sel(i) = true;
     end
   end

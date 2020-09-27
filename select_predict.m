@@ -68,6 +68,7 @@ function [species, nm, sel] = select_predict(varargin)
         eval(['!powershell wget -o predict_my_pet.txt ', fnm]);
       end
       predict = fileread('predict_my_pet.txt'); 
+      delete('predict_my_pet.txt'); 
     else
       predict = fileread(fn); 
     end
@@ -75,7 +76,6 @@ function [species, nm, sel] = select_predict(varargin)
       sel(i) = true;
     end
   end
-  delete('predict_my_pet.txt'); 
 
   species = nm(sel);
   cd(WD);
