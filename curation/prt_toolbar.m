@@ -37,6 +37,7 @@ tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/docs/index.
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/deb/deblab/" target="_blank">DEB Laboratory</a>\n'];
 tb = [tb, '          <a href="https://www.bio.vu.nl/thb/research/bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 tb = [tb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];
+tb = [tb, '          <a href="https://www.youtube.com/channel/UCsoFSIntodYRsVVxhQ0O-CQ" target="_blank">DEB Videos</a>\n'];
 tb = [tb, '        </div>\n'];	
 tb = [tb, '      </div>\n\n'];
 
