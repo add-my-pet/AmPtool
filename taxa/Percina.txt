@@ -1,6 +1,7 @@
 Percina_caprodes
 Percina_macrolepida
 Percina_maculata
+Percina_nigrofasciata
 Percina_notogramma
 Percina_peltata
 Percina_phoxocephala

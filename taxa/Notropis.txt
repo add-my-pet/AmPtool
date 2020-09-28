@@ -19,6 +19,7 @@ Notropis_oxyrhynchus
 Notropis_petersoni
 Notropis_potteri
 Notropis_rafinesquei
+Notropis_rubellus
 Notropis_sabinae
 Notropis_spectrunculus
 Notropis_stramineus
