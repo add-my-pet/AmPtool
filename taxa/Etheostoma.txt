@@ -13,6 +13,7 @@ Etheostoma_microperca
 Etheostoma_nigrum
 Etheostoma_olivaceum
 Etheostoma_olmstedi
+Etheostoma_pallididorsum
 Etheostoma_percnurum
 Etheostoma_perlongum
 Etheostoma_proeliare
