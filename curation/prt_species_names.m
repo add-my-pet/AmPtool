@@ -17,7 +17,8 @@ n = length(entries);
 snm = nms(:,1); cnm = nms(:,2); snm_prt = snm; 
 for i = 1:n
   snm_prt{i} = strrep(snm{i}, '_', ' '); % replace "_" by space
-  cnm_prt = cnm{i};
+  cnm{i} = strrep(cnm{i}, '\', '\\');
+  cnm_prt = cnm{i}; % replace \ by \\ to aboid problems with fprintf
   if cnm_prt(1)>='a' && cnm_prt(1)<='z'  % puts first letter of common name in capital:
     cnm_prt(1) = char(cnm_prt(1) - 32);
     cnm{i} = cnm_prt;

@@ -31,6 +31,7 @@ function bib2bbl(my_pet_bib)
 
 my_bib = fileread([my_pet_bib, '.bib']);
 my_bib = strrep(my_bib, '\~{', '\={'); % replace \~{*} by \={*} because BibTex interpretes ~ as space
+my_bib = strrep(my_bib, '\~{', '\={'); % replace \~{*} by \={*} because BibTex interpretes ~ as space
 my_bib = strrep(my_bib, '\', '\\');    % replace \ by \\ else fprintf will protest
 fid = fopen('my_bib.bib', 'w+'); % open file for reading and writing and deletes old content
 fprintf(fid, my_bib);
