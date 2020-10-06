@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-06-26"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
+      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-10-05"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="run_collection_intro"><b>run_collection_intro</b></a> (entries)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* update lists-of-lists in AmPtool/taxa
+  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="run_collection_intro"><b>run_collection_intro</b></a> (entries)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* update lists-of-lists in AmPtool/taxa
 * upade AmPtool/entries/
 * pudate ../../add_my_pet/img/tree
 * run_collection(entries-names) to generate files in entries_zip and entries_web
@@ -76,11 +76,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % runs functions for collection overhead
 
 %%
-function allStat = run_collection_intro(entries)
+function run_collection_intro(entries)
 % created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26
 
 %% Syntax
-% allStat = <run_collection_intro *run_collection_intro*> (entries)
+% <run_collection_intro *run_collection_intro*> (entries)
 
 %% Description
 % runs functions for collection overhead, but before running this script
@@ -126,25 +126,26 @@ function allStat = run_collection_intro(entries)
 
 WD = cdCur;
 
-clear global allStat popStat % allStat and popStat are made persistent 
+clear global % allStat and popStat are made persistent 
 
 if exist('entries','var')
   [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
+   write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 else
   [allStat, info] = write_allStat; % this overwrites allStat
+  write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
 end
 if ~info
   return
 end
 
-write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
 
 cdAmPdata; zip('AmPdata', '*.mat'); cdCur; % creates AmPdata/AmPdata.zip
 prt_toolbar
 
 prt_species_names;
 prt_species_list;
-prt_species_tree_entries_js;
+prt_species_tree_taxa_js;
 prt_authors;
 prt_pars;
 prt_patterns;

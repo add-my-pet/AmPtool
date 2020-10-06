@@ -2,11 +2,11 @@
 % runs functions for collection overhead
 
 %%
-function allStat = run_collection_intro(entries)
+function run_collection_intro(entries)
 % created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26
 
 %% Syntax
-% allStat = <run_collection_intro *run_collection_intro*> (entries)
+% <run_collection_intro *run_collection_intro*> (entries)
 
 %% Description
 % runs functions for collection overhead, but before running this script

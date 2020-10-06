@@ -27,7 +27,7 @@ function prt_authors
   author = cell(0, 1); % convert (2*ne,1)-cell array, to (n,1)-cell array by vertcat all cell-arrays 
   for i=1:ne % scan entries
     author1 = authors{i,1}; author2 = authors{i,2}; % submit-, mod-authors
-    author = [author; author1(:); author2(:)];
+    author = [author(:); author1(:); author2(:)];
   end
   [author, fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
   na = length(author);   
