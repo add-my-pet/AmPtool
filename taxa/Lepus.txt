@@ -1,4 +1,5 @@
 Lepus_europaeus
+Lepus_californicus
+Lepus_capensis
 Lepus_timidus
 Lepus_townsendii
-Lepus_capensis
