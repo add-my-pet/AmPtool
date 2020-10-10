@@ -2,4 +2,10 @@ Coregonus_albula
 Coregonus_artedi
 Coregonus_autumnalis
 Coregonus_clupeaformis
+Coregonus_hoyi
+Coregonus_kiyi
 Coregonus_lavaretus
+Coregonus_nasus
+Coregonus_reighardi
+Coregonus_sardinella
+Coregonus_zenithicus
