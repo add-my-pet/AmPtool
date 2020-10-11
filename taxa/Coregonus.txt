@@ -4,8 +4,10 @@ Coregonus_autumnalis
 Coregonus_clupeaformis
 Coregonus_hoyi
 Coregonus_kiyi
+Coregonus_laurettae
 Coregonus_lavaretus
 Coregonus_nasus
+Coregonus_pidschian
 Coregonus_reighardi
 Coregonus_sardinella
 Coregonus_zenithicus
