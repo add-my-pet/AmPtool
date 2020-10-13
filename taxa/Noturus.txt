@@ -5,6 +5,7 @@ Noturus_flavipinnis
 Noturus_gyrinus
 Noturus_hildebrandi
 Noturus_insignis
+Noturus_lachneri
 Noturus_miurus
 Noturus_munitus
 Noturus_nocturnus
