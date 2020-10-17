@@ -70,7 +70,7 @@ function [species, nm, sel] = select_predict(varargin)
       predict = fileread('predict_my_pet.txt'); 
       delete('predict_my_pet.txt'); 
     else
-      predict = fileread(fn); 
+      predict = fileread(fnm); 
     end
     if ~isempty(strfind(predict, str))
       sel(i) = true;
