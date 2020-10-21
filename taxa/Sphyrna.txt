@@ -1,2 +1,4 @@
 Sphyrna_lewini
+Sphyrna_mokarran
+Sphyrna_tiburo
 Sphyrna_zygaena
