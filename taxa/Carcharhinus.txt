@@ -1,6 +1,9 @@
-Carcharhinus_leucas
-Carcharhinus_plumbeus
-Carcharhinus_falciformis
-Carcharhinus_obscurus
 Carcharhinus_acronotus
+Carcharhinus_coatesi
+Carcharhinus_falciformis
+Carcharhinus_fitzroyensis
+Carcharhinus_leucas
 Carcharhinus_longimanus
+Carcharhinus_macloti
+Carcharhinus_obscurus
+Carcharhinus_plumbeus
