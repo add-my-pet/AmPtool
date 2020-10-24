@@ -2,6 +2,7 @@ Carcharhinus_acronotus
 Carcharhinus_coatesi
 Carcharhinus_falciformis
 Carcharhinus_fitzroyensis
+Carcharhinus_isodon
 Carcharhinus_leucas
 Carcharhinus_limbatus
 Carcharhinus_longimanus
@@ -10,5 +11,6 @@ Carcharhinus_melanopterus
 Carcharhinus_obscurus
 Carcharhinus_plumbeus
 Carcharhinus_porosus
+Carcharhinus_signatus
 Carcharhinus_sorrah
 Carcharhinus_tilstoni
