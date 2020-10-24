@@ -3,7 +3,12 @@ Carcharhinus_coatesi
 Carcharhinus_falciformis
 Carcharhinus_fitzroyensis
 Carcharhinus_leucas
+Carcharhinus_limbatus
 Carcharhinus_longimanus
 Carcharhinus_macloti
+Carcharhinus_melanopterus
 Carcharhinus_obscurus
 Carcharhinus_plumbeus
+Carcharhinus_porosus
+Carcharhinus_sorrah
+Carcharhinus_tilstoni
