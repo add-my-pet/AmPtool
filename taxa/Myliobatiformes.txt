@@ -1,4 +1,2 @@
-Urolophidae
-Myliobatidae
-Dasyatidae
-Platyrhinidae
+Platyrhinoidei
+Myliobatoidei
