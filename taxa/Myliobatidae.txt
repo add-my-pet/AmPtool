@@ -2,3 +2,4 @@ Manta
 Mobula
 Rhinoptera
 Aetobatus
+Myliobatis
