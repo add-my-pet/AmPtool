@@ -1,4 +1,7 @@
 Bathyraja_aleutica
 Bathyraja_interrupta
+Bathyraja_lindbergi
+Bathyraja_maculata
+Bathyraja_minispinosa
 Bathyraja_parmifera
 Bathyraja_trachura
