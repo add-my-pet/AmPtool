@@ -4,3 +4,5 @@ Rhizoprionodon
 Prionace
 Negaprion
 Isogomphodon
+Loxodon
+Scoliodon

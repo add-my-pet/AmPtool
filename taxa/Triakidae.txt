@@ -1,4 +1,2 @@
-Galeorhinus
-Furgaleus
-Triakis
-Mustelus
+Triakinae
+Galeorhininae
