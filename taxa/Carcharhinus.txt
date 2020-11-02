@@ -1,4 +1,7 @@
 Carcharhinus_acronotus
+Carcharhinus_albimarginatus
+Carcharhinus_amblyrhynchos
+Carcharhinus_brachyurus
 Carcharhinus_brevipinna
 Carcharhinus_cautus
 Carcharhinus_coatesi
