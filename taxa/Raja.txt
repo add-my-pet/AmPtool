@@ -3,5 +3,6 @@ Raja_clavata
 Raja_microocellata
 Raja_miraletus
 Raja_montagui
+Raja_radula
 Raja_texana
 Raja_undulata
