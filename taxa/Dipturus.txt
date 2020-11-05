@@ -1,3 +1,4 @@
 Dipturus_batis
 Dipturus_innominatus
 Dipturus_laevis
+Dipturus_pullopunctatus

@@ -1,4 +1,5 @@
-Rhinobatos
 Acroteriobatus
 Trygonorrhina
 Zapteryx
+Pseudobatos
+Rhinobatos
