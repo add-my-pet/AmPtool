@@ -1,8 +1,9 @@
-Raja
-Beringraja
-Leucoraja
-Okamejei
-Zearaja
-Dipturus
-Malacoraja
 Amblyraja
+Beringraja
+Dipturus
+Leucoraja
+Malacoraja
+Okamejei
+Raja
+Rostroraja
+Zearaja

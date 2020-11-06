@@ -1,4 +1,6 @@
 Dipturus_batis
 Dipturus_innominatus
 Dipturus_laevis
+Dipturus_oxyrinchus
 Dipturus_pullopunctatus
+Dipturus_trachyderma
