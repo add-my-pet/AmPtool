@@ -1,8 +1,13 @@
 Bathyraja_abyssicola
+Bathyraja_albomaculata
 Bathyraja_aleutica
+Bathyraja_brachyurops
+Bathyraja_griseocauda
 Bathyraja_interrupta
 Bathyraja_lindbergi
+Bathyraja_macloviana
 Bathyraja_maculata
+Bathyraja_magellanica
 Bathyraja_minispinosa
 Bathyraja_parmifera
 Bathyraja_trachura
