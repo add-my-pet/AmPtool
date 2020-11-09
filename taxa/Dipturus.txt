@@ -1,4 +1,5 @@
 Dipturus_batis
+Dipturus_chinensis
 Dipturus_innominatus
 Dipturus_laevis
 Dipturus_oxyrinchus
