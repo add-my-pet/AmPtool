@@ -1,5 +1,6 @@
 Bathytoshia
 Dasyatis
-Neotrygon
-Maculabatis
 Hypanus
+Maculabatis
+Neotrygon
+Urogymnus
