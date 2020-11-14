@@ -3,6 +3,8 @@ Noturus_baileyi
 Noturus_eleutherus
 Noturus_exilis
 Noturus_flavipinnis
+Noturus_flavus
+Noturus_funebris
 Noturus_gyrinus
 Noturus_hildebrandi
 Noturus_insignis
