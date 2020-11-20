@@ -295,7 +295,8 @@ fprintf(fid_about, '        <img src="img/about/DEBlib.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">   \n');
 fprintf(fid_about, '          Publications in which DEB theory plays a substantial role.\n');
 fprintf(fid_about, '          <a HREF ="https://www.zotero.org/groups/500643/deb_library/" target="_blank">They can be found in the DEB library on Zotero</a>, \n');
-fprintf(fid_about, '          including all pdf''s, which you can access if you become <A HREF="mailto:starrlight.augustine@akvaplan.niva.no">member</a> (no fees).\n');
+fprintf(fid_about, '          including all pdf''s, which you can access if you become member (no fees): First register to Zotero, or login, and hit the Join-group button.\n');
+fprintf(fid_about, '          You then receive an invitation email, confirming your membership.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
