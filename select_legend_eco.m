@@ -6,7 +6,7 @@ function legend = select_legend_eco(legend, taxon)
 % created 2018/05/30 by Bas Kooijman
 
 %% Syntax
-% legend = <../select_legend_eco.m *select_legend_eco*> (legend, k)
+% legend = <../select_legend_eco.m *select_legend_eco*> (legend, taxon)
 
 %% Description
 % Select or edit a legend using eco-codes for a given taxon, such as 'Animalia' or 'Aves'.
@@ -48,7 +48,7 @@ function legend = select_legend_eco(legend, taxon)
     taxon = 'Animalia';
   end
   
-  if ~exist('legend', 'var') && ~exist('k', 'var') || ~k
+  if ~exist('legend', 'var') || isempty(legend)
     legend_local = { ...
         {'o', 10, 2, [1 0 0], [1 0 0]}, {'C.MA'}; ...
         {'o', 10, 2, [1 0 1], [1 0 1]}, {'C.MB'}; ...
@@ -116,12 +116,12 @@ end
     end
     function C = marker_Callback(source, eventdata) 
       global legend_local  i_legend Hlegend
-      legend_local(i_legend,1) = {select_marker(legend_local{i_legend,1})}; 
+      legend_local{i_legend,1} = select_marker(legend_local{i_legend,1}); 
       close(Hlegend); Hlegend = shlegend(legend_local,[],[],'',i_legend);
     end
     function C = ecoCode_Callback(source, eventdata) 
       global legend_local  i_legend Hlegend
-      legend_local(i_legend,2) = {select_ecoCode};
+      legend_local{i_legend,2} = select_ecoCode;
       close(Hlegend); Hlegend = shlegend(legend_local,[],[],'',i_legend);
     end
     function C = up_Callback(source, eventdata) 

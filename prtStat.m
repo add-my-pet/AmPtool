@@ -25,7 +25,7 @@ function [nm, val, units, label] = prtStat(taxa, var, in)
   % * label: charactore string with label
   
   %% Remarks
-  % See <pedigreet.html *pedigree*> for lists with tree
+  % See <pedigree.html *pedigree*> for lists with tree
 
   
   %% Example of use 

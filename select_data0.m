@@ -1,5 +1,5 @@
-%% select_mydata
-% gets list of species that belongs to a taxon and has a specified string in its mydata-file
+%% select_data0
+% gets list of species that belongs to a taxon and has a specified string in data_0 in its mydata-file
 
 %%
 function [species, nm, sel] = select_data0(varargin)
@@ -27,7 +27,7 @@ function [species, nm, sel] = select_data0(varargin)
 % This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all mydata-files are read from the web
 
 %% Example of use
-% nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')
+% nm = select_data0('Aves','Ri')
 
   WD = pwd; info = false;
   if ismac

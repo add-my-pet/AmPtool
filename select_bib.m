@@ -1,12 +1,12 @@
 %% select_bib
-% gets list of species that belongs to a taxon and has a specified string in its predict-file
+% gets list of species that belongs to a taxon and has a specified string in its bibliography
 
 %%
 function [species, nm, sel] = select_bib(varargin)
 % created 2019/03/13 by  Bas Kooijman
 
 %% Syntax
-% [species, nm, sel]  = <../select_predict.m *select_bib*> (varargin) 
+% [species, nm, sel]  = <../select_bibt.m *select_bib*> (varargin) 
 
 %% Description
 % gets all species in the add_my_pet collection with bib files that contain a character string.

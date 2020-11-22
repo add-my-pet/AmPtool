@@ -69,7 +69,7 @@ function [links, id] = get_links(my_pet, open)
       else
         path_fnmmat = which(fnmmat);
         if isempty(path_fnmmat) 
-          fprintf(['Warning from get_links: no ', fnmmat, 'or metaData or mydata_', my_pet, '\n']);
+          fprintf(['Warning from get_links: no ', fnmmat, ' or metaData or mydata_', my_pet, '\n']);
         else
           load(path_fnmmat)
         end
