@@ -34,7 +34,7 @@ function ol = list_taxa (taxon, level)
 
 %% Example of use
 %  ol = list_taxa
-%  ol = list_taxa('Deuterostomata',4))
+%  ol = list_taxa('Deuterostomata',4)
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';
