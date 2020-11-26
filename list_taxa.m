@@ -33,8 +33,10 @@ function ol = list_taxa (taxon, level)
 % The classification follows that of Wikipedia
 
 %% Example of use
-%  ol = list_taxa
-%  ol = list_taxa('Deuterostomata',4)
+% * ol = list_taxa
+% * ol = list_taxa('Deuterostomata',4)
+% * ol = list_taxa({},7)
+% * ol = list_taxa('Arthropoda')
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';

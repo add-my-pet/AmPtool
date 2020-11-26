@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>list_taxa</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-06-19"><meta name="DC.source" content="list_taxa.m"><style type="text/css">
+      --><title>list_taxa</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-26"><meta name="DC.source" content="list_taxa.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,8 +73,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   4 families only (names ending on "idae")
   5 orders only (match with allStat.mat)
   6 classes only (match with allStat.mat, but does not work for Reptilia)
-  7 phyla only (match with allStat.mat)</pre><p>Output:</p><div><ul><li>cell string with alphabetically ordered list</li></ul></div><h2 id="5">Remarks</h2><p>The classification follows that of Wikipedia</p><h2 id="6">Example of use</h2><pre>ol = list_taxa
-ol = list_taxa('Deuterostomata',4))</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  7 phyla only (match with allStat.mat)</pre><p>Output:</p><div><ul><li>cell string with alphabetically ordered list</li></ul></div><h2 id="5">Remarks</h2><p>The classification follows that of Wikipedia</p><h2 id="6">Example of use</h2><div><ul><li>ol = list_taxa</li><li>ol = list_taxa('Deuterostomata',4)</li><li>ol = list_taxa({},7)</li><li>ol = list_taxa('Arthropoda')</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% list_taxa
 % gets ordered list of all taxa
@@ -111,8 +110,10 @@ function ol = list_taxa (taxon, level)
 % The classification follows that of Wikipedia
 
 %% Example of use
-%  ol = list_taxa
-%  ol = list_taxa('Deuterostomata',4))
+% * ol = list_taxa
+% * ol = list_taxa('Deuterostomata',4)
+% * ol = list_taxa({},7)
+% * ol = list_taxa('Arthropoda')
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';
