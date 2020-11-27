@@ -12,11 +12,11 @@
 
 close all    % remove any existing figure
 
-example = 4; % edit this number to see the various examples
+example = 14; % edit this number to see the various examples
 switch example
   case 1 % 2D: use default settings
     shstat_options('default');
-    shstat({'g', 'g_Hb'}, legend_RSED); 
+    shstat({'E_Hp', 'E_Hb'}, legend_RSED); 
 
   case 2 % 2D: more tricks: no transformation (default is log10), description enabled, adding items to the figure
     shstat_options('default');
@@ -132,14 +132,14 @@ switch example
 
     Hleg = shlegend(legend);
 
-  case 10 % 2D
+  case 10 % 2D, numerical mode
     shstat_options('default');
     LmEm = read_allStat('L_m', 'E_m'); L_m = LmEm(:,1); E_m = LmEm(:,2);
 
     [Hfig, Hleg] = shstat([L_m.^3, E_m], legend_fish, 'Data at T_{typical}'); 
     figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
-    xlabel('_{10} log max structural volume, cm^3')      
-    ylabel('_{10} log max reserve capacity, J/cm^3')
+    xlabel('_{10} log max structural volume, L^3, cm^3')      
+    ylabel('_{10} log max reserve capacity, [E_m], J/cm^3')
 
   case 11 % 2D
     shstat_options('default');
@@ -171,13 +171,14 @@ switch example
     
    case 14 % 2D for eco-codes
     shstat_options('default');
-    legend_eco = {...
-    {'o', 8, 3, [0 1 0], [0 1 0]}, {'B.Tnp','B.Tnw'}; ....
+    % B. stands for "Embryo environment" (see shstat); for codes, see AmPtool eco page (CONTEXT dropdown)
+    legend_eco = {...  
+    {'o', 8, 3, [0 1 0], [0 1 0]}, {'B.Tnp','B.Tnw'}; .... 
     {'o', 8, 3, [1 0 0], [1 0 0]}, {'B.Tnc'}; ...
     {'o', 8, 3, [0 0 1], [0 0 1]}, {'B.Tnf'}; ...
     {'o', 8, 3, [0 0 0], [0 0 0]}, {'B.Tnt','B.Tns','B.Tl'}; ...
     };
 
+    % Plot maturity ratio at birth/puberty (S_Hbp) as function of age at puberty (ap), for birds (Aves) 
     [Hfig, Hleg, val, entries, missing] = shstat({'a_p','s_Hbp'}, legend_eco, 'Aves'); 
-
 end
