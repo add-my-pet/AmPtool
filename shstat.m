@@ -61,8 +61,9 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
 %
 % In case of 3 variables: hit rotation in the toolbar of the figure.
 %
+% Shstat recognises ecocodes in legend with by the cell-strings in the second column. 
 % Fields of ecocodes are coded as: C climate, E ecozone, H habitat, B, embryo, M migrate, F food, G gender, R reprod.
-% So 'B.Tnp' stands for code Tnp of embryo-environment.
+% <../mydata_shstat.m *mydata_shstat*> gives an example. So 'B.Tnp' stands for code Tnp in the field embryo-environment.
 %
 % Make sure that allStat has been generated at the correct temperature (for times and rates); all parameters are at T_ref.
 % Make sure that allStat is consistent with select('Animalia'); can be done via <../curation/html/write_allStat.html *write_allStat*>.

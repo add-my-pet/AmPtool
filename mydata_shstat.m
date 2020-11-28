@@ -169,14 +169,14 @@ switch example
     ylabel('_{10}log \{p_{Am}\}, J/d.cm^2')  
     zlabel('_{10}log L_\infty , cm')         
     
-   case 14 % 2D for eco-codes
+   case 14 % 2D for eco-codes (because col 2 in legend is cell string, not character string)
     shstat_options('default');
     % B. stands for "Embryo environment" (see shstat); for codes, see AmPtool eco page (CONTEXT dropdown)
     legend_eco = {...  
-    {'o', 8, 3, [0 1 0], [0 1 0]}, {'B.Tnp','B.Tnw'}; .... 
-    {'o', 8, 3, [1 0 0], [1 0 0]}, {'B.Tnc'}; ...
-    {'o', 8, 3, [0 0 1], [0 0 1]}, {'B.Tnf'}; ...
-    {'o', 8, 3, [0 0 0], [0 0 0]}, {'B.Tnt','B.Tns','B.Tl'}; ...
+    {'o', 8, 3, [0 1 0], [0 1 0]}, {'B.Tnp','B.Tnw'}; ....       % nest in shrubs, trees
+    {'o', 8, 3, [1 0 0], [1 0 0]}, {'B.Tnc'}; ...                % nest on rock, cliffs
+    {'o', 8, 3, [0 0 1], [0 0 1]}, {'B.Tnf'}; ...                % nest on fresh water
+    {'o', 8, 3, [0 0 0], [0 0 0]}, {'B.Tnt','B.Tns','B.Tl'}; ... % nest in/on soil, under leaves
     };
 
     % Plot maturity ratio at birth/puberty (S_Hbp) as function of age at puberty (ap), for birds (Aves) 
