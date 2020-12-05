@@ -155,7 +155,7 @@ fprintf(fid_about, '      <H2 id = "aims">Overview of the collection</H2>\n\n');
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">\n');
-fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.\n');
+fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.<br>\n');
 fprintf(fid_about, '          Chordates are complete at order level,<br> primates at family level.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
