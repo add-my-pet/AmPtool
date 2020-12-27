@@ -157,6 +157,7 @@ fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.<br>\n');
 fprintf(fid_about, '          Chordates are complete at order level,<br> primates at family level.\n');
+fprintf(fid_about, '          <a href="https://youtu.be/xvxQ28ePs4M" target="_blank"><img src="img/YouTube.png"  height = "15px" title="5:04"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -165,6 +166,7 @@ fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px">\n'
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a>\n');
 fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.\n');
+fprintf(fid_about, '          <a href="https://youtu.be/nGY8_zTWLp0" target="_blank"><img src="img/YouTube.png"  height = "15px" title="14:14"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -197,7 +199,8 @@ fprintf(fid_about, '        <a href="entries_web/Pinguinus_impennis/Pinguinus_im
 fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis_gigas_res.html">Steller''s sea cow</a>. \n');
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
-fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors</h2>\n\n');  
+fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
+fprintf(fid_about, '         <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE.png" width="350px">\n');
