@@ -1,4 +1,2 @@
-Achatinoidea
-Limacoidea
-Arionoidea
-Helicoidea
+Stylommatophora
+Limacoida
