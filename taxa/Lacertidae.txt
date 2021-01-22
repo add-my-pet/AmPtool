@@ -1,6 +1,2 @@
-Acanthodactylus
-Darevskia
-Gallotia
-Lacerta
-Takydromus
-Zootoca
+Gallotiinae
+Lacertinae
