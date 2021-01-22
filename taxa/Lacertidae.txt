@@ -3,3 +3,4 @@ Darevskia
 Gallotia
 Lacerta
 Takydromus
+Zootoca
