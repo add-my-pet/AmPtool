@@ -1,6 +1,7 @@
-Strombidae
-Littorinidae
-Cochliopidae
-Naticidae
+Bithyniidae
 Calyptraeidae
+Cochliopidae
+Littorinidae
+Naticidae
+Strombidae
 Tateidae
