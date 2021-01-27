@@ -1,8 +1,5 @@
-Bithyniidae
-Calyptraeidae
-Cochliopidae
-Hydrobiidae
-Littorinidae
-Naticidae
-Strombidae
-Tateidae
+Calyptraeoidea
+Littorinoidea
+Naticoidea
+Stromboidea
+Truncatelloidea
