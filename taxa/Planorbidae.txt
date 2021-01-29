@@ -1,6 +1,2 @@
-Ancylus
-Ferrissia
-Biomphalaria
-Planorbis
-Planorbarius
-Planorbella
+Ancylinae
+Planorbinae
