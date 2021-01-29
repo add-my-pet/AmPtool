@@ -121,7 +121,7 @@ fprintf(oid, '      </TABLE>\n\n');
 
 fprintf(oid, '    </div> <!-- end of content -->\n\n');
 
-fprintf(oid, '    <div w3-include-html="../../add_my_pet/sys/footer_amp.html"></div>\n');
+fprintf(oid, '    <div w3-include-html="../../sys/footer_amp.html"></div>\n');
 fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '  </div> <!-- main wrapper -->\n');

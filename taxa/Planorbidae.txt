@@ -2,3 +2,4 @@ Ancylus
 Biomphalaria
 Planorbis
 Planorbarius
+Planorbella

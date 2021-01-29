@@ -65,7 +65,7 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
   colormap(pie_color);
   title({['Birth at ', T_txt, ', f = 1'], ...
       ['p_A = ', num2str(pA(1), '% 1.3e'), ' J/d, p_C = ', num2str(pC(1), '% 1.3e'), ' J/d'], ...
-      ['E_W = ', num2str(stat.E_Wb, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_b, '% 1.2e'), ' g']});
+      ['E_W = ', num2str(stat.E_Wb, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_b, '% 1.2e'), ' g'], ' ', ' '});
   
   if exist('destinationFolder','var')
     Hfig1 = tightfig(Hfig1);
@@ -84,7 +84,7 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
   colormap(pie_color);
   title({['Puberty at ', T_txt, ', f = 1'], ...
       ['p_A = ', num2str(pA(2), '% 1.3e'), ' J/d,  p_C = ', num2str(pC(2), '% 1.3e'), ' J/d'], ...
-      ['E_W = ', num2str(stat.E_Wp, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_p, '% 1.2e'), ' g']});
+      ['E_W = ', num2str(stat.E_Wp, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_p, '% 1.2e'), ' g'], ' ', ' '});
   
   if exist('destinationFolder','var')
     Hfig2 = tightfig(Hfig2);
@@ -105,15 +105,15 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
   if strcmp(model,'hex')
     title({['Pupation at ', T_txt], ...
         ['p_A = ', num2str(pA(3), '% 1.3e'), ' J/d, p_C = ', num2str(pC(3), '% 1.3e'), ' J/d'], ...
-        ['E_W = ', num2str(stat.E_Wj, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_j, '% 1.2e'), ' g']});
+        ['E_W = ', num2str(stat.E_Wj, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_j, '% 1.2e'), ' g'],  ' ', ' '});
   elseif strcmp(model,'hep')
     title({['Metam at ', T_txt], ...
         ['p_A = ', num2str(pA(3), '% 1.3e'), ' J/d, p_C = ', num2str(pC(3), '% 1.3e'), ' J/d'], ...
-        ['E_W = ', num2str(stat.E_Wj, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_j, '% 1.2e'), ' g']});
+        ['E_W = ', num2str(stat.E_Wj, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_j, '% 1.2e'), ' g'], ' ', ' '});
   else
     title({['Ultimate at ', T_txt, ', f = 1'], ...
         ['p_A = ', num2str(pA(3), '% 1.3e'), ' J/d, p_C = ', num2str(pC(3), '% 1.3e'), ' J/d'], ...
-        ['E_W = ', num2str(stat.E_Wi, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_i, '% 1.2e'), ' g']});
+        ['E_W = ', num2str(stat.E_Wi, '% 1.2e'), ' J, W_w = ', num2str(stat.Ww_i, '% 1.2e'), ' g'], ' ', ' '});
   end
   
   if exist('destinationFolder','var')
@@ -135,7 +135,7 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
     %pie3s(EMJHG, 'Explode', [0 1 1 1 1 0], 'Labels', pie_txt, 'Bevel', 'Elliptical');
     pie(EMJHG, [0 1 1 1 1 0], pie_txt);
     title({'cum. investment in foetus, e_b = 1', ...
-        ['E_0 = ', num2str(E_0,'% 1.2e'), ' J']})
+        ['E_0 = ', num2str(E_0,'% 1.2e'), ' J'], ' ', ' '})
   else
     EMJHG = get_EMJHG(par_pie, 1);
     pie_txt = { ...
@@ -147,7 +147,7 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
     %pie3s(EMJHG, 'Explode', [0 1 1 1 1 0], 'Labels', pie_txt, 'Bevel', 'Elliptical');
     pie(EMJHG, [0 1 1 1 1 0],  pie_txt);
     title({'Cum. investment at birth, e_b = 1', ...
-        ['E_0 = ', num2str(E_0,'% 1.2e'), ' J']})      
+        ['E_0 = ', num2str(E_0,'% 1.2e'), ' J'], ' ', ' '})      
   end
   
   if exist('destinationFolder','var')
