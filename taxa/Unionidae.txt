@@ -1,6 +1,2 @@
-Actinonaias
-Echyridella
-Anodonta
-Pseudanodonta
-Unio
-Lemiox
+Ambleminae
+Unioninae
