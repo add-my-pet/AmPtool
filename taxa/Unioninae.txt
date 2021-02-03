@@ -1,4 +1,2 @@
-Anodonta
-Pseudanodonta
-Pyganodon
-Unio
+Anodontini
+Unionini
