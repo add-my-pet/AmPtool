@@ -86,9 +86,19 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   
   % check if length of allStat corresponds with number of entries in lists-of-lists
-  n_entries = length(taxa_src); n_allStat = length(fields(allStat));
+  n_entries = length(taxa_src); taxa_fld = fields(allStat); n_allStat = length(taxa_fld);
   if ~(n_allStat == n_entries)
     fprintf(['Warning from write_addStat:  allStat has ', num2str(n_allStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
+    diff = setdiff(taxa_src, taxa_fld);
+    if ~isempty(diff)
+      fprintf('present in allstat, but not in lists-of-lists\n');
+      diff
+    end
+    diff = setdiff(taxa_fld, taxa_src);
+    if ~isempty(diff)
+      fprintf('present in lists-of-lists, but not in allstat\n');
+      diff
+    end
   end
   allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
