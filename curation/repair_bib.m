@@ -36,6 +36,7 @@ for i=1:n
     cd(['../../entries_web/', nm{i}])
     prt_my_pet_bib(metaData.species, metaData.biblist); 
     bib2html([metaData.species, '_bib']);
+    fprintf(' %g : %s \n', i, nm{i}); % report progress to screen 
 end
 
 cd(WD)

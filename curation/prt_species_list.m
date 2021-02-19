@@ -152,7 +152,7 @@ fprintf(fid_Spec, '      </div>\n\n');
 
 fprintf(fid_Spec, '      <table id="speciesTable">\n'); % open species table
 fprintf(fid_Spec, '        <TR HEIGHT=60 BGCOLOR = "#FFE7C6">\n');
-fprintf(fid_Spec, '          <TH><a class="link" target = "_blank" href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/phyla.html">phylum</a></TH>\n');
+fprintf(fid_Spec, '          <TH><a class="link" target = "_blank" href="phyla.html">phylum</a></TH>\n');
 fprintf(fid_Spec, '          <TH>class</TH> <TH>order</TH> <TH>family</TH> <TH>species</TH> <TH>common name</TH>\n');
 fprintf(fid_Spec, '          <TH BGCOLOR = "#FFC6A5"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models">&nbsp; type &nbsp;</a></TH>\n');
 fprintf(fid_Spec, '          <TH BGCOLOR = "#FFE7C6"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error">&nbsp; MRE &nbsp;</a></TH>\n');
