@@ -63,26 +63,20 @@ function [links, id] = get_links(my_pet, open)
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
   try % locally present in dir entries (mostly for curators)
-    if ~exist('metaData','var')
-      if ~isempty(which(['mydata_', my_pet]))
-         eval(['[~, ~, metaData] = mydata_', my_pet, ';']);
-      else
-        path_fnmmat = which(fnmmat);
-        if isempty(path_fnmmat) 
-          fprintf(['Warning from get_links: no ', fnmmat, ' or metaData or mydata_', my_pet, '\n']);
-        else
-          load(path_fnmmat)
-        end
-      end
-    end
+    WD = cdCur; load(['../../deblab/add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat']); cd(WD);
     if ~isfield(metaData,'links')
       fprintf(['Warning from get_links: no links specified in ', fnnmat, '\n']);
       links = [];  id = []; return
     end
     id = metaData.links; vars_pull(id);
   catch % get results_my_pet.mat from web
+    cd(WD);
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
-    eval(['!powershell wget ', path, my_pet, '/', fnmmat, ' -O ', fnmmat])
+    if ismac
+      system(['wget -O ', fnmmat, path, my_pet, '/', fnmmat]);
+    else
+      system(['!powershell wget -O ', fnmmat, path, my_pet, '/', fnmmat])
+    end
     load(fnmmat)
     id = metaData.links; vars_pull(id);
     delete(fnmmat) 

@@ -4,6 +4,7 @@
 %%
 function prt_patterns(index)
 %% created 2016/12/31 by Bas Kooijman
+% modified 2021/02/20
 
 %% Syntax
 % <../prt_patterns *prt_patterns*>
@@ -17,7 +18,7 @@ function prt_patterns(index)
 %
 % Output: 
 %
-% * png-files written in ../img/patterns: 
+% * png-files written in ../../deblab/add_my_pet/img/patterns/
 
 %% Remarks
 % all figures are closed automatically if input is not specified. 
@@ -25,7 +26,7 @@ function prt_patterns(index)
 % /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
 % Display in entries_admin/patterns.html
 
-path = '../../add_my_pet/img/patterns/';
+path = '../../deblab/add_my_pet/img/patterns/';
 
 close all
 

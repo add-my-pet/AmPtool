@@ -1,15 +1,15 @@
 %% prt_species_names
-%  deletes and writes ../../add_my_pet/species_names.html 
+%  deletes and writes ../../deblab/add_my_pet/species_names.html 
 
 %%
 function prt_species_names
-% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, , 2017/10/25
+% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, , 2017/10/25, 2021/02/20
 
 %% Syntax
 % <../../add_my_pet/prt_species_names.m *prt_species_names*>
 
 %% Description
-% deletes and writes ../../add_my_pet/species_names.html with scientific and common names on alphabeth
+% deletes and writes ../../deblab/add_my_pet/species_names.html with scientific and common names on alphabeth
 
 [nms entries] = read_allStat('species','species_en');
 n = length(entries); 
@@ -26,7 +26,7 @@ for i = 1:n
 end
 nms(:,2) = cnm; [cnm index] = sort(cnm);
 
-fid_Spec = fopen('../../add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
+fid_Spec = fopen('../../deblab/add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
   
 % make the header for species_names.html
 fprintf(fid_Spec, '<!DOCTYPE html>\n');

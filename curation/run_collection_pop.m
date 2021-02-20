@@ -43,17 +43,15 @@ elseif iscell(varargin{1})
 end
 
 nargin = length(varargin); % number of entries to scan    
-WD = pwd; % store current path
-path = which('run_collection'); ind = strfind(path,'\');
-cd(path(1:ind(end)));
+WD = cdCur; % store current path and goto AmPtool/curation
+cur2ewmp = '../../deblab/add_my_pet/entries_web/'; % path from AmPtool/curation to entries_web/my_pet
+cur2emp = '../../deblab/add_my_pet/entries/'; % path from AmPtool/curation to entries/my_pet
 
 for i = 1:nargin 
-  destinationFolder = ['../../entries_web/', varargin{i},'/']; % target for html and png files
+  destinationFolder = [cur2ewmp, varargin{i},'/']; % target for html and png files
   fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
   
-  cd(['../../entries/', varargin{i}]) % goto entry i in dir entries
-
-  %feval(['run_', varargin{i}]); close all;
+  cd([cur2emp, varargin{i}]) % goto entry i in dir entries
   load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
   %[data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
   %prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions

@@ -31,8 +31,6 @@ function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
 %   speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);
 % end
 
-path = '../../add_my_pet/';
-
 f = 1; % ad libitum feeding
 [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
 stat.z = par.z; txtStat.label.z = 'zoom factor'; txtStat.units.z = '-'; % add zoom factor to statistics which are to be printed 

@@ -44,7 +44,7 @@ function allStat = get_addStat(entries, T, f)
   
   ne = length(entries);
   WD = cdCur; % store current path and goto AmP/curation
-  cd(['../../add_my_pet/entries/',entries{1}]) % goto entries
+  cd(['../../deblab/add_my_pet/entries/',entries{1}]) % goto entries
 
   try
     for i = 1:ne

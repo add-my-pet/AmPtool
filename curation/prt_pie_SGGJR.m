@@ -39,9 +39,9 @@ function prt_pie_SGGJR
       ['Exploding sectors mean dissipation; numbers denote fractions of initial reserve E_0.\n', ...
        'The scaled reserve density at birth is e_b. Pies link to entry pages.\n']};
 
-for  j = 1:4 % scan pies
+for  j = 1:n_pie % scan pies
     
-oid = fopen(['../../add_my_pet/', pie{j}, '.html'], 'w+'); % open file for writing, delete existing content
+oid = fopen(['../../deblab/add_my_pet/', pie{j}, '.html'], 'w+'); % open file for writing, delete existing content
 
 fprintf(oid, '<!DOCTYPE html>\n');
 fprintf(oid, '<HTML>\n');

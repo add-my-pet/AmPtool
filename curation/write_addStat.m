@@ -52,14 +52,13 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   
   % check if some members of taxa are already in allStat
-  load allStat.mat
+  WD = cdAmPdata; load allStat.mat;
   present = isfield(allStat, taxa);
   if any(present)
     fprintf('Warning from write_addStat: Not all members of taxa are absent in existing allStat.mat\n');
   end
   
   % check if all members of taxa are in entries
-  WD = pwd;                % store current path
   absent = 0;
   for i = 1:n
     try % goto entries
@@ -102,6 +101,5 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
-  cdAmPdata;                        
   save('allStat.mat','allStat') % overwrite allStat.mat
   cd(WD)

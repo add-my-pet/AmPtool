@@ -22,7 +22,7 @@ function prt_pars
 % For presentation on the web, copy png files to 
 % /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/pars
 
-path = '../../add_my_pet/img/pars/';
+path = '../../deblab/add_my_pet/img/pars/';
 
 close all
 shstat_options('y_label', 'on');

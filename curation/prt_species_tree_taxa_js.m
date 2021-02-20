@@ -4,7 +4,7 @@
 %%
 function prt_species_tree_taxa_js(taxa)
 % created 2016/03/06 by Bas Kooijman, 
-% modified 2016/06/01 Starrlight Augustine, 2016/06/02, 2016/10/08, 2017/10/13, 2018/06/15, 2018/06/26 Bas Kooijman
+% modified 2016/06/01 Starrlight Augustine, 2016/06/02, 2016/10/08, 2017/10/13, 2018/06/15, 2018/06/26, 2021/02/20 Bas Kooijman
 
 %% Syntax
 % <../prt_species_tree_taxa_js.m *prt_species_tree_taxa_js*> (taxa) 
@@ -44,7 +44,7 @@ function prt_species_tree_taxa_js(taxa)
     
   for i = 1:n
     pedigree_taxa = pedigree(taxa{i});
-    fid_tv = fopen(['../../add_my_pet/sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../deblab/add_my_pet/sys/species_tree_',taxa{i},'.js'], 'w+'); % open file for writing, delete existing content
 
     % write header
     fprintf(fid_tv, '//\n');
@@ -98,7 +98,7 @@ function prt_species_tree_taxa_js(taxa)
     
     % write species_tree_taxa{i}_search.html, which is used by species_tree_taxa{i}.html for searching taxon, genus, family, order, class
     
-    fid_tv = fopen(['../../add_my_pet/sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
+    fid_tv = fopen(['../../deblab/add_my_pet/sys/species_tree_', taxa{i}, '_search.html'], 'w+'); % open file for writing, delete existing content
 
     % taxon 
     fprintf(fid_tv, '<div class="TreeSearch"> <!-- taxon -->\n');

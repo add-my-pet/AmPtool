@@ -25,7 +25,7 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 global eco_types
 
 if isempty(eco_types)
-  get_eco_types('../../add_my_pet/');
+  WD = cdCur; get_eco_types('../../deblab/add_my_pet/'); cd(WD);
 end
 
 % unpack metaData and metaPar

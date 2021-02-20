@@ -40,10 +40,10 @@ function popStat = write_popStat_loc(varargin)
   end
 
   WD = cdCur; 
-  locPopStat = popStat; % copy popStat in temprary varibal locPopStat, since collection popStat will be overwritten by that of species 
+  locPopStat = popStat; % copy popStat in temporary variable locPopStat, since collection popStat will be overwritten by that of species 
   
   n_spec = length(varargin); 
-  cd(['../../add_my_pet/entries_web/',varargin{1}])
+  cd(['../../deblab/add_my_pet/entries_web/',varargin{1}])
   
   for i = 1:n_spec
     cd(['../',varargin{i}])

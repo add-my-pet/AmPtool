@@ -10,12 +10,13 @@ function  prt_my_pet_toolbar(my_pet, destinationFolder)
 
 %% Description
 % Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html.
-% Reads links-info from results_my_pet.mat, and 
+% Reads links-info from results_my_pet.mat, and assumes that the current directory contains that file
 %
 % Input:
 %
 % * my_pet: character string with name of entry
-% * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
+% * destinationFolder : optional string with destination folder the files starting from AmPtool/curation
+% are printed to (default: current folder),
 
 %% Remarks
 % Indent of 2 spaces used for printing to html page
@@ -25,16 +26,17 @@ function  prt_my_pet_toolbar(my_pet, destinationFolder)
 % prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder
 
 %load(['../../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
-load(['/results_', my_pet,'.mat']);
-genus = strsplit(my_pet,'_'); genus = genus{1}; % identify genus for link to species_tree_Animalia
 
 if exist('destinationFolder','var') && isempty(destinationFolder)
-  oid = [];
+  oid = []; load(['/results_', my_pet,'.mat']);
 elseif exist('destinationFolder','var') 
-  oid = fopen(['../', destinationFolder, metaData.species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
+  WD = cdCur; load(['../../deblab/add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat']); cd(WD);
+  oid = fopen([destinationFolder, metaData.species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
 else
   oid = fopen([my_pet, '_toolbar.html'], 'w+');                    % open file for reading and writing and deletes old content   
+  load(['/results_', my_pet,'.mat']);
 end
+genus = strsplit(my_pet,'_'); genus = genus{1}; % identify genus for link to species_tree_Animalia
 
 fprintf(oid, '  <h1 class="alignleft2">\n');
 fprintf(oid, '    &nbsp; <a onclick="OpenListAtTaxon(''%s'')" title="click to go to species_list">%s</a> &nbsp;\n', my_pet, my_pet);

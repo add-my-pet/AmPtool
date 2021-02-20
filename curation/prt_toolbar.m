@@ -3,7 +3,7 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman
+% created 2019/12/22 Bas Kooijman, modified 2010/02/20
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
@@ -109,10 +109,10 @@ fprintf(oid_AmPtool, strrep([tb, tbt], '??', 'https://www.bio.vu.nl/thb/deb/debl
 
 fclose all;
 
-movefile toolbar_amp.html '../../add_my_pet/sys/'
-movefile toolbar_budget.html '../../add_my_pet/sys/'
-movefile toolbar_app.html '../../add_my_pet/sys/'
-movefile toolbar_entry.html '../../add_my_pet/sys/'
+movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 
 end

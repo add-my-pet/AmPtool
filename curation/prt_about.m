@@ -3,7 +3,7 @@
 
 %%
 function prt_about
-% created 2016/02/23 by Bas Kooijman; modified 2016/04/26, 2016/06/02, 2016/10/24, 2017/10/13, 2018/02/28
+% created 2016/02/23 by Bas Kooijman; modified 2016/04/26, 2016/06/02, 2016/10/24, 2017/10/13, 2018/02/28, 2021/02/20
 
 %% Syntax
 % <../prt_about *prt_about*>
@@ -41,7 +41,7 @@ close all
 
 % write_allStat; % update Staristics structure allStat.mat
 
-path = '../../add_my_pet/img/about/';
+path = '../../deblab/add_my_pet/img/about/';
 pie_Animalia;
 tightfig;
 saveas (gca, [path, 'pie_Animalia.png'])
@@ -119,7 +119,7 @@ close all
 
 % Write about.html
 path = 'entries_web/'; % path to entries
-fid_about = fopen('../../add_my_pet/about.html', 'w+'); % open file for writing, delete existing content
+fid_about = fopen('../../deblab/add_my_pet/about.html', 'w+'); % open file for writing, delete existing content
 
 fprintf(fid_about, '<!DOCTYPE html>\n');
 fprintf(fid_about, '<HTML>\n');
