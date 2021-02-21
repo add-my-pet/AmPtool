@@ -45,7 +45,7 @@ function allStat = get_allStat(T, f)
   ne = length(entries);
    
   WD = pwd;                % store current path
-  cd(['../../add_my_pet/entries/',entries{1}]) % goto entries
+  cd(['../../deblab/add_my_pet/entries/',entries{1}]) % goto entries
 
   try
     for i = 1:ne

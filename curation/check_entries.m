@@ -26,7 +26,7 @@ function [tree local server] = check_entries
 % check_entries;
 
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
-local = cellstr(ls('../../add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
+local = cellstr(ls('../../deblab/add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
 path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';
 
@@ -65,7 +65,7 @@ end
 server_zip = unique(server_zip);
 
 % entries_archive
-local_archive = cellstr(ls('../../add_my_pet/entries_archive')); local_archive([1 2]) = []; n_local_archive = length(local_archive); % cell string with local entry names 
+local_archive = cellstr(ls('../../deblab/add_my_pet/entries_archive')); local_archive([1 2]) = []; n_local_archive = length(local_archive); % cell string with local entry names 
 eval(['!Powershell wget ', path, 'entries_archive/ -o txt.html']); txt = fileread('txt.html');
 n_zip = strfind(txt,'/icons/compressed.gif'); 
 n_server_archive = length(n_zip); server_archive = cell(n_server_archive,1); n_zip = [n_zip, length(txt) - 1];

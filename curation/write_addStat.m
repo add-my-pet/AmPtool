@@ -59,15 +59,14 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   
   % check if all members of taxa are in entries
-  absent = 0;
+  absent = 0; cd(['../entries/', taxa{1}]);
   for i = 1:n
     try % goto entries
-      cd(['../../add_my_pet/entries/', taxa{i}]) 
+      cd(['../', taxa{i}]) 
     catch
       fprintf(['Warning from write_addStat: ', taxa{i}, ' does not occur in sister-directory entries\n']);
       absent = absent + 1;
     end
-    cd(WD)                 % goto original path
   end
   if absent > 0
     return
@@ -101,5 +100,5 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
-  save('allStat.mat','allStat') % overwrite allStat.mat
-  cd(WD)
+  cdAmPdata; save('allStat.mat','allStat'); cd(WD); % overwrite allStat.mat
+  

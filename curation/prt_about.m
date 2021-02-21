@@ -41,6 +41,7 @@ close all
 
 % write_allStat; % update Staristics structure allStat.mat
 
+WD = cdCur;
 path = '../../deblab/add_my_pet/img/about/';
 pie_Animalia;
 tightfig;
@@ -324,3 +325,4 @@ fprintf(fid_about, '</BODY>\n');
 fprintf(fid_about, '</HTML>\n');
 fclose(fid_about);
 
+cd(WD);

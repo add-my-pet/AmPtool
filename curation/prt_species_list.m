@@ -16,6 +16,7 @@ function prt_species_list
 % Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
 % Reads from allStat and each row in the table has an id
 
+WD = cdCur;
 % get basic data for species_list
 data = read_allStat('phylum', 'class', 'order', 'family', 'species', 'species_en', 'model', 'MRE', 'SMSE', 'COMPLETE', 'data'); 
 n = size(data,1); % number of entries
@@ -27,6 +28,8 @@ for i = 1:n % scan entries
 end 
 
 close_species_list(fid_Spec);      % close species_list.html
+
+cd(WD);
 
 end
 
@@ -197,7 +200,6 @@ function prt_species_row(fid_Spec, id)
     fprintf(fid_Spec, '          <TD BGCOLOR = "#FFFF9C">%s</TD>\n', data_1{i});  
   end
   fprintf(fid_Spec, '        </TR>\n\n'); % close the species row
-  
 end
 
 %% subfunction close_species_list
@@ -346,5 +348,4 @@ fprintf(fid_Spec, '</div> <!-- main -->\n');
 fprintf(fid_Spec, '</BODY>\n'); % close body
 fprintf(fid_Spec, '</HTML>\n'); % close html
 fclose(fid_Spec);
-
 end

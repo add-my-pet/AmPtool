@@ -26,6 +26,7 @@ for i = 1:n
 end
 nms(:,2) = cnm; [cnm index] = sort(cnm);
 
+WD = cdCur;
 fid_Spec = fopen('../../deblab/add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
   
 % make the header for species_names.html
@@ -215,4 +216,5 @@ fprintf(fid_Spec, '</BODY>\n');
 fprintf(fid_Spec, '</HTML>\n');
 fclose(fid_Spec);
 
+cd(WD);
 end

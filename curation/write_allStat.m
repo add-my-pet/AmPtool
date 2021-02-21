@@ -41,7 +41,7 @@ function [allStat, info] = write_allStat(T, f)
   
   % check if allStat and local dir ../../add_my_pet/entries have the same entries
   info = true;
-  entries_local = cellstr(ls('../../add_my_pet/entries')); entries_local(1:2) = []; % remove '.' and '..'
+  entries_local = cellstr(ls('../../deblab/add_my_pet/entries')); entries_local(1:2) = []; % remove '.' and '..'
   entries_allStat = fieldnames(allStat); 
   diff = setdiff(entries_allStat, entries_local);
   if ~isempty(diff)
@@ -56,11 +56,6 @@ function [allStat, info] = write_allStat(T, f)
     diff
   end
 
-  WD = pwd;                        % store current path
-  curation = which('write_allStat');   
-  curation = curation(1:end - 15);         
-  cd(curation)                     % goto taxa
-
-  save('../../add_my_pet/AmPdata/allStat.mat','allStat')
-  
+  WD = cdCur;                        
+  save('../../deblab/add_my_pet/AmPdata/allStat.mat','allStat')
   cd(WD);
