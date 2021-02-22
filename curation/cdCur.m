@@ -5,10 +5,10 @@ function WD = cdCur
 % created 2020/01/12 by Bas Kooijman
 
 %% Syntax
-% <../cdCur.m *cdCur*>
+% WD = <../cdCur.m *cdCur*>
 
 %% Description
-% cd to the AmPdata directory
+% cd to AmPtool/curation directory
 %
 % Output
 %
