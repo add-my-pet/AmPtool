@@ -35,7 +35,7 @@ function [var, entries, units, label] = read_allStat(varargin)
   persistent allStat
   
   if ~exist('allStat','var') || length(allStat) == 0
-    load('allStat')        % get all parameters and statistics in structure allStat
+    WD = cdAmPdata; load('allStat'); cd(WD); % get all parameters and statistics in structure allStat
   end
   
   entries = fieldnames(allStat); n = length(entries);
