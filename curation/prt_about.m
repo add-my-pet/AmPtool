@@ -32,9 +32,9 @@ function prt_about
 %   This is done automatically in run_collection_intro
 % Don't forget to refresh ../../DEB Library.bib by exporting in Bibtex-mode from Zotero
 % After running prt_about, copy png files to 
-%   /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img
+%   /mnt/group-new/bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img
 % and about.html file to
-%   /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet
+%   /mnt/group-new/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet
 % to present them on the web.
 
 close all

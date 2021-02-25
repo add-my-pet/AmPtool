@@ -27,7 +27,7 @@ function [nm nr] = check_bibkeynr(species)
 %% Example of use
 % check_bibkeynr('Turdus_merula') or
 
-path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+path = [set_path2server, 'add_my_pet/entries_web/'];
 
 WD = pwd;
 

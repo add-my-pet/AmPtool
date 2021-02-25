@@ -67,7 +67,6 @@ for i = 1:nargin
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cdCur;  % cd to curation   
   
   % print files
   cdCur;

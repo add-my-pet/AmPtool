@@ -43,7 +43,7 @@ function [species, nm, sel] = select_predict(varargin)
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [set_path2server, 'add_my_pet/entries/'];
   else
     if iscell(varargin{1})
       nm = (varargin{1});
@@ -51,7 +51,7 @@ function [species, nm, sel] = select_predict(varargin)
       nm = select(varargin{1});
     end
     str = varargin{2};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [set_path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
       WD = cdCur; info = true;
       path = '../../add_my_pet/entries/';

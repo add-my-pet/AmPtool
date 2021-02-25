@@ -29,6 +29,8 @@ function [species, nm, sel] = select_mydata(varargin)
 %% Example of use
 % nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')
 
+  path2server = set_path2server;
+  
   WD = pwd; info = false;
   if ismac
     PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
@@ -43,7 +45,7 @@ function [species, nm, sel] = select_mydata(varargin)
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [path2server, 'add_my_pet/entries/'];
   else
     if iscell(varargin{1})
       nm = (varargin{1});
@@ -51,7 +53,7 @@ function [species, nm, sel] = select_mydata(varargin)
       nm = select(varargin{1});
     end
     str = varargin{2};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
        WD = cdCur; info = true;
        path = '../../add_my_pet/entries/';

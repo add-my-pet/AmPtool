@@ -50,7 +50,7 @@ function [species, nm, sel] = select_bib(varargin)
     str = varargin{2};
   end
   
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+  path = [set_path2server, 'add_my_pet/entries_web/'];
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
     if ismac

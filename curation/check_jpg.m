@@ -26,7 +26,7 @@ function check_jpg(info)
 % The root of the tree is Animalia
 % Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool
 % Assumes that jpg's and txt's are in sister directory img/tree of AmPtool
-% Assumes that path to jpg's on server is: http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree
+% Reads the path to jpg's on server from set_path2server + add_my_pet/img/tree
 % All files in img/tree must have extension '.jpg' or '.jpg.txt' 
 
 %% Example of use
@@ -75,7 +75,7 @@ end
 
 if info > 0
   % cell string with server nodes stored in server
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/';
+  path = [set_path2server, 'add_my_pet/img/tree/'];
   eval(['!Powershell wget ', path, ' -o txt.html']); txt = fileread('txt.html'); delete('txt.html');
   head = strfind(txt,'[IMG]'); txt(1:head(1)) = []; 
   n_server = length(strfind(txt,'href="')); server = cell(n_server,1);

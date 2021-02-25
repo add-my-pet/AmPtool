@@ -19,7 +19,7 @@ function [tree local server] = check_entries
 %% Remarks
 % The root of the tree is Animalia. The dates are not checked
 % Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% Assumes that path to entries on server is: http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/
+% Reads to path to entries on server from set_path2server
 % VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
@@ -28,7 +28,7 @@ function [tree local server] = check_entries
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
 local = cellstr(ls('../../deblab/add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
-path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';
+path = [set_path2server, 'add_my_pet/'];
 
 % cell string with server entries stored on server
 eval(['!Powershell wget ', path, 'entries/ -o txt.html']); txt = fileread('txt.html');
