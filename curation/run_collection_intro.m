@@ -66,7 +66,7 @@ if ~info
 end
 
 
-cdAmPdata; zip('AmPdata', '*.mat'); cdCur; % creates AmPdata/AmPdata.zip
+cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; % creates AmPdata/AmPdata.zip
 prt_toolbar
 
 prt_species_names;
