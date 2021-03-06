@@ -1,4 +1,2 @@
-Heterodonta
-Palaeoheterodonta
 Protobranchia
-Pteriomorphia
+Autobranchia
