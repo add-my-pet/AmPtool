@@ -11,7 +11,7 @@ function ol = list_taxa (taxon, level)
 %% Description
 % gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection 
 %
-% Intput:
+% Input:
 % 
 % * taxon: optional characterstring with name of taxon (default 'Animalia')
 % * level: optional integer for the level (default: 0)
