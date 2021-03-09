@@ -3,7 +3,7 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman, modified 2010/02/20
+% created 2019/12/22 Bas Kooijman, modified 2021/03/09
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
@@ -12,19 +12,22 @@ function  prt_toolbar
 % Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html 
 
 %% Remarks
+% This function is meant to be run in AmPtool/curation. Run cdCur before use. 
+% The toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, except toolbar_AmPtool.html 
 % Sync Github after running this file
-% Indent of 2 spaces used for printing to html page
+% Indent of 2 spaces used for printing to html page 
 
 %% Example of use
 % prt_toolbar 
 
-tb = []; tbb = []; tbt = []; % initialize character vectors
+tb = []; tbb = []; tbt = []; % initialize character strings
+path2deblab = '../'; % set relative path to deblab, while being in add_my_pet
 
-% insert "??", which is below replaced by '', or '../' or '../../'
+% the string "??" is below replaced by '', or '../' or '../../'
 % head
 tb = [tb, '  <div id="top">\n'];
 tb = [tb, '    <div class="logo">\n'];		
-tb = [tb, '      <a href="', set_path2server, '"><img src="??img/bannercycle.png"  height = "60px"></a>\n'];
+tb = [tb, '      <a href="', path2deblab, '"><img src="??img/bannercycle.png"  height = "60px"></a>\n'];
 tb = [tb, '    </div>\n\n'];
 
 tb = [tb, '    <div id="navwrapper">\n'];
@@ -34,8 +37,8 @@ tb = [tb, '        <div id="deb" class="dropdown-content">\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/" target="_blank">DEB Portal</a>\n'];
 tb = [tb, '          <a href="https://en.wikipedia.org/wiki/Dynamic_energy_budget_theory" target="_blank">DEB Wikipedia</a>\n'];
 tb = [tb, '          <a href="https://add-my-pet.github.io/DEBtool_M/docs/index.html" target="_blank">DEB Tool</a>\n'];
-tb = [tb, '          <a href="', set_path2server, '" target="_blank">DEB Laboratory</a>\n'];
-tb = [tb, '          <a href="', set_path2server, 'bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
+tb = [tb, '          <a href="', path2deblab, '" target="_blank">DEB Laboratory</a>\n'];
+tb = [tb, '          <a href="', path2deblab, 'bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 tb = [tb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];
 tb = [tb, '          <a href="??DEBvideos.html" target="_blank">DEB Videos</a>\n'];
 tb = [tb, '        </div>\n'];	
@@ -105,7 +108,7 @@ fprintf(oid_amp, strrep([tb, tbt], '??', ''));
 fprintf(oid_budget, strrep([tb, tbb, tbt], '??', ''));
 fprintf(oid_app, strrep([tb, tbt], '??', '../'));
 fprintf(oid_entry, strrep([tb, tbt], '??', '../../'));
-fprintf(oid_AmPtool, strrep([tb, tbt], '??', [set_path2server, 'add_my_pet/']));
+fprintf(oid_AmPtool, strrep([tb, tbt], '??', [path2deblab, 'add_my_pet/']));
 
 fclose all;
 
