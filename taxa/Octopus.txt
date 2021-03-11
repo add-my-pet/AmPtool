@@ -1,7 +1,7 @@
 Octopus_cyanea
-Octopus_maya
-Octopus_vulgaris
-Octopus_mimus
 Octopus_joubini
-Octopus_tetricus
+Octopus_maya
+Octopus_mimus
 Octopus_tehuelchus
+Octopus_tetricus
+Octopus_vulgaris

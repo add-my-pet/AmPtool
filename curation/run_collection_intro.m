@@ -78,4 +78,7 @@ prt_patterns;
 prt_pie_SGGJR;
 prt_about;
 
+cd('C:\Program Files\2BrightSparks\SyncBackPro')
+system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i');
+
 cd(WD);
