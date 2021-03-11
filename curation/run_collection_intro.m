@@ -78,7 +78,7 @@ prt_patterns;
 prt_pie_SGGJR;
 prt_about;
 
-delete('..\taxa\*.txt~') % delete emacs backup-files
+delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
 system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i');
 
 cd(WD);
