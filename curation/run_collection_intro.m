@@ -71,18 +71,18 @@ end
 % write add_my_pet/AmPdata/AmPdata.zip
 cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdwon collection/AmPdata
-% toolbar_AmPtool.html is written, but moved to AmPtool/docs 
+% toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
 prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
 
 prt_species_names; % add_my_pet/species_names.html
 prt_species_list; % add_my_pet/species_list.html
-prt_species_tree_taxa_js; % javascript for the tree in add_my_pet/sys/; add_my_pet/species_tree.html itself is static
+prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
 prt_authors; % add_my_pet/authors.html
 prt_pars; % add_my_pet/pars.html
 prt_patterns; % add_my_pet/patterns.html
 prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
-prt_about; %  add_my_pet/about.html
+prt_about; % add_my_pet/about.html
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
