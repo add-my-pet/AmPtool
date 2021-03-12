@@ -12,10 +12,10 @@ function run_collection_intro(entries)
 % runs functions for collection overhead, but before running this script
 %
 %  * update lists-of-lists in AmPtool/taxa
-%  * upade AmPtool/entries/ 
-%  * pudate ../../add_my_pet/img/tree 
-%  * run_collection(entries-names) to generate files in entries_zip and entries_web
-%  * export bibtex from Zotero to debtool/DEB library.bib
+%  * update files in add_my_pet/entries/
+%  * update ../../add_my_pet/img/tree/ by adding *.jpg and *.jpg.txt files
+%  * run_collection(entries-names) to generate files in add_my_pet/entries_zip and entries_web
+%  * export bibtex from Zotero to deb/DEB library.bib for the DEBlib picture on add_my_pet/about.html)
 %
 % Input:
 %
@@ -26,7 +26,7 @@ function run_collection_intro(entries)
 % * no explicit output, but many files are written
 
 %% Remarks
-% After running this function copy files to server 
+% SyncBackPro is used to copy the following files to server 
 %
 % ../about.html
 % ../authors.html
@@ -49,11 +49,14 @@ function run_collection_intro(entries)
 % ../entries/*
 % ../entries_web/*
 % ../entries_zip/*
+%
+% Repository AmPtool is synced with Github
 
-WD = cdCur;
+WD = cdCur; % go to AmPtool/curation
 
 clear global % allStat and popStat are made persistent 
 
+% write add_my_pet/AmPdata/allStat.mat and popStat.mat
 if exist('entries','var')
   [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
    write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
@@ -62,23 +65,30 @@ else
   write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
 end
 if ~info
-  return
+  return % failure, since lists-of-lists in AmPtool/taxa has to match fields in allStat.mat and opoStat.mat
 end
 
+% write add_my_pet/AmPdata/AmPdata.zip
+cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
+% write toolbars in add_my_pet/sys/ to update dropdwon collection/AmPdata
+% toolbar_AmPtool.html is written, but moved to AmPtool/docs 
+prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
+% add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
 
-cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; % creates AmPdata/AmPdata.zip
-prt_toolbar
+prt_species_names; % add_my_pet/species_names.html
+prt_species_list; % add_my_pet/species_list.html
+prt_species_tree_taxa_js; % javascript for the tree in add_my_pet/sys/; add_my_pet/species_tree.html itself is static
+prt_authors; % add_my_pet/authors.html
+prt_pars; % add_my_pet/pars.html
+prt_patterns; % add_my_pet/patterns.html
+prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
+prt_about; %  add_my_pet/about.html
 
-prt_species_names;
-prt_species_list;
-prt_species_tree_taxa_js;
-prt_authors;
-prt_pars;
-prt_patterns;
-prt_pie_SGGJR;
-prt_about;
-
+% sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
-system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i');
+cd('..\'); % go from AmPtool/curation to AmPtool
+system('powershell git commit -am "extension"; git push');
+% mirror to VU and IUEM; this takes 10 min each, but runs in the background
+system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
 
-cd(WD);
+cd(WD); % go to current directory (when this function was started)
