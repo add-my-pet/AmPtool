@@ -86,8 +86,9 @@ prt_about; % add_my_pet/about.html
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
+delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
 cd('..\'); % go from AmPtool/curation to AmPtool
-% system('powershell git commit -am "extension"; git push'); % does not work yet
+% system('powershell gh commit -am "extension"; gh push'); % does not work yet
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
 

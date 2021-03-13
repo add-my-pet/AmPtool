@@ -56,14 +56,14 @@ function prt_taxon_jpg(taxon)
   fprintf(oid, '    <div id="contentFull">\n\n');
 			
   for i = 1:n_taxa
-
+    
     if mod(i,n_jpg) == 1
       fprintf(oid, '      <div class="jpgrow">\n');
     end
     fprintf(oid, '        <div class="jpg">\n');
     fprintf(oid, '          <img src="%s%s.jpg"  width="260px">\n', path2jpg, taxa{i});
     fprintf(oid,'           <div class = "jpgcap">\n');
-    fprintf(oid, '             %s\n', taxa{i});
+    fprintf(oid, '            %s\n', taxa{i});
     fprintf(oid,'           </div>\n');
     fprintf(oid, '        </div><!-- end of jpg -->\n');
 
