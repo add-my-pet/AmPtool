@@ -1,6 +1,2 @@
-Nautilida
-Sepiida
-Sepiolida
-Myopsida
-Oegopsida
-Octopoda
+Nautiloidea
+Coleoidea

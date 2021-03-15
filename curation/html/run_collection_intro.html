@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-12"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
+      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-15"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -70,7 +70,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 * update files in add_my_pet/entries/
 * update ../../add_my_pet/img/tree/ by adding *.jpg and *.jpg.txt files
 * run_collection(entries-names) to generate files in add_my_pet/entries_zip and entries_web
-* export bibtex from Zotero to deb/DEB library.bib for the DEBlib picture on add_my_pet/about.html)</pre><p>Input:</p><div><ul><li>entries: optional cell array with names of entries. Runs all entries if absent</li></ul></div><p>Ouput:</p><div><ul><li>no explicit output, but many files are written</li></ul></div><h2 id="5">Remarks</h2><p>SyncBackPro is used to copy the following files to server</p><p>../about.html ../authors.html ../pars.html ../pie_*.html ../species_list.html ../species_names.html</p><p>../sys/species_tree_Animalia.js ../sys/species_tree_Animalia_search.html ../sys/toolbar_*.html</p><p>../AmPdata/AmPdata.zip</p><p>../img/about/*.png ../img/pars/*.png ../img/patterns/*.png ../img/tree/*.jpg and *.jpg.txt</p><p>../entries/* ../entries_web/* ../entries_zip/*</p><p>Repository AmPtool is synced with Github</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+* export bibtex from Zotero to deb/DEB library.bib for the DEBlib picture on add_my_pet/about.html)</pre><p>Input:</p><div><ul><li>entries: optional cell array with names of entries. Runs all entries if absent</li></ul></div><p>Ouput:</p><div><ul><li>no explicit output, but many files are written</li></ul></div><h2 id="5">Remarks</h2><p>All variables will be cleared SyncBackPro is used to copy the following files to server</p><p>../about.html ../authors.html ../pars.html ../pie_*.html ../species_list.html ../species_names.html</p><p>../sys/species_tree_Animalia.js ../sys/species_tree_Animalia_search.html ../sys/toolbar_*.html</p><p>../AmPdata/AmPdata.zip</p><p>../img/about/*.png ../img/pars/*.png ../img/patterns/*.png ../img/tree/*.jpg and *.jpg.txt</p><p>../entries/* ../entries_web/* ../entries_zip/*</p><p>Repository AmPtool is synced with Github</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% run_collection_intro
 % runs functions for collection overhead
@@ -100,6 +100,7 @@ function run_collection_intro(entries)
 % * no explicit output, but many files are written
 
 %% Remarks
+% All variables will be cleared
 % SyncBackPro is used to copy the following files to server 
 %
 % ../about.html
@@ -128,7 +129,8 @@ function run_collection_intro(entries)
 
 WD = cdCur; % go to AmPtool/curation
 
-clear global % allStat and popStat are made persistent 
+% allStat and popStat are made persistent and must be overwritten
+save('temporary.mat','WD','entries'); clear all; load('temporary.mat)'); delete('temporary.mat');
 
 % write add_my_pet/AmPdata/allStat.mat and popStat.mat
 if exist('entries','var')
@@ -145,23 +147,24 @@ end
 % write add_my_pet/AmPdata/AmPdata.zip
 cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdwon collection/AmPdata
-% toolbar_AmPtool.html is written, but moved to AmPtool/docs 
+% toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
 prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
 
 prt_species_names; % add_my_pet/species_names.html
 prt_species_list; % add_my_pet/species_list.html
-prt_species_tree_taxa_js; % javascript for the tree in add_my_pet/sys/; add_my_pet/species_tree.html itself is static
+prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
 prt_authors; % add_my_pet/authors.html
 prt_pars; % add_my_pet/pars.html
 prt_patterns; % add_my_pet/patterns.html
 prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
-prt_about; %  add_my_pet/about.html
+prt_about; % add_my_pet/about.html
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
+delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
 cd('..\'); % go from AmPtool/curation to AmPtool
-system('powershell git commit -am "extension"; git push');
+% system('powershell gh commit -am "extension"; gh push'); % does not work yet
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
 

@@ -26,6 +26,7 @@ function run_collection_intro(entries)
 % * no explicit output, but many files are written
 
 %% Remarks
+% All variables will be cleared
 % SyncBackPro is used to copy the following files to server 
 %
 % ../about.html
@@ -54,18 +55,18 @@ function run_collection_intro(entries)
 
 WD = cdCur; % go to AmPtool/curation
 
-clear global % allStat and popStat are made persistent 
+% allStat and popStat are made persistent and must be overwritten
+save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
 
 % write add_my_pet/AmPdata/allStat.mat and popStat.mat
 if exist('entries','var')
   [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
-   write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
+  if ~info; return; end;
+  write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 else
   [allStat, info] = write_allStat; % this overwrites allStat
+  if ~info; return; end;
   write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
-end
-if ~info
-  return % failure, since lists-of-lists in AmPtool/taxa has to match fields in allStat.mat and opoStat.mat
 end
 
 % write add_my_pet/AmPdata/AmPdata.zip

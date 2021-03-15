@@ -1,3 +1,4 @@
+Octopus_bimaculoides
 Octopus_cyanea
 Octopus_joubini
 Octopus_maya
