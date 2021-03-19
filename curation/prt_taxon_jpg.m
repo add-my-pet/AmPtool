@@ -31,8 +31,6 @@ function prt_taxon_jpg(taxon)
   fprintf(oid, '  <title>%s</title>\n', taxon);
   fprintf(oid, '  <link rel="stylesheet" type="text/css" href="%sstyle.css">\n\n', path2sys); 
   
-  fprintf(oid, '  <script src="%sdropdown.js"></script>\n', path2sys);
-  fprintf(oid, '  <script src="%sopenattaxon.js"></script>\n', path2sys);
   fprintf(oid, '  <script src="%sw3data.js"></script>\n', path2sys);
   fprintf(oid, '  <script src="%sftiens4.js"></script>\n', path2sys);
   fprintf(oid, '  <script src="%sspecies_tree_Animalia.js"></script>\n\n', path2sys);
@@ -46,8 +44,6 @@ function prt_taxon_jpg(taxon)
   fprintf(oid, '      SetCookie("clickedFolder", taxon);\n');
   fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html"  + ''?pic="'' + taxon + ''.jpg"'';\n', path2amp);
   fprintf(oid, '      newwin = window.open(newURL);\n');
-  fprintf(oid, '      document.getElementById(''pic'').src = ''%simg/tree/'' + taxon + ''.jpg'';\n', path2amp);
-  fprintf(oid, '      document.getElementById(''txt'').src = ''%simg/tree/'' + taxon + ''.jpg.txt'';\n', path2amp);
   fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
   fprintf(oid, '    }\n');
   fprintf(oid, '  </script>\n\n');
