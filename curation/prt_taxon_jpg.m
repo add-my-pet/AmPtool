@@ -23,12 +23,35 @@ function prt_taxon_jpg(taxon)
   fnm = [taxon, '_jpg.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
   path2jpg = [set_path2server, 'add_my_pet/img/tree/'];
   path2sys = [set_path2server, 'add_my_pet/sys/'];
+  path2amp = [set_path2server, 'add_my_pet/'];
      
   fprintf(oid, '<!DOCTYPE html>\n');
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
   fprintf(oid, '  <title>%s</title>\n', taxon);
-  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="%sstyle.css">\n', path2sys); 
+  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="%sstyle.css">\n\n', path2sys); 
+  
+  fprintf(oid, '  <script src="%sdropdown.js"></script>\n', path2sys);
+  fprintf(oid, '  <script src="%sopenattaxon.js"></script>\n', path2sys);
+  fprintf(oid, '  <script src="%sw3data.js"></script>\n', path2sys);
+  fprintf(oid, '  <script src="%sftiens4.js"></script>\n', path2sys);
+  fprintf(oid, '  <script src="%sspecies_tree_Animalia.js"></script>\n\n', path2sys);
+  
+  fprintf(oid, '  <script>\n'); 
+  fprintf(oid, '    if (document.taxonSearch == undefined) {\n');
+  fprintf(oid, '      document.taxonSearch = "";\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    function shTree(taxon) {\n');
+  fprintf(oid, '      SetCookie("clickedFolder", taxon);\n');
+  fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html"  + ''?pic="'' + taxon + ''.jpg"'';\n', path2amp);
+  fprintf(oid, '      newwin = window.open(newURL);\n');
+  fprintf(oid, '      document.getElementById(''pic'').src = ''%simg/tree/'' + taxon + ''.jpg'';\n', path2amp);
+  fprintf(oid, '      document.getElementById(''txt'').src = ''%simg/tree/'' + taxon + ''.jpg.txt'';\n', path2amp);
+  fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
+  fprintf(oid, '    }\n');
+  fprintf(oid, '  </script>\n\n');
+  
   fprintf(oid, '  <style>\n');
   fprintf(oid, '    body {\n');
   fprintf(oid, '      background: #ffffff\n');
@@ -61,10 +84,8 @@ function prt_taxon_jpg(taxon)
       fprintf(oid, '      <div class="jpgrow">\n');
     end
     fprintf(oid, '        <div class="jpg">\n');
-    fprintf(oid, '          <img src="%s%s.jpg"  width="260px">\n', path2jpg, taxa{i});
-    fprintf(oid,'           <div class = "jpgcap">\n');
-    fprintf(oid, '            %s\n', taxa{i});
-    fprintf(oid,'           </div>\n');
+    fprintf(oid, '          <img src="%s%s.jpg"  width="260px" onclick="shTree(''%s'')">\n', path2jpg, taxa{i}, taxa{i});
+    fprintf(oid, '          <div class="jpgcap">%s</div>\n', taxa{i});
     fprintf(oid, '        </div><!-- end of jpg -->\n');
 
     if mod(i,n_jpg) == 0 
