@@ -105,7 +105,8 @@
     This position is determined in lists-of-lists, stored in <code>AmPtool/taxa</code>; the taxonomic info in the mydata-files is only used for presentation in 
       the <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/species_list.html">species-list</a> and 
       for the default value of the water content by function <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/get_d_V.html">get_d_V</a>
-      and the default nitrogen waste by function <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/get_N_waste.html">get_N_waste</a>. 
+      and the default nitrogen waste by function <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/get_N_waste.html">get_N_waste</a>.
+    Further it is used to identify the phylum, class and order names in the function <code>list_taxa</code> (see below).
     A list is a simple text-file. 
     Several functions link these lists into a tree. 
     The tree has a root, here called <a href="../taxa/Animalia.txt">Animalia</a>, nodes, which are names of taxa, and leaves, which are names of entries.
@@ -135,6 +136,8 @@
     The default input of pedigree is the root Animalia, but can also be any node, which becomes the root of the output-tree.
     The (character) string produced by pedigree can directly be printed to the screen, which is useful for small trees. 
     The tree can be used to identify useful taxa for analysis.
+    The function <a href="../html/prt_taxon_jpg.html">prt_taxon_jpg('Cephalopoda')</a> composes a gallery of pictures for taxon Cephalopoda (in this case); 
+       clicking on a picture opens the tree at the seleted taxon. 
 
     <div>
       <div class="sidelement2">
