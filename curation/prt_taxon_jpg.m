@@ -10,7 +10,9 @@ function prt_taxon_jpg(taxon)
 
 %% Description
 % Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon.
-% The html is opened in the system browser
+% The html is opened in the system browser.
+% A click on a picture opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position.
+% Refresh the picture-page if you return to it, to reset previous selections.
 %
 % Input
 %
