@@ -71,7 +71,7 @@ end
 
 % write add_my_pet/AmPdata/AmPdata.zip
 cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
-% write toolbars in add_my_pet/sys/ to update dropdwon collection/AmPdata
+% write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
 prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
@@ -91,6 +91,7 @@ delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % 
 cd('..\'); % go from AmPtool/curation to AmPtool
 % system('powershell gh commit -am "extension"; gh push'); % does not work yet
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
-system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+%system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+system('powershell SyncBackPro AmP2VU -i'); 
 
 cd(WD); % go to current directory (when this function was started)
