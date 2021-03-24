@@ -1,5 +1,6 @@
 Ancistrocheiridae
 Enoploteuthidae
 Gonatidae
+Histioteuthidae
 Onychoteuthidae
 Pyroteuthidae

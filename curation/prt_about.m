@@ -37,17 +37,16 @@ function prt_about
 %   /mnt/group-new/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet
 % to present them on the web.
 
-close all
-
-% write_allStat; % update Staristics structure allStat.mat
-
 WD = cdCur;
 path = '../../deblab/add_my_pet/img/about/';
+
+% write pies for taxa and models
+close all
 pie_Animalia;
 tightfig;
 saveas (gca, [path, 'pie_Animalia.png'])
 close all
-
+%
 pie_model;
 tightfig;
 saveas (gca, [path, 'pie_model.png'])
@@ -58,7 +57,7 @@ close all
 surv_dates = surv(dates, 2006); 
 surv_dates([1; end - 1; end],:) = [];    
 n = size(surv_dates, 1)/2;
-    
+%    
 plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('time, yr')
@@ -76,21 +75,21 @@ set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('COMPLETE'); ylabel('MRE')
 saveas (gca, [path, 'COMPLETE_MRE.png'])
 close all
-
+%
 plot(CMS(:,2), CMS(:,3), '.b', 'MarkerSize', 20)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('MRE'); ylabel('SMSE')
 xlim([0 0.55]); ylim([0 0.55])
 saveas (gca, [path, 'MRE_SMSE.png'])
 close all
-
+%
 surv_COMPLETE = surv(CMS(:,1),0);
 plot([0; C_median; C_median], [0.5;0.5;0], 'r', surv_COMPLETE(:,1), surv_COMPLETE(:,2), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('COMPLETE'); ylabel('survivor function')
 saveas (gca, [path, 'COMPLETE.png'])
 close all
-
+%
 surv_MRE = surv(CMS(:,2),0);
 plot([0; M_median; M_median], [0.5;0.5;0], 'b', surv_MRE(:,1), surv_MRE(:,2), 'b', 'Linewidth', 2)
 surv_SMSE = surv(CMS(:,3),0); hold on
@@ -108,7 +107,7 @@ dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
 surv_dates = surv(dates, 1979); 
 surv_dates([1; end - 1; end],:) = [];    
 n = 1 + size(surv_dates, 1)/2;
-    
+%    
 plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('time, yr')
@@ -123,9 +122,9 @@ path = 'entries_web/'; % path to entries
 fid_about = fopen('../../deblab/add_my_pet/about.html', 'w+'); % open file for writing, delete existing content
 
 fprintf(fid_about, '<!DOCTYPE html>\n');
-fprintf(fid_about, '<HTML>\n');
-fprintf(fid_about, '<HEAD>\n');
-fprintf(fid_about, '  <TITLE>About AmP</TITLE>\n');
+fprintf(fid_about, '<html>\n');
+fprintf(fid_about, '<head>\n');
+fprintf(fid_about, '  <title>About AmP</title>\n');
 fprintf(fid_about, '  <link rel="stylesheet" type="text/css" href="sys/style.css"> \n');
 fprintf(fid_about, '  <script src="sys/dropdown.js"></script>\n');
 fprintf(fid_about, '  <script src="sys/w3data.js"></script>\n');
@@ -134,8 +133,14 @@ fprintf(fid_about, '    function changeImage(img){\n');
 fprintf(fid_about, '      document.getElementById(''daphnia'').src=img;\n');
 fprintf(fid_about, '    }\n');
 fprintf(fid_about, '  </script>\n');
-fprintf(fid_about, '</HEAD>\n\n');
-fprintf(fid_about, '<BODY>\n\n');
+fprintf(fid_about, '  <style>\n');
+fprintf(fid_about, '    #disclaimer {\n');
+fprintf(fid_about, '      padding: 10px 30px;\n');
+fprintf(fid_about, '      width: 95%%;\n');
+fprintf(fid_about, '    }\n');
+fprintf(fid_about, '  </style>\n');
+fprintf(fid_about, '</head>\n\n');
+fprintf(fid_about, '<body>\n\n');
 % ----------------------------------------------------------
 fprintf(fid_about, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_about, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
@@ -150,8 +155,8 @@ fprintf(fid_about, '<!----------------------------------------------------------
 fprintf(fid_about, '<div id = "main">\n');
 fprintf(fid_about, '  <div id = "main-wrapper">\n');
 fprintf(fid_about, '    <div id="content">\n');
-fprintf(fid_about, '      <H1 id = "portaltop">About Add-my-Pet</H1>\n'); 
-fprintf(fid_about, '      <H2 id = "aims">Overview of the collection</H2>\n\n');
+fprintf(fid_about, '      <h1 id = "portaltop">About Add-my-Pet</h1>\n'); 
+fprintf(fid_about, '      <h2 id = "aims">Overview of the collection</h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">\n');
@@ -172,7 +177,7 @@ fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <h2 class="clear"></h2>\n');
-fprintf(fid_about, '      Although <a href = "http://www.debtheory.org/wiki/" target = "_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms,\n');
+fprintf(fid_about, '      Although <a href="http://www.debtheory.org/wiki/" target = "_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms,\n');
 fprintf(fid_about, '        the AmP collection only deals with <a href="phyla.html">animals</a>.\n');
 fprintf(fid_about, '      The reason is that animals eat other organisms, which don''t vary that much in chemical composition. \n');
 fprintf(fid_about, '      Given the habitat, their environment can be characterized by the variables food availability and temperature as a first rough approximation.\n');
@@ -183,7 +188,7 @@ fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      At 2018/01/01, when the collection had 1000 entries, there were \n');
 fprintf(fid_about, '      112 <a href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data" TARGET="_blank">zero-variate data types</a>, and \n');
 fprintf(fid_about, '      153 <a href="http://www.debtheory.org/wiki/index.php?title=Uni-variate_data" TARGET="_blank">univariate data types</a>, in \n');
-fprintf(fid_about, '      588 combinations, written by 125 <a href = "authors.html">authors</a>. \n');
+fprintf(fid_about, '      588 combinations, written by 125 <a href="authors.html">authors</a>. \n');
 fprintf(fid_about, '      So, few entries share the same data type combination and the number of data types is very much larger than the number of parameters. \n');
 fprintf(fid_about, '      This argues for comparison on the basis of parameters, since all parameters were estimated for all species. \n');
 fprintf(fid_about, '      Moreover, by being mechanistic (= based on first principles), DEB models interprete data, rather than just describe it, so can reveal inconsistencies in data \n');
@@ -199,6 +204,17 @@ fprintf(fid_about, '        <a href="entries_web/Archaeopteryx_lithographica/Arc
 fprintf(fid_about, '        <a href="entries_web/Pinguinus_impennis/Pinguinus_impennis_res.html">great auk</a> and \n');
 fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis_gigas_res.html">Steller''s sea cow</a>. \n');
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
+
+fprintf(fid_about, '      <p>\n');
+fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference temperature of 20 &deg;C,\n');
+fprintf(fid_about, '        even for endotherms and deep-sea or polar animals, which will probably be very dead at this temperature.\n');
+fprintf(fid_about, '      So the temperature correction sometimes has academic elements, which needs to be remembered when it comes to making predictions.\n');
+fprintf(fid_about, '      The extended Arrhenius model is used to account for effects of temperature:\n');
+fprintf(fid_about, '        i.e. simple Arrhenius applies between a lower and an upper temperature boundary, but outside this tolerance range (dramatically) lower rates apply.\n');
+fprintf(fid_about, '      In a few (e.g. polar) cases, where it was necessary to quantify rate reductions for increasing temperatures lower than the reference temperature,\n');
+fprintf(fid_about, '        a different (i.e. lower) reference temperature had to be selected, which affects the comparability of species; \n');
+fprintf(fid_about, '      the reference temperature needs to fall within the temperature tolerance range for consistency reasons.\n');
+fprintf(fid_about, '      The extension is only used if enough data is available; the applied correction factor is given on the "implied traits" page.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
 fprintf(fid_about, '         <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
@@ -231,9 +247,6 @@ fprintf(fid_about, '        The relationship between <a href="http://www.debtheo
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
-fprintf(fid_about, '      <div w3-include-html="sys/disclaimer.html"></div>\n');
-fprintf(fid_about, '      <script>w3IncludeHTML();</script>\n\n');
-
 fprintf(fid_about, '    </div> <!-- end of content -->\n\n');
 
 fprintf(fid_about, '    <!--------------------------------------------------------------->\n');
@@ -242,42 +255,42 @@ fprintf(fid_about, '    <!------------------------------------------------------
 
 fprintf(fid_about, '    <div id = "sidebar">\n\n');  
 
-fprintf(fid_about, '      <H1 id = "portaltop"> &nbsp;</H1> <!--   This is here to make heading across both columns even  -->\n');   
-fprintf(fid_about, '      <H2 class="clear">AmP entries in time </H2>\n\n');
+fprintf(fid_about, '      <h1 id = "portaltop"> &nbsp;</h1> <!--   This is here to make heading across both columns even  -->\n');   
+fprintf(fid_about, '      <h2 class="clear">AmP entries in time </h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/entries.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          The Add-my-Pet collection started at 2009/02/12 as part of the \n');
-fprintf(fid_about, '          <A HREF ="https://deb2021.sciencesconf.org/" target="_blank">DEB course</A>.<br>\n');
+fprintf(fid_about, '          <A href="https://deb2021.sciencesconf.org/" target="_blank">DEB course</A>.<br>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
     
-fprintf(fid_about, '      <TABLE id="t02"> <!-- Latest additions -->\n'); 
-fprintf(fid_about, '        <TR><TH colspan="2"><b>Latest additions to the collection:</b></TH></TR>\n');
-fprintf(fid_about, '        <TR>\n');
-fprintf(fid_about,['          <TD WIDTH=300><a HREF = "', path, entries_new{1}, '/', entries_new{1}, '_res.html"><I>', entries_new{1}, '</I></a></TD>\n']);
-fprintf(fid_about,['          <TD WIDTH=100>', dates_new(1,:), '</TD>\n']);
-fprintf(fid_about, '        </TR>\n');
-fprintf(fid_about, '        <TR>\n');
-fprintf(fid_about,['          <TD WIDTH=300><a HREF = "', path, entries_new{2}, '/', entries_new{2}, '_res.html"><I>', entries_new{2}, '</I></a></TD>\n']);
-fprintf(fid_about,['          <TD WIDTH=100>', dates_new(2,:), '</TD>\n']);
-fprintf(fid_about, '        </TR>\n');
-fprintf(fid_about, '        <TR>\n');
-fprintf(fid_about,['          <TD WIDTH=300><a HREF = "', path, entries_new{3}, '/', entries_new{3}, '_res.html"><I>', entries_new{3}, '</I></a></TD>\n']);
-fprintf(fid_about,['          <TD WIDTH=100>', dates_new(3,:), '</TD>\n']);
-fprintf(fid_about, '        </TR>\n');
-fprintf(fid_about, '        <TR>\n');
-fprintf(fid_about,['          <TD WIDTH=300><a HREF = "', path, entries_new{4}, '/', entries_new{4}, '_res.html"><I>', entries_new{4}, '</I></a></TD>\n']);
-fprintf(fid_about,['          <TD WIDTH=100>', dates_new(4,:), '</TD>\n']);
-fprintf(fid_about, '        </TR>\n');
-fprintf(fid_about, '        <TR>\n');
-fprintf(fid_about,['          <TD WIDTH=300><a HREF = "', path, entries_new{5}, '/', entries_new{5}, '_res.html"><I>', entries_new{5}, '</I></a></TD>\n']);
-fprintf(fid_about,['          <TD WIDTH=100>', dates_new(5,:), '</TD>\n']);
-fprintf(fid_about, '        </TR>\n');
-fprintf(fid_about, '      </TABLE>\n\n');
+fprintf(fid_about, '      <table id="t02"> <!-- Latest additions -->\n'); 
+fprintf(fid_about, '        <tr><th colspan="2"><b>Latest additions to the collection:</b></th></tr>\n');
+fprintf(fid_about, '        <tr>\n');
+fprintf(fid_about,['          <td width=300><a href="', path, entries_new{1}, '/', entries_new{1}, '_res.html"><i>', entries_new{1}, '</i></a></td>\n']);
+fprintf(fid_about,['          <td width=100>', dates_new(1,:), '</td>\n']);
+fprintf(fid_about, '        </tr>\n');
+fprintf(fid_about, '        <tr>\n');
+fprintf(fid_about,['          <td width=300><a href="', path, entries_new{2}, '/', entries_new{2}, '_res.html"><i>', entries_new{2}, '</i></a></td>\n']);
+fprintf(fid_about,['          <td width=100>', dates_new(2,:), '</td>\n']);
+fprintf(fid_about, '        </tr>\n');
+fprintf(fid_about, '        <tr>\n');
+fprintf(fid_about,['          <td width=300><a href="', path, entries_new{3}, '/', entries_new{3}, '_res.html"><i>', entries_new{3}, '</i></a></td>\n']);
+fprintf(fid_about,['          <td width=100>', dates_new(3,:), '</td>\n']);
+fprintf(fid_about, '        </tr>\n');
+fprintf(fid_about, '        <tr>\n');
+fprintf(fid_about,['          <td width=300><a href="', path, entries_new{4}, '/', entries_new{4}, '_res.html"><i>', entries_new{4}, '</i></a></td>\n']);
+fprintf(fid_about,['          <td width=100>', dates_new(4,:), '</td>\n']);
+fprintf(fid_about, '        </tr>\n');
+fprintf(fid_about, '        <tr>\n');
+fprintf(fid_about,['          <td width=300><a href="', path, entries_new{5}, '/', entries_new{5}, '_res.html"><i>', entries_new{5}, '</i></a></TtdD>\n']);
+fprintf(fid_about,['          <td width=100>', dates_new(5,:), '</td>\n']);
+fprintf(fid_about, '        </tr>\n');
+fprintf(fid_about, '      </table>\n\n');
 
-fprintf(fid_about, '      <H2 class="clear">DEB research & DEBtool</H2>\n\n');
+fprintf(fid_about, '      <h2 class="clear">DEB research & DEBtool</h2>\n\n');
 
 fprintf(fid_about, '      <div>\n');
 fprintf(fid_about, '        <center>\n');
@@ -292,19 +305,19 @@ fprintf(fid_about, '        Software package <a href="/thb/deb/deblab/debtool/DE
 fprintf(fid_about, '          since 2000 to support applications of DEB theory, such as Add-my-Pet.\n');
 fprintf(fid_about, '      </div>\n\n');
 
-fprintf(fid_about, '      <H2 class="clear">DEB publications in time</H2>\n\n');
+fprintf(fid_about, '      <h2 class="clear">DEB publications in time</h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/DEBlib.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">   \n');
 fprintf(fid_about, '          Publications in which DEB theory plays a substantial role.\n');
-fprintf(fid_about, '          <a HREF ="https://www.zotero.org/groups/500643/deb_library/" target="_blank">They can be found in the DEB library on Zotero</a>, \n');
+fprintf(fid_about, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">They can be found in the DEB library on Zotero</a>, \n');
 fprintf(fid_about, '          including all pdf''s, which you can access if you become member (no fees): First register to Zotero, or login, and hit the Join-group button.\n');
 fprintf(fid_about, '          You then receive an invitation email, confirming your membership.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
-fprintf(fid_about, '      <H2 class="clear">Background documentation </H2>\n\n');
+fprintf(fid_about, '      <h2 class="clear">Background documentation </h2>\n\n');
     
 fprintf(fid_about, '      <a href="http://www.debtheory.org/wiki/index.php?title=DEB_literature_and_publications" TARGET="_blank">\n');
 fprintf(fid_about, '      An increasing number of papers has been published on the add-my-pet collection, \n');
@@ -315,14 +328,17 @@ fprintf(fid_about, '      Many papers have been written on specific entries, whi
 
 fprintf(fid_about, '    </div> <!-- end of sidebar -->\n\n');
 
-fprintf(fid_about, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
-fprintf(fid_about, '    <script>w3IncludeHTML();</script>\n\n');
+fprintf(fid_about, '    <div id="disclaimer">\n');
+fprintf(fid_about, '      <div w3-include-html="sys/disclaimer.html"></div>\n');
+fprintf(fid_about, '      <div w3-include-html="sys/footer_amp.html"></div>\n');
+fprintf(fid_about, '      <script>w3IncludeHTML();</script>\n');
+fprintf(fid_about, '    </div>\n');
 
 fprintf(fid_about, '  </div> <!-- main wrapper -->\n');
 fprintf(fid_about, '</div> <!-- main -->\n\n');
 % ----------------------------------------------------------
-fprintf(fid_about, '</BODY>\n');
-fprintf(fid_about, '</HTML>\n');
+fprintf(fid_about, '</body>\n');
+fprintf(fid_about, '</html>\n');
 fclose(fid_about);
 
 cd(WD);
