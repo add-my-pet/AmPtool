@@ -206,7 +206,7 @@ fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
 fprintf(fid_about, '      <p>\n');
-fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference temperature of 20 &deg;C,\n');
+fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference body temperature of 20 &deg;C,\n');
 fprintf(fid_about, '        even for endotherms and deep-sea or polar animals, which will probably be very dead at this temperature.\n');
 fprintf(fid_about, '      So the temperature correction sometimes has academic elements, which needs to be remembered when it comes to making predictions.\n');
 fprintf(fid_about, '      The extended Arrhenius model is used to account for effects of temperature:\n');
