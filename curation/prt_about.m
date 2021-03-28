@@ -185,6 +185,17 @@ fprintf(fid_about, '      This characterisation is hard to make "complete" for o
 fprintf(fid_about, '      Comparison is the most useful asset of this collection.\n\n');
 
 fprintf(fid_about, '      <p>\n');
+fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference body temperature of 20 &deg;C,\n');
+fprintf(fid_about, '        even for endotherms and deep-sea or polar animals, which will probably be very dead at this temperature.\n');
+fprintf(fid_about, '      So the temperature correction sometimes has academic elements, which needs to be remembered when it comes to making predictions.\n');
+fprintf(fid_about, '      The extended Arrhenius model is used to account for effects of temperature:\n');
+fprintf(fid_about, '        i.e. simple Arrhenius applies between a lower and an upper temperature boundary, but outside this tolerance range (dramatically) lower rates apply.\n');
+fprintf(fid_about, '      In a few (e.g. polar) cases, where it was necessary to quantify rate reductions for increasing temperatures lower than the reference temperature,\n');
+fprintf(fid_about, '        a different (i.e. lower) reference temperature had to be selected, which affects the comparability of species; \n');
+fprintf(fid_about, '      the reference temperature needs to fall within the temperature tolerance range for consistency reasons.\n');
+fprintf(fid_about, '      The extension is only used if enough data is available; the applied correction factor is given on the "implied traits" page.\n\n');
+
+fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      At 2018/01/01, when the collection had 1000 entries, there were \n');
 fprintf(fid_about, '      112 <a href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data" TARGET="_blank">zero-variate data types</a>, and \n');
 fprintf(fid_about, '      153 <a href="http://www.debtheory.org/wiki/index.php?title=Uni-variate_data" TARGET="_blank">univariate data types</a>, in \n');
@@ -204,17 +215,6 @@ fprintf(fid_about, '        <a href="entries_web/Archaeopteryx_lithographica/Arc
 fprintf(fid_about, '        <a href="entries_web/Pinguinus_impennis/Pinguinus_impennis_res.html">great auk</a> and \n');
 fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis_gigas_res.html">Steller''s sea cow</a>. \n');
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
-
-fprintf(fid_about, '      <p>\n');
-fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference body temperature of 20 &deg;C,\n');
-fprintf(fid_about, '        even for endotherms and deep-sea or polar animals, which will probably be very dead at this temperature.\n');
-fprintf(fid_about, '      So the temperature correction sometimes has academic elements, which needs to be remembered when it comes to making predictions.\n');
-fprintf(fid_about, '      The extended Arrhenius model is used to account for effects of temperature:\n');
-fprintf(fid_about, '        i.e. simple Arrhenius applies between a lower and an upper temperature boundary, but outside this tolerance range (dramatically) lower rates apply.\n');
-fprintf(fid_about, '      In a few (e.g. polar) cases, where it was necessary to quantify rate reductions for increasing temperatures lower than the reference temperature,\n');
-fprintf(fid_about, '        a different (i.e. lower) reference temperature had to be selected, which affects the comparability of species; \n');
-fprintf(fid_about, '      the reference temperature needs to fall within the temperature tolerance range for consistency reasons.\n');
-fprintf(fid_about, '      The extension is only used if enough data is available; the applied correction factor is given on the "implied traits" page.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
 fprintf(fid_about, '         <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
