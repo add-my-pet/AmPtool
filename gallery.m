@@ -1,12 +1,12 @@
-%% prt_taxon_jpg
+%% gallery
 % Creates taxon_jpg.html in current directory
 
 %%
-function prt_taxon_jpg(taxon)
+function gallery(taxon)
 % created 2021/03/07 Bas Kooijman
 
 %% Syntax
-% <../prt_taxon_jpg.m *prt_taxon_jpg*> 
+% <../gallery.m *gallery*> 
 
 %% Description
 % Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon.
@@ -19,7 +19,7 @@ function prt_taxon_jpg(taxon)
 % * taxon: string with name of taxon
 
 %% Example of use
-% prt_taxon_jpg('Mollusca'), which results in opening Mollusca_jpg.html
+% gallery('Mollusca'), which results in opening Mollusca_jpg.html
 
   taxa = list_taxa(taxon,1); n_taxa = length(taxa); n_jpg = 4;
   fnm = [taxon, '_jpg.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
