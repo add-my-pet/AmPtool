@@ -1,2 +1,4 @@
+Uroteuthis_chinensis
+Uroteuthis_duvauceli
 Uroteuthis_edulis
 Uroteuthis_noctiluca

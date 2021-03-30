@@ -25,8 +25,8 @@ function [missingFromCollection, missingFromList] = check_collection
 % [missingFromCollection, missingFromList] = check_collection
 
 entries = select('Animalia');   % n-string of latin names of species in the lists
-WD = pwd;  % store current path
-cd('../../.') % goto add_my_pet
+WD = cdCur;  % store current path
+cd('../../deblab/add_my_pet/') % goto add_my_pet
         
 allFiles = dir('entries'); 
 allNames = {allFiles.name}; % n-string of names of directories
