@@ -1,12 +1,12 @@
-%% gallery
+%% galleryAmP
 % Creates taxon_jpg.html in current directory
 
 %%
-function gallery(taxon)
+function galleryAmP(taxon)
 % created 2021/03/07 Bas Kooijman
 
 %% Syntax
-% <../gallery.m *gallery*> 
+% <../galleryAmP.m *galleryAmP*> 
 
 %% Description
 % Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon.
@@ -19,7 +19,7 @@ function gallery(taxon)
 % * taxon: string with name of taxon
 
 %% Example of use
-% gallery('Mollusca'), which results in opening Mollusca_jpg.html
+% galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html
 
   taxa = list_taxa(taxon,1); n_taxa = length(taxa); n_jpg = 4;
   fnm = [taxon, '_jpg.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
