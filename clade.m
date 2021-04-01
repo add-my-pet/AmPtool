@@ -3,7 +3,7 @@
 
 %%
 function [members, taxon] = clade(taxa, level)
-% created 2015/09/18 by Bas Kooijman; modified 2017/12/23, 2018/01/05, 2018/01/30, 2019/02/25
+% created 2015/09/18 by Bas Kooijman; modified 2017/12/23, 2018/01/05, 2018/01/30, 2019/02/25, 2021/04/1
 
 %% Syntax
 % [members, taxon] = <../clade.m *clade*> (taxa, level) 

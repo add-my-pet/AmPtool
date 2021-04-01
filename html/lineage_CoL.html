@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>lineage_CoL</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-22"><meta name="DC.source" content="lineage_CoL.m"><style type="text/css">
+      --><title>lineage_CoL</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-01"><meta name="DC.source" content="lineage_CoL.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,7 +73,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 %%
 function [lineage rank id_CoL] = lineage_CoL(my_pet)
-% created 2018/01/05 by Bas Kooijman
+% created 2018/01/05 by Bas Kooijman, modified 2021/04/01
 
 %% Syntax
 % [lineage rank id_CoL] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
@@ -100,34 +100,29 @@ function [lineage rank id_CoL] = lineage_CoL(my_pet)
 
 [id_CoL my_pet] = get_id_CoL(my_pet);
 if isempty(id_CoL)
-  lineage = {my_pet}; rank = {'Species'};
+  lineage = []; rank = [];
   return
 end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
-url = url(i_0:i_1); % substring between <classification>...</classification>
+url = url(i_0:i_1(end)); % substring between <classification>...</classification>
 
-i_0 = 8 + strfind(url,'<taxon>'); i_1 = strfind(url,'</taxon>') - 1; 
+i_0 = 6 + strfind(url,'<name>'); i_1 = strfind(url,'</name>') - 1; 
+j_0 = 6 + strfind(url,'<rank>'); j_1 = strfind(url,'</rank>') - 1; 
 n = length(i_0); lineage = cell(n+1,1); rank = cell(n+1,1);
 
 for i = 1:n % scan ranks
-  res_i = url(i_0(i):i_1(i)); % substring between <taxon>...</taxon>
-  
-  j_0 = 6 + strfind(res_i,'<name>'); j_1 = strfind(res_i,'</name>') - 1; 
-  nm = res_i(j_0:j_1); % substring between <name>...</name>
+  nm = url(i_0(i):i_1(i)); % substring between <name>...</name>
   if ~strcmp(nm, 'Not assigned')
-    lineage(i) = {nm}; 
+    lineage(n-i+1) = {nm}; 
   end
-  
-  j_0 = 6 + strfind(res_i,'<rank>'); j_1 = strfind(res_i,'</rank>') - 1; 
-  nm = res_i(j_0:j_1); % substring between <rank>...</rank>
+  nm = url(j_0(i):j_1(i)); % substring between <rank>...</rank>
   if ~strcmp(nm, 'Not assigned')
-    rank(i) = {nm}; 
+    rank(n-i+1) = {nm}; 
   end
-
 end
-
+lineage(1) = []; rank(1) = []; % remove Biota
 lineage(end) = {my_pet}; rank(end) = {'Species'};
 
 

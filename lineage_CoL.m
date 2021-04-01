@@ -3,7 +3,7 @@
 
 %%
 function [lineage rank id_CoL] = lineage_CoL(my_pet)
-% created 2018/01/05 by Bas Kooijman
+% created 2018/01/05 by Bas Kooijman, modified 2021/04/01
 
 %% Syntax
 % [lineage rank id_CoL] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
@@ -36,27 +36,22 @@ end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
-url = url(i_0:i_1); % substring between <classification>...</classification>
+url = url(i_0:i_1(end)); % substring between <classification>...</classification>
 
-i_0 = 8 + strfind(url,'<taxon>'); i_1 = strfind(url,'</taxon>') - 1; 
+i_0 = 6 + strfind(url,'<name>'); i_1 = strfind(url,'</name>') - 1; 
+j_0 = 6 + strfind(url,'<rank>'); j_1 = strfind(url,'</rank>') - 1; 
 n = length(i_0); lineage = cell(n+1,1); rank = cell(n+1,1);
 
 for i = 1:n % scan ranks
-  res_i = url(i_0(i):i_1(i)); % substring between <taxon>...</taxon>
-  
-  j_0 = 6 + strfind(res_i,'<name>'); j_1 = strfind(res_i,'</name>') - 1; 
-  nm = res_i(j_0:j_1); % substring between <name>...</name>
+  nm = url(i_0(i):i_1(i)); % substring between <name>...</name>
   if ~strcmp(nm, 'Not assigned')
-    lineage(i) = {nm}; 
+    lineage(n-i+1) = {nm}; 
   end
-  
-  j_0 = 6 + strfind(res_i,'<rank>'); j_1 = strfind(res_i,'</rank>') - 1; 
-  nm = res_i(j_0:j_1); % substring between <rank>...</rank>
+  nm = url(j_0(i):j_1(i)); % substring between <rank>...</rank>
   if ~strcmp(nm, 'Not assigned')
-    rank(i) = {nm}; 
+    rank(n-i+1) = {nm}; 
   end
-
 end
-
+lineage(1) = []; rank(1) = []; % remove Biota
 lineage(end) = {my_pet}; rank(end) = {'Species'};
 
