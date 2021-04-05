@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Insecta</title>
+  <link rel="stylesheet" type="text/css" href="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/style.css">
+
+  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/w3data.js"></script>
+  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/ftiens4.js"></script>
+  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/species_tree_Animalia.js"></script>
+
+  <script>
+    if (document.taxonSearch == undefined) {
+      document.taxonSearch = "";
+    }
+
+    function shTree(taxon) {
+      SetCookie("clickedFolder", taxon);
+      var newURL = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/species_tree_Animalia.html"  + '?pic="' + taxon + '.jpg"';
+      newwin = window.open(newURL);
+      newwin.document.taxonSearch = taxon;
+    }
+  </script>
+
+  <style>
+    body {
+      background: #ffffff
+    }
+    .jpgrow{
+      max-width: 1080px;
+      float: left;
+    }
+    .jpg{
+      position: relative;
+      display: inline-block;
+      float: left;
+      padding: 5px;
+    }
+    .jpgcap{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id = "main">
+  <div id = "main-wrapper">
+    <div id="contentFull">
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Acrididae.jpg"  width="260px" onclick="shTree('Acrididae')">
+          <div class="jpgcap">Acrididae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Acyrthosiphon.jpg"  width="260px" onclick="shTree('Acyrthosiphon')">
+          <div class="jpgcap">Acyrthosiphon</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Aedes.jpg"  width="260px" onclick="shTree('Aedes')">
+          <div class="jpgcap">Aedes</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Aphididae.jpg"  width="260px" onclick="shTree('Aphididae')">
+          <div class="jpgcap">Aphididae</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Baetidae.jpg"  width="260px" onclick="shTree('Baetidae')">
+          <div class="jpgcap">Baetidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Baetis.jpg"  width="260px" onclick="shTree('Baetis')">
+          <div class="jpgcap">Baetis</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Bombycidae.jpg"  width="260px" onclick="shTree('Bombycidae')">
+          <div class="jpgcap">Bombycidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Bombyx.jpg"  width="260px" onclick="shTree('Bombyx')">
+          <div class="jpgcap">Bombyx</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Chaoboridae.jpg"  width="260px" onclick="shTree('Chaoboridae')">
+          <div class="jpgcap">Chaoboridae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Chaoborus.jpg"  width="260px" onclick="shTree('Chaoborus')">
+          <div class="jpgcap">Chaoborus</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Chironomidae.jpg"  width="260px" onclick="shTree('Chironomidae')">
+          <div class="jpgcap">Chironomidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Chironomus.jpg"  width="260px" onclick="shTree('Chironomus')">
+          <div class="jpgcap">Chironomus</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Chortoicetes.jpg"  width="260px" onclick="shTree('Chortoicetes')">
+          <div class="jpgcap">Chortoicetes</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Cloeon.jpg"  width="260px" onclick="shTree('Cloeon')">
+          <div class="jpgcap">Cloeon</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Coleoptera.jpg"  width="260px" onclick="shTree('Coleoptera')">
+          <div class="jpgcap">Coleoptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Culicidae.jpg"  width="260px" onclick="shTree('Culicidae')">
+          <div class="jpgcap">Culicidae</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Diptera.jpg"  width="260px" onclick="shTree('Diptera')">
+          <div class="jpgcap">Diptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Ecdyonurus.jpg"  width="260px" onclick="shTree('Ecdyonurus')">
+          <div class="jpgcap">Ecdyonurus</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Epeorus.jpg"  width="260px" onclick="shTree('Epeorus')">
+          <div class="jpgcap">Epeorus</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Ephemeroptera.jpg"  width="260px" onclick="shTree('Ephemeroptera')">
+          <div class="jpgcap">Ephemeroptera</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Extatosoma.jpg"  width="260px" onclick="shTree('Extatosoma')">
+          <div class="jpgcap">Extatosoma</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Habrophlebia.jpg"  width="260px" onclick="shTree('Habrophlebia')">
+          <div class="jpgcap">Habrophlebia</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Helicoverpa.jpg"  width="260px" onclick="shTree('Helicoverpa')">
+          <div class="jpgcap">Helicoverpa</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Hemiptera.jpg"  width="260px" onclick="shTree('Hemiptera')">
+          <div class="jpgcap">Hemiptera</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Heptageniidae.jpg"  width="260px" onclick="shTree('Heptageniidae')">
+          <div class="jpgcap">Heptageniidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Heteronympha.jpg"  width="260px" onclick="shTree('Heteronympha')">
+          <div class="jpgcap">Heteronympha</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Holometabola.jpg"  width="260px" onclick="shTree('Holometabola')">
+          <div class="jpgcap">Holometabola</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Hymenoptera.jpg"  width="260px" onclick="shTree('Hymenoptera')">
+          <div class="jpgcap">Hymenoptera</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Ichneumonidae.jpg"  width="260px" onclick="shTree('Ichneumonidae')">
+          <div class="jpgcap">Ichneumonidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Insecta.jpg"  width="260px" onclick="shTree('Insecta')">
+          <div class="jpgcap">Insecta</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Lepidoptera.jpg"  width="260px" onclick="shTree('Lepidoptera')">
+          <div class="jpgcap">Lepidoptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Lepisma.jpg"  width="260px" onclick="shTree('Lepisma')">
+          <div class="jpgcap">Lepisma</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Lepismatidae.jpg"  width="260px" onclick="shTree('Lepismatidae')">
+          <div class="jpgcap">Lepismatidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Leptophlebiidae.jpg"  width="260px" onclick="shTree('Leptophlebiidae')">
+          <div class="jpgcap">Leptophlebiidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Locusta.jpg"  width="260px" onclick="shTree('Locusta')">
+          <div class="jpgcap">Locusta</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Manduca.jpg"  width="260px" onclick="shTree('Manduca')">
+          <div class="jpgcap">Manduca</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Noctuidae.jpg"  width="260px" onclick="shTree('Noctuidae')">
+          <div class="jpgcap">Noctuidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Notonecta.jpg"  width="260px" onclick="shTree('Notonecta')">
+          <div class="jpgcap">Notonecta</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Notonectidae.jpg"  width="260px" onclick="shTree('Notonectidae')">
+          <div class="jpgcap">Notonectidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Nymphalidae.jpg"  width="260px" onclick="shTree('Nymphalidae')">
+          <div class="jpgcap">Nymphalidae</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Oligoneuriella.jpg"  width="260px" onclick="shTree('Oligoneuriella')">
+          <div class="jpgcap">Oligoneuriella</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Oligoneuriidae.jpg"  width="260px" onclick="shTree('Oligoneuriidae')">
+          <div class="jpgcap">Oligoneuriidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Onthophagus.jpg"  width="260px" onclick="shTree('Onthophagus')">
+          <div class="jpgcap">Onthophagus</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Orthoptera.jpg"  width="260px" onclick="shTree('Orthoptera')">
+          <div class="jpgcap">Orthoptera</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Paraneoptera.jpg"  width="260px" onclick="shTree('Paraneoptera')">
+          <div class="jpgcap">Paraneoptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Phasmatidae.jpg"  width="260px" onclick="shTree('Phasmatidae')">
+          <div class="jpgcap">Phasmatidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Phasmatodea.jpg"  width="260px" onclick="shTree('Phasmatodea')">
+          <div class="jpgcap">Phasmatodea</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Plodia.jpg"  width="260px" onclick="shTree('Plodia')">
+          <div class="jpgcap">Plodia</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Polyneoptera.jpg"  width="260px" onclick="shTree('Polyneoptera')">
+          <div class="jpgcap">Polyneoptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Pyralidae.jpg"  width="260px" onclick="shTree('Pyralidae')">
+          <div class="jpgcap">Pyralidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Rhithrogena.jpg"  width="260px" onclick="shTree('Rhithrogena')">
+          <div class="jpgcap">Rhithrogena</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Scarabaeidae.jpg"  width="260px" onclick="shTree('Scarabaeidae')">
+          <div class="jpgcap">Scarabaeidae</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Sericostoma.jpg"  width="260px" onclick="shTree('Sericostoma')">
+          <div class="jpgcap">Sericostoma</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Sericostomatidae.jpg"  width="260px" onclick="shTree('Sericostomatidae')">
+          <div class="jpgcap">Sericostomatidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Sphingidae.jpg"  width="260px" onclick="shTree('Sphingidae')">
+          <div class="jpgcap">Sphingidae</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Spodoptera.jpg"  width="260px" onclick="shTree('Spodoptera')">
+          <div class="jpgcap">Spodoptera</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+      <div class="jpgrow">
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Thysanura.jpg"  width="260px" onclick="shTree('Thysanura')">
+          <div class="jpgcap">Thysanura</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Trichoptera.jpg"  width="260px" onclick="shTree('Trichoptera')">
+          <div class="jpgcap">Trichoptera</div>
+        </div><!-- end of jpg -->
+        <div class="jpg">
+          <img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/Venturia.jpg"  width="260px" onclick="shTree('Venturia')">
+          <div class="jpgcap">Venturia</div>
+        </div><!-- end of jpg -->
+      </div><!-- end of jpgrow -->
+
+    </div> <!-- end of content -->
+
+  </div> <!-- main wrapper -->
+</div> <!-- main -->
+</body>
+</html>

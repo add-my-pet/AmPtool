@@ -217,7 +217,7 @@ fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
-fprintf(fid_about, '         <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
+fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=-eMMf1xZqMs" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE.png" width="350px">\n');
