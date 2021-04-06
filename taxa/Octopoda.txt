@@ -1,6 +1,2 @@
-Amphitretidae
-Bathypolypodidae
-Eledonidae
-Enteroctopodidae
-Megaleledonidae
-Octopodidae
+Argonautoidea
+Octopodoidea
