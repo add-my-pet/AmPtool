@@ -424,6 +424,7 @@ CD = { ...
  2.5 {'ab'; 'ax'; 'ap'; 'am'; 'Wwb'; 'Wwi'; 'Ri'; 't-Ww'} 
  2.5 {'ab'; 'ap'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwp'; 'Wwi'; 'Ri'; 't-L'; 't-Ww'; 'L-Ww'; 't-N'; 't-dC'; 't-WwR'}
  2.5 {'ab'; 'ax'; 'aR'; 'am'; 'Lb'; 'Li'; 'Ww0'; 'Wwb'; 'Wwi'; 'Ri';'t-Ww'; 't-N'; 't-Le'; 't-Wwe'}; 
+ 2.5 {'ab'; 'ap'; 'am'; 'L0'; 'Lb'; 'Lp'; 'Li'; 'V0'; 'Wd0'; 'Wwi'; 'Ni'; 'Ri'; 't-Wd'; 'L-Wd'; 'L-Ww'; 'Wd-N'; 't-N'}; 
  2.6 {'ab'; 'ax'; 'aR'; 'am'; 'Wwb'; 'Wwi'; 'Ri'; 'ax-Wwx_f'} 
  2.6 {'ab'; 'ap'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Ri'; 't-L'; 't-Ww'} 
  2.6 {'ab'; 'ap'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'; 'JXi'; 'pAi'; 't-L_f'; 't-Ww'} 
@@ -490,6 +491,7 @@ CD = { ...
  2.6 {'tg'; 'ax'; 'ap'; 'am'; 'Wwb'; 'Wwx'; 'Wwi'; 'Ri'; 't-L_f'; 't-Ww_f'} 
  2.6 {'ab'; 'ax'; 'ap'; 'am'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'; 't-Ww_f'} 
  2.6 {'ab'; 'aj'; 'ap'; 'am'; 'Wwb'; 'Lb'; 'Lj'; 'Lp'; 'Li'; 'GSI'; 't-L'; 'L-Ww'; 'T-JO'} 
+ 2.7 {'ab'; 'ax'; 'aR'; 'am'; 'V0'; 'Ww0'; 'Wwb'; 'Wwx'; 'Wwi'; 'Ri'; 't-Ww_f'} 
  2.7 {'ap'; 'am'; 'Lb'; 'Li'; 'Wwi'; 'Ri'; 't-L_f'; 't-Ww_f'} 
  2.7 {'ab'; 'aj'; 'ap'; 'am'; 'Lj'; 'Li'; 'Wwb'; 'Wwj'; 'Wwi'; 'Ri'; 't-L_f'} 
  2.7 {'tg'; 'ax'; 'ap'; 'am'; 'Lb'; 'Lp'; 'Li'; 'Wwb'; 'Wwx'; 'Wwp'; 'Wwi'; 'Ri'; 'pXi'; 't-L'} 
