@@ -17,7 +17,7 @@ function species_en = get_common_CoL(id_CoL)
 %
 % Output:
 %
-% * species_en: character string with common name
+% * species_en: cell string with common names
 
 %% Remarks
 % Get id_CoL with get_id_CoL.
@@ -26,17 +26,20 @@ function species_en = get_common_CoL(id_CoL)
 %% Example of use
 % nm = get_common_CoL(get_id_CoL('Passer_domesticus'))
 
-url = urlread(['http://www.catalogueoflife.org/col/details/species/id/', id_CoL]);
-i = strfind(url, 'id="common-names"'); url(1:i) = [];
-i = strfind(url, 'id="taxonomic-classification"'); url(i:end) = [];
+url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
+i_0 = 13 + strfind(url, '<commonNames>'); i_1 = strfind(url, '</commonNames>') - 1;
+url = url(i_0:i_1(end)); % substring between <commonNames>...</commonNames>
 
-i = strfind(url,'<td>English</td>'); 
-if isempty(i)
-  species_en = []; return
+j_0 = 6 + strfind(url, '<name>'); j_1 = strfind(url, '</name>') - 1; n = length(i_0);
+k_0 = 10 + strfind(url, '<language>'); k_1 = strfind(url, '</language>') - 1; n = length(i_0);
+
+n = length(j_0); species_en = cell(n,1); lan = cell(n,1);
+for i=1:n
+  species_en{i} = url(j_0(i):j_1(i));
+  lan{i} = url(k_0(i):k_1(i));
 end
-url(i:end) = [];
-i = strfind(url, '<td>'); i = i(end); url(1:i+3) = [];
-i = strfind(url, '</td>'); 
-species_en = url(1:i-1);
+if n>0
+  species_en = unique(species_en(strcmp('English',lan)));
+end  
 
 
