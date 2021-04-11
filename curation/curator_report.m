@@ -223,6 +223,8 @@ for i_step = 1:n_step
       end
       if info
         fprintf('\n It is rarely a good idea to work with large weights\n\n');
+      else
+        fprintf('\n No serious issues with weights\n\n');
       end
       
     otherwise
