@@ -132,7 +132,7 @@ for i_step = 1:n_step
   step = steps(i_step);
   switch step
     case 1 % Check species name and lineage
-      fprintf('\n Step %d. Checking if the species is already in AmP and correctness of lineage:\n\n', step);
+      fprintf('\n Step %d: Checking if the species is already in AmP and correctness of lineage:\n\n', step);
       flag = check_speciesnm(my_pet);
       if ~(flag == 1 || flag == 3)
         fprintf('Warning: possible issues with species name and/or lineage\n');
@@ -141,21 +141,21 @@ for i_step = 1:n_step
       end
 
     case 2 % Check ecocodes
-      fprintf('\n Step %d. Checking ecoCodes for existence:\n\n', step);
+      fprintf('\n Step %d: Checking ecoCodes for existence:\n\n', step);
       info = check_eco(my_pet);
       if info
         fprintf('All ecoCodes exist\n\n')
       end
 
     case 3 % Run check_data for data_0, data_1 and COMPLETE
-      fprintf('\n Step %d. Checking Data types and COMPLETE:\n\n', step);
+      fprintf('\n Step %d: Checking Data types and COMPLETE:\n\n', step);
       check_data(my_pet);
       fprintf('\nCheck the consistency between metaData and data.\n');
       fprintf('Check that the labels for each data type are used and consistent with the contents.\n');
       fprintf('Contact the web administrator with any new labels that should be added to the table. \n');
 
     case 4 % Check links, bibliography and url's
-      fprintf('\n Step %d. Checking links:\n\n', step);    
+      fprintf('\n Step %d: Checking links:\n\n', step);    
       get_links(my_pet, 1); % opens all links in your system-browser; in failure use edit_links
       fprintf( '\n Step %d. Check Bibliography', step);
       [~, ~, metaData] = feval(['mydata_', my_pet]); % get metaData.biblist
@@ -190,7 +190,7 @@ for i_step = 1:n_step
       delete([my_pet,'_bib.bib'],[my_pet,'_bib.html']); % delete produced files
       
     case 5 % Check absence of escaped characters in comment, discussion, facts
-      fprintf('\n Step %d. Check absence of escaped characters in comment, discussion, facts\n\n', step);
+      fprintf('\n Step %d: Check absence of escaped characters in comment, discussion, facts\n\n', step);
       info = 1;
       if isfield(metaData, 'comment')
         flds = fieldnames(metaData.comment); n_fld = length(flds);
@@ -224,7 +224,7 @@ for i_step = 1:n_step
       end
       
     case 6 % Checking extra parameters    
-      fprintf('\n Step %d. Checking extra parameters:\n\n', step);
+      fprintf('\n Step %d: Checking extra parameters:\n\n', step);
       standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
       parFields = fields(par);        standChemFields = fields(standChem);
       parFields  = setdiff(parFields, {'free'});
@@ -247,7 +247,7 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n\n');
 
     case 7 % Check which parameters were estimated
-      fprintf('\n Step %d. Checking choice of free parameters:\n\n', step);
+      fprintf('\n Step %d: Checking choice of free parameters:\n\n', step);
       standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
       parFields = fields(par);        standChemFields = fields(standChem);
       parFields  = setdiff(parFields, {'free'});
@@ -273,7 +273,7 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n\n');
 
     case 8 % Check implied properties 
-      fprintf('\n Step %d. Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', step);
+      fprintf('\n Step %d: Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', step);
       prnt = input('Enter: 1 to compute statistics else 0 to continue: ');
       if prnt
         prt_report_my_pet({par, metaPar, txtPar, metaData}, [], metaData.T_typical, 1);
@@ -282,14 +282,22 @@ for i_step = 1:n_step
       end
 
     case 9 % Make sure figures are saved (this only prints if the full report is executed)
-      fprintf('\n Step %d. make sure figures are saved\n\n', step);
-      fprintf('\n Step %d. Please, after the curation process, execute the run file with estim_option results_output=3 \n\n', step);
+      fprintf('\n Step %d: make sure figures are saved\n\n', step);
+      fprintf('\n Please, after the curation process, execute the run file with estim_option results_output=3 \n\n', step);
       
     case 10 % Check weights
-      fprintf('\n Step %d. Check weights\n\n', step);
-      fld = fields(weights); n_fld = length(fld); info = 0;
+      fprintf('\n Step %d: Check weights\n\n', step);
+      info = 0;
+      fld = fields(weights.psd); n_fld = length(fld); 
       for i_fld = 1:n_fld
-        if weights.(fld{i_fld}) > 50 || weights.(fld{i_fld}) < 0
+        if weights.psd.(fld{i_fld}) > 50 | weights.psd.(fld{i_fld}) < 0
+          info = 1;
+        end
+      end
+      weights = rmfield(weights, 'psd');
+      fld = fields(weights); n_fld = length(fld); 
+      for i_fld = 1:n_fld
+        if weights.(fld{i_fld}) > 50 | weights.(fld{i_fld}) < 0
           info = 1;
         end
       end
