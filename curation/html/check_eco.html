@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-29"><meta name="DC.source" content="check_eco.m"><style type="text/css">
+      --><title>check_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-10"><meta name="DC.source" content="check_eco.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,17 +66,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_eco</h1><!--introduction--><p>Checks eco labels</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../check_eco.m"><b>check_eco</b></a>(varargin)</p><h2 id="4">Description</h2><p>Checks eco labels as specified in get_eco for existence in global eco_types.</p><p>Input:</p><div><ul><li>varargin: optional character or cell string with name(s) of entry (default: select('Animalia'))</li></ul></div><h2 id="5">Remarks</h2><p>run get_eco_types to copy AmPeco info to labels for eco-codes. If eco codes are not recognized, change the codes in get_eco, or add codes to AmPeco.html.</p><h2 id="6">Example of use</h2><p>check_eco(select('Actinopterygii')) or check_eco('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>check_eco</h1><!--introduction--><p>Checks eco labels</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>info = <a href="../check_eco.m"><b>check_eco</b></a>(varargin)</p><h2 id="4">Description</h2><p>Checks eco labels as specified in get_eco for existence in global eco_types.</p><p>Input:</p><div><ul><li>varargin: optional character or cell string with name(s) of entry (default: select('Animalia'))</li></ul></div><p>Output</p><div><ul><li>info: boolean for all codes exist (1), or not (0)</li></ul></div><h2 id="5">Remarks</h2><p>ecotypes for the entries are read from metaData outputted from mydata-files. If not present, the mydata files are copied from the AmP site run get_eco_types to copy AmPeco info to labels for eco-codes. If eco codes are not recognized, change the codes in get_eco, or add codes to AmPeco.html.</p><h2 id="6">Example of use</h2><p>check_eco(select('Actinopterygii')) or check_eco('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_eco
 % Checks eco labels 
 
 %%
-function check_eco(varargin)
-% created 2018/04/12 by Bas Kooijman, modified 2019/12/28
+function info = check_eco(varargin)
+% created 2018/04/12 by Bas Kooijman, modified 2019/12/28, 2021/04/10
 
 %% Syntax
-% <../check_eco.m *check_eco*>(varargin)
+% info = <../check_eco.m *check_eco*>(varargin)
 
 %% Description
 % Checks eco labels as specified in get_eco for existence in global eco_types. 
@@ -84,8 +84,13 @@ function check_eco(varargin)
 % Input:
 %
 % * varargin: optional character or cell string with name(s) of entry (default: select('Animalia')) 
+%
+% Output
+%
+% * info: boolean for all codes exist (1), or not (0)
 
 %% Remarks
+% ecotypes for the entries are read from metaData outputted from mydata-files. If not present, the mydata files are copied from the AmP site
 % run get_eco_types to copy AmPeco info to labels for eco-codes. 
 % If eco codes are not recognized, change the codes in get_eco, or add codes to AmPeco.html.
 
@@ -115,7 +120,7 @@ F = fields(eco_types.food);
 G = fields(eco_types.gender);
 R = fields(eco_types.reprod);
 
-n = length(varargin);
+n = length(varargin); info = 1;
 
 stage = { ...
     '0i','0e','0p','0j','0x','0b', ...
@@ -126,7 +131,24 @@ stage = { ...
     'ei'};
 
 for i = 1:n % scan entries
-  load(['../../add_my_pet/entries/', varargin{i}, '/results_', varargin{i}])
+  % get metaData
+  fnm = ['mydata_', varargin{i}]; 
+  if exist([fnm, '.m'],'file')
+    [~, ~, metaData] = feval(fnm); % run the mydata file
+  else
+    path = [set_path2server, 'add_my_pet/entries/', varargin{i}, '/'];
+    if ismac
+      info = system(['wget -O mydata_', varargin{i}, '.m ', path, 'mydata_', varargin{i}, '.m']);
+    else
+      info = system(['powershell wget -O mydata_', varargin{i}, '.m ', path, 'mydata_', varargin{i}, '.m']);
+    end
+    if info == 0
+      [~, ~, metaData] = feval(fnm); % run the mydata file
+      delete([fnm,'.m']);
+    else
+      return
+    end
+  end
   reprod = ''; vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod]
  
   n_C = length(climate);
@@ -140,6 +162,7 @@ for i = 1:n % scan entries
   for j = 1:n_E 
     if ~ismember(ecozone{j},E)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the ecozone-code ', ecozone{j}, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -148,6 +171,7 @@ for i = 1:n % scan entries
     code = habitat{j}; code_stage = code(1:2); code_H = code(3:end);
     if ~ismember(code_H,H) || ~ismember(code_stage,stage)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the habitat-code ', code, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -155,6 +179,7 @@ for i = 1:n % scan entries
   for j = 1:n_B 
     if ~ismember(embryo{j},B)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the embryo-code ', embryo{j}, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -162,6 +187,7 @@ for i = 1:n % scan entries
   for j = 1:n_M 
     if ~ismember(migrate{j},M)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the migrate-code ', migrate{j}, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -170,6 +196,7 @@ for i = 1:n % scan entries
     code = food{j}; code_stage = code(1:2); code_F = code(3:end);
     if ~ismember(code_F,F) || ~ismember(code_stage,stage) || ~isempty(strfind(code_stage,'0'))
       fprintf(['Warning from check_eco for ', varargin{i}, ': the food-code ', code, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -177,6 +204,7 @@ for i = 1:n % scan entries
   for j = 1:n_G 
     if ~ismember(gender{j},G)
       fprintf(['Warning from check_eco for ', varargin{i}, ': the gender-code ', ecoCode.gender{j}, ' is not recognized\n']);
+      info = 0;
     end
   end
 
@@ -184,6 +212,7 @@ for i = 1:n % scan entries
   for j = 1:n_R 
    if ~ismember(reprod{j},R)
      fprintf(['Warning from check_eco for ', varargin{i}, ': the reprod-code ', ecoCode.reprod{j}, ' is not recognized\n']);
+     info = 0;
    end
   end
 

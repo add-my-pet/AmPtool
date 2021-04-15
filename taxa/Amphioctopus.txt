@@ -1,2 +1,3 @@
 Amphioctopus_aegina
+Amphioctopus_burryi
 Amphioctopus_fangsiao

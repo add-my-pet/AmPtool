@@ -2,11 +2,11 @@
 % gets lineage of a species in Catolog of Life
 
 %%
-function [lineage rank id_CoL] = lineage_CoL(my_pet)
-% created 2018/01/05 by Bas Kooijman, modified 2021/04/01
+function [lineage, rank, id_CoL, name_status] = lineage_CoL(my_pet)
+% created 2018/01/05 by Bas Kooijman, modified 2021/04/01, 2021/04/10
 
 %% Syntax
-% [lineage rank id_CoL] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
+% [lineage, rank, id_CoL, name_status] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
 
 %% Description
 % Gets lineage of species from the Catolog of Life: kingdom, phylum, class, order, family, genus, species. 
@@ -21,22 +21,28 @@ function [lineage rank id_CoL] = lineage_CoL(my_pet)
 % * lineage: (n,1) cell array with lineage
 % * rank: (n,1) cell array with ranks
 % * id_CoL: identifier for species in CoL
+% * name_status: string that describes the status of the name
 
 %% Remarks
-% <lineage.html *lineage*> gives a similar result for AmP entries
+% You must be connected for using this function,
+% <lineage.html *lineage*> gives a similar result for AmP entries, but here only a limited set.
+% Empty results not necessarily means that the name is wrong, e.g. Daphnia magna
 
 %% Example of use
-% lineage_CoL('Daphnia_magna')
+% lineage_CoL('Passer_domesticus')
 
-[id_CoL my_pet] = get_id_CoL(my_pet);
+[id_CoL, my_pet] = get_id_CoL(my_pet);
 if isempty(id_CoL)
-  lineage = []; rank = [];
+  lineage = []; rank = []; name_status = [];
   return
 end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
 url = url(i_0:i_1(end)); % substring between <classification>...</classification>
+
+i_0 = 13 + strfind(url,'<name_status>'); i_1 = strfind(url,'</name_status>')-1;
+name_status = url(i_0(1):i_1(1));
 
 i_0 = 6 + strfind(url,'<name>'); i_1 = strfind(url,'</name>') - 1; 
 j_0 = 6 + strfind(url,'<rank>'); j_1 = strfind(url,'</rank>') - 1; 
