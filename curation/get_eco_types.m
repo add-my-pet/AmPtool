@@ -35,7 +35,7 @@ if exist('localPath','var')
   url = fileread([localPath, 'AmPeco.html']);
 else
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
-  if ismac
+  if ismac || isunix
     PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
     status = system('which wget');
     if ~(status == 0)
