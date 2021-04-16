@@ -1,5 +1,6 @@
 Alloteuthis
 Doryteuthis
+Heterololigo
 Loligo
 Lolliguncula
 Sepioteuthis
