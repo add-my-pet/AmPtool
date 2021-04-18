@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>select_mydata</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-25"><meta name="DC.source" content="select_mydata.m"><style type="text/css">
+      --><title>select_mydata</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="select_mydata.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -99,6 +99,8 @@ function [species, nm, sel] = select_mydata(varargin)
 %% Example of use
 % nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')
 
+  path2server = set_path2server;
+  
   WD = pwd; info = false;
   if ismac
     PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
@@ -113,7 +115,7 @@ function [species, nm, sel] = select_mydata(varargin)
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [path2server, 'add_my_pet/entries/'];
   else
     if iscell(varargin{1})
       nm = (varargin{1});
@@ -121,23 +123,24 @@ function [species, nm, sel] = select_mydata(varargin)
       nm = select(varargin{1});
     end
     str = varargin{2};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
        WD = cdCur; info = true;
-       path = '../../entries/';
+       path = '../../add_my_pet/entries/';
     end
   end
   
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
+    fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
     if ~info
-      fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
-      if ismac
+      if ismac || isunix
         eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
       else
         eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);
       end
       mydata = fileread('mydata_my_pet.txt'); 
+      delete('mydata_my_pet.txt'); 
     else
       mydata = fileread(fnm);
     end
@@ -145,7 +148,6 @@ function [species, nm, sel] = select_mydata(varargin)
       sel(i) = true;
     end
   end
-  delete('mydata_my_pet.txt'); 
 
   species = nm(sel); 
   cd(WD);

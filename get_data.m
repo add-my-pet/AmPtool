@@ -40,6 +40,10 @@ function get_mydata_my_pet(my_pet)
     copyfile(['../../add_my_pet/entries/', my_pet, '/mydata_', my_pet, '.m'], fnm)
   catch % get results_my_pet.mat from web
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
-    eval(['!powershell wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm])
+    if ismac || isunix
+      eval(['system(wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm, ')'])
+    else
+      eval(['!powershell wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm])
+    end
   end
 end

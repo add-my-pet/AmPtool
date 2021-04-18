@@ -91,6 +91,10 @@ delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % 
 cd('..\'); % go from AmPtool/curation to AmPtool
 % system('powershell gh commit -am "extension"; gh push'); % does not work yet
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
-system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+if ismac || isunix
+  system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+else
+  system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+end
 
 cd(WD); % go to current directory (when this function was started)

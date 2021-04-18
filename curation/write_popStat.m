@@ -40,7 +40,11 @@ function popStat = write_popStat(varargin)
   path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
   n_spec = length(varargin); 
   for i = 1:n_spec
-    eval(['!powershell wget ', [path, varargin{i}, '/', varargin{i}, ], '_pop.mat -O popStat.mat'])
+    if ismac || isunix
+      eval(['system(wget ', [path, varargin{i}, '/', varargin{i}, ], '_pop.mat -O popStat.mat)'])
+    else
+      eval(['!powershell wget ', [path, varargin{i}, '/', varargin{i}, ], '_pop.mat -O popStat.mat'])
+    end
     load popStat
     spec = fieldnames(popStat); spec = spec{1};
     

@@ -64,7 +64,7 @@ function [species, nm, sel] = select_mydata(varargin)
   for i = 1:n_spec
     fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
     if ~info
-      if ismac
+      if ismac || isunix
         eval(['system(wget -O mydata_my_pet.txt ', fnm, ')']);
       else
         eval(['!powershell wget -O mydata_my_pet.txt ', fnm]);

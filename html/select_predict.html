@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>select_predict</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-09-25"><meta name="DC.source" content="select_predict.m"><style type="text/css">
+      --><title>select_predict</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="select_predict.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -113,7 +113,7 @@ function [species, nm, sel] = select_predict(varargin)
   if nargin == 1
     nm = select('Animalia');
     str = varargin{1};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [set_path2server, 'add_my_pet/entries/'];
   else
     if iscell(varargin{1})
       nm = (varargin{1});
@@ -121,31 +121,31 @@ function [species, nm, sel] = select_predict(varargin)
       nm = select(varargin{1});
     end
     str = varargin{2};
-    path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
+    path = [set_path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
       WD = cdCur; info = true;
-      path = '../../entries/';
+      path = '../../add_my_pet/entries/';
     end
   end
   
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
+    fnm = [path, nm{i}, '/predict_', nm{i}, '.m'];
     if ~info
-      fnm = [path, nm{i}, '/predict_', nm{i}, '.m'];
-      if ismac
+      if ismac || isunix
         eval(['system(wget -O predict_my_pet.txt ', fnm, ')']);
       else
         eval(['!powershell wget -o predict_my_pet.txt ', fnm]);
       end
       predict = fileread('predict_my_pet.txt'); 
+      delete('predict_my_pet.txt'); 
     else
-      predict = fileread(fn); 
+      predict = fileread(fnm); 
     end
     if ~isempty(strfind(predict, str))
       sel(i) = true;
     end
   end
-  delete('predict_my_pet.txt'); 
 
   species = nm(sel);
   cd(WD);

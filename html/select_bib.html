@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>select_bib</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-11-22"><meta name="DC.source" content="select_bib.m"><style type="text/css">
+      --><title>select_bib</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="select_bib.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -120,10 +120,10 @@ function [species, nm, sel] = select_bib(varargin)
     str = varargin{2};
   end
   
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+  path = [set_path2server, 'add_my_pet/entries_web/'];
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    if ismac
+    if ismac || isunix
       eval(['system(wget -O my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib)']);
     else
       eval(['!powershell wget -o my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib']);

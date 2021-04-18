@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_links</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-05-15"><meta name="DC.source" content="get_links.m"><style type="text/css">
+      --><title>get_links</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="get_links.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -133,21 +133,20 @@ function [links, id] = get_links(my_pet, open)
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
   try % locally present in dir entries (mostly for curators)
-    path_fnmmat = which(fnmmat);
-    if isempty(path_fnmmat) && ~isempty(which(['mydata_', my_pet]))
-      fprintf(['Warning from get_links: no ', fnmmat, ' but we will use mydata_', my_pet, '\n']);
-      eval(['[~, ~, metaData] = mydata_', my_pet, ';']);
-    else
-      load(path_fnmmat)
-    end
+    WD = cdCur; load(['../../deblab/add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat']); cd(WD);
     if ~isfield(metaData,'links')
       fprintf(['Warning from get_links: no links specified in ', fnnmat, '\n']);
       links = [];  id = []; return
     end
     id = metaData.links; vars_pull(id);
   catch % get results_my_pet.mat from web
+    cd(WD);
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
-    eval(['!powershell wget ', path, my_pet, '/', fnmmat, ' -O ', fnmmat])
+    if ismac || isunix
+      system(['wget -O ', fnmmat, path, my_pet, '/', fnmmat]);
+    else
+      system(['!powershell wget -O ', fnmmat, path, my_pet, '/', fnmmat])
+    end
     load(fnmmat)
     id = metaData.links; vars_pull(id);
     delete(fnmmat) 

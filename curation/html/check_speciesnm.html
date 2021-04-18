@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_speciesnm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-10"><meta name="DC.source" content="check_speciesnm.m"><style type="text/css">
+      --><title>check_speciesnm</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="check_speciesnm.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_speciesnm</h1><!--introduction--><p>Checks species name and lineage</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../check_speciesnm.m"><b>check_speciesnm</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Checks species name and lineage: family, order, class, phylum by using metaData as assigned by mydata_my_pet.m. If this file is not present locally, it will be copied form the AmP site. Checking gives priority to AmP classification, but mentions deviation for CoL classification.</p><p>Input:</p><div><ul><li>my_pet: character sring with name of entry</li></ul></div><p>Output</p><div><ul><li>flag:</li></ul></div><pre class="language-matlab">0 absent <span class="string">in</span> <span class="string">AmP</span> <span class="string">and</span> <span class="string">in</span> <span class="string">CoL</span> <span class="string">or</span> <span class="string">lineage</span> <span class="string">not</span> <span class="string">complete</span>
+  </style></head><body><div class="content"><h1>check_speciesnm</h1><!--introduction--><p>Checks species name and lineage</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../check_speciesnm.m"><b>check_speciesnm</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Checks common and species name and lineage: family, order, class, phylum by using metaData as assigned by mydata_my_pet.m. If this file is not present locally, it will be copied form the AmP site. Checking gives priority to AmP classification, but mentions deviation for CoL classification.</p><p>Input:</p><div><ul><li>my_pet: character sring with name of entry</li></ul></div><p>Output</p><div><ul><li>flag:</li></ul></div><pre class="language-matlab">0 absent <span class="string">in</span> <span class="string">AmP</span> <span class="string">and</span> <span class="string">in</span> <span class="string">CoL</span> <span class="string">or</span> <span class="string">lineage</span> <span class="string">not</span> <span class="string">complete</span>
 1 present <span class="string">in</span> <span class="string">AmP</span> <span class="string">and</span> <span class="string">family</span>, order, class, phylum <span class="string">are</span> <span class="string">all</span> <span class="string">correct</span>
 2 present <span class="string">in</span> <span class="string">AmP</span>, but <span class="string">family</span>, order, class, phylum <span class="string">are</span> <span class="string">not</span> <span class="string">all</span> <span class="string">correct</span>
 3 absent <span class="string">in</span> <span class="string">AmP</span> <span class="string">but</span> <span class="string">accepted</span> <span class="string">in</span> <span class="string">CoL</span> <span class="string">and</span> <span class="string">family</span>, order, class, phylum <span class="string">are</span> <span class="string">all</span> <span class="string">correct</span>
@@ -85,7 +85,7 @@ function flag = check_speciesnm(my_pet)
 % <../check_speciesnm.m *check_speciesnm*>(my_pet)
 
 %% Description
-% Checks species name and lineage: family, order, class, phylum by using metaData as assigned by mydata_my_pet.m.
+% Checks common and species name and lineage: family, order, class, phylum by using metaData as assigned by mydata_my_pet.m.
 % If this file is not present locally, it will be copied form the AmP site.
 % Checking gives priority to AmP classification, but mentions deviation for CoL classification.
 %
@@ -110,20 +110,26 @@ function flag = check_speciesnm(my_pet)
 %% Example of use
 % check_speciesnm('Turdus_merula')
 
-fnm = ['mydata_', my_pet]; flag = 0;
+% get metaData
+fnm = ['mydata_', my_pet]; 
 if exist([fnm, '.m'],'file')
   [~, ~, metaData] = feval(fnm); % run the mydata file
 else
   path = [set_path2server, 'add_my_pet/entries/', my_pet, '/'];
-  if ismac
-    system(['wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
+  if ismac || isunix
+    info = system(['wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
   else
-    system(['powershell wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
+    info = system(['powershell wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
   end
-  [~, ~, metaData] = feval(fnm); % run the mydata file
-  delete([fnm,'.m']);
+  if info == 0
+    [~, ~, metaData] = feval(fnm); % run the mydata file
+    delete([fnm,'.m']);
+  else
+    flag = 0; return
+  end
 end
 
+% check if lineage is complete
 if ~isfield(metaData,'phylum') || isempty(metaData.phylum)
   fprintf('invalid phylum specification\n');
   flag = 0; return
@@ -178,11 +184,28 @@ else
     flag = 0;
     return
   else
+    % check common name
+    species_en = get_common_CoL(id);
+    if ~isfield(metaData,'species_en') || isempty(metaData.species_en)
+      fprintf('No common name specified\n');
+      fprintf('Common names in CoL:\n');
+      species_en
+      flag = 0; 
+    else
+      if ~ismember(metaData.species_en,species_en)
+        fprintf('Common name does not match those in CoL, which is/are:\n');
+        species_en
+      end
+    end
+    
+    % status of name
     if ~strcmp('accepted name', status)
       fprintf('name not accepted in CoL\n')
       flag = 5;
       return
     end
+    
+    % check lineage in CoL, but give priority of that in AmP
     flag = 3;
     genus = lin{strcmp('Genus', rank)};
     family = lin{strcmp('Family', rank)};

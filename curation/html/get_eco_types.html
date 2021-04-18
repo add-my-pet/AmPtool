@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_eco_types</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-29"><meta name="DC.source" content="get_eco_types.m"><style type="text/css">
+      --><title>get_eco_types</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="get_eco_types.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -72,7 +72,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % copies ecotypes from AmPeco.html to global eco_types
 %%
 function get_eco_types(localPath)
-% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29
+% created 2018/04/12 by Bas Kooijman, modified 2018/06/02, 2019/12/29, 2020/08/26, 2020/08/31
 
 %% Syntax
 % <../get_eco_types.m *get_eco_types*>(localPath)
@@ -98,11 +98,26 @@ function get_eco_types(localPath)
 
 global eco_types
 
+eco_types.climate = []; eco_types.ecozone = []; eco_types.habitat = []; eco_types.embryo = []; 
+eco_types.migrate = []; eco_types.food = [];    eco_types.gender = [];  eco_types.reprod = []; 
+
 if exist('localPath','var')
   url = fileread([localPath, 'AmPeco.html']);
 else
-  % url = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html'); % gives error
-  eval('!powershell wget https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html -O AmPeco_local.html;');
+  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/';    
+  if ismac || isunix
+    PATH = getenv('PATH'); if isempty(strfind(PATH,':/usr/local/bin')); setenv('PATH', [PATH, ':/usr/local/bin']); end;
+    status = system('which wget');
+    if ~(status == 0)
+      fprintf('Warning from get_eco_types: wget is not found, please install wget first\nl');
+      fprintf('See e.g.: https://www.fossmint.com/install-and-use-wget-on-mac/\nl');
+      return
+    else
+      system(['wget -O AmPeco_local.html ', path, 'AmPeco.html']);
+    end
+  else
+    system(['powershell wget -O AmPeco_local.html ', path, 'AmPeco.html']);
+  end
   url = fileread('AmPeco_local.html'); delete('AmPeco_local.html'); 
 end
 
@@ -114,7 +129,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.climate.(code) = label;
 end
@@ -127,7 +143,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.ecozone.(code) = label;
 end
@@ -140,7 +157,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.habitat.(code) = label;
 end
@@ -153,7 +171,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.embryo.(code) = label;
 end
@@ -166,7 +185,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.migrate.(code) = label;
 end
@@ -179,7 +199,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.food.(code) = label;
 end
@@ -192,7 +213,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.gender.(code) = label;
 end
@@ -205,7 +227,8 @@ for i = 1:n
   rtxt(1:4 + strfind(rtxt,'</b> ')) = [];
   label = rtxt(1:strfind(rtxt,'</li>') - 1);
   if ~isempty(strfind(label,'<ul>'))
-    label = splitlines(label); label = label{1};
+    %label = splitlines(label); label = label{1};
+    label = strsplit(label,char(10)); label = label{1};
   end
   eco_types.reprod.(code) = label;
 end

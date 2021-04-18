@@ -38,7 +38,11 @@ for i=1:n
       if strcmp(id{i},'id_WoRMS')
         url = urlread(links{i,1});
       else % WoRMS gives lots of output if copied via wget
-        eval(['!powershell wget ', links{i,1}, ' -O url_local.html;']);
+        if ismac || isunix
+          eval(['system(wget ', links{i,1}, ' -O url_local.html;)']);
+        else
+          eval(['!powershell wget ', links{i,1}, ' -O url_local.html;']);
+        end
         url = fileread('url_local.html'); 
       end
       in = strfind(url, txt);

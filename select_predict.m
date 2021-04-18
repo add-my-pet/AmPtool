@@ -62,7 +62,7 @@ function [species, nm, sel] = select_predict(varargin)
   for i = 1:n_spec
     fnm = [path, nm{i}, '/predict_', nm{i}, '.m'];
     if ~info
-      if ismac
+      if ismac || isunix
         eval(['system(wget -O predict_my_pet.txt ', fnm, ')']);
       else
         eval(['!powershell wget -o predict_my_pet.txt ', fnm]);

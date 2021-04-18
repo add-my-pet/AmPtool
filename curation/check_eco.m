@@ -67,7 +67,7 @@ for i = 1:n % scan entries
     [~, ~, metaData] = feval(fnm); % run the mydata file
   else
     path = [set_path2server, 'add_my_pet/entries/', varargin{i}, '/'];
-    if ismac
+    if ismac || isunix
       info = system(['wget -O mydata_', varargin{i}, '.m ', path, 'mydata_', varargin{i}, '.m']);
     else
       info = system(['powershell wget -O mydata_', varargin{i}, '.m ', path, 'mydata_', varargin{i}, '.m']);

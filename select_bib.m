@@ -53,7 +53,7 @@ function [species, nm, sel] = select_bib(varargin)
   path = [set_path2server, 'add_my_pet/entries_web/'];
   n_spec = length(nm); sel = false(n_spec,1);
   for i = 1:n_spec
-    if ismac
+    if ismac || isunix
       eval(['system(wget -O my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib)']);
     else
       eval(['!powershell wget -o my_bib.bib ', path, nm{i}, '/', nm{i}, '_bib.bib']);

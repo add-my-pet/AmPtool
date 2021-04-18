@@ -72,7 +72,7 @@ function [links, id] = get_links(my_pet, open)
   catch % get results_my_pet.mat from web
     cd(WD);
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
-    if ismac
+    if ismac || isunix
       system(['wget -O ', fnmmat, path, my_pet, '/', fnmmat]);
     else
       system(['!powershell wget -O ', fnmmat, path, my_pet, '/', fnmmat])

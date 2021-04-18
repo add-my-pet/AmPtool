@@ -40,7 +40,7 @@ if exist([fnm, '.m'],'file')
   [~, ~, metaData] = feval(fnm); % run the mydata file
 else
   path = [set_path2server, 'add_my_pet/entries/', my_pet, '/'];
-  if ismac
+  if ismac || isunix
     info = system(['wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
   else
     info = system(['powershell wget -O mydata_', my_pet, '.m ', path, 'mydata_', my_pet, '.m']);
