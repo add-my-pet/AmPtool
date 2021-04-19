@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>galleryAmP</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-02"><meta name="DC.source" content="galleryAmP.m"><style type="text/css">
+      --><title>galleryAmP</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-19"><meta name="DC.source" content="galleryAmP.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>galleryAmP</h1><!--introduction--><p>Creates taxon_jpg.html in current directory</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../galleryAmP.m"><b>galleryAmP</b></a></p><h2 id="4">Description</h2><p>Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon. The html is opened in the system browser. A click on a picture opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the picture-page if you return to it, to reset previous selections.</p><p>Input</p><div><ul><li>taxon: string with name of taxon</li></ul></div><h2 id="5">Example of use</h2><p>galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>galleryAmP</h1><!--introduction--><p>Creates taxon_jpg.html in current directory</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../galleryAmP.m"><b>galleryAmP</b></a></p><h2 id="4">Description</h2><p>Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon. The html is opened in the system browser. A click on a picture opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the picture-page if you return to it, to reset previous selections.</p><p>Input</p><div><ul><li>taxon: string with name of taxon</li></ul></div><h2 id="5">Remarks</h2><p>Tree-view works for browsers Edge and Chrome, but requires reload to present the result properly. Firefox does not show the result properly.</p><h2 id="6">Example of use</h2><p>galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% galleryAmP
 % Creates taxon_jpg.html in current directory
@@ -87,6 +87,10 @@ function galleryAmP(taxon)
 % Input
 %
 % * taxon: string with name of taxon
+
+%% Remarks
+% Tree-view works for browsers Edge and Chrome, but requires reload to present the result properly.
+% Firefox does not show the result properly.
 
 %% Example of use
 % galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html
@@ -113,16 +117,16 @@ function galleryAmP(taxon)
   fprintf(oid, '    }\n\n');
 
   fprintf(oid, '    function shTree(taxon) {\n');
-  fprintf(oid, '      SetCookie("clickedFolder", taxon);\n');
-  fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html"  + ''?pic="'' + taxon + ''.jpg"'';\n', path2amp);
+  fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html?pic=" + ''"'' + taxon + ".jpg" + ''"'';\n', path2amp);
   fprintf(oid, '      newwin = window.open(newURL);\n');
+  fprintf(oid, '      newwin.document.cookie = "clickedFolder" + "=" + taxon;\n');
   fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
-  fprintf(oid, '    }\n');
+  fprintf(oid, '    }\n');  
   fprintf(oid, '  </script>\n\n');
-  
+
   fprintf(oid, '  <style>\n');
   fprintf(oid, '    body {\n');
-  fprintf(oid, '      background: #ffffff\n');
+  fprintf(oid, '      background: #ffffff;\n');
   fprintf(oid, '    }\n');
   fprintf(oid, '    .jpgrow{\n');
   fprintf(oid, '      max-width: 1080px;\n');
