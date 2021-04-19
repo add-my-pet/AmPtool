@@ -20,7 +20,7 @@ function galleryAmP(taxon)
 
 %% Remarks
 % Tree-view works for browsers Edge and Chrome, but requires reload to present the result properly.
-% Firefox does not show the result properly.
+% Firefox does not show the result properly and requires to copy the taxon name in the legend into the taxon-search field.
 
 %% Example of use
 % galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html
@@ -49,8 +49,9 @@ function galleryAmP(taxon)
   fprintf(oid, '    function shTree(taxon) {\n');
   fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html?pic=" + ''"'' + taxon + ".jpg" + ''"'';\n', path2amp);
   fprintf(oid, '      newwin = window.open(newURL);\n');
-  fprintf(oid, '      newwin.document.cookie = "clickedFolder" + "=" + taxon;\n');
-  fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
+%  fprintf(oid, '      newwin.document.cookie = "clickedFolder" + "=" + taxon;\n');
+  fprintf(oid, '      TreeSearch(taxon);\n');
+%  fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
   fprintf(oid, '    }\n');  
   fprintf(oid, '  </script>\n\n');
 
