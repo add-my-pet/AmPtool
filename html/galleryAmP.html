@@ -111,16 +111,10 @@ function galleryAmP(taxon)
   fprintf(oid, '  <script src="%sspecies_tree_Animalia.js"></script>\n\n', path2sys);
   
   fprintf(oid, '  <script>\n'); 
-  fprintf(oid, '    if (document.taxonSearch == undefined) {\n');
-  fprintf(oid, '      document.taxonSearch = "";\n');
-  fprintf(oid, '    }\n\n');
-
   fprintf(oid, '    function shTree(taxon) {\n');
   fprintf(oid, '      var newURL = "%sspecies_tree_Animalia.html?pic=" + ''"'' + taxon + ".jpg" + ''"'';\n', path2amp);
   fprintf(oid, '      newwin = window.open(newURL);\n');
   fprintf(oid, '      TreeSearch(taxon);\n');
-%  fprintf(oid, '      newwin.document.cookie = "clickedFolder" + "=" + taxon;\n');
-%  fprintf(oid, '      newwin.document.taxonSearch = taxon;\n');
   fprintf(oid, '    }\n');  
   fprintf(oid, '  </script>\n\n');
 
