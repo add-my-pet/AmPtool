@@ -41,6 +41,7 @@ tb = [tb, '          <a href="??', path2deblab, '" target="_blank">DEB Laborator
 tb = [tb, '          <a href="??', path2deblab, 'bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 tb = [tb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];
 tb = [tb, '          <a href="??DEBvideos.html" target="_blank">DEB Videos</a>\n'];
+tb = [tb, '          <a href="??DEBcalendar.html" target="_blank">DEB Calendar</a>\n'];
 tb = [tb, '        </div>\n'];	
 tb = [tb, '      </div>\n\n'];
 
