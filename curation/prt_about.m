@@ -299,7 +299,7 @@ fprintf(fid_about, '          <img src="img/about/daphnia1a.gif" width="160" id=
 fprintf(fid_about, '        </center>\n');
 fprintf(fid_about, '      </div>\n');
 fprintf(fid_about, '      <div class = "caption" onmouseover="changeImage(''img/about/daphnia1a.gif'')">\n');
-fprintf(fid_about, '        DEB research started in the spring of 1979 \n');
+fprintf(fid_about, '        <a href="DEBcalendar.html" target="_blank">DEB research started in the spring of 1979</a> \n');
 fprintf(fid_about, '          with a study on how toxicants affect reproduction in the waterflea <i>Dapnia magna</i>, \n');
 fprintf(fid_about, '          including consequences for populations.<br>\n'); 
 fprintf(fid_about, '        Software package <a href="/thb/deb/deblab/debtool/DEBtool_M/manual/" target="_top">DEBtool</a> was developed \n');
