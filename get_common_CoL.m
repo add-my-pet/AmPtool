@@ -2,7 +2,7 @@
 % gets the common name of a species of given id from Catolog of Life
 
 %%
-function species_en = get_common_CoL(id_CoL)
+function species_en = get_common_CoL(id_CoL, language)
 % created 2020/06/05 by Bas Kooijman
 
 %% Syntax
@@ -14,6 +14,7 @@ function species_en = get_common_CoL(id_CoL)
 % Input:
 %
 % * id_CoL: character string with name id of species in CoL
+% * language: optional string with language (default: 'English')
 %
 % Output:
 %
@@ -24,7 +25,11 @@ function species_en = get_common_CoL(id_CoL)
 % Output can be empty if CoL does not have the common name.
 
 %% Example of use
-% nm = get_common_CoL(get_id_CoL('Passer_domesticus'))
+% nm = get_common_CoL(get_id_CoL('Passer_domesticus'),'French')
+
+if ~exist('language', 'var') || isempty(language)
+  language = 'English';
+end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 13 + strfind(url, '<commonNames>'); i_1 = strfind(url, '</commonNames>') - 1;
@@ -42,7 +47,7 @@ for i=1:n
   lan{i} = url(k_0(i):k_1(i));
 end
 if n>0
-  species_en = unique(species_en(strcmp('English',lan)));
+  species_en = unique(species_en(strcmp(language,lan)));
 end  
 
 
