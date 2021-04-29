@@ -43,14 +43,15 @@ k_0 = 10 + strfind(url, '<language>'); k_1 = strfind(url, '</language>') - 1;
 l_0 = 11 + strfind(url, '<language/>'); l_1 = l_0; % no language specified
 k_0 = sort([k_0,l_0]); k_1 = sort([k_1,l_1]);
 
-n = length(j_0); %n = min(length(j_0),length(k_0)); 
+n = length(j_0); 
+if n == 0
+  common = {}; return
+end   
 common = cell(n,1); lan = cell(n,1);
 for i=1:n
   common{i} = url(j_0(i):j_1(i));
   lan{i} = url(k_0(i):k_1(i));
 end
-if n>0
-  common = unique(common(strcmp(language,lan)));
-end  
+common = unique(common(strcmp(language,lan)));
 
 
