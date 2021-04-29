@@ -263,7 +263,7 @@ fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/entries.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          The Add-my-Pet collection started at 2009/02/12 as part of the \n');
-fprintf(fid_about, '          <A href="https://deb2021.sciencesconf.org/" target="_blank">DEB course</A>.<br>\n');
+fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.<br>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
     
