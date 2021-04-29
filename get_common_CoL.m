@@ -2,11 +2,11 @@
 % gets the common name of a species of given id from Catolog of Life
 
 %%
-function species_en = get_common_CoL(id_CoL, language)
+function common = get_common_CoL(id_CoL, language)
 % created 2020/06/05 by Bas Kooijman
 
 %% Syntax
-% species_en = <../get_common_CoL.m *get_common_CoL*>(id_CoL)
+% common = <../get_common_CoL.m *get_common_CoL*>(id_CoL)
 
 %% Description
 % Gets the common name of a species of given id from Catolog of Life
@@ -18,7 +18,7 @@ function species_en = get_common_CoL(id_CoL, language)
 %
 % Output:
 %
-% * species_en: cell string with common names
+% * common: cell string with common names
 
 %% Remarks
 % Get id_CoL with get_id_CoL.
@@ -33,6 +33,9 @@ end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 13 + strfind(url, '<commonNames>'); i_1 = strfind(url, '</commonNames>') - 1;
+if isempty(i_0)
+  common = {}; return
+end
 url = url(i_0:i_1(end)); % substring between <commonNames>...</commonNames>
 
 j_0 = 6 + strfind(url, '<name>'); j_1 = strfind(url, '</name>') - 1; 
@@ -41,13 +44,13 @@ l_0 = 11 + strfind(url, '<language/>'); l_1 = l_0; % no language specified
 k_0 = sort([k_0,l_0]); k_1 = sort([k_1,l_1]);
 
 n = length(j_0); %n = min(length(j_0),length(k_0)); 
-species_en = cell(n,1); lan = cell(n,1);
+common = cell(n,1); lan = cell(n,1);
 for i=1:n
-  species_en{i} = url(j_0(i):j_1(i));
+  common{i} = url(j_0(i):j_1(i));
   lan{i} = url(k_0(i):k_1(i));
 end
 if n>0
-  species_en = unique(species_en(strcmp(language,lan)));
+  common = unique(common(strcmp(language,lan)));
 end  
 
 
