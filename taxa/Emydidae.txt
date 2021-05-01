@@ -1,5 +1,2 @@
-Emys
-Actinemys
-Glyptemys
-Terrapene
-Trachemys
+Emydinae
+Deirochelyinae
