@@ -1,3 +1,5 @@
 Pseudemys_alabamensis
 Pseudemys_concinna
+Pseudemys_nelsoni
+Pseudemys_peninsularis
 Pseudemys_texana
