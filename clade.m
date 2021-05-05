@@ -2,11 +2,12 @@
 % gets all species that are closest related to specified taxa
 
 %%
-function [members, taxon] = clade(taxa, level)
-% created 2015/09/18 by Bas Kooijman; modified 2017/12/23, 2018/01/05, 2018/01/30, 2019/02/25, 2021/04/1
+function [members, taxon] = clade(taxa, level, site)
+% created 2015/09/18 by Bas Kooijman; modified 2017/12/23, 2018/01/05,
+% 2018/01/30, 2019/02/25, 2021/04/1, 2021/05/05
 
 %% Syntax
-% [members, taxon] = <../clade.m *clade*> (taxa, level) 
+% [members, taxon] = <../clade.m *clade*> (taxa, level, site) 
 
 %% Description
 % If taxa contains several members, clade gets all species in the add_my_pet collection that belong to the lowest common taxon of a group of taxa.
@@ -20,6 +21,7 @@ function [members, taxon] = clade(taxa, level)
 %
 % * taxa: cell string with names of taxa or character string with a single name
 % * level: optional integer with number of nodes up, in the case of a single taxon (default: such that more than 2 members result with smallest number)
+% * site: 0 (default) Col only, 1 Taxonomicon only, 2 both CoL and Taxonomicon
 %
 % Output:
 % 
@@ -41,11 +43,23 @@ function [members, taxon] = clade(taxa, level)
 % clade('Daphnia_galeata') % while 'Daphnia_galeata' was not present in AmP at 2018/01/05 
 
 
-  n = length(taxa);
+  if ~exist('site','var') || isempty(site)
+    site = 0; % only CoL
+  end
+  
+  if ~iscell(taxa)
+    n = 1;
+  else
+    n = length(taxa);
+    if n == 1
+       taxa = taxa{1};
+    end
+  end
   
   if  ~iscell(taxa) || n == 1
-    if iscell(taxa)
-      taxa = taxa{1};
+    genus = strsplit(taxa, '_'); taxon = genus{1};
+    if ismember(taxon,list_taxa([],3)) % the genus is in AmP
+      members = select(taxon); return
     end
     
   
@@ -56,36 +70,35 @@ function [members, taxon] = clade(taxa, level)
 
       % proceed by finding lineage in Col and Taxo
       ol = list_taxa; % ordered list of all taxa
-      % CoL
-      list_CoL = lineage_CoL(taxa);
-      n_CoL = length(list_CoL);
-      if n_CoL > 0 % species found in CoL
-        ol = list_taxa; % ordered list of all taxa
-        for i = 1:n_CoL % find lowest rank that is present in AmP
-          if ~isempty(list_CoL{n_CoL - i}) && ismember(list_CoL{n_CoL - i}, ol)
-            taxon_CoL = list_CoL{n_CoL - i}; members_CoL = select(taxon_CoL); 
-            n_members_CoL = length(members_CoL);
-            break
+      list_CoL = []; list_Taxo = []; n_members_CoL = 0; n_members_Taxo = 0;
+      
+      if site == 0 || site == 2 % CoL
+        list_CoL = lineage_CoL(taxa);
+        n_CoL = length(list_CoL);
+        if n_CoL > 0 % species found in CoL
+          ol = list_taxa; % ordered list of all taxa
+          for i = 1:n_CoL % find lowest rank that is present in AmP
+            if ~isempty(list_CoL{n_CoL - i}) && ismember(list_CoL{n_CoL - i}, ol)
+              taxon_CoL = list_CoL{n_CoL - i}; members_CoL = select(taxon_CoL); 
+              n_members_CoL = length(members_CoL);
+              break
+            end
           end
         end
-      else
-        n_members_CoL = 0;
-      end
-      % Taxo
-      list_Taxo = lineage_Taxo(taxa);
-      n_Taxo = length(list_Taxo);
-      if n_Taxo > 0 % species found in Taxo
-        for i = 1:n_Taxo % find lowest rank that is present in AmP
-          if ~isempty(list_Taxo{n_Taxo - i}) && ismember(list_Taxo{n_Taxo - i}, ol)
-            taxon_Taxo = list_Taxo{n_Taxo - i}; members_Taxo = select(taxon_Taxo); 
-            n_members_Taxo = length(members_Taxo);
-            break
+      elseif site == 1 || site == 2 % Taxo
+        list_Taxo = lineage_Taxo(taxa);
+        n_Taxo = length(list_Taxo);
+        if n_Taxo > 0 % species found in Taxo
+          for i = 1:n_Taxo % find lowest rank that is present in AmP
+            if ~isempty(list_Taxo{n_Taxo - i}) && ismember(list_Taxo{n_Taxo - i}, ol)
+              taxon_Taxo = list_Taxo{n_Taxo - i}; members_Taxo = select(taxon_Taxo); 
+              n_members_Taxo = length(members_Taxo);
+              break
+            end
           end
-        end
-      else
-        n_members_Taxo = 0;
+       end
       end
-
+      
       % choose between CoL or Taxo on the basis of smallest number of members
       if n_members_CoL == 0 && n_members_Taxo == 0
         members = []; taxon = [];
