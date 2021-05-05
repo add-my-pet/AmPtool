@@ -1,4 +1,5 @@
 Chrysemys
 Graptemys
 Malaclemys
+Pseudemys
 Trachemys

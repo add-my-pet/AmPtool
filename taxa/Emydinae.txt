@@ -1,4 +1,6 @@
 Actinemys
+Clemmys
+Emydoidea
 Emys
 Glyptemys
 Terrapene
