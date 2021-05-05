@@ -30,6 +30,8 @@ function [members, taxon] = clade(taxa, level, site)
 
 %% Remarks
 % The root is Animalia; If this is the lowest common taxon, the output contains all species in the collection.
+% If the species is not in AmP, but the genus is, the AmP members of that genus are in the resulting clade, 
+%   but this does not imply that the species is recognized and accepeted.
 % Print properties of related taxa with e.g. prtStat(clade('Lemmus_trimucronatus'), 'p_M');.
 % Include the tree as well with e.g. [~, taxon]= clade('Lemmus_trimucronatus'); pedigree(taxon, 'p_M') 
 
@@ -56,17 +58,17 @@ function [members, taxon] = clade(taxa, level, site)
     end
   end
   
-  if  ~iscell(taxa) || n == 1
-    genus = strsplit(taxa, '_'); taxon = genus{1};
-    if ismember(taxon,list_taxa([],3)) % the genus is in AmP
-      members = select(taxon); return
-    end
-    
-  
+  if  n == 1
+      
     list = lineage(taxa);
     
     if length(list) == 1
       fprintf([taxa, ' is not recognized in AmP\n'])
+
+      genus = strsplit(taxa, '_'); taxon = genus{1};
+      if ismember(taxon,list_taxa([],3)) % the genus is in AmP
+        members = select(taxon); return
+      end
 
       % proceed by finding lineage in Col and Taxo
       ol = list_taxa; % ordered list of all taxa
