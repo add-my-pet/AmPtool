@@ -1,5 +1,6 @@
 Graptemys_caglei
 Graptemys_ernsti
+Graptemys_oculifera
 Graptemys_ouachitensis
 Graptemys_pseudogeographica
 Graptemys_versa
