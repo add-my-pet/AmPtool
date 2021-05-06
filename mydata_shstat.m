@@ -1,5 +1,5 @@
 %% mydata_shstat: demo script for using plotting tool shstat
-% see shprimpar for more examples of 1D plotting
+% see prt_pars for more examples of 1D plotting
 %
 % Make sure that the lists-of-lists correspond with allStat.mat.
 % Generate updated allStat.mat if necessary (for curators only)
