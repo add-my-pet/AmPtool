@@ -2,6 +2,7 @@ Aldabrachelys
 Astrochelys
 Centrochelys
 Chelonoidis
+Geochelone
 Homopus
 Malacochersus
 Psammobates
