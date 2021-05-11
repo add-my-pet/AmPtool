@@ -216,7 +216,7 @@ for i_step = 1:n_step
 
     case 10 % Make sure figures are saved (this only prints if the full report is executed)
       fprintf('\n Step %d: make sure figures are saved\n\n', step);
-      fprintf('\n Please, after the curation process, execute the run file with estim_option results_output=3 \n\n', step);
+      fprintf('\n Please, after the curation process, execute the run file with estim_option(''results_output'',3) \n\n');
       
     case 11 % Check weights
       fprintf('\n Step %d: Check weights\n\n', step);
