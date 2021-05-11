@@ -285,6 +285,9 @@ for i_step = 1:n_step
       if ~infoTxtPar
         fprintf('Warning from matisinit: text for parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
       end
+      if any([~infoPar, ~infoMetaPar, ~infoTxtPar])
+        fprintf('Please run mat2pars_init\n');
+      end
         
     case 9 % Check implied properties 
       fprintf('\n Step %d: Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', step);
