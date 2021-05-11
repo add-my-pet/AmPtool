@@ -73,7 +73,7 @@
     All functions that analyse data read in <code>allStat</code>, using function 
       <a href="../html/read_allStat.html">read_allStat</a> or <a href="../html/read_stat.html">read_stat</a>.
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code>; convert to temperature <code>T_ref</code> with
-      <code>[var, nm] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print to screen with <code>printpar(nm, tg_Tref)</code>.
+      <code>[var, nm, units, label] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print with <code>prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})</code>.
     Oviparous species will have value <code>NaN</code> (Not-a-Number).
     Find all entries that have model <code>std</code> with <code>[model, nms] = read_allStat('model'); nms(strcmp('std', model))</code>.
 
