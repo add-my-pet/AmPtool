@@ -77,7 +77,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 - 9: Check implied <span class="string">properties</span>
 - 10: Make sure <span class="string">figures</span> <span class="string">are</span> <span class="string">saved</span> <span class="string">(this only prints if the full report is executed)</span>
 - 11: Check weights
-</pre><p>Output is printed to screen</p><h2 id="5">Remarks</h2><p>This function is supposed to be run in the directory of the source. Files: mydata_speciesnm, pars_init_speciesnm,</p><h2 id="6">Examples of use</h2><div><ul><li>curator_report('my_pet') % execute all steps</li><li>curator_report('my_pet', 2) % only execute step 2</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+</pre><p>Output is printed to screen</p><h2 id="5">Remarks</h2><p>This function is supposed to be run in the directory of the source, which has the required files: mydata_my_pet.m, pars_init_my_pet.mat</p><h2 id="6">Examples of use</h2><div><ul><li>curator_report('my_pet') % execute all steps</li><li>curator_report('my_pet', 2) % only execute step 2</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% curator_report
 % Produces a report to help curators review an entry that has been submitted to the AmP collection 
@@ -114,8 +114,7 @@ function curator_report(my_pet, steps)
   % Output is printed to screen
 
   %% Remarks
-  % This function is supposed to be run in the directory of the source. 
-  % Files: mydata_speciesnm, pars_init_speciesnm, 
+  % This function is supposed to be run in the directory of the source, which has the required files: mydata_my_pet.m, pars_init_my_pet.mat 
   
   %% Examples of use
   %

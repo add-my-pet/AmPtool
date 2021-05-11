@@ -33,8 +33,7 @@ function curator_report(my_pet, steps)
   % Output is printed to screen
 
   %% Remarks
-  % This function is supposed to be run in the directory of the source. 
-  % Files: mydata_speciesnm, pars_init_speciesnm, 
+  % This function is supposed to be run in the directory of the source, which has the required files: mydata_my_pet.m, pars_init_my_pet.mat 
   
   %% Examples of use
   %
