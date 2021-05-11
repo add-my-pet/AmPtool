@@ -5,7 +5,7 @@
 function curator_report(my_pet, steps)
   % created 2015/08/01 by Goncalo Marques
   % modified 2015/08/06 Dina Lika, 2018/01/23 by Bas Kooijman, 2018/04/15
-  % Starrlight, 2018/08/20, Bas Kooiijman 2021/04/10
+  % Starrlight, 2018/08/20, Bas Kooiijman 2021/04/10, 2021/05/11
   
   %% Syntax 
   % <../curator_report.m *curator_report*> (my_pet, steps)
@@ -25,9 +25,10 @@ function curator_report(my_pet, steps)
   %   - 5: Check absence of escaped characters in comment, discussion, facts
   %   - 6: Checking extra parameters   
   %   - 7: Check which parameters were estimated
-  %   - 8: Check implied properties 
-  %   - 9: Make sure figures are saved (this only prints if the full report is executed)
-  %   - 10: Check weights
+  %   - 8: Check if results_my_pet.mat matches pars_init_my_pet.m
+  %   - 9: Check implied properties 
+  %   - 10: Make sure figures are saved (this only prints if the full report is executed)
+  %   - 11: Check weights
   %  
   % Output is printed to screen
 
@@ -41,7 +42,7 @@ function curator_report(my_pet, steps)
   % * curator_report('my_pet', 2) % only execute step 2  
 
 if  ~exist('steps', 'var') || isempty(steps)
-  steps = 1:10;
+  steps = 1:11;
 end
   
 [~, ~, metaData, ~, weights] = feval(['mydata_', my_pet]);
@@ -192,7 +193,20 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n');
       fprintf('*****************************************************************  \n\n');
 
-    case 8 % Check implied properties 
+      
+    case 8 % Check if results_my_pet.mat matches pars_init_my_pet.m
+      [infoPar, infoMetaPar, infoTxtPar] = matisinit(my_pet);
+      if ~infoPar
+        fprintf('Warning from matisinit: parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
+      end
+      if ~infoMetaPar
+        fprintf('Warning from matisinit: meta parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
+      end
+      if ~infoTxtPar
+        fprintf('Warning from matisinit: text for parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
+      end
+        
+    case 9 % Check implied properties 
       fprintf('\n Step %d: Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', step);
       prnt = input('Enter: 1 to compute statistics else 0 to continue: ');
       if prnt
@@ -201,11 +215,11 @@ for i_step = 1:n_step
         delete(['report_',my_pet,'.html']); % delete produced file
       end
 
-    case 9 % Make sure figures are saved (this only prints if the full report is executed)
+    case 10 % Make sure figures are saved (this only prints if the full report is executed)
       fprintf('\n Step %d: make sure figures are saved\n\n', step);
       fprintf('\n Please, after the curation process, execute the run file with estim_option results_output=3 \n\n', step);
       
-    case 10 % Check weights
+    case 11 % Check weights
       fprintf('\n Step %d: Check weights\n\n', step);
       info = 0;
       fld = fields(weights.psd); n_fld = length(fld); 

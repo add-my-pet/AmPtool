@@ -52,7 +52,7 @@ for i = 1:nargin
   
   fprintf([num2str(i), ': ', varargin{i},'\n'])
 
-  load(['results_', varargin{i}]);
+  load(['results_', varargin{i}], 'par');
   [par_pi, ~, ~] = feval(['pars_init_',varargin{i}],metaData); 
   flds = fields(par_pi);
   n_flds = length(flds);
