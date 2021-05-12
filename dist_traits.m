@@ -19,11 +19,11 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
 %
 % Output:
 %
-% * dist: square symmetric maxtrix of distances, with zero diagonal
+% * dist: square symmetric matrix of distances, with zero diagonal
 % * val: trait values with species in rows, traits in columns
 
 %% Remarks
-% The traits must be in allStat for all my_pets (not all traits are present for all models in allStat). 
+% The traits must be in allStat for all my_pets (not all traits are present for all models in allStat and NaN's can occur). 
 % See DEBtool_M/lib/pet/statistics_st for possible traits.
 % The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_sb.
 
