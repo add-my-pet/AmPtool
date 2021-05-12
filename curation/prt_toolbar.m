@@ -109,7 +109,7 @@ fprintf(oid_amp, strrep([tb, tbt], '??', ''));
 fprintf(oid_budget, strrep([tb, tbb, tbt], '??', ''));
 fprintf(oid_app, strrep([tb, tbt], '??', '../'));
 fprintf(oid_entry, strrep([tb, tbt], '??', '../../'));
-fprintf(oid_AmPtool, strrep([tb, tbt], '??', [path2deblab, 'add_my_pet/']));
+fprintf(oid_AmPtool, strrep([tb, tbt], '??', [set_path2server, 'add_my_pet/']));
 
 fclose all;
 
