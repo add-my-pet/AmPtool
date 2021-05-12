@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>dist_traits</h1><!--introduction--><p>computes a symmetric matrix of trait-distances between selected species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[dist, val] = <a href="../dist_traits.m"><b>dist_traits</b></a> (my_pets, traits, norm)</p><h2 id="4">Description</h2><p>computes a symmetric matrix of trait-distances between selected species (zero diagonal)</p><p>Input:</p><div><ul><li>my_pets: cell-string of AmP entry names</li><li>traits: (n, 1 or 2)-cell array with names of traits and optional weights (default all weights equal to 1)</li><li>norm: optional boolean for loss function F_sb (0, default) or F_su (1) as distance measure</li></ul></div><p>Output:</p><div><ul><li>dist: square symmetric maxtrix of distances, with zero diagonal</li><li>val: trait values with species in rows, traits in columns</li></ul></div><h2 id="5">Remarks</h2><p>The traits must be in allStat for all my_pets (not all traits are present for all models in allStat). See DEBtool_M/lib/pet/statistics_st for possible traits. The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_sb.</p><h2 id="6">Example of use</h2><p>dist = dist_traits(select('Ctenophora'),{'p_M';'v';'a_b'});</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>dist_traits</h1><!--introduction--><p>computes a symmetric matrix of trait-distances between selected species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[dist, val] = <a href="../dist_traits.m"><b>dist_traits</b></a> (my_pets, traits, norm)</p><h2 id="4">Description</h2><p>computes a symmetric matrix of trait-distances between selected species (zero diagonal)</p><p>Input:</p><div><ul><li>my_pets: cell-string of AmP entry names</li><li>traits: (n, 1 or 2)-cell array with names of traits and optional weights (default all weights equal to 1)</li><li>norm: optional boolean for loss function F_sb (0, default) or F_su (1) as distance measure</li></ul></div><p>Output:</p><div><ul><li>dist: square symmetric matrix of distances, with zero diagonal</li><li>val: trait values with species in rows, traits in columns</li></ul></div><h2 id="5">Remarks</h2><p>The traits must be in allStat for all my_pets (not all traits are present for all models in allStat and NaN's can occur). See DEBtool_M/lib/pet/statistics_st for possible traits. The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_su.</p><h2 id="6">Example of use</h2><p>dist = dist_traits(select('Ctenophora'),{'p_M';'v';'a_b'});</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% dist_traits
 % computes a symmetric matrix of trait-distances between selected species
@@ -89,13 +89,13 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
 %
 % Output:
 %
-% * dist: square symmetric maxtrix of distances, with zero diagonal
+% * dist: square symmetric matrix of distances, with zero diagonal
 % * val: trait values with species in rows, traits in columns
 
 %% Remarks
-% The traits must be in allStat for all my_pets (not all traits are present for all models in allStat). 
+% The traits must be in allStat for all my_pets (not all traits are present for all models in allStat and NaN's can occur). 
 % See DEBtool_M/lib/pet/statistics_st for possible traits.
-% The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_sb.
+% The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_su.
 
 %% Example of use
 % dist = dist_traits(select('Ctenophora'),{'p_M';'v';'a_b'});
