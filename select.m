@@ -28,7 +28,7 @@ function species = select(taxon)
 
 %% Example of use
 % species  = select('Animalia'); % get list of all species in the collection, taxonomically ordered
-% fish = setdiff(select('Craniata'), select('Tetrapoda')) % select all 5 fish classes, alphabetically ordered
+% fish = setdiff(select('Vertebrata'), select('Tetrapoda')) % select all 5 fish classes, alphabetically ordered
 % reptile = setdiff(select('Sauropsida'), select('Maniraptora')) % select all classic reptilia, alphabetically ordered
 
   if ~exist('taxon', 'var')
