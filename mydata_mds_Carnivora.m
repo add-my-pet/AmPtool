@@ -1,4 +1,11 @@
-y = cmdscale(dist_traits(select('Carnivora'),{'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p_M'}),3);
+% example of how to use dist_traits in classic multidimensional scaling, using 3 dimensions
+% click on rotation in toolbar of figure to rotate figure by grabbing it
+
+species = select('Carnivora');
+traits = {'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p_M'};
+% first compute distance-matrix and pass it to cmdscale
+y = cmdscale(dist_traits(species, traits),3);
+
   legend_Carnivora = {...
     % Feliformia, red edge
     {'o', 8, 3, [1 0 0], [0 0 0]}, 'Feloidea'; ...
@@ -13,5 +20,6 @@ y = cmdscale(dist_traits(select('Carnivora'),{'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p
 
 % make sure that the number of rows of data matches the number of entries
 data=NaN(length(select),3); data(select_01('Carnivora'),:) = y;
-% plot
-shstat(data, legend_Carnivora, 'MDS');
+
+% plot with legend in second figure
+shstat(data, legend_Carnivora, 'MDS for Carnivora');
