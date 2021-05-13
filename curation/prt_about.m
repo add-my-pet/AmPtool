@@ -163,7 +163,7 @@ fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.<br>\n');
 fprintf(fid_about, '          Chordates are complete at order level,<br> primates at family level.\n');
-fprintf(fid_about, '          <a href="https://youtu.be/fp4ZvzIfqQg" target="_blank"><img src="img/YouTube.png"  height = "15px" title="5:04"></a>\n');
+fprintf(fid_about, '          <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "15px" title="5:04"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
