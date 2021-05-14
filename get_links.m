@@ -79,7 +79,7 @@ function [links, id] = get_links(my_pet, open)
     end
     load(fnmmat)
     id = metaData.links; vars_pull(id);
-    delete(fnmmat) 
+    % delete(fnmmat) 
   end
        
   % compose (n,2) cell-array with links and descriptions
