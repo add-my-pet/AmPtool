@@ -34,5 +34,6 @@ Hfig = shstat(data, legend_Carnivora, 'MDS for Carnivora');
 
 % connect the points for the Canidae
 connect_subclade(Hfig, y, 'Carnivora', 'Canidae');
+connect_subclade(Hfig, y, 'Carnivora', 'Pinnipedia');
 
 
