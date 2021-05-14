@@ -245,6 +245,8 @@ for i_step = 1:n_step
       
     otherwise
   end
-  fprintf('Hit a key to continue\n'); pause
+  if i_step < n_step
+    fprintf('Hit a key to continue\n'); pause
+  end
 end
 
