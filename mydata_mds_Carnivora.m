@@ -30,4 +30,9 @@ y = cmdscale(dist_traits(species, traits),3);
 data = NaN(length(select),3); data(select_01('Carnivora'),:) = y;
 
 % plot with legend in second figure
-shstat(data, legend_Carnivora, 'MDS for Carnivora');
+Hfig = shstat(data, legend_Carnivora, 'MDS for Carnivora');
+
+% connect the points for the Canidae
+connect_subclade(Hfig, y, 'Carnivora', 'Canidae');
+
+
