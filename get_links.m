@@ -24,7 +24,8 @@ function [links, id] = get_links(my_pet, open)
 
 %% Remarks
 % This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
-% in failure, it downloads it from the web via powershell function wget
+% in failure, it downloads it from the web via powershell function wget,
+% but this file is not deleted after downloading, because of use of the function in curator_report
 
 %% Example
 % get_links('Daphnia_magna',1)

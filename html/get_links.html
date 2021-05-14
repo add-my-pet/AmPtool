@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_links</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-18"><meta name="DC.source" content="get_links.m"><style type="text/css">
+      --><title>get_links</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-14"><meta name="DC.source" content="get_links.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_links</h1><!--introduction--><p>gets links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[links, id] = <a href="get_links"><b>get_links</b></a>(taxon, open)</p><h2 id="4">Description</h2><p>Gets cell strings with links and descriptions for an entry and open the webpages. Without inputs, the function will open all websites that are supported by AmP.</p><p>Input:</p><div><ul><li>my_pet: optional character string with name of entry</li><li>open: optional boolean for opening the web pages (default 0: not open)</li></ul></div><p>Output:</p><div><ul><li>links: (n,2)-cell array with links and names for links</li><li>id: (n,2)-cell array with id's and values, as in metaData.links of mydata</li></ul></div><h2 id="5">Remarks</h2><p>This function first tries to find results_my_pet.mat or mydata_my_pet in local directories; in failure, it downloads it from the web via powershell function wget</p><h2 id="6">Example</h2><p>get_links('Daphnia_magna',1)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_links</h1><!--introduction--><p>gets links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[links, id] = <a href="get_links"><b>get_links</b></a>(taxon, open)</p><h2 id="4">Description</h2><p>Gets cell strings with links and descriptions for an entry and open the webpages. Without inputs, the function will open all websites that are supported by AmP.</p><p>Input:</p><div><ul><li>my_pet: optional character string with name of entry</li><li>open: optional boolean for opening the web pages (default 0: not open)</li></ul></div><p>Output:</p><div><ul><li>links: (n,2)-cell array with links and names for links</li><li>id: (n,2)-cell array with id's and values, as in metaData.links of mydata</li></ul></div><h2 id="5">Remarks</h2><p>This function first tries to find results_my_pet.mat or mydata_my_pet in local directories; in failure, it downloads it from the web via powershell function wget, but this file is not deleted after downloading, because of use of the function in curator_report</p><h2 id="6">Example</h2><p>get_links('Daphnia_magna',1)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_links
 % gets links to web-pages from  results_my_pet.mat, as specified in metaData.links
@@ -94,7 +94,8 @@ function [links, id] = get_links(my_pet, open)
 
 %% Remarks
 % This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
-% in failure, it downloads it from the web via powershell function wget
+% in failure, it downloads it from the web via powershell function wget,
+% but this file is not deleted after downloading, because of use of the function in curator_report
 
 %% Example
 % get_links('Daphnia_magna',1)
@@ -149,7 +150,7 @@ function [links, id] = get_links(my_pet, open)
     end
     load(fnmmat)
     id = metaData.links; vars_pull(id);
-    delete(fnmmat) 
+    % delete(fnmmat) 
   end
        
   % compose (n,2) cell-array with links and descriptions
