@@ -21,14 +21,15 @@ function curator_report(my_pet, steps)
   %   - 1: Check species name and lineage
   %   - 2: Check ecocodes
   %   - 3: Run check_data for data_0, data_1 and COMPLETE
-  %   - 4: Check links, bibliography and url's
-  %   - 5: Check absence of escaped characters in comment, discussion, facts
-  %   - 6: Checking extra parameters   
-  %   - 7: Check which parameters were estimated
-  %   - 8: Check if results_my_pet.mat matches pars_init_my_pet.m
-  %   - 9: Check implied properties 
-  %   - 10: Make sure figures are saved (this only prints if the full report is executed)
-  %   - 11: Check weights
+  %   - 4: Check links
+  %   - 5: Check bibliography and url's
+  %   - 6: Check absence of escaped characters in comment, discussion, facts
+  %   - 7: Checking extra parameters   
+  %   - 8: Check which parameters were estimated
+  %   - 9: Check if results_my_pet.mat matches pars_init_my_pet.m
+  %   - 10: Check implied properties 
+  %   - 11: Make sure figures are saved (this only prints if the full report is executed)
+  %   - 12: Check weights
   %  
   % Output is printed to screen
 
@@ -41,7 +42,7 @@ function curator_report(my_pet, steps)
   % * curator_report('my_pet', 2) % only execute step 2  
 
 if  ~exist('steps', 'var') || isempty(steps)
-  steps = 1:11;
+  steps = 1:12;
 end
   
 [~, ~, metaData, ~, weights] = feval(['mydata_', my_pet]);
@@ -74,9 +75,11 @@ for i_step = 1:n_step
       fprintf('Check that the labels for each data type are used and consistent with the contents.\n');
       fprintf('Contact the web administrator with any new labels that should be added to the table. \n');
 
-    case 4 % Check links, bibliography and url's
+    case 4 % Check links
       fprintf('\n Step %d: Checking links:\n\n', step);    
       get_links(my_pet, 1); % opens all links in your system-browser; in failure use edit_links
+      
+    case 5 % Check bibliography and url's
       fprintf( '\n Step %d. Check Bibliography', step);
       [~, ~, metaData] = feval(['mydata_', my_pet]); % get metaData.biblist
       prt_my_pet_bib(my_pet, metaData.biblist) % biblist2bib
@@ -109,7 +112,7 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n\n');
       delete([my_pet,'_bib.bib'],[my_pet,'_bib.html']); % delete produced files
       
-    case 5 % Check absence of escaped characters in comment, discussion, facts
+    case 6 % Check absence of escaped characters in comment, discussion, facts
       fprintf('\n Step %d: Check absence of escaped characters in comment, discussion, facts\n\n', step);
       info = 1;
       if isfield(metaData, 'comment')
@@ -143,7 +146,7 @@ for i_step = 1:n_step
         fprintf('No illegal escaped charaters found\n\n')
       end
       
-    case 6 % Checking extra parameters    
+    case 7 % Checking extra parameters    
       fprintf('\n Step %d: Checking extra parameters:\n\n', step);
       standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
       parFields = fields(par);        standChemFields = fields(standChem);
@@ -166,7 +169,7 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n');
       fprintf('*****************************************************************  \n\n');
 
-    case 7 % Check which parameters were estimated
+    case 8 % Check which parameters were estimated
       fprintf('\n Step %d: Checking choice of free parameters:\n\n', step);
       standChem = addchem([], [], [], [], metaData.phylum, metaData.class);
       parFields = fields(par);        standChemFields = fields(standChem);
@@ -193,7 +196,7 @@ for i_step = 1:n_step
       fprintf('*****************************************************************  \n\n');
 
       
-    case 8 % Check if results_my_pet.mat matches pars_init_my_pet.m
+    case 9 % Check if results_my_pet.mat matches pars_init_my_pet.m
       [infoPar, infoMetaPar, infoTxtPar] = matisinit(my_pet);
       if ~infoPar
         fprintf('Warning from matisinit: parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
@@ -208,7 +211,7 @@ for i_step = 1:n_step
         fprintf('Please run mat2pars_init\n');
       end
         
-    case 9 % Check implied properties 
+    case 10 % Check implied properties 
       fprintf('\n Step %d: Check implied model properties and parameter values of my_pet. Creates my_pet.html.\n\n', step);
       prnt = input('Enter: 1 to compute statistics else 0 to continue: ');
       if prnt
@@ -217,11 +220,11 @@ for i_step = 1:n_step
         delete(['report_',my_pet,'.html']); % delete produced file
       end
 
-    case 10 % Make sure figures are saved (this only prints if the full report is executed)
+    case 11 % Make sure figures are saved (this only prints if the full report is executed)
       fprintf('\n Step %d: make sure figures are saved\n\n', step);
       fprintf('\n Please, after the curation process, execute the run file with estim_option(''results_output'',3) \n\n');
       
-    case 11 % Check weights
+    case 12 % Check weights
       fprintf('\n Step %d: Check weights\n\n', step);
       info = 0;
       fld = fields(weights.psd); n_fld = length(fld); 
