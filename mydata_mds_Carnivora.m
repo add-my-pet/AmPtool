@@ -11,7 +11,7 @@ species = select('Carnivora');
 traits = {'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p_M'};
 % traits = {'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'};
 
-% first compute distance-matrix and pass it to cmdscale
+% first compute distance-matrix and pass it to cmdscale using 3 dimensions
 y = cmdscale(dist_traits(species, traits),3);
 
   legend_Carnivora = {...
@@ -32,7 +32,7 @@ data = NaN(length(select),3); data(select_01('Carnivora'),:) = y;
 % plot with legend in second figure
 Hfig = shstat(data, legend_Carnivora, 'MDS for Carnivora');
 
-% connect the points for the Canidae
+% connect the points for the Canidae and the Pinnipedia
 connect_subclade(Hfig, y, 'Carnivora', 'Canidae');
 connect_subclade(Hfig, y, 'Carnivora', 'Pinnipedia');
 
