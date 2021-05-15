@@ -48,7 +48,12 @@ fprintf(fid,[ ...
 fclose(fid); 
 
 % run bibtex
-dos('bibtex my_bib'); delete('my_bib.aux');
+if ismac || isunix
+  system('bibtex my_bib');
+else   
+  dos('bibtex my_bib'); 
+end
+delete('my_bib.aux');
 
 % search for doi's in my_pet_bib.bib to add in my_pet_bib.bbl
 bib = fileread('my_bib.bib'); delete('my_bib.bib');
