@@ -32,7 +32,6 @@ data = NaN(length(select),3); data(select_01('Testudines'),:) = y;
 Hfig = shstat(data, legend_Testudines, 'MDS for Testudines');
 
 % connect the points for the Canidae and the Pinnipedia
-connect_subclade(Hfig, y, 'Testudines', 'Chelydroidea');
 connect_subclade(Hfig, y, 'Testudines', 'Chelonioidea');
 
 
