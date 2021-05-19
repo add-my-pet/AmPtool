@@ -39,6 +39,10 @@ end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
+if isempty(i_0) || isempty(i_1)
+  lineage = []; rank = []; name_status = [];
+  return
+end
 url = url(i_0:i_1(end)); % substring between <classification>...</classification>
 
 i_0 = 13 + strfind(url,'<name_status>'); i_1 = strfind(url,'</name_status>')-1;
