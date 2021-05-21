@@ -4,7 +4,7 @@
 % Click on points to see species, but only before you click on rotation
 % Click on rotation in toolbar of figure to rotate figure by grabbing it
 % If you did not yet run read_stat this Matlab session, the first time you run this script might take a while; next trials are faster.
-% If the matlab command window give red warnings, please type "clear all"  and retry
+% If the matlab command window gives red warnings, please type "clear all"  and retry
 
 close all
 
