@@ -96,6 +96,7 @@ for i = 1:n_bib % scan bibitems
   bibitem_i = strrep(bibitem_i, '\delta','&delta;');
   bibitem_i = strrep(bibitem_i, '\Delta','&Delta;');
   bibitem_i = strrep(bibitem_i, '\={n}', '&#241;');
+  bibitem_i = strrep(bibitem_i, '\={a}', '&#227;');
   bibitem_i = strrep(bibitem_i, '{\l}',  '&#322;');
   bibitem_i = strrep(bibitem_i, '{\L}',  '&#321;');
   bibitem_i = strrep(bibitem_i, '\v{c}', '&#269;');

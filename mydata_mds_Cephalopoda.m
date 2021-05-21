@@ -1,8 +1,11 @@
-%% example of how to use dist_traits in classic multidimensional scaling, using 3 dimensions
+%% mydata_mds_Cephalopoda
+% example of how to use dist_traits in classic multidimensional scaling, using 3 dimensions
 % 2021/05/18 by Bas Kooijman
 % Click on points to see species, but only before you click on rotation
 % Click on rotation in toolbar of figure to rotate figure by grabbing it
 % If you did not yet run read_stat this Matlab session, the first time you run this script might take a while; next trials are faster.
+% If the matlab command window give red warnings, please type "clear all"
+% and retry
 
 close all
 
@@ -34,7 +37,7 @@ data = NaN(length(select),3); data(select_01('Cephalopoda'),:) = y;
 % plot with legend in second figure
 Hfig = shstat(data, legend_Cephalopoda, 'MDS for Cephalopoda');
 
-% connect the points for the Sepiida
+% connect the points for subclades
 connect_subclade(Hfig, y, 'Cephalopoda', 'Sepiida');
 
 
