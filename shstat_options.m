@@ -37,7 +37,7 @@ function shstat_options (key, val)
     global x_transform y_transform z_transform x_label y_label z_label
 
     if ~exist('key', 'var')
-      key = 'unkown';
+      key = 'unknown';
     end
      
     switch key
@@ -125,6 +125,26 @@ function shstat_options (key, val)
 	    if numel(y_transform) ~= 0
 	      fprintf(['y_transform = ', y_transform,' \n']);
 	    else
-	      fprintf('y_transform = unkown \n');
+	      fprintf('y_transform = unknown \n');
 	    end
-     end
+	    if numel(z_transform) ~= 0
+	      fprintf(['z_transform = ', z_transform,' \n']);
+	    else
+	      fprintf('z_transform = unknown \n');
+	    end
+ 	    if numel(x_label) ~= 0
+          fprintf(['x_label = ', x_label,' \n']);
+	    else
+	      fprintf('x_label = unknown \n');
+	    end	      
+	    if numel(y_label) ~= 0
+	      fprintf(['y_label = ', y_label,' \n']);
+	    else
+	      fprintf('y_label = unknown \n');
+	    end
+	    if numel(z_label) ~= 0
+	      fprintf(['z_label = ', z_label,' \n']);
+	    else
+	      fprintf('z_label = unknown \n');
+	    end
+    end

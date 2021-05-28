@@ -15,6 +15,9 @@ traits = {'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p
 
 % first compute distance-matrix and pass it to cmdscale
 [y, e] = cmdscale(dist_traits(species, traits)); % configuration matrix, eigenvalues
+n_traits= length(traits); E = e(n_traits)/e(1);
+fprintf(['With ', num2str(n_traits), ' traits the, ', num2str(n_traits), '-th eigenvalue as fraction of the first one is ', num2str(E), '\n'])
+%return
 
   legend_Carnivora = {...
     % Feliformia, red edge
@@ -32,15 +35,28 @@ traits = {'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p
 data = NaN(length(select),3); data(select_01('Carnivora'),:) = y(:,1:3);
 
 % plot with legend in second figure
-Hfig = shstat(data, legend_Carnivora, 'MDS for Carnivora');
+shstat_options('default');
+shstat_options('x_transform', 'none');
+shstat_options('y_transform', 'none');
+shstat_options('z_transform', 'none');
+[Hfig, Hleg] = shstat(data, legend_Carnivora, ['Carnivora ', num2str(length(species)), ' @ ', datestr(date,26)]);
+
+fig(Hleg)
+title('Carnivora');
+%saveas (Hleg, 'CarnivoraLegend.png')
 
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Canidae');
 connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Pinnipedia');
+
+%saveas (Hfig, 'CarnivoraMds.png')
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
 plot(1:n_t, e(1:n_t), '*b', n_t+1:n_e, e(n_t+1:n_e), '*r')
 xlabel('rank');
 ylabel('eigenvalue');
+title('MDS for Carnivora');
+set(gca, 'FontSize', 15, 'Box', 'on');
+%saveas (gca, 'CarnivoraEigen.png')
 

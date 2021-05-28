@@ -23,7 +23,8 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
 %
 % * vars: cell string with name(s) of 1, 2 or 3 parameters and/or statistics or a data  array
 % * legend: (m,2)-array with legend: (marker, taxon)-pairs; optional for 1 independent variable
-% * label_title: optional string for title of figure
+% * label_title: optional string for title of figure, 
+%     or cell-string with second cell for title of legend
 % * Hfig: optional figure handle (to get the plot in a specified figure)
 %
 % Output
@@ -212,7 +213,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
     if strcmp(x_label, 'on')
       label_x = [label_x, ', ', symbol_x, ', ', units_x];
     else
-      label_x = [symbol_x, ', ', units_x];
+      label_x = '';
     end
   end
   if n_vars > 1 && strcmp (y_transform, 'log10')
@@ -220,13 +221,13 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
     if strcmp(y_label, 'on')
       label_y = [label_y, ', _{10}log ', symbol_y, ', ', units_y];
     else
-      label_y = ['_{10}log ', symbol_y, ', ', units_y];
+      label_y = '';
     end
   elseif n_vars > 1
     if strcmp(y_label, 'on')
       label_y = [label_y, ', ', symbol_y, ', ', units_y];
     else
-      label_y = [symbol_y, ', ', units_y];
+      label_y = '';
     end
   end
   if n_vars > 2 && strcmp (z_transform, 'log10')
@@ -234,13 +235,13 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
     if strcmp(z_label, 'on')
       label_z = [label_z, ', _{10}log ', symbol_z, ', ', units_z];
     else
-      label_z = ['_{10}log ', symbol_z, ', ', units_z];
+      label_z = '';
     end
   elseif n_vars > 2
     if strcmp(z_label, 'on')
       label_z = [label_z, ', ', symbol_z, ', ', units_z];
     else
-      label_z = [symbol_z, ', ', units_z];
+      label_z = '';
     end
   end
     
