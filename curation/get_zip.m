@@ -22,7 +22,7 @@ function zip = get_zip(my_pet)
 %% Example of use
 % zip = get_zip('Bufo_bufo')
 
-zip = cellstr(ls('../../add_my_pet/entries_archive/')); % get ls of all files in subdir
+zip = cellstr(ls('../../deblab/add_my_pet/entries_archive/')); % get ls of all files in subdir
 % append _2 to name of mypet to avoid selection of subspecies/races
 zip = zip(~cellfun('isempty',strfind(zip, [my_pet, '_2']))); % all my_pet_yyyymmdd.zip 's
 date = zip; n = length(zip); ntxt = 1 + length(my_pet);

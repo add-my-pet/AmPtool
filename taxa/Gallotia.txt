@@ -1,1 +1,7 @@
+Gallotia_atlantica
+Gallotia_bravoana
+Gallotia_caesaris
 Gallotia_galloti
+Gallotia_intermedia
+Gallotia_simonyi
+Gallotia_stehlini
