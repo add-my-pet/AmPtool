@@ -194,7 +194,8 @@ fprintf(fid_about, '        i.e. simple Arrhenius applies between a lower and an
 fprintf(fid_about, '      In a few (e.g. polar) cases, where it was necessary to quantify rate reductions for increasing temperatures lower than the reference temperature,\n');
 fprintf(fid_about, '        a different (i.e. lower) reference temperature had to be selected, which affects the comparability of species; \n');
 fprintf(fid_about, '      the reference temperature needs to fall within the temperature tolerance range for consistency reasons.\n');
-fprintf(fid_about, '      The extension is only used if enough data is available; the applied correction factor is given on the "implied traits" page.\n\n');
+fprintf(fid_about, '      The extension is only used if enough data is available; the applied correction factor is given on the "implied traits" page, \n');
+fprintf(fid_about, '      so it is always possible to undo the temperature correction.\n\n');
 
 fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      At 2018/01/01, when the collection had 1000 entries, there were \n');
