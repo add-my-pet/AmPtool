@@ -3,7 +3,7 @@
 
 %%
 function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11
 
 %% Syntax
 % <run_collection_intro *run_collection_intro*> (entries)
@@ -85,11 +85,24 @@ prt_patterns; % add_my_pet/patterns.html
 prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
 prt_about; % add_my_pet/about.html
 
-% sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
+% cleanup
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
 delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
+
+% sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 cd('..\'); % go from AmPtool/curation to AmPtool
-% system('powershell gh commit -am "extension"; gh push'); % does not work yet
+if ismac || isunix
+  % system('git status');
+  system('git add AmPtool/taxa/* AmPtool/docs/*');
+  system('git commit -am "extension"');
+  system('git push origin master');
+else
+  % system('powershell git status');
+  system('powershell git add AmPtool/taxa/* AmPtool/docs/*');
+  system('powershell git commit -am "extension"');
+  system('powershell git push origin master');
+end
+
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 if ismac || isunix
   system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
