@@ -51,30 +51,42 @@ function [dist, val, parnms] = dist_sol(solutionSet, norm)
     end
   end
           
-  % traits and weights
-  for j = 1:n_par % set weight-structure
-    wght.((parnms{j})) = weights(j);    
-  end
-  % compose structures for input in loss function
+%   % weights
+%   for j = 1:n_par % set weight-structure
+%     wght.((parnms{j})) = weights(j);    
+%   end
+%   % compose structures for input in loss function
+%   for i = 1:n_sol
+%     for j = 1:n_par
+%       data.(solnms{i}).(parnms{j}) = val(i,j);
+%     end
+%   end
+%   
+%   % compute distances
+%   for i = 1:n_sol
+%     for j = i+1:n_sol
+%       dist(i,j) = lossfun(data.(solnms{i}), data.(solnms{j}), wght);
+%     end
+%   end
+
   for i = 1:n_sol
-    for j = 1:n_par
-      data.(solnms{i}).(parnms{j}) = val(i,j);
+    for j = i+1:n_sol
+      dist(i,j) = sum((val(i,:) - val(j,:)).^2 ./ (val(i,:).^2 + val(j,:).^2));
     end
   end
-  
-  % compute distances
-  for i = 1:n_sol
-    for j = i+1:n_par
-      dist(i,j) = lossfun(data.(solnms{i}), data.(solnms{j}), wght);
-    end
-  end
-  
+
   dist = dist + dist';
   
   close all
-  [y, e] = cmdscale(dist,3);
-  plot3(y(:,1),y(:,2),y(:,3),'.r','MarkerSize',10)
-  
+  figure(1)
+  [y, e] = cmdscale(dist,2);
+  %plot3(y(:,1),y(:,2),y(:,3),'.r','MarkerSize',10)
+  plot(y(:,1),y(:,2),'.r','MarkerSize',10);
+ 
+  h = datacursormode(gcf);
+  h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, solnms, y(:,1:2));
+  datacursormode on % mouse click on plot
+
 end
 
 function sel = Contains(nm, str)
