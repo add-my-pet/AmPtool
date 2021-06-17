@@ -110,6 +110,7 @@ for i_step = 1:n_step
       fprintf('Check that the links to web pages in the references list actually work. \n');
       fprintf('*****************************************************************  \n');
       fprintf('*****************************************************************  \n\n');
+      pause(3)
       delete([my_pet,'_bib.bib'],[my_pet,'_bib.html']); % delete produced files
       
     case 6 % Check absence of escaped characters in comment, discussion, facts
@@ -197,6 +198,7 @@ for i_step = 1:n_step
 
       
     case 9 % Check if results_my_pet.mat matches pars_init_my_pet.m
+     fprintf( '\n Step %d. Check if results_my_pet.mat matches pars_init_my_pet.m\n\n', step);
       [infoPar, infoMetaPar, infoTxtPar] = matisinit(my_pet);
       if ~infoPar
         fprintf('Warning from matisinit: parameters differ between pars_init_my_pet.m and results_my_pet.mat\n');
@@ -217,6 +219,7 @@ for i_step = 1:n_step
       if prnt
         prt_report_my_pet({par, metaPar, txtPar, metaData}, [], metaData.T_typical, 1);
         web(['report_',my_pet,'.html'],'-browser');    % open html of bibliography in system browser
+        pause(3)
         delete(['report_',my_pet,'.html']); % delete produced file
       end
 
