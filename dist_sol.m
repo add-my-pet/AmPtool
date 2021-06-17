@@ -78,13 +78,14 @@ function [dist, val, parnms] = dist_sol(solutionSet, norm)
   dist = dist + dist';
   
   close all
+  
   figure(1)
-  [y, e] = cmdscale(dist,2);
-  %plot3(y(:,1),y(:,2),y(:,3),'.r','MarkerSize',10)
-  plot(y(:,1),y(:,2),'.r','MarkerSize',10);
+  [y, e] = cmdscale(dist,3);
+  plot3(y(:,1),y(:,2),y(:,3),'.r','MarkerSize',10)
+  %plot(y(:,1),y(:,2),'.r','MarkerSize',10);
  
   h = datacursormode(gcf);
-  h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, solnms, y(:,1:2));
+  h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, solnms, y);
   datacursormode on % mouse click on plot
 
 end
