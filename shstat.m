@@ -77,13 +77,13 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   % get (x,y,z)-values, units, label
   if isnumeric(vars) % numerical mode, read_allStat is bypassed
     val = vars;
-    [n_entries n_vars] = size(vars); 
+    [n_entries, n_vars] = size(vars); 
     units_x = []; units_y = []; units_z = [];
     label_x = []; label_y = []; label_z = [];
     entries = select;
-    if ~(n_entries == length(entries))
-      fprintf('Warning from shstat: number data-points is not equal to number of entries\n');
-    end
+%     if ~(n_entries == length(entries)) 
+%       fprintf('Warning from shstat: number data-points is not equal to number of entries\n');
+%     end
   else % read values of variables, units and labels using read_allStat
     n_vars = length(vars);
     switch n_vars
