@@ -6,7 +6,7 @@ function galleryAmP(taxon)
 % created 2021/03/07 Bas Kooijman
 
 %% Syntax
-% <../galleryAmP.m *galleryAmP*> 
+% <../galleryAmP.m *galleryAmP*> (taxon)
 
 %% Description
 % Writes html file with jpg's with name taxon_jpg.html in current directory, where taxon is replaced by name of taxon.
