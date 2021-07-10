@@ -1,0 +1,144 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>dist_mean</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-07-10"><meta name="DC.source" content="dist_mean.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">dist_mean</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="1">dist_mean</h2><p>computes a symmetric matrix of mean distances given a symmetric matrix of distances</p><h2 id="3">Syntax</h2><p>mdist = <a href="../dist_mean.m"><b>dist_mean</b></a> (dist, taxa)</p><h2 id="4">Description</h2><p>computes a symmetric matrix of mean distances between selected taxa (non-zero diagonal) given a symmetric matrix of distances of species All species that are member of the taxa must be in the  species-distances</p><p>Input:</p><div><ul><li>dist: symmetrix square spcies-distance matrix</li><li>taxa: (n, 1)-cell array with names of taxa</li></ul></div><p>Output:</p><div><ul><li>mdist: square symmetric matrix of mean taxa-distances, with non-zero diagonal</li></ul></div><h2 id="5">Remarks</h2><p><a href="lineage.html"><b>lineage</b></a> is used to identify the taxon that was used to create the species-distance matrix. All members of taxa must be members of this taxon. Diagonal elements are only zero for a taxon if that taxon has only 1 member species.</p><h2 id="6">Example of use</h2><p>dist = dist_traits(select('Squalomorphi', {'p_M';'v';'a_b'})); mdist = dist_mean(dist,{'Squatiniformes','Pristiophoriformes','Squaliformes','Hexanchiformes'}); see mydata_seq</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% dist_mean
+% computes a symmetric matrix of mean distances given a symmetric matrix of distances
+
+function mdist = dist_mean(dist, taxa)
+% created 2021/07/10 by Bas Kooijman
+
+%% Syntax
+% mdist = <../dist_mean.m *dist_mean*> (dist, taxa) 
+
+%% Description
+% computes a symmetric matrix of mean distances between selected taxa (non-zero diagonal) given a symmetric matrix of distances of species
+% All species that are member of the taxa must be in the  species-distances
+%
+% Input:
+%
+% * dist: symmetrix square spcies-distance matrix
+% * taxa: (n, 1)-cell array with names of taxa
+%
+% Output:
+%
+% * mdist: square symmetric matrix of mean taxa-distances, with non-zero diagonal
+
+%% Remarks
+% <lineage.html *lineage*> is used to identify the taxon that was used to create the species-distance matrix.
+% All members of taxa must be members of this taxon.
+% Diagonal elements are only zero for a taxon if that taxon has only 1 member species.
+
+%% Example of use
+% dist = dist_traits(select('Squalomorphi', {'p_M';'v';'a_b'}));
+% mdist = dist_mean(dist,{'Squatiniformes','Pristiophoriformes','Squaliformes','Hexanchiformes'});
+% see mydata_seq
+
+% identify taxon that belongs to dist
+lin = lineage(taxa{1}); n_lin = length(lin); i = 1; n_dist = size(dist,2);
+while i < n_lin
+  n_taxon = length(select(lin{n_lin - i}));
+  if n_dist == n_taxon
+    taxon = lin{n_lin - i};
+    break
+  elseif n_dist < n_taxon
+    fprintf('Warning from dist_mean: no taxon found for distance matrix\n')
+    mdist = []; return
+  end
+  i = i + 1;
+end
+if i == n_lin
+  fprintf('Warning from dist_mean: no taxon found for distance matrix\n')
+  mdist = []; return
+end
+
+% identify the species-indices of members of taxa in dist
+spec = select(taxon); ind = 1:n_dist; 
+n_taxa = length(taxa); ind_taxa = cell(n_taxa,1);
+for i = 1:n_taxa
+  speci = select(taxa{i});
+  ind_taxa{i} = ind(ismember(speci, spec));
+  if isempty(ind_taxa{i})
+    fprintf('Warning from dist_mean: taxon %s is not found in distance matrix\n', taxa{i})
+    mdist = []; return
+  end
+end
+
+% fill the mean distance matrix
+mdist = zeros(n_taxa);
+for i = 1:n_taxa
+  for j = i : n_taxa
+    d = dist(ind_taxa{i}, ind_taxa{j}); % sub-matrix of distances
+    mdist(i,j) = mean(d(:));
+    mdist(j,i) = mdist(i,j);
+  end
+end
+
+##### SOURCE END #####
+--></body></html>
