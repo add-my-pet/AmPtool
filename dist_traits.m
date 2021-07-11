@@ -13,7 +13,7 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
 %
 % Input:
 %
-% * my_pets: cell-string of AmP entry names
+% * my_pets: cell-string of n AmP entry names
 % * traits: (n, 1 or 2)-cell array with names of traits and optional weights (default all weights equal to 1)
 % * norm: optional boolean for loss function F_sb (0, default) or F_su (1) as distance measure
 %
@@ -30,44 +30,37 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
 %% Example of use
 % dist = dist_traits(select('Ctenophora'),{'p_M';'v';'a_b'});
 
-  global lossfunction
-
-  if ~exist('norm','var') || isempty(norm) || norm==0 
-    lossfunction = 'sb';
-  else 
-    lossfunction = 'su';
+  % weights
+  if size(traits,2) == 2
+    weights = traits{:,2}; traits = traits(:,1); 
+  else
+    weights = ones(length(traits),1);
   end
-
-  % initiate output
+  
+  % traits
+  val = read_stat(my_pets, traits); % species-trait matrix with values
+  
+  % initiate distance matrix
   n_pets = length(my_pets); dist = zeros(n_pets);
   if n_pets == 1
     dist = 0; val = []; return
   end
 
-  % traits and weights
-  if size(traits,2) == 2
-    weights = traits{:,2}; traits = traits(:,1); n_traits = length(traits);
-  else
-    traits = traits(:,1); n_traits = length(traits); weights = ones(n_traits,1);
-  end
-  val = read_stat(my_pets, traits); % trait-value matrix
-  for j = 1:n_traits % set weight-structure
-    wght.((traits{j})) = weights(j);    
-  end
-  % compose structures for input in loss function
-  for i = 1:n_pets
-    for j = 1:n_traits
-      data.(my_pets{i}).(traits{j}) = val(i,j);
+  % fill distance matrix
+  if ~exist('norm','var') || isempty(norm)  % lossfuction symmetric bounded
+    for i = 1:n_pets
+      for j = i+1:n_pets
+        dist(i,j) = (val(i,:) - val(j,:)).^2 ./ (val(i,:).^2 + val(j,:).^2) * weights;
+      end
     end
+  else % lossfuction symmetric unbounded
+    for i = 1:n_pets
+      for j = i+1:n_pets
+        dist(i,j) = (val(i,:) - val(j,:)).^2 .* (1./val(i,:).^2 + 1./val(j,:).^2) * weights;
+      end
+    end     
   end
-  
-  % compute distances
-  for i = 1:n_pets
-    for j = i+1:n_pets
-      dist(i,j) = lossfun(data.(my_pets{i}), data.(my_pets{j}), wght);
-    end
-  end
-  
+
   dist = dist + dist';
   
 end
