@@ -24,7 +24,7 @@ data = NaN(length(select),3); data(select_01('Chondrichthyes'),:) = y(:,1:3);
 Hfig = shstat(data, legend_shark, 'MDS for Chondrichthyes');
 
 % connect the points for subclades
-% connect_subclade(Hfig, y(:,1:3), 'Animalia', 'Chelonioidea');
+% connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Carcharhiniformes');
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -32,5 +32,5 @@ plot(1:n_t, e(1:n_t), '*b', n_t+1:n_e, e(n_t+1:n_e), '*r')
 xlabel('rank');
 ylabel('eigenvalue');
 
-PhyloTree = seqlinkage(distances, 'single', species);
+PhyloTree = seqlinkage(distances, 'average', species);
 view(PhyloTree);
