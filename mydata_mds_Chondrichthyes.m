@@ -49,6 +49,7 @@ title('Chondrichthyes');
 
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Chimaeriformes');
+connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Myliobatiformes');
 %saveas (Hfig, 'ChondrichthyesMds.png')
 
 figure % plot eigenvalues
