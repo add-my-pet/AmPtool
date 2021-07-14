@@ -16,7 +16,7 @@ traits = {'a_m'; 'a_p'; 'a_b'; 'Ww_i'; 'Ww_p'; 'Ww_b'; 'R_i'; 's_s'; 's_Hbp'; 'p
 % first compute distance-matrix and pass it to cmdscale
 [y, e] = cmdscale(dist_traits(species, traits)); % configuration matrix, eigenvalues
 n_traits= length(traits); E = e(n_traits)/e(1);
-fprintf(['With ', num2str(n_traits), ' traits the, ', num2str(n_traits), '-th eigenvalue as fraction of the first one is ', num2str(E), '\n'])
+fprintf(['With ', num2str(n_traits), ' traits the ', num2str(n_traits), '-th eigenvalue as fraction of the first one is ', num2str(E), '\n'])
 %return
 
   legend_Chondrichthyes = {...
@@ -49,6 +49,7 @@ title('Chondrichthyes');
 
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Chimaeriformes');
+%connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Myliobatiformes');
 %saveas (Hfig, 'ChondrichthyesMds.png')
 
 figure % plot eigenvalues

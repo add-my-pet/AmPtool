@@ -77,13 +77,13 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   % get (x,y,z)-values, units, label
   if isnumeric(vars) % numerical mode, read_allStat is bypassed
     val = vars;
-    [n_entries n_vars] = size(vars); 
+    [n_entries, n_vars] = size(vars); 
     units_x = []; units_y = []; units_z = [];
     label_x = []; label_y = []; label_z = [];
     entries = select;
-    if ~(n_entries == length(entries))
-      fprintf('Warning from shstat: number data-points is not equal to number of entries\n');
-    end
+%     if ~(n_entries == length(entries)) 
+%       fprintf('Warning from shstat: number data-points is not equal to number of entries\n');
+%     end
   else % read values of variables, units and labels using read_allStat
     n_vars = length(vars);
     switch n_vars
@@ -325,7 +325,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
           v1 = val_plot(sel(:,i)==1,1); v2 = val_plot(sel(:,i)==1,2); v3 = val_plot(sel(:,i)==1,3); n_taxai = length(v1);
           [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort according to v3 to handle overlapping marker plots within a taxon
           range = [min(v3) 1.1 * max(v3)]; color = color_lava((v3 - range(1))/ (range(2) - range(1))); % set colors accoring to v3
-          plot_val = [v1, v2, v3];
+          val_plot = [v1, v2, v3];
           for i = 1:n_taxai
             plot3(v1(i), v2(i), v3(i), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', color(i,:), 'MarkerEdgeColor', color(i,:))
           end

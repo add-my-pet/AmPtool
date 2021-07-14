@@ -90,15 +90,14 @@ delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
 delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
-cd('..\'); % go from AmPtool/curation to AmPtool
 if ismac || isunix
   % system('git status');
-  system('git add AmPtool/taxa/* AmPtool/docs/*');
+  system('git add ../taxa/* ../docs/*');
   system('git commit -am "extension"');
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add AmPtool/taxa/* AmPtool/docs/*');
+  system('powershell git add ../taxa/* ../docs/*');
   system('powershell git commit -am "extension"');
   system('powershell git push origin master');
 end
