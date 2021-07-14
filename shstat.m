@@ -276,17 +276,20 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         end
         x_median = median(val_plot); x_min = min(val_plot);
         surv_x = surv(val_plot); 
-        plot([x_min; x_median; x_median], [0.5;0.5;0], colmed, surv_x(:,1), surv_x(:,2), colfn, 'Linewidth', 2)
+        plot([x_min; x_median; x_median], [0.5;0.5;0], colmed, surv_x(:,1), surv_x(:,2), colfn, 'LineWidth', 1.5, 'LineStyle', ':')
         
       elseif n_taxa > 1 
+        xlim_val = [1e6 0];
         for j = 1:n_taxa
           i = n_taxa - j + 1; % reverse sequence of plotting to get crossings of lines natural
           line = legend{i,1}; LT = line{1}; LW = line{2}; LC = line{3};  
           x_median = median(val_plot(sel(:,i)==1,1)); x_min = min(val_plot(sel(:,i)==1,1));
           surv_x = surv(val_plot(sel(:,i)==1, 1)); 
-          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', LW)
+          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', 1.5, 'LineStyle', ':')
           plot(surv_x(:,1), surv_x(:,2), LT, 'Color', LC, 'Linewidth', LW)
+          xlim_val = [min(xlim_val(1),min(surv_x(:,1))), max(xlim_val(2),max(surv_x(:,1)))]; 
         end
+        xlim(xlim_val);
         Hleg = shllegend(legend); % show line-legend
       end
       
