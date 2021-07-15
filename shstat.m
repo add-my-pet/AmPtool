@@ -289,7 +289,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
           surv_x = surv(val_plot(sel(:,i)==1, 1)); 
           plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', 1.5, 'LineStyle', ':')
           plot(surv_x(:,1), surv_x(:,2), LT, 'Color', LC, 'Linewidth', LW, 'LineStyle', '-')
-          xlim_min = min(xlim_val(1),min(surv_x(:,1))); 
+          xlim_min = min(xlim_min,min(surv_x(:,1))); 
         end
         xlim([xlim_min inf])
         Hleg = shllegend(legend); % show line-legend
