@@ -53,7 +53,7 @@ for i = 1:n
       ylabel('_{10}log max growth, g/d')
 
       saveas(Hfig, [path, 'logW-logdW.png'])
-      saveas(Hleg, [path, 'legends_logW-logdW.png'])
+      saveas(Hleg, [path, 'legend_logW-logdW.png'])
 
     case 2 % Fig 2: log W-log J_O
       shstat_options('default');
@@ -68,19 +68,18 @@ for i = 1:n
       ylabel('_{10}log O_2 consumption, mol/d')
 
       saveas(Hfig, [path, 'logW-logJO.png'])
-      saveas(Hleg, [path, 'legends_logW-logJO.png'])
+      saveas(Hleg, [path, 'legend_logW-logJO.png'])
 
     case 3 % Fig 3: log V_m - log [E_m]
       shstat_options('default');
-      LiEm = read_allStat('L_i', 'E_m'); L_i = LiEm(:,1); E_m = LiEm(:,2);
-      [Hfig, Hleg] = shstat([L_i.^3, E_m], legend_shark, datestr(datenum(date),'yyyy/mm/dd')); 
+      [Hfig, Hleg] = shstat({'p_Am', 'E_m'}, legend_RSED, datestr(datenum(date),'yyyy/mm/dd')); 
     
       figure(Hfig) % add labels to figure, because this is not done by shstat in numerical mode
-      xlabel('_{10}log ultimate structural volume, cm^3')      
-      ylabel('_{10}log max reserve capacity, J/cm^3')
+      xlabel('_{10}log spec assimilation, \{p_{Am}\}, J/d.cm^2')      
+      ylabel('_{10}log max reserve capacity, [E_m], J/cm^3')
 
       saveas(Hfig, [path, 'logV-logEm.png'])
-      saveas(Hleg, [path, 'legends_logV-logEm.png'])
+      saveas(Hleg, [path, 'legend_logV-logEm.png'])
 
     case 4 % Fig 4: log V_m - log [p_M] ([p_M] is given at T_ref)
       shstat_options('default');
@@ -92,7 +91,7 @@ for i = 1:n
       ylabel('_{10}log spec som maint, J/d.cm^3')
 
       saveas(Hfig, [path, 'logV-logpM.png'])
-      saveas(Hleg, [path, 'legends_logV-logpM.png'])
+      saveas(Hleg, [path, 'legend_logV-logpM.png'])
 
     case 5 % Fig 5: low p_M- log RW
       shstat_options('default');
@@ -104,7 +103,7 @@ for i = 1:n
       ylabel('_{10}log max reprod rate \times W_d^b/ W_d^\infty, 1/d')
 
       saveas(Hfig, [path, 'logpM-logRW.png'])
-      saveas(Hleg, [path, 'legends_logpM-logRW.png'])
+      saveas(Hleg, [path, 'legend_logpM-logRW.png'])
 
     case 6 % Fig 6: log p_M - log dW/W
       shstat_options('default');
@@ -116,7 +115,7 @@ for i = 1:n
       ylabel('_{10}log spec max growth rate, 1/d')
 
       saveas(Hfig, [path, 'logpM-logdWW.png'])
-      saveas(Hleg, [path, 'legends_logpM-logdWW.png'])
+      saveas(Hleg, [path, 'legend_logpM-logdWW.png'])
 
     case 7 % Fig 7: log ss - kap
       shstat_options('default');
@@ -131,7 +130,7 @@ for i = 1:n
       plot(log10(ss), kap, 'k', 'Linewidth', 2)
       ylim([0 1]);
       saveas(Hfig, [path, 'logss-kap.png'])
-      saveas(Hleg, [path, 'legends_logss-kap.png'])
+      saveas(Hleg, [path, 'legend_logss-kap.png'])
 
     case 8 % Fig 8: ss - kap
       shstat_options('x_transform', 'none');
@@ -147,7 +146,7 @@ for i = 1:n
       xlim([0 4/27]); ylim([0 1]);
       saveas(Hfig, [path, 'ss-kap.png'])
       Hleg = shlegend(legend_vert, [], [0.9 0.25]); % reduce height of legend
-      saveas(Hleg, [path, 'legends_ss-kap.png'])
+      saveas(Hleg, [path, 'legend_ss-kap.png'])
   end
 end
 
