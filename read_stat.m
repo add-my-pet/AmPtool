@@ -13,7 +13,7 @@ function [var units label] = read_stat(entries, varargin)
 %
 % Input:
 %
-% * entries: n-cell string with names of entries
+% * entries: string with name of taxon or n-cell string with names of entries
 % * varargin: names of variables or cell-string with names of variables
 %
 % Output
@@ -25,7 +25,7 @@ function [var units label] = read_stat(entries, varargin)
 %% Remarks
 % Make sure that allStat has been generated at the correct temperature; 
 % All parameters are at T_ref, the statistics at T or T_typical, see <write_allStat.html *write_allStat*>.
-% Print all to screen: printpar(entries, read_stat(entries, 'Ww_i'))
+% Print all to html: prt_tab({'Testudines', read_stat('Testudines', 'Ww_i')},{'Testudines', 'Ww_i'})
 % Put core parameters in a structure with <read_pars.html *read_pars*>
 % Use <read_allStat.html *read_allStat*> to include all entries.
 
@@ -34,8 +34,12 @@ function [var units label] = read_stat(entries, varargin)
   
   persistent allStat
   
-  if ~exist('allStat','var') || length(allStat) == 0
+  if ~exist('allStat','var') || isempty(allStat)
     load('allStat')        % get all parameters and statistics in structure allStat
+  end
+  
+  if ~iscell(entries) % entries is name of taxon rather than a cell string
+    entries = select(entries);
   end
   
   n = length(entries); 
