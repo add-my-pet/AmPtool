@@ -34,3 +34,4 @@ ylabel('eigenvalue');
 
 PhyloTree = seqlinkage(distances, 'average', species);
 view(PhyloTree);
+
