@@ -1,0 +1,37 @@
+%% get_id_EoL
+% gets id in Encyclopedia of Life
+
+%%
+function id = get_id_EoL(my_pet)
+% created 2021/08/01 by Bas Kooijman
+
+%% Syntax
+% id = <../get_id_EoL.m *get_id_EoL*>(my_pet)
+
+%% Description
+% Gets identifier for Encyclopedia of Life
+%
+% Input:
+%
+% * my_pet: character string with name of a taxon
+%
+% Output:
+%
+% * id: character string with id accepted name in EoL
+
+%% Remarks
+% Outputs empty strings if identification was not successful.
+
+%% Example of use
+% [id, nm] = get_id_EoL('Squalus_acanthias')
+
+nm = strsplit(my_pet,'_'); % genus, species
+url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
+title = ['"', nm{1}, ' ', nm{2}, '"'];
+i_1 = strfind(url,['"title":',title]); 
+if isempty(i_1)
+  id = ''; return
+end
+i_0 = 5 + strfind(url(1:i_1),'"id":'); i_1 = i_0(end)+strfind(url(i_0(end):end),',') - 2;
+id = url(i_0(end):i_1(1));
+
