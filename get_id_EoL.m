@@ -13,7 +13,7 @@ function id = get_id_EoL(my_pet)
 %
 % Input:
 %
-% * my_pet: character string with name of a taxon
+% * my_pet: character string with name of a species
 %
 % Output:
 %
@@ -25,9 +25,20 @@ function id = get_id_EoL(my_pet)
 %% Example of use
 % [id, nm] = get_id_EoL('Squalus_acanthias')
 
-nm = strsplit(my_pet,'_'); % genus, species
-url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
-title = ['"', nm{1}, ' ', nm{2}, '"'];
+if ~isempty(strfind(my_pet, '_'));
+  nm = strsplit(my_pet,'_'); % genus, species
+elseif ~isempty(strfind(my_pet, ' '));
+  nm = strsplit(my_pet,' '); % genus, species
+else
+  nm = my_pet;
+end
+if iscell(nm)
+  url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
+  title = ['"', nm{1}, ' ', nm{2}, '"'];
+else
+  url = urlread(['https://eol.org/api/search/1.0.json?q=',nm]);
+  title = ['"', nm, '"'];
+end
 i_1 = strfind(url,['"title":',title]); 
 if isempty(i_1)
   id = ''; return
