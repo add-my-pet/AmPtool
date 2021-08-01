@@ -2,11 +2,11 @@
 % gets id of species name in Catolog of Life
 
 %%
-function [id_CoL accepted_name] = get_id_CoL(my_pet)
+function [id_CoL accepted_name] = get_id_CoL(my_pet, show_in_browser)
 % created 2018/01/05 by Bas Kooijman
 
 %% Syntax
-% [id_CoL accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet)
+% [id_CoL accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, show_in_browser)
 
 %% Description
 % Gets identifier for an accepted species name in the Catalog of Life
@@ -14,6 +14,7 @@ function [id_CoL accepted_name] = get_id_CoL(my_pet)
 % Input:
 %
 % * my_pet: character string with name of a taxon
+% * show_in_browser: optional boolean for opening in browser (defaul: 0)
 %
 % Output:
 %
@@ -26,6 +27,15 @@ function [id_CoL accepted_name] = get_id_CoL(my_pet)
 
 %% Example of use
 % id_CoL = get_id_CoL('Daphnia_magna')
+
+address = 'https://www.catalogueoflife.org/data/taxon/';
+if ~exist('show_in_browser','var')
+  show_in_browser = 0;
+end
+
+if ~isempty(strfind(my_pet, ' '));
+  my_pet = strrep(my_pet,' ','_');
+end
 
 my_pet_CoL = strrep(my_pet, '_', '+');
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet_CoL]);
@@ -62,4 +72,8 @@ end
 
 if isempty(id_CoL)
   fprintf('Warning from get_id_CoL: No accepted species found in CoL\n');
+end
+
+if show_in_browser
+  web([address, id_CoL],'-browser');
 end

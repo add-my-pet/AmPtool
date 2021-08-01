@@ -67,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_WoRMS</h1><!--introduction--><p>gets id of accepted species name in World Register of Marine Species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, nm] = <a href="../get_id_WoRMS.m"><b>get_id_WoRMS</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Gets identifier for the accepted species name in the World Register of Marine Species</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li></ul></div><p>Output:</p><div><ul><li>id: character string with id accepted name in WoRMS</li><li>nm: character string with accepted name in WoRMS, which might or might not be identical to my_pet (but space-separated)</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>[id, nm] = get_id_WoRMS('Squalus_acanthias')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_WoRMS</h1><!--introduction--><p>gets id of accepted species name in World Register of Marine Species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, nm] = <a href="../get_id_WoRMS.m"><b>get_id_WoRMS</b></a>(my_pet, show_in_browser)</p><h2 id="4">Description</h2><p>Gets identifier for the accepted species name in the World Register of Marine Species</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>show_in_browser: optional boolean for opening in browser (defaul: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id accepted name in WoRMS</li><li>nm: character string with accepted name in WoRMS, which might or might not be identical to my_pet (but space-separated)</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>[id, nm] = get_id_WoRMS('Squalus_acanthias')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_id_WoRMS
 % gets id of accepted species name in World Register of Marine Species
 
 %%
-function [id, nm] = get_id_WoRMS(my_pet)
+function [id, nm] = get_id_WoRMS(my_pet, show_in_browser)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, nm] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet)
+% [id, nm] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, show_in_browser)
 
 %% Description
 % Gets identifier for the accepted species name in the World Register of Marine Species
@@ -85,6 +85,7 @@ function [id, nm] = get_id_WoRMS(my_pet)
 % Input:
 %
 % * my_pet: character string with name of a taxon
+% * show_in_browser: optional boolean for opening in browser (defaul: 0)
 %
 % Output:
 %
@@ -96,6 +97,18 @@ function [id, nm] = get_id_WoRMS(my_pet)
 
 %% Example of use
 % [id, nm] = get_id_WoRMS('Squalus_acanthias')
+
+address = 'http://marinespecies.org/aphia.php?p=taxdetails&id=';
+if ~exist('show_in_browser','var')
+  show_in_browser = 0;
+end
+
+if ~isempty(strfind(my_pet, '_'));
+  nm = strsplit(my_pet,'_'); % genus, species
+elseif ~isempty(strfind(my_pet, ' '));
+  nm = strsplit(my_pet,' '); % genus, species
+  my_pet = strrep(my_pet,' ','_');
+end
 
 % AphiaID
 url = urlread(['http://www.marinespecies.org/rest/AphiaRecordsByName/', my_pet]);
@@ -109,6 +122,11 @@ id = url(i_0(1):i_1(1)-2);
 % accepted name
 i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
 nm = url(i_0(1):i_1(1)-2);
+
+if show_in_browser
+  web([address, id],'-browser');
+end
+
 
 ##### SOURCE END #####
 --></body></html>

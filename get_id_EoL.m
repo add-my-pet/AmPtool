@@ -2,11 +2,11 @@
 % gets id in Encyclopedia of Life
 
 %%
-function id = get_id_EoL(my_pet)
+function id = get_id_EoL(my_pet, show_in_browser)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% id = <../get_id_EoL.m *get_id_EoL*>(my_pet)
+% id = <../get_id_EoL.m *get_id_EoL*>(my_pet, show_in_browser)
 
 %% Description
 % Gets identifier for Encyclopedia of Life
@@ -14,6 +14,7 @@ function id = get_id_EoL(my_pet)
 % Input:
 %
 % * my_pet: character string with name of a species
+% * show_in_browser: optional boolean for opening in browser (defaul: 0)
 %
 % Output:
 %
@@ -24,6 +25,11 @@ function id = get_id_EoL(my_pet)
 
 %% Example of use
 % [id, nm] = get_id_EoL('Squalus_acanthias')
+
+address = 'http://eol.org/pages/';
+if ~exist('show_in_browser','var')
+  show_in_browser = 0;
+end
 
 if ~isempty(strfind(my_pet, '_'));
   nm = strsplit(my_pet,'_'); % genus, species
@@ -45,4 +51,8 @@ if isempty(i_1)
 end
 i_0 = 5 + strfind(url(1:i_1),'"id":'); i_1 = i_0(end)+strfind(url(i_0(end):end),',') - 2;
 id = url(i_0(end):i_1(1));
+
+if show_in_browser
+  web([address, id],'-browser');
+end
 
