@@ -67,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_birdlife</h1><!--introduction--><p>gets id of name in birdlife</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id = <a href="../get_id_birdlife.m"><b>get_id_birdlife</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for birdlife</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id in birdlife</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>id = get_id_birdlife('Passer_domesticus', 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_birdlife</h1><!--introduction--><p>gets id of name in birdlife</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id_birdlife id_avibase] = <a href="../get_id_birdlife.m"><b>get_id_birdlife</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for birdlife</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id_birdlife: character string with id in birdlife</li><li>id_avibase: character string with id in avibase</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful. Does not work perfectly, since id is derive from twitter name in avibase. Possible problems: corn-crake, rather than corncrake, hauxwell's-thrush, rather than hauxwells-thrush</p><h2 id="6">Example of use</h2><p>[id_birdlife id_avibase] = get_id_birdlife('Passer_domesticus', 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_id_birdlife
 % gets id of name in birdlife
 
 %%
-function id = get_id_birdlife(my_pet, open)
+function [id_birdlife id_avibase] = get_id_birdlife(my_pet, open)
 % created 2021/08/02 by Bas Kooijman
 
 %% Syntax
-% id = <../get_id_birdlife.m *get_id_birdlife*>(my_pet, open)
+% [id_birdlife id_avibase] = <../get_id_birdlife.m *get_id_birdlife*>(my_pet, open)
 
 %% Description
 % Gets identifier for birdlife
@@ -89,26 +89,33 @@ function id = get_id_birdlife(my_pet, open)
 %
 % Output:
 %
-% * id: character string with id in birdlife
+% * id_birdlife: character string with id in birdlife
+% * id_avibase: character string with id in avibase
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
+% Does not work perfectly, since id is derive from twitter name in avibase.
+% Possible problems: corn-crake, rather than corncrake, hauxwell's-thrush, rather than hauxwells-thrush
 
 %% Example of use
-% id = get_id_birdlife('Passer_domesticus', 1)
+% [id_birdlife id_avibase] = get_id_birdlife('Passer_domesticus', 1)
 
 address = 'http://datazone.birdlife.org/species/factsheet/';
+address_avibase = 'https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=';
+
 if ~exist('open','var')
   open = 0;
 end
 
-url = urlread(['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', get_id_avibase(my_pet)]);
+id_avibase = get_id_avibase(my_pet); if isempty(id_avibase); id_birdlife = []; return; end
+url = urlread(['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', id_avibase]);
 i_0 = strfind(url,'name="twitter:title" content="') + 30;
 i_1 = strfind(url(i_0:end), '"') + i_0(1) - 2;
-id = lower(url(i_0(1): i_1(1))); id = strrep(id, '- ', '-'); id = strrep(id, ' ', '-');
+id = lower(url(i_0(1): i_1(1))); id = strrep(id, '- ', '-'); id_birdlife = strrep(id, ' ', '-');
 
 if open
-  web([address, id],'-browser');
+  web([address, id_birdlife],'-browser');
+  web([address_avibase, id_avibase],'-browser');
 end
 
 
