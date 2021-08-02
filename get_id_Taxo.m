@@ -1,11 +1,11 @@
 %% get_id_Taxo
 % gets id of species name in the Taxonomicon
 %%
-function id_Taxo = get_id_Taxo(my_pet, show_in_browser)
+function id_Taxo = get_id_Taxo(my_pet, open)
 % created 2018/01/31 by Bas Kooijman
 
 %% Syntax
-% id_Taxo = <../get_id_Taxo.m *get_id_Taxo*>(my_pet, show_in_browser)
+% id_Taxo = <../get_id_Taxo.m *get_id_Taxo*>(my_pet, open)
 
 %% Description
 % Gets identifier for a species name in the Taxonomicon
@@ -13,7 +13,7 @@ function id_Taxo = get_id_Taxo(my_pet, show_in_browser)
 % Input:
 %
 % * my_pet: character string with name of a taxon
-% * show_in_browser: optional boolean for opening in browser (defaul: 0)
+% * open: optional boolean for opening in browser (default: 0)
 %
 % Output:
 %
@@ -27,8 +27,8 @@ function id_Taxo = get_id_Taxo(my_pet, show_in_browser)
 % id_Taxo = get_id_Taxo('Daphnia_magna')
 
 address = 'http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
-if ~exist('show_in_browser','var')
-  show_in_browser = 0;
+if ~exist('open','var')
+  open = 0;
 end
 
 if ~isempty(strfind(my_pet, ' '));
@@ -48,7 +48,7 @@ if isempty(id_Taxo)
   fprintf(['Warning from get_id_Taxo: ', my_pet, ' not found in Taxo\n']);
 end
 
-if show_in_browser
+if open
   web([address, id_Taxo],'-browser');
 end
 

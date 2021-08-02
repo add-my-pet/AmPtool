@@ -2,11 +2,11 @@
 % gets id in Encyclopedia of Life
 
 %%
-function id = get_id_EoL(my_pet, show_in_browser)
+function id = get_id_EoL(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% id = <../get_id_EoL.m *get_id_EoL*>(my_pet, show_in_browser)
+% id = <../get_id_EoL.m *get_id_EoL*>(my_pet, open)
 
 %% Description
 % Gets identifier for Encyclopedia of Life
@@ -14,21 +14,21 @@ function id = get_id_EoL(my_pet, show_in_browser)
 % Input:
 %
 % * my_pet: character string with name of a species
-% * show_in_browser: optional boolean for opening in browser (defaul: 0)
+% * open: optional boolean for opening in browser (default: 0)
 %
 % Output:
 %
 % * id: character string with id accepted name in EoL
 
 %% Remarks
-% Outputs empty strings if identification was not successful.
+% Outputs empty string if identification was not successful.
 
 %% Example of use
-% [id, nm] = get_id_EoL('Squalus_acanthias')
+% id = get_id_EoL('Squalus_acanthias',1)
 
 address = 'http://eol.org/pages/';
-if ~exist('show_in_browser','var')
-  show_in_browser = 0;
+if ~exist('open','var')
+  open = 0;
 end
 
 if ~isempty(strfind(my_pet, '_'));
@@ -52,7 +52,7 @@ end
 i_0 = 5 + strfind(url(1:i_1),'"id":'); i_1 = i_0(end)+strfind(url(i_0(end):end),',') - 2;
 id = url(i_0(end):i_1(1));
 
-if show_in_browser
+if open
   web([address, id],'-browser');
 end
 

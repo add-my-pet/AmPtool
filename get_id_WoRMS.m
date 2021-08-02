@@ -2,11 +2,11 @@
 % gets id of accepted species name in World Register of Marine Species
 
 %%
-function [id, nm] = get_id_WoRMS(my_pet, show_in_browser)
+function [id, nm] = get_id_WoRMS(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, nm] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, show_in_browser)
+% [id, nm] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
 
 %% Description
 % Gets identifier for the accepted species name in the World Register of Marine Species
@@ -14,7 +14,7 @@ function [id, nm] = get_id_WoRMS(my_pet, show_in_browser)
 % Input:
 %
 % * my_pet: character string with name of a taxon
-% * show_in_browser: optional boolean for opening in browser (defaul: 0)
+% * open: optional boolean for opening in browser (default: 0)
 %
 % Output:
 %
@@ -28,8 +28,8 @@ function [id, nm] = get_id_WoRMS(my_pet, show_in_browser)
 % [id, nm] = get_id_WoRMS('Squalus_acanthias')
 
 address = 'http://marinespecies.org/aphia.php?p=taxdetails&id=';
-if ~exist('show_in_browser','var')
-  show_in_browser = 0;
+if ~exist('open','var')
+  open = 0;
 end
 
 if ~isempty(strfind(my_pet, '_'));
@@ -52,7 +52,7 @@ id = url(i_0(1):i_1(1)-2);
 i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
 nm = url(i_0(1):i_1(1)-2);
 
-if show_in_browser
+if open
   web([address, id],'-browser');
 end
 

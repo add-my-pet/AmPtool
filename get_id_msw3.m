@@ -2,11 +2,11 @@
 % gets id in Mammal Species of the World, 3rd ed
 
 %%
-function id = get_id_msw3(my_pet, show_in_browser)
+function id = get_id_msw3(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% id = <../get_id_msw.m *get_id_msw*>(my_pet, show_in_browser)
+% id = <../get_id_msw.m *get_id_msw*>(my_pet, open)
 
 %% Description
 % Gets identifier for Mammal Species of the World, 3rd edition
@@ -14,21 +14,21 @@ function id = get_id_msw3(my_pet, show_in_browser)
 % Input:
 %
 % * my_pet: character string with name of a species
-% * show_in_browser: optional boolean for opening in browser (defaul: 0)
+% * open: optional boolean for opening in browser (default: 0)
 %
 % Output:
 %
 % * id: cell string with id's in msw3 (including all subspecies)
 
 %% Remarks
-% Outputs empty strings if identification was not successful.
+% Outputs empty string if identification was not successful.
 
 %% Example of use
 % id = get_id_msw('Mus_musculus')
 
 address = 'https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id=';
-if ~exist('show_in_browser','var')
-  show_in_browser = 0;
+if ~exist('open','var')
+  open = 0;
 end
 
 if ~isempty(strfind(my_pet, '_'));
@@ -49,7 +49,7 @@ id = msw3(i_species - 10); n_id = length(id); sel = true(n_id,1);
 for i=1:n_id
   code = id{i}; in = strfind(code,'"'); sel(i) = length(in) == 4;
   id{i} = code(in(end-1)+1:in(end)-1);
-  if show_in_browser && sel(i)
+  if open && sel(i)
     web([address, id{i}],'-browser');
   end
 end
