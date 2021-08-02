@@ -30,30 +30,19 @@ function [id_birdlife id_avibase] = get_id_birdlife(my_pet, open)
 % [id_birdlife id_avibase] = get_id_birdlife('Passer_domesticus', 1)
 
 address = 'http://datazone.birdlife.org/species/factsheet/';
-address_avibase = 'https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=';
 
 if ~exist('open','var')
   open = 0;
 end
 
-id_avibase = get_id_avibase(my_pet); if isempty(id_avibase); id_birdlife = []; return; end
-% url = urlread(['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', id_avibase]);
-% i_0 = strfind(url,'name="twitter:title" content="') + 30;
-% i_1 = strfind(url(i_0:end), '"') + i_0(1) - 2;
-% id = lower(url(i_0(1): i_1(1))); 
-% id = strrep(id, '- ', '-'); id = strrep(id, ' ', '-'); id = strrep(id, '''', '');
-% 
-% id_birdlife = id;
-
 my_pet = strrep(my_pet,'_','+'); 
 my_pet = strrep(my_pet,' ','+'); 
 
 url = urlread(['http://datazone.birdlife.org/quicksearch?qs=', my_pet]);
-i_0 = strfind(url,'factsheet/') + 10; i_1 = strfind(url(i_0(1):end),'"') - 2;
+i_0 = strfind(url,'factsheet/') + 10; i_1 = strfind(url(i_0(1):end),'"') + i_0(1) - 2;
 id_birdlife = url(i_0(1): i_1(1));
 
 if open
   web([address, id_birdlife],'-browser');
-  web([address_avibase, id_avibase],'-browser');
 end
 
