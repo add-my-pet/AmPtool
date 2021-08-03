@@ -33,6 +33,10 @@ end
 
 id = strrep(my_pet,'_','-'); 
 id = strrep(id,' ','-'); 
+check = urlread([address, id]);
+if ~isempty(strfind(check,'Species name is not in the public version of FishBase'))
+  id = []; return
+end
 
 if open
   web([address, id],'-browser');
