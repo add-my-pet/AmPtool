@@ -88,21 +88,21 @@ function [links, id] = get_links(my_pet, open)
   % compose (n,2) cell-array with links and descriptions
   links = { ...
   % general links
-  ['http://www.catalogueoflife.org/col/details/species/id/', id_CoL], 'Cat of Life';  
-  ['http://eol.org/pages/', id_EoL], 'Ency of Life';
-  ['http://en.wikipedia.org/wiki/', id_Wiki], 'Wikipedia';
-  ['http://animaldiversity.org/accounts/', id_ADW], 'ADW';
-  ['http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=', id_Taxo], 'Taxonomicon';
-  ['http://marinespecies.org/aphia.php?p=taxdetails&id=', id_WoRMS], 'WoRMS';
+  ['https://www.catalogueoflife.org/col/details/species/id/', id_CoL], 'Cat of Life';  
+  ['https://eol.org/pages/', id_EoL], 'Ency of Life';
+  ['https://en.wikipedia.org/wiki/', id_Wiki], 'Wikipedia';
+  ['https://animaldiversity.org/accounts/', id_ADW], 'ADW';
+  ['https://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=', id_Taxo], 'Taxonomicon';
+  ['https://marinespecies.org/aphia.php?p=taxdetails&id=', id_WoRMS], 'WoRMS';
   % taxon-specific links
-  ['http://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
-  ['http://www.fishbase.org/summary/', id_fishbase], 'fishbase';
+  ['https://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
+  ['https://www.fishbase.org/summary/', id_fishbase], 'fishbase';
   ['https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
   ['https://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
   ['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', id_avibase], 'Avibase';
   ['http://datazone.birdlife.org/species/factsheet/', id_birdlife], 'Birdlife';
   ['https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id=', id_MSW3], 'Mammal Spec World';
-  ['http://genomics.senescence.info/species/entry.php?species=', id_AnAge], 'AnAge'};
+  ['https://genomics.senescence.info/species/entry.php?species=', id_AnAge], 'AnAge'};
   % remove empty links
   links = links(~cellfun(@isempty, { ...
     id_CoL, id_EoL, id_Wiki, id_ADW, id_Taxo, id_WoRMS, ...                                                  % general/animal web sites

@@ -26,7 +26,7 @@ function id = get_id_EoL(my_pet, open)
 %% Example of use
 % id = get_id_EoL('Squalus_acanthias',1)
 
-address = 'http://eol.org/pages/';
+address = 'https://eol.org/pages/';
 if ~exist('open','var')
   open = 0;
 end

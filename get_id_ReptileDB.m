@@ -24,7 +24,7 @@ function id = get_id_ReptileDB(my_pet, open)
 % Outputs empty strings if identification was not successful.
 
 %% Example of use
-% id = get_id_ReptileDB('Lacerta_schreiberi')
+% id = get_id_ReptileDB('Lacerta_schreiberi',1)
 
 address = 'https://reptile-database.reptarium.cz/species?';
 if ~exist('open','var')

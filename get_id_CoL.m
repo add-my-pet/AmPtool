@@ -26,7 +26,7 @@ function [id_CoL accepted_name] = get_id_CoL(my_pet, open)
 % Used in lineage_CoL
 
 %% Example of use
-% id_CoL = get_id_CoL('Daphnia_magna')
+% id_CoL = get_id_CoL('Daphnia_magna',1)
 
 address = 'https://www.catalogueoflife.org/data/taxon/';
 if ~exist('open','var')

@@ -24,9 +24,9 @@ function id_Taxo = get_id_Taxo(my_pet, open)
 % Used in lineage_Taxo to get the lineage
 
 %% Example of use
-% id_Taxo = get_id_Taxo('Daphnia_magna')
+% id_Taxo = get_id_Taxo('Daphnia_magna', 1)
 
-address = 'http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
+address = 'https://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
 if ~exist('open','var')
   open = 0;
 end

@@ -24,7 +24,7 @@ function id = get_id_fishbase(my_pet, open)
 % Outputs empty strings if identification was not successful.
 
 %% Example of use
-% id = get_id_fishbase('Squalus_acanthias')
+% id = get_id_fishbase('Squalus_acanthias',1)
 
 address = 'https://www.fishbase.se/summary/';
 if ~exist('open','var')

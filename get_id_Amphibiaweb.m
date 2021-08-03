@@ -18,7 +18,7 @@ function id = get_id_Amphibiaweb(my_pet, open)
 %
 % Output:
 %
-% * id: character string with id accepted name in WoRMS
+% * id: character string with id accepted name in Amphibiaweb
 
 %% Remarks
 % Outputs empty string if identification was not successful.
