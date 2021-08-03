@@ -53,9 +53,9 @@ end
 % read result and delete r-script and output text
 if exist('WoRMS.txt','file')
   id = fileread('WoRMS.txt'); delete('WoRMS.r','WoRMS.txt'); 
-  id(end)=[];id(end)=[]; % delete CR and EoL characters
+  id(end)=[]; id(end)=[]; % delete CR and EoL characters
 else
-  id = [];delete('WoRMS.r'); 
+  id = []; delete('WoRMS.r'); 
 end
 
 if open
