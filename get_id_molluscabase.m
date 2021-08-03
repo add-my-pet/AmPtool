@@ -51,8 +51,12 @@ else
 end
 
 % read result and delete r-script and output text
-id = fileread('WoRMS.txt'); delete('WoRMS.r','WoRMS.txt'); 
-id(end)=[];id(end)=[]; % delete CR and EoL characters
+if exist('WoRMS.txt','file')
+  id = fileread('WoRMS.txt'); delete('WoRMS.r','WoRMS.txt'); 
+  id(end)=[];id(end)=[]; % delete CR and EoL characters
+else
+  id = [];delete('WoRMS.r'); 
+end
 
 if open
   web([address, id],'-browser');
