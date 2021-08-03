@@ -24,15 +24,19 @@ function id = get_id_Amphibiaweb(my_pet, open)
 % Outputs empty string if identification was not successful.
 
 %% Example of use
-% id = get_id_Amphibiaweb('Bufo_bufo')
+% id = get_id_Amphibiaweb('Bufo_bufo',1)
 
-address = 'http://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=';
+address = 'https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=';
 if ~exist('open','var')
   open = 0;
 end
 
 id = strrep(my_pet,'_','+'); 
 id = strrep(id,' ','+'); 
+check = urlread([address, id]);
+if ~isempty(strfind(check,'Sorry'))
+  id = []; return
+end
 
 if open
   web([address, id],'-browser');

@@ -26,7 +26,7 @@ function id = get_id_ReptileDB(my_pet, open)
 %% Example of use
 % id = get_id_ReptileDB('Lacerta_schreiberi')
 
-address = 'http://reptile-database.reptarium.cz/species?';
+address = 'https://reptile-database.reptarium.cz/species?';
 if ~exist('open','var')
   open = 0;
 end
@@ -37,8 +37,12 @@ elseif ~isempty(strfind(my_pet, ' '));
   nm = strsplit(my_pet,' '); % genus, species
 end
 genus = nm{1}; species = nm{2};
-
 id = ['genus=', genus, '&species=', species];
+
+check = urlread([address, id]);
+if ~isempty(strfind(check,'was not found'))
+  id = []; return
+end
 
 if open
   web([address, id],'-browser');

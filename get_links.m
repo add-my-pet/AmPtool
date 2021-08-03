@@ -97,8 +97,8 @@ function [links, id] = get_links(my_pet, open)
   % taxon-specific links
   ['http://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
   ['http://www.fishbase.org/summary/', id_fishbase], 'fishbase';
-  ['http://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
-  ['http://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
+  ['https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
+  ['https://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
   ['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', id_avibase], 'Avibase';
   ['http://datazone.birdlife.org/species/factsheet/', id_birdlife], 'Birdlife';
   ['https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id=', id_MSW3], 'Mammal Spec World';
