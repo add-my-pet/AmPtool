@@ -38,14 +38,10 @@ end
 url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
 ind = strfind(url,'TaxonName.aspx?id=');
 if isempty(ind)
-  id_Taxo = [];
+  id_Taxo = []; return
 else
   url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
   id_Taxo = url(1:(strfind(url,'&') - 1)); 
-end
-
-if isempty(id_Taxo)
-  fprintf(['Warning from get_id_Taxo: ', my_pet, ' not found in Taxo\n']);
 end
 
 if open

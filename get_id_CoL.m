@@ -71,7 +71,7 @@ for i = 1:n_res % scan results
 end
 
 if isempty(id_CoL)
-  fprintf('Warning from get_id_CoL: No accepted species found in CoL\n');
+  return
 end
 
 if open
