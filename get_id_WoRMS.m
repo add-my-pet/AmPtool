@@ -23,6 +23,8 @@ function [id, nm] = get_id_WoRMS(my_pet, open)
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
+% It uses webserver REST, which only works for marine species.
+% Use <get_id_molluscabase.html *get_id_molluscabase*> to find non-marine ones.
 
 %% Example of use
 % [id, nm] = get_id_WoRMS('Squalus_acanthias')

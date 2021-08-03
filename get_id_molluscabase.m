@@ -26,7 +26,7 @@ function [id, nm] = get_id_molluscabase(my_pet, open)
 % It requires R and package taxize and writes and deletes local files WoRMS.r and WoRMS.txt
 
 %% Example of use
-% id = get_id_molluscabase('Stagnicola_palustris')
+% id = get_id_molluscabase('Stagnicola_palustris',1)
 
 address = 'https://www.molluscabase.org/aphia.php?p=taxdetails&id=';
 if ~exist('open','var')
