@@ -106,7 +106,7 @@ end
 
 my_pet = strrep(my_pet,' ','_');
 
-WoRMS.r = [ ... % compose and write and r-script
+WoRMS.r = [ ... % compose and write r-script
   'library(taxize)', char([13 10]), ...
   'Out <- file("WoRMS.txt")', char([13 10]), ...
   ['writeLines(get_wormsid(''', my_pet, ''',marine_only=FALSE,rows=1), Out)'], char([13 10]), ...
@@ -122,8 +122,12 @@ else
 end
 
 % read result and delete r-script and output text
-id = fileread('WoRMS.txt'); delete('WoRMS.r','WoRMS.txt'); 
-id(end)=[];id(end)=[]; % delete CR and EoL characters
+if exist('WoRMS.txt','file')
+  id = fileread('WoRMS.txt'); delete('WoRMS.r','WoRMS.txt'); 
+  id(end)=[]; id(end)=[]; % delete CR and EoL characters
+else
+  id = []; delete('WoRMS.r'); 
+end
 
 if open
   web([address, id],'-browser');

@@ -34,11 +34,20 @@ end
 id = strrep(my_pet,' ','_'); 
 
 try
-  check = urlread([address, id]);
+  urlread([address, id]);
 catch
   id = []; return
 end
 
+if isempty(id)
+  id = strplit(id,'_'); id = id{1};
+  try
+    urlread([address, id]);
+  catch
+    id = []; return
+  end
+end
+    
 if open
   web([address, id],'-browser');
 end

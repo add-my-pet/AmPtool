@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_id_CoL</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-03"><meta name="DC.source" content="get_id_CoL.m"><style type="text/css">
+      --><title>get_id_ADW</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-03"><meta name="DC.source" content="get_id_ADW.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,20 +67,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_CoL</h1><!--introduction--><p>gets id and name of the corresponding accepted species-name in Catolog of Life</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id_CoL accepted_name] = <a href="../get_id_CoL.m"><b>get_id_CoL</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for an accepted species name in the Catalog of Life</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id_CoL: character string of id in CoL</li><li>accepted_name: character string with accepted name</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty string if identification was not successful. Used in lineage_CoL</p><h2 id="6">Example of use</h2><p>id_CoL = get_id_CoL('Daphnia_magna',1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_ADW</h1><!--introduction--><p>gets id of ADW</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id = <a href="../get_id_ADW.m"><b>get_id_ADW</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for Animal Diversity Web</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id accepted name in ADW</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty string if identification was not successful.</p><h2 id="6">Example of use</h2><p>id = get_id_ADW('Bufo_bufo',1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_id_CoL
-% gets id and name of the corresponding accepted species-name in Catolog of Life
+%% get_id_ADW
+% gets id of ADW
 
 %%
-function [id_CoL accepted_name] = get_id_CoL(my_pet, open)
-% created 2018/01/05 by Bas Kooijman
+function id = get_id_ADW(my_pet, open)
+% created 2021/08/03 by Bas Kooijman
 
 %% Syntax
-% [id_CoL accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, open)
+% id = <../get_id_ADW.m *get_id_ADW*>(my_pet, open)
 
 %% Description
-% Gets identifier for an accepted species name in the Catalog of Life
+% Gets identifier for Animal Diversity Web
 %
 % Input:
 %
@@ -89,65 +89,31 @@ function [id_CoL accepted_name] = get_id_CoL(my_pet, open)
 %
 % Output:
 %
-% * id_CoL: character string of id in CoL
-% * accepted_name: character string with accepted name
+% * id: character string with id accepted name in ADW
 
 %% Remarks
 % Outputs empty string if identification was not successful.
-% Used in lineage_CoL
 
 %% Example of use
-% id_CoL = get_id_CoL('Daphnia_magna',1)
+% id = get_id_ADW('Bufo_bufo',1)
 
-address = 'https://www.catalogueoflife.org/data/taxon/';
+address = 'https://animaldiversity.org/accounts/';
 if ~exist('open','var')
   open = 0;
 end
 
-if ~isempty(strfind(my_pet, ' '));
-  my_pet = strrep(my_pet,' ','_');
-end
+id = strrep(my_pet,' ','_'); 
 
-my_pet_CoL = strrep(my_pet, '_', '+');
-url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet_CoL]);
-i_0 = 10 + strfind(url,'<result>'); i_1 = strfind(url,'</result>') - 1; 
-n_res = length(i_0); % number of returned results
-id_CoL = [];         % initiate identifier
-accepted_name = [];  % initiate accepted name
-
-if n_res == 0
-  fprintf(['Warning from get_id_CoL: ', my_pet, ' not found in CoL\n']);
-  return
-end
-
-for i = 1:n_res % scan results
-  res_i = url(i_0(i):i_1(i));
-  j_0 = 13 + strfind(res_i, '<name_status>'); j_1 = strfind(res_i, '</name_status>') - 1;
-  name_status = res_i(j_0:j_1); 
-  if strcmp(name_status,'accepted name')
-    j_0 = 4 + strfind(res_i, '<id>'); j_1 = strfind(res_i, '</id>') - 1;
-    id_CoL = res_i(j_0:j_1);
-    accepted_name = strrep(my_pet, '+', '_');
-    break
-  elseif strcmp(name_status,'synonym')
-    fprintf('Warning from get_id_CoL: Species not accepted in CoL\n');
-    j_0 = 15 + strfind(res_i, '<accepted_name>'); j_1 = strfind(res_i, '</accepted_name>') - 1;
-    res_i = res_i(j_0:j_1);
-    j_0 = 6 + strfind(res_i, '<name>'); j_1 = strfind(res_i, '</name>') - 1;
-    accepted_name = strrep(res_i(j_0:j_1), ' ', '_');
-    j_0 = 4 + strfind(res_i, '<id>'); j_1 = strfind(res_i, '</id>') - 1;
-    id_CoL = res_i(j_0:j_1);
-    break
-  end
-end
-
-if isempty(id_CoL)
-  return
+try
+  urlread([address, id]);
+catch
+  id = []; return
 end
 
 if open
-  web([address, id_CoL],'-browser');
+  web([address, id],'-browser');
 end
+
 
 ##### SOURCE END #####
 --></body></html>

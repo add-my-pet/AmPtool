@@ -1,5 +1,5 @@
 %% get_id_CoL
-% gets id of species name in Catolog of Life
+% gets id and name of the corresponding accepted species-name in Catolog of Life
 
 %%
 function [id_CoL accepted_name] = get_id_CoL(my_pet, open)

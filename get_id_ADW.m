@@ -34,7 +34,7 @@ end
 id = strrep(my_pet,' ','_'); 
 
 try
-  check = urlread([address, id]);
+  urlread([address, id]);
 catch
   id = []; return
 end

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_id_avibase</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-02"><meta name="DC.source" content="get_id_avibase.m"><style type="text/css">
+      --><title>get_id_avibase</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-03"><meta name="DC.source" content="get_id_avibase.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -107,13 +107,13 @@ my_pet = strrep(my_pet,' ','+');
 
 url = urlread(['https://avibase.bsc-eoc.org/search.jsp?pg=search&qstr=', my_pet]);
 
-if isempty(strfind(url,'Search results')) % single result
-  i_0 = strfind(url,'avibaseid=') + 10; if isempty(i_0); id = []; return; end
-  i_1 = strfind(url(i_0(1):end),'&') + i_0(1) - 2; id = url(i_0(1): i_1(1));
+if isempty(strfind(url,'Search results')) % single or no result
+  i_0 = strfind(url,'avibaseid='); if isempty(i_0); id = []; return; end
+  i_0 = i_0 + 10; i_1 = strfind(url(i_0(1):end),'&') + i_0(1) - 2; id = url(i_0(1): i_1(1));
 else % multiple results
-  i_1 = strfind(url,[''')">', strrep(my_pet, '+', ' '), '</a>']) - 1;
+  i_1 = strfind(url,[''')">', strrep(my_pet, '+', ' '), '</a>']);
   if isempty(i_1); id = []; return; end
-  i_0 = strfind(url(1:i_1), '''') + 1;
+  i_1 = i_1 - 1; i_0 = strfind(url(1:i_1), '''') + 1;
   id = url(i_0(end): i_1(1));
 end
 
