@@ -44,7 +44,7 @@ function [id, id_txt, nm] = get_id(my_pet, open, tab)
     'https://eol.org/'; ...
     'https://en.wikipedia.org/wiki/'; ...
     'https://animaldiversity.org/'; ...
-    'https://taxonomicon.taxonomy.nl/'; ...
+    'http://taxonomicon.taxonomy.nl/'; ...
     'https://marinespecies.org/'; ...
     % taxon-specific links
     'https://www.molluscabase.org/'; ...
@@ -77,12 +77,13 @@ function [id, id_txt, nm] = get_id(my_pet, open, tab)
   my_pet = strrep(my_pet, ' ', '_'); nm = my_pet;
   [lin, rank, id_CoL, name_status] = lineage_CoL(my_pet); 
   if isempty(id_CoL)
-    fprintf(['Warning from get_id: name found found in CoL\n'])
+    fprintf(['Warning from get_id: name not found in CoL\n'])
     id = []; id_txt = []; nm = []; return
   end
   if ~strcmp(name_status,'accepted name')
-    fprintf(['Warning from get_id: name status is ', name_status, '; continue with accepted name\n'])
-    [id_CoL, my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
+    [id_CoL, nm] = get_id_CoL(my_pet); nm = strrep(nm, ' ', '_');
+    fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', nm, '\n'])
+    my_pet = nm;
   end
      
   select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);
