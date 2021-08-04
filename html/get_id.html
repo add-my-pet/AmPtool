@@ -67,10 +67,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id</h1><!--introduction--><p>gets id's of of all websites that are used in AmP</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, id_txt, nm] = <a href="../get_id.m"><b>get_id</b></a>(my_pet, open, tab)</p><h2 id="4">Description</h2><p>Gets identifiers for all websites that AmP uses for this taxon. Some websites apply to all animals, others only for particular taxa. The lineage is taken from CoL.</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening sites in browser (default: 0)</li><li>tab: optional boolean for opening table in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: vector of cells with id's</li><li>id_txt: vector of cells with labels for id's</li><li>nm: name of accepted species (_ separated)</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty id strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>get_id('Passer_domesticus', 1, 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id</h1><!--introduction--><p>gets id's of all AmP-supported websites</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, id_txt, nm] = <a href="../get_id.m"><b>get_id</b></a>(my_pet, open, tab)</p><h2 id="4">Description</h2><p>Gets identifiers for all websites that AmP uses for this taxon. Some websites apply to all animals, others only for particular taxa. The lineage is taken from CoL.</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening sites in browser (default: 0)</li><li>tab: optional boolean for opening table in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: vector of cells with id's</li><li>id_txt: vector of cells with labels for id's</li><li>nm: name of accepted species (_ separated)</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty id strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>get_id('Passer_domesticus', 1, 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_id
-% gets id's of of all websites that are used in AmP
+% gets id's of all AmP-supported websites
 
 %%
 function [id, id_txt, nm] = get_id(my_pet, open, tab)
@@ -153,7 +153,7 @@ function [id, id_txt, nm] = get_id(my_pet, open, tab)
   end
   if ~strcmp(name_status,'accepted name')
     fprintf(['Warning from get_id: name status is ', name_status, '; continue with accepted name\n'])
-    [id_CoL my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
+    [id_CoL, my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
   end
      
   select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);

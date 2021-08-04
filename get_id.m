@@ -1,5 +1,5 @@
 %% get_id
-% gets id's of of all websites that are used in AmP
+% gets id's of all AmP-supported websites
 
 %%
 function [id, id_txt, nm] = get_id(my_pet, open, tab)
