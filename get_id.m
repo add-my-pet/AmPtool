@@ -2,11 +2,11 @@
 % gets id's of of all websites that are used in AmP
 
 %%
-function [id, id_txt] = get_id(my_pet, open, tab)
+function [id, id_txt, nm] = get_id(my_pet, open, tab)
 % created 2021/08/3 by Bas Kooijman
 
 %% Syntax
-% [id, id_txt] = <../get_id.m *get_id*>(my_pet, open, tab)
+% [id, id_txt, nm] = <../get_id.m *get_id*>(my_pet, open, tab)
 
 %% Description
 % Gets identifiers for all websites that AmP uses for this taxon. 
@@ -23,6 +23,7 @@ function [id, id_txt] = get_id(my_pet, open, tab)
 %
 % * id: vector of cells with id's
 % * id_txt: vector of cells with labels for id's
+% * nm: name of accepted species (_ separated)
 
 %% Remarks
 % Outputs empty id strings if identification was not successful.
@@ -72,15 +73,16 @@ function [id, id_txt] = get_id(my_pet, open, tab)
     'http://datazone.birdlife.org/species/factsheet/'; ...
     'https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id='; ...
     'https://genomics.senescence.info/species/entry.php?species='};
-      
+    
+  my_pet = strrep(my_pet, ' ', '_'); nm = my_pet;
   [lin, rank, id_CoL, name_status] = lineage_CoL(my_pet); 
   if isempty(id_CoL)
     fprintf(['Warning from get_id: name found found in CoL\n'])
-    id = []; id_txt = []; return
+    id = []; id_txt = []; nm = []; return
   end
   if ~strcmp(name_status,'accepted name')
     fprintf(['Warning from get_id: name status is ', name_status, '; continue with accepted name\n'])
-    [id_CoL my_pet] = get_id_CoL(my_pet);
+    [id_CoL my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
   end
      
   select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);
