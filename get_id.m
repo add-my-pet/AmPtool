@@ -82,7 +82,7 @@ function [id, id_txt, nm] = get_id(my_pet, open, tab)
   end
   if ~strcmp(name_status,'accepted name')
     fprintf(['Warning from get_id: name status is ', name_status, '; continue with accepted name\n'])
-    [id_CoL my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
+    [id_CoL, my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
   end
      
   select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);
