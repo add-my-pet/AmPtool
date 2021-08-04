@@ -75,16 +75,13 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://genomics.senescence.info/species/entry.php?species='};
     
   my_pet = strrep(my_pet, ' ', '_'); 
-  [lin, rank, id_CoL, name_status] = lineage_CoL(my_pet); 
+  [lin, rank, id_CoL, name_status, my_pet_acc] = lineage_CoL(my_pet); 
   if isempty(id_CoL)
-    fprintf(['Warning from get_id: name not found in CoL\n'])
-    id = []; id_txt = []; my_pet_acc = []; 
+    id = []; id_txt = []; return
   else
-    my_pet_acc = my_pet;
-  end
-  if ~strcmp(name_status,'accepted name')
-    [id_CoL, my_pet_acc] = get_id_CoL(my_pet); my_pet_acc = strrep(my_pet_acc, ' ', '_');
-    fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
+    if ~strcmp(name_status,'accepted name')
+      fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
+    end
   end
      
   select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);

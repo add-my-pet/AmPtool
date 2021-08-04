@@ -2,11 +2,11 @@
 % gets lineage of a species in Catolog of Life
 
 %%
-function [lineage, rank, id_CoL, name_status] = lineage_CoL(my_pet)
+function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pet)
 % created 2018/01/05 by Bas Kooijman, modified 2021/04/01, 2021/04/10
 
 %% Syntax
-% [lineage, rank, id_CoL, name_status] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
+% [lineage, rank, id_CoL, name_status, accepted_name] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
 
 %% Description
 % Gets lineage of species from the Catolog of Life: kingdom, phylum, class, order, family, genus, species. 
@@ -22,6 +22,7 @@ function [lineage, rank, id_CoL, name_status] = lineage_CoL(my_pet)
 % * rank: (n,1) cell array with ranks
 % * id_CoL: identifier for species in CoL
 % * name_status: string that describes the status of the name
+% * accepted_name: string with accepeted name
 
 %% Remarks
 % You must be connected for using this function,
@@ -31,7 +32,7 @@ function [lineage, rank, id_CoL, name_status] = lineage_CoL(my_pet)
 %% Example of use
 % lineage_CoL('Passer_domesticus')
 
-[id_CoL, my_pet] = get_id_CoL(my_pet);
+[id_CoL, name_status, accepted_name] = get_id_CoL(my_pet);
 if isempty(id_CoL)
   lineage = []; rank = []; name_status = [];
   return
@@ -45,8 +46,6 @@ if isempty(i_0) || isempty(i_1)
 end
 url = url(i_0:i_1(end)); % substring between <classification>...</classification>
 
-i_0 = 13 + strfind(url,'<name_status>'); i_1 = strfind(url,'</name_status>')-1;
-name_status = url(i_0(1):i_1(1));
 
 i_0 = 6 + strfind(url,'<name>'); i_1 = strfind(url,'</name>') - 1; 
 j_0 = 6 + strfind(url,'<rank>'); j_1 = strfind(url,'</rank>') - 1; 
@@ -63,5 +62,5 @@ for i = 1:n % scan ranks
   end
 end
 lineage(1) = []; rank(1) = []; % remove Biota
-lineage(end) = {my_pet}; rank(end) = {'Species'};
+lineage(end) = {accepted_name}; rank(end) = {'Species'};
 

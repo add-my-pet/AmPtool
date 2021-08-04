@@ -2,11 +2,11 @@
 % gets id and name of the corresponding accepted species-name in Catolog of Life
 
 %%
-function [id_CoL accepted_name] = get_id_CoL(my_pet, open)
+function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
 % created 2018/01/05 by Bas Kooijman
 
 %% Syntax
-% [id_CoL accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, open)
+% [id_CoL, name_status, accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, open)
 
 %% Description
 % Gets identifier for an accepted species name in the Catalog of Life
@@ -19,6 +19,7 @@ function [id_CoL accepted_name] = get_id_CoL(my_pet, open)
 % Output:
 %
 % * id_CoL: character string of id in CoL
+% * name_status: character status of the name my_pet in CoL
 % * accepted_name: character string with accepted name
 
 %% Remarks
@@ -42,6 +43,7 @@ url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_
 i_0 = 10 + strfind(url,'<result>'); i_1 = strfind(url,'</result>') - 1; 
 n_res = length(i_0); % number of returned results
 id_CoL = [];         % initiate identifier
+name_status = [];    % initiate name_status
 accepted_name = [];  % initiate accepted name
 
 if n_res == 0
