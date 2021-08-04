@@ -26,7 +26,7 @@ function id_Taxo = get_id_Taxo(my_pet, open)
 %% Example of use
 % id_Taxo = get_id_Taxo('Daphnia_magna', 1)
 
-address = 'https://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
+address = 'http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
 if ~exist('open','var')
   open = 0;
 end

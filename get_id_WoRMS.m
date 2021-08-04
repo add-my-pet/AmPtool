@@ -29,7 +29,7 @@ function [id, nm] = get_id_WoRMS(my_pet, open)
 %% Example of use
 % [id, nm] = get_id_WoRMS('Squalus_acanthias')
 
-address = 'http://marinespecies.org/aphia.php?p=taxdetails&id=';
+address = 'https://marinespecies.org/aphia.php?p=taxdetails&id=';
 if ~exist('open','var')
   open = 0;
 end

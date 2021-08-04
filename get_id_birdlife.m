@@ -22,8 +22,6 @@ function id = get_id_birdlife(my_pet, open)
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
-% Does not work perfectly, since id is derive from twitter name in avibase.
-% Possible problems e.g. corn-crake, rather than corncrake
 
 %% Example of use
 % get_id_birdlife('Passer_domesticus', 1)
