@@ -138,13 +138,13 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     id{14} = get_id_AnAge(my_pet_acc); id_txt{14} = 'id_AnAge';
     if isempty(id{14}); id{14} = get_id_AnAge(my_pet); end
   end
-  id = id(select_id); id_txt = id_txt(select_id); n = length(id);
-  ind = 1:14; ind = ind(select_id);
+  id = id(select_id); id_txt = id_txt(select_id); 
+  ind = 1:14; ind = ind(select_id); n = length(id);
         
   if open
     for i = 1:n
       if isempty(id{i})
-        web([links{ind(i)}, id{i}],'-browser');
+        web(links{ind(i)},'-browser');
       else
         web([address{ind(i)}, id{i}],'-browser');
       end
