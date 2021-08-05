@@ -28,6 +28,10 @@ function [nm, nm_empty] = check_links(pets, repair)
 % check_links(select('Crustacea'))
 
   WD = cdCur;
+  
+  if ~exist('repair','var')
+    repair = false;
+  end
 
   if repair
     load allStat
