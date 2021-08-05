@@ -212,7 +212,7 @@ function [nm, nm_empty] = check_links(pets, repair)
    
    if repair
      cdAmPdata;
-     save('allStat.mat', allStat);
+     save('allStat.mat', 'allStat');
    end
    
    cd(WD);
