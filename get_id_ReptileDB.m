@@ -41,7 +41,7 @@ id = ['genus=', genus, '&species=', species];
 
 check = urlread([address, id]);
 if ~isempty(strfind(check,'was not found'))
-  id = []; return
+  id = ''; return
 end
 
 if open

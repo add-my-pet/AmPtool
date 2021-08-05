@@ -37,11 +37,11 @@ my_pet = strrep(my_pet,' ','+');
 url = urlread(['https://avibase.bsc-eoc.org/search.jsp?pg=search&qstr=', my_pet]);
 
 if isempty(strfind(url,'Search results')) % single or no result
-  i_0 = strfind(url,'avibaseid='); if isempty(i_0); id = []; return; end
+  i_0 = strfind(url,'avibaseid='); if isempty(i_0); id = ''; return; end
   i_0 = i_0 + 10; i_1 = strfind(url(i_0(1):end),'&') + i_0(1) - 2; id = url(i_0(1): i_1(1));
 else % multiple results
   i_1 = strfind(url,[''')">', strrep(my_pet, '+', ' '), '</a>']);
-  if isempty(i_1); id = []; return; end
+  if isempty(i_1); id = ''; return; end
   i_1 = i_1 - 1; i_0 = strfind(url(1:i_1), '''') + 1;
   id = url(i_0(end): i_1(1));
 end

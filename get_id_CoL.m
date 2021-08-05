@@ -42,9 +42,9 @@ my_pet_CoL = strrep(my_pet, '_', '+');
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet_CoL]);
 i_0 = 10 + strfind(url,'<result>'); i_1 = strfind(url,'</result>') - 1; 
 n_res = length(i_0); % number of returned results
-id_CoL = [];         % initiate identifier
-name_status = [];    % initiate name_status
-accepted_name = [];  % initiate accepted name
+id_CoL = '';         % initiate identifier
+name_status = '';    % initiate name_status
+accepted_name = '';  % initiate accepted name
 
 if n_res == 0
   fprintf(['Warning from get_id_CoL: ', my_pet, ' not found in CoL\n']);

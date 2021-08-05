@@ -34,14 +34,14 @@ function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pe
 
 [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet);
 if isempty(id_CoL)
-  lineage = []; rank = []; name_status = [];
+  lineage = ''; rank = ''; name_status = '';
   return
 end
 
 url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
 i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
 if isempty(i_0) || isempty(i_1)
-  lineage = []; rank = []; name_status = [];
+  lineage = ''; rank = ''; name_status = '';
   return
 end
 url = url(i_0:i_1(end)); % substring between <classification>...</classification>
@@ -61,6 +61,6 @@ for i = 1:n % scan ranks
     rank(n-i+1) = {nm}; 
   end
 end
-lineage(1) = []; rank(1) = []; % remove Biota
+lineage(1) = ''; rank(1) = ''; % remove Biota
 lineage(end) = {accepted_name}; rank(end) = {'Species'};
 

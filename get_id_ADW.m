@@ -37,14 +37,14 @@ id = strrep(my_pet,' ','_');
 try
   url = urlread([address, id, '/']);
 catch
-  id = []; return
+  id = ''; return
 end
 
 if isempty(url) || contains(url, 'Sorry') 
   try
     url = urlread([address, id, '/classification/']);
   catch
-    id = [];
+    id = '';
   end
   id = get_synonym(get_id_CoL(my_pet));
   try
@@ -52,13 +52,13 @@ if isempty(url) || contains(url, 'Sorry')
     if isempty(url) || contains(url,'Sorry')
       try
         url = urlread([address, id, '/classification/']);
-        if isempty(url); id = []; return; end
+        if isempty(url); id = ''; return; end
       catch
-        id = []; return
+        id = ''; return
       end
     end
   catch
-    id = []; return
+    id = ''; return
   end
 end     
 

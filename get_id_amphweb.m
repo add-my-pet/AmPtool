@@ -35,7 +35,7 @@ id = strrep(my_pet,'_','+');
 id = strrep(id,' ','+'); 
 check = urlread([address, id]);
 if ~isempty(strfind(check,'Sorry'))
-  id = []; return
+  id = ''; return
 end
 
 if open

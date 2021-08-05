@@ -77,7 +77,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
   my_pet = strrep(my_pet, ' ', '_'); 
   [lin, rank, id_CoL, name_status, my_pet_acc] = lineage_CoL(my_pet); 
   if isempty(id_CoL)
-    id = []; id_txt = []; return
+    id = ''; id_txt = ''; return
   else
     if ~strcmp(name_status,'accepted name')
       if contains(my_pet_acc,'(')

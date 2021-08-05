@@ -37,10 +37,10 @@ id = my_pet;
 try
   url = urlread([address, id]);
   if ~isempty(strfind(url, 'not have an article'))
-    id = [];
+    id = '';
   end
 catch
-  id = [];
+  id = '';
 end
 
 if isempty(id)
@@ -49,12 +49,12 @@ if isempty(id)
     try
       url = urlread([address, id_syn]);
       if ~isempty(strfind(url, 'not have an article'))
-        id = [];
+        id = '';
       else
         id = id_syn;
       end
     catch
-      id = [];
+      id = '';
     end
   end
 end
@@ -64,7 +64,7 @@ if isempty(id)
   try
     urlread([address, id]);
   catch
-    id = []; return
+    id = ''; return
   end
 end
     

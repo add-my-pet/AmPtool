@@ -38,7 +38,7 @@ my_pet = strrep(my_pet,' ','+');
 url = urlread(['http://datazone.birdlife.org/quicksearch?qs=', my_pet]);
 i_0 = strfind(url,'factsheet/'); 
 if isempty(i_0)
-  id = []; return
+  id = ''; return
 end
 i_0 = i_0 + 10; i_1 = strfind(url(i_0(1):end),'"') + i_0(1) - 2;
 id = url(i_0(1): i_1(1));

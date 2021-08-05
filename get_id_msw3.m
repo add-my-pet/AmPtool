@@ -52,7 +52,7 @@ for i=1:n_id
   id{i} = code(in(end-1)+1:in(end)-1);
 end
 if isempty(id)
-  id = []; id_all = []; return
+  id = ''; id_all = ''; return
 end
 id_all = id(sel); id = id{1}; 
 
