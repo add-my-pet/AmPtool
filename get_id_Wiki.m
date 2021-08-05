@@ -31,16 +31,20 @@ if ~exist('open','var')
   open = 0;
 end
 
-id = strrep(my_pet,' ','_'); 
+my_pet = strrep(my_pet,' ','_'); 
+id = my_pet;
 
 try
-  urlread([address, id]);
+  url = urlread([address, id]);
+  if ~isempty(strfind(url, 'not have an article'))
+    id = [];
+  end
 catch
-  id = []; return
+  id = [];
 end
 
 if isempty(id)
-  id = strplit(id,'_'); id = id{1};
+  id = strsplit(my_pet,'_'); id = id{1};
   try
     urlread([address, id]);
   catch
