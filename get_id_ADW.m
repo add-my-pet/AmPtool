@@ -27,6 +27,7 @@ function id = get_id_ADW(my_pet, open)
 % id = get_id_ADW('Bufo_bufo',1)
 
 address = 'https://animaldiversity.org/accounts/';
+
 if ~exist('open','var')
   open = 0;
 end
@@ -34,12 +35,34 @@ end
 id = strrep(my_pet,' ','_'); 
 
 try
-  urlread([address, id]);
+  url = urlread([address, id, '/']);
 catch
   id = []; return
 end
 
+if isempty(url) || contains(url, 'Sorry') 
+  try
+    url = urlread([address, id, '/classification/']);
+  catch
+    id = [];
+  end
+  id = get_synonym(get_id_CoL(my_pet));
+  try
+    url = urlread([address, id, '/']);
+    if isempty(url) || contains(url,'Sorry')
+      try
+        url = urlread([address, id, '/classification/']);
+        if isempty(url); id = []; return; end
+      catch
+        id = []; return
+      end
+    end
+  catch
+    id = []; return
+  end
+end     
+
 if open
-  web([address, id],'-browser');
+  web([address, id, '/'],'-browser');
 end
 

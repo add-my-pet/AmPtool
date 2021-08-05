@@ -38,19 +38,30 @@ end
 url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
 ind = strfind(url,'TaxonName.aspx?id=');
 if isempty(ind)
-  my_pet = get_synonym(get_id_CoL(my_pet));
-  if isempty(my_pet)
-    id_Taxo = []; return
+  my_pet_syn = get_synonym(get_id_CoL(my_pet));
+  if isempty(my_pet_syn)
+    id_Taxo = []; 
   else
-    url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
+    url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet_syn]);
     ind = strfind(url,'TaxonName.aspx?id=');
     if isempty(ind)
-      id_Taxo = []; return
+      id_Taxo = [];
+    else
+      url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
+      id_Taxo = url(1:(strfind(url,'&') - 1)); 
     end
-    url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
-    id_Taxo = url(1:(strfind(url,'&') - 1)); return
   end
 else
+  url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
+  id_Taxo = url(1:(strfind(url,'&') - 1)); 
+end
+if isempty(id_Taxo)
+  nm = strsplit(my_pet,'_'); nm = nm{1};
+  url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', nm]);
+  ind = strfind(url,'TaxonName.aspx?id=');
+  if isempty(ind)
+    id_Taxo = []; return
+  end
   url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
   id_Taxo = url(1:(strfind(url,'&') - 1)); 
 end

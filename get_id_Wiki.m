@@ -44,6 +44,22 @@ catch
 end
 
 if isempty(id)
+  id_syn = get_synonym(get_id_CoL(my_pet));
+  if ~isempty(id_syn)
+    try
+      url = urlread([address, id_syn]);
+      if ~isempty(strfind(url, 'not have an article'))
+        id = [];
+      else
+        id = id_syn;
+      end
+    catch
+      id = [];
+    end
+  end
+end
+
+if isempty(id)
   id = strsplit(my_pet,'_'); id = id{1};
   try
     urlread([address, id]);
