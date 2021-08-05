@@ -44,23 +44,22 @@ if isempty(url) || contains(url, 'Sorry')
   try
     url = urlread([address, id, '/classification/']);
   catch
-    id = '';
-  end
-  id = get_synonym(get_id_CoL(my_pet));
-  try
-    url = urlread([address, id, '/']);
-    if isempty(url) || contains(url,'Sorry')
-      try
-        url = urlread([address, id, '/classification/']);
-        if isempty(url); id = ''; return; end
-      catch
-        id = ''; return
+    id = get_synonym(get_id_CoL(my_pet));
+    try
+      url = urlread([address, id, '/']);
+      if isempty(url) || contains(url,'Sorry')
+        try
+          url = urlread([address, id, '/classification/']);
+          if isempty(url); id = ''; return; end
+        catch
+          id = ''; return
+        end
       end
+    catch
+      id = ''; return
     end
-  catch
-    id = ''; return
   end
-end     
+end
 
 if open
   web([address, id, '/'],'-browser');

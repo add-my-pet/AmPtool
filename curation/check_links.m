@@ -72,7 +72,8 @@ function [nm, nm_empty] = check_links(pets, repair)
    AnAge_o = cell(n,1); AnAge_n = cell(n,1);
 
    for i = 1:n
-     load(['../../deblab/add_my_pet/entries/', pets{i}, '/results_', pets{i},'.mat'], 'metaData');
+     cdEntr(pets{i});
+     load(['results_', pets{i},'.mat'], 'metaData');
      id_old = metaData.links; vars_pull(id_old);
      [id_new, id_txt] = get_id(pets{i}); sel = false; 
      
@@ -184,16 +185,31 @@ function [nm, nm_empty] = check_links(pets, repair)
        sel_n(i) = sel;
        
        if repair && sel % repair entry
-         n_links = length(id_new); link_txt = [];
+         
+         % write mydata_my_pet.m file
+         % compose new links-section
+         n_links = length(id_new); links_txt = [];
          for j = 1:n_links
-           link_txt = [link_txt, 'metaData.links.', id_txt{j}, ' = ''', id_new{j}, ''';', comment{ismember(comment(:,1),id_txt{j}),2}, char([13 10])];
+           links_txt = [links_txt, 'metaData.links.', id_txt{j}, ' = ''', id_new{j}, ''';', comment{ismember(comment(:,1),id_txt{j}),2}, char([13 10])];
          end        
-         mydata = fileread(['../../deblab/add_my_pet/entries/', pets{i}, '/mydata_', pets{i},'.m']);
+         % paste new links section in existing mydata file
+         mydata = fileread(['mydata_', pets{i},'.m']);
          i_0 = strfind(mydata, 'metaData.links')-1; i_1 = strfind(mydata, '%% References')-1;
-         mydata = [mydata(1:i_0), link_txt, char([13 10]), mydata(i_1:end)];
-         fid = fopen(['../../deblab/add_my_pet/entries/', pets{i}, '/mydata_', pets{i},'.m'],'w+');
+         mydata = [mydata(1:i_0), links_txt, char([13 10]), mydata(i_1:end)];
+         fid = fopen(['mydata_', pets{i},'.m'],'w+');
          fprintf(fid, '%s', mydata); fclose(fid);
-         run_collection(pets{i}); allStat.(pets{j}).id_CoL = id_new{1};
+         
+         run_repair(pets{i}); % write results_my_pet.mat file
+         
+         % write zip file
+         cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
+         zip_my_pet(pets{i}, '../entries'); % zip the entry and save
+         
+         % write toolbar
+         cdCur; prt_my_pet_toolbar(pets{i}, ['../../deblab/add_my_pet/entries_web/', pets{i},'/']);                                  
+ 
+         % change id_CoL in allStat
+         allStat.(pets{i}).id_CoL = id_new{1};
        end
        
      end
@@ -215,8 +231,15 @@ function [nm, nm_empty] = check_links(pets, repair)
    AnAge_o = AnAge_o(sel_n); AnAge_n = AnAge_n(sel_n);
    
    if repair
-     cdAmPdata;
+     cdAmPdata;   
      save('allStat.mat', 'allStat');
+     zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
+     % mirror to VU and IUEM; this takes 10 min each, but runs in the background
+     if ismac || isunix
+       system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+     else
+       system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+     end
    end
    
    cd(WD);
@@ -227,4 +250,18 @@ function [nm, nm_empty] = check_links(pets, repair)
        {'entry', 'CoL','CoL', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
        'molluscabase','molluscabase', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
        'avibase','avibase', 'birdlife','birdlife', 'msw3','msw3', 'AnAge','AnAge'}, 'check links');
+end
 
+function run_repair(my_pet)
+% use estim_pars for writing results_my_pet.mat file
+global pets 
+
+pets = {my_pet}; 
+
+estim_options('default'); 
+estim_options('pars_init_method', 2); 
+estim_options('results_output', 0); 
+estim_options('method', 'no'); 
+
+estim_pars; 
+end

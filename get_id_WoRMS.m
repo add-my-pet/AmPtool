@@ -45,14 +45,24 @@ end
 url = urlread(['http://www.marinespecies.org/rest/AphiaRecordsByName/', my_pet]);
 i_0 = 16+strfind(url,'"valid_AphiaID":'); 
 if isempty(i_0)
-  id = ''; nm = ''; return
+  nm = '';
+  url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', strrep(my_pet, '_', '+')]);
+  i_0 = strfind(url,'marinespecies.org/hydrozoa/aphia.php?p=taxdetails&amp;id=');
+  if ~isempty(i_0)
+    i_0 = i_0 + 57; i_1 = strfind(url(i_0:end),'</online') - 2 + i_0;
+    id = url(i_0:i_1(1));
+  else
+    id = ''; nm = ''; return
+  end
+else
+  i_1 = i_0(1)+strfind(url(i_0(1):end),','); 
+  id = url(i_0(1):i_1(1)-2);
+  
+  % accepted name
+  i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
+  nm = url(i_0(1):i_1(1)-2);
 end
-i_1 = i_0(1)+strfind(url(i_0(1):end),','); 
-id = url(i_0(1):i_1(1)-2);
 
-% accepted name
-i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-nm = url(i_0(1):i_1(1)-2);
 
 if open
   web([address, id],'-browser');
