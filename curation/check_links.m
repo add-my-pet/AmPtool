@@ -29,8 +29,27 @@ function [nm, nm_empty] = check_links(pets, repair)
 
   WD = cdCur;
 
-   n = length(pets); sel_n = true(n,1);
+  if repair
+    load allStat
+  end
+  n = length(pets); sel_n = true(n,1);
    
+  comment = {
+     'id_CoL'          ' % Cat of Life';
+     'id_EoL'          ' % Ency of Life';
+     'id_Wiki'         ' % Wikipedia';
+     'id_ADW'          ' % ADW';
+     'id_Taxo'         ' % Taxonomicon';
+     'id_WoRMS'        ' % WoRMS';
+     'id_molluscabase' ' % molluscabase';
+     'id_fishbase'     ' % fishbase';
+     'id_amphweb'      ' % AmphibiaWeb';
+     'id_ReptileDB'    ' % ReptileDB';
+     'id_avibase'      ' % avibase';
+     'id_birdlife'     ' % birdlife';
+     'id_msw3'         ' % MSW3';
+     'id_AnAge'        ' % AnAge'};
+  
    % initiate
    nm_empty = cell(0,1);
    CoL_o = cell(n,1); CoL_n = cell(n,1);
@@ -159,6 +178,20 @@ function [nm, nm_empty] = check_links(pets, repair)
        end
      
        sel_n(i) = sel;
+       
+       if repair && sel % repair entry
+         n_links = length(id_new); link_txt = [];
+         for j = 1:n_links
+           link_txt = [link_txt, 'metaData.links.', id_txt{j}, ' = ''', id_new{j}, ''';', comment{ismember(comment(:,1),id_txt{j}),2}, char([13 10])];
+         end        
+         mydata = fileread(['../../deblab/add_my_pet/entries/', pets{i}, '/mydata_', pets{i},'.m']);
+         i_0 = strfind(mydata, 'metaData.links')-1; i_1 = strfind(mydata, '%% References')-1;
+         mydata = [mydata(1:i_0), link_txt, char([13 10]), mydata(i_1:end)];
+         fid = fopen(['../../deblab/add_my_pet/entries/', pets{i}, '/mydata_', pets{i},'.m'],'w+');
+         fprintf(fid, '%s', mydata); fclose(fid);
+         run_collection(pets{i}); allStat.(pets{j}).id_CoL = id_new{1};
+       end
+       
      end
    end
    nm = pets(sel_n);
@@ -176,6 +209,11 @@ function [nm, nm_empty] = check_links(pets, repair)
    birdlife_o = birdlife_o(sel_n); birdlife_n = birdlife_n(sel_n);
    msw3_o = msw3_o(sel_n); msw3_n = msw3_n(sel_n);
    AnAge_o = AnAge_o(sel_n); AnAge_n = AnAge_n(sel_n);
+   
+   if repair
+     cdAmPdata;
+     save('allStat.mat', allStat);
+   end
    
    cd(WD);
 
