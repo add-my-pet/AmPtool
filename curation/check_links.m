@@ -19,10 +19,15 @@ function [nm, nm_empty] = check_links(pets, repair)
 % Output:
 %
 % * nm: cell array with names of entries that show differences
-% * nm_empty: cell array with names for which get_id_CoL gev empty
+% * nm_empty: cell array with names for which get_id_CoL gives empty
 
 %% Remarks
 % This function uses results_my_pet.mat files in local directories;
+% AmP supports 14 websites: 6 general, 8 taxon-specific. 
+% get_id returns the 6 general id's plus 1 or 2 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
+% Some of these id's might be empty. Existing AmP id's are checked against the ones from get_id.
+% When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated.
+% The names of the entries are not always accepted in CoL, but these are not changed.
 
 %% Example
 % check_links(select('Crustacea'))
@@ -72,6 +77,7 @@ function [nm, nm_empty] = check_links(pets, repair)
    AnAge_o = cell(n,1); AnAge_n = cell(n,1);
 
    for i = 1:n
+     fprintf(' %g : %s \n', i, pets{i}); % report progress to screen 
      cdEntr(pets{i});
      load(['results_', pets{i},'.mat'], 'metaData');
      id_old = metaData.links; vars_pull(id_old);
@@ -112,77 +118,73 @@ function [nm, nm_empty] = check_links(pets, repair)
       
        if ismember('id_molluscabase', id_txt)
          id_molluscabase_new = id_new{ismember(id_txt, 'id_molluscabase')}; 
-       else
-         id_molluscabase_new = '';
-       end
-       if ~exist('id_molluscabase','var') && ~isempty(id_molluscabase_new) && ~strcmp(id_molluscabase, id_molluscabase_new) 
-         sel = true; molluscabase_o{i} = id_molluscabase; molluscabase_n{i} = id_molluscabase_new;
+         if ~exist('id_molluscabase','var'); id_molluscabase = ''; end
+         if ~isempty(id_molluscabase_new) && ~strcmp(id_molluscabase, id_molluscabase_new) 
+           sel = true; molluscabase_o{i} = id_molluscabase; molluscabase_n{i} = id_molluscabase_new;
+         end
        end
      
        if ismember('id_fishbase', id_txt)
          id_fishbase_new = id_new{ismember(id_txt, 'id_fishbase')}; 
-       else
-         id_fishbase_new = ''; 
-       end
-       if ~exist('id_fishbase','var') && ~isempty(id_fishbase_new) && ~strcmp(id_fishbase, id_fishbase_new) 
-         sel = true; fishbase_o{i} = id_fishbase; fishbase_n{i} = id_fishbase_new;
+         if ~exist('id_fishbase','var'); id_fishbase = ''; end
+         if ~isempty(id_fishbase_new) && ~strcmp(id_fishbase, id_fishbase_new) 
+           sel = true; fishbase_o{i} = id_fishbase; fishbase_n{i} = id_fishbase_new;
+         end
        end
      
        if ismember('id_amphweb', id_txt)
          id_amphweb_new = id_new{ismember(id_txt, 'id_amphweb')}; 
-       else
-         id_amphweb_new = '';
-       end
-       if ~exist('id_amphweb','var') && ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_mamphweb_new) 
-         sel = true; amphweb_o{i} = id_amphweb; amphweb_n{i} = id_amphweb_new;
+         if ~exist('id_amphweb','var'); id_amphweb = ''; end
+         if ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_mamphweb_new) 
+           sel = true; amphweb_o{i} = id_amphweb; amphweb_n{i} = id_amphweb_new;
+         end
        end
          
        if ismember('id_ReptileDB', id_txt)
          id_ReptileDB_new = id_new{ismember(id_txt, 'id_ReptileDB')};
-       else
-         id_ReptileDB_new = ''; 
-       end
-       if ~exist('id_ReptileDB','var') && ~isempty(id_ReptileDB_new) && ~strcmp(id_ReptileDB, id_ReptileDB_new) 
-         sel = true; ReptileDB_o{i} = id_ReptileDB; ReptileDB_n{i} = id_ReptileDB_new;
+         if ~exist('id_ReptileDB','var'); id_ReptileDB = ''; end
+         if ~isempty(id_ReptileDB_new) && ~strcmp(id_ReptileDB, id_ReptileDB_new) 
+           sel = true; ReptileDB_o{i} = id_ReptileDB; ReptileDB_n{i} = id_ReptileDB_new;
+         end
        end
      
        if ismember('id_avibase', id_txt)
          id_avibase_new = id_new{ismember(id_txt, 'id_avibase')}; 
-       else
-         id_avibase_new = ''; 
-       end
-       if ~exist('id_avibase','var') && ~isempty(id_avibase_new) && ~strcmp(id_avibase, id_avibase_new) 
-         sel = true; avibase_o{i} = id_avibase; avibase_n{i} = id_avibase_new;
+         if ~exist('id_avibase','var'); id_avibase = ''; end
+         if ~isempty(id_avibase_new) && ~strcmp(id_avibase, id_avibase_new) 
+           sel = true; avibase_o{i} = id_avibase; avibase_n{i} = id_avibase_new;
+         end
        end
      
        if ismember('id_birdlife', id_txt)
          id_birdlife_new = id_new{ismember(id_txt, 'id_birdlife')}; 
-       else
-         id_birdlife_new = ''; 
-       end
-       if ~exist('id_birdlife','var') && ~isempty(id_birdlife_new) && ~strcmp(id_birdlife, id_birdlife_new) 
-         sel = true; birdlife_o{i} = id_birdlife; birdlife_n{i} = id_birdlife_new;
+         if ~exist('id_birdlife','var'); id_birdlife = ''; end
+         if ~isempty(id_birdlife_new) && ~strcmp(id_birdlife, id_birdlife_new) 
+           sel = true; birdlife_o{i} = id_birdlife; birdlife_n{i} = id_birdlife_new;
+         end
        end
      
        if ismember('id_msw3', id_txt)
          id_msw3_new = id_new{ismember(id_txt, 'id_msw3')}; 
-       else
-         id_msw3_new = ''; 
-       end
-       if ~exist('id_msw3','var') && ~isempty(id_msw3_new) && ~strcmp(id_msw3, id_msw3_new) 
-         sel = true; msw3_o{i} = id_msw3; msw3_n{i} = id_msw3_new;
+         if ~exist('id_msw3','var'); id_msw3 = ''; end 
+         if ~isempty(id_msw3_new) && ~strcmp(id_msw3, id_msw3_new) 
+           sel = true; msw3_o{i} = id_msw3; msw3_n{i} = id_msw3_new;
+         end
        end
      
        if ismember('id_AnAge', id_txt)
          id_AnAge_new = id_new{ismember(id_txt, 'id_AnAge')}; 
-       else
-         id_AnAge_new = ''; 
-       end
-       if ~exist('id_AnAge','var') && ~isempty(id_AnAge_new) && ~strcmp(id_AnAge, id_AnAge_new) 
-         sel = true; AnAge_o{i} = id_AnAge; AnAge_n{i} = id_AnAge_new;
+         if ~exist('id_AnAge','var');  id_AnAge = ''; end
+         if ~isempty(id_AnAge_new) && ~strcmp(id_AnAge, id_AnAge_new) 
+           sel = true; AnAge_o{i} = id_AnAge; AnAge_n{i} = id_AnAge_new;
+         end
        end
      
        sel_n(i) = sel;
+       
+       if repair % change id_CoL in allStat
+         allStat.(pets{i}).id_CoL = id_new{1};
+       end
        
        if repair && sel % repair entry
          
@@ -208,8 +210,6 @@ function [nm, nm_empty] = check_links(pets, repair)
          % write toolbar
          cdCur; prt_my_pet_toolbar(pets{i}, ['../../deblab/add_my_pet/entries_web/', pets{i},'/']);                                  
  
-         % change id_CoL in allStat
-         allStat.(pets{i}).id_CoL = id_new{1};
        end
        
      end
