@@ -48,7 +48,7 @@ end
 i_1 = strfind(url,['"title":',title]); 
 if isempty(i_1)
   my_pet = get_synonym(get_id_CoL(my_pet)); 
-  nm = strsplit(my_pet,' '); 
+  nm = strsplit(my_pet,'_'); 
   url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
   title = ['"', nm{1}, ' ', nm{2}, '"'];
   i_1 = strfind(url,['"title":',title]); 

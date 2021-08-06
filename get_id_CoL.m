@@ -61,7 +61,7 @@ for i = 1:n_res % scan results
     accepted_name = strrep(my_pet, '+', '_');
     break
   elseif strcmp(name_status,'synonym')
-    fprintf('Warning from get_id_CoL: Species not accepted in CoL\n');
+    fprintf(['Warning from get_id_CoL: ', my_pet, ' not accepted in CoL\n']);
     j_0 = 15 + strfind(res_i, '<accepted_name>'); j_1 = strfind(res_i, '</accepted_name>') - 1;
     res_i = res_i(j_0:j_1);
     j_0 = 6 + strfind(res_i, '<name>'); j_1 = strfind(res_i, '</name>') - 1;
