@@ -10,6 +10,7 @@ function [nm, nm_empty] = check_links(pets, repair)
 
 %% Description
 % check links as specified in results_my_pet.mat files against get_id and reports differences in table.
+% The entry names with missing id_CoL are appended to local file empty_id_CoL.txt.
 %
 % Input:
 %
@@ -22,10 +23,11 @@ function [nm, nm_empty] = check_links(pets, repair)
 % * nm_empty: cell array with names for which get_id_CoL gives empty
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories;
+% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
 % AmP supports 14 websites: 6 general, 8 taxon-specific. 
-% get_id returns the 6 general id's plus 1 or 2 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
-% Some of these id's might be empty. Existing AmP id's are checked against the ones from get_id.
+% New id's are collected by get_id, which returns the 6 general id's plus 0, 1 or 2 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
+% Some of these id's might be empty, but get_id gets more hits than the site-specific get_id's. 
+% Existing AmP id's are checked against the ones from get_id.
 % When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated.
 % The names of the entries are not always accepted in CoL, but these are not changed.
 
@@ -42,6 +44,8 @@ function [nm, nm_empty] = check_links(pets, repair)
     load allStat
   end
   n = length(pets); sel_n = true(n,1);
+  
+  fid_CoL = fopen('empty_id_CoL.txt','a+');
    
   comment = {
      'id_CoL'          ' % Cat of Life';
@@ -85,6 +89,7 @@ function [nm, nm_empty] = check_links(pets, repair)
      
      if isempty(id_new) 
        nm_empty = [nm_empty, pets{i}]; 
+       fprintf(fid_CoL, '%s\n', pets{i});
      else
        id_CoL_new = id_new{ismember(id_txt, 'id_CoL')}; if ~exist('id_CoL', 'var'); id_CoL = ''; end
        if ~strcmp(id_CoL, id_CoL_new)
@@ -242,6 +247,7 @@ function [nm, nm_empty] = check_links(pets, repair)
      end
    end
    
+   fclose all; % close empty_id_CoL.txt
    cd(WD);
 
    prt_tab({nm, CoL_o, CoL_n, EoL_o, EoL_n, Wiki_o, Wiki_n, ADW_o, ADW_n, Taxo_o, Taxo_n, WoRMS_o, WoRMS_n, ...
