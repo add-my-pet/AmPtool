@@ -1,12 +1,12 @@
-%% get_id_msw3
+%% get_id_MSW3
 % gets id in Mammal Species of the World, 3rd ed
 
 %%
-function [id, id_all]= get_id_msw3(my_pet, open)
+function [id, id_all]= get_id_MSW3(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, id_all] = <../get_id_msw.m *get_id_msw*>(my_pet, open)
+% [id, id_all] = <../get_id_MSW3.m *get_id_MSW3*>(my_pet, open)
 
 %% Description
 % Gets identifier for Mammal Species of the World, 3rd edition

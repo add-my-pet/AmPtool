@@ -140,7 +140,7 @@ function [nm, nm_empty] = check_links(pets, repair)
        if ismember('id_amphweb', id_txt)
          id_amphweb_new = id_new{ismember(id_txt, 'id_amphweb')}; 
          if ~exist('id_amphweb','var'); id_amphweb = ''; end
-         if ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_mamphweb_new) 
+         if ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_amphweb_new) 
            sel = true; amphweb_o{i} = id_amphweb; amphweb_n{i} = id_amphweb_new;
          end
        end

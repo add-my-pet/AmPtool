@@ -88,7 +88,7 @@ function [links, id] = get_links(my_pet, open)
   % compose (n,2) cell-array with links and descriptions
   links = { ...
   % general links
-  ['https://www.catalogueoflife.org/col/details/species/id/', id_CoL], 'Cat of Life';  
+  ['https://www.catalogueoflife.org/data/taxon/', id_CoL], 'Cat of Life';  
   ['https://eol.org/pages/', id_EoL], 'Ency of Life';
   ['https://en.wikipedia.org/wiki/', id_Wiki], 'Wikipedia';
   ['https://animaldiversity.org/accounts/', id_ADW], 'ADW';
