@@ -21,7 +21,7 @@ function nm = get_synonym(id_CoL)
 
 
 %% Example of use
-% get_synonym(get_id_CoL('Passer_domesticus'))
+% get_synonym(get_id_CoL('Vulpes_vulpes'))
 
  url = urlread(['https://www.catalogueoflife.org/data/taxon/', id_CoL]);
  i_0 = strfind(url,'"alternateName"');
