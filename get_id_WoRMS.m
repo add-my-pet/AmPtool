@@ -2,11 +2,11 @@
 % gets id of accepted species name in World Register of Marine Species
 
 %%
-function [id, nm] = get_id_WoRMS(my_pet, open)
+function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, nm] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
+% [id, status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
 
 %% Description
 % Gets identifier for the accepted species name in the World Register of Marine Species
@@ -19,15 +19,15 @@ function [id, nm] = get_id_WoRMS(my_pet, open)
 % Output:
 %
 % * id: character string with id accepted name in WoRMS
-% * nm: character string with accepted name in WoRMS, which might or might not be identical to my_pet (but space-separated)
+% * name_status: character status of the name my_pet in WoRMS
+% * accepted_name: character string with accepted name
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
-% It uses webserver REST, which only works for marine species.
-% Use <get_id_molluscabase.html *get_id_molluscabase*> to find non-marine ones.
+% It uses webserver REST, which only works for marine species, and the webserver of CoL for non-marine ones.
 
 %% Example of use
-% [id, nm] = get_id_WoRMS('Squalus_acanthias')
+% [id, stat, nm] = get_id_WoRMS('Squalus_acanthias')
 
 address = 'https://marinespecies.org/aphia.php?p=taxdetails&id=';
 if ~exist('open','var')
@@ -58,9 +58,13 @@ else
   i_1 = i_0(1)+strfind(url(i_0(1):end),','); 
   id = url(i_0(1):i_1(1)-2);
   
+  % name status
+  i_0 = 10+strfind(url,'"status":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
+  name_status = url(i_0(1):i_1(1)-2);
+
   % accepted name
   i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-  nm = url(i_0(1):i_1(1)-2);
+  accepted_name = url(i_0(1):i_1(1)-2);
 end
 
 

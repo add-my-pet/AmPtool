@@ -55,12 +55,13 @@ function [nm, nm_empty] = check_links(pets, repair)
      'id_Taxo'         ' % Taxonomicon';
      'id_WoRMS'        ' % WoRMS';
      'id_molluscabase' ' % molluscabase';
+     'id_diptera'      ' % Diptera';
      'id_fishbase'     ' % fishbase';
      'id_amphweb'      ' % AmphibiaWeb';
      'id_ReptileDB'    ' % ReptileDB';
      'id_avibase'      ' % avibase';
      'id_birdlife'     ' % birdlife';
-     'id_msw3'         ' % MSW3';
+     'id_MSW3'         ' % MSW3';
      'id_AnAge'        ' % AnAge'};
   
    % initiate
@@ -72,12 +73,13 @@ function [nm, nm_empty] = check_links(pets, repair)
    Taxo_o = cell(n,1); Taxo_n = cell(n,1);
    WoRMS_o = cell(n,1); WoRMS_n = cell(n,1);
    molluscabase_o = cell(n,1); molluscabase_n = cell(n,1);
+   diptera_o = cell(n,1); diptera_n = cell(n,1);
    fishbase_o = cell(n,1); fishbase_n = cell(n,1);
    amphweb_o = cell(n,1); amphweb_n = cell(n,1);
    ReptileDB_o = cell(n,1); ReptileDB_n = cell(n,1);
    avibase_o = cell(n,1); avibase_n = cell(n,1);
    birdlife_o = cell(n,1); birdlife_n = cell(n,1);
-   msw3_o = cell(n,1) ; msw3_n = cell(n,1);
+   MSW3_o = cell(n,1) ; MSW3_n = cell(n,1);
    AnAge_o = cell(n,1); AnAge_n = cell(n,1);
 
    for i = 1:n
@@ -128,8 +130,16 @@ function [nm, nm_empty] = check_links(pets, repair)
            sel = true; molluscabase_o{i} = id_molluscabase; molluscabase_n{i} = id_molluscabase_new;
          end
        end
+       
+       if ismember('id_diptera', id_txt)
+         id_diptera_new = id_new{ismember(id_txt, 'id_diptera')}; 
+         if ~exist('id_diptera','var'); id_diptera = ''; end
+         if ~isempty(id_diptera_new) && ~strcmp(id_diptera, id_diptera_new) 
+           sel = true; diptera_o{i} = id_diptera; diptera_n{i} = id_diptera_new;
+         end
+       end
      
-       if ismember('id_fishbase', id_txt)
+      if ismember('id_fishbase', id_txt)
          id_fishbase_new = id_new{ismember(id_txt, 'id_fishbase')}; 
          if ~exist('id_fishbase','var'); id_fishbase = ''; end
          if ~isempty(id_fishbase_new) && ~strcmp(id_fishbase, id_fishbase_new) 
@@ -169,11 +179,11 @@ function [nm, nm_empty] = check_links(pets, repair)
          end
        end
      
-       if ismember('id_msw3', id_txt)
-         id_msw3_new = id_new{ismember(id_txt, 'id_msw3')}; 
-         if ~exist('id_msw3','var'); id_msw3 = ''; end 
-         if ~isempty(id_msw3_new) && ~strcmp(id_msw3, id_msw3_new) 
-           sel = true; msw3_o{i} = id_msw3; msw3_n{i} = id_msw3_new;
+       if ismember('id_MSW3', id_txt)
+         id_MSW3_new = id_new{ismember(id_txt, 'id_MSW3')}; 
+         if ~exist('id_MSW3','var'); id_MSW3 = ''; end 
+         if ~isempty(id_MSW3_new) && ~strcmp(id_MSW3, id_MSW3_new) 
+           sel = true; MSW3_o{i} = id_MSW3; MSW3_n{i} = id_MSW3_new;
          end
        end
      
@@ -227,12 +237,13 @@ function [nm, nm_empty] = check_links(pets, repair)
    Taxo_o = Taxo_o(sel_n); Taxo_n = Taxo_n(sel_n);
    WoRMS_o = WoRMS_o(sel_n); WoRMS_n = WoRMS_n(sel_n);
    molluscabase_o = molluscabase_o(sel_n); molluscabase_n = molluscabase_n(sel_n);
+   diptera_o = diptera_o(sel_n); diptera_n = diptera_n(sel_n);
    fishbase_o = fishbase_o(sel_n); fishbase_n = fishbase_n(sel_n);
    amphweb_o = amphweb_o(sel_n); amphweb_n = amphweb_n(sel_n);
    ReptileDB_o = ReptileDB_o(sel_n); ReptileDB_n = ReptileDB_n(sel_n);
    avibase_o = avibase_o(sel_n); avibase_n = avibase_n(sel_n);
    birdlife_o = birdlife_o(sel_n); birdlife_n = birdlife_n(sel_n);
-   msw3_o = msw3_o(sel_n); msw3_n = msw3_n(sel_n);
+   MSW3_o = MSW3_o(sel_n); MSW3_n = MSW3_n(sel_n);
    AnAge_o = AnAge_o(sel_n); AnAge_n = AnAge_n(sel_n);
    
    if repair
@@ -250,12 +261,12 @@ function [nm, nm_empty] = check_links(pets, repair)
    fclose all; % close empty_id_CoL.txt
    cd(WD);
 
-   prt_tab({nm, CoL_o, CoL_n, EoL_o, EoL_n, Wiki_o, Wiki_n, ADW_o, ADW_n, Taxo_o, Taxo_n, WoRMS_o, WoRMS_n, ...
-       molluscabase_o, molluscabase_n, fishbase_o, fishbase_n, amphweb_o, amphweb_n, ReptileDB_o, ReptileDB_n, ...
-       avibase_o, avibase_n, birdlife_o, birdlife_n, MSW3_o, msw3_n, AnAge_o, AnAge_n}, ...
+   prt_tab({nm, CoL_o,CoL_n, EoL_o,EoL_n, Wiki_o,Wiki_n, ADW_o,ADW_n, Taxo_o,Taxo_n, WoRMS_o,WoRMS_n, ...
+       molluscabase_o,molluscabase_n, diptera_o,diptera_n, fishbase_o,fishbase_n, amphweb_o,amphweb_n, ReptileDB_o,ReptileDB_n, ...
+       avibase_o,avibase_n, birdlife_o,birdlife_n, MSW3_o,MSW3_n, AnAge_o,AnAge_n}, ...
        {'entry', 'CoL','CoL', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
-       'molluscabase','molluscabase', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
-       'avibase','avibase', 'birdlife','birdlife', 'msw3','msw3', 'AnAge','AnAge'}, 'check links');
+       'molluscabase','molluscabase', 'diptera','diptera', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
+       'avibase','avibase', 'birdlife','birdlife', 'MSW3','MSW3', 'AnAge','AnAge'}, 'check links');
 end
 
 function run_repair(my_pet)

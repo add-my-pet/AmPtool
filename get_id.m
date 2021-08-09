@@ -48,6 +48,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://marinespecies.org/'; ...
     % taxon-specific links
     'https://www.molluscabase.org/'; ...
+    'https://diptera.info/'; ...
     'https://www.fishbase.org/'; ...
     'https://amphibiaweb.org/search/'; ...
     'https://reptile-database.reptarium.cz/'; ...
@@ -66,6 +67,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://marinespecies.org/aphia.php?p=taxdetails&id='; ...
     % taxon-specific adresses
     'https://www.molluscabase.org/aphia.php?p=taxdetails&id='; ...
+    'https://diptera.info/search.php?stext=id_diptera&search=Search&method=OR&forum_id=0&stype=photos'; ...
     'https://www.fishbase.se/summary/'; ...
     'https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name='; ...
     'https://reptile-database.reptarium.cz/species?'; ...
@@ -107,47 +109,57 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     id{7} = get_id_molluscabase(my_pet_acc); id_txt{7} = 'id_molluscabase';
     if isempty(id{7}) && ~strcmp(my_pet,my_pet_acc); id{7} = get_id_molluscabase(my_pet); end
   end
-  if ismember(lin(ismember(rank,'Class')), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+  if ismember(lin(ismember(rank,'Order')), 'Diptera')
     select_id(8) = true;
-    id{8} = get_id_fishbase(my_pet_acc); id_txt{8} = 'id_fishbase';
-    if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_fishbase(my_pet); end
+    id{8} = get_id_diptera(my_pet_acc); id_txt{8} = 'id_diptera';
+    if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_diptera(my_pet); end
+    address{8} = strrep(address{8}, 'id_diptera', id{8});
+  end
+  if ismember(lin(ismember(rank,'Class')), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+    select_id(9) = true;
+    id{9} = get_id_fishbase(my_pet_acc); id_txt{8} = 'id_fishbase';
+    if isempty(id{9}) && ~strcmp(my_pet,my_pet_acc); id{9} = get_id_fishbase(my_pet); end
   end
   if ismember(lin(ismember(rank,'Class')), 'Amphibia') 
-    select_id(9) = true;
-    id{9} = get_id_amphweb(my_pet_acc); id_txt{9} = 'id_amphweb';
-    if isempty(id{9}) && ~strcmp(my_pet,my_pet_acc); id{9} = get_id_amphweb(my_pet); end
+    select_id(10) = true;
+    id{9} = get_id_amphweb(my_pet_acc); id_txt{10} = 'id_amphweb';
+    if isempty(id{10}) && ~strcmp(my_pet,my_pet_acc); id{10} = get_id_amphweb(my_pet); end
   end
   if ismember(lin(ismember(rank,'Class')), {'Reptilia','Squamata','Testudines','Crocodilia'}) 
-    select_id(10) = true;
-    id{10} = get_id_ReptileDB(my_pet_acc); id_txt{10} = 'id_ReptileDB';
-    if isempty(id{10}) && ~strcmp(my_pet,my_pet_acc); id{10} = get_id_ReptileDB(my_pet); end
+    select_id(11) = true;
+    id{10} = get_id_ReptileDB(my_pet_acc); id_txt{11} = 'id_ReptileDB';
+    if isempty(id{11}) && ~strcmp(my_pet,my_pet_acc); id{11} = get_id_ReptileDB(my_pet); end
   end
   if ismember(lin(ismember(rank,'Class')), 'Aves') 
-    select_id(11:12) = true;
-    id{11} = get_id_avibase(my_pet_acc); id_txt{11} = 'id_avibase';
-    id{12} = get_id_birdlife(my_pet_acc); id_txt{12} = 'id_birdlife';
-    if isempty(id{11}) && ~strcmp(my_pet,my_pet_acc); id{11} = get_id_avibase(my_pet); end
-    if isempty(id{12}) && ~strcmp(my_pet,my_pet_acc); id{12} = get_id_birdlife(my_pet); end
+    select_id(12:13) = true;
+    id{12} = get_id_avibase(my_pet_acc); id_txt{12} = 'id_avibase';
+    id{13} = get_id_birdlife(my_pet_acc); id_txt{13} = 'id_birdlife';
+    if isempty(id{12}) && ~strcmp(my_pet,my_pet_acc); id{12} = get_id_avibase(my_pet); end
+    if isempty(id{13}) && ~strcmp(my_pet,my_pet_acc); id{13} = get_id_birdlife(my_pet); end
   end
   if ismember(lin(ismember(rank,'Class')), 'Mammalia') 
-    select_id(13) = true;
-    id{13} = get_id_msw3(my_pet_acc); id_txt{13} = 'id_msw3';
-    if isempty(id{13}) && ~strcmp(my_pet,my_pet_acc); id{13} = get_id_msw3(my_pet); end
+    select_id(14) = true;
+    id{13} = get_id_MSW3(my_pet_acc); id_txt{14} = 'id_msw3';
+    if isempty(id{14}) && ~strcmp(my_pet,my_pet_acc); id{14} = get_id_MSW3(my_pet); end
   end
   if ismember(lin(ismember(rank,'Class')), {'Aves', 'Mammalia'}) 
-    select_id(14) = true;
-    id{14} = get_id_AnAge(my_pet_acc); id_txt{14} = 'id_AnAge';
-    if isempty(id{14})  && ~strcmp(my_pet,my_pet_acc); id{14} = get_id_AnAge(my_pet); end
+    select_id(15) = true;
+    id{14} = get_id_AnAge(my_pet_acc); id_txt{15} = 'id_AnAge';
+    if isempty(id{15})  && ~strcmp(my_pet,my_pet_acc); id{15} = get_id_AnAge(my_pet); end
   end
   id = id(select_id); id_txt = id_txt(select_id); 
-  ind = 1:14; ind = ind(select_id); n = length(id);
+  ind = 1:15; ind = ind(select_id); n = length(id);
         
   if open
     for i = 1:n
       if isempty(id{i})
         web(links{ind(i)},'-browser');
       else
-        web([address{ind(i)}, id{i}],'-browser');
+        if strfind(address{ind(i)}, 'diptera')
+          web(strrep(address{8}, 'id_diptera', id{i}),'-browser');
+        else
+          web([address{ind(i)}, id{i}],'-browser');
+        end
       end
     end
   end

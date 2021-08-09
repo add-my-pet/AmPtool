@@ -42,6 +42,7 @@ function [links, id] = get_links(my_pet, open)
      'https://marinespecies.org/'; ...
    % taxon-specific links
      'https://www.molluscabase.org/'; ...
+     'https://diptera.info/'; ...
      'https://www.fishbase.se/summary/'; ...
      'https://amphibiaweb.org/search/'; ...
      'https://reptile-database.reptarium.cz/'; ...
@@ -58,8 +59,7 @@ function [links, id] = get_links(my_pet, open)
 
   % set all id's on empty
   id_CoL=[]; id_EoL=[]; id_Wiki=[]; id_ADW=[]; id_Taxo=[]; id_WoRMS=[];                                                 
-  id_molluscabase=[]; id_fishbase=[]; id_amphweb=[]; id_ReptileDB=[]; id_avibase=[]; id_birdlife=[]; id_MSW3=[]; id_AnAge=[];
-  
+  id_molluscabase=[]; id_diptera = []; id_fishbase=[]; id_amphweb=[]; id_ReptileDB=[]; id_avibase=[]; id_birdlife=[]; id_MSW3=[]; id_AnAge=[];
   
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
@@ -94,6 +94,7 @@ function [links, id] = get_links(my_pet, open)
   ['https://marinespecies.org/aphia.php?p=taxdetails&id=', id_WoRMS], 'WoRMS';
   % taxon-specific links
   ['https://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
+  ['https://diptera.info/search.php?stext=', id_diptera, '&search=Search&method=OR&forum_id=0&stype=photos'], 'Diptera';
   ['https://www.fishbase.se/summary/', id_fishbase], 'fishbase';
   ['https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
   ['https://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
@@ -104,7 +105,7 @@ function [links, id] = get_links(my_pet, open)
   % remove empty links
   links = links(~cellfun(@isempty, { ...
     id_CoL, id_EoL, id_Wiki, id_ADW, id_Taxo, id_WoRMS, ...                                                  % general/animal web sites
-    id_molluscabase, id_fishbase, id_amphweb, id_ReptileDB, id_avibase, id_birdlife, id_MSW3, id_AnAge}),:); % taxon web sites
+    id_molluscabase, id_diptera, id_fishbase, id_amphweb, id_ReptileDB, id_avibase, id_birdlife, id_MSW3, id_AnAge}),:); % taxon web sites
   n_links = size(links,1); 
     
   if n_links == 0
