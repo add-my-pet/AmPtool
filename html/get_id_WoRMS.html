@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_WoRMS</h1><!--introduction--><p>gets id of accepted species name in World Register of Marine Species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, status, accepted_name] = <a href="../get_id_WoRMS.m"><b>get_id_WoRMS</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for the accepted species name in the World Register of Marine Species</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id accepted name in WoRMS</li><li>name_status: character status of the name my_pet in WoRMS</li><li>accepted_name: character string with accepted name</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful. It uses webserver REST, which only works for marine species, and the webserver of CoL for non-marine ones.</p><h2 id="6">Example of use</h2><p>[id, stat, nm] = get_id_WoRMS('Squalus_acanthias')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_WoRMS</h1><!--introduction--><p>gets id of accepted species name in World Register of Marine Species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, name_status, accepted_name] = <a href="../get_id_WoRMS.m"><b>get_id_WoRMS</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for the accepted species name in the World Register of Marine Species</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id accepted name in WoRMS</li><li>name_status: character status of the name my_pet in WoRMS</li><li>accepted_name: character string with accepted name</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful. It uses webserver REST, which only works for marine species, and the webserver of CoL for non-marine ones.</p><h2 id="6">Example of use</h2><p>[id, stat, nm] = get_id_WoRMS('Squalus_acanthias')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_id_WoRMS
 % gets id of accepted species name in World Register of Marine Species
@@ -77,7 +77,7 @@ function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
+% [id, name_status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
 
 %% Description
 % Gets identifier for the accepted species name in the World Register of Marine Species
@@ -104,6 +104,8 @@ address = 'https://marinespecies.org/aphia.php?p=taxdetails&id=';
 if ~exist('open','var')
   open = 0;
 end
+
+id = ''; name_status = ''; accepted_name = ''; % initiate
 
 if ~isempty(strfind(my_pet, '_'));
   nm = strsplit(my_pet,'_'); % genus, species

@@ -6,7 +6,7 @@ function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
 % created 2021/08/01 by Bas Kooijman
 
 %% Syntax
-% [id, status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
+% [id, name_status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
 
 %% Description
 % Gets identifier for the accepted species name in the World Register of Marine Species
@@ -33,6 +33,8 @@ address = 'https://marinespecies.org/aphia.php?p=taxdetails&id=';
 if ~exist('open','var')
   open = 0;
 end
+
+id = ''; name_status = ''; accepted_name = ''; % initiate
 
 if ~isempty(strfind(my_pet, '_'));
   nm = strsplit(my_pet,'_'); % genus, species
