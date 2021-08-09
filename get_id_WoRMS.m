@@ -61,12 +61,13 @@ else
   id = url(i_0(1):i_1(1)-2);
   
   % name status
-  i_0 = 10+strfind(url,'"status":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-  name_status = url(i_0(1):i_1(1)-2);
+  i_0 = 10 + strfind(url,'"status":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
+  name_status = url(i_0(1):i_1(1)-2); name_status = strsplit(name_status, ' '); name_status = name_status{1};
+  if strcmp(name_status,'alternate'); name_status = 'synonym'; end
 
   % accepted name
   i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-  accepted_name = url(i_0(1):i_1(1)-2);
+  accepted_name = strrep(url(i_0(1):i_1(1)-2), ' ', '_');
 end
 
 
