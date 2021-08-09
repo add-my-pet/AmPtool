@@ -25,10 +25,10 @@ function [nm, nm_empty] = check_links(pets, repair)
 %% Remarks
 % This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
 % AmP supports 14 websites: 6 general, 8 taxon-specific. 
-% New id's are collected by get_id, which returns the 6 general id's plus 0, 1 or 2 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
+% New id's are collected by get_id, which returns the 6 general id's plus 0 till 3 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
 % Some of these id's might be empty, but get_id gets more hits than the site-specific get_id's. 
 % Existing AmP id's are checked against the ones from get_id.
-% When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated.
+% When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated and synced.
 % The names of the entries are not always accepted in CoL, but these are not changed.
 
 %% Example
@@ -252,7 +252,7 @@ function [nm, nm_empty] = check_links(pets, repair)
 
    prt_tab({nm, CoL_o, CoL_n, EoL_o, EoL_n, Wiki_o, Wiki_n, ADW_o, ADW_n, Taxo_o, Taxo_n, WoRMS_o, WoRMS_n, ...
        molluscabase_o, molluscabase_n, fishbase_o, fishbase_n, amphweb_o, amphweb_n, ReptileDB_o, ReptileDB_n, ...
-       avibase_o, avibase_n, birdlife_o, birdlife_n, msw3_o, msw3_n, AnAge_o, AnAge_n}, ...
+       avibase_o, avibase_n, birdlife_o, birdlife_n, MSW3_o, msw3_n, AnAge_o, AnAge_n}, ...
        {'entry', 'CoL','CoL', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
        'molluscabase','molluscabase', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
        'avibase','avibase', 'birdlife','birdlife', 'msw3','msw3', 'AnAge','AnAge'}, 'check links');

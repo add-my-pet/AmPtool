@@ -20,7 +20,7 @@ function  prt_toolbar
 %% Example of use
 % prt_toolbar 
 
-tb = []; tbb = []; tbt = []; % initialize character strings
+tb = ''; tbb = ''; tbt = ''; % initialize character strings
 path2deblab = '../'; % set relative path to deblab, while being in add_my_pet
 
 % the string "??" is below replaced by '', or '../' or '../../'
@@ -31,7 +31,7 @@ tb = [tb, '      <a href="', path2deblab, '"><img src="??img/bannercycle.png"  h
 tb = [tb, '    </div>\n\n'];
 
 tb = [tb, '    <div id="navwrapper">\n'];
-tb = [tb, '      <div class = "dropdown">\n'];
+tb = [tb, '      <div class="dropdown">\n'];
 tb = [tb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</button>\n'];
 tb = [tb, '        <div id="deb" class="dropdown-content">\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/" target="_blank">DEB Portal</a>\n'];
@@ -45,7 +45,7 @@ tb = [tb, '          <a href="??DEBcalendar.html" target="_blank">DEB Calendar</
 tb = [tb, '        </div>\n'];	
 tb = [tb, '      </div>\n\n'];
 
-tb = [tb, '      <div class = "dropdown">\n'];
+tb = [tb, '      <div class="dropdown">\n'];
 tb = [tb, '        <button onclick="showDropdown(''context'')" class="dropbtn">CONTEXT</button>\n'];
 tb = [tb, '        <div id="context" class="dropdown-content">\n'];
 tb = [tb, '          <a href="??index.html">AmP Portal</a>\n'];
@@ -60,7 +60,7 @@ tb = [tb, '          <a href="??about.html">About</a>\n'];
 tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];
 	
-tb = [tb, '      <div class = "dropdown">\n'];
+tb = [tb, '      <div class="dropdown">\n'];
 tb = [tb, '        <button onclick="showDropdown(''collection'')" class="dropbtn">COLLECTION</button>\n'];
 tb = [tb, '        <div id="collection" class="dropdown-content">\n'];
 tb = [tb, '          <a href="??species_list.html">Species List</a>\n'];
@@ -75,7 +75,7 @@ tb = [tb, '        </div>\n'];
 tb = [tb, '      </div>\n\n'];	
 
 % tb budget
-tbb = [tbb, '      <div class = "dropdown">\n'];
+tbb = [tbb, '      <div class="dropdown">\n'];
 tbb = [tbb, '        <button onclick="showDropdown(''budget'')" class="dropbtn">ENERGY BUDGETS</button>\n'];
 tbb = [tbb, '        <div id="budget" class="dropdown-content">\n'];
 tbb = [tbb, '          <a href="pie_SGJRb.html">Over embryo</a>\n'];
@@ -86,7 +86,7 @@ tbb = [tbb, '        </div>\n'];
 tbb = [tbb, '      </div>\n\n'];
 
 % tail
-tbt = [tbt, '      <div class = "dropdown">\n'];
+tbt = [tbt, '      <div class="dropdown">\n'];
 tbt = [tbt, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPLICATIONS</button>\n'];
 tbt = [tbt, '        <div id="applications" class="dropdown-content">\n'];
 tbt = [tbt, '          <a href="??popDyn/popDyn.html">Population Dynamics</a>\n'];

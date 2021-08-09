@@ -107,7 +107,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     id{7} = get_id_molluscabase(my_pet_acc); id_txt{7} = 'id_molluscabase';
     if isempty(id{7}) && ~strcmp(my_pet,my_pet_acc); id{7} = get_id_molluscabase(my_pet); end
   end
-  if ismember(lin(ismember(rank,'Class')), {'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+  if ismember(lin(ismember(rank,'Class')), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
     select_id(8) = true;
     id{8} = get_id_fishbase(my_pet_acc); id_txt{8} = 'id_fishbase';
     if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_fishbase(my_pet); end

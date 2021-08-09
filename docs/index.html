@@ -304,6 +304,11 @@
 
     Function <a href="../html/get_links.html" target="_top">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
     type <code>get_links('Homo_sapiens', 1)</code> to open them all in your system-browser.
+    Function <a href="../html/get_id.html" target="_top">get_id</a> does something similar, but gets the identifiers from the web, not from the AmP collection.
+    The species name can be any valid one.
+    This function might make use of <a href="../html/get_synonym.html" target="_top">get_synonym</a>;
+    it first tries the corresponding accepted name in CoL, then the name that the user provided and finally an alternative name, if provided by CoL.
+    If the species cannot be found, it tries the genus for several websites.
 
     <h2 id="distance">Distances between species</h2>
 

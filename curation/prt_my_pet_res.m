@@ -154,7 +154,7 @@ for j = 1:nst
       name, dta, prdta, re, unit, des, REF);
   end
  end
-fprintf(oid, '        <TR><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TF></TR>\n');
+fprintf(oid, '        <TR><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>\n');
 fprintf(oid, '      </TABLE>\n\n');  
 
 % print table with uni-variate data :

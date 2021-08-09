@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_links</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-05"><meta name="DC.source" content="check_links.m"><style type="text/css">
+      --><title>check_links</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-09"><meta name="DC.source" content="check_links.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,13 +67,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_links</h1><!--introduction--><p>check links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[nm, nm_empty] = <a href="get_links"><b>check_links</b></a>(pets, repair)</p><h2 id="4">Description</h2><p>check links as specified in results_my_pet.mat files against get_id and reports differences in table.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>repair: optional boolean for repair (default 0: do not repair)</li></ul></div><p>Output:</p><div><ul><li>nm: cell array with names of entries that show differences</li><li>nm_empty: cell array with names for which get_id_CoL gev empty</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories;</p><h2 id="6">Example</h2><p>check_links(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>check_links</h1><!--introduction--><p>check links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[nm, nm_empty] = <a href="get_links"><b>check_links</b></a>(pets, repair)</p><h2 id="4">Description</h2><p>check links as specified in results_my_pet.mat files against get_id and reports differences in table. The entry names with missing id_CoL are appended to local file empty_id_CoL.txt.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>repair: optional boolean for repair (default 0: do not repair)</li></ul></div><p>Output:</p><div><ul><li>nm: cell array with names of entries that show differences</li><li>nm_empty: cell array with names for which get_id_CoL gives empty</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet.entries; AmP supports 14 websites: 6 general, 8 taxon-specific. New id's are collected by get_id, which returns the 6 general id's plus 0 till 3 relevant taxon-specific ones, depending on the lineage as obtained from CoL. Some of these id's might be empty, but get_id gets more hits than the site-specific get_id's. Existing AmP id's are checked against the ones from get_id. When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated and synced. The names of the entries are not always accepted in CoL, but these are not changed.</p><h2 id="6">Example</h2><p>check_links(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_links
 % check links to web-pages from  results_my_pet.mat, as specified in metaData.links
 
 %%
-function [nm, id] = check_links(pets, repair)
+function [nm, nm_empty] = check_links(pets, repair)
 % created 2021/08/04 by Bas Kooijman
 
 %% Syntax
@@ -81,6 +81,7 @@ function [nm, id] = check_links(pets, repair)
 
 %% Description
 % check links as specified in results_my_pet.mat files against get_id and reports differences in table.
+% The entry names with missing id_CoL are appended to local file empty_id_CoL.txt.
 %
 % Input:
 %
@@ -90,18 +91,49 @@ function [nm, id] = check_links(pets, repair)
 % Output:
 %
 % * nm: cell array with names of entries that show differences
-% * nm_empty: cell array with names for which get_id_CoL gev empty
+% * nm_empty: cell array with names for which get_id_CoL gives empty
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories;
+% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
+% AmP supports 14 websites: 6 general, 8 taxon-specific. 
+% New id's are collected by get_id, which returns the 6 general id's plus 0 till 3 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
+% Some of these id's might be empty, but get_id gets more hits than the site-specific get_id's. 
+% Existing AmP id's are checked against the ones from get_id.
+% When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated and synced.
+% The names of the entries are not always accepted in CoL, but these are not changed.
 
 %% Example
 % check_links(select('Crustacea'))
 
   WD = cdCur;
+  
+  if ~exist('repair','var')
+    repair = false;
+  end
 
-   n = length(pets); sel_n = true(n,1);
+  if repair
+    load allStat
+  end
+  n = length(pets); sel_n = true(n,1);
+  
+  fid_CoL = fopen('empty_id_CoL.txt','a+');
    
+  comment = {
+     'id_CoL'          ' % Cat of Life';
+     'id_EoL'          ' % Ency of Life';
+     'id_Wiki'         ' % Wikipedia';
+     'id_ADW'          ' % ADW';
+     'id_Taxo'         ' % Taxonomicon';
+     'id_WoRMS'        ' % WoRMS';
+     'id_molluscabase' ' % molluscabase';
+     'id_fishbase'     ' % fishbase';
+     'id_amphweb'      ' % AmphibiaWeb';
+     'id_ReptileDB'    ' % ReptileDB';
+     'id_avibase'      ' % avibase';
+     'id_birdlife'     ' % birdlife';
+     'id_msw3'         ' % MSW3';
+     'id_AnAge'        ' % AnAge'};
+  
    % initiate
    nm_empty = cell(0,1);
    CoL_o = cell(n,1); CoL_n = cell(n,1);
@@ -120,12 +152,15 @@ function [nm, id] = check_links(pets, repair)
    AnAge_o = cell(n,1); AnAge_n = cell(n,1);
 
    for i = 1:n
-     load(['../../deblab/add_my_pet/entries/', pets{i}, '/results_', pets{i},'.mat'], 'metaData');
+     fprintf(' %g : %s \n', i, pets{i}); % report progress to screen 
+     cdEntr(pets{i});
+     load(['results_', pets{i},'.mat'], 'metaData');
      id_old = metaData.links; vars_pull(id_old);
      [id_new, id_txt] = get_id(pets{i}); sel = false; 
      
      if isempty(id_new) 
        nm_empty = [nm_empty, pets{i}]; 
+       fprintf(fid_CoL, '%s\n', pets{i});
      else
        id_CoL_new = id_new{ismember(id_txt, 'id_CoL')}; if ~exist('id_CoL', 'var'); id_CoL = ''; end
        if ~strcmp(id_CoL, id_CoL_new)
@@ -159,77 +194,100 @@ function [nm, id] = check_links(pets, repair)
       
        if ismember('id_molluscabase', id_txt)
          id_molluscabase_new = id_new{ismember(id_txt, 'id_molluscabase')}; 
-       else
-         id_molluscabase_new = '';
-       end
-       if ~exist('id_molluscabase','var') && ~isempty(id_molluscabase_new) && ~strcmp(id_molluscabase, id_molluscabase_new) 
-         sel = true; molluscabase_o{i} = id_molluscabase; molluscabase_n{i} = id_molluscabase_new;
+         if ~exist('id_molluscabase','var'); id_molluscabase = ''; end
+         if ~isempty(id_molluscabase_new) && ~strcmp(id_molluscabase, id_molluscabase_new) 
+           sel = true; molluscabase_o{i} = id_molluscabase; molluscabase_n{i} = id_molluscabase_new;
+         end
        end
      
        if ismember('id_fishbase', id_txt)
          id_fishbase_new = id_new{ismember(id_txt, 'id_fishbase')}; 
-       else
-         id_fishbase_new = ''; 
-       end
-       if ~exist('id_fishbase','var') && ~isempty(id_fishbase_new) && ~strcmp(id_fishbase, id_fishbase_new) 
-         sel = true; fishbase_o{i} = id_fishbase; fishbase_n{i} = id_fishbase_new;
+         if ~exist('id_fishbase','var'); id_fishbase = ''; end
+         if ~isempty(id_fishbase_new) && ~strcmp(id_fishbase, id_fishbase_new) 
+           sel = true; fishbase_o{i} = id_fishbase; fishbase_n{i} = id_fishbase_new;
+         end
        end
      
        if ismember('id_amphweb', id_txt)
          id_amphweb_new = id_new{ismember(id_txt, 'id_amphweb')}; 
-       else
-         id_amphweb_new = '';
-       end
-       if ~exist('id_amphweb','var') && ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_mamphweb_new) 
-         sel = true; amphweb_o{i} = id_amphweb; amphweb_n{i} = id_amphweb_new;
+         if ~exist('id_amphweb','var'); id_amphweb = ''; end
+         if ~isempty(id_amphweb_new) && ~strcmp(id_amphweb, id_amphweb_new) 
+           sel = true; amphweb_o{i} = id_amphweb; amphweb_n{i} = id_amphweb_new;
+         end
        end
          
        if ismember('id_ReptileDB', id_txt)
          id_ReptileDB_new = id_new{ismember(id_txt, 'id_ReptileDB')};
-       else
-         id_ReptileDB_new = ''; 
-       end
-       if ~exist('id_ReptileDB','var') && ~isempty(id_ReptileDB_new) && ~strcmp(id_ReptileDB, id_ReptileDB_new) 
-         sel = true; ReptileDB_o{i} = id_ReptileDB; ReptileDB_n{i} = id_ReptileDB_new;
+         if ~exist('id_ReptileDB','var'); id_ReptileDB = ''; end
+         if ~isempty(id_ReptileDB_new) && ~strcmp(id_ReptileDB, id_ReptileDB_new) 
+           sel = true; ReptileDB_o{i} = id_ReptileDB; ReptileDB_n{i} = id_ReptileDB_new;
+         end
        end
      
        if ismember('id_avibase', id_txt)
          id_avibase_new = id_new{ismember(id_txt, 'id_avibase')}; 
-       else
-         id_avibase_new = ''; 
-       end
-       if ~exist('id_avibase','var') && ~isempty(id_avibase_new) && ~strcmp(id_avibase, id_avibase_new) 
-         sel = true; avibase_o{i} = id_avibase; avibase_n{i} = id_avibase_new;
+         if ~exist('id_avibase','var'); id_avibase = ''; end
+         if ~isempty(id_avibase_new) && ~strcmp(id_avibase, id_avibase_new) 
+           sel = true; avibase_o{i} = id_avibase; avibase_n{i} = id_avibase_new;
+         end
        end
      
        if ismember('id_birdlife', id_txt)
          id_birdlife_new = id_new{ismember(id_txt, 'id_birdlife')}; 
-       else
-         id_birdlife_new = ''; 
-       end
-       if ~exist('id_birdlife','var') && ~isempty(id_birdlife_new) && ~strcmp(id_birdlife, id_birdlife_new) 
-         sel = true; birdlife_o{i} = id_birdlife; birdlife_n{i} = id_birdlife_new;
+         if ~exist('id_birdlife','var'); id_birdlife = ''; end
+         if ~isempty(id_birdlife_new) && ~strcmp(id_birdlife, id_birdlife_new) 
+           sel = true; birdlife_o{i} = id_birdlife; birdlife_n{i} = id_birdlife_new;
+         end
        end
      
        if ismember('id_msw3', id_txt)
          id_msw3_new = id_new{ismember(id_txt, 'id_msw3')}; 
-       else
-         id_msw3_new = ''; 
-       end
-       if ~exist('id_msw3','var') && ~isempty(id_msw3_new) && ~strcmp(id_msw3, id_msw3_new) 
-         sel = true; msw3_o{i} = id_msw3; msw3_n{i} = id_msw3_new;
+         if ~exist('id_msw3','var'); id_msw3 = ''; end 
+         if ~isempty(id_msw3_new) && ~strcmp(id_msw3, id_msw3_new) 
+           sel = true; msw3_o{i} = id_msw3; msw3_n{i} = id_msw3_new;
+         end
        end
      
        if ismember('id_AnAge', id_txt)
          id_AnAge_new = id_new{ismember(id_txt, 'id_AnAge')}; 
-       else
-         id_AnAge_new = ''; 
-       end
-       if ~exist('id_AnAge','var') && ~isempty(id_AnAge_new) && ~strcmp(id_AnAge, id_AnAge_new) 
-         sel = true; AnAge_o{i} = id_AnAge; AnAge_n{i} = id_AnAge_new;
+         if ~exist('id_AnAge','var');  id_AnAge = ''; end
+         if ~isempty(id_AnAge_new) && ~strcmp(id_AnAge, id_AnAge_new) 
+           sel = true; AnAge_o{i} = id_AnAge; AnAge_n{i} = id_AnAge_new;
+         end
        end
      
        sel_n(i) = sel;
+       
+       if repair % change id_CoL in allStat
+         allStat.(pets{i}).id_CoL = id_new{1};
+       end
+       
+       if repair && sel % repair entry
+         
+         % write mydata_my_pet.m file
+         % compose new links-section
+         n_links = length(id_new); links_txt = [];
+         for j = 1:n_links
+           links_txt = [links_txt, 'metaData.links.', id_txt{j}, ' = ''', id_new{j}, ''';', comment{ismember(comment(:,1),id_txt{j}),2}, char([13 10])];
+         end        
+         % paste new links section in existing mydata file
+         mydata = fileread(['mydata_', pets{i},'.m']);
+         i_0 = strfind(mydata, 'metaData.links')-1; i_1 = strfind(mydata, '%% References')-1;
+         mydata = [mydata(1:i_0), links_txt, char([13 10]), mydata(i_1:end)];
+         fid = fopen(['mydata_', pets{i},'.m'],'w+');
+         fprintf(fid, '%s', mydata); fclose(fid);
+         
+         run_repair(pets{i}); % write results_my_pet.mat file
+         
+         % write zip file
+         cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
+         zip_my_pet(pets{i}, '../entries'); % zip the entry and save
+         
+         % write toolbar
+         cdCur; prt_my_pet_toolbar(pets{i}, ['../../deblab/add_my_pet/entries_web/', pets{i},'/']);                                  
+ 
+       end
+       
      end
    end
    nm = pets(sel_n);
@@ -248,15 +306,42 @@ function [nm, id] = check_links(pets, repair)
    msw3_o = msw3_o(sel_n); msw3_n = msw3_n(sel_n);
    AnAge_o = AnAge_o(sel_n); AnAge_n = AnAge_n(sel_n);
    
+   if repair
+     cdAmPdata;   
+     save('allStat.mat', 'allStat');
+     zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
+     % mirror to VU and IUEM; this takes 10 min each, but runs in the background
+     if ismac || isunix
+       system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+     else
+       system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+     end
+   end
+   
+   fclose all; % close empty_id_CoL.txt
    cd(WD);
 
    prt_tab({nm, CoL_o, CoL_n, EoL_o, EoL_n, Wiki_o, Wiki_n, ADW_o, ADW_n, Taxo_o, Taxo_n, WoRMS_o, WoRMS_n, ...
        molluscabase_o, molluscabase_n, fishbase_o, fishbase_n, amphweb_o, amphweb_n, ReptileDB_o, ReptileDB_n, ...
-       avibase_o, avibase_n, birdlife_o, birdlife_n, msw3_o, msw3_n, AnAge_o, AnAge_n}, ...
+       avibase_o, avibase_n, birdlife_o, birdlife_n, MSW3_o, msw3_n, AnAge_o, AnAge_n}, ...
        {'entry', 'CoL','CoL', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
        'molluscabase','molluscabase', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
        'avibase','avibase', 'birdlife','birdlife', 'msw3','msw3', 'AnAge','AnAge'}, 'check links');
+end
 
+function run_repair(my_pet)
+% use estim_pars for writing results_my_pet.mat file
+global pets 
+
+pets = {my_pet}; 
+
+estim_options('default'); 
+estim_options('pars_init_method', 2); 
+estim_options('results_output', 0); 
+estim_options('method', 'no'); 
+
+estim_pars; 
+end
 
 ##### SOURCE END #####
 --></body></html>
