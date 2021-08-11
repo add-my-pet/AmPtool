@@ -45,5 +45,5 @@ end
 pets = pets(sel);
 status_WoRMS = status_WoRMS(sel); status_CoL = status_CoL(sel); 
 nm_WoRMS = nm_WoRMS(sel); nm_CoL = nm_CoL(sel);
-prt_tab({pets, status_WoRMS, nm_WoRMS, status_CoL, nm_CoL}, {'name', 'status WoRMS', 'valid WoRMS', 'stat CoL', 'valid CoL'}, 'check status');
+prt_tab({pets, status_WoRMS, nm_WoRMS, status_CoL, nm_CoL}, {'AmP name', 'status WoRMS', 'valid WoRMS', 'stat CoL', 'valid CoL'}, 'check status', 1);
 
