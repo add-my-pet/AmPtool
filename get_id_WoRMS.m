@@ -49,9 +49,12 @@ i_0 = 16+strfind(url,'"valid_AphiaID":');
 if isempty(i_0)
   nm = '';
   url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', strrep(my_pet, '_', '+')]);
-  i_0 = strfind(url,'marinespecies.org/hydrozoa/aphia.php?p=taxdetails&amp;id=');
+  if isempty(strfind(url,'www.marinespecies.org'))
+    id = ''; nm = ''; return
+  end
+  i_0 = strfind(url,'aphia.php?p=taxdetails&amp;id=');
   if ~isempty(i_0)
-    i_0 = i_0 + 57; i_1 = strfind(url(i_0:end),'</online') - 2 + i_0;
+    i_0 = i_0(1) + 30; i_1 = strfind(url(i_0:end),'</online') - 2 + i_0;
     id = url(i_0:i_1(1));
   else
     id = ''; nm = ''; return

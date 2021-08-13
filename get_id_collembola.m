@@ -43,9 +43,13 @@ if isempty(i_0)
 end
 i_0 = i_0 + 31; i_1 = strfind(url(i_0(1):end),'</online_resource>') - 2 + i_0(1);
 id = [url(i_0(1):i_1(1)), '#', genus];
-check = urlread([address, id]);
 
-if isempty(check)
+try
+  urlread([address, id]);
+  if isempty(check)
+    id = ''; return
+  end
+catch
   id = ''; return
 end
 
