@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_id_collembola</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-13"><meta name="DC.source" content="get_id_collembola.m"><style type="text/css">
+      --><title>get_id_lepidoptera</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-13"><meta name="DC.source" content="get_id_lepidoptera.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,20 +67,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_collembola</h1><!--introduction--><p>gets id of species name in collembola</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id = <a href="../get_id_collembola.m"><b>get_id_collembola</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for collembola</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id in collembola</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>id = get_id_collembola('Isotoma_viridis',1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_lepidoptera</h1><!--introduction--><p>gets id of species name in Global Lepidoptera Names Index</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id = <a href="../get_id_lepidoptera.m"><b>get_id_lepidoptera</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for Global Lepidoptera Names Index</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id in Global Lepidoptera Names Index</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>id = get_id_lepidoptera('Manduca_sexta',1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_id_collembola
-% gets id of species name in collembola
+%% get_id_lepidoptera
+% gets id of species name in Global Lepidoptera Names Index
 
 %%
-function id = get_id_collembola(my_pet, open)
-% created 2021/08/12 by Bas Kooijman
+function id = get_id_lepidoptera(my_pet, open)
+% created 2021/08/13 by Bas Kooijman
 
 %% Syntax
-% id = <../get_id_collembola.m *get_id_collembola*>(my_pet, open)
+% id = <../get_id_lepidoptera.m *get_id_lepidoptera*>(my_pet, open)
 
 %% Description
-% Gets identifier for collembola
+% Gets identifier for Global Lepidoptera Names Index
 %
 % Input:
 %
@@ -89,37 +89,36 @@ function id = get_id_collembola(my_pet, open)
 %
 % Output:
 %
-% * id: character string with id in collembola
+% * id: character string with id in Global Lepidoptera Names Index
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
 
 %% Example of use
-% id = get_id_collembola('Isotoma_viridis',1)
+% id = get_id_lepidoptera('Manduca_sexta',1)
 
-address = 'https://www.collembola.org/taxa/';
+address = 'http://www.nhm.ac.uk/our-science/data/lepindex/detail/?taxonno=';
 if ~exist('open','var')
   open = 0;
 end
 
 my_pet = strrep(my_pet,' ','+');
 my_pet = strrep(my_pet,'_','+');
-genus = strsplit(my_pet, '+'); genus = genus{1};
 
-my_pet_CoL = strrep(my_pet, '_', '+');
-url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet]);
-i_0 = strfind(url, 'http://www.collembola.org/taxa/');
-if isempty(i_0)
-  id_collembola = ''; return
+try
+  url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet]);
+catch
+  id = ''; return
 end
-i_0 = i_0 + 31; i_1 = strfind(url(i_0(1):end),'</online_resource>') - 2 + i_0(1);
-id = [url(i_0(1):i_1(1)), '#', genus];
+i_0 = strfind(url, 'lepindex/detail/?taxonno=');
+if isempty(i_0)
+  id = ''; return
+end
+i_0 = i_0(1) + 25; i_1 = strfind(url(i_0:end),'</online_resource>') - 2 + i_0(1);
+id = url(i_0:i_1(1));
 
 try
   urlread([address, id]);
-  if isempty(check)
-    id = ''; return
-  end
 catch
   id = ''; return
 end

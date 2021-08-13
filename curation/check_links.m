@@ -2,7 +2,7 @@
 % check links to web-pages from  results_my_pet.mat, as specified in metaData.links
 
 %%
-function [nm, nm_empty] = check_links(pets, repair)
+function check_links(pets, repair)
 % created 2021/08/04 by Bas Kooijman
 
 %% Syntax
@@ -16,16 +16,11 @@ function [nm, nm_empty] = check_links(pets, repair)
 %
 % * pets: cell array with names of existing entries
 % * repair: optional boolean for repair (default 0: do not repair)
-%
-% Output:
-%
-% * nm: cell array with names of entries that show differences
-% * nm_empty: cell array with names for which get_id_CoL gives empty
 
 %% Remarks
 % This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
-% AmP supports 14 websites: 6 general, 8 taxon-specific. 
-% New id's are collected by get_id, which returns the 6 general id's plus 0 till 3 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
+% AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% New id's are collected by get_id, which returns the 7 general id's plus 0 till 3 relevant taxon-specific ones, depending on the lineage as obtained from CoL.
 % Some of these id's might be empty, but get_id gets more hits than the site-specific get_id's. 
 % Existing AmP id's are checked against the ones from get_id.
 % When repair is activated, the files mydata, results_my_pet, my_pet_toolbar, my_pet_data.zip and allStat.my_pet.id_CoL are updated and synced.
@@ -44,18 +39,24 @@ function [nm, nm_empty] = check_links(pets, repair)
     load allStat
   end
   n = length(pets); sel_n = true(n,1);
-  
-  fid_CoL = fopen('empty_id_CoL.txt','a+');
-   
+     
   comment = {
      'id_CoL'          ' % Cat of Life';
+     'id_ITIS'         ' % ITIS';
      'id_EoL'          ' % Ency of Life';
      'id_Wiki'         ' % Wikipedia';
      'id_ADW'          ' % ADW';
      'id_Taxo'         ' % Taxonomicon';
      'id_WoRMS'        ' % WoRMS';
      'id_molluscabase' ' % molluscabase';
+     'id_scorpion'     ' % scorpion';
+     'id_spider'       ' % spider';
+     'id_collembola'   ' % collembola';
+     'id_orthoptera'   ' % orthoptera';
+     'id_phasmida'     ' % phasmida';
+     'id_aphid'        ' % aphid';
      'id_diptera'      ' % Diptera';
+     'id_lepiptera'    ' % lepiptera';
      'id_fishbase'     ' % fishbase';
      'id_amphweb'      ' % AmphibiaWeb';
      'id_ReptileDB'    ' % ReptileDB';
@@ -65,15 +66,22 @@ function [nm, nm_empty] = check_links(pets, repair)
      'id_AnAge'        ' % AnAge'};
   
    % initiate
-   nm_empty = cell(0,1);
    CoL_o = cell(n,1); CoL_n = cell(n,1);
+   ITIS_o = cell(n,1); ITIS_n = cell(n,1);
    EoL_o = cell(n,1); EoL_n = cell(n,1);
    Wiki_o = cell(n,1); Wiki_n = cell(n,1);
    ADW_o = cell(n,1); ADW_n = cell(n,1);
    Taxo_o = cell(n,1); Taxo_n = cell(n,1);
    WoRMS_o = cell(n,1); WoRMS_n = cell(n,1);
    molluscabase_o = cell(n,1); molluscabase_n = cell(n,1);
+   scorpion_o = cell(n,1); scorpion_n = cell(n,1);
+   spider_o = cell(n,1); spider_n = cell(n,1);
+   collembola_o = cell(n,1); collembola_n = cell(n,1);
+   orthoptera_o = cell(n,1); orthoptera_n = cell(n,1);
+   phasmida_o = cell(n,1); phasmida_n = cell(n,1);
+   aphid_o = cell(n,1); aphid_n = cell(n,1);
    diptera_o = cell(n,1); diptera_n = cell(n,1);
+   lepidoptera_o = cell(n,1); lepidoptera_n = cell(n,1);
    fishbase_o = cell(n,1); fishbase_n = cell(n,1);
    amphweb_o = cell(n,1); amphweb_n = cell(n,1);
    ReptileDB_o = cell(n,1); ReptileDB_n = cell(n,1);
@@ -96,6 +104,11 @@ function [nm, nm_empty] = check_links(pets, repair)
        id_CoL_new = id_new{ismember(id_txt, 'id_CoL')}; if ~exist('id_CoL', 'var'); id_CoL = ''; end
        if ~strcmp(id_CoL, id_CoL_new)
          sel = true; CoL_o{i} = id_CoL; CoL_n{i} = id_CoL_new;
+       end
+     
+       id_ITIS_new = id_new{ismember(id_txt, 'id_ITIS')}; if ~exist('id_ITIS', 'var'); id_ITIS = ''; end
+       if ~strcmp(id_ITIS, id_ITIS_new)
+         sel = true; ITIS_o{i} = id_ITIS; ITIS_n{i} = id_ITIS_new;
        end
      
        id_EoL_new = id_new{ismember(id_txt, 'id_EoL')}; if ~exist('id_EoL', 'var'); id_EoL = ''; end
@@ -197,13 +210,17 @@ function [nm, nm_empty] = check_links(pets, repair)
      
        sel_n(i) = sel;
        
-       if repair % change id_CoL in allStat
-         allStat.(pets{i}).id_CoL = id_new{1};
+       if  repair && ~strcmp(CoL_o{i}, CoL_n{i})
+         reply = input(['Warning from check_links for ', pets{i}, ': old id_CoL = ', id_CoL_o, ', new id_CoL = ', id_CoL_n, '. Replace in allStat? (y/n/else):'], 's');
+         if strcmp(reply,'y')         
+           allStat.(pets{i}).id_CoL = id_new{1};
+         end
        end
        
        if repair && sel % repair entry
          
          % write mydata_my_pet.m file
+         
          % compose new links-section
          n_links = length(id_new); links_txt = [];
          for j = 1:n_links
@@ -231,13 +248,21 @@ function [nm, nm_empty] = check_links(pets, repair)
    end
    nm = pets(sel_n);
    CoL_o = CoL_o(sel_n); CoL_n = CoL_n(sel_n);
+   ITIS_o = ITIS_o(sel_n); ITIS_n = ITIS_n(sel_n);
    EoL_o = EoL_o(sel_n); EoL_n = EoL_n(sel_n);
    Wiki_o = Wiki_o(sel_n); Wiki_n = Wiki_n(sel_n);
    ADW_o = ADW_o(sel_n); ADW_n = ADW_n(sel_n);
    Taxo_o = Taxo_o(sel_n); Taxo_n = Taxo_n(sel_n);
    WoRMS_o = WoRMS_o(sel_n); WoRMS_n = WoRMS_n(sel_n);
    molluscabase_o = molluscabase_o(sel_n); molluscabase_n = molluscabase_n(sel_n);
+   scorpion_o = scorpion_o(sel_n); scorpion_n = scorpion_n(sel_n);
+   spider_o = spider_o(sel_n); spider_n = spider_n(sel_n);
+   collembola_o = collembola_o(sel_n); collembola_n = collembola_n(sel_n);
+   orthoptera_o = orthoptera_o(sel_n); orthoptera_n = orthoptera_n(sel_n);
+   phasmida_o = phasmida_o(sel_n); phasmida_n = phasmida_n(sel_n);
+   aphid_o = aphid_o(sel_n); aphid_n = aphid_n(sel_n);
    diptera_o = diptera_o(sel_n); diptera_n = diptera_n(sel_n);
+   lepidoptera_o = lepidoptera_o(sel_n); lepidoptera_n = lepidoptera_n(sel_n);
    fishbase_o = fishbase_o(sel_n); fishbase_n = fishbase_n(sel_n);
    amphweb_o = amphweb_o(sel_n); amphweb_n = amphweb_n(sel_n);
    ReptileDB_o = ReptileDB_o(sel_n); ReptileDB_n = ReptileDB_n(sel_n);
@@ -258,14 +283,16 @@ function [nm, nm_empty] = check_links(pets, repair)
      end
    end
    
-   fclose all; % close empty_id_CoL.txt
    cd(WD);
 
-   prt_tab({nm, CoL_o,CoL_n, EoL_o,EoL_n, Wiki_o,Wiki_n, ADW_o,ADW_n, Taxo_o,Taxo_n, WoRMS_o,WoRMS_n, ...
-       molluscabase_o,molluscabase_n, diptera_o,diptera_n, fishbase_o,fishbase_n, amphweb_o,amphweb_n, ReptileDB_o,ReptileDB_n, ...
+   prt_tab({nm, CoL_o,CoL_n, ITIS_o,ITIS_n, EoL_o,EoL_n, Wiki_o,Wiki_n, ADW_o,ADW_n, Taxo_o,Taxo_n, WoRMS_o,WoRMS_n, ...
+       molluscabase_o,molluscabase_n, scorpion_o, scorpion_n, spider_o,spider_n, collembola_o,collembola_n, orthoptera_o,orthoptera_n, ...
+       phasmida_o,phasmida_n, aphid_o,aphid_n, diptera_o,diptera_n, lepidoptera_o,lepidoptera_n, ...
+       fishbase_o,fishbase_n, amphweb_o,amphweb_n, ReptileDB_o,ReptileDB_n, ...
        avibase_o,avibase_n, birdlife_o,birdlife_n, MSW3_o,MSW3_n, AnAge_o,AnAge_n}, ...
-       {'entry', 'CoL','CoL', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
-       'molluscabase','molluscabase', 'diptera','diptera', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
+       {'entry', 'CoL','CoL', 'ITIS','ITIS', 'EoL','EoL', 'Wiki','Wiki', 'ADW','ADW', 'Taxo','Taxo', 'WoRMS','WoRMS', ...
+       'molluscabase','molluscabase', 'scorpion','scorpion', 'spider','spider', 'collembola','collembola', 'orthoptera','orthoptera', 'phasmida','phasmida', ...
+       'aphid','aphid', 'diptera','diptera', 'lepidoptera','lepidoptera', 'fishbase','fishbase', 'amphweb','amphweb', 'ReptileDB','ReptileDB', ...
        'avibase','avibase', 'birdlife','birdlife', 'MSW3','MSW3', 'AnAge','AnAge'}, 'check links');
 end
 
