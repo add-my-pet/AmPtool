@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_links</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-14"><meta name="DC.source" content="check_links.m"><style type="text/css">
+      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-14"><meta name="DC.source" content="prt_id.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,73 +67,85 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_links</h1><!--introduction--><p>check links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="get_links"><b>check_links</b></a>(pets, site)</p><h2 id="4">Description</h2><p>check links as specified in results_my_pet.mat files against get_id. The site can be: CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS,   molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera,   fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge If the value in results_my_pet.mat does not match the value on the site, the mydata file is loaded for editing.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>site: string for a site</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet.entries; AmP supports 23 websites: 7 general, 16 taxon-specific. New id's are collected by get_id_site. After runing, syncing still has to occur. The names of the entries are not always accepted in CoL, but these are not changed.</p><h2 id="6">Example</h2><p>check_links(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table (default 0: do not save)</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet.entries; AmP supports 23 websites: 7 general, 16 taxon-specific.</p><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% check_links
-% check links to web-pages from  results_my_pet.mat, as specified in metaData.links
+%% prt_id
+% prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function check_links(pets, site)
+function prt_id(pets, save)
 % created 2021/08/14 by Bas Kooijman
 
 %% Syntax
-% <get_links *check_links*>(pets, site)
+% <prt_id *prt_id*>(pets, save)
 
 %% Description
-% check links as specified in results_my_pet.mat files against get_id.
-% The site can be: CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, 
-%   molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, 
-%   fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge
-% If the value in results_my_pet.mat does not match the value on the site, the mydata file is loaded for editing.
+% prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
 %
 % Input:
 %
 % * pets: cell array with names of existing entries
-% * site: string for a site
+% * save: optional boolean for saving the table (default 0: do not save)
 
 %% Remarks
 % This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
-% New id's are collected by get_id_site.
-% After runing, syncing still has to occur.
-% The names of the entries are not always accepted in CoL, but these are not changed.
 
 %% Example
-% check_links(select('Crustacea'))
-
-  if ~ismember(site, {'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
-          'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
-          'fishbase', 'amphweb', 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'})
-    fprintf('Warning from check_links: site is not recognized\n'); return
-  end
-  idsite = ['id_', site]; % txt, while id_site is the value
+% prt_id(select('Crustacea'))
 
   WD = cdCur;
-  n=length(pets);
+  
+  if ~exist('save','var')
+    save = false;
+  end
+
+  n = length(pets); 
      
+   % initiate
+   CoL = cell(n,1); 
+   ITIS = cell(n,1); 
+   EoL = cell(n,1); 
+   Wiki = cell(n,1); 
+   ADW = cell(n,1); 
+   Taxo = cell(n,1); 
+   WoRMS = cell(n,1); 
+   molluscabase = cell(n,1); 
+   scorpion = cell(n,1); 
+   spider = cell(n,1); 
+   collembola = cell(n,1); 
+   orthoptera = cell(n,1); 
+   phasmida = cell(n,1); 
+   aphid = cell(n,1); 
+   diptera = cell(n,1); 
+   lepidoptera = cell(n,1); 
+   fishbase = cell(n,1); 
+   amphweb = cell(n,1);
+   ReptileDB = cell(n,1); 
+   avibase = cell(n,1); 
+   birdlife = cell(n,1); 
+   MSW3 = cell(n,1); 
+   AnAge = cell(n,1); 
 
    for i = 1:n
-     fprintf(' %g : %s \n', i, pets{i}); % report progress to screen 
-   
-     eval(['id_site = get_', idsite, '(pets{i});']); % get the id for the pet from the site of the detabase
-
      cdEntr(pets{i});
-     load(['results_', pets{i}], 'metaData') % get the id for the pet from the AmP collection 
-     if isfield(metaData.links, idsite)
-       id = metaData.links.(idsite);
-     else
-       id = '';
-     end
-     
-     % compare the results and take action if differences occur
-     if ~strcmp(id, id_site)
-       fprintf([pets{i}, ': ', idsite, ' = ', id_site, '\n']);
-       repair_id(pets{i});
+     load(['results_', pets{i},'.mat'], 'metaData');
+     id = metaData.links; vars_pull(id);
+     flds = fields(id); n_flds = length(flds);
+     for j = 1:n_flds
+        nm = strsplit(flds{j}, '_'); nm = nm{2};
+        eval([nm,'{i} = id_', nm, ';']);
      end
    end
-       
+     
    cd(WD);
 
+   prt_tab({pets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
+       molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
+       fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge}, ...
+       {'entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
+       'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
+       'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'}, 'id', save);
 end
 
 ##### SOURCE END #####

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_links</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-14"><meta name="DC.source" content="check_links.m"><style type="text/css">
+      --><title>repair_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-14"><meta name="DC.source" content="repair_id.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,73 +67,66 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_links</h1><!--introduction--><p>check links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="get_links"><b>check_links</b></a>(pets, site)</p><h2 id="4">Description</h2><p>check links as specified in results_my_pet.mat files against get_id. The site can be: CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS,   molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera,   fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge If the value in results_my_pet.mat does not match the value on the site, the mydata file is loaded for editing.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>site: string for a site</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet.entries; AmP supports 23 websites: 7 general, 16 taxon-specific. New id's are collected by get_id_site. After runing, syncing still has to occur. The names of the entries are not always accepted in CoL, but these are not changed.</p><h2 id="6">Example</h2><p>check_links(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>repair_id</h1><!--introduction--><p>loads an mydata-file in the Matlab editor and saves files</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="repair_id"><b>repair_id</b></a>(my_pet)</p><h2 id="4">Description</h2><p>loads mydata_my_pet to allow editing links, saves results_my_pet.mat, my_pet_date.zip and my_pet_toolbar.html</p><p>Input:</p><div><ul><li>my_pet: string with name of existing entry</li></ul></div><h2 id="5">Remarks</h2><p>AmP supports 23 websites: 7 general, 16 taxon-specific. Print table with id's with <a href="prt_id.html"><b>prt_id</b></a>. Still needs syncing with server afterwards</p><h2 id="6">Example</h2><p>repair_id('Ceriodaphnia_dubia')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% check_links
-% check links to web-pages from  results_my_pet.mat, as specified in metaData.links
+%% repair_id
+% loads an mydata-file in the Matlab editor and saves files 
 
 %%
-function check_links(pets, site)
+function repair_id(my_pet)
 % created 2021/08/14 by Bas Kooijman
 
 %% Syntax
-% <get_links *check_links*>(pets, site)
+% <repair_id *repair_id*>(my_pet)
 
 %% Description
-% check links as specified in results_my_pet.mat files against get_id.
-% The site can be: CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, 
-%   molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, 
-%   fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge
-% If the value in results_my_pet.mat does not match the value on the site, the mydata file is loaded for editing.
+% loads mydata_my_pet to allow editing links, saves results_my_pet.mat, my_pet_date.zip and my_pet_toolbar.html
 %
 % Input:
 %
-% * pets: cell array with names of existing entries
-% * site: string for a site
+% * my_pet: string with name of existing entry
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
-% New id's are collected by get_id_site.
-% After runing, syncing still has to occur.
-% The names of the entries are not always accepted in CoL, but these are not changed.
+% Print table with id's with <prt_id.html *prt_id*>.
+% Still needs syncing with server afterwards
 
 %% Example
-% check_links(select('Crustacea'))
+% repair_id('Ceriodaphnia_dubia')
 
-  if ~ismember(site, {'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
-          'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
-          'fishbase', 'amphweb', 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'})
-    fprintf('Warning from check_links: site is not recognized\n'); return
-  end
-  idsite = ['id_', site]; % txt, while id_site is the value
 
   WD = cdCur;
-  n=length(pets);
+  cdEntr(my_pet);
      
+  % edit mydata_my_pet.m file
+  edit(['mydata_', my_pet, '.m']);
+  fprintf('type dbcont to proceed or dbquit \n'); keyboard
+        
+  run_repair(my_pet); % write results_my_pet.mat file
+         
+  % write zip file
+  cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
+  zip_my_pet(my_pet, '../entries'); % zip the entry and save
+         
+  % write toolbar
+  cdCur; prt_my_pet_toolbar(my_pet, ['../../deblab/add_my_pet/entries_web/', my_pet,'/']);                                  
+        
+  cd(WD);
 
-   for i = 1:n
-     fprintf(' %g : %s \n', i, pets{i}); % report progress to screen 
-   
-     eval(['id_site = get_', idsite, '(pets{i});']); % get the id for the pet from the site of the detabase
+end
 
-     cdEntr(pets{i});
-     load(['results_', pets{i}], 'metaData') % get the id for the pet from the AmP collection 
-     if isfield(metaData.links, idsite)
-       id = metaData.links.(idsite);
-     else
-       id = '';
-     end
-     
-     % compare the results and take action if differences occur
-     if ~strcmp(id, id_site)
-       fprintf([pets{i}, ': ', idsite, ' = ', id_site, '\n']);
-       repair_id(pets{i});
-     end
-   end
-       
-   cd(WD);
+function run_repair(my_pet)
+% use estim_pars for writing results_my_pet.mat file
+global pets 
 
+pets = {my_pet}; 
+
+estim_options('default'); 
+estim_options('pars_init_method', 2); 
+estim_options('results_output', 0); 
+estim_options('method', 'no'); 
+
+estim_pars; 
 end
 
 ##### SOURCE END #####
