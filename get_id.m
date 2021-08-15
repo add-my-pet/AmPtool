@@ -100,7 +100,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     if ~strcmp(name_status,'accepted name')
       if contains(my_pet_acc,'(')
         my_pet_acc = my_pet; % don't replace name if subgenus is part of the accepted name
-      else
+      elseif ~strcmp(my_pet, my_pet_acc)
         fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
       end
     end
