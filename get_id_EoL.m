@@ -48,6 +48,9 @@ end
 i_1 = strfind(url,['"title":',title]); 
 if isempty(i_1)
   my_pet = get_synonym(get_id_CoL(my_pet)); 
+  if isempty(my_pet)
+    id = ''; return
+  end
   nm = strsplit(my_pet,'_'); 
   url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
   title = ['"', nm{1}, ' ', nm{2}, '"'];
@@ -59,7 +62,16 @@ end
 i_0 = 5 + strfind(url(1:i_1),'"id":'); i_1 = i_0(end)+strfind(url(i_0(end):end),',') - 2;
 id = url(i_0(end):i_1(1));
 
-if open
+% check 
+if ~isempty(id)
+    try
+      url = urlread(['https://eol.org/pages/',id]);
+    catch
+      id = '';
+    end
+end
+
+if open && ~isempty(id)
   web([address, id],'-browser');
 end
 
