@@ -60,7 +60,7 @@ if ~isempty(i_1)
 end
 
 try
-  urlread([address, id]);
+  url = urlread([address, id]);
 catch
   id = ''; return
 end
