@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-14"><meta name="DC.source" content="prt_id.m"><style type="text/css">
+      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-18"><meta name="DC.source" content="prt_id.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table (default 0: do not save)</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet.entries; AmP supports 23 websites: 7 general, 16 taxon-specific.</p><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet/entries; AmP supports 23 websites: 7 general, 16 taxon-specific. Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</p><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_id
 % prints an html-page with all identifiers for specified AmP entries 
@@ -85,11 +85,12 @@ function prt_id(pets, save)
 % Input:
 %
 % * pets: cell array with names of existing entries
-% * save: optional boolean for saving the table (default 0: do not save)
+% * save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
+% This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
 
 %% Example
 % prt_id(select('Crustacea'))
@@ -138,14 +139,16 @@ function prt_id(pets, save)
      end
    end
      
-   cd(WD);
-
+   cdCur;
    prt_tab({pets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
        molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
        fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge}, ...
        {'entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
-       'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'}, 'id', save);
+       'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'}, ['id_', datestr(datenum(date),'yyyymmdd')], save);
+   
+   cd(WD);
+
 end
 
 ##### SOURCE END #####

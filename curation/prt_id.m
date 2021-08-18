@@ -14,11 +14,12 @@ function prt_id(pets, save)
 % Input:
 %
 % * pets: cell array with names of existing entries
-% * save: optional boolean for saving the table (default 0: do not save)
+% * save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
+% This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
 
 %% Example
 % prt_id(select('Crustacea'))
@@ -67,12 +68,14 @@ function prt_id(pets, save)
      end
    end
      
-   cd(WD);
-
+   cdCur;
    prt_tab({pets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
        molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
        fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge}, ...
        {'entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
-       'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'}, 'id', save);
+       'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'}, ['id_', datestr(datenum(date),'yyyymmdd')], save);
+   
+   cd(WD);
+
 end
