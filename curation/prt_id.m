@@ -20,6 +20,7 @@ function prt_id(pets, save)
 % This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
 % Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
+% Check links existing vs new with <check_links.html *check_links*>
 
 %% Example
 % prt_id(select('Crustacea'))

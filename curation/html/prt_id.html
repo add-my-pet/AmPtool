@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet/entries; AmP supports 23 websites: 7 general, 16 taxon-specific. Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</p><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)</li></ul></div><h2 id="5">Remarks</h2><p>This function uses results_my_pet.mat files in local directories of add_my_pet/entries; AmP supports 23 websites: 7 general, 16 taxon-specific. Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>. Check links existing vs new with <a href="check_links.html"><b>check_links</b></a></p><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_id
 % prints an html-page with all identifiers for specified AmP entries 
@@ -91,6 +91,7 @@ function prt_id(pets, save)
 % This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
 % Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
+% Check links existing vs new with <check_links.html *check_links*>
 
 %% Example
 % prt_id(select('Crustacea'))
