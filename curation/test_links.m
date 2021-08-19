@@ -13,7 +13,7 @@ function [info, id] = test_links(my_pet)
 %
 % Input:
 %
-% * my_pet: character with name of an entry
+% * my_pet: character string with name of an entry
 %
 % Output:
 %

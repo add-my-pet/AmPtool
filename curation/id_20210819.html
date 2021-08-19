@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>id_20210818</title>
-  <style>
+  <title>id_20210819</title>
+  <style id="myStyleSheet">
     div.tab {
       width: 90%;
       margin: auto;
@@ -10,22 +10,56 @@
     }
 
     .head {
-      background-color: #FFE7C6
+      background-color: #FFE7C6;
     }
 
-    #tab {
+    #tabId {
       border-style: solid hidden solid hidden;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     tr:nth-child(even){background-color: #f2f2f2}
+
+    button {
+      background-color: #FFE7C6;
+      color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9em;
+      border-style: none;
+
   </style>
 </head>
 
 <body>
 
   <div class="tab">
-  <table id="tab">
-    <tr class="head"> <th>entry</th> <th>CoL</th> <th>ITIS</th> <th>EoL</th> <th>Wiki</th> <th>ADW</th> <th>Taxo</th> <th>WoRMS</th> <th>molluscabase</th> <th>scorpion</th> <th>spider</th> <th>collembola</th> <th>orthoptera</th> <th>phasmida</th> <th>aphid</th> <th>diptera</th> <th>lepidoptera</th> <th>fishbase</th> <th>amphweb</th> <th>ReptileDB</th> <th>avibase</th> <th>birdlife</th> <th>MSW3</th> <th>AnAge</th> </tr>
+  <table id="tabId">
+    <tr class="head">
+       <th><button onclick="viewAll()">entry</button></th>
+       <th><button onclick="hideCol(2)">CoL</button></th>
+       <th><button onclick="hideCol(3)">ITIS</button></th>
+       <th><button onclick="hideCol(4)">EoL</button></th>
+       <th><button onclick="hideCol(5)">Wiki</button></th>
+       <th><button onclick="hideCol(6)">ADW</button></th>
+       <th><button onclick="hideCol(7)">Taxo</button></th>
+       <th><button onclick="hideCol(8)">WoRMS</button></th>
+       <th><button onclick="hideCol(9)">molluscabase</button></th>
+       <th><button onclick="hideCol(10)">scorpion</button></th>
+       <th><button onclick="hideCol(11)">spider</button></th>
+       <th><button onclick="hideCol(12)">collembola</button></th>
+       <th><button onclick="hideCol(13)">orthoptera</button></th>
+       <th><button onclick="hideCol(14)">phasmida</button></th>
+       <th><button onclick="hideCol(15)">aphid</button></th>
+       <th><button onclick="hideCol(16)">diptera</button></th>
+       <th><button onclick="hideCol(17)">lepidoptera</button></th>
+       <th><button onclick="hideCol(18)">fishbase</button></th>
+       <th><button onclick="hideCol(19)">amphweb</button></th>
+       <th><button onclick="hideCol(20)">ReptileDB</button></th>
+       <th><button onclick="hideCol(21)">avibase</button></th>
+       <th><button onclick="hideCol(22)">birdlife</button></th>
+       <th><button onclick="hideCol(23)">MSW3</button></th>
+       <th><button onclick="hideCol(24)">AnAge</button></th>
+    </tr>
 
     <tr>
       <td>Haliclona_oculata</td> <td>3JCBW</td> <td>47779</td> <td>1158233</td> <td>Haliclona_oculata</td> <td>Haliclona_oculata</td> <td>11495</td> <td>132833</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>   
@@ -1140,7 +1174,7 @@
     </tr>
 
     <tr>
-      <td>Taonius_borealis</td> <td>54R8Z</td> <td></td> <td>491439</td> <td>Taonius_borealis</td> <td>Belonella_borealis</td> <td>157948</td> <td>410406</td> <td>410406</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>   
+      <td>Taonius_borealis</td> <td>54R8Z</td> <td>556321</td> <td>491439</td> <td>Taonius_borealis</td> <td>Belonella_borealis</td> <td>157948</td> <td>410406</td> <td>410406</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>   
     </tr>
 
     <tr>
@@ -9336,7 +9370,7 @@
     </tr>
 
     <tr>
-      <td>Gyps_rueppellii</td> <td>3HXNF</td> <td>175490</td> <td>53578410</td> <td>Gyps_rueppellii</td> <td>Gyps_rueppellii</td> <td>158930</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>76B512B1EE9B10EC</td> <td>ruppells-vulture-gyps-rueppelli</td> <td></td> <td></td>   
+      <td>Gyps_rueppellii</td> <td>3HXNF</td> <td>175490</td> <td>45515796</td> <td>Gyps_rueppellii</td> <td>Gyps_rueppellii</td> <td>158930</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>76B512B1EE9B10EC</td> <td>ruppells-vulture-gyps-rueppelli</td> <td></td> <td></td>   
     </tr>
 
     <tr>
@@ -11540,7 +11574,7 @@
     </tr>
 
     <tr>
-      <td>Microtus_guentheri</td> <td>7VV7S</td> <td>632866</td> <td>1179644</td> <td>Microtus_guentheri</td> <td></td> <td>62689</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>13000266</td> <td>Microtus_guentheri</td>   
+      <td>Microtus_guentheri</td> <td>7VV7S</td> <td>632866</td> <td>1179644</td> <td>Microtus_guentheri</td> <td>Microtus_guentheri</td> <td>62689</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>13000266</td> <td>Microtus_guentheri</td>   
     </tr>
 
     <tr>
@@ -11948,7 +11982,7 @@
     </tr>
 
     <tr>
-      <td>Lagothrix_lagothricha</td> <td>6NTWV</td> <td>944187</td> <td>323940</td> <td>Lagothrix_lagothricha</td> <td></td> <td>65873</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>12100415</td> <td>Lagothrix_lagothricha</td>   
+      <td>Lagothrix_lagothricha</td> <td>6NTWV</td> <td>944187</td> <td>323940</td> <td>Lagothrix_lagothricha</td> <td>Lagothrix_lagothricha</td> <td>65873</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td>12100415</td> <td>Lagothrix_lagothricha</td>   
     </tr>
 
     <tr>
@@ -12009,6 +12043,27 @@
 
   </table>
   </div>
+
+  <script>
+    function viewAll() {
+      var table, styleSheet, rule;
+      table = document.getElementById("tabId");
+      styleSheet = document.getElementById("myStyleSheet").sheet;
+
+      if (styleSheet.cssRules.length > 6){
+        styleSheet.deleteRule(0);
+      }
+    }
+
+    function hideCol(column) {
+      var table, styleSheet, rule;
+      table = document.getElementById("tabId");
+      styleSheet = document.getElementById("myStyleSheet").sheet;
+
+      rule = "table tr:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";
+      styleSheet.insertRule(rule);
+    }
+  </script>
 
 </body>
 </html>
