@@ -148,7 +148,7 @@ function prt_id(pets, save)
   
   fprintf(oid, '  <script>\n');
   fprintf(oid, '    function viewAll() {\n');
-  fprintf(oid, '      var table, styleSheet, rule;\n');
+  fprintf(oid, '      var table, styleSheet;\n');
   fprintf(oid, '      table = document.getElementById("tabId");\n');
   fprintf(oid, '      styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
   %fprintf(oid, '      document.getElementById("demo").innerHTML = styleSheet.cssRules.length;\n\n'); 
