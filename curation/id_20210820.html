@@ -12046,9 +12046,7 @@
 
   <script>
     function undoHide() {
-      var table, styleSheet;
-      table = document.getElementById("tabId");
-      styleSheet = document.getElementById("myStyleSheet").sheet;
+      var styleSheet = document.getElementById("myStyleSheet").sheet;
 
       if (styleSheet.cssRules.length > 5){
         styleSheet.deleteRule(0);
@@ -12056,11 +12054,10 @@
     }
 
     function hideCol(column) {
-      var table, styleSheet, rule;
-      table = document.getElementById("tabId");
-      styleSheet = document.getElementById("myStyleSheet").sheet;
+      var table = document.getElementById("tabId");
+      var styleSheet = document.getElementById("myStyleSheet").sheet;
 
-      rule = "table td:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";
+      var rule = "table td:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";
       styleSheet.insertRule(rule);
     }
   </script>

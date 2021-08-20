@@ -99,11 +99,11 @@ function prt_id(pets, save)
   fprintf(oid, '    }\n\n');
     
   fprintf(oid, '    .head {\n');
-  fprintf(oid, '      background-color: #FFE7C6;\n');                 % pink header background
+  fprintf(oid, '      background-color: #FFE7C6;\n');                   % pink header background
   fprintf(oid, '    }\n\n');
 
   fprintf(oid, '    #tabId {\n');
-  fprintf(oid, '      border-style: solid hidden solid hidden;\n');   % border top & bottom only
+  fprintf(oid, '      border-style: solid hidden solid hidden;\n');     % border top & bottom only
   fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
   fprintf(oid, '    }\n\n');
 
@@ -148,26 +148,20 @@ function prt_id(pets, save)
   
   fprintf(oid, '  <script>\n');
   fprintf(oid, '    function undoHide() {\n');
-  fprintf(oid, '      var table, styleSheet;\n');
-  fprintf(oid, '      table = document.getElementById("tabId");\n');
-  fprintf(oid, '      styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
-  %fprintf(oid, '      document.getElementById("demo").innerHTML = styleSheet.cssRules.length;\n\n'); 
-  fprintf(oid, '      if (styleSheet.cssRules.length > 5){\n');
+  fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
+  fprintf(oid, '      if (styleSheet.cssRules.length > 5){\n'); % there are presently 5 style rules (see above)
   fprintf(oid, '        styleSheet.deleteRule(0);\n');
   fprintf(oid, '      }\n');
   fprintf(oid, '    }\n\n');
       
   fprintf(oid, '    function hideCol(column) {\n');
-  fprintf(oid, '      var table, styleSheet, rule;\n');
-  fprintf(oid, '      table = document.getElementById("tabId");\n');
-  fprintf(oid, '      styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
-  fprintf(oid, '      rule = "table td:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";\n');
+  fprintf(oid, '      var table = document.getElementById("tabId");\n');
+  fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
+  fprintf(oid, '      var rule = "table td:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";\n');
   fprintf(oid, '      styleSheet.insertRule(rule);\n');
   fprintf(oid, '    }\n');
   fprintf(oid, '  </script>\n\n');
   
-  %fprintf(oid, '  <p id="demo"></p>\n\n');
-
   fprintf(oid, '</body>\n');
   fprintf(oid, '</html>\n');
 
