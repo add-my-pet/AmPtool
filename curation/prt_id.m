@@ -22,7 +22,7 @@ function prt_id(pets, save)
 % AmP supports 23 websites: 7 general, 16 taxon-specific. 
 % Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
 % Check links existing vs new with <check_links.html *check_links*>
-% If the number of style rules in de hear is changed, function viewAll should be edited. 
+% If the number of style rules in de header is changed, function undoHide should be edited. 
 
 %% Example
 % prt_id(select('Crustacea'))
@@ -126,7 +126,7 @@ function prt_id(pets, save)
   % header
   if ~isempty(header)
     fprintf(oid, '    <tr class="head">\n');
-    fprintf(oid, '       <th><button onclick="viewAll()">%s</button></th>\n', header{1});
+    fprintf(oid, '       <th><button onclick="undoHide()">%s</button></th>\n', header{1});
     for j = 2:n_cols
       fprintf(oid, '       <th><button onclick="hideCol(%d)">%s</button></th>\n', j, header{j});
     end
@@ -147,12 +147,12 @@ function prt_id(pets, save)
   fprintf(oid, '  </div>\n\n');
   
   fprintf(oid, '  <script>\n');
-  fprintf(oid, '    function viewAll() {\n');
+  fprintf(oid, '    function undoHide() {\n');
   fprintf(oid, '      var table, styleSheet;\n');
   fprintf(oid, '      table = document.getElementById("tabId");\n');
   fprintf(oid, '      styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
   %fprintf(oid, '      document.getElementById("demo").innerHTML = styleSheet.cssRules.length;\n\n'); 
-  fprintf(oid, '      if (styleSheet.cssRules.length > 6){\n');
+  fprintf(oid, '      if (styleSheet.cssRules.length > 5){\n');
   fprintf(oid, '        styleSheet.deleteRule(0);\n');
   fprintf(oid, '      }\n');
   fprintf(oid, '    }\n\n');
