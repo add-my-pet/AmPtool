@@ -161,7 +161,7 @@ function prt_id(pets, save)
   fprintf(oid, '      var table, styleSheet, rule;\n');
   fprintf(oid, '      table = document.getElementById("tabId");\n');
   fprintf(oid, '      styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
-  fprintf(oid, '      rule = "table tr:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";\n');
+  fprintf(oid, '      rule = "table td:nth-child("+ column +"), table th:nth-child("+ column +") {display: none;}";\n');
   fprintf(oid, '      styleSheet.insertRule(rule);\n');
   fprintf(oid, '    }\n');
   fprintf(oid, '  </script>\n\n');
