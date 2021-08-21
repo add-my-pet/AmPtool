@@ -165,7 +165,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
   end
   if ismember(lin(ismember(rank,'Order')), 'Lepidoptera')
     select_id(16) = true;
-    id{8} = get_id_diptera(my_pet_acc); id_txt{16} = 'id_diptera';
+    id{8} = get_id_diptera(my_pet_acc); id_txt{16} = 'id_lepidoptera';
     if isempty(id{16}) && ~strcmp(my_pet,my_pet_acc); id{16} = get_id_lepidoptera(my_pet); end
     address{16} = strrep(address{16}, 'id_diptera', id{16});
   end
@@ -196,7 +196,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     id{22} = get_id_MSW3(my_pet_acc); id_txt{22} = 'id_msw3';
     if isempty(id{22}) && ~strcmp(my_pet,my_pet_acc); id{22} = get_id_MSW3(my_pet); end
   end
-  if ismember(lin(ismember(rank,'Class')), 'Tetrapoda') 
+  if ismember(lin(ismember(rank,'Class')), {'Amphibia''Reptilia','Squamata','Testudines','Crocodilia','Aves','Mammalia'}) 
     select_id(23) = true;
     id{23} = get_id_AnAge(my_pet_acc); id_txt{23} = 'id_AnAge';
     if isempty(id{23})  && ~strcmp(my_pet,my_pet_acc); id{23} = get_id_AnAge(my_pet); end
