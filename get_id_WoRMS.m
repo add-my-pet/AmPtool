@@ -3,7 +3,7 @@
 
 %%
 function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
-% created 2021/08/01 by Bas Kooijman
+% created 2021/08/01 by Bas Kooijman, modified 2021/08/26
 
 %% Syntax
 % [id, name_status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
@@ -18,7 +18,7 @@ function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
 %
 % Output:
 %
-% * id: character string with id accepted name in WoRMS
+% * id: character string with id of accepted name in WoRMS
 % * name_status: character status of the name my_pet in WoRMS
 % * accepted_name: character string with accepted name
 
@@ -36,43 +36,43 @@ end
 
 id = ''; name_status = ''; accepted_name = ''; % initiate
 
-if ~isempty(strfind(my_pet, '_'));
-  nm = strsplit(my_pet,'_'); % genus, species
-elseif ~isempty(strfind(my_pet, ' '));
-  nm = strsplit(my_pet,' '); % genus, species
+if ~isempty(strfind(my_pet, ' '));
   my_pet = strrep(my_pet,' ','_');
 end
 
-% AphiaID
-url = urlread(['http://www.marinespecies.org/rest/AphiaRecordsByName/', my_pet]);
-i_0 = 16+strfind(url,'"valid_AphiaID":'); 
+% AphiaID suggested by Bart Vanhoorne info@marinespecies.org
+url = urlread(['http://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
+i_0 = strfind(url,'"valid_AphiaID":'); 
 if isempty(i_0)
-  nm = '';
   url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', strrep(my_pet, '_', '+')]);
-  if isempty(strfind(url,'www.marinespecies.org'))
-    id = ''; nm = ''; return
-  end
+  if isempty(strfind(url,'www.marinespecies.org')); return; end
   i_0 = strfind(url,'aphia.php?p=taxdetails&amp;id=');
-  if ~isempty(i_0)
+  if isempty(i_0)
+    return
+  else
     i_0 = i_0(1) + 30; i_1 = strfind(url(i_0:end),'</online') - 2 + i_0;
     id = url(i_0:i_1(1));
-  else
-    id = ''; nm = ''; return
   end
 else
-  i_1 = i_0(1)+strfind(url(i_0(1):end),','); 
+  i_0 = i_0(1) + 16;
+  i_1 = i_0 + strfind(url(i_0:end),','); 
   id = url(i_0(1):i_1(1)-2);
   
   % name status
-  i_0 = 10 + strfind(url,'"status":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-  name_status = url(i_0(1):i_1(1)-2); name_status = strsplit(name_status, ' '); name_status = name_status{1};
+  i_0 = strfind(url,'"status":"'); 
+  if ~isempty(i_0)
+    i_0 = i_0(1) + 10; i_1 = i_0 + strfind(url(i_0:end),'"');
+    name_status = url(i_0:i_1(1)-2); name_status = strsplit(name_status, ' '); name_status = name_status{1};
+  end
   if strcmp(name_status,'alternate'); name_status = 'synonym'; end
 
   % accepted name
-  i_0 = 14+strfind(url,'"valid_name":"'); i_1 = i_0(1) + strfind(url(i_0(1):end),'"');
-  accepted_name = strrep(url(i_0(1):i_1(1)-2), ' ', '_');
+  i_0 = strfind(url,'"valid_name":"'); 
+  if ~isempty(i_0)
+    i_0 = i_0(1) + 14; i_1 = i_0 + strfind(url(i_0(1):end),'"');
+    accepted_name = strrep(url(i_0:i_1(1)-2), ' ', '_');
+  end
 end
-
 
 if open
   web([address, id],'-browser');
