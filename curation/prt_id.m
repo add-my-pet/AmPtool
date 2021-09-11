@@ -74,7 +74,7 @@ function prt_id(pets, save)
   cdCur;
   
   title = ['id_', datestr(datenum(date),'yyyymmdd')];
-  header = {'entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
+  header = {'AmP entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
        'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'};
   val = [pets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
@@ -114,7 +114,8 @@ function prt_id(pets, save)
   fprintf(oid, '      color: blue;\n');
   fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
   fprintf(oid, '      font-size: 0.9em;\n');
-  fprintf(oid, '      border-style: none;\n\n');
+  fprintf(oid, '      border-style: none;\n');
+  fprintf(oid, '    }\n\n');
 
   fprintf(oid, '  </style>\n');
   fprintf(oid, '</head>\n\n');
