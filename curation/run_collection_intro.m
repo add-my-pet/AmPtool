@@ -106,8 +106,8 @@ end
 if ismac || isunix
   system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
 else
-  %system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
-  system('powershell SyncBackPro AmP2VU -i'); 
+  system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+  %system('powershell SyncBackPro AmP2VU -i'); 
 end
 
 cd(WD); % go to current directory (when this function was started)
