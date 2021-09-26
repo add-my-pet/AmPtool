@@ -1,5 +1,5 @@
 %% repair_id
-% loads an mydata-file in the Matlab editor and saves files 
+% loads a mydata-file in the Matlab editor and saves files 
 
 %%
 function repair_id(my_pet)

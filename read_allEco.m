@@ -25,6 +25,7 @@ function [codes, entries] = read_allEco(varargin)
 
 %% Example of use
 % gender_embryo = read_allEco('gender', 'embryo'); 
+% gender = read_allEco('gender'); [sel, nm] = select_01('Testudines'); prt_tab({nm(sel), gender(sel)});
   
   persistent allStat
 
