@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and  bib-file and codes in local directory. Output files have extensions .tex and .bib and .tex, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'tab:species'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. In header of Latex document:\usepackage{longtable} and \usepackage[sort&amp;compress,comma,authoryear]{natbib} In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and  bib-file and codes in local directory. Output files have extensions .tex and .bib and .tex, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'species'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. In header of Latex document:\usepackage{longtable} and \usepackage[sort&amp;compress,comma,authoryear]{natbib} In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_review
 % prints a tabular in Latex with species, data, refs
@@ -86,7 +86,7 @@ function  prt_review(taxa, filenm)
 % Input:
 %
 % * taxa: string or cell array with name(s) of taxa
-% * filenm: optional string with name of output files without extension; default: 'tab:species'
+% * filenm: optional string with name of output files without extension; default: 'species'
 % 
 % Output
 %

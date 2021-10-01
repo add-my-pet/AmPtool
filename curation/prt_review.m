@@ -15,7 +15,7 @@ function  prt_review(taxa, filenm)
 % Input:
 %
 % * taxa: string or cell array with name(s) of taxa
-% * filenm: optional string with name of output files without extension; default: 'tab:species'
+% * filenm: optional string with name of output files without extension; default: 'species'
 % 
 % Output
 %
