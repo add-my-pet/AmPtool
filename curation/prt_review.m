@@ -15,7 +15,7 @@ function  prt_review(taxa, filenm)
 % Input:
 %
 % * taxa: string or cell array with name(s) of taxa
-% * filenm: optional string with name of output files without extension; default: 'table'
+% * filenm: optional string with name of output files without extension; default: 'tab:species'
 % 
 % Output
 %
@@ -23,7 +23,8 @@ function  prt_review(taxa, filenm)
 
 %% Remarks
 % Species names are sorted alphabetically.
-% In Latex document: \include{tabular} ... \include{codes} ... \bibliography{...,tabular}
+% In header of Latex document:\usepackage{longtable}
+% In Latex document: \include{species} ... \include{codes} ... \bibliography{...,species}
 
 %% Example
 % prt_review('Cephalopoda')
@@ -40,18 +41,22 @@ function  prt_review(taxa, filenm)
   n_spec = length(species);
   
   if ~exist('filenm','var')
-    filenm = 'tabular';
+    filenm = 'species';
   end
   
   fid_tex = fopen([filenm, '.tex'], 'w+');
   fid_bib = fopen([filenm, '.bib'], 'w+');
   
-  fprintf(fid_tex, '\\begin{tabular}{lll} \\hline\n');
-  fprintf(fid_tex, 'species & data & references \\\\ \\hline\n');
+  fprintf(fid_tex, '\\begin{longtable}{p{3.5cm}p{5.5cm}p{5.5cm}} \\footnotesize\n');
+  fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
+  fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references.',taxa, datestr(datenum(date),'yyyy/mm/dd'));
+  fprintf(fid_tex, 'The codes of the data types are presented in Table \\ref{tab:codes}} \\\\ \n');
+  fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \\hline\n');
   data_0 = cell(0,1); data_1 = cell(0,1);
   
   WD = cdCur;
   for i=1:n_spec
+    fprintf('%s\n',species{i});
     cdEntr(species{i});
     eval(['[~, ~, metaData, txtData] = mydata_', species{i}, ';']);
     data = [metaData.data_0(:); metaData.data_1(:)];
@@ -73,7 +78,7 @@ function  prt_review(taxa, filenm)
         end
       end
     end    
-    bibkey([1 2]) = ''; % remove first ,
+    if length(bibkey)>2; bibkey([1 2]) = ''; else bibkey = ''; end; % remove first ,
     fprintf(fid_tex, '%s &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
     
     cd(['../../entries_web/', species{i}])
@@ -81,7 +86,7 @@ function  prt_review(taxa, filenm)
   end
   
   fprintf(fid_tex, '\\hline\n');
-  fprintf(fid_tex, '\\end{tabular}\n');
+  fprintf(fid_tex, '\\end{longtable}\n');
   fclose all;
   
   cd(WD);
@@ -97,15 +102,22 @@ function  prt_review(taxa, filenm)
   else
     data_1 = [data_1; fill];
   end
-  
+
   codes_tex = fopen('codes.tex', 'w+');
+  fprintf(codes_tex, '\\begin{table}\\small\n');
+  fprintf(codes_tex, '\\caption{\\label{tab:codes}\\protect\\small\n');
+  fprintf(codes_tex, 'The codes of the data types as presented in Table \\ref{tab:species}.\n');
+  fprintf(codes_tex, 'Zero variate data left, uni-variate data right.\n');
+  fprintf(codes_tex, 'Life history events: b birth, s settlement, j end of acceleration, p puberty, m death, i death.\n');
+  fprintf(codes_tex, 'T stands for temperature.}\n');
   fprintf(codes_tex, '\\begin{tabular}{ll|ll} \\hline\n');
-  fprintf(codes_tex, 'code & description & code & description\\\\ \\hline\n');
+  fprintf(codes_tex, '\\textbf{code} & \\textbf{description} & \\textbf{code} & \\textbf{description}\\\\ \\hline\n');
   for i = 1 : max(n_0,n_1)
     fprintf(codes_tex, '%s & %s & %s & %s\\\\ \n', strrep(data_0{i,1},'_','\_'), data_0{i,2}, strrep(data_1{i,1},'_','\_'), data_1{i,2});
   end
   fprintf(codes_tex, '\\hline\n');
   fprintf(codes_tex, '\\end{tabular}\n');
+  fprintf(codes_tex, '\\end{table}\n');
   fclose all;
   
 end
