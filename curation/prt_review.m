@@ -9,8 +9,8 @@ function  prt_review(taxa, filenm)
 % <prt_review *prt_review*>(taxa, filenm)
 
 %% Description
-% prints tabular in Latex with species, data, refs and and bib-file in local directory.
-% Output files have extensions .tex and .bib, respectively.
+% prints tabular in Latex with species, data, refs and  bib-file and codes in local directory.
+% Output files have extensions .tex and .bib and .tex, respectively.
 %
 % Input:
 %
