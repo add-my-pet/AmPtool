@@ -23,8 +23,8 @@ function  prt_review(taxa, filenm)
 
 %% Remarks
 % Species names are sorted alphabetically.
-% In header of Latex document:\usepackage{longtable}
-% In Latex document: \include{species} ... \include{codes} ... \bibliography{...,species}
+% In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
+% In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
 
 %% Example
 % prt_review('Cephalopoda')

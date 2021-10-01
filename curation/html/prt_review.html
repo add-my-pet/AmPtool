@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_review</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-30"><meta name="DC.source" content="prt_review.m"><style type="text/css">
+      --><title>prt_review</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-01"><meta name="DC.source" content="prt_review.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and and bib-file in local directory. Output files have extensions .tex and .bib, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'table'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. In Latex document: \include{tabular} ... \include{codes} ... \bibliography{...,tabular}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and and bib-file in local directory. Output files have extensions .tex and .bib, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'tab:species'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. In header of Latex document:\usepackage{longtable} and \usepackage[sort&amp;compress,comma,authoryear]{natbib} In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_review
 % prints a tabular in Latex with species, data, refs
@@ -86,7 +86,7 @@ function  prt_review(taxa, filenm)
 % Input:
 %
 % * taxa: string or cell array with name(s) of taxa
-% * filenm: optional string with name of output files without extension; default: 'table'
+% * filenm: optional string with name of output files without extension; default: 'tab:species'
 % 
 % Output
 %
@@ -94,7 +94,8 @@ function  prt_review(taxa, filenm)
 
 %% Remarks
 % Species names are sorted alphabetically.
-% In Latex document: \include{tabular} ... \include{codes} ... \bibliography{...,tabular}
+% In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
+% In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
 
 %% Example
 % prt_review('Cephalopoda')
@@ -105,24 +106,43 @@ function  prt_review(taxa, filenm)
     n = length(taxa); species = select(taxa{1});
     for i = 2:n
       species = [species; select(taxa{i})];
+      taxa = strrep([taxa{1}, ' and ', taxa{2}],'_',' ');
     end
     species = sort(species);
   end
   n_spec = length(species);
   
   if ~exist('filenm','var')
-    filenm = 'tabular';
+    filenm = 'species';
   end
   
   fid_tex = fopen([filenm, '.tex'], 'w+');
   fid_bib = fopen([filenm, '.bib'], 'w+');
   
-  fprintf(fid_tex, '\\begin{tabular}{lll} \\hline\n');
-  fprintf(fid_tex, 'species & data & references \\\\ \\hline\n');
+  % header species table
+  fprintf(fid_tex, '{\\footnotesize');
+  fprintf(fid_tex, '\\begin{longtable}[c]{p{3.5cm}p{5.5cm}p{5.5cm}} \n');
+  fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
+  fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references.',taxa, datestr(datenum(date),'yyyy/mm/dd'));
+  fprintf(fid_tex, 'The codes of the data types are presented in Table \\ref{tab:codes}} \\\\ \n\n');
+  
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \\hline\n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\endfirsthead\n\n');
+  
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\multicolumn{3}{|c|}{Continuation of Table \\ref{tab:species}} \\\\ \n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\endhead\n\n');
+
   data_0 = cell(0,1); data_1 = cell(0,1);
   
   WD = cdCur;
   for i=1:n_spec
+    fprintf('%s\n',species{i});
     cdEntr(species{i});
     eval(['[~, ~, metaData, txtData] = mydata_', species{i}, ';']);
     data = [metaData.data_0(:); metaData.data_1(:)];
@@ -144,15 +164,26 @@ function  prt_review(taxa, filenm)
         end
       end
     end    
-    bibkey([1 2]) = ''; % remove first ,
+    if length(bibkey)>2; bibkey([1 2]) = ''; else bibkey = ''; end; % remove first ,
     fprintf(fid_tex, '%s &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
     
+    % add bib, skipping refs to sites and Kooy2010
     cd(['../../entries_web/', species{i}])
-    fprintf(fid_bib, '%s', fileread([species{i}, '_bib.bib']));
+    bib = fileread([species{i}, '_bib.bib']);
+    bibs = strsplit(bib,'@'); n_bib = length(bibs); bib = '';
+    for j = 1:n_bib
+      if ~isempty(bibs{j}) & length(bibs{j}) > 4
+        bibkey = bibs{j}; j_0 = strfind(bibkey,'{') + 1; j_1 = strfind(bibkey,',') - 1; bibkey = bibkey(j_0(1):j_1(1));
+        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010')
+          bib = [bib, '@', bibs{j}];
+        end
+      end
+    end
+    fprintf(fid_bib, '%s', bib);
   end
   
   fprintf(fid_tex, '\\hline\n');
-  fprintf(fid_tex, '\\end{tabular}\n');
+  fprintf(fid_tex, '\\end{longtable}}\n');
   fclose all;
   
   cd(WD);
@@ -168,15 +199,22 @@ function  prt_review(taxa, filenm)
   else
     data_1 = [data_1; fill];
   end
-  
+
   codes_tex = fopen('codes.tex', 'w+');
+  fprintf(codes_tex, '\\begin{table}\\small\n');
+  fprintf(codes_tex, '\\caption{\\label{tab:codes}\\protect\\small\n');
+  fprintf(codes_tex, 'The codes of the data types as presented in Table \\ref{tab:species}.\n');
+  fprintf(codes_tex, 'Zero variate data left, uni-variate data right.\n');
+  fprintf(codes_tex, 'Life history events: b birth, s settlement, j end of acceleration, p puberty, m death, i death.\n');
+  fprintf(codes_tex, 'T stands for temperature.}\n');
   fprintf(codes_tex, '\\begin{tabular}{ll|ll} \\hline\n');
-  fprintf(codes_tex, 'code & description & code & description\\\\ \\hline\n');
+  fprintf(codes_tex, '\\textbf{code} & \\textbf{description} & \\textbf{code} & \\textbf{description}\\\\ \\hline\n');
   for i = 1 : max(n_0,n_1)
     fprintf(codes_tex, '%s & %s & %s & %s\\\\ \n', strrep(data_0{i,1},'_','\_'), data_0{i,2}, strrep(data_1{i,1},'_','\_'), data_1{i,2});
   end
   fprintf(codes_tex, '\\hline\n');
   fprintf(codes_tex, '\\end{tabular}\n');
+  fprintf(codes_tex, '\\end{table}\n');
   fclose all;
   
 end
