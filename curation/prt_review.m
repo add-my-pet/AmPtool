@@ -47,11 +47,25 @@ function  prt_review(taxa, filenm)
   fid_tex = fopen([filenm, '.tex'], 'w+');
   fid_bib = fopen([filenm, '.bib'], 'w+');
   
-  fprintf(fid_tex, '\\begin{longtable}{p{3.5cm}p{5.5cm}p{5.5cm}} \\footnotesize\n');
+  % header species table
+  fprintf(fid_tex, '{\\footnotesize');
+  fprintf(fid_tex, '\\begin{longtable}[c]{p{3.5cm}p{5.5cm}p{5.5cm}} \n');
   fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
   fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references.',taxa, datestr(datenum(date),'yyyy/mm/dd'));
-  fprintf(fid_tex, 'The codes of the data types are presented in Table \\ref{tab:codes}} \\\\ \n');
+  fprintf(fid_tex, 'The codes of the data types are presented in Table \\ref{tab:codes}} \\\\ \n\n');
+  
+  fprintf(fid_tex, '\\hline\n');
   fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \\hline\n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\endfirsthead\n\n');
+  
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\multicolumn{3}{|c|}{Continuation of Table \\ref{tab:species}} \\\\ \n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \n');
+  fprintf(fid_tex, '\\hline\n');
+  fprintf(fid_tex, '\\endhead\n\n');
+
   data_0 = cell(0,1); data_1 = cell(0,1);
   
   WD = cdCur;
@@ -81,12 +95,23 @@ function  prt_review(taxa, filenm)
     if length(bibkey)>2; bibkey([1 2]) = ''; else bibkey = ''; end; % remove first ,
     fprintf(fid_tex, '%s &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
     
+    % add bib, skipping refs to sites and Kooy2010
     cd(['../../entries_web/', species{i}])
-    fprintf(fid_bib, '%s', fileread([species{i}, '_bib.bib']));
+    bib = fileread([species{i}, '_bib.bib']);
+    bibs = strsplit(bib,'@'); n_bib = length(bibs); bib = '';
+    for j = 1:n_bib
+      if ~isempty(bibs{j}) & length(bibs{j}) > 4
+        bibkey = bibs{j}; j_0 = strfind(bibkey,'{') + 1; j_1 = strfind(bibkey,',') - 1; bibkey = bibkey(j_0(1):j_1(1));
+        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010')
+          bib = [bib, '@', bibs{j}];
+        end
+      end
+    end
+    fprintf(fid_bib, '%s', bib);
   end
   
   fprintf(fid_tex, '\\hline\n');
-  fprintf(fid_tex, '\\end{longtable}\n');
+  fprintf(fid_tex, '\\end{longtable}}\n');
   fclose all;
   
   cd(WD);
