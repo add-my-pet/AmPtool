@@ -35,6 +35,7 @@ function  prt_review(taxa, filenm)
     n = length(taxa); species = select(taxa{1});
     for i = 2:n
       species = [species; select(taxa{i})];
+      taxa = strrep([taxa{1}, ' and ', taxa{2}],'_',' ');
     end
     species = sort(species);
   end
