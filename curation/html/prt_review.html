@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_review</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-01"><meta name="DC.source" content="prt_review.m"><style type="text/css">
+      --><title>prt_review</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-02"><meta name="DC.source" content="prt_review.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and  bib-file and codes in local directory. Output files have extensions .tex and .bib and .tex, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'species'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. In header of Latex document:\usepackage{longtable} and \usepackage[sort&amp;compress,comma,authoryear]{natbib} In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_review</h1><!--introduction--><p>prints a tabular in Latex with species, data, refs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_review"><b>prt_review</b></a>(taxa, filenm)</p><h2 id="4">Description</h2><p>prints tabular in Latex with species, data, refs and  bib-file and codes in local directory. Output files have extensions .tex and .bib and .tex, respectively.</p><p>Input:</p><div><ul><li>taxa: string or cell array with name(s) of taxa</li><li>filenm: optional string with name of output files without extension; default: 'species'</li></ul></div><p>Output</p><div><ul><li>No explicit output, but files filenm.tex, filenm.bib and codes.tex are written</li></ul></div><h2 id="5">Remarks</h2><p>Species names are sorted alphabetically. Only bib-items with bibkeys of the type txt1**** or txt2**** are stored, and repeated bibkeys are skipped In header of Latex document:\usepackage{longtable} and \usepackage[sort&amp;compress,comma,authoryear]{natbib} In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}</p><h2 id="6">Example</h2><p>prt_review('Cephalopoda')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_review
 % prints a tabular in Latex with species, data, refs
@@ -94,6 +94,7 @@ function  prt_review(taxa, filenm)
 
 %% Remarks
 % Species names are sorted alphabetically.
+% Only bib-items with bibkeys of the type txt1**** or txt2**** are stored, and repeated bibkeys are skipped
 % In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
 % In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
 
@@ -170,12 +171,12 @@ function  prt_review(taxa, filenm)
     % add bib, skipping refs to sites and Kooy2010
     cd(['../../entries_web/', species{i}])
     bib = fileread([species{i}, '_bib.bib']);
-    bibs = strsplit(bib,'@'); n_bib = length(bibs); bib = '';
+    bibs = strsplit(bib,[char(10),'@']); n_bib = length(bibs); bib = ''; 
     for j = 1:n_bib
       if ~isempty(bibs{j}) & length(bibs{j}) > 4
         bibkey = bibs{j}; j_0 = strfind(bibkey,'{') + 1; j_1 = strfind(bibkey,',') - 1; bibkey = bibkey(j_0(1):j_1(1));
-        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010')
-          bib = [bib, '@', bibs{j}];
+        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010') & isempty(strfind(bib,bibkey))
+          bib = [bib, char(10), '@', bibs{j}];
         end
       end
     end

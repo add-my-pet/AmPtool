@@ -23,6 +23,7 @@ function  prt_review(taxa, filenm)
 
 %% Remarks
 % Species names are sorted alphabetically.
+% Only bib-items with bibkeys of the type txt1**** or txt2**** are stored, and repeated bibkeys are skipped
 % In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
 % In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
 
@@ -67,7 +68,7 @@ function  prt_review(taxa, filenm)
   fprintf(fid_tex, '\\hline\n');
   fprintf(fid_tex, '\\endhead\n\n');
 
-  data_0 = cell(0,1); data_1 = cell(0,1);
+  data_0 = cell(0,1); data_1 = cell(0,1); bibCum = '';
   
   WD = cdCur;
   for i=1:n_spec
@@ -99,16 +100,17 @@ function  prt_review(taxa, filenm)
     % add bib, skipping refs to sites and Kooy2010
     cd(['../../entries_web/', species{i}])
     bib = fileread([species{i}, '_bib.bib']);
-    bibs = strsplit(bib,'@'); n_bib = length(bibs); bib = '';
+    bibs = strsplit(bib,[char(10),'@']); n_bib = length(bibs); bib = ''; 
     for j = 1:n_bib
-      if ~isempty(bibs{j}) & length(bibs{j}) > 4
+      if length(bibs{j}) > 4
         bibkey = bibs{j}; j_0 = strfind(bibkey,'{') + 1; j_1 = strfind(bibkey,',') - 1; bibkey = bibkey(j_0(1):j_1(1));
-        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010')
-          bib = [bib, '@', bibs{j}];
+        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010') & isempty(strfind(bibCum,bibkey))
+          bib = [bib, char(10), '@', bibs{j}];
         end
       end
     end
     fprintf(fid_bib, '%s', bib);
+    bibCum = [bibCum, bib]; % store to avoid repeated bibkeys
   end
   
   fprintf(fid_tex, '\\hline\n');
