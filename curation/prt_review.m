@@ -104,7 +104,7 @@ function  prt_review(taxa, filenm)
     for j = 1:n_bib
       if length(bibs{j}) > 4
         bibkey = bibs{j}; j_0 = strfind(bibkey,'{') + 1; j_1 = strfind(bibkey,',') - 1; bibkey = bibkey(j_0(1):j_1(1));
-        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010') & isempty(strfind(bibCum,bibkey))
+        if length(bibkey) > 4 & (strcmp(bibkey(end-3),'1') | strcmp(bibkey(end-3),'2')) & ~strcmp(bibkey,'Kooy2010') & isempty(strfind(bibCum,['{',bibkey]))
           bib = [bib, char(10), '@', bibs{j}];
         end
       end
@@ -141,7 +141,9 @@ function  prt_review(taxa, filenm)
   fprintf(codes_tex, '\\begin{tabular}{ll|ll} \\hline\n');
   fprintf(codes_tex, '\\textbf{code} & \\textbf{description} & \\textbf{code} & \\textbf{description}\\\\ \\hline\n');
   for i = 1 : max(n_0,n_1)
-    fprintf(codes_tex, '%s & %s & %s & %s\\\\ \n', strrep(data_0{i,1},'_','\_'), data_0{i,2}, strrep(data_1{i,1},'_','\_'), data_1{i,2});
+    d0 = strrep(data_0{i,2},'_2','$_2$'); d0 = strrep(d0,'_3','$_3$'); 
+    d1 = strrep(data_1{i,2},'_2','$_2$'); d1 = strrep(d1,'_3','$_3$');
+    fprintf(codes_tex, '%s & %s & %s & %s\\\\ \n', strrep(data_0{i,1},'_','\_'), d0, strrep(data_1{i,1},'_','\_'), d1);
   end
   fprintf(codes_tex, '\\hline\n');
   fprintf(codes_tex, '\\end{tabular}\n');
