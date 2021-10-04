@@ -54,14 +54,14 @@ for i = 1:nargin
 
   load(['results_', varargin{i}], 'par','metaData');
   [par_pi, ~, ~] = feval(['pars_init_',varargin{i}],metaData); 
-  flds = fields(par_pi);
+  par_pi = rmfield(par_pi,'free'); flds = fields(par_pi); 
   n_flds = length(flds);
   
   sum_0 = 0; sum_1 = 0;
   for j = 1:n_flds
-    sum_0 = sum_0 + abs(par_pi.(flds{i}) - par.(flds{i})); 
+    sum_0 = sum_0 + abs(par_pi.(flds{j}) - par.(flds{j})); 
     if isfield(allStat,varargin{i})
-      sum_1 = sum_1 + abs(par_pi.(flds{i}) - allStat.(varargin{i}).(flds{i}));  
+      sum_1 = sum_1 + abs(par_pi.(flds{j}) - allStat.(varargin{i}).(flds{j}));  
     end
   end
   
