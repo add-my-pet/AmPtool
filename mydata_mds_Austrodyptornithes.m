@@ -50,8 +50,9 @@ shstat_options('z_transform', 'none');
 
 fig(Hleg)
 title('Austrodyptornithes');
-%saveas (Hleg, 'AustrodyptornithesLegend.png')
+%print -r1200 -dpng AustrodyptornithesLegend.png
 
+fig(Hfig)
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Austrodyptornithes', 'Hydrobatidae');
 connect_subclade(Hfig, y(:,1:3), 'Austrodyptornithes', 'Diomedeidae');
@@ -62,7 +63,7 @@ connect_subclade(Hfig, y(:,1:3), 'Austrodyptornithes', 'Pterodroma');
 %connect_subclade(Hfig, y(:,1:3), 'Austrodyptornithes', 'Procellariini');
 % the 2 outliers belong to the genus Procellaria
 
-%saveas (Hfig, 'AustrodyptornithesMds.png')
+%print -r1200 -dpng AustrodyptornithesMds.png
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -71,5 +72,5 @@ xlabel('rank');
 ylabel('eigenvalue');
 title('MDS for Austrodyptornithes');
 set(gca, 'FontSize', 15, 'Box', 'on');
-%saveas (gca, 'AustrodyptornithesEigen.png')
+%print -r1200 -dpng AustrodyptornithesEigen.png
 

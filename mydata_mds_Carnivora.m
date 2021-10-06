@@ -43,13 +43,14 @@ shstat_options('z_transform', 'none');
 
 fig(Hleg)
 title('Carnivora');
-%saveas (Hleg, 'CarnivoraLegend.png')
+%print -r1200 -dpng CarnivoraLegend.png
 
+fig(Hfig)
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Canidae');
 connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Pinnipedia');
+%print -r1200 -dpng CarnivoraMds.png
 
-%saveas (Hfig, 'CarnivoraMds.png')
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -58,5 +59,5 @@ xlabel('rank');
 ylabel('eigenvalue');
 title('MDS for Carnivora');
 set(gca, 'FontSize', 15, 'Box', 'on');
-%saveas (gca, 'CarnivoraEigen.png')
+%print -r1200 -dpng CarnivoraEigen.png
 

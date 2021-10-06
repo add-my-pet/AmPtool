@@ -46,12 +46,12 @@ shstat_options('z_transform', 'none');
 
 fig(Hleg)
 title('Cephalopoda');
-%saveas (Hleg, 'CephalopodaLegend.png')
+%print -r1200 -dpng CephalopodaLegend.png;
 
+fig(Hfig)
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Cephalopoda', 'Sepiida');
-
-%saveas (Hfig, 'CephalopodaMds.png')
+%print -r1200 -dpng CephalopodaMds.png;
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -60,5 +60,5 @@ xlabel('rank');
 ylabel('eigenvalue');
 title('MDS for Cephalopoda');
 set(gca, 'FontSize', 15, 'Box', 'on');
-%saveas (gca, 'CephalopodaEigen.png')
+%print -r1200 -dpng CephalopodaEigen.png;
 

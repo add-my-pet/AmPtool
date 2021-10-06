@@ -45,12 +45,13 @@ shstat_options('z_transform', 'none');
 
 fig(Hleg)
 title('Chondrichthyes');
-%saveas (Hleg, 'ChondrichthyesLegend.png')
+%print -r1200 -dpng ChondrichthyesLegend.png;
 
+fig(Hfig)
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Chimaeriformes');
 %connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Myliobatiformes');
-%saveas (Hfig, 'ChondrichthyesMds.png')
+%print -r1200 -dpng ChondrichthyesMds.png;
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -58,6 +59,5 @@ plot(1:n_t, e(1:n_t), '*b', n_t+1:n_e, e(n_t+1:n_e), '*r')
 xlabel('rank');
 ylabel('eigenvalue');
 title('MDS for Chondrichthyes');
-set(gca, 'FontSize', 15, 'Box', 'on');
-%saveas (gca, 'ChondrichthyesEigen.png')
-
+set(gca, 'FontSize', 15, 'Box', 'on');%saveas (gca, 'ChondrichthyesEigen.png')
+%print -r1200 -dpng ChondrichthyesEigen.png;
