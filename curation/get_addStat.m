@@ -117,7 +117,7 @@ function allStat = get_addStat(entries, T, f)
     end
    
   catch 
-    disp(['Statistics of entry ', entries{i},' could not be extracted'])
+    disp(['Warning from get_addStat: Statistics of entry ', entries{i},' could not be extracted'])
   end
    
   cd(WD)                   % goto original path
