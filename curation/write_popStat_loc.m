@@ -90,7 +90,7 @@ function popStat = write_popStat_loc(varargin)
     end
     locPopStat.(spec) = popStat.(spec); % add species to collection
   end
-  popStat = locPopStat; % copy collection popStat back in valriable popStat
+  popStat = locPopStat; % copy collection popStat back in variable popStat
   % check if length of popStat corresponds with number of entries in lists-of-lists
   entries = select; n_entries = length(entries); n_popStat = length(fields(popStat));
   if ~(n_popStat == n_entries)

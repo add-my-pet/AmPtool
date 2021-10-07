@@ -1,0 +1,143 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>repair_ecoCode</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-26"><meta name="DC.source" content="repair_ecoCode.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>repair_ecoCode</h1><!--introduction--><p>loads a mydata-file in the Matlab editor and saves files</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="repair_id"><b>repair_ecoCode</b></a>(my_pet)</p><h2 id="4">Description</h2><p>loads mydata_my_pet to allow editing ecoCodes, saves results_my_pet.mat,   my_pet_res.html, my_pet_date.zip and updates allStat and saves allStat and AmPdata.zip</p><p>Input:</p><div><ul><li>my_pet: string with name of existing entry</li></ul></div><h2 id="5">Remarks</h2><p>Still needs syncing with server afterwards</p><h2 id="6">Example</h2><p>repair_ecoCode('Ceriodaphnia_dubia')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% repair_ecoCode
+% loads a mydata-file in the Matlab editor and saves files 
+
+%%
+function repair_ecoCode(my_pet)
+% created 2021/09/26 by Bas Kooijman
+
+%% Syntax
+% <repair_id *repair_ecoCode*>(my_pet)
+
+%% Description
+% loads mydata_my_pet to allow editing ecoCodes, saves results_my_pet.mat,
+%   my_pet_res.html, my_pet_date.zip and updates allStat and saves allStat and AmPdata.zip
+%
+% Input:
+%
+% * my_pet: string with name of existing entry
+
+%% Remarks
+% Still needs syncing with server afterwards
+
+%% Example
+% repair_ecoCode('Ceriodaphnia_dubia')
+
+  % path setting for curators 
+  cur2ewmp = ['../../deblab/add_my_pet/entries_web/', my_pet,'/']; % path from AmPtool/curation to entries_web/my_pet
+  WD = cdCur;
+  cdEntr(my_pet);
+     
+  % edit mydata_my_pet.m file
+  edit(['mydata_', my_pet, '.m']);
+  fprintf('type dbcont to proceed or dbquit \n'); keyboard
+        
+  run_repair(my_pet); % write results_my_pet.mat file
+                
+  % write my_pet_res-page
+  eval(['[data, auxData, metaData, txtData] = mydata_', my_pet, ';']);
+  eval(['[par, metaPar] = pars_init_', my_pet, '(metaData);']);
+  eval(['prdData = predict_', my_pet, '(par, data, auxData);']);
+  cdCur;
+  prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, cur2ewmp); % my_pet_res.html
+
+  % write zip file
+  cd('../../deblab/add_my_pet/entries_zip/'); % goto add_my_pet/entries_zip from  AmPtool/curation
+  zip_my_pet(my_pet, '../entries'); % zip the entry and save
+  
+  % update allStat
+  write_addStat(my_pet); % this adds/modifies allStat for selected entries
+        
+  % write add_my_pet/AmPdata/AmPdata.zip
+  cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
+
+  cd(WD);
+
+end
+
+function run_repair(my_pet)
+% use estim_pars for writing results_my_pet.mat file
+global pets 
+
+pets = {my_pet}; 
+
+estim_options('default'); 
+estim_options('pars_init_method', 2); 
+estim_options('results_output', 0); 
+estim_options('method', 'no'); 
+
+estim_pars; 
+end
+
+##### SOURCE END #####
+--></body></html>

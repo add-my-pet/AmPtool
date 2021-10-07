@@ -137,7 +137,13 @@
     The (character) string produced by pedigree can directly be printed to the screen, which is useful for small trees. 
     The tree can be used to identify useful taxa for analysis.
     The function <a href="../html/galleryAmP.html">galleryAmP('Cephalopoda')</a> composes a gallery of pictures for taxon Cephalopoda (in this case); 
-       clicking on a picture opens the tree at the seleted taxon. 
+    clicking on a picture opens the tree at the seleted taxon.
+
+    <p>
+    A few taxa have a special status.
+    Reptilia and Sarcopterygii are used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+    Pisces are not used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+  
 
     <div>
       <div class="sidelement2">
@@ -304,6 +310,11 @@
 
     Function <a href="../html/get_links.html" target="_top">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
     type <code>get_links('Homo_sapiens', 1)</code> to open them all in your system-browser.
+    Function <a href="../html/get_id.html" target="_top">get_id</a> does something similar, but gets the identifiers from the web, not from the AmP collection.
+    The species name can be any valid one, kown in CoL.
+    This function might make use of <a href="../html/get_synonym.html" target="_top">get_synonym</a>;
+    it first tries the corresponding accepted name in CoL, then the name that the user provided and finally an alternative name, if provided by CoL.
+    If the species cannot be found, it tries the genus for several websites.
 
     <h2 id="distance">Distances between species</h2>
 

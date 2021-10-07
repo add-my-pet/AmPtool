@@ -1,5 +1,10 @@
 Crocodylus_johnsoni
-Crocodylus_niloticus
+Crocodylus_mindorensis
 Crocodylus_porosus
-Crocodylus_acutus
+Crocodylus_siamensis
+Crocodylus_palustris
+Crocodylus_niloticus
 Crocodylus_moreletii
+Crocodylus_rhombifer
+Crocodylus_intermedius
+Crocodylus_acutus

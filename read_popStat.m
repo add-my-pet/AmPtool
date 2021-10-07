@@ -65,7 +65,7 @@ function [var, entries, units, label] = read_popStat(varargin)
     end
   end
   
-  i = ~cellfun('isempty',var); var = var(i); entries = entries(i); 
+  i = ~cellfun(@isempty,var); i = i(:,1); var = var(i); entries = entries(i); 
   var = cell2mat(var);
   
   % convert cell array to numerical array if possible

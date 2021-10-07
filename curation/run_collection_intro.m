@@ -3,7 +3,7 @@
 
 %%
 function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06
 
 %% Syntax
 % <run_collection_intro *run_collection_intro*> (entries)
@@ -55,19 +55,17 @@ function run_collection_intro(entries)
 
 WD = cdCur; % go to AmPtool/curation
 
+if ~exist('entries','var')
+  entries = select;
+end
+
 % allStat and popStat are made persistent and must be overwritten
 save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
 
 % write add_my_pet/AmPdata/allStat.mat and popStat.mat
-if exist('entries','var')
-  [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
-  if ~info; return; end;
-  write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
-else
-  [allStat, info] = write_allStat; % this overwrites allStat
-  if ~info; return; end;
-  write_popStat_loc; % collects entries_web/my_pet_pop.mat files in structure popStat
-end
+[allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
+if ~info; return; end;
+write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 
 % write add_my_pet/AmPdata/AmPdata.zip
 cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
@@ -107,6 +105,7 @@ if ismac || isunix
   system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
 else
   system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+  %system('powershell SyncBackPro AmP2VU -i'); 
 end
 
 cd(WD); % go to current directory (when this function was started)

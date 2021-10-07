@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_id_Taxo</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-30"><meta name="DC.source" content="get_id_Taxo.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>get_id_Taxo</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-03"><meta name="DC.source" content="get_id_Taxo.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,16 +67,16 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_Taxo</h1><!--introduction--><p>gets id of species name in the Taxonomicon</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id_Taxo = <a href="../get_id_Taxo.m"><b>get_id_Taxo</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Gets identifier for a species name in the Taxonomicon</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li></ul></div><p>Output:</p><div><ul><li>id_Taxo: character string of id in Taxonomicon</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty string if identification was not successful. Used in lineage_Taxo to get the lineage</p><h2 id="6">Example of use</h2><p>id_Taxo = get_id_Taxo('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_id_Taxo</h1><!--introduction--><p>gets id of species name in the Taxonomicon</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id_Taxo = <a href="../get_id_Taxo.m"><b>get_id_Taxo</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for a species name in the Taxonomicon</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id_Taxo: character string of id in Taxonomicon</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty string if identification was not successful. Used in lineage_Taxo to get the lineage</p><h2 id="6">Example of use</h2><p>id_Taxo = get_id_Taxo('Daphnia_magna', 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_id_Taxo
 % gets id of species name in the Taxonomicon
 %%
-function id_Taxo = get_id_Taxo(my_pet)
+function id_Taxo = get_id_Taxo(my_pet, open)
 % created 2018/01/31 by Bas Kooijman
 
 %% Syntax
-% id_Taxo = <../get_id_Taxo.m *get_id_Taxo*>(my_pet)
+% id_Taxo = <../get_id_Taxo.m *get_id_Taxo*>(my_pet, open)
 
 %% Description
 % Gets identifier for a species name in the Taxonomicon
@@ -83,6 +84,7 @@ function id_Taxo = get_id_Taxo(my_pet)
 % Input:
 %
 % * my_pet: character string with name of a taxon
+% * open: optional boolean for opening in browser (default: 0)
 %
 % Output:
 %
@@ -93,15 +95,30 @@ function id_Taxo = get_id_Taxo(my_pet)
 % Used in lineage_Taxo to get the lineage
 
 %% Example of use
-% id_Taxo = get_id_Taxo('Daphnia_magna')
+% id_Taxo = get_id_Taxo('Daphnia_magna', 1)
+
+address = 'https://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=';
+if ~exist('open','var')
+  open = 0;
+end
+
+if ~isempty(strfind(my_pet, ' '));
+  my_pet = strrep(my_pet,' ','_');
+end
 
 url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
-url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
-id_Taxo = url(1:(strfind(url,'&') - 1)); 
-
-if isempty(id_Taxo)
-  fprintf('Warning from get_id_Taxo: species not found in the Taxonomicon\n');
+ind = strfind(url,'TaxonName.aspx?id=');
+if isempty(ind)
+  id_Taxo = []; return
+else
+  url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = [];
+  id_Taxo = url(1:(strfind(url,'&') - 1)); 
 end
+
+if open
+  web([address, id_Taxo],'-browser');
+end
+
 
 ##### SOURCE END #####
 --></body></html>

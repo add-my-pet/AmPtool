@@ -42,12 +42,12 @@ shstat_options('z_transform', 'none');
 
 fig(Hleg)
 title('Testudines');
-%saveas (Hleg, 'TestudinesLegend.png')
+%print -r1200 -dpng TestudinesLegend.png;
 
+fig(Hfig)
 % connect the points for subclades
 connect_subclade(Hfig, y(:,1:3), 'Testudines', 'Chelonioidea');
-
-%saveas (Hfig, 'TestudinesMds.png')
+%print -r1200 -dpng TestudinesMds.png;
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
@@ -56,4 +56,4 @@ xlabel('rank');
 ylabel('eigenvalue');
 title('MDS for Testudines');
 set(gca, 'FontSize', 15, 'Box', 'on');
-%saveas (gca, 'TestudinesEigen.png')
+%print -r1200 -dpng TestudinesEigen.png;

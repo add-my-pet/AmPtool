@@ -14,7 +14,7 @@ Carcharhinus_longimanus
 Carcharhinus_macloti
 Carcharhinus_melanopterus
 Carcharhinus_obscurus
-Carcharhinus_perezi
+Carcharhinus_perezii
 Carcharhinus_plumbeus
 Carcharhinus_porosus
 Carcharhinus_signatus

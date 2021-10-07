@@ -1,0 +1,214 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>get_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-04"><meta name="DC.source" content="get_id.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>get_id</h1><!--introduction--><p>gets id's of all AmP-supported websites</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, id_txt, nm] = <a href="../get_id.m"><b>get_id</b></a>(my_pet, open, tab)</p><h2 id="4">Description</h2><p>Gets identifiers for all websites that AmP uses for this taxon. Some websites apply to all animals, others only for particular taxa. The lineage is taken from CoL.</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening sites in browser (default: 0)</li><li>tab: optional boolean for opening table in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: vector of cells with id's</li><li>id_txt: vector of cells with labels for id's</li><li>nm: name of accepted species (_ separated)</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty id strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>get_id('Passer_domesticus', 1, 1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% get_id
+% gets id's of all AmP-supported websites
+
+%%
+function [id, id_txt, nm] = get_id(my_pet, open, tab)
+% created 2021/08/3 by Bas Kooijman
+
+%% Syntax
+% [id, id_txt, nm] = <../get_id.m *get_id*>(my_pet, open, tab)
+
+%% Description
+% Gets identifiers for all websites that AmP uses for this taxon. 
+% Some websites apply to all animals, others only for particular taxa.
+% The lineage is taken from CoL.
+%
+% Input:
+%
+% * my_pet: character string with name of a taxon
+% * open: optional boolean for opening sites in browser (default: 0)
+% * tab: optional boolean for opening table in browser (default: 0)
+%
+% Output:
+%
+% * id: vector of cells with id's
+% * id_txt: vector of cells with labels for id's
+% * nm: name of accepted species (_ separated)
+
+%% Remarks
+% Outputs empty id strings if identification was not successful.
+
+%% Example of use
+% get_id('Passer_domesticus', 1, 1)
+
+  if ~exist('open','var')
+    open = 0;
+  end 
+  if ~exist('tab','var')
+    tab = 0;
+  end
+
+  links = {...
+    % general links
+    'https://www.catalogueoflife.org/col/'; ...
+    'https://eol.org/'; ...
+    'https://en.wikipedia.org/wiki/'; ...
+    'https://animaldiversity.org/'; ...
+    'https://taxonomicon.taxonomy.nl/'; ...
+    'https://marinespecies.org/'; ...
+    % taxon-specific links
+    'https://www.molluscabase.org/'; ...
+    'https://www.fishbase.org/'; ...
+    'https://amphibiaweb.org/search/'; ...
+    'https://reptile-database.reptarium.cz/'; ...
+    'https://avibase.bsc-eoc.org/'; ...
+    'http://datazone.birdlife.org/'; ...
+    'https://www.departments.bucknell.edu/biology/resources/msw3/'; ...
+    'https://genomics.senescence.info/'};
+     
+  address = { ...
+    % general adresses
+    'https://www.catalogueoflife.org/data/taxon/'; ...
+    'https://eol.org/pages/'; ...
+    'https://en.wikipedia.org/wiki/'; ...
+    'https://animaldiversity.org/accounts/'; ...
+    'http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id='; ...
+    'https://marinespecies.org/aphia.php?p=taxdetails&id='; ...
+    % taxon-specific adresses
+    'https://www.molluscabase.org/aphia.php?p=taxdetails&id='; ...
+    'https://www.fishbase.se/summary/'; ...
+    'https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name='; ...
+    'https://reptile-database.reptarium.cz/species?'; ...
+    'https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid='; ...
+    'http://datazone.birdlife.org/species/factsheet/'; ...
+    'https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id='; ...
+    'https://genomics.senescence.info/species/entry.php?species='};
+    
+  my_pet = strrep(my_pet, ' ', '_'); nm = my_pet;
+  [lin, rank, id_CoL, name_status] = lineage_CoL(my_pet); 
+  if isempty(id_CoL)
+    fprintf(['Warning from get_id: name found found in CoL\n'])
+    id = []; id_txt = []; nm = []; return
+  end
+  if ~strcmp(name_status,'accepted name')
+    fprintf(['Warning from get_id: name status is ', name_status, '; continue with accepted name\n'])
+    [id_CoL, my_pet] = get_id_CoL(my_pet); nm = strrep(my_pet, ' ', '_');
+  end
+     
+  select_id(1:6) = true; id = cell(14,1); id_txt = cell(14,1);
+  id{1} = id_CoL; id_txt{1} = 'id_CoL';
+  id{2} = get_id_EoL(my_pet); id_txt{2} = 'id_EoL';
+  id{3} = get_id_Wiki(my_pet); id_txt{3} = 'id_Wiki';
+  id{4} = get_id_ADW(my_pet); id_txt{4} = 'id_ADW';
+  id{5} = get_id_Taxo(my_pet); id_txt{5} = 'id_Taxo';
+  id{6} = get_id_WoRMS(my_pet); id_txt{6} = 'id_WoRMS';
+ 
+  select_id(7:14) = false;
+  if ismember(lin(ismember(rank,'Phylum')), 'Mollusca')
+    select_id(7) = true;
+    id{7} = get_id_molluscabase(my_pet); id_txt{7} = 'id_molluscabase';
+  end
+  if ismember(lin(ismember(rank,'Class')), {'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+    select_id(8) = true;
+    id{8} = get_id_fishbase(my_pet); id_txt{8} = 'id_fishbase';
+  end
+  if ismember(lin(ismember(rank,'Class')), 'Amphibia') 
+    select_id(9) = true;
+    id{9} = get_id_amphweb(my_pet); id_txt{9} = 'id_amphweb';
+  end
+  if ismember(lin(ismember(rank,'Class')), {'Reptilia','Squamata','Testudines','Crocodilia'}) 
+    select_id(10) = true;
+    id{10} = get_id_ReptileDB(my_pet); id_txt{10} = 'id_ReptileDB';
+  end
+  if ismember(lin(ismember(rank,'Class')), 'Aves') 
+    select_id(11:12) = true;
+    id{11} = get_id_avibase(my_pet); id_txt{11} = 'id_avibase';
+    id{12} = get_id_birdlife(my_pet); id_txt{12} = 'id_birdlife';
+  end
+  if ismember(lin(ismember(rank,'Class')), 'Mammalia') 
+    select_id(13) = true;
+    id{13} = get_id_msw3(my_pet); id_txt{13} = 'id_msw3';
+  end
+  if ismember(lin(ismember(rank,'Class')), {'Aves', 'Mammalia'}) 
+    select_id(14) = true;
+    id{14} = get_id_AnAge(my_pet); id_txt{14} = 'id_AnAge';
+  end
+  id = id(select_id); id_txt = id_txt(select_id); n = length(id);
+        
+  if open
+    for i = 1:n
+      if isempty(id{i})
+        web([links{i}, id{i}],'-browser');
+      else
+        web([address{i}, id{i}],'-browser');
+      end
+    end
+  end
+  if tab
+    prt_tab({id_txt, id}, {'id','code'},'id')
+  end
+
+
+##### SOURCE END #####
+--></body></html>

@@ -62,12 +62,12 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
 %
 % In case of 3 variables: hit rotation in the toolbar of the figure.
 %
-% Shstat recognises ecocodes in legend with by the cell-strings in the second column. 
+% Shstat recognises ecocodes in legend by the cell-strings in the second column. 
 % Fields of ecocodes are coded as: C climate, E ecozone, H habitat, B, embryo, M migrate, F food, G gender, R reprod.
 % <../mydata_shstat.m *mydata_shstat*> gives an example. So 'B.Tnp' stands for code Tnp in the field embryo-environment.
 %
 % Make sure that allStat has been generated at the correct temperature (for times and rates); all parameters are at T_ref.
-% Make sure that allStat is consistent with select('Animalia'); can be done via <../curation/html/write_allStat.html *write_allStat*>.
+% Make sure that allStat is consistent with select('Animalia')
 
 %% Example of use
 % see <../mydata_shstat.m *mydata_shstat*>
@@ -276,17 +276,22 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         end
         x_median = median(val_plot); x_min = min(val_plot);
         surv_x = surv(val_plot); 
-        plot([x_min; x_median; x_median], [0.5;0.5;0], colmed, surv_x(:,1), surv_x(:,2), colfn, 'Linewidth', 2)
+        plot([x_min; x_median; x_median], [0.5;0.5;0], colmed, 'LineWidth', 1.5, 'LineStyle', ':')
+        plot(surv_x(:,1), surv_x(:,2), colfn, 'LineWidth', 2, 'LineStyle', '-')
+        xlim([min(surv_x(:,1)) inf]);
         
       elseif n_taxa > 1 
+        xlim_min = inf;
         for j = 1:n_taxa
           i = n_taxa - j + 1; % reverse sequence of plotting to get crossings of lines natural
           line = legend{i,1}; LT = line{1}; LW = line{2}; LC = line{3};  
           x_median = median(val_plot(sel(:,i)==1,1)); x_min = min(val_plot(sel(:,i)==1,1));
           surv_x = surv(val_plot(sel(:,i)==1, 1)); 
-          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', LW)
-          plot(surv_x(:,1), surv_x(:,2), LT, 'Color', LC, 'Linewidth', LW)
+          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', 1.5, 'LineStyle', ':')
+          plot(surv_x(:,1), surv_x(:,2), LT, 'Color', LC, 'Linewidth', LW, 'LineStyle', '-')
+          xlim_min = min(xlim_min,min(surv_x(:,1))); 
         end
+        xlim([xlim_min inf])
         Hleg = shllegend(legend); % show line-legend
       end
       
@@ -301,8 +306,9 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       xlabel(label_x)  
       ylabel(label_y)
       
-      h = datacursormode(Hfig);
-      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries, val_plot);
+      h = datacursormode(Hfig); entries_txt = entries;
+      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
       
       if iscell(legend{1,2})
@@ -336,8 +342,9 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       ylabel(label_y)
       zlabel(label_z)
   
-      h = datacursormode(Hfig);
-      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries, val_plot);
+      h = datacursormode(Hfig); entries_txt = entries;
+      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
 
       Hleg = shlegend(legend);
