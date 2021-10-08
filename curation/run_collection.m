@@ -42,7 +42,7 @@ elseif iscell(varargin{1})
   varargin = varargin{:}; % unpack cell string  
 end
 
-check_results(varargin); % warn if parameters in results do not match those in pars_init
+%check_results(varargin); % warn if parameters in results do not match those in pars_init
 
 % path setting for curators 
 cur2ew = '../../deblab/add_my_pet/entries_web/'; % path from AmPtool/curation to entries_web
