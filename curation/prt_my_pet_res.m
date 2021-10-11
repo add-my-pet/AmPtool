@@ -47,6 +47,7 @@ end
 if exist('destinationFolder','var')
   fileName = [destinationFolder, metaData.species, '_res.html'];
 else
+  destinationFolder = '';
   fileName = [metaData.species, '_res.html'];    
 end
 oid = fopen(fileName, 'w+'); % open file for reading and writing, delete existing content
