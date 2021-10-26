@@ -2,7 +2,7 @@
 % edit mydata_my_pet, write results_my_pet.mat, save zip, writes my_pet_bib.bib and my_pet_bib.html
 
 %%
-function repair_bib(my_pet)
+function WD = repair_bib(my_pet)
 % created 2020/05/21 by Bas Kooijman, modified 2021/10/02
 
 %% Syntax
@@ -14,6 +14,10 @@ function repair_bib(my_pet)
 % Input:
 %
 % * my_pet: character string with entry
+%
+% Ouput:
+%
+% * WD: current path
 
 %% Remarks
 % Requires syncing with servers when done
