@@ -54,7 +54,8 @@ function  prt_review(taxa, filenm)
   fprintf(fid_tex, '\\begin{longtable}[c]{p{3.5cm}p{5.5cm}p{5.5cm}} \n');
   fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
   fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references.',taxa, datestr(datenum(date),'yyyy/mm/dd'));
-  fprintf(fid_tex, 'The codes of the data types are presented in Table \\ref{tab:codes}} \\\\ \n\n');
+  fprintf(fid_tex, 'Besides these references, websites for have used to get data, which are presented on the AmP website.');
+  fprintf(fid_tex, 'The codes of the data types are presented in Table~\\ref{tab:codes}} \\\\ \n\n');
   
   fprintf(fid_tex, '\\hline\n');
   fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \\hline\n');
@@ -95,7 +96,7 @@ function  prt_review(taxa, filenm)
       end
     end    
     if length(bibkey)>2; bibkey([1 2]) = ''; else bibkey = ''; end; % remove first ,
-    fprintf(fid_tex, '%s &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
+    fprintf(fid_tex, '\\emph{%s} &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
     
     % add bib, skipping refs to sites and Kooy2010
     cd(['../../entries_web/', species{i}])
