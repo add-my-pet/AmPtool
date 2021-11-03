@@ -1,2 +1,3 @@
-Sorex_minutus
 Sorex_araneus
+Sorex_cinereus
+Sorex_minutus

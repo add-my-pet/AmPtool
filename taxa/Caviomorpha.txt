@@ -1,7 +1,4 @@
-Capromyidae
-Caviidae
-Chinchillidae
-Dasyproctidae
-Erethizontidae
-Myocastoridae
-Octodontidae
+Erethizontoidea
+Chinchilloidea
+Cavioidea
+Octodontoidea
