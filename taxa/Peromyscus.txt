@@ -1,5 +1,7 @@
+Peromyscus_californicus
+Peromyscus_eremicus
+Peromyscus_interparietalis
+Peromyscus_crinitus
 Peromyscus_polionotus
 Peromyscus_leucopus
-Peromyscus_californicus
 Peromyscus_truei
-Peromyscus_crinitus
