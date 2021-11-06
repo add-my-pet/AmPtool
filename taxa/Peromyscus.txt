@@ -2,6 +2,7 @@ Peromyscus_californicus
 Peromyscus_eremicus
 Peromyscus_interparietalis
 Peromyscus_crinitus
+Peromyscus_maniculatus
 Peromyscus_polionotus
 Peromyscus_leucopus
 Peromyscus_truei
