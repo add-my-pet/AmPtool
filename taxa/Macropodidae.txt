@@ -5,3 +5,4 @@ Onychogalea
 Petrogale
 Setonix
 Wallabia
+Thylogale
