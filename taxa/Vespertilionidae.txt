@@ -5,3 +5,4 @@ Plecotus
 Eptesicus
 Nyctalus
 Nycticeius
+Myotis
