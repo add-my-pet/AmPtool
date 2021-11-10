@@ -1,1 +1,3 @@
 Pseudomys_australis
+Pseudomys_gracilicaudatus
+Pseudomys_novaehollandiae

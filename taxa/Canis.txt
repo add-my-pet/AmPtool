@@ -1,3 +1,5 @@
 Canis_aureus
+Canis_familiaris
 Canis_latrans
 Canis_lupus
+Canis_mesomelas

@@ -13,3 +13,5 @@ Pseudomys
 Otomys
 Parotomys
 Aethomys
+Zelotomys
+Conilurus

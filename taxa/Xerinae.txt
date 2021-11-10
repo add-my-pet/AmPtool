@@ -1,9 +1,8 @@
-Tamias
-Ammospermophilus
 Callospermophilus
 Otospermophilus
-Xerospermophilus
-Marmota
-Ictidomys
-Cynomys
+Poliocitellus
 Urocitellus
+Xerospermophilus
+Tamiina
+Marmotina
+Spermophilina
