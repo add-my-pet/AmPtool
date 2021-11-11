@@ -1,2 +1,4 @@
-Sciurus_carolinensis
 Sciurus_aberti
+Sciurus_carolinensis
+Sciurus_niger
+Sciurus_vulgaris
