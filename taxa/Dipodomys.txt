@@ -2,5 +2,6 @@ Dipodomys_merriami
 Dipodomys_deserti
 Dipodomys_heermanni
 Dipodomys_nitratoides
+Dipodomys_ordii
 Dipodomys_spectabilis
 Dipodomys_stephensi
