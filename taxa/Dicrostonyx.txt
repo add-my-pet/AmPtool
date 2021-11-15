@@ -1,2 +1,3 @@
 Dicrostonyx_groenlandicus
+Dicrostonyx_nelsoni
 Dicrostonyx_torquatus
