@@ -7,6 +7,8 @@ Microtus_arvalis
 Microtus_cabrerae
 Microtus_guentheri
 Microtus_subterraneus
+Microtus_montanus
+Microtus_oregoni
 Microtus_pennsylvanicus
 Microtus_oeconomus
 Microtus_pinetorum
