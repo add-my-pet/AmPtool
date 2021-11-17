@@ -3,12 +3,15 @@ Arvicanthis
 Apodemus
 Chiropodomys
 Conilurus
+Dasymys
 Hydromys
 Hylomyscus
 Lemniscomys
 Mastomys
+Mesembriomys
 Micaelamys
 Mus
+Myotomys
 Notomys
 Praomys
 Rattus
