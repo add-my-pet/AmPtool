@@ -1,5 +1,6 @@
+Rattus_exulans
+Rattus_fuscipes
+Rattus_lutreolus
 Rattus_norvegicus
 Rattus_norvegicus_Wistar
-Rattus_lutreolus
-Rattus_fuscipes
-Rattus_exulans
+Rattus_rattus
