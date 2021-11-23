@@ -32,6 +32,9 @@ function  prt_review(taxa, filenm)
 
   if ischar(taxa)
     species = sort(select(taxa));
+  elseif ~isempty(strfind(taxa{1},'_'))
+    species = taxa;  
+    taxa = 'selected species';
   else
     n = length(taxa); species = select(taxa{1});
     for i = 2:n
@@ -53,8 +56,8 @@ function  prt_review(taxa, filenm)
   fprintf(fid_tex, '{\\footnotesize');
   fprintf(fid_tex, '\\begin{longtable}[c]{p{3.5cm}p{5.5cm}p{5.5cm}} \n');
   fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
-  fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references.',taxa, datestr(datenum(date),'yyyy/mm/dd'));
-  fprintf(fid_tex, 'Besides these references, websites for have used to get data, which are presented on the AmP website.');
+  fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references. ',taxa, datestr(datenum(date),'yyyy/mm/dd'));
+  fprintf(fid_tex, 'Besides these references, websites for have used to get data, which are presented on the AmP website. ');
   fprintf(fid_tex, 'The codes of the data types are presented in Table~\\ref{tab:codes}} \\\\ \n\n');
   
   fprintf(fid_tex, '\\hline\n');
