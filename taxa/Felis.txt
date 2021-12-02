@@ -1,3 +1,5 @@
 Felis_chaus
+Felis_manul
+Felis_margarita
 Felis_nigripes
 Felis_silvestris
