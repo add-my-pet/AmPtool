@@ -1,8 +1,2 @@
-Phoca
-Pusa
-Halichoerus
-Pagophilus
-Erignathus
-Cystophora
-Mirounga
-Lobodon
+Monachinae
+Phocinae
