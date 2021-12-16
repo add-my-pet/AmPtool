@@ -15,8 +15,8 @@ function d = date_check
   %
   % * d: number of days between last modification dates in d
     
-  d=datenum(date_allStat)-datenum(date_taxa);
+  d = datenum(date_allStat) - datenum(date_taxa);
   
   if abs(d)>1
-    fprintf(['Warning from date_check: modification dates of AmPtool and AmPdata differ by ', num2str(d), ' d\n']);
+    fprintf(['Warning from date_check: modification dates of AmPtool and AmPdata differ by ', abs(num2str(d)), ' d\n']);
   end

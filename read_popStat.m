@@ -41,6 +41,11 @@ function [var, entries, units, label] = read_popStat(varargin)
   nargin = length(varargin);    
   var = cell(n,nargin);
   
+  load('n_taxa', 'n_taxa');
+  if ~(n == n_taxa)
+    fprintf(['Warning from read_popStat: popStat has ', num2str(n), ' fields, but the lists-of-lists have ', num2str(n_taxa), ' names\n'])
+  end
+
   %entries = {'Terrapene_carolina'}; n=1; nargin=1; var=cell(1,1);
   
   for i = 1:n
