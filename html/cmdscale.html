@@ -1,0 +1,214 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>cmdscale</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-16"><meta name="DC.source" content="cmdscale.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><p class="footer">Copyright 1993-2010 The MathWorks, Inc.<br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [Y, e] = cMDScale(D,p)
+%CMDSCALE Classical Multidimensional Scaling.
+%   Y = CMDSCALE(D) takes an n-by-n distance matrix D, and returns an n-by-p 
+%   configuration matrix Y.  Rows of Y are the coordinates of n points in
+%   p-dimensional space for some p < n.  When D is a Euclidean distance matrix,
+%   the distances between those points are given by D.  p is the dimension of
+%   the smallest space in which the n points whose interpoint distances are
+%   given by D can be embedded.
+% 
+%   [Y,E] = CMDSCALE(D) also returns the eigenvalues of Y*Y'.  When D is 
+%   Euclidean, the first p elements of E are positive, the rest zero.  If the 
+%   first k elements of E are much larger than the remaining (n-k), then you 
+%   can use the first k columns of Y as k-dimensional points, whose interpoint 
+%   distances approximate D.  This can provide a useful dimension reduction for 
+%   visualization, e.g., for k==2.
+% 
+%   D need not be a Euclidean distance matrix.  If it is non-Euclidean, or is
+%   a more general dissimilarity matrix, then some elements of E are negative,
+%   and CMDSCALE chooses p as the number of positive eigenvalues.  In this case,
+%   the reduction to p or fewer dimensions provides a reasonable approximation
+%   to D only if the negative elements of E are small in magnitude.
+% 
+%   [Y,E] = CMDSCALE(D,p) also accepts a positive integer between 1 and n
+%   that specifies the dimensionality of the desired embedding Y. If a p
+%   dimensional embedding is possible, then Y will be of size n-by-p and E
+%   will be of size p-by-1. If only a q dimensional embedding with q < p is
+%   possible then Y will be of size n-by-q and E will be of size p-by-1.
+%   Specifying p may reduce the computational burden when n is very large.
+%
+%   You can specify D as either a full dissimilarity matrix, or in upper 
+%   triangle vector form such as is output by PDIST.  A full dissimilarity
+%   matrix must be real and symmetric, and have zeros along the diagonal and
+%   positive elements everywhere else.  A dissimilarity matrix in upper
+%   triangle form must have real, positive entries.  You can also specify D
+%   as a full similarity matrix, with ones along the diagonal and all other
+%   elements less than one.  CMDSCALE transforms a similarity matrix to a
+%   dissimilarity matrix in such a way that distances between the points
+%   returned in Y equal or approximate sqrt(1-D).  If you want to use a
+%   different transformation, you can transform the similarities prior to
+%   calling CMDSCALE.
+%
+%   Example:
+%
+%      % some points in 4D, but "close" to 3D, reduce them to distances only
+%      X = [ normrnd(0,1,10,3) normrnd(0,.1,10,1) ];
+%      D = pdist(X, 'euclidean');
+%
+%      % find a configuration with those inter-point distances
+%      [Y e] = cmdscale(D);
+%      dim = sum(e > eps^(3/4)) % four, but fourth one small
+%      maxerr2 = max(abs(pdist(X) - pdist(Y(:,1:2)))) % poor reconstruction
+%      maxerr3 = max(abs(pdist(X) - pdist(Y(:,1:3)))) % good reconstruction
+%      maxerr4 = max(abs(pdist(X) - pdist(Y))) % exact reconstruction
+%
+%      D = pdist(X, 'cityblock'); % D is now non-Euclidean
+%      [Y e] = cmdscale(D);
+%      min(e) % one is large negative
+%      maxerr = max(abs(pdist(X) - pdist(Y))) % poor reconstruction
+%
+%   See also MDSCALE, PDIST, PROCRUSTES.
+
+%   References:
+%     [1] Seber, G.A.F., Multivariate Observations, Wiley, 1984
+
+%   Copyright 1993-2010 The MathWorks, Inc. 
+
+[n,m] = size(D);
+del = 10*eps(class(D));
+
+% lower triangle form for D, make sure it's a valid dissimilarity matrix
+if n == 1
+    n = ceil(sqrt(2*m)); % (1+sqrt(1+8*m))/2, but works for large m
+    if n*(n-1)/2 == m && all(D >= 0)
+        D = squareform(D); % assumes zero diagonal, similarity not allowed
+    else
+        error(message('stats:cmdscale:BadDistance'));
+    end
+    
+% full matrix form, make sure it's valid similarity/dissimilarity matrix
+elseif n == m && all(all(D >= 0 & abs(D - D') <= del*max(max(D))))
+    
+    % it's a dissimilarity matrix
+    if all(diag(D) < del)
+        % nothing to do
+        
+    % it's a similarity matrix REPLACE_WITH_DASH_DASH transform to dissimilarity matrix.
+    % the sqrt is not entirely arbitrary, see Seber, eqn. 5.73
+    elseif all(abs(diag(D) - 1) < del) && all(all(D < 1+del))
+        D = sqrt(1 - D);
+    else
+        error(message('stats:cmdscale:BadDistanceOrSim'));
+    end
+else
+    error(message('stats:cmdscale:BadDistance'));
+end
+
+% check if p is supplied and if so, make sure it is sensible
+p = n;
+% if ( nargin < 2 )
+%    % only D is supplied
+%    p = n;
+% else
+%    % p is supplied
+%    if ( ~isscalar(p) || ~(internal.stats.isIntegerVals(p,1,n)) )
+%        error(message('stats:cmdscale:BadDimP',n));
+%    end 
+% end
+
+% P = eye(n) - repmat(1/n,n,n);
+% B = P * (-.5 * D .* D) * P;
+% A more efficient way of doing the same thing.
+D = D.*D; % square elements of D
+B = bsxfun(@plus, bsxfun(@minus, bsxfun(@minus, D, sum(D,1)/n),sum(D,2)/n), sum(D(:))/(n^2))*(-0.5);
+
+if (p == n)
+    % compute full eigen-decomposition
+    [V,E] = eig((B+B')./2); % guard against spurious complex e-vals from roundoff
+else
+    % compute only p eigenvectors and eigenvalues.
+    [V,E] = eigs((B+B')./2,p,'LA'); % guard against spurious complex e-vals from roundoff
+end
+[e,i] = sort(diag(E)); e = flipud(e); i = flipud(i); % sort descending
+
+% keep only positive e-vals (beyond roundoff)
+keep = find(e > max(abs(e)) * eps(class(e))^(3/4));
+if isempty(keep)
+    Y = zeros(n,1);
+else
+    % The following line does the same thing as: Y = V(:,i(keep)) * diag(sqrt(e(keep)));
+    Y = bsxfun(@times, V(:,i(keep)), sqrt(e(keep))');
+end
+
+% Enforce a sign convention on the solution REPLACE_WITH_DASH_DASH the largest element
+% in each coordinate will have a positive sign.
+[~,maxind] = max(abs(Y),[],1);
+d = size(Y,2);
+colsign = sign(Y(maxind + (0:n:(d-1)*n)));
+Y = bsxfun(@times,Y,colsign);
+
+end
+
+##### SOURCE END #####
+--></body></html>
