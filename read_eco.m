@@ -32,9 +32,10 @@ function codes = read_eco(entries, varargin)
     load('allstat')        % get all parameters and statistics in structure allStat
   end
   
-  n_allStat = length(fields(allStat)); load('n_taxa', 'n_taxa');
-  if ~(n_allStat == n_taxa)
-    fprintf(['Warning from read_eco: allStat has ', num2str(n_allStat), ' fields, but the lists-of-lists have ', num2str(n_taxa), ' names\n'])
+  n_fields = length(fields(allStat)); load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_eco: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
   end
   
   n = length(entries); 

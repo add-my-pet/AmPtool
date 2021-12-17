@@ -52,7 +52,7 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   
   % write number of entries in lists-of-lists in Amtool/taxa/n_taxa.mat; this avoids the need to run length(select)
-  n_taxa = length(taxa_src); WD = cdCur; cd ../taxa; save('n_taxa.mat', 'n_taxa'); cd(WD);
+  n_entries = length(taxa_src); WD = cdCur; cd ../taxa; save('n_entries.mat', 'n_entries'); cd(WD);
 
   % check if some members of taxa are already in allStat
   WD = cdAmPdata; load allStat.mat;

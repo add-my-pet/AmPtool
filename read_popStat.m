@@ -2,11 +2,11 @@
 % read statistics and/or parameters in popStat.mat
 
 %%
-function [var, entries, units, label] = read_popStat(varargin)
+function [var, entries] = read_popStat(varargin)
 % created 2019/08/04 by Bas Kooijman, modified 2019/12/24
 
 %% Syntax
-% [var, entries, units, label] = <../read_popStat.m *read_popStat*>(varargin)
+% [var, entries] = <../read_popStat.m *read_popStat*>(varargin)
 
 %% Description
 % read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic.
@@ -30,25 +30,26 @@ function [var, entries, units, label] = read_popStat(varargin)
   
   persistent popStat
   
-  if ~exist('popStat','var') || length(popStat) == 0
-    load  popStat        % get all parameters and statistics in structure popStat
+  if ~exist('popStat','var') || isempty(popStat)
+    load('popStat','popStat');  % get all parameters and statistics in structure popStat
   end
   
-  entries = fieldnames(popStat); n = length(entries);
+  entries = fieldnames(popStat); n_fields = length(entries); 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
   nargin = length(varargin);    
-  var = cell(n,nargin);
+  var = cell(n_fields,nargin); 
   
-  load('n_taxa', 'n_taxa');
-  if ~(n == n_taxa)
-    fprintf(['Warning from read_popStat: popStat has ', num2str(n), ' fields, but the lists-of-lists have ', num2str(n_taxa), ' names\n'])
+  load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_popStat: popStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
   end
 
   %entries = {'Terrapene_carolina'}; n=1; nargin=1; var=cell(1,1);
-  
-  for i = 1:n
+    
+  for i = 1:n_fields
     for j = 1:nargin
       str = split(varargin{j},'.'); n_str = length(str);
       if n_str == 4 

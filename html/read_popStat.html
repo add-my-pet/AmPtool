@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>read_popStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="read_popStat.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>read_popStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-17"><meta name="DC.source" content="read_popStat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>read_popStat</h1><!--introduction--><p>read statistics and/or parameters in popStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[var, entries, units, label] = <a href="../read_popStat.m"><b>read_popStat</b></a>(varargin)</p><h2 id="4">Description</h2><p>read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic. popStat is a structure with the entry-names as first-level fieldnames, while temperature (T), temperature correction factor (c_T) and scaled functional responses (f0, ff or f1) are second-level fieldnames.</p><p>Input:</p><div><ul><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>var: (n,x)-matrix with values of variables or cell-array if some variable is not numerical</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>If particular field don't exist, empty is outputted</p><h2 id="6">Example of use</h2><p>[r, nm] = read_popStat('f1.thin0.f.r','c_T');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>read_popStat</h1><!--introduction--><p>read statistics and/or parameters in popStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[var, entries] = <a href="../read_popStat.m"><b>read_popStat</b></a>(varargin)</p><h2 id="4">Description</h2><p>read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic. popStat is a structure with the entry-names as first-level fieldnames, while temperature (T), temperature correction factor (c_T) and scaled functional responses (f0, ff or f1) are second-level fieldnames.</p><p>Input:</p><div><ul><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>var: (n,x)-matrix with values of variables or cell-array if some variable is not numerical</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>If particular field don't exist, empty is outputted</p><h2 id="6">Example of use</h2><p>[r, nm] = read_popStat('f1.thin0.f.r','c_T');</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% read_popStat
 % read statistics and/or parameters in popStat.mat
 
 %%
-function [var, entries, units, label] = read_popStat(varargin)
+function [var, entries] = read_popStat(varargin)
 % created 2019/08/04 by Bas Kooijman, modified 2019/12/24
 
 %% Syntax
-% [var, entries, units, label] = <../read_popStat.m *read_popStat*>(varargin)
+% [var, entries] = <../read_popStat.m *read_popStat*>(varargin)
 
 %% Description
 % read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic.
@@ -100,20 +101,26 @@ function [var, entries, units, label] = read_popStat(varargin)
   
   persistent popStat
   
-  if ~exist('popStat','var') || length(popStat) == 0
-    load  popStat        % get all parameters and statistics in structure popStat
+  if ~exist('popStat','var') || isempty(popStat)
+    load('popStat','popStat');  % get all parameters and statistics in structure popStat
   end
   
-  entries = fieldnames(popStat); n = length(entries);
+  entries = fieldnames(popStat); n_fields = length(entries); 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
   nargin = length(varargin);    
-  var = cell(n,nargin);
+  var = cell(n_fields,nargin); 
   
+  load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_popStat: popStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
+  end
+
   %entries = {'Terrapene_carolina'}; n=1; nargin=1; var=cell(1,1);
-  
-  for i = 1:n
+    
+  for i = 1:n_fields
     for j = 1:nargin
       str = split(varargin{j},'.'); n_str = length(str);
       if n_str == 4 
@@ -135,7 +142,7 @@ function [var, entries, units, label] = read_popStat(varargin)
     end
   end
   
-  i = ~cellfun('isempty',var); var = var(i); entries = entries(i); 
+  i = ~cellfun(@isempty,var); i = i(:,1); var = var(i); entries = entries(i); 
   var = cell2mat(var);
   
   % convert cell array to numerical array if possible
