@@ -73,6 +73,7 @@ cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur;
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
 prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
+prt_specJump; % write sys/specJump.js for navigation
 
 prt_species_names; % add_my_pet/species_names.html
 prt_species_list; % add_my_pet/species_list.html
