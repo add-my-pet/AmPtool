@@ -26,7 +26,8 @@ for i = 1:n_entries-1
 end
 fprintf(fid, '    "%s"\n', entries{n_entries});
 fprintf(fid, '  ];\n\n');
-fprintf(fid, '  var n = entries.length;');
+
+fprintf(fid, '  var n = entries.length;\n');
 fprintf(fid, '  for (i = 0; i < n; i++) {\n');
 fprintf(fid, '    if (entry == entries [i]) {\n');
 fprintf(fid, '      if (up == "1") {\n');
@@ -37,9 +38,19 @@ fprintf(fid, '        next = entries [Math.max(0,i-1)];\n');
 fprintf(fid, '        break;\n');
 fprintf(fid, '      }\n');
 fprintf(fid, '    }\n');
+fprintf(fid, '  }\n\n');
+
+fprintf(fid, '  var current = window.location.href;\n');
+fprintf(fid, '  if (current.includes("_res.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_res.html";\n');
+fprintf(fid, '  } else if (current.includes("_par.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_par.html";\n');
+fprintf(fid, '  } else if (current.includes("_stat.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_stat.html";\n');
+fprintf(fid, '  } else {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_pop.html";\n');
 fprintf(fid, '  }\n');
-fprintf(fid, '  window.location.href = "../" + next + "/" + next + "_res.html";\n');
-fprintf(fid, '  }\n');
+fprintf(fid, '}\n\n');
 
 fclose(fid);
 cd(WD);
