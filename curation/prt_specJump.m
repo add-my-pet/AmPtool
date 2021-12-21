@@ -3,7 +3,7 @@
 
 %%
 function prt_specJump
-% created 2021/12/19 by Bas Kooijman
+% created 2021/12/19 by Bas Kooijman; modified 2021/12/21
 
 %% Syntax
 % <prt_specJump *prt_specJump*>
