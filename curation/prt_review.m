@@ -22,7 +22,7 @@ function  prt_review(taxa, filenm)
 % * No explicit output, but files filenm.tex, filenm.bib and codes.tex are written
 
 %% Remarks
-% Species names are sorted alphabetically.
+% First try to find entries locally, then get them from internet. Species names are sorted alphabetically.
 % Only bib-items with bibkeys of the type txt1**** or txt2**** are stored, and repeated bibkeys are skipped
 % In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
 % In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
@@ -30,6 +30,9 @@ function  prt_review(taxa, filenm)
 %% Example
 % prt_review('Cephalopoda')
 
+  path_entries = [set_path2server, 'add_my_pet/entries/']; % only used if entries are not local
+  path_entries_web = [set_path2server, 'add_my_pet/entries_web/']; % only used if entries are not local
+  
   if ischar(taxa)
     species = sort(select(taxa));
   elseif ~isempty(strfind(taxa{1},'_'))
@@ -74,10 +77,21 @@ function  prt_review(taxa, filenm)
 
   data_0 = cell(0,1); data_1 = cell(0,1); bibCum = '';
   
-  WD = cdCur;
   for i=1:n_spec
-    fprintf('%s\n',species{i});
-    cdEntr(species{i});
+    fprintf('%s\n',species{i}); % monitor progress
+    try
+      WD = cdEntr(species{i});
+      local = 1; % get files local
+    catch
+      local = 0; % get files via internet
+      if ismac || isunix
+        system(['wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
+        system(['wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
+      else
+        system(['powershell wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
+        system(['powershell wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
+      end
+    end
     eval(['[~, ~, metaData, txtData] = mydata_', species{i}, ';']);
     data = [metaData.data_0(:); metaData.data_1(:)];
     data_0 = [data_0; metaData.data_0(:)]; data_1 = [data_1; metaData.data_1(:)]; 
@@ -102,7 +116,9 @@ function  prt_review(taxa, filenm)
     fprintf(fid_tex, '\\emph{%s} &  %s & \\citet{%s} \\\\\n', strrep(species{i}, '_', ' '), prtCell(data), bibkey);
     
     % add bib, skipping refs to sites and Kooy2010
-    cd(['../../entries_web/', species{i}])
+    if local
+      cd(['../../entries_web/', species{i}])
+    end
     bib = fileread([species{i}, '_bib.bib']);
     bibs = strsplit(bib,[char(10),'@']); n_bib = length(bibs); bib = ''; 
     for j = 1:n_bib
@@ -115,13 +131,17 @@ function  prt_review(taxa, filenm)
     end
     fprintf(fid_bib, '%s', bib);
     bibCum = [bibCum, bib]; % store to avoid repeated bibkeys
+    if ~local
+      delete(['mydata_', species{i}, '.m']);
+      delete([species{i}, '_bib.bib']);
+    end
   end
   
   fprintf(fid_tex, '\\hline\n');
   fprintf(fid_tex, '\\end{longtable}}\n');
   fclose all;
   
-  cd(WD);
+  if local; cd(WD); end
   
   % table with data codes
   data_0 = unique(data_0); data_1 = unique(data_1); % actual data types
