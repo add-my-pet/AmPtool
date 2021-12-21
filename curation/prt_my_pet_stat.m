@@ -57,6 +57,7 @@ fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
 
 fprintf(oid, '</HEAD>\n\n');
