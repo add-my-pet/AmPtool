@@ -22,7 +22,8 @@ function  prt_review(taxa, filenm)
 % * No explicit output, but files filenm.tex, filenm.bib and codes.tex are written
 
 %% Remarks
-% First tries to find entries locally, then gets them from internet. Species names are sorted alphabetically.
+% First tries to find entries locally, then gets them from internet using system (= Windows/Mac) function wget. 
+% Species names are sorted alphabetically.
 % Only bib-items with bibkeys of the type txt1**** or txt2**** are stored, and repeated bibkeys are skipped
 % In header of Latex document:\usepackage{longtable} and \usepackage[sort&compress,comma,authoryear]{natbib}
 % In Latex document: \include{species} ... \include{codes} ... \bibliographystyle{apalike} and \bibliography{...,species}
