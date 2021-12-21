@@ -30,7 +30,7 @@ function  prt_review(taxa, filenm)
 %% Example
 % prt_review('Cephalopoda')
 
-  path_entries = [set_path2server, 'add_my_pet/entries/']; % only used if entries are not local
+  path_entries = [set_path2server, 'add_my_pet/entries/'];         % only used if entries are not local
   path_entries_web = [set_path2server, 'add_my_pet/entries_web/']; % only used if entries are not local
   
   if ischar(taxa)
@@ -58,10 +58,10 @@ function  prt_review(taxa, filenm)
   % header species table
   fprintf(fid_tex, '{\\footnotesize');
   fprintf(fid_tex, '\\begin{longtable}[c]{p{3.5cm}p{5.5cm}p{5.5cm}} \n');
-  fprintf(fid_tex, '\\caption{\\label{tab:species}\\protect\\small\n');
+  fprintf(fid_tex, '\\caption{\\label{tab:%s}\\protect\\small\n', filenm);
   fprintf(fid_tex, '%s species that are included in the AmP collection at %s, the data types as extracted from the literature and selected references. ',taxa, datestr(datenum(date),'yyyy/mm/dd'));
   fprintf(fid_tex, 'Besides these references, websites for have used to get data, which are presented on the AmP website. ');
-  fprintf(fid_tex, 'The codes of the data types are presented in Table~\\ref{tab:codes}} \\\\ \n\n');
+  fprintf(fid_tex, 'The codes of the data types are presented in Table~\\ref{tab:codes}}. \\\\ \n\n');
   
   fprintf(fid_tex, '\\hline\n');
   fprintf(fid_tex, '\\textbf{species} & \\textbf{data} & \\textbf{references} \\\\ \\hline\n');
@@ -158,10 +158,10 @@ function  prt_review(taxa, filenm)
   codes_tex = fopen('codes.tex', 'w+');
   fprintf(codes_tex, '\\begin{table}\\small\n');
   fprintf(codes_tex, '\\caption{\\label{tab:codes}\\protect\\small\n');
-  fprintf(codes_tex, 'The codes of the data types as presented in Table \\ref{tab:species}.\n');
-  fprintf(codes_tex, 'Zero variate data left, uni-variate data right.\n');
-  fprintf(codes_tex, 'Life history events: b birth, s settlement, j end of acceleration, p puberty, m death, i death.\n');
-  fprintf(codes_tex, 'T stands for temperature.}\n');
+  fprintf(codes_tex, 'The codes of the data types as presented in Table \\ref{tab:%s}. \n', filenm);
+  fprintf(codes_tex, 'Zero variate data left, uni-variate data right. \n');
+  fprintf(codes_tex, 'Life history events: b birth, s settlement, j end of acceleration, p puberty, m death, i death. \n');
+  fprintf(codes_tex, 'T stands for temperature. }\n');
   fprintf(codes_tex, '\\begin{tabular}{ll|ll} \\hline\n');
   fprintf(codes_tex, '\\textbf{code} & \\textbf{description} & \\textbf{code} & \\textbf{description}\\\\ \\hline\n');
   for i = 1 : max(n_0,n_1)
