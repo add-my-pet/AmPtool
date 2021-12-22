@@ -56,7 +56,7 @@ function [species, nm, sel] = select_mydata(varargin)
     path = [path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
        WD = cdCur; info = true;
-       path = '../../add_my_pet/entries/';
+       path = '../../deblab/add_my_pet/entries/';
     end
   end
   
