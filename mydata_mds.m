@@ -27,7 +27,7 @@ Hfig = shstat(data, legend_shark, 'MDS for Chondrichthyes');
 % connect_subclade(Hfig, y(:,1:3), 'Chondrichthyes', 'Carcharhiniformes');
 
 % print correlations between traits and first 2 eigenvectors 
-prt_tab({traits,corr(read_stat(species, traits),y(:,1:2))},{'trait', 'axis 1', 'axis 2'});
+prt_tab({traits,corr(read_stat(species, traits),y(:,1:2))},{'trait', 'axis 1', 'axis 2'}, 'Chondrichthyes');
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);
