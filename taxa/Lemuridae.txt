@@ -1,2 +1,3 @@
 Hapalemur
+Lemur
 Varecia
