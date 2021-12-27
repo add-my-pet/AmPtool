@@ -1,6 +1,7 @@
 Chlorocebus
 Mandrillus
 Theropithecus
+Trachypithecus
 Papio
 Nasalis
 Macaca
