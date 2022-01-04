@@ -81,7 +81,6 @@ function  prt_review(taxa, filenm)
   for i=1:n_spec
     fprintf('%s\n',species{i}); % monitor progress
     try
-      x;
       WD = cdEntr(species{i});
       local = 1; % get files local
     catch
