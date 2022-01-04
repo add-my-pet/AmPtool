@@ -81,17 +81,20 @@ function  prt_review(taxa, filenm)
   for i=1:n_spec
     fprintf('%s\n',species{i}); % monitor progress
     try
+      x;
       WD = cdEntr(species{i});
       local = 1; % get files local
     catch
       local = 0; % get files via internet
-      if ismac || isunix
-        system(['wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
-        system(['wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
-      else
-        system(['powershell wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
-        system(['powershell wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
-      end
+%       if ismac || isunix
+%         system(['wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
+%         system(['wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
+%       else
+%         system(['powershell wget -O mydata_', species{i}, '.m ', path_entries, species{i}, '/mydata_', species{i}, '.m']);
+%         system(['powershell wget -O ', species{i}, '_bib.bib ', path_entries_web,  species{i}, '/', species{i}, '_bib.bib']);
+%       end
+      urlwrite([path_entries, species{i}, '/mydata_', species{i}, '.m'], ['mydata_', species{i}, '.m']);
+      urlwrite([path_entries_web,  species{i}, '/', species{i}, '_bib.bib'], [species{i}, '_bib.bib']);
     end
     eval(['[~, ~, metaData, txtData] = mydata_', species{i}, ';']);
     data = [metaData.data_0(:); metaData.data_1(:)];
