@@ -312,10 +312,16 @@
     Function <a href="../html/get_links.html" target="_top">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
     type <code>get_links('Homo_sapiens', 1)</code> to open them all in your system-browser.
     Function <a href="../html/get_id.html" target="_top">get_id</a> does something similar, but gets the identifiers from the web, not from the AmP collection.
-    The species name can be any valid one, kown in CoL.
+    The species name can be any valid one, known in CoL.
     This function might make use of <a href="../html/get_synonym.html" target="_top">get_synonym</a>;
     it first tries the corresponding accepted name in CoL, then the name that the user provided and finally an alternative name, if provided by CoL.
     If the species cannot be found, it tries the genus for several websites.
+    Notice that several websites have problems with finding species due to the inclusion of the subgenus in the name.
+    E.G. CoL cannot find 'Daphnia magna', only 'Daphnia (Ctenodaphnia) magna'.
+
+    The <a href="https://add-my-pet.github.io/AmPtool/curation/id_20220105" target="_top">id-table</a> gives an overview of all id's for all entries and supported websites.
+    Click on a web-site column-header to let it disappear, and on the entry-header to let it re-appear. 
+    
 
     <h2 id="distance">Distances between species</h2>
 
