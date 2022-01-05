@@ -77,11 +77,12 @@ function  prt_review(taxa, filenm)
   fprintf(fid_tex, '\\endhead\n\n');
 
   data_0 = cell(0,1); data_1 = cell(0,1); bibCum = '';
+  WD = pwd;
   
   for i=1:n_spec
     fprintf('%s\n',species{i}); % monitor progress
-    try
-      WD = cdEntr(species{i});
+    cdEntr(species{i});
+    try     
       local = 1; % get files local
     catch
       local = 0; % get files via internet
@@ -144,7 +145,7 @@ function  prt_review(taxa, filenm)
   fprintf(fid_tex, '\\end{longtable}}\n');
   fclose all;
   
-  if local; cd(WD); end
+  cd(WD);
   
   % table with data codes
   data_0 = unique(data_0); data_1 = unique(data_1); % actual data types
