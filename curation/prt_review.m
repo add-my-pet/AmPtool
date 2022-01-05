@@ -81,9 +81,9 @@ function  prt_review(taxa, filenm)
   
   for i=1:n_spec
     fprintf('%s\n',species{i}); % monitor progress
-    WD = cdEntr(species{i});
     try     
-      local = 1; % get files local
+     WD = cdEntr(species{i});
+     local = 1; % get files local
     catch
       local = 0; % get files via internet
 %       if ismac || isunix
