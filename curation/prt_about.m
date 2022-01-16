@@ -163,7 +163,7 @@ fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          The collection is complete for large <a href="phyla.html" target="_blank">phyla</a>.<br>\n');
 fprintf(fid_about, '          Chordates are complete at order level,<br> primates at family level.\n');
-fprintf(fid_about, '          <a href="https://youtu.be/" target="_blank"><img src="img/YouTube.png"  height = "15px" title="5:04"></a>\n');
+fprintf(fid_about, '          <a href="https://youtu.be/kTZuaEle0zc" target="_blank"><img src="img/YouTube.png"  height = "15px" title="5:04"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -172,7 +172,7 @@ fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px">\n'
 fprintf(fid_about, '        <div class = "caption">\n');
 fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a>\n');
 fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.\n');
-fprintf(fid_about, '          <a href="https://youtu.be/2pcLs40nuTM" target="_blank"><img src="img/YouTube.png"  height = "15px" title="14:14"></a>\n');
+fprintf(fid_about, '          <a href="https://youtu.be/E4ag2-WzhmQ" target="_blank"><img src="img/YouTube.png"  height = "15px" title="14:14"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -186,7 +186,7 @@ fprintf(fid_about, '      Comparison is the most useful asset of this collection
 
 fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      To facilitate comparison, the estimated parameters are all expressed at the reference body temperature of 20 &deg;C,\n');
-fprintf(fid_about, '        <a href="https://youtu.be/JwRqdgJnaj8" target="_blank"><img src="img/YouTube.png"  height = "15px" title="12:16"></a>\n');
+fprintf(fid_about, '        <a href="https://youtu.be/vqHmIW1kfQo" target="_blank"><img src="img/YouTube.png"  height = "15px" title="12:16"></a>\n');
 fprintf(fid_about, '        even for endotherms and deep-sea or polar animals, which will probably be very dead at this temperature.\n');
 fprintf(fid_about, '      So the temperature correction sometimes has academic elements, which needs to be remembered when it comes to making predictions.\n');
 fprintf(fid_about, '      The extended Arrhenius model is used to account for effects of temperature:\n');
