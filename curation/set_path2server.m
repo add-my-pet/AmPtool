@@ -14,5 +14,5 @@ function path2server = set_path2server
 %
 % * path2server: character string with paht to server
 
-% path2server = 'https://www.bio.vu.nl/thb/deb/deblab/';
-path2server = 'https://debtheory.fr/';
+path2server = 'https://www.bio.vu.nl/thb/deb/deblab/';
+% path2server = 'https://debtheory.fr/';
