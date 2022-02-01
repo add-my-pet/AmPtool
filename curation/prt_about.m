@@ -95,7 +95,7 @@ plot([0; M_median; M_median], [0.5;0.5;0], 'b', surv_MRE(:,1), surv_MRE(:,2), 'b
 surv_SMSE = surv(CMS(:,3),0); hold on
 plot([0; S_median; S_median], [0.5;0.5;0], 'r', surv_SMSE(:,1), surv_SMSE(:,2), 'r', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('(Symmetic) Mean (Squared) Relative Error')
+xlabel('\color{red}{SMSE}\color{black}{,} \color{blue}{MRE}')
 ylabel('survivor function')
 xlim([0 0.55])
 saveas (gca, [path, 'MRE.png'])
