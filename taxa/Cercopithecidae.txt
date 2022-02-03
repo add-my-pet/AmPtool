@@ -1,6 +1,2 @@
-Chlorocebus
-Mandrillus
-Theropithecus
-Papio
-Nasalis
-Macaca
+Cercopithecinae
+Colobinae

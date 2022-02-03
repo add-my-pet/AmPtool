@@ -80,6 +80,11 @@ end
 fprintf(oid, '      </div>\n');
 fprintf(oid, '    </div>\n\n');
 
+fprintf(oid, '    <div class="jump">\n');
+fprintf(oid, '      <img onclick="specJump(''%s'',''0'')" src="../../img/specDwn.png" width="40px">\n', my_pet);
+fprintf(oid, '      <img onclick="specJump(''%s'',''1'')" src="../../img/specUp.png" width="40px">\n', my_pet);
+fprintf(oid, '    </div>\n\n');
+
 fprintf(oid, '  </div> <!-- end of navwrapper -->\n');
 
 fclose(oid);

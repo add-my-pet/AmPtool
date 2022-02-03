@@ -1,2 +1,3 @@
 Heteromys_desmarestianus
+Heteromys_pictus
 Heteromys_salvini

@@ -48,6 +48,13 @@ accepted_name = '';  % initiate accepted name
 
 if n_res == 0
   fprintf(['Warning from get_id_CoL: ', my_pet, ' not found in CoL\n']);
+  if ~isempty(strfind(my_pet,'_'))
+    genus = strsplit(my_pet,'_') ; genus = genus{1}; 
+    [id_CoL, name_status, accepted_name] = get_id_CoL(genus);
+    if open
+      web([address, id_CoL],'-browser');
+    end
+  end
   return
 end
 
@@ -72,7 +79,10 @@ for i = 1:n_res % scan results
   end
 end
 
-if isempty(id_CoL)
+if isempty(id_CoL) && ~isempty(strfind(my_pet,'_'))
+  genus = strsplit(my_pet,'_') ; genus = genus{1}; 
+  [id_CoL, name_status, accepted_name] = get_id_CoL(genus);
+elseif isempty(id_CoL)
   return
 end
 

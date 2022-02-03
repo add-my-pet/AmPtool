@@ -2,7 +2,7 @@
 % read statistics and/or parameters in allStat.mat for specified entries
 
 %%
-function [var units label] = read_stat(entries, varargin)
+function [var, units, label] = read_stat(entries, varargin)
 % created 2018/01/17 by Bas Kooijman
 
 %% Syntax
@@ -43,6 +43,12 @@ function [var units label] = read_stat(entries, varargin)
   end
   
   n = length(entries); 
+  load('n_entries', 'n_entries'); n_fields = length(fields(allStat));
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_stat: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
+  end
+
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end

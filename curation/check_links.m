@@ -75,7 +75,7 @@ function check_links(pets, site)
           fprintf([pets{i}, ': ', id_txt{j}, ' = ', id_site{j}, '\n']);
         end
       end
-      repair_id(pets{i}); % acutually repair mydata
+      repair_id(pets{i}); % actually repair mydata
     end
    end
        

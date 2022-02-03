@@ -30,10 +30,16 @@ function [codes, entries] = read_allEco(varargin)
   persistent allStat
 
   if ~exist('allStat','var') || length(allStat) == 0
-    load('allStat')        % get all parameters and statistics in structure allStat
+    load('allStat','allStat') % get all parameters and statistics in structure allStat
   end
 
-  entries = fieldnames(allStat); n = length(entries); 
+  entries = fieldnames(allStat); n_fields = length(entries); 
+  load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_allEco: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
+  end
+
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
@@ -48,10 +54,9 @@ function [codes, entries] = read_allEco(varargin)
 
   codes = cell(n,nargin);
   
-  for i = 1:n
+  for i = 1:n_fields
     for j = 1:nargin
       codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
     end
   end
-  end
-    
+      

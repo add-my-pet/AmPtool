@@ -1,1 +1,4 @@
+Equus_africanus_asinus
+Equus_ferus_caballus
+Equus_hemionus
 Equus_quagga

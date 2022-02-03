@@ -38,15 +38,21 @@ function [var, entries, units, label] = read_allStat(varargin)
     WD = cdAmPdata; load('allStat'); cd(WD); % get all parameters and statistics in structure allStat
   end
   
-  entries = fieldnames(allStat); n = length(entries);
+  entries = fieldnames(allStat); n_fields = length(entries);
+  load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_allStat: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
+  end
+
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
   nargin = length(varargin);    
-  var = cell(n,nargin);
+  var = cell(n_fields,nargin);
   units = cell(nargin,1); label = cell(nargin,1);
   
-  for i = 1:n
+  for i = 1:n_fields
     for j = 1:nargin
       if isfield(allStat.(entries{i}), varargin{j})
         var{i,j} = allStat.(entries{i}).(varargin{j});
@@ -66,4 +72,5 @@ function [var, entries, units, label] = read_allStat(varargin)
   if num == nargin
     var = cell2mat(var);
   end
-  
+      
+

@@ -1,2 +1,3 @@
-Ovis_canadensis
 Ovis_ammon
+Ovis_aries
+Ovis_canadensis

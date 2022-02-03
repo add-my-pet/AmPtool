@@ -1,5 +1,7 @@
-Mustela_nivalis
 Mustela_erminea
-Mustela_nigripes
+Mustela_frenata
 Mustela_lutreola
+Mustela_nigripes
+Mustela_nivalis
+Mustela_putorius
 Mustela_vison

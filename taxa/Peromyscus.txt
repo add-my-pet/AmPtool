@@ -1,8 +1,12 @@
 Peromyscus_californicus
-Peromyscus_eremicus
-Peromyscus_interparietalis
 Peromyscus_crinitus
-Peromyscus_maniculatus
-Peromyscus_polionotus
+Peromyscus_eremicus
+Peromyscus_gossypinus
+Peromyscus_interparietalis
 Peromyscus_leucopus
+Peromyscus_maniculatus
+Peromyscus_melanocarpus
+Peromyscus_mexicanus
+Peromyscus_polionotus
 Peromyscus_truei
+Peromyscus_yucatanicus

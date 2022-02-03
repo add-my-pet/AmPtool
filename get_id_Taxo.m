@@ -35,38 +35,43 @@ if ~isempty(strfind(my_pet, ' '));
   my_pet = strrep(my_pet,' ','_');
 end
 
-url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
-ind = strfind(url,'TaxonName.aspx?id=');
-if isempty(ind)
-  my_pet_syn = get_synonym(get_id_CoL(my_pet));
-  if isempty(my_pet_syn)
-    id_Taxo = ''; 
-  else
-    url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet_syn]);
-    ind = strfind(url,'TaxonName.aspx?id=');
-    if isempty(ind)
-      id_Taxo = '';
-    else
-      url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
-      id_Taxo = url(1:(strfind(url,'&') - 1)); 
-    end
-  end
-else
-  url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
-  id_Taxo = url(1:(strfind(url,'&') - 1)); 
-end
-if isempty(id_Taxo)
-  nm = strsplit(my_pet,'_'); nm = nm{1};
-  url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', nm]);
+try
+  url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet]);
   ind = strfind(url,'TaxonName.aspx?id=');
   if isempty(ind)
-    id_Taxo = ''; return
+    my_pet_syn = get_synonym(get_id_CoL(my_pet));
+    if isempty(my_pet_syn)
+      id_Taxo = ''; 
+    else
+      url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', my_pet_syn]);
+      ind = strfind(url,'TaxonName.aspx?id=');
+      if isempty(ind)
+        id_Taxo = '';
+      else
+        url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
+        id_Taxo = url(1:(strfind(url,'&') - 1)); 
+      end
+    end
+  else
+    url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
+    id_Taxo = url(1:(strfind(url,'&') - 1)); 
   end
-  url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
-  id_Taxo = url(1:(strfind(url,'&') - 1)); 
-end
+  if isempty(id_Taxo)
+    nm = strsplit(my_pet,'_'); nm = nm{1};
+    url = urlread(['http://taxonomicon.taxonomy.nl/TaxonList.aspx?subject=Entity&by=ScientificName&search=', nm]);
+    ind = strfind(url,'TaxonName.aspx?id=');
+    if isempty(ind)
+      id_Taxo = ''; return
+    end
+    url(1:(17 + strfind(url,'TaxonName.aspx?id='))) = '';
+    id_Taxo = url(1:(strfind(url,'&') - 1)); 
+  end
 
-if open
-  web([address, id_Taxo],'-browser');
+  if open
+    web([address, id_Taxo],'-browser');
+  end
+catch
+  fprintf('Warning from get_id_Taxo: Unable to contact server\n');
+  id_Taxo = [];
 end
 

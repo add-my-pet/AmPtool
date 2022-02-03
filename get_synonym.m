@@ -23,8 +23,12 @@ function nm = get_synonym(id_CoL)
 %% Example of use
 % get_synonym(get_id_CoL('Vulpes_vulpes'))
 
+try
  url = urlread(['https://www.catalogueoflife.org/data/taxon/', id_CoL]);
  i_0 = strfind(url,'"alternateName"');
+catch
+ i_0 = [];
+end
  if isempty(i_0)
    nm = cell(0,1); return
  end

@@ -1,3 +1,5 @@
+Macaca_arctoides
 Macaca_fascicularis
-Macaca_mulatta
 Macaca_fuscata
+Macaca_mulatta
+Macaca_sylvanus

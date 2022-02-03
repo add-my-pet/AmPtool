@@ -64,15 +64,19 @@ save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('
 
 % write add_my_pet/AmPdata/allStat.mat and popStat.mat
 [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
-if ~info; return; end;
+if ~info; return; end
 write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 
 % write add_my_pet/AmPdata/AmPdata.zip
-cdAmPdata; zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); cdCur; 
+cdAmPdata; 
+  zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); 
+  n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
+cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
 prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
+prt_specJump; % write sys/specJump.js for navigation
 
 prt_species_names; % add_my_pet/species_names.html
 prt_species_list; % add_my_pet/species_list.html

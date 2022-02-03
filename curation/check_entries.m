@@ -2,11 +2,11 @@
 % Checks entries for member inconsistencies
 
 %%
-function [tree local server] = check_entries
+function [tree, local, server] = check_entries
 % created 2017/04/07 by Bas Kooijman, modified 2018/12/18
 
 %% Syntax
-% [tree local server] = <../check_entries.m *check_entries*>
+% [tree, local, server] = <../check_entries.m *check_entries*>
 
 %% Description
 % checks tree leaves against subdirectories of entries, local and on server

@@ -19,9 +19,9 @@ function [species, nm, sel] = select_mydata(varargin)
 %
 % Output:
 % 
-% * cell string with all species in the add_my_pet collection that belong to that taxon and have a mydata-file that contains str
-% * nm string with names of entries that were subjected to selection
-% * sel vector of bouleans, which entries are selected or not
+% * species: cell string with all species in the add_my_pet collection that belong to that taxon and have a mydata-file that contains str
+% * nm: string with names of entries that were subjected to selection
+% * sel: vector of bouleans, which entries are selected or not
 
 %% Remarks
 % This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all mydata-files are read from the web
@@ -56,7 +56,7 @@ function [species, nm, sel] = select_mydata(varargin)
     path = [path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
        WD = cdCur; info = true;
-       path = '../../add_my_pet/entries/';
+       path = '../../deblab/add_my_pet/entries/';
     end
   end
   

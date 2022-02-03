@@ -51,6 +51,8 @@ connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Canidae');
 connect_subclade(Hfig, y(:,1:3), 'Carnivora', 'Pinnipedia');
 %print -r1200 -dpng CarnivoraMds.png
 
+% print correlations between traits and first 2 eigenvectors 
+prt_tab({traits,corr(read_stat(species, traits),y(:,1:2))},{'trait', 'axis 1', 'axis 2'}, 'Carnivora');
 
 figure % plot eigenvalues
 n_e = length(e); n_t = length(traits);

@@ -13,7 +13,7 @@ function cdist = dist_char(dist, taxa)
 %
 % Input:
 %
-% * dist: symmetrix square spcies-distance matrix
+% * dist: symmetrix square species-distance matrix
 % * taxa: (n, 1)-cell array with names of taxa
 %
 % Output:

@@ -2,18 +2,18 @@
 % finds booleans for occurences of members of taxon among members of taxon_src
 
 %
-function [sel taxa_src] = select_01(taxon_src, taxon_sel)
+function [sel, taxa_src] = select_01(taxon_src, taxon_sel)
 % created 2016/04/12 by Bas Kooijman, modified 2017/06/14
 
 %% Syntax
-% [sel taxa_src] = <select_01.m *select_01*>(taxon_src, taxon_sel)
+% [sel, taxa_src] = <select_01.m *select_01*>(taxon_src, taxon_sel)
 
 %% Description
 % Finds booleans for occurences of members of taxon among members of taxon_src
 %
 % Input
 %
-% * taxon_src: optional character string with name of source taxon (default 'Animalia')
+% * taxon_src: optional character or cell string with name(s) of source taxon/taxa (default 'Animalia')
 % * taxon_sel: character or cell string with names of taxa that belong to source taxon
 %
 % Output
