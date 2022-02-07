@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'sbp'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'std'.
+This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
+The following section provides an overiew of how the 'std' fits within a wider framework of DEB related models before technically specifying the std model.
+The 'sbp' model is like the 'std' except that: 
+\begin{description}
+  \item[$\circ$] growth ceases at puberty, meaning that the $\kappa$-rule is not operational in adults.   
+\end{description}
+It has the same parameters as the std-model, and is similar to the abp-model, which differs by acceleration.
+This life history is found in \emph{Calanus}, while other copepods accelerate. 
+
+At puberty, growth ceases. so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
+Mobilisation after puberty is $\dot{p}_C = \dot{v} E/ L_p$, 
+  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.s the standard DEB model 'sbp'.
+This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
+Like the std-model but with 
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}
