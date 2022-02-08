@@ -10,7 +10,7 @@
 \usepackage{latexsym}
 
 
-\title{DEB model description: 'sbp'}
+\title{DEB model description: 'abp'}
 %\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
 
 
@@ -18,21 +18,24 @@
 
 \maketitle
 
-This document specifies the standard DEB model 'std'.
-This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
-The following section provides an overiew of how the 'std' fits within a wider framework of DEB related models before technically specifying the std model.
-The 'sbp' model is like the 'std' except that: 
+This document specifies the standard DEB model 'abp'. The model belongs to the family of a-models which  type {\cal M} acceleration in part of the life-cycle. 
+The 'abp' is like the 'std' model, except that:
 \begin{description}
-  \item[$\circ$] growth ceases at puberty, meaning that the $\kappa$-rule is not operational in adults.   
+  \item[$\circ$] type {\cal M} acceleration occurs between birth and puberty
+	
+  \item[$\circ$] before acceleration: isomorphy
+	
+  \item[$\circ$] after acceleration: no growth, so no $\kappa$-rule
 \end{description}
-It has the same parameters as the std-model, and is similar to the abp-model, which differs by acceleration.
-This life history is found in \emph{Calanus}, while other copepods accelerate. 
+Metamorphosis can occur before puberty and occurs at maturity $E_H^j$, but only affects morphology, not metabolism.
+This model has the same number of parameters as the std-model.
+The acceleration factor is $s_{\cal M} = L_p/ L_b$. 
+It is similar to the sbp-model, which has no acceleration.
+It applies to copepods, and perhaps also to ostracods, spiders and scorpions.
 
-At puberty, growth ceases. so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
-Mobilisation after puberty is $\dot{p}_C = \dot{v} E/ L_p$, 
-  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.s the standard DEB model 'sbp'.
-This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
-Like the std-model but with 
+At puberty, growth ceases, so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
+Mobilisation after puberty is $\dot{p}_C = s_{\cal M} \dot{v} E/ L_p = \dot{v} E/ L_b$, 
+  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.
 
 \section{Background}
 

@@ -10,7 +10,7 @@
 \usepackage{latexsym}
 
 
-\title{DEB model description: 'sbp'}
+\title{DEB model description: 'asj'}
 %\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
 
 
@@ -18,21 +18,21 @@
 
 \maketitle
 
-This document specifies the standard DEB model 'std'.
-This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
-The following section provides an overiew of how the 'std' fits within a wider framework of DEB related models before technically specifying the std model.
-The 'sbp' model is like the 'std' except that: 
-\begin{description}
-  \item[$\circ$] growth ceases at puberty, meaning that the $\kappa$-rule is not operational in adults.   
-\end{description}
-It has the same parameters as the std-model, and is similar to the abp-model, which differs by acceleration.
-This life history is found in \emph{Calanus}, while other copepods accelerate. 
+This document specifies the typified DEB model 'asj'.
+This model belongs to the class of a-models which assumes that type {\cal M} (metabolic) acceleration occurs during part of the life-cycle. 
 
-At puberty, growth ceases. so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
-Mobilisation after puberty is $\dot{p}_C = \dot{v} E/ L_p$, 
-  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.s the standard DEB model 'sbp'.
-This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
-Like the std-model but with 
+
+The 'asj' {\sc deb} model includes a delayed (with respect to birth) type {\cal M} acceleration and is like the 'std' model except that:
+\begin{description}
+  \item[$\circ$] start of acceleration is delayed with respect to birth till maturity level $E_H^s$ and lasts till metamorphosis at maturity level $E_H^j$
+	
+  \item[$\circ$] Before and after acceleration: isomorphy
+\end{description}
+Metamorphosis is still before puberty, so $E_H^b \le E_H^s \le E_H^j \le E_Hp$ and the acceleration factor is $s_{\cal M} = L_j/ L_s$.
+This model is a one-parameter extension of the abj-model and reduces to the std-model for $E_H^b = E_H^s = E_H^j$.
+This life history is found in Mnemiopsis, Crassostrea and Aplysia.
+Further improvement of data might require a change from abj- to asj-models for quite a few species.
+The following section provides an overiew of how the 'std' fits within a wider framework of DEB related models before technically specifying the std model.
 
 \section{Background}
 
