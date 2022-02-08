@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'hax'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'hax'.
+The hax model is a hybrid between the hep and hex models: the hep-rules are followed till $[E_R] = [E_R^j]$, then pupation follows, with an emergence and an imago stage which might or might not feed. 
+An example of a hax model with a non-feeding imago-stage is the harlequin fly \emph{Chironomus riparius}.
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

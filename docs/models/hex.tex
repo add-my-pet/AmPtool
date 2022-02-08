@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'hex'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'hex'.
+The {\sc deb} model for holometabolic insects (and some other hexapods). Its characteristics are
+\begin{description}
+  \item[$\circ$] morphological life stages: egg, larva, (pupa), imago; functional stages: embryo, adult, (pupa), imago
+	
+  \item[$\circ$] the embryo still behaves like the std-model
+	
+  \item[$\circ$] the larval stage accelerates (V1-morph) and behaves as adult, i.e. no maturation, allocation to reproduction and $E_H^b = E_H^p$.
+	
+  \item[$\circ$] pupation occurs when reproduction buffer density hits a threshold, $E_R/ L^3 = [E_R^j]$
+	
+  \item[$\circ$] pupa behaves like an isomorphic embryo of the std-model, emergence occurs at $E_H = E_H^e$
+	  Larval structure rapidly transforms to pupal reserve just after start of pupation, and sets $E_H = 0$ at $j$.
+		
+  \item[$\circ$] the reproduction buffer remains unchanged during the pupal stage
+	
+  \item[$\circ$] the imago does not grow or allocate to reproduction. 
+	  Imago's reserve mobilisation matched somatic plus maturity maintenance $\dot{p}_C = \dot{p}_M + \dot{p}_J$.
+\end{description}
+Hemi-metabolic insects skip the pupal stage, don't convert larval structure to reserve. 
+Imago structure equals larval structure when reproduction buffer density hits a threshold.
+The model is discussed in the comments for Section 7.8.
+
+For $\dot{k}_E = \dot{v}/ L_b$, reserve mobilisation prior to pupation (i.e. during acceleration) is $\dot{p}_C = E (\dot{k}_E - \dot{r})$ 
+  with $\dot{r} = \frac{\kappa [E] \dot{k}_E - [\dot{p}_M]} {\kappa [E] + [E_G]} = g \dot{k}_M \frac{e/ l_b - 1} {e + g}$.
+The larva allocates to reproduction as $\dot{p}_R = (1- \kappa) \dot{p}_C - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.
+$[E_R]$ has a maximum at $[E_R^m] = [E_R^{\mbox{\tiny ref}}] f \frac{1 - l_b} {f - l_b}$ with$[E_R^{\mbox{\tiny ref}}] = (1 - \kappa) [E_m] \frac{g + l_b} {1 - l_b}$, so pupation occurs when $[E_R] = s_j [E_R^{\mbox{\tiny ref}}]$, with $s_j = [E_R^j]/ [E_R^{\mbox{\tiny ref}}]$.
+
+Reserve mobilisation of the imago is $\dot{p}_C = \dot{p}_M^e + \dot{p}_J^e$, where $\dot{p}_M^e = [\dot{p}_M] L_e^3$ and $\dot{p}_J^e = \dot{k}_J E_H^e$.
+
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}
