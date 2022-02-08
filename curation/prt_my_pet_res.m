@@ -165,7 +165,11 @@ if n_fig > 0
   for i=1:n_fig
     if 3==length(txtData.label.(dataSet_nFig{i,1})) && isfield(auxData,'treat') && auxData.treat.(dataSet_nFig{i,1}){1}>1; zlab=1; end
   end
-  labels = '<th>xlabel</th> <th>ylabel</th> '; if zlab; labels = [labels, '<th>zlabel</th> ']; end
+  if ~zlab
+    labels = '<th>Independent variable</th> <th>Dependent variable</th> '; 
+  else
+    labels = '<th>1st independent variable</th> <th>2nd independent variable</th>  <th>Dependent variable</th> ';
+  end
   fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Univariate_data">Uni-</a> and <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Bi-variate_data">bivariate data</a></h2>\n');
   fprintf(oid, '      <table id="t01">\n');
   fprintf(oid,['        <tr class="head"><th>Data</th> <th>Figure</th> %s', ...
