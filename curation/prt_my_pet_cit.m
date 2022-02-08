@@ -44,6 +44,7 @@ for i = 1:100 % identify latest modification
   end
 end
 author = unique(author, 'stable'); n_author = length(author);
+txt_author = author{1}; for i=2:n_author; txt_author = [txt_author, ' ,',author{i}]; end 
 
 % write citation
 if exist('destinationFolder','var')
@@ -53,12 +54,7 @@ else
 end
 oid = fopen(fileName, 'w+'); % open file for reading and writing, delete existing content
 
-fprintf(oid, author{1});
-for i = 2:n_author
-  fprintf(oid, [', ', author{i}]);
-end
-fprintf(oid, ['. ', num2str(date(1)), '. \n']);
-fprintf(oid, ['AmP <i>', txt_species, '</i>, version ', txt_date_acc, ', \n']);
+fprintf(oid, '%s. %s. AmP <i>%s</i>, version %s.\n', txt_author, num2str(date(1)), txt_species, txt_date_acc);
 %fprintf(oid, ['<a href="http://www.doi.org/', doi, '">doi: ', doi, '</a>\n']);
 
 fclose(oid);
