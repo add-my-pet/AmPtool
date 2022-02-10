@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_species_names</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_species_names.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>prt_species_names</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-02-10"><meta name="DC.source" content="prt_species_names.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,20 +67,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_species_names</h1><!--introduction--><pre>deletes and writes ../../add_my_pet/species_names.html</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../../add_my_pet/prt_species_names.m"><b>prt_species_names</b></a></p><h2 id="4">Description</h2><p>deletes and writes ../../add_my_pet/species_names.html with scientific and common names on alphabeth</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_species_names</h1><!--introduction--><pre>deletes and writes ../../deblab/add_my_pet/species_names.html</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../../add_my_pet/prt_species_names.m"><b>prt_species_names</b></a></p><h2 id="4">Description</h2><p>deletes and writes ../../deblab/add_my_pet/species_names.html with scientific and common names on alphabeth</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_species_names
-%  deletes and writes ../../add_my_pet/species_names.html 
+%  deletes and writes ../../deblab/add_my_pet/species_names.html 
 
 %%
 function prt_species_names
-% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, , 2017/10/25
+% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, 2017/10/25, 2021/02/20, 2022/02/10
 
 %% Syntax
 % <../../add_my_pet/prt_species_names.m *prt_species_names*>
 
 %% Description
-% deletes and writes ../../add_my_pet/species_names.html with scientific and common names on alphabeth
+% deletes and writes ../../deblab/add_my_pet/species_names.html with scientific and common names on alphabeth
 
 [nms entries] = read_allStat('species','species_en');
 n = length(entries); 
@@ -87,7 +88,8 @@ n = length(entries);
 snm = nms(:,1); cnm = nms(:,2); snm_prt = snm; 
 for i = 1:n
   snm_prt{i} = strrep(snm{i}, '_', ' '); % replace "_" by space
-  cnm_prt = cnm{i};
+  cnm{i} = strrep(cnm{i}, '\', '\\');
+  cnm_prt = cnm{i}; % replace \ by \\ to aboid problems with fprintf
   if cnm_prt(1)>='a' && cnm_prt(1)<='z'  % puts first letter of common name in capital:
     cnm_prt(1) = char(cnm_prt(1) - 32);
     cnm{i} = cnm_prt;
@@ -95,7 +97,8 @@ for i = 1:n
 end
 nms(:,2) = cnm; [cnm index] = sort(cnm);
 
-fid_Spec = fopen('../../add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
+WD = cdCur;
+fid_Spec = fopen('../../deblab/add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
   
 % make the header for species_names.html
 fprintf(fid_Spec, '<!DOCTYPE html>\n');
@@ -206,7 +209,7 @@ fprintf(fid_Spec, '      <div class = "newspaper">\n');
 fprintf(fid_Spec, '        <ul id="scientific_nm">\n');
 
 for i = 1:n
-fprintf(fid_Spec,['          <li><a target="_top" href="entries_web/', snm{i}, '/', snm{i}, '_res.html" title="', nms{i,2}, '">', snm_prt{i}, '</a></li>\n']);
+fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{i},snm{i},nms{i,2},snm_prt{i});
 end
 fprintf(fid_Spec, '        </ul>\n');
 fprintf(fid_Spec, '      </div>\n\n');  
@@ -219,7 +222,7 @@ fprintf(fid_Spec, '        Click here for scientific names">Common names</a></H2
 fprintf(fid_Spec, '      <div class = "newspaper">\n');  
 fprintf(fid_Spec, '        <ul id="common_nm">');
 for i = 1:n
-fprintf(fid_Spec,['          <li><a target="_top" href="entries_web/', snm{index(i)}, '/', snm{index(i)}, '_res.html" title="', snm_prt{index(i)}, '">', cnm{i}, '</a></li>\n']);
+fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{index(i)},snm{index(i)},snm_prt{index(i)},cnm{i});
 end
 fprintf(fid_Spec, '        </ul>\n');
 fprintf(fid_Spec, '      </div>\n\n'); 
@@ -284,6 +287,7 @@ fprintf(fid_Spec, '</BODY>\n');
 fprintf(fid_Spec, '</HTML>\n');
 fclose(fid_Spec);
 
+cd(WD);
 end
 ##### SOURCE END #####
 --></body></html>

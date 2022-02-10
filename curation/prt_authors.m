@@ -3,7 +3,7 @@
 
 %%
 function prt_authors
-%% created 2016/02/23 by Bas Kooijman, modified 2016/12/24, 2017/07/30, 2017/10/20. 2017/11/30
+% created 2016/02/23 by Bas Kooijman, modified 2016/12/24, 2017/07/30, 2017/10/20, 2017/11/30, 2022/02/10
 
 %% Syntax
 % <../prt_authors.m *prt_authors*>
@@ -173,11 +173,11 @@ fprintf(fid_authors, '            <div class = "author_dropdown">\n');
     [nm, ind] = sort(date_num,'descend');
     txt_entry = txt_entry(ind); txt_date = txt_date(ind);
     
-fprintf(fid_authors,['              <button onclick="entries(''', fam{i}, ''')" class="author_dropbtn"><a href="#">', num2str(nr), ' ', author{i}, '</a></button>\n']);
-fprintf(fid_authors,['              <div id="', fam{i}, '" class="author_dropdown-content">\n']);
+fprintf(fid_authors, '              <button onclick="entries(''%s'')" class="author_dropbtn"><a href="#">%s %s</a></button>\n', fam{i},num2str(nr),author{i});
+fprintf(fid_authors, '              <div id="%s" class="author_dropdown-content">\n',fam{i});
 
     for k = 1:nr % scan all dates/entries for current author
-fprintf(fid_authors,['                 <a target="_top" href="entries_web/', txt_entry{k}, '/', txt_entry{k}, '_res.html">', txt_date{k}, ' ', txt_entry{k}, '</a>\n']);
+fprintf(fid_authors, '                 <a target="_top" href="entries_web/%s/%s_res.html">%s %s</a>\n', txt_entry{k},txt_entry{k},txt_date{k},txt_entry{k});
     end
  
 fprintf(fid_authors, '              </div>\n');
@@ -205,7 +205,7 @@ fprintf(fid_authors, '          }\n');
 fprintf(fid_authors, '        }\n\n');
 
 fprintf(fid_authors, '        function entries(fam) {\n');
-fprintf(fid_authors,['          document.getElementById(fam).classList.toggle("show");\n']);
+fprintf(fid_authors, '          document.getElementById(fam).classList.toggle("show");\n');
 fprintf(fid_authors, '        }\n\n');
 
 fprintf(fid_authors, '      </script>\n\n');
@@ -226,7 +226,7 @@ end
 
 %% subfunction
 
-function [sauthor sfam] = sort_fam(author)
+function [sauthor, sfam] = sort_fam(author)
   % orders a cell-array of authors to their names after the last space
   
   n = length(author); fam = author;
