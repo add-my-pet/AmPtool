@@ -163,7 +163,7 @@ n_fig = size(dataSet_nFig, 1);
 if n_fig > 0
   zlab = 0; % initiate booledan for presence of zlabel
   for i=1:n_fig
-    if 3==length(txtData.label.(dataSet_nFig{i,1})) && isfield(auxData,'treat') && auxData.treat.(dataSet_nFig{i,1}){1}>1; zlab=1; end
+    if 3==length(txtData.label.(dataSet_nFig{i,1})) && isfield(auxData,'treat') && isfield(auxData.treat, dataSet_nFig{i,1}) && auxData.treat.(dataSet_nFig{i,1}){1}>1; zlab=1; end
   end
   if ~zlab
     labels = '<th>Independent variable</th> <th>Dependent variable</th> '; 
