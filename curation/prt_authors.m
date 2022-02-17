@@ -20,19 +20,18 @@ function prt_authors
 % prt_authors
 
   % get basic data
-  [adad, entries] = read_allStat('author', 'date_subm', 'author_mod', 'date_mod'); 
+  [authorDate, entries] = read_allStat('author', 'date_acc'); 
   ne = length(entries);   
   % authors
-  authors = adad(:,[1 3]);                % (ne,>0)-cell array with all authors
   author = cell(0, 1); % convert (2*ne,1)-cell array, to (n,1)-cell array by vertcat all cell-arrays 
   for i=1:ne % scan entries
-    author1 = authors{i,1}; author2 = authors{i,2}; % submit-, mod-authors
-    author = [author(:); author1(:); author2(:)];
+    authorAdd = authorDate(i,1); 
+    author = [author; authorAdd{:}];
   end
-  [author, fam] = sort_fam(unique([author{:}])); % alphabetically arranged list of all authors
+  [author, fam] = sort_fam(unique(author)); % alphabetically arranged list of all authors
   na = length(author);   
   % dates
-  dates = adad(:,[2 4]);                  % (ne,>0)-cell array with all dates
+  dates = authorDate(:,2);                  % (ne,>0)-cell array with all dates
     
   % prepare for writing authors.html
   fid_authors = fopen('../../deblab/add_my_pet/authors.html', 'w+'); % open file for writing, delete existing content
@@ -151,20 +150,10 @@ fprintf(fid_authors, '            <div class = "author_dropdown">\n');
     % get lists of entries and dates for current author
     txt_entry = cell(0); txt_date = cell(0); date_num = [];
     for k = 1:ne % scan all entries
-      if sum(strcmp(author{i}, authors{k,1})) 
+      if sum(strcmp(author{i}, authorDate{k,1})) 
         txt_entry = [txt_entry; entries{k}];
         date_num = [date_num; datenum(dates{k,1})];
         txt_date = [txt_date; datestr(date_num(end), 'yyyy/mm/dd')];
-      end
-      
-      authors_mod = authors{k,2}; n_mod = length(authors_mod);
-      for l = 1:n_mod
-        date_mod = dates{k,2};
-        if sum(strcmp(author{i}, authors_mod{l})) 
-          txt_entry = [txt_entry; entries{k}];
-          date = date_mod{l}; date_num = [date_num; datenum(date{1})];
-          txt_date = [txt_date; datestr(date_num(end), 'yyyy/mm/dd')];
-        end
       end
     end
     nr = length(date_num);

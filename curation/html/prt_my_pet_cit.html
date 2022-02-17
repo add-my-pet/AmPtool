@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_cit</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_my_pet_cit.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>prt_my_pet_cit</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-02-17"><meta name="DC.source" content="prt_my_pet_cit.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,13 +67,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_cit</h1><!--introduction--><p>read results_my_pet.mat to write my_pet_cit.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_cit.m"><b>prt_my_pet_cit</b></a> (metaData, doi, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_cit.html with citation from results_my_pet.mat</p><p>Input:</p><div><ul><li>metaData:  structure with fields species, author, author_mod* and date_acc</li><li>doi:  character string with doi</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>metaData is found from loading results_my_pet.mat</p><h2 id="6">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_cit(metaData, doi) if you wish to print in the current folder else prt_my_pet_cit(metaData, doi, '../myFolder/')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_cit</h1><!--introduction--><p>read results_my_pet.mat to write my_pet_cit.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_cit.m"><b>prt_my_pet_cit</b></a> (metaData, doi, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_cit.html with citation from results_my_pet.mat</p><p>Input:</p><div><ul><li>metaData:  structure with fields species, author, author_mod* and date_acc</li><li>doi:  optional character string with doi</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><p>Output</p><div><ul><li>author: cell string with authors</li></ul></div><h2 id="5">Remarks</h2><p>metaData is found from loading results_my_pet.mat</p><h2 id="6">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_cit(metaData, doi) if you wish to print in the current folder else prt_my_pet_cit(metaData, doi, '../myFolder/')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_cit
 % read results_my_pet.mat to write my_pet_cit.html
 
 %%
-function prt_my_pet_cit(metaData, doi, destinationFolder)
+function author = prt_my_pet_cit(metaData, doi, destinationFolder)
 % created 2018/08/17 by Bas Kooijman
 
 %% Syntax
@@ -84,8 +85,12 @@ function prt_my_pet_cit(metaData, doi, destinationFolder)
 % Input:
 %
 % * metaData:  structure with fields species, author, author_mod* and date_acc
-% * doi:  character string with doi
+% * doi:  optional character string with doi
 % * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
+%
+% Output
+%
+% * author: cell string with authors
 
 %% Remarks
 % metaData is found from loading results_my_pet.mat
@@ -99,21 +104,8 @@ species = metaData.species; txt_species = strrep(species, '_', ' ');
 date = metaData.date_acc;
 txt_date_acc = datestr(datenum(date), 'yyyy/mm/dd'); 
 
-author = metaData.author(:);  % initiate author list
-% modifications
-if isfield(metaData,'author_mod')
-  author = [author; metaData.author_mod(:)];
-end
-for i = 1:100 % identify latest modification
-  mod = ['author_mod_', num2str(i)];
-  if isfield(metaData, mod)
-    authormod = metaData.(mod);
-    author = [author; authormod(:)];
-  else
-    break
-  end
-end
-author = unique(author, 'stable'); n_author = length(author);
+author = get_author(metaData); n_author = length(author);
+txt_author = author{1}; for i=2:n_author; txt_author = [txt_author, ', ',author{i}]; end 
 
 % write citation
 if exist('destinationFolder','var')
@@ -123,12 +115,7 @@ else
 end
 oid = fopen(fileName, 'w+'); % open file for reading and writing, delete existing content
 
-fprintf(oid, author{1});
-for i = 2:n_author
-  fprintf(oid, [', ', author{i}]);
-end
-fprintf(oid, ['. ', num2str(date(1)), '. \n']);
-fprintf(oid, ['AmP <i>', txt_species, '</i>, version ', txt_date_acc, ', \n']);
+fprintf(oid, '%s. %s. AmP <i>%s</i>, version %s.\n', txt_author, num2str(date(1)), txt_species, txt_date_acc);
 %fprintf(oid, ['<a href="http://www.doi.org/', doi, '">doi: ', doi, '</a>\n']);
 
 fclose(oid);

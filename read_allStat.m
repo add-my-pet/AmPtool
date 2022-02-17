@@ -32,10 +32,16 @@ function [var, entries, units, label] = read_allStat(varargin)
 %% Example of use
 % complete_mre = read_allStat('COMPLETE', 'MRE'); 
   
-  persistent allStat
+  persistent allStat allUnits allLabel
   
-  if ~exist('allStat','var') || length(allStat) == 0
-    WD = cdAmPdata; load('allStat'); cd(WD); % get all parameters and statistics in structure allStat
+  if isempty(allStat) % ~exist('allStat','var') || isempty(allStat) 
+    WD = cdAmPdata; load allStat; cd(WD); % get all parameters and statistics in structure allStat
+  end
+  if isempty(allUnits) %~exist('allUnits','var') || isempty(allUnits)
+    WD = cdAmPdata; load allUnits; cd(WD); % get all units in structure allUnits
+  end
+  if isempty(allLabel) %~exist('allLabel','var') || isempty(allLabel)
+    WD = cdAmPdata; load allLabel; cd(WD); % get all labels in structure allLabel
   end
   
   entries = fieldnames(allStat); n_fields = length(entries);
@@ -56,8 +62,8 @@ function [var, entries, units, label] = read_allStat(varargin)
     for j = 1:nargin
       if isfield(allStat.(entries{i}), varargin{j})
         var{i,j} = allStat.(entries{i}).(varargin{j});
-        units{j} = allStat.(entries{i}).units.(varargin{j});
-        label{j} = allStat.(entries{i}).label.(varargin{j});
+        units{j} = allUnits.(varargin{j});
+        label{j} = allLabel.(varargin{j});
       else
         var{i,j} = NaN; 
       end

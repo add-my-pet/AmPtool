@@ -32,10 +32,16 @@ function [var, units, label] = read_stat(entries, varargin)
 %% Example of use
 % complete_mre = read_stat(select('Aves'), 'COMPLETE', 'MRE'); 
   
-  persistent allStat
+  persistent allStat allUnits allLabel
   
   if ~exist('allStat','var') || isempty(allStat)
-    load('allStat')        % get all parameters and statistics in structure allStat
+    load 'allStat'         % get all parameters and statistics in structure allStat
+  end
+  if ~exist('allUnits','var') || isempty(allUnits)
+    load 'allUnits'        % get all units in structure allUnits
+  end
+  if ~exist('allLabel','var') || isempty(allLabel)
+    load 'allLabel'        % get label in structure allLabels
   end
   
   if ~iscell(entries) % entries is name of taxon rather than a cell string
@@ -60,8 +66,8 @@ function [var, units, label] = read_stat(entries, varargin)
     for j = 1:nargin
       if isfield(allStat.(entries{i}), varargin{j})
         var{i,j} = allStat.(entries{i}).(varargin{j});
-        units{j} = allStat.(entries{i}).units.(varargin{j});
-        label{j} = allStat.(entries{i}).label.(varargin{j});
+        units{j} = allUnits.(varargin{j});
+        label{j} = allLabel.(varargin{j});
       else
         var{i,j} = NaN; 
       end

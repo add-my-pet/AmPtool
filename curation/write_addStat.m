@@ -55,7 +55,7 @@ function [allStat, info] = write_addStat(taxa, T, f)
   n_entries = length(taxa_src); WD = cdCur; cd ../taxa; save('n_entries.mat', 'n_entries'); cd(WD);
 
   % check if some members of taxa are already in allStat
-  WD = cdAmPdata; load allStat.mat;
+  WD = cdAmPdata; load allStat.mat % load allUnits allLabel;
   present = isfield(allStat, taxa);
   if any(present)
     fprintf('Warning from write_addStat: Not all members of taxa are absent in existing allStat.mat\n');
@@ -104,5 +104,8 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
-  cdAmPdata; save('allStat.mat','allStat'); cd(WD); % overwrite allStat.mat
+  cdAmPdata; 
+  save('allStat.mat','allStat'); 
+  %save('allUnits.mat','allUnits'); save('allLabel.mat','allLabel'); 
+  cd(WD); % overwrite allStat.mat
   

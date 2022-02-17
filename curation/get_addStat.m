@@ -20,12 +20,13 @@ function allStat = get_addStat(entries, T, f)
 %
 % Output:
 % 
-% * allStat: structure with all parameters and statistics values, including their units and labels
+% * allStat: structure with all parameters and statistics values
 
 %% Remarks
 % Statistics are given at T_typical or T. 
 % Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
 % See <get_addStat.html *get_addStat*> for all entries of select.
+% The
 
 %% Example of use
 % see write_addStat
@@ -40,7 +41,7 @@ function allStat = get_addStat(entries, T, f)
     f = 1;
   end
 
-  load allStat.mat
+  load allStat.mat %allUnits.mat allLabel.mat
   
   ne = length(entries);
   WD = cdCur; % store current path and goto AmP/curation
@@ -53,16 +54,24 @@ function allStat = get_addStat(entries, T, f)
       load (['results_', entries{i}])
       
       % metaData
-      allStat.(entries{i}).species = metaData.species; allStat.(entries{i}).units.species = '-'; allStat.(entries{i}).label.species = 'taxon';
-      allStat.(entries{i}).species_en = metaData.species_en; allStat.(entries{i}).units.species_en = '-'; allStat.(entries{i}).label.species_en = 'common name';
-      allStat.(entries{i}).family  = metaData.family;  allStat.(entries{i}).units.family = '-';  allStat.(entries{i}).label.family = 'taxon';
-      allStat.(entries{i}).order   = metaData.order;   allStat.(entries{i}).units.order = '-';   allStat.(entries{i}).label.order = 'taxon';
-      allStat.(entries{i}).class   = metaData.class;   allStat.(entries{i}).units.class = '-';   allStat.(entries{i}).label.class = 'taxon';
-      allStat.(entries{i}).phylum  = metaData.phylum;  allStat.(entries{i}).units.phylum = '-';  allStat.(entries{i}).label.phylum = 'taxon';
+      allStat.(entries{i}).species = metaData.species; 
+        %allUnits.species = '-'; allLabel.species = 'taxon';
+      allStat.(entries{i}).species_en = metaData.species_en; 
+        %allUnits.species_en = '-'; allLabel.species_en = 'common name';
+      allStat.(entries{i}).family  = metaData.family;  
+        %allUnits.family = '-';  allLabel.family = 'taxon';
+      allStat.(entries{i}).order   = metaData.order;   
+        %allUnits.order = '-';   allLabel.order = 'taxon';
+      allStat.(entries{i}).class   = metaData.class;   
+        %allUnits.class = '-';   allLabel.class = 'taxon';
+      allStat.(entries{i}).phylum  = metaData.phylum;  
+        %allUnits.phylum = '-';  allLabel.phylum = 'taxon';
       if isfield(metaData.links, 'id_CoL')
-        allStat.(entries{i}).id_CoL  = metaData.links.id_CoL; allStat.(entries{i}).units.id_CoL = '-'; allStat.(entries{i}).label.id_CoL = 'id Cat of Life';
+        allStat.(entries{i}).id_CoL  = metaData.links.id_CoL; 
+          %allUnits.id_CoL = '-'; allLabel.id_CoL = 'id Cat of Life';
       else
-        allStat.(entries{i}).id_CoL  = ''; allStat.(entries{i}).units.id_CoL = '-'; allStat.(entries{i}).label.id_CoL = 'id Cat of Life';
+        allStat.(entries{i}).id_CoL  = ''; 
+          %allUnits.id_CoL = '-'; allLabel.id_CoL = 'id Cat of Life';
       end
       allStat.(entries{i}).ecoCode.climate = metaData.ecoCode.climate; allStat.(entries{i}).units.ecoCode.climate = '-'; allStat.(entries{i}).label.ecoCode.climate = 'ecoCode climate';
       allStat.(entries{i}).ecoCode.ecozone = metaData.ecoCode.ecozone; allStat.(entries{i}).units.ecoCode.ecozone = '-'; allStat.(entries{i}).label.ecoCode.ecozone = 'ecoCode ecozone';
@@ -74,31 +83,37 @@ function allStat = get_addStat(entries, T, f)
       allStat.(entries{i}).ecoCode.reprod  = metaData.ecoCode.reprod;  allStat.(entries{i}).units.ecoCode.reprod  = '-'; allStat.(entries{i}).label.ecoCode.reprod  = 'ecoCode reprod';
 
       % data/model
-      allStat.(entries{i}).model = metaPar.model; allStat.(entries{i}).units.model = '-'; allStat.(entries{i}).label.model = 'DEB model';
-      allStat.(entries{i}).MRE = metaPar.MRE; allStat.(entries{i}).units.MRE = '-'; allStat.(entries{i}).label.MRE = 'Mean Relative Error';
-      allStat.(entries{i}).SMSE = metaPar.SMSE; allStat.(entries{i}).units.SMSE = '-'; allStat.(entries{i}).label.SMSE = 'Symmetric Mean Squared Error';
-      allStat.(entries{i}).COMPLETE = metaData.COMPLETE; allStat.(entries{i}).units.COMPLETE = '-'; allStat.(entries{i}).label.COMPLETE = 'completeness';
-      allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; allStat.(entries{i}).units.data = '-'; allStat.(entries{i}).label.data = 'data types';
+      allStat.(entries{i}).model = metaPar.model; 
+        %allUnits.model = '-'; allLabel.model = 'DEB model';
+      allStat.(entries{i}).MRE = metaPar.MRE; 
+        %allUnits.MRE = '-'; allLabel.MRE = 'Mean Relative Error';
+      allStat.(entries{i}).SMSE = metaPar.SMSE; 
+        %allUnits.SMSE = '-'; allLabel.SMSE = 'Symmetric Mean Squared Error';
+      allStat.(entries{i}).COMPLETE = metaData.COMPLETE; 
+        %allUnits.COMPLETE = '-'; allLabel.COMPLETE = 'completeness';
+      allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
+        %allUnits.data = '-'; allLabel.data = 'data types';
       % submission
-      allStat.(entries{i}).author = metaData.author(:)'; allStat.(entries{i}).units.author = '-'; allStat.(entries{i}).label.author = 'submitting author';
-      allStat.(entries{i}).date_subm = metaData.date_subm; allStat.(entries{i}).units.date_subm = '-'; allStat.(entries{i}).label.date_subm = 'submitting date';
-      % modification
-      author_date_mod = get_author_date_mod(metaData);
-      allStat.(entries{i}).author_mod = author_date_mod(:,1); allStat.(entries{i}).units.author_mod = '-'; allStat.(entries{i}).label.author_mod = 'modification author';
-      allStat.(entries{i}).date_mod = author_date_mod(:,2); allStat.(entries{i}).units.date_mod = '-'; allStat.(entries{i}).label.date_mod = 'modification date';
+      allStat.(entries{i}).author = get_author(metaData); 
+        %allUnits.author = '-'; allLabel.author = 'submitting author';
+      allStat.(entries{i}).date_subm = metaData.date_subm; 
+        %allUnits.date_subm = '-'; allLabel.date_subm = 'submitting date';
       % acceptance
-      allStat.(entries{i}).date_acc = metaData.date_acc; allStat.(entries{i}).units.date_acc = '-'; allStat.(entries{i}).label.date_acc = 'acceptance date';
+      allStat.(entries{i}).date_acc = metaData.date_acc; 
+        %allUnits.date_acc = '-'; allLabel.date_acc = 'acceptance date';
       % typical body temp
-      allStat.(entries{i}).T_typical = metaData.T_typical;  allStat.(entries{i}).units.T_typical = 'K';
-        allStat.(entries{i}).label.T_typical = 'typical body temperature';
+      allStat.(entries{i}).T_typical = metaData.T_typical;  
+        %allUnits.T_typical = 'K'; allLabel.T_typical = 'typical body temperature';
             
-      % parameters
+     % parameters
+      coreParFields = get_parfields(metaPar.model, 1); % get coreParFileds, including chemical pars
       par = rmfield_wtxt(par, 'free');   % remove substructure free from par
-      [nm, nst] = fieldnmnst_st(par);     % get number of parameter fields
-      for j = 1:nst % add all parameters at T_ref
-        allStat.(entries{i}).(nm{j}) = par.(nm{j});
-        allStat.(entries{i}).units.(nm{j}) = txtPar.units.(nm{j});
-        allStat.(entries{i}).label.(nm{j}) = txtPar.label.(nm{j});
+      [nm, nst] = fieldnmnst_st(par);    % get number of parameter fields
+      for j = 1:nst % add core parameters at T_ref
+        if ismember(nm{j},coreParFields)
+          allStat.(entries{i}).(nm{j}) = par.(nm{j});
+            %allUnits.(nm{j}) = txtPar.units.(nm{j}); allLabel.(nm{j}) = txtPar.label.(nm{j});
+        end
       end
       
       % statistics
@@ -111,26 +126,14 @@ function allStat = get_addStat(entries, T, f)
       [nm, nst] = fieldnmnst_st(stat);    % get number of parameter fields
       for j = 1:nst % add all statistis at T or T_typical
         allStat.(entries{i}).(nm{j}) = stat.(nm{j});
-        allStat.(entries{i}).units.(nm{j}) = txtStat.units.(nm{j});
-        allStat.(entries{i}).label.(nm{j}) = txtStat.label.(nm{j});
+          %allUnits.(nm{j}) = txtStat.units.(nm{j}); allLabel.(nm{j}) = txtStat.label.(nm{j});
       end
     end
    
   catch 
     disp(['Warning from get_addStat: Statistics of entry ', entries{i},' could not be extracted'])
+    keyboard
   end
    
   cd(WD)                   % goto original path
-end
-
-function author_mod = get_author_mod(metaData)
-  author_mod = cell(0);
-  [nm nr] = fieldnmnst_st(metaData); 
-  n = strfind(nm, 'author_'); 
-  for i = 1:nr
-    if ~isempty(n{i})
-      authors = metaData.(nm{i});
-      author_mod = [author_mod, authors(:)'];
-    end
-  end
 end

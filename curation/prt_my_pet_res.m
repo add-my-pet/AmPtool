@@ -161,7 +161,7 @@ fprintf(oid, '      </table>\n\n');
 % table with uni- and bi-variate data sets:
 n_fig = size(dataSet_nFig, 1);
 if n_fig > 0
-  zlab = 0; % initiate booledan for presence of zlabel
+  zlab = 0; % initiate boolean for presence of zlabel
   for i=1:n_fig
     if 3==length(txtData.label.(dataSet_nFig{i,1})) && isfield(auxData,'treat') && isfield(auxData.treat, dataSet_nFig{i,1}) && auxData.treat.(dataSet_nFig{i,1}){1}>1; zlab=1; end
   end

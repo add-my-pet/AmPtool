@@ -19,6 +19,8 @@ function [allStat, info] = write_allStat(T, f)
 % Ouput:
 %
 % * allStat: stucture with all parameters and statistics of all entries
+% * allUnits: structure with all units for all statistics
+% * allLabel: structure with all labels for all statistics
 % * info: boolean for all species in lists-of-lists are present in dir entries (1) or not (0)
 
 %% Remarks
@@ -53,6 +55,7 @@ function [allStat, info] = write_allStat(T, f)
   diff = setdiff(entries_local, entries_allStat);
   if ~isempty(diff)
     fprintf('warning from write_allStat: present in debtool/entries, but not in allStat\n');
+    keyboard
     diff
   end
 

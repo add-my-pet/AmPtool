@@ -90,6 +90,12 @@ function popStat = write_popStat_loc(varargin)
     end
     locPopStat.(spec) = popStat.(spec); % add species to collection
   end
+  
+  % remove labels (is already in allLabel)
+  if isfield(popStat.(spec),'label')
+    popStat.(spec) = rmfield(popStat.(spec), 'label');
+  end
+  
   popStat = locPopStat; % copy collection popStat back in variable popStat
   % check if length of popStat corresponds with number of entries in lists-of-lists
   entries = select; n_entries = length(entries); n_popStat = length(fields(popStat));

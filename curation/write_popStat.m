@@ -37,7 +37,7 @@ function popStat = write_popStat(varargin)
     varargin = varargin{:}; % unpack cell string  
   end
 
-  path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries_web/';
+  path = [set_path2server, 'add_my_pet/entries_web/'];
   n_spec = length(varargin); 
   for i = 1:n_spec
     if ismac || isunix
@@ -86,6 +86,9 @@ function popStat = write_popStat(varargin)
     if isfield(popStat.(spec).f1.thin0.f, 'tSs')
         popStat.(spec).f1.thin0.f = rmfield(popStat.(spec).f1.thin0.f, 'tSs');
     end
+    
+    % remove labels (is already in allLabel)
+    popStat.(spec) = rmfield(popStat.(spec), 'label');
 
     popStatLoc.(spec) = popStat.(spec);
     fprintf('%g: %s\n', i, spec);
