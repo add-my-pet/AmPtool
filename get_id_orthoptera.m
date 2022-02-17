@@ -26,7 +26,7 @@ function id = get_id_orthoptera(my_pet, open)
 %% Example of use
 % id = get_id_orthoptera('Locusta_migratoria',1)
 
-address = 'http://lsid.speciesfile.org/urn:lsid:Orthoptera.speciesfile.org:TaxonName:';
+address = 'http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=1103075';
 if ~exist('open','var')
   open = 0;
 end
