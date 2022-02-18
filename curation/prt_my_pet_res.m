@@ -187,11 +187,11 @@ if n_fig > 0
       end
     end
     % fig
-    nFig = dataSet_nFig{i,2};
+    nFig = dataSet_nFig{i,2}; txt=''; if isfield(txtData,'undertitle'); txt = txtData.undertitle; end
     if ~iscell(nFig)    
-      fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig, '.png" alt="">'];
+      fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig, '.png" alt="', txt,'">'];
     else
-      fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig{1}, '.png" alt=""> ', ...
+      fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig{1}, '.png" alt="', txt, '"> ', ...
              '<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig{2}, '.png" alt="">'];
     end   
     % re
