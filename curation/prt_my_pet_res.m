@@ -37,7 +37,7 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 %
 % prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
 
-global dataSet_nFig
+global dataSet_nFig % set by results_pets
   
   % dataSet_nFig is filled in results_pets 
   
@@ -269,7 +269,7 @@ if isfield(metaData, 'facts')
           str = [str, ', ', bib{j}];
         end            
       end
-      fprintf(oid, '          %S (Ref: %s)\n', metaData.facts.(nm{i}), str);
+      fprintf(oid, '          %s (Ref: %s)\n', metaData.facts.(nm{i}), str);
     else
       fprintf(oid, '          %s\n', metaData.facts.(nm{i}));  
     end
