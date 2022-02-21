@@ -3,7 +3,7 @@
 
 %%
 function [allStat, info] = write_allStat(T, f)
-% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16, 2020/08/26
+% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16, 2020/08/26, 2022/02/21
 
 %% Syntax
 % [allStat, info] = <write_allStat *write_allStat*> (T, f)
@@ -59,6 +59,4 @@ function [allStat, info] = write_allStat(T, f)
     diff
   end
 
-  WD = cdCur;                        
-  save('../../deblab/add_my_pet/AmPdata/allStat.mat','allStat')
-  cd(WD);
+  WD = cdAmPdata; save('allStat.mat','allStat'); cd(WD);
