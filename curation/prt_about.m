@@ -219,7 +219,7 @@ fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
-fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=-eMMf1xZqMs" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
+fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=WKtPWGmJzJI" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE.png" width="350px">\n');
@@ -271,24 +271,24 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <table id="t02"> <!-- Latest additions -->\n'); 
 fprintf(fid_about, '        <tr><th colspan="2"><b>Latest additions to the collection:</b></th></tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{1}, '/', entries_new{1}, '_res.html"><i>', entries_new{1}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(1,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{1},entries_new{1},entries_new{1});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(1,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{2}, '/', entries_new{2}, '_res.html"><i>', entries_new{2}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(2,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{2},entries_new{2},entries_new{2});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(2,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{3}, '/', entries_new{3}, '_res.html"><i>', entries_new{3}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(3,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{3},entries_new{3},entries_new{3});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(3,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{4}, '/', entries_new{4}, '_res.html"><i>', entries_new{4}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(4,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{4},entries_new{4},entries_new{4});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(4,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{5}, '/', entries_new{5}, '_res.html"><i>', entries_new{5}, '</i></a></TtdD>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(5,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{5},entries_new{5},entries_new{5});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(5,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '      </table>\n\n');
 
