@@ -53,7 +53,7 @@ saveas (gca, [path, 'pie_model.png'])
 close all
 
 % # of entries in time
-[dates, entries_new, dates_new] = get_date_subm;
+[dates, entries_new, dates_new] = get_date_acc;
 surv_dates = surv(dates, 2006); 
 surv_dates([1; end - 1; end],:) = [];    
 n = size(surv_dates, 1)/2;

@@ -62,6 +62,9 @@ if ~exist('AmP', 'var')
   AmP = 0;
 end
 
+load allLabel
+load allUnits
+
 if ~exist('destinationFolder', 'var')
   destinationFolder = [];
 end
@@ -161,10 +164,10 @@ else
 end
  
 % species: get statistics
-[stat, txtStat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
+[stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
 % save statistics in structure popStat
-popStat.(species) = stat; popStat.(species).label = txtStat.label; 
-popStat.(species).model = model; popStat.(species).par = par; popStat.(species).T = T; 
+popStat.(species) = stat; popStat.(species).T = T; 
+popStat.(species).model = model; popStat.(species).par = par; 
 save([destinationFolder, species, '_pop.mat'], 'popStat');
 %
 stat = rmfield(stat, {'T', 'c_T'}); 
@@ -351,12 +354,12 @@ fprintf(oid,['        <TR id="head1"> <TH>symbol</TH> <TH>units</TH> ', repmat('
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), ...
     stat.ff.thin0.f.(fldsStat{i}), stat.ff.thin1.f.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 

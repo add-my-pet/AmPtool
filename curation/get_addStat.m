@@ -84,35 +84,21 @@ function allStat = get_addStat(entries, T, f)
 
       % data/model
       allStat.(entries{i}).model = metaPar.model; 
-        %allUnits.model = '-'; allLabel.model = 'DEB model';
       allStat.(entries{i}).MRE = metaPar.MRE; 
-        %allUnits.MRE = '-'; allLabel.MRE = 'Mean Relative Error';
       allStat.(entries{i}).SMSE = metaPar.SMSE; 
-        %allUnits.SMSE = '-'; allLabel.SMSE = 'Symmetric Mean Squared Error';
       allStat.(entries{i}).COMPLETE = metaData.COMPLETE; 
-        %allUnits.COMPLETE = '-'; allLabel.COMPLETE = 'completeness';
       allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
-        %allUnits.data = '-'; allLabel.data = 'data types';
-      % submission
       allStat.(entries{i}).author = get_author(metaData); 
-        %allUnits.author = '-'; allLabel.author = 'submitting author';
-      allStat.(entries{i}).date_subm = metaData.date_subm; 
-        %allUnits.date_subm = '-'; allLabel.date_subm = 'submitting date';
-      % acceptance
       allStat.(entries{i}).date_acc = metaData.date_acc; 
-        %allUnits.date_acc = '-'; allLabel.date_acc = 'acceptance date';
-      % typical body temp
       allStat.(entries{i}).T_typical = metaData.T_typical;  
-        %allUnits.T_typical = 'K'; allLabel.T_typical = 'typical body temperature';
             
-     % parameters
+      % parameters
       coreParFields = get_parfields(metaPar.model, 1); % get coreParFileds, including chemical pars
       par = rmfield_wtxt(par, 'free');   % remove substructure free from par
       [nm, nst] = fieldnmnst_st(par);    % get number of parameter fields
       for j = 1:nst % add core parameters at T_ref
         if ismember(nm{j},coreParFields)
           allStat.(entries{i}).(nm{j}) = par.(nm{j});
-            %allUnits.(nm{j}) = txtPar.units.(nm{j}); allLabel.(nm{j}) = txtPar.label.(nm{j});
         end
       end
       
