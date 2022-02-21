@@ -3,7 +3,7 @@
 
 %%
 function allStat = get_addStat(entries, T, f)
-% created 2016/04/22 by Bas Kooijman
+% created 2016/04/22 by Bas Kooijman, modified 2022/02/21
 
 %% Syntax
 % allStat = <get_addStat *get_addStat*> (taxa, T, f)
@@ -26,13 +26,13 @@ function allStat = get_addStat(entries, T, f)
 % Statistics are given at T_typical or T. 
 % Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
 % See <get_addStat.html *get_addStat*> for all entries of select.
-% The
+% The units and labels are given in AmPdata/allUnits and allLabel
 
 %% Example of use
 % see write_addStat
   
   if ~exist('T', 'var') || isempty(T)
-    set_T = 0; % identyfier for temperature setting
+    set_T = 0; % identifier for temperature setting
   else 
     set_T = 1;
   end
@@ -41,7 +41,7 @@ function allStat = get_addStat(entries, T, f)
     f = 1;
   end
 
-  load allStat.mat %allUnits.mat allLabel.mat
+  load allStat
   
   ne = length(entries);
   WD = cdCur; % store current path and goto AmP/curation
@@ -55,23 +55,15 @@ function allStat = get_addStat(entries, T, f)
       
       % metaData
       allStat.(entries{i}).species = metaData.species; 
-        %allUnits.species = '-'; allLabel.species = 'taxon';
       allStat.(entries{i}).species_en = metaData.species_en; 
-        %allUnits.species_en = '-'; allLabel.species_en = 'common name';
       allStat.(entries{i}).family  = metaData.family;  
-        %allUnits.family = '-';  allLabel.family = 'taxon';
       allStat.(entries{i}).order   = metaData.order;   
-        %allUnits.order = '-';   allLabel.order = 'taxon';
       allStat.(entries{i}).class   = metaData.class;   
-        %allUnits.class = '-';   allLabel.class = 'taxon';
       allStat.(entries{i}).phylum  = metaData.phylum;  
-        %allUnits.phylum = '-';  allLabel.phylum = 'taxon';
       if isfield(metaData.links, 'id_CoL')
         allStat.(entries{i}).id_CoL  = metaData.links.id_CoL; 
-          %allUnits.id_CoL = '-'; allLabel.id_CoL = 'id Cat of Life';
       else
         allStat.(entries{i}).id_CoL  = ''; 
-          %allUnits.id_CoL = '-'; allLabel.id_CoL = 'id Cat of Life';
       end
       allStat.(entries{i}).ecoCode.climate = metaData.ecoCode.climate; allStat.(entries{i}).units.ecoCode.climate = '-'; allStat.(entries{i}).label.ecoCode.climate = 'ecoCode climate';
       allStat.(entries{i}).ecoCode.ecozone = metaData.ecoCode.ecozone; allStat.(entries{i}).units.ecoCode.ecozone = '-'; allStat.(entries{i}).label.ecoCode.ecozone = 'ecoCode ecozone';
@@ -90,6 +82,7 @@ function allStat = get_addStat(entries, T, f)
       allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
       allStat.(entries{i}).author = get_author(metaData); 
       allStat.(entries{i}).date_acc = metaData.date_acc; 
+      allStat.(entries{i}).T_ref = par.T_ref;  
       allStat.(entries{i}).T_typical = metaData.T_typical;  
             
       % parameters
@@ -112,7 +105,6 @@ function allStat = get_addStat(entries, T, f)
       [nm, nst] = fieldnmnst_st(stat);    % get number of parameter fields
       for j = 1:nst % add all statistis at T or T_typical
         allStat.(entries{i}).(nm{j}) = stat.(nm{j});
-          %allUnits.(nm{j}) = txtStat.units.(nm{j}); allLabel.(nm{j}) = txtStat.label.(nm{j});
       end
     end
    

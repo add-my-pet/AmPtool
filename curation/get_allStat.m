@@ -3,7 +3,7 @@
 
 %%
 function allStat = get_allStat(T, f)
-% created 2016/04/22 by Bas Kooijman, modified 2018/01/23, 2019/12/25
+% created 2016/04/22 by Bas Kooijman, modified 2018/01/23, 2019/12/25, 2022/02/21
 
 %% Syntax
 % allStat = <get_allStat *get_allStat*> (T, f)
@@ -27,7 +27,7 @@ function allStat = get_allStat(T, f)
 % Statistics are given at T_typical or T. 
 % Meant to be used in combination with <write_allStat.html *write_allStat*> and <../../html/read_allStat.html *read_allStat*>.
 % Since running this function takes some time, progress is written to screen.
-% Units and labals are given in the static structures AmPdata/allUnits and allLabel
+% Units and labels are given in the static structures AmPdata/allUnits and allLabel
 
 %% Example of use
 % allStat = get_allStat; see mydata_shstat
@@ -83,6 +83,7 @@ function allStat = get_allStat(T, f)
       allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
       allStat.(entries{i}).author = get_author(metaData); 
       allStat.(entries{i}).date_acc = metaData.date_acc; 
+      allStat.(entries{i}).T_ref = par.T_ref; 
       allStat.(entries{i}).T_typical = metaData.T_typical; 
 
       % parameters
