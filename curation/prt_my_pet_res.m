@@ -187,7 +187,9 @@ if n_fig > 0
       end
     end
     % fig
-    nFig = dataSet_nFig{i,2}; txt=''; if isfield(txtData,'subtitle'); txt = txtData.subtitle; end
+    dataSet = dataSet_nFig{i,1}; nFig = dataSet_nFig{i,2};  txt=''; 
+    if isfield(txtData,'subtitle') && isfield(txtData.subtitle, dataSet); txt = txtData.subtitle.(dataSet); end
+    if isfield(metaData,'grp') && isfield(metaData.grp,'subtitle'); txt = metaData.grp.subtitle{str2double(nFig{1})}; end
     if ~iscell(nFig)    
       fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig, '.png" alt="', txt,'">'];
     else

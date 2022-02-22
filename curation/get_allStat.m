@@ -94,6 +94,12 @@ function allStat = get_allStat(T, f)
         if ismember(nm{j},coreParFields)
           allStat.(entries{i}).(nm{j}) = par.(nm{j});
         end
+        if isfield(par,'T_L') 
+          allStat.(entries{i}).T_L = par.T_L; allStat.(entries{i}).T_AL = par.T_AL;
+        end
+        if isfield(par,'T_H')
+          allStat.(entries{i}).T_H = par.T_H; allStat.(entries{i}).T_AH = par.T_AH;
+        end
       end
       
       % statistics
