@@ -54,9 +54,9 @@ close all
 
 % # of entries in time
 [dates, entries_new, dates_new] = get_date_acc;
-surv_dates = surv(dates, 2006); 
-surv_dates([1; end - 1; end],:) = [];    
-n = size(surv_dates, 1)/2;
+surv_dates = [0 2009 ; surv(dates, 2009)]; 
+surv_dates([end - 1; end],:) = [];    
+n = size(surv_dates, 1)/2 - 2;
 %    
 plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
