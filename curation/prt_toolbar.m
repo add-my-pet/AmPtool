@@ -50,7 +50,7 @@ tb = [tb, '        <button onclick="showDropdown(''context'')" class="dropbtn">C
 tb = [tb, '        <div id="context" class="dropdown-content">\n'];
 tb = [tb, '          <a href="??index.html">AmP Portal</a>\n'];
 tb = [tb, '          <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure" target="_blank">AmP Estimation</a>\n'];
-tb = [tb, '          <a href="https://add-my-pet.github.io/AmPtool/docs/index.html" target="_blank">AmP Tool</a>\n'];
+tb = [tb, '          <a href="https://add-my-pet.github.io/AmPtool/docs/" target="_blank">AmP Tool</a>\n'];
 tb = [tb, '          <a href="??AmPeco.html">AmP Ecology</a>\n'];
 tb = [tb, '          <a href="??phyla.html">Phyla</a>\n'];
 tb = [tb, '          <a href="??pars.html">Parameters</a>\n'];
@@ -91,7 +91,7 @@ tbt = [tbt, '        <button onclick="showDropdown(''applications'')" class="dro
 tbt = [tbt, '        <div id="applications" class="dropdown-content">\n'];
 tbt = [tbt, '          <a href="??popDyn/popDyn.html">Population Dynamics</a>\n'];
 tbt = [tbt, '          <a href="??physBiol/physBiol.html">Physical Biology</a>\n'];
-tbt = [tbt, '          <a href="??ecoTox/ecoTox.html">Ecotoxicity</a>\n'];
+tbt = [tbt, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
 tbt = [tbt, '        </div>\n'];
 tbt = [tbt, '      </div>\n\n'];
 
