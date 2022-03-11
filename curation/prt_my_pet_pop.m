@@ -339,11 +339,11 @@ fprintf(oid,['        <TR id="head1"> <TH>symbol</TH> <TH>units</TH> ', repmat('
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 
@@ -371,11 +371,11 @@ fprintf(oid,['        <TR id="head2"> <TH></TH> <TH></TH>  ', repmat('<TH>female
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin0.m.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), stat.f0.thin1.m.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin0.m.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), stat.f1.thin1.m.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 
@@ -387,12 +387,12 @@ fprintf(oid,['        <TR id="head2"> <TH></TH> <TH></TH>  ', repmat('<TH>female
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid,['          ', repmat('<TD>%g</TD> ', 1, 12), '  <TD>%s</TD>\n'], ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin0.m.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), stat.f0.thin1.m.(fldsStat{i}), ...
     stat.ff.thin0.f.(fldsStat{i}), stat.ff.thin0.m.(fldsStat{i}), stat.ff.thin1.f.(fldsStat{i}), stat.ff.thin1.m.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin0.m.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), stat.f1.thin1.m.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 

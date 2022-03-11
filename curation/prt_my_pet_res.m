@@ -37,9 +37,10 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 %
 % prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
 
-global dataSet_nFig % set by results_pets
-  
-  % dataSet_nFig is filled in results_pets 
+global dataSet_nFig % dataSet_nFig is filled in results_pets 
+if isempty(dataSet_nFig) % make sure that dataSet_nFig is filled properly
+  get_dataSet_nFig(data, auxData, metaData)
+end
   
 path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/'; % path to figs
 
@@ -190,6 +191,7 @@ if n_fig > 0
     dataSet = dataSet_nFig{i,1}; nFig = dataSet_nFig{i,2};  txt=''; 
     if isfield(txtData,'subtitle') && isfield(txtData.subtitle, dataSet); txt = txtData.subtitle.(dataSet); end
     if isfield(metaData,'grp') && isfield(metaData.grp,'subtitle') && iscell(nFig); txt = metaData.grp.subtitle{str2double(nFig{1})}; end
+    if iscell(txt); txt = txt{1}; end
     if ~iscell(nFig)    
       fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig, '.png" alt="', txt,'">'];
     else
