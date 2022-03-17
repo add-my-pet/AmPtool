@@ -189,8 +189,15 @@ if n_fig > 0
     end
     % fig
     dataSet = dataSet_nFig{i,1}; nFig = dataSet_nFig{i,2};  txt=''; 
-    if isfield(txtData,'subtitle') && isfield(txtData.subtitle, dataSet); txt = txtData.subtitle.(dataSet); end
-    if isfield(metaData,'grp') && isfield(metaData.grp,'subtitle') && iscell(nFig); txt = metaData.grp.subtitle{str2double(nFig{1})}; end
+    if isfield(metaData,'grp') % is dataSet a member of any grp set?
+      sets = metaData.grp; n_sets = length(sets);
+      for j=1:n_sets
+        if ismember(dataSet,metaData.grp.sets{j})
+          txt = metaData.grp.subtitle{str2double(nFig{j})};
+        end
+      end
+    end
+    if isempty(txt) && isfield(txtData,'subtitle') && isfield(txtData.subtitle, dataSet); txt = txtData.subtitle.(dataSet); end
     if iscell(txt); txt = txt{1}; end
     if ~iscell(nFig)    
       fig = ['<img class="myImg" src="', path, metaData.species, '/results_', metaData.species, '_', nFig, '.png" alt="', txt,'">'];
