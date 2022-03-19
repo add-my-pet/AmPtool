@@ -25,7 +25,8 @@ function [f, info] = f_ris0_hax (par)
   % optional thinning (a boolean, default 1), and background hazards h_B0b, h_Bbp, h_Bpj, h_Bje, h_Bei (default all 0) must be added to par before use, if necessary.
   % par.reprodCode must exist.
   % Only imago's lay eggs, but do not allocate to reprod, at a rate of reprod buffer at j per expected life time as imago, till buffer is finished.
-  % Hax model: acceleration between b and p, transition to j if [E_R] = {E_Rj], pupa between j and e, imago between e and i
+  % Hax model: acceleration between b and p, transition to j if [E_R]={E_Rj], pupa between j and e, imago between e and i
+  % Since transition to pupa occurs if [E_R]={E_Rj], f for which r=0 has no solution if hazards are zero
 
   % unpack par and compute statisitics
   cPar = parscomp_st(par); vars_pull(par);  vars_pull(cPar);  

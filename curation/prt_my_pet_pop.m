@@ -142,7 +142,13 @@ switch model
     else
       par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3);  par.h_Bji = h_B(4);       
     end
-  case {'hex','hax'}
+  case 'hax'
+    if ~exist('h_B','var') || isempty(h_B)
+      par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpj = 0; par.h_Bje = 0; par.h_Bei = 0; 
+    else
+      par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3); par.h_Bje= h_B(4); par.h_Bei = h_B(5);       
+    end
+  case 'hex'
     if ~exist('h_B','var') || isempty(h_B)
       par.h_B0b = 0; par.h_Bbj = 0; par.h_Bje = 0; par.h_Bei = 0; 
     else
