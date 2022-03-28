@@ -94,9 +94,9 @@ dd_app = [dd_app, '          <a href="https://add-my-pet.github.io/AmPtox/docs/"
 dd_app = [dd_app, '        </div>\n'];
 dd_app = [dd_app, '      </div>\n\n'];
 
-dd_bud = []; % dropdown ENERGY BUDGETS
+dd_bud = []; % dropdown ENERGY BUDGET
 dd_bud = [dd_bud, '      <div class="dropdown">\n'];
-dd_bud = [dd_bud, '        <button onclick="showDropdown(''budget'')" class="dropbtn">ENERGY BUDGETS</button>\n'];
+dd_bud = [dd_bud, '        <button onclick="showDropdown(''budget'')" class="dropbtn">ENERGY BUDGET</button>\n'];
 dd_bud = [dd_bud, '        <div id="budget" class="dropdown-content">\n'];
 dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_SGJRb.html">Over embryo</a>\n'];
 dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRb.html">At birth</a>\n'];
@@ -107,8 +107,8 @@ dd_bud = [dd_bud, '      </div>\n\n'];
 
 dd_cod = []; % dropdown PACKAGE
 dd_col = [dd_col, '      <div class="dropdown">\n'];
-dd_col = [dd_col, '        <button onclick="showDropdown(''code'')" class="dropbtn">PACKAGE</button>\n'];
-dd_col = [dd_col, '        <div id="code" class="dropdown-content">\n'];
+dd_col = [dd_col, '        <button onclick="showDropdown(''package'')" class="dropbtn">PACKAGE</button>\n'];
+dd_col = [dd_col, '        <div id="package" class="dropdown-content">\n'];
 dd_col = [dd_col, '          <a href="', path2DEBtool, 'index.html" target="_blank">DEB Tool</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmPtool, 'index.html" target="_blank">AmP Tool</a>\n'];
 dd_col = [dd_col, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
@@ -116,9 +116,9 @@ dd_col = [dd_col, '          <a href="https://jornbr.home.xs4all.nl/plotreader/"
 dd_col = [dd_col, '        </div>\n'];
 dd_col = [dd_col, '      </div>\n\n'];
 
-dd_dat = []; % dropdown DATA BASES
+dd_dat = []; % dropdown DATA BASE
 dd_dat = [dd_dat, '      <div class="dropdown">\n'];
-dd_dat = [dd_dat, '        <button onclick="showDropdown(''data'')" class="dropbtn">DATA BASES</button>\n'];
+dd_dat = [dd_dat, '        <button onclick="showDropdown(''data'')" class="dropbtn">DATA BASE</button>\n'];
 dd_dat = [dd_dat, '        <div id="data" class="dropdown-content">\n'];
 dd_dat = [dd_dat, '          <a href="', path2AmP, 'index.html" target="_blank">Add_my_Pet</a>\n'];
 dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny app</a>\n'];
@@ -154,11 +154,10 @@ dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank
 dd_cou = [dd_cou, '        </div>\n'];
 dd_cou = [dd_cou, '      </div>\n\n'];
 
-dd_box = []; % dropdown toolbox
+dd_box = []; % dropdown TOOLBOX
 dd_box = [dd_box, '      <div class="dropdown">\n'];
 dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
 dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_lib.html/">lib</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_enzyme.html">enzyme</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_microbe.html">microbe</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
@@ -170,6 +169,13 @@ dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_degrad.html">degrad</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_fig_3.html">fig_3</a>\n'];
+dd_box = [dd_box, '          lib\n'];
+dd_box = [dd_box, '          <ul>\n'];
+dd_box = [dd_box, '            <li><a href="./DEBtool_lib_misc.html">lib_misc</a></li>\n'];
+dd_box = [dd_box, '            <li><a href="./DEBtool_lib_regr.html">lib_regr</a></li>\n'];
+dd_box = [dd_box, '            <li><a href="./DEBtool_lib_prob.html">lib_prob</a></li>\n'];
+dd_box = [dd_box, '            <li><a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n'];
+dd_box = [dd_box, '          </ul>\n'];
 dd_box = [dd_box, '        </div>\n'];
 dd_box = [dd_box, '      </div>\n\n'];
 
