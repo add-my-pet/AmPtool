@@ -105,9 +105,9 @@ dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRi.html">At ultimate
 dd_bud = [dd_bud, '        </div>\n'];
 dd_bud = [dd_bud, '      </div>\n\n'];
 
-dd_cod = []; % dropdown CODE
+dd_cod = []; % dropdown PACKAGE
 dd_col = [dd_col, '      <div class="dropdown">\n'];
-dd_col = [dd_col, '        <button onclick="showDropdown(''code'')" class="dropbtn">CODE</button>\n'];
+dd_col = [dd_col, '        <button onclick="showDropdown(''code'')" class="dropbtn">PACKAGE</button>\n'];
 dd_col = [dd_col, '        <div id="code" class="dropdown-content">\n'];
 dd_col = [dd_col, '          <a href="', path2DEBtool, 'index.html" target="_blank">DEB Tool</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmPtool, 'index.html" target="_blank">AmP Tool</a>\n'];
@@ -148,11 +148,30 @@ dd_cou = [dd_cou, '          <a href="https://deb2023.sciencesconf.org/"  target
 dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/exercise" target="_blank">Exercises</a>\n'];
 dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/quizz/quizz" target="_blank">Quizzes</a>\n'];
 dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/essays" target="_blank">Essays</a>\n'];
-dd_cou = [dd_cou, '          <a href="http://www.zotero.org/groups/500643/deb_library/" target="main" target="_blank">Theses</a>\n'];
+dd_cou = [dd_cou, '          <a href="http://www.zotero.org/groups/500643/deb_library/" target="_blank">Theses</a>\n'];
 dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/archieve/quest2001.html" target="_blank">Questions</a>\n'];      
 dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank">Methods in TB</a>\n'];
 dd_cou = [dd_cou, '        </div>\n'];
 dd_cou = [dd_cou, '      </div>\n\n'];
+
+dd_box = []; % dropdown toolbox
+dd_box = [dd_box, '      <div class="dropdown">\n'];
+dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
+dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib.html/">lib</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_enzyme.html">enzyme</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_microbe.html">microbe</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_animal.html">animal</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_iso_21.html">iso_21</a>\n'];      
+dd_box = [dd_box, '          <a href="./DEBtool_plant.html">plant</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_community.html">community</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_degrad.html">degrad</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_fig_3.html">fig_3</a>\n'];
+dd_box = [dd_box, '        </div>\n'];
+dd_box = [dd_box, '      </div>\n\n'];
 
 tbt = []; % toolbar tail
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
@@ -164,6 +183,7 @@ oid_app = fopen('toolbar_app.html', 'w+');
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
+oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
 oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -174,6 +194,7 @@ fprintf(oid_budget, [tbh, dd_deb, dd_con, dd_col, dd_bud, dd_app, tbt]);
 fprintf(oid_app, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
 fprintf(oid_entry, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
 fprintf(oid_AmPtool, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
+fprintf(oid_DEBtool, [tbh, dd_box, dd_deb, dd_con, dd_col, dd_app, tbt]);
 fprintf(oid_DEBportal, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
 fprintf(oid_AmPtox, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
 fprintf(oid_deblab, [tbh, dd_deb, dd_cod, dd_dat, dd_sup, dd_cou, dd_app, tbt]);
@@ -188,6 +209,7 @@ movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_deblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_AmPtool.html '../../AmPtool/docs/'
+movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
 movefile toolbar_DEBportal.html '../../DEBportal/docs/'
 movefile toolbar_AmPtox.html '../../AmPtox/docs/'
 
