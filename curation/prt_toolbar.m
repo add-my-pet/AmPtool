@@ -169,13 +169,10 @@ dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_degrad.html">degrad</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_fig_3.html">fig_3</a>\n'];
-dd_box = [dd_box, '          lib\n'];
-dd_box = [dd_box, '          <ul>\n'];
-dd_box = [dd_box, '            <li><a href="./DEBtool_lib_misc.html">lib_misc</a></li>\n'];
-dd_box = [dd_box, '            <li><a href="./DEBtool_lib_regr.html">lib_regr</a></li>\n'];
-dd_box = [dd_box, '            <li><a href="./DEBtool_lib_prob.html">lib_prob</a></li>\n'];
-dd_box = [dd_box, '            <li><a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n'];
-dd_box = [dd_box, '          </ul>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_misc.html">lib_misc</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_regr.html">lib_regr</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_prob.html">lib_prob</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n'];
 dd_box = [dd_box, '        </div>\n'];
 dd_box = [dd_box, '      </div>\n\n'];
 
