@@ -43,7 +43,6 @@ dd_deb = [dd_deb, '          <a href="', path2DEBportal, '" target="_blank">DEB 
 dd_deb = [dd_deb, '          <a href="https://en.wikipedia.org/wiki/Dynamic_energy_budget_theory" target="_blank">DEB Wikipedia</a>\n'];
 dd_deb = [dd_deb, '          <a href="', path2deblab, 'bib/Kooy2010_n.pdf" target="_blank">DEB Notation</a>\n'];
 dd_deb = [dd_deb, '          <a href="', path2deblab, '" target="_blank">DEB Laboratory</a>\n'];
-dd_deb = [dd_deb, '          <a href="', path2DEBtool, '" target="_blank">DEB Tool</a>\n'];
 dd_deb = [dd_deb, '          <a href="', path2DEBportal, 'DEBpapers.html" target="_blank">DEB Papers</a>\n'];
 dd_deb = [dd_deb, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">DEB Library</a>\n'];
 dd_deb = [dd_deb, '          <a href="', path2DEBportal, 'DEBvideos.html" target="_blank">DEB Videos</a>\n'];
@@ -59,7 +58,6 @@ dd_con = [dd_con, '        <button onclick="showDropdown(''context'')" class="dr
 dd_con = [dd_con, '        <div id="context" class="dropdown-content">\n'];
 dd_con = [dd_con, '          <a href="', path2AmP, 'index.html">AmP Portal</a>\n'];
 dd_con = [dd_con, '          <a href="', path2DEBportal, 'AmPestimation.html" target="_blank">AmP Estimation</a>\n'];
-dd_con = [dd_con, '          <a href="', path2AmPtool, '" target="_blank">AmP Tool</a>\n'];
 dd_con = [dd_con, '          <a href="', path2AmP, 'AmPeco.html">AmP Ecology</a>\n'];
 dd_con = [dd_con, '          <a href="', path2AmP, 'phyla.html">Phyla</a>\n'];
 dd_con = [dd_con, '          <a href="', path2AmP, 'pars.html">Parameters</a>\n'];
@@ -158,6 +156,7 @@ dd_box = []; % dropdown TOOLBOX
 dd_box = [dd_box, '      <div class="dropdown">\n'];
 dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
 dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
+dd_box = [dd_box, '          <a href="./">DEBtool</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_enzyme.html">enzyme</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_microbe.html">microbe</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
