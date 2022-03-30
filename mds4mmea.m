@@ -35,7 +35,7 @@ function [y, e, parNm, dist] = mds4mmea(results)
   
   load(results)
   data = result.solutionsParameters; % (n,k) matrix with (solutions,parameters) 
-  [n_data n_par] = size(data);
+  [n_data, n_par] = size(data);
   parNm = result.parameterNames; % cell-string with names of free parameters
   if length(parNm) ~= n_par
     fprintf('Warning from mds4mmea: parameter names are not consistent with solution set\n');
@@ -53,6 +53,7 @@ function [y, e, parNm, dist] = mds4mmea(results)
   end
   legend{i_min,1}{1} = 's'; % replace circle by square
           
+  % distance matrix & mds
   dist = zeros(n_data, n_data); % initiate distance matrix
   for i = 1:n_data
     for j = i+1:n_data
