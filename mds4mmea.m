@@ -37,6 +37,10 @@ function [y, e, parNm, dist] = mds4mmea(results)
   data = result.solutionsParameters; % (n,k) matrix with (solutions,parameters) 
   [n_data n_par] = size(data);
   parNm = result.parameterNames; % cell-string with names of free parameters
+  if length(parNm) ~= n_par
+    fprintf('Warning from mds4mmea: parameter names are not consistent with solution set\n');
+    return
+  end
   
   % compose legend: lowest loss function value with a light-red square, highest in black
   val = result.lossFunctionValues; % loss function values
@@ -48,11 +52,6 @@ function [y, e, parNm, dist] = mds4mmea(results)
     legend{i,2} = num2str(i); 
   end
   legend{i_min,1}{1} = 's'; % replace circle by square
-
-  if length(parNm) ~= n_par
-    fprintf('Warning from mds4mmea: parameter names are not consistent with solution set\n');
-    return
-  end
           
   dist = zeros(n_data, n_data); % initiate distance matrix
   for i = 1:n_data
@@ -64,19 +63,12 @@ function [y, e, parNm, dist] = mds4mmea(results)
   [y, e] = cmdscale(dist); % configuration matrix, eigenvalues
 
   % plot eigen vectors
-  Hfig = figure;
-  %plot3(y(:,1), y(:,2), y(:,3), 'or');
-  %plot(y(:,1), y(:,2), 'or');
-  plot2i(y(:,1:2), legend, ['classic mds for ', strrep(results, '_' , ' ')]);
-  %title(['classic mds for ', strrep(results, '_' , ' ')])
+  [Hfig, Hleg] = plot3i(y(:,1:3), legend, ['classic mds for ', strrep(results, '_' , ' ')]);
+  figure(Hfig)
   xlabel('1st eigenvector')
   ylabel('2nd eigenvector')
-  %zlabel('3rd eigenvector')
+  zlabel('3rd eigenvector')
   box on
-  %h = datacursormode(Hfig); 
-  %h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, dataNm, y(:,1:3));
-  %h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, dataNm, y(:,1:2));
-  %datacursormode on % mouse click on plot markers to show dataNm
 
   % print correlations between parameters and first 3 eigenvectors 
   prt_tab({parNm,corr(data,y(:,1:3))},{'par', 'axis 1', 'axis 2', 'axis 3'}, 'classic mds');
