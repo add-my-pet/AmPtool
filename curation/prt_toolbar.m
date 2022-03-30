@@ -120,6 +120,7 @@ dd_dat = [dd_dat, '        <button onclick="showDropdown(''data'')" class="dropb
 dd_dat = [dd_dat, '        <div id="data" class="dropdown-content">\n'];
 dd_dat = [dd_dat, '          <a href="', path2AmP, 'index.html" target="_blank">Add_my_Pet</a>\n'];
 dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny app</a>\n'];
+dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny app</a>\n'];
 dd_dat = [dd_dat, '          <a href="https://deb.bolding-bruggeman.com/" target="_blank">DEB species explorer</a>\n'];
 dd_dat = [dd_dat, '          <a href="http://www.ibi.vu.nl/programs/phylopars/phytoplankton" target="_blank">Phyto_pars</a>\n'];
 dd_dat = [dd_dat, '        </div>\n'];
