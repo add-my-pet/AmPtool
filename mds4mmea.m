@@ -37,15 +37,17 @@ function [y, e, parNm, dist] = mds4mmea(results)
   data = result.solutionsParameters; % (n,k) matrix with (solutions,parameters) 
   [n_data n_par] = size(data);
   parNm = result.parameterNames; % cell-string with names of free parameters
+  
+  % compose legend: lowest loss function value with a light-red square, highest in black
   val = result.lossFunctionValues; % loss function values
-  val_max = max(val); val_min = min(val);
-  valColor = color_lava(.9*(val_max - val)/ (val_max - val_min)); % rgb colors for data points
+  val_max = max(val); [val_min, i_min] = min(val);
+  valColor = color_lava(.95*(val_max - val)/ (val_max - val_min)); % rgb colors for data points
   legend = cell(n_data,2); 
   for i=1:n_data
     legend{i,1} = {'o', 6, 3, valColor(i,:), valColor(i,:)}; 
     legend{i,2} = num2str(i); 
   end
-  legend{1,1}{1} = 's';
+  legend{i_min,1}{1} = 's'; % replace circle by square
 
   if length(parNm) ~= n_par
     fprintf('Warning from mds4mmea: parameter names are not consistent with solution set\n');
