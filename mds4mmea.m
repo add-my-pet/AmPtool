@@ -36,8 +36,16 @@ function [y, e, parNm, dist] = mds4mmea(results)
   load(results)
   data = result.solutionsParameters; % (n,k) matrix with (solutions,parameters) 
   [n_data n_par] = size(data);
-  dataNm = num2cell((1:n_data)'); % names to show under plot markers
   parNm = result.parameterNames; % cell-string with names of free parameters
+  val = result.lossFunctionValues; % loss function values
+  val_max = max(val); val_min = min(val);
+  valColor = color_lava(.9*(val_max - val)/ (val_max - val_min)); % rgb colors for data points
+  legend = cell(n_data,2); 
+  for i=1:n_data
+    legend{i,1} = {'o', 6, 3, valColor(i,:), valColor(i,:)}; 
+    legend{i,2} = num2str(i); 
+  end
+  legend{1,1}{1} = 's';
 
   if length(parNm) ~= n_par
     fprintf('Warning from mds4mmea: parameter names are not consistent with solution set\n');
@@ -56,16 +64,17 @@ function [y, e, parNm, dist] = mds4mmea(results)
   % plot eigen vectors
   Hfig = figure;
   %plot3(y(:,1), y(:,2), y(:,3), 'or');
-  plot(y(:,1), y(:,2), 'or');
-  title(['classic mds for ', strrep(results, '_' , ' ')])
+  %plot(y(:,1), y(:,2), 'or');
+  plot2i(y(:,1:2), legend, ['classic mds for ', strrep(results, '_' , ' ')]);
+  %title(['classic mds for ', strrep(results, '_' , ' ')])
   xlabel('1st eigenvector')
   ylabel('2nd eigenvector')
   %zlabel('3rd eigenvector')
   box on
-  h = datacursormode(Hfig); 
+  %h = datacursormode(Hfig); 
   %h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, dataNm, y(:,1:3));
-  h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, dataNm, y(:,1:2));
-  datacursormode on % mouse click on plot markers to show dataNm
+  %h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, dataNm, y(:,1:2));
+  %datacursormode on % mouse click on plot markers to show dataNm
 
   % print correlations between parameters and first 3 eigenvectors 
   prt_tab({parNm,corr(data,y(:,1:3))},{'par', 'axis 1', 'axis 2', 'axis 3'}, 'classic mds');
