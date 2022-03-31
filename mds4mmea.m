@@ -1,5 +1,5 @@
 %% mds4mmea
-% classic multidimensional scaling applied to solutions of the mmea method
+% classical multidimensional scaling applied to solutions of the mmea method
 
 %%
 function [y, e, parNm, dist] = mds4mmea(results)
