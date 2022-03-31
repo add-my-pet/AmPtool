@@ -38,21 +38,21 @@ function prt_authors
   
 % write header for authors.html :
 fprintf(fid_authors, '<!DOCTYPE html>\n');
-fprintf(fid_authors, '<HTML>\n');
-fprintf(fid_authors, '<HEAD>\n');
-fprintf(fid_authors, '  <TITLE>AmP authors</TITLE>\n');
+fprintf(fid_authors, '<html>\n');
+fprintf(fid_authors, '<head>\n');
+fprintf(fid_authors, '  <title>AmP authors</title>\n');
 fprintf(fid_authors, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
 fprintf(fid_authors, '  <style>\n');
 fprintf(fid_authors, '    .newspaper {\n');
 fprintf(fid_authors, '      -webkit-column-count: 4; /* Chrome, Safari, Opera */\n');
 fprintf(fid_authors, '      -moz-column-count: 4; /* Firefox */\n');
 fprintf(fid_authors, '      column-count: 4;\n');
-fprintf(fid_authors, '      width: 1000px;\n');
+%fprintf(fid_authors, '      width: 1000px;\n');
 fprintf(fid_authors, '    }\n\n');
 
-fprintf(fid_authors, '    * {\n');
-fprintf(fid_authors, '      box-sizing: border-box;\n');
-fprintf(fid_authors, '    }\n\n');
+%fprintf(fid_authors, '    * {\n');
+%fprintf(fid_authors, '      box-sizing: border-box;\n');
+%fprintf(fid_authors, '    }\n\n');
 
 fprintf(fid_authors, '    .author_dropbtn {\n');
 fprintf(fid_authors, '      color: black;\n');
@@ -124,15 +124,15 @@ fprintf(fid_authors, '    }\n\n');
 fprintf(fid_authors, '  </style>\n');
 fprintf(fid_authors, '  <script src="sys/dropdown.js"></script>\n');
 fprintf(fid_authors, '  <script src="sys/w3data.js"></script>\n');
-fprintf(fid_authors, '</HEAD>\n\n');
-fprintf(fid_authors, '<BODY>\n\n');
+fprintf(fid_authors, '</head>\n\n');
+fprintf(fid_authors, '<body>\n\n');
 
 fprintf(fid_authors, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_authors, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
 fprintf(fid_authors, '<script>w3IncludeHTML();</script>\n\n');
 	
-fprintf(fid_authors, '<div id = "main">\n');
-fprintf(fid_authors, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_authors, '<div id="main">\n');
+fprintf(fid_authors, '  <div id="main-wrapper">    \n');
 fprintf(fid_authors, '    <div id="contentFull">\n\n');
 fprintf(fid_authors, '      <H2><a href="" title="Locate entries via authors and submission/modification dates by clicking on names.\n');
 fprintf(fid_authors, '           Click on entry names to goto entries.">Authors and their submitted entries</a></H2>\n\n');
@@ -141,11 +141,11 @@ fprintf(fid_authors, '      <div>\n');
 fprintf(fid_authors, '        <input type="text" id="Input_an" onkeyup="Function_an()" placeholder="Search for author names.." title="Type in a name">\n');
 fprintf(fid_authors, '      </div>\n\n');
 
-fprintf(fid_authors, '      <div class = "newspaper">\n');  
+fprintf(fid_authors, '      <div class="newspaper">\n');  
 fprintf(fid_authors, '        <ul id="author_nm">\n');
 for i = 1:na % scan all authors
 fprintf(fid_authors, '          <li>\n');
-fprintf(fid_authors, '            <div class = "author_dropdown">\n');
+fprintf(fid_authors, '            <div class="author_dropdown">\n');
 
     % get lists of entries and dates for current author
     txt_entry = cell(0); txt_date = cell(0); date_num = [];
@@ -199,7 +199,7 @@ fprintf(fid_authors, '        }\n\n');
 
 fprintf(fid_authors, '      </script>\n\n');
 
-fprintf(fid_authors, '    </div> <!-- end of content -->\n\n');
+fprintf(fid_authors, '    </div> <!-- end of contentFull -->\n\n');
 
 fprintf(fid_authors, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
 fprintf(fid_authors, '    <script>w3IncludeHTML();</script>\n\n');
@@ -207,8 +207,8 @@ fprintf(fid_authors, '    <script>w3IncludeHTML();</script>\n\n');
 fprintf(fid_authors, '  </div> <!-- main wrapper -->\n');
 fprintf(fid_authors, '</div> <!-- main -->\n');
 
-fprintf(fid_authors, '</BODY>\n');
-fprintf(fid_authors, '</HTML>\n');
+fprintf(fid_authors, '</body>\n');
+fprintf(fid_authors, '</html>\n');
 fclose(fid_authors);
   
 end
