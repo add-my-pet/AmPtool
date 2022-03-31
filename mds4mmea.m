@@ -9,9 +9,9 @@ function [y, e, parNm, dist] = mds4mmea(results)
   % [y, e, parNms, dist] = <../mds4mmea.m *mds4mmea*> (results)
   
   %% Description
-  % classic multidimensional scaling applied to n solutions of the mmea
+  % classical multidimensional scaling applied to n solutions of the mmea
   % method for DEB parameter estimates using the sb loss function as estimation criterion.
-  % It computes the first 3 eigen-vectors and values of classic dimensional scaling
+  % It computes the first 3 eigen-vectors and values of classical dimensional scaling
   % 
   % Input
   %
@@ -25,7 +25,7 @@ function [y, e, parNm, dist] = mds4mmea(results)
   % * dist: (n,n) distance matrix
   
   %% Example of use
-  % [y, e, parNms] = mds4mmea('results_Dipodomys');
+  % [y, e, parNms] = mds4mmea('results_Dipodomys_deserti');
   
   global lossfuction
   
@@ -64,7 +64,7 @@ function [y, e, parNm, dist] = mds4mmea(results)
   [y, e] = cmdscale(dist); % configuration matrix, eigenvalues
 
   % plot eigen vectors
-  [Hfig, Hleg] = plot3i(y(:,1:3), legend, ['classic mds for ', strrep(results, '_' , ' ')]);
+  [Hfig, Hleg] = plot3i(y(:,1:3), legend, ['classical mds for ', strrep(results, '_' , ' ')]);
   figure(Hfig)
   xlabel('1st eigenvector')
   ylabel('2nd eigenvector')
@@ -72,7 +72,7 @@ function [y, e, parNm, dist] = mds4mmea(results)
   box on
 
   % print correlations between parameters and first 3 eigenvectors 
-  prt_tab({parNm,corr(data,y(:,1:3))},{'par', 'axis 1', 'axis 2', 'axis 3'}, 'classic mds');
+  prt_tab({parNm,corr(data,y(:,1:3))},{'par', 'axis 1', 'axis 2', 'axis 3'}, 'classical mds');
 
   figure % plot eigenvalues
   plot(1:n_par, e(1:n_par), '*b', n_par+1:n_data, e(n_par+1:n_data), '*r')

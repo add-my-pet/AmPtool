@@ -47,12 +47,7 @@ fprintf(fid_authors, '    .newspaper {\n');
 fprintf(fid_authors, '      -webkit-column-count: 4; /* Chrome, Safari, Opera */\n');
 fprintf(fid_authors, '      -moz-column-count: 4; /* Firefox */\n');
 fprintf(fid_authors, '      column-count: 4;\n');
-%fprintf(fid_authors, '      width: 1000px;\n');
 fprintf(fid_authors, '    }\n\n');
-
-%fprintf(fid_authors, '    * {\n');
-%fprintf(fid_authors, '      box-sizing: border-box;\n');
-%fprintf(fid_authors, '    }\n\n');
 
 fprintf(fid_authors, '    .author_dropbtn {\n');
 fprintf(fid_authors, '      color: black;\n');
