@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'stf'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'stf'.
+This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
+Like the std-model but with
+\begin{description}
+  \item[$\circ$] fetal development (rather than egg development, see also the stx-model)
+\end{description}
+Budding, as found in cnidarians and salps has, metabolically, similarities with fetal propagation: 
+  no assimilation by buds during development.
+This type of fetal development is found in e.g. some cartilaginous and ray-finned fish, Peripatus.
+
+The deviation from the standard model amounts for the fetus, which has $E_H < E_H^b$, to 
+  $E(0) = 0$ and $\frac{d} {dt} [E] = (\{\dot{p}_{Am}\} f - [E] \dot{v})/ L$, where $f$ equals the value of the mother.
+For the mother, the deviation amounts to $\frac{d} {dt} E_R = \dot{p}_R - n \{\dot{p}_{Am}\} f L_e^2$, where $L_e$ is the structural length of the fetus, $n$ the number of fetuses, such that $\dot{p}_R a_b = n f \{\dot{p}_{Am}\} \int_0^{a_b} L_e^2(t) \, dt$.
+The effect is that $E_R = 0$ at the end of the gestation period.
+The following section provides an overiew of how the 'stf' model fits within a wider framework of DEB related models before technically specifying the std model.
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

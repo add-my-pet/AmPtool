@@ -3,7 +3,7 @@
 
 %%
 function [allStat, info] = write_allStat(T, f)
-% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16, 2020/08/26
+% created 2016/04/24 by Bas Kooijman, modified 2017/08/16, 2018/08/16, 2020/08/26, 2022/02/21
 
 %% Syntax
 % [allStat, info] = <write_allStat *write_allStat*> (T, f)
@@ -19,6 +19,8 @@ function [allStat, info] = write_allStat(T, f)
 % Ouput:
 %
 % * allStat: stucture with all parameters and statistics of all entries
+% * allUnits: structure with all units for all statistics
+% * allLabel: structure with all labels for all statistics
 % * info: boolean for all species in lists-of-lists are present in dir entries (1) or not (0)
 
 %% Remarks
@@ -53,9 +55,8 @@ function [allStat, info] = write_allStat(T, f)
   diff = setdiff(entries_local, entries_allStat);
   if ~isempty(diff)
     fprintf('warning from write_allStat: present in debtool/entries, but not in allStat\n');
+    keyboard
     diff
   end
 
-  WD = cdCur;                        
-  save('../../deblab/add_my_pet/AmPdata/allStat.mat','allStat')
-  cd(WD);
+  WD = cdAmPdata; save('allStat.mat','allStat'); cd(WD);

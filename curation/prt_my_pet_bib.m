@@ -3,7 +3,7 @@
 
 %%
 function prt_my_pet_bib(species, biblist, destinationFolder)
-% created 2015/07/17 by Starrlight ; modified 2016/11/03 Starrlight, 2017/05/18, 2018/08/17 Bas Kooijman
+% created 2015/07/17 by Starrlight; modified 2016/11/03 Starrlight, 2017/05/18, 2018/08/17, 2022/02/10 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_bib.m *prt_my_pet_bib*> (species, biblist, destinationFolder) 
@@ -39,14 +39,14 @@ end
 for j = 1:nst 
   try
     str = biblist.(nm{j}); str(1) = []; str(end) = []; str(end) = []; 
-    str = strrep(str,'},', ['},', char(10)]); str= strrep(str, '–', '-');
+    str = strrep(str,'},', ['},', char(10)]); str= strrep(str, 'ï¿½', '-');
     index = strfind(str,','); first = index(1); str = [str(1:first), char(10), str(first+1:end)];  
     index = strfind(str,'}}'); last = index(end); str = [str(1:last-1), '}', char(10), '}'];
     if ~isempty(oid)
       fprintf(oid, '%s \n\n', str);
     end
   catch
-    fprintf(['Error in prt_my_pet_bib, item ', num2str(j), ': check closing }\n']);
+    fprintf('Error in prt_my_pet_bib, item %s: check closing }\n', num2str(j));
     if ~isempty(oid)
       fclose(oid);
     end

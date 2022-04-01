@@ -34,7 +34,9 @@ function [par, metaPar, txtPar, metaData, info] = allStat2par(my_pet)
   persistent allStat
 
   if ~exist('allStat','var') || isempty(allStat)
-    load(which('allStat.mat'))        % get all parameters and statistics in structure allStat
+    load allStat        % get all parameters and statistics in structure allStat
+    load allUnits
+    load allLabel
   end
 
   info = 1;
@@ -59,8 +61,8 @@ function [par, metaPar, txtPar, metaData, info] = allStat2par(my_pet)
     n_parFields = length(parFields);
     for i = 1:n_parFields
       par.(parFields{i}) = allStat.(my_pet).(parFields{i});
-      txtPar.units.(parFields{i}) = allStat.(my_pet).units.(parFields{i});
-      txtPar.label.(parFields{i}) = allStat.(my_pet).label.(parFields{i});
+      txtPar.units.(parFields{i}) = allUnits.(parFields{i});
+      txtPar.label.(parFields{i}) = allLabel.(parFields{i});
     end
 
     % metaPar

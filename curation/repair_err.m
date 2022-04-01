@@ -1,4 +1,4 @@
-function repair_my_pet_err(entries)
+function repair_err(entries)
 
 if ~exist('entries','var')
     entries = select;

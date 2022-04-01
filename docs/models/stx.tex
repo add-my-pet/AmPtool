@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'stx'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the 'stx' typified model.
+This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
+The 'stx' model is the same as the std-model (fully specified in the following section)  except that it includes:
+\begin{description}
+  \item[$\circ$] fetal development (rather than egg development) that first starts with a preparation stage and then starts at a time, 
+	  $t_0$, that is an extra parameter  (often referred to as embryonic diapause, see \citet{DengChen2018})
+	
+  \item[$\circ$] a baby stage (for mammals) just after birth, ended by weaning, where the juvenile switches from feeding on milk to solid food 
+	  at maturity level $E_H^x$.
+    Weaning is between birth and puberty, so $E_H^b \le E_H^x \le E_Hp$.  
+\end{description}
+In its simplest form, it is a two parameter extension of std-model at abundant food.
+Food quality and up-regulation of assimilation can involve more parameters.
+This life history is found in placentalia.
+Milk production is from up-regulated feeding/assimilation.
+
+The following section provides an overiew of how the 'stx' fits within a wider framework of DEB related models before technically specifying the std model.
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

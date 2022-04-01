@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'ssj'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'ssj'.
+This model belongs to the class of s-models which assumes isomorphy throughout the full life cycle.
+Like the std-model but with 
+\begin{description}
+   \item[$\circ$] a non-feeding stage between events $s$ and $j$ during the juvenile stage 
+	    that is initiated at a particular maturity level, $E_H^s$ and lasts a particular time, $t_{sj}$.
+      Substantial metabolically controlled shrinking occurs during this period, with specific rate $\dot{k}_E$, 
+			faster than can be explained by starvation.  
+\end{description}
+It is a three parameter extension of the std-model.
+This life history is found in Elopiformes, Albuliformes, Notacanthiformes, Anguilliformes, Ophidiiformes, some Anura and Echinodermata.
+\href{https://www.bio.vu.nl/thb/deb/deblab/bib/Kooy2010_c.pdf}{Section 7.8.3 of the comments to DEB3 provide more background}.
+Given $V = V_s$, $E = E_s$, $E_H = E_H^s$ at time $t$, $V = \delta_{sj} V_s$, $E = \delta_{sj} E_s$ and $E_H = \delta_{sj} E_H^s$ 
+  at time $t + t_{sj}$, with $\delta_{sj} = \exp(- \dot{k}_E \delta_{sj})$, while $\dot{p}_X = 0$ for $t \in (t, t + t_{sj})$.
+ The following section provides an overview of how the 'ssj' model fits within a wider framework of DEB related models before technically specifying the std model.
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

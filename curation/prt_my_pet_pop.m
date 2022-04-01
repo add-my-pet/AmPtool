@@ -62,6 +62,9 @@ if ~exist('AmP', 'var')
   AmP = 0;
 end
 
+load allLabel
+load allUnits
+
 if ~exist('destinationFolder', 'var')
   destinationFolder = [];
 end
@@ -139,6 +142,12 @@ switch model
     else
       par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3);  par.h_Bji = h_B(4);       
     end
+  case 'hax'
+    if ~exist('h_B','var') || isempty(h_B)
+      par.h_B0b = 0; par.h_Bbp = 0; par.h_Bpj = 0; par.h_Bje = 0; par.h_Bei = 0; 
+    else
+      par.h_B0b = h_B(1); par.h_Bbp = h_B(2); par.h_Bpj = h_B(3); par.h_Bje= h_B(4); par.h_Bei = h_B(5);       
+    end
   case 'hex'
     if ~exist('h_B','var') || isempty(h_B)
       par.h_B0b = 0; par.h_Bbj = 0; par.h_Bje = 0; par.h_Bei = 0; 
@@ -161,10 +170,10 @@ else
 end
  
 % species: get statistics
-[stat, txtStat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
+[stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
 % save statistics in structure popStat
-popStat.(species) = stat; popStat.(species).label = txtStat.label; 
-popStat.(species).model = model; popStat.(species).par = par; popStat.(species).T = T; 
+popStat.(species) = stat; popStat.(species).T = T; 
+popStat.(species).model = model; popStat.(species).par = par; 
 save([destinationFolder, species, '_pop.mat'], 'popStat');
 %
 stat = rmfield(stat, {'T', 'c_T'}); 
@@ -336,11 +345,11 @@ fprintf(oid,['        <TR id="head1"> <TH>symbol</TH> <TH>units</TH> ', repmat('
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 
@@ -351,12 +360,12 @@ fprintf(oid,['        <TR id="head1"> <TH>symbol</TH> <TH>units</TH> ', repmat('
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), ...
     stat.ff.thin0.f.(fldsStat{i}), stat.ff.thin1.f.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 
@@ -368,11 +377,11 @@ fprintf(oid,['        <TR id="head2"> <TH></TH> <TH></TH>  ', repmat('<TH>female
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid, '          <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%g</TD> <TD>%g</TD> <TD>%g</TD> <TD>%g</TD>  <TD>%s</TD>\n', ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin0.m.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), stat.f0.thin1.m.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin0.m.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), stat.f1.thin1.m.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 
@@ -384,12 +393,12 @@ fprintf(oid,['        <TR id="head2"> <TH></TH> <TH></TH>  ', repmat('<TH>female
 
 % table body
 for i = 1:length(fldsStat)
-fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, txtStat.units.(fldsStat{i}));
+fprintf(oid, '        <TR id="%s"> <TD>%s</TD> <TD>%s</TD>\n', fldsStat{i}, fldsStat{i}, allUnits.(fldsStat{i}));
 fprintf(oid,['          ', repmat('<TD>%g</TD> ', 1, 12), '  <TD>%s</TD>\n'], ...
     stat.f0.thin0.f.(fldsStat{i}), stat.f0.thin0.m.(fldsStat{i}), stat.f0.thin1.f.(fldsStat{i}), stat.f0.thin1.m.(fldsStat{i}), ...
     stat.ff.thin0.f.(fldsStat{i}), stat.ff.thin0.m.(fldsStat{i}), stat.ff.thin1.f.(fldsStat{i}), stat.ff.thin1.m.(fldsStat{i}), ...
     stat.f1.thin0.f.(fldsStat{i}), stat.f1.thin0.m.(fldsStat{i}), stat.f1.thin1.f.(fldsStat{i}), stat.f1.thin1.m.(fldsStat{i}), ...
-    txtStat.label.(fldsStat{i}));
+    allLabel.(fldsStat{i}));
 fprintf(oid, '        </TR>\n');
 end 
 

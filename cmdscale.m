@@ -1,4 +1,4 @@
-function [Y, e] = cMDScale(D,p)
+function [Y, e] = cmdscale(D,p)
 %CMDSCALE Classical Multidimensional Scaling.
 %   Y = CMDSCALE(D) takes an n-by-n distance matrix D, and returns an n-by-p 
 %   configuration matrix Y.  Rows of Y are the coordinates of n points in

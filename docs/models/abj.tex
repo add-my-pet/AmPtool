@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'abj'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the standard DEB model 'abj'.
+The {\sc deb} model with type $\cal M$ acceleration is like the std-model, but 
+\begin{description}
+  \item[$\circ$] acceleration between birth $b$ and metamorphosis $j$
+	
+  \item[$\circ$] before and after acceleration: isomorphy
+\end{description}
+Metamorphosis is before puberty and occurs at maturity $E_H^j$, so $E_H^b \le E_H^j \le E_Hp$, which might or might not correspond with changes in morphology.
+Type $\cal M$ acceleration has never been found in cartilaginous fish, amphibians, reptiles, birds or mammals, 
+  and typically occurs in taxa with larval stages.
+
+The abj-model is a one-parameter extension of std-model and reduces to the std-model for $E_H^j = E_H^b$.
+During metabolic acceleration, $\{\dot{p}_{Am}\} = \{\dot{p}_{Am}^b\} L/ L_b$ and $\dot{v} = \dot{v}^b L/ L_b$, 
+  where $\{\dot{p}_{Am}^b\}$ and $\dot{v}^b$ refer to the values at birth.
+At $j$, acceleration ceases: $\{\dot{p}_{Am}\} = \{\dot{p}_{Am}^b\} s_{\cal M}$ and $\dot{v} = \dot{v}^b s_{\cal M}$, 
+  with acceleration factor $s_{\cal M} = L_j/ L_b$.
+ 
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

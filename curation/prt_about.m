@@ -53,10 +53,10 @@ saveas (gca, [path, 'pie_model.png'])
 close all
 
 % # of entries in time
-[dates, entries_new, dates_new] = get_date_subm;
-surv_dates = surv(dates, 2006); 
-surv_dates([1; end - 1; end],:) = [];    
-n = size(surv_dates, 1)/2;
+[dates, entries_new, dates_new] = get_date_acc;
+surv_dates = [0 2009 ; surv(dates, 2009)]; 
+surv_dates([end - 1; end],:) = [];    
+n = size(surv_dates, 1)/2 - 2;
 %    
 plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
@@ -152,11 +152,11 @@ fprintf(fid_about, '<!--   Where all of the text is placed                      
 fprintf(fid_about, '<!--   use "contentFull" for 1 column                          -->\n');
 fprintf(fid_about, '<!--   use "content" if you want two columns"                  -->\n');
 fprintf(fid_about, '<!--------------------------------------------------------------->\n'); 
-fprintf(fid_about, '<div id = "main">\n');
-fprintf(fid_about, '  <div id = "main-wrapper">\n');
+fprintf(fid_about, '<div id="main">\n');
+fprintf(fid_about, '  <div id="main-wrapper">\n');
 fprintf(fid_about, '    <div id="content">\n');
-fprintf(fid_about, '      <h1 id = "portaltop">About Add-my-Pet</h1>\n'); 
-fprintf(fid_about, '      <h2 id = "aims">Overview of the collection</h2>\n\n');
+fprintf(fid_about, '      <h1 id="portaltop">About Add-my-Pet</h1>\n'); 
+fprintf(fid_about, '      <h2 id="aims">Overview of the collection</h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_Animalia.png" width="350px">\n');
@@ -169,7 +169,7 @@ fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">\n');
+fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a>\n');
 fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.\n');
 fprintf(fid_about, '          <a href="https://youtu.be/E4ag2-WzhmQ" target="_blank"><img src="img/YouTube.png"  height = "15px" title="14:14"></a>\n');
@@ -219,11 +219,11 @@ fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
-fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=-eMMf1xZqMs" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
+fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=WKtPWGmJzJI" target="_blank"><img src="img/YouTube.png"  height = "40px" align="right" title="13:54"></a></h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">   \n');
+fprintf(fid_about, '        <div class="caption">   \n');
 fprintf(fid_about, '          <a href="" title="A survivor function gives the fraction that exceeds the value of the argument">Survivor function</a> of <a href="http://www.debtheory.org/wiki/index.php?title=Completeness" target="_blank">data completeness</a>.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
@@ -237,14 +237,14 @@ fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE_MRE.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">   \n');
+fprintf(fid_about, '        <div class="caption">   \n');
 fprintf(fid_about, '          The relationship between mean relative<br> error and data completeness. \n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/MRE_SMSE.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">\n');
+fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '        The relationship between <a href="http://www.debtheory.org/wiki/index.php?title=Symmetric_mean_squared_error" TARGET="_blanck">symmetric mean squared error (SMSE)</a> and mean relative error. \n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
@@ -255,14 +255,14 @@ fprintf(fid_about, '    <!------------------------------------------------------
 fprintf(fid_about, '    <!--   Sidebar                                                 -->\n');
 fprintf(fid_about, '    <!--------------------------------------------------------------->\n');
 
-fprintf(fid_about, '    <div id = "sidebar">\n\n');  
+fprintf(fid_about, '    <div id="sidebar">\n\n');  
 
-fprintf(fid_about, '      <h1 id = "portaltop"> &nbsp;</h1> <!--   This is here to make heading across both columns even  -->\n');   
+fprintf(fid_about, '      <h1 id="portaltop"> &nbsp;</h1> <!--   This is here to make heading across both columns even  -->\n');   
 fprintf(fid_about, '      <h2 class="clear">AmP entries in time </h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/entries.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">\n');
+fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          The Add-my-Pet collection started at 2009/02/12 as part of the \n');
 fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.<br>\n');
 fprintf(fid_about, '        </div>\n');
@@ -271,24 +271,24 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <table id="t02"> <!-- Latest additions -->\n'); 
 fprintf(fid_about, '        <tr><th colspan="2"><b>Latest additions to the collection:</b></th></tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{1}, '/', entries_new{1}, '_res.html"><i>', entries_new{1}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(1,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{1},entries_new{1},entries_new{1});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(1,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{2}, '/', entries_new{2}, '_res.html"><i>', entries_new{2}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(2,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{2},entries_new{2},entries_new{2});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(2,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{3}, '/', entries_new{3}, '_res.html"><i>', entries_new{3}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(3,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{3},entries_new{3},entries_new{3});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(3,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{4}, '/', entries_new{4}, '_res.html"><i>', entries_new{4}, '</i></a></td>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(4,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{4},entries_new{4},entries_new{4});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(4,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '        <tr>\n');
-fprintf(fid_about,['          <td width=300><a href="', path, entries_new{5}, '/', entries_new{5}, '_res.html"><i>', entries_new{5}, '</i></a></TtdD>\n']);
-fprintf(fid_about,['          <td width=100>', dates_new(5,:), '</td>\n']);
+fprintf(fid_about, '          <td width=300><a href="%s%s/%s_res.html"><i>%s</i></a></td>\n', path,entries_new{5},entries_new{5},entries_new{5});
+fprintf(fid_about, '          <td width=100>%s</td>\n', dates_new(5,:));
 fprintf(fid_about, '        </tr>\n');
 fprintf(fid_about, '      </table>\n\n');
 
@@ -299,7 +299,7 @@ fprintf(fid_about, '        <center>\n');
 fprintf(fid_about, '          <img src="img/about/daphnia1a.gif" width="160" id="daphnia" onmouseover="changeImage(''img/about/daphnia1b.gif'')"/>\n');
 fprintf(fid_about, '        </center>\n');
 fprintf(fid_about, '      </div>\n');
-fprintf(fid_about, '      <div class = "caption" onmouseover="changeImage(''img/about/daphnia1a.gif'')">\n');
+fprintf(fid_about, '      <div class="caption" onmouseover="changeImage(''img/about/daphnia1a.gif'')">\n');
 fprintf(fid_about, '        <a href="DEBcalendar.html" target="_blank">DEB research started in the spring of 1979</a> \n');
 fprintf(fid_about, '          with a study on how toxicants affect reproduction in the waterflea <i>Dapnia magna</i>, \n');
 fprintf(fid_about, '          including consequences for populations.<br>\n'); 
@@ -311,7 +311,7 @@ fprintf(fid_about, '      <h2 class="clear">DEB publications in time</h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/DEBlib.png" width="350px">\n');
-fprintf(fid_about, '        <div class = "caption">   \n');
+fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          Publications in which DEB theory plays a substantial role.\n');
 fprintf(fid_about, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">They can be found in the DEB library on Zotero</a>, \n');
 fprintf(fid_about, '          including all pdf''s, which you can access if you become member (no fees): First register to Zotero, or login, and hit the Join-group button.\n');

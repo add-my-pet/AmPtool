@@ -90,18 +90,20 @@ for i = 1:n_R
 end
 code_R(end - (0:1)) = []; 
 
+modelTxT = ['<a href="https://add-my-pet.github.io/AmPtox/docs/models/', model, '.pdf">',model,'</a>'];
+
 % write (4,4)-table in html
-fprintf(oid, '      <table>\n');    
+fprintf(oid, '      <table id="ecoCodes">\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td width=250><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models">Model: </a>', model,'</td>\n']);    
-fprintf(oid,['          <td><a href="../../AmPeco.html#C" target="_blank">climate: </a></td> <td width=250>', code_C, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#M" target="_blank">migrate: </a></td> <td width=250>', code_M, '</td>\n']);
-fprintf(oid,['          <td>phylum: <button id="phylum" onclick="OpenTreeAtTaxon(''', phylum, ''')">', phylum, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models">Model</a>: %s</td>\n', modelTxT);    
+fprintf(oid, '          <td><a href="../../AmPeco.html#C" target="_blank">climate: </a> %s</td>\n',code_C);
+fprintf(oid, '          <td><a href="../../AmPeco.html#M" target="_blank">migrate: </a> %s</td>\n',code_M);
+fprintf(oid, '          <td>phylum: <button id="phylum" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',phylum,phylum);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Completeness" >COMPLETE</a>',' = %3.1f </td>\n'], COMPLETE);
-fprintf(oid,['          <td><a href="../../AmPeco.html#E" target="_blank">ecozone: </a></td> <td>', code_E, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#F" target="_blank">food:    </a></td> <td>', code_F, '</td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Completeness" >COMPLETE</a> = %3.1f </td>\n', COMPLETE);
+fprintf(oid, '          <td><a href="../../AmPeco.html#E" target="_blank">ecozone: </a>%s</td>\n',code_E);
+fprintf(oid, '          <td><a href="../../AmPeco.html#F" target="_blank">food:    </a>%s</td>\n',code_F);
 if strcmp(class, 'Reptilia')
   switch order
     case {'Rhynchocephalia','Squamata'}
@@ -110,20 +112,20 @@ fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon('
 fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''Archelosauria'')">Reptilia</button></td>\n');
   end
 else
-fprintf(oid,['          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''', class, ''')">', class, '</button></td>\n']);
+fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',class,class);
 end
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" >MRE</a>',' = %8.3f </td>\n'], MRE);   
-fprintf(oid,['          <td><a href="../../AmPeco.html#H" target="_blank">habitat: </a></td> <td>', code_H, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#G" target="_blank">gender:  </a></td> <td>', code_G, '</td>\n']);
-fprintf(oid,['          <td>order: <button id="order" onclick="OpenTreeAtTaxon(''', order, ''')">', order, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" >MRE</a> = %8.3f </td>\n', MRE);   
+fprintf(oid, '          <td><a href="../../AmPeco.html#H" target="_blank">habitat: </a>%s</td>\n',code_H);
+fprintf(oid, '          <td><a href="../../AmPeco.html#G" target="_blank">gender:  </a>%s</td>\n',code_G);
+fprintf(oid, '          <td>order: <button id="order" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',order,order);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Symmetric_mean_squared_error" >SMSE</a>',' = %8.3f </td>\n'], SMSE);   
-fprintf(oid,['          <td><a href="../../AmPeco.html#B" target="_blank">embryo:  </a></td> <td>', code_B, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#R" target="_blank">reprod:  </a></td> <td>', code_R, '</td>\n']);
-fprintf(oid,['          <td>family: <button id="family" onclick="OpenTreeAtTaxon(''', family, ''')">', family, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Symmetric_mean_squared_error" >SMSE</a> = %8.3f </td>\n', SMSE);   
+fprintf(oid, '          <td><a href="../../AmPeco.html#B" target="_blank">embryo:  </a>%s</td>\n',code_B);
+fprintf(oid, '          <td><a href="../../AmPeco.html#R" target="_blank">reprod:  </a>%s</td>\n',code_R);
+fprintf(oid, '          <td>family: <button id="family" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',family,family);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '      </table>\n\n');     
 

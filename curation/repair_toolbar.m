@@ -1,4 +1,4 @@
-function repair_my_pet_toolbar
+function repair_toolbar
 
 WD = cdCur;
 entries = select; n_entries = length(entries);

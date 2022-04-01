@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'hep'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the typified DEB model \citep{MarqAugu2018} 'hep'.
+The the 'hep typified model is a DEB model for hemi-metabolic insects, such as ephemeropterans, odonata and possibly other insect groups. It characterics are:
+\begin{itemize}
+\item morphological life stages: egg, larva, (sub)imago; functional stages: embryo, juvenile, adult, imago
+    the embryo still behaves like model std
+\item acceleration starts at birth and ends at puberty
+\item  puberty occurs during the larval stage
+\item emergence occurs when reproduction buffer density hits a threshold
+\item the (sub)imago does not grow or allocate to reproduction. It mobilises reserve to match constant (somatic plus maturity) maintenance
+\end{itemize}
+Nymphs of \href{https://en.wikipedia.org/wiki/Mayfly}{Mayflies (ephemeropterans)} transform into flying \href{https://en.wikipedia.org/wiki/Mayfly#Subimago}{subimagos}, which subsequently transform into \href{https://en.wikipedia.org/wiki/Imago}{imagos} within minutes till 3 days (depending on species and temperature).
+Imagos live several days, and, like subimagos, don't feed, implying that nymphs allocate to reproduction.
+Ephemeropterans are presently the only insects that moult (once) while having wings.
+The hep model also applies to Odonata and possibly some other groups as well.
+
+To capture this pattern the hep model assumes that type $\cal M$ acceleration \citep[section 3.3]{Kooy2014} occurs between birth (event $b$) and puberty (event $p$), and transformation to subimago occurs when the reproduction buffer exceeds a threshold (event $j$), called $[E_R^j]$. 
+So (isomorphic) growth occurs in the adult nymph, but not in the (sub)imago.
+We assume that the heating length is zero, i.e.\ $L_T = 0$, so $l_T = 0$ as well.
+
+Allocation to reproduction at constant food amounts to $\frac{d} {dt} E_R = \dot{p}_R = \kappa_R \left( (1 - \kappa) \dot{p}_C  - \dot{p}_J \right)$, with reserve mobilisation $\dot{p}_C = [E_m] L^3 (\frac{\dot{v} s_{\cal M}} {L} + \dot{k}_M) \frac{e g} {e + g}$, maturity maintenance $\dot{p}_J = \dot{k}_J E_H^p$, acceleration factor $s_{\cal M} = L_p/ L_b = l_p/ l_b$.
+If emergence would not kick in, $L \rightarrow L_\infty = s_{\cal M} f L_m$ and the reproduction buffer density grows at constant rate $\frac{d} {dt} [E_R] \rightarrow \frac{1 - \kappa} {\kappa} [\dot{p}_M] - \frac{\dot{p}_J} {L_\infty^3}$. 
+The change in reproduction buffer density is $\frac{d} {dt} [E_R] = [\dot{p}_R] - \dot{r}_B (L_\infty/ L - 1) [E_R]$.
+Since reproduction buffer density starts at zero at event $p$, we are sure that it hits any finite threshold, but we need to find the first event as long as $(1 - \kappa) [\dot{p}_M] L_\infty^3 > \kappa \dot{p}_J$, to allow for puberty to be reached.
+%In the hex model (see next section), the reproduction buffer density has a maximum, due to acceleration, and therefore does not hit a threshold value for sure.
+
+At constant food density, scaled length changes in scaled time as $\frac{d} {d \tau} l = r_B(l_\infty - l)$ or $l(\tau) = l_\infty - (l_\infty - l_p) \exp(r_B \tau)$ with $r_B = (3 + 3 f/g)^{-1}$ and $l_\infty = s_{\cal M} f$.
+The dimensionless scaled reproduction buffer density $v_R = \frac{\kappa} {1 - \kappa} \, \frac{[E_R]} {[E_G]}$ changes as 
+$\frac{d} {d \tau} v_R = \frac{f g s_{\cal M}/ l + f} {g + f} - \frac{k v_H^p} {l^3} - r_B v_R (f s_{\cal M} / l - 1)$.
+So scaled time at emergence is $\tau_j = \int_0^{v_R^j} \frac{d} {d v_R} \tau$ and $l(0) = l_p$ and $l(\tau_j) = l_j$ with  $v_R^j = \frac{\kappa} {1 - \kappa} \, \frac{[E_R^j]} {[E_G]}$. 
+The number of eggs at emergence is $N = \kappa_R [E_R^j] L_j^3/ E_0 = (1 - \kappa) \kappa_R v_R^j l_j^3/ u_E^0$
+
+
+
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

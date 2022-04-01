@@ -1,15 +1,15 @@
-%% get_date_subm
-% gets sumbission dates of entries
+%% get_date_acc
+% gets acception dates of entries
 
 %%
-function [dates taxa_new dates_new] = get_date_subm(n_new)
-%% created 2016/02/21 by Bas Kooijman
+function [dates taxa_new dates_new] = get_date_acc(n_new)
+%% created 2022/02/21 by Bas Kooijman
 
 %% Syntax
-% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_subm*>(n_new)
+% [dates taxa_new dates_new] = <../get_date_subm.m *get_date_acc*>(n_new)
 
 %% Description
-% Gets the submission dates of entries in add_my_pet collection
+% Gets the acception dates of entries in add_my_pet collection
 %
 % Input:
 %
@@ -17,21 +17,21 @@ function [dates taxa_new dates_new] = get_date_subm(n_new)
 %
 % Output:
 % 
-% * dates: n-vector with submission dates of add_my_pet entries
+% * dates: n-vector with acception dates of add_my_pet entries
 % * taxa_new: n_new-vector with names of n_new latest taxa
-% * date_new: n_new-vector with date-strings when latest taxa were submitted
+% * date_new: n_new-vector with date-strings when latest taxa were accepted
 
 %% Remarks
 % about_add_my_pet makes a plot of this
 %
 %% Example of use
-% get_date_subm
+% get_date_acc
 
   if ~exist('n_new', 'var')
     n_new = 5;
   end
 
-  [dates entries] = read_allStat('date_subm'); 
+  [dates entries] = read_allStat('date_acc'); 
   dates = datenum(dates); 
   
   [sdates I] = sort(dates,1,'descend'); 

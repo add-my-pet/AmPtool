@@ -29,6 +29,7 @@ function repair_id(my_pet)
      
   % edit mydata_my_pet.m file
   edit(['mydata_', my_pet, '.m']);
+  [my_pet, ' ', get_id_Taxo(my_pet)]
   fprintf('type dbcont to proceed or dbquit \n'); keyboard
         
   run_repair(my_pet); % write results_my_pet.mat file

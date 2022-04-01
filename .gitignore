@@ -1,5 +1,15 @@
 *.asv
 
+#Tex generated files#
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex
+*.tcp
+
+
 # OS generated files #
 ######################
 .DS_Store

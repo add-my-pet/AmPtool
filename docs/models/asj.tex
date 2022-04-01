@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{a4wide}
+\usepackage{amsmath,graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sort&compress,comma,authoryear]{natbib}
+\newcommand{\Prob}[0]{\mbox{Prob}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\usepackage{bm}
+\usepackage{latexsym}
+
+
+\title{DEB model description: 'asj'}
+%\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
+
+
+\begin{document}
+
+\maketitle
+
+This document specifies the typified DEB model 'asj'.
+This model belongs to the class of a-models which assumes that type {\cal M} (metabolic) acceleration occurs during part of the life-cycle. 
+
+
+The 'asj' {\sc deb} model includes a delayed (with respect to birth) type {\cal M} acceleration and is like the 'std' model except that:
+\begin{description}
+  \item[$\circ$] start of acceleration is delayed with respect to birth till maturity level $E_H^s$ and lasts till metamorphosis at maturity level $E_H^j$
+	
+  \item[$\circ$] Before and after acceleration: isomorphy
+\end{description}
+Metamorphosis is still before puberty, so $E_H^b \le E_H^s \le E_H^j \le E_Hp$ and the acceleration factor is $s_{\cal M} = L_j/ L_s$.
+This model is a one-parameter extension of the abj-model and reduces to the std-model for $E_H^b = E_H^s = E_H^j$.
+This life history is found in \emph{Mnemiopsis} \citep{AuguJasp2014}, \emph{Crassostrea} and \emph{Aplysia}.
+Further improvement of data might require a change from abj- to asj-models for quite a few species.
+
+
+\begin{figure}[htbp]%
+\includegraphics[width=0.9\textwidth]{asj.jpg}%
+\caption{\protect\small The life-cycle is structured according to maturity level. Here we have an overview of the asj life-cycle. From \citet{AuguJasp2014}.}%
+\label{fig:asj}%
+\end{figure}
+
+The following section provides an overiew of how the 'asj' model fits within a wider framework of DEB related models before technically specifying the std model.
+
+\section{Background}
+
+\input{model_intro}
+
+\input{std_description}
+
+\bibliographystyle{apalike}
+\bibliography{debmodels}
+
+\end{document}

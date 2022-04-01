@@ -1,0 +1,1842 @@
+
+
+\section*{7.7 Mother--foetus system} 
+\phantomsection
+\pdfbookmark[1]{7.7 Mother--foetus system}{sec_c:mother-foetus}
+\label{sec_c:mother-foetus}
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,5)\small
+\put(0,0){\scalebox{0.40}{\includegraphics{Homo_egg}}}
+\end{picture}
+\parbox[b]{8cm}{
+\caption[]{\label{fig:Homo_egg}\protect\small
+  This is how humans lay eggs, from \cite{LousDonn2008}.}}
+\end{figure}
+
+
+At birth of the baby, the human mother produces 3500\,g baby, 900\,g placenta and 900\,g amniotic fluid, while she increased her blood volume with 2000\,g, her body fluids with 1500\,g, her uterine with 900\,g and her breasts with 500\,g; the latter in preparation of milk production.
+This all on top of an increase in reserve, so more than three times the mass of the baby is involved in pregnancy.
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,6)
+ \put(0.3,0.4){\scalebox{.4}{\includegraphics{Fair69}}}
+ \put(3,0){age, d}
+ \put(0,1){\rotatebox{90}{foetal wet weight, g}}
+\end{picture}
+\begin{picture}(8,6)
+ \put(0,0){\scalebox{.4}{\includegraphics{Fair83}}}
+ \put(2,0){time since birth, d}
+ \put(0,2){\rotatebox{90}{wet weight, g}}
+\end{picture} 
+\caption[]{\label{fig:Fair}\protect\small
+ The pre- (left) and post-embryonic (right) development of the male impala \emph{Aepyceros melampus}.
+ Data from \cite{Fair69,Fair83}. 
+ The curves have been estimated simultaneously, assuming slow development, and the energy conductance was estimated to be $\dot{v} = 0.35$\,cm\,d$^{-1}$ at 20$^\circ$C, using an Arrhenius temperature of 8\,kK and a body temperature of 39.5$^\circ$C.
+ The start of development was 53.2\,d after fertilization.
+ The observed ages and expected weights at weaning and puberty are indicated.
+ Add\_my\_pet gives further details.}
+\end{figure}
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,6)
+ \put(0,0){\scalebox{.4}{\includegraphics{BeltButt92_f}}}
+ \put(3,0){time since birth, d}
+ \put(0,2){\rotatebox{90}{wet weight, g}}
+\end{picture}
+\begin{picture}(8,6)
+ \put(0,0){\scalebox{.4}{\includegraphics{BeltButt92_m}}}
+ \put(3,0){time since birth, d}
+ \put(0,2){\rotatebox{90}{wet weight, g}}
+\end{picture} 
+\caption[]{\label{fig:BeltButt92}\protect\small
+ Post-embryonic development of the female (left) and male (right) cow \emph{Bos primigenius} Holstein.
+ Data from \cite{BeltButt92}. 
+ The observed and predicted age and weight at birth, weaning and puberty are indicated.
+ The gestation time is 277\,d with a body temperature of 38\,$^\circ$C, but the start of development was estimated to be 215\,d (female) or 163\,d (male).
+ Add\_my\_pet gives further details.}
+\end{figure}
+
+Figure \ref{fig:Fair} shows that foetal development and milk production do not affect growth in the impala.
+Moreover the initiation of foetal growth is only at 25\% of the gestation time;
+this period is probably used for placental growth and hormonal preparation of the body.
+The less-than-perfect fit for post-embryonic growth probably relates to the scatter in environmental conditions.
+This interpretation is confirmed by the post-embryonic growth of the related cow \emph{Bos primigenius} under controlled conditions:
+almost all scatter is gone, especially in the bull data, see Figure \ref{fig:BeltButt92}.
+I have presently no explanation for why the times at the start of the development is different for female and male embryos, while the weights at birth are equal.
+Section \hyperref[ssec_c:genetics]{8.1.1} of the comments gives further details.
+
+The simplest implementation of foetal development is to work with an mean allocation to foetal development $\dot{p}_R$ across reproductive cycles, see \hyperref[ssec_c_c:birth]{Section 2.6.2} of the comments.
+Work with Jess Roberts and Mike Kearney suggests a more detailed implementation of foetal development of the reproduction buffer in combination with an explicit allocation to milk production and an up-regulation of the assimilation (and intake) of the mother.
+The mammalian reproduction rate is to some extend constraint by $\dot{R} = (t_0 + a_x)^{-1}$, where $t_0$ is the time at first development.
+The rate must be multiplied by the litter size $N$, but let us assume that $N = 1$ for simplicity's sake.
+
+The allocation to the foetus, including reproduction overheads, at scaled functional response $f$ is $\dot{p}_R = f \{\dot{p}_{Am}\} L_F^2/ \kappa_R$ during pregnancy and $\dot{p}_L = f \{\dot{p}_{Am}\} L_F^2/ \kappa_R^L$ during lactation in the form of milk, see Section \hyperref[ssec_c_c:birth]{2.6.2} of the comments.
+No up-regulation occurs during the juvenile period. 
+
+Let us here suppose that allocation to the reproduction buffer just covers the costs for foetal development till birth, but not lactation, and that milk production is paid from extra (= up-regulated) assimilation.
+At the end of a reproduction cycle, the reproduction buffer is just emptied.
+If this extra assimilation input does not end up in reserve, but directly in the reproduction buffer, the lactation has no interaction with growth or maintenance (somatic or maturity) of the mother.
+This seems consistent with observations so far.
+
+The extra assimilation of the lactating mother is converted into milk from the reproduction buffer as a buffer handling rule. 
+The cumulative milk production for a single baby from birth till weaning is $E_L = \frac{f \{\dot{p}_{Am}\}} {\kappa_R^L \kappa_L} \int_{a_b}^{a_x} L_F^2(a) \, da$, where $\kappa_L$ is the conversion efficiency from milk to baby reserve.
+For constant food availability, we have $\int_{a_b}^{a_x} L_F^2(a) \, da = L_\infty^2 (a_x - a_b) - \frac{L_x - L_b} {\dot{r}_B} \left( L_\infty + \frac{L_b + L_x} {2} \right)$.
+The extra mean amount of food that is eaten by the lactating mother is $\dot{p}_L^+/ \kappa_X$, while it actually increases during lactation till weaning.
+The (mean) energy investment into milk production by the mother is $\dot{p}_L^+ = E_L \dot{R}$, where $\dot{R}$ stands for the reproduction rate.
+The assimilation rate has to be up-regulated by this flux to cover the energy costs for milk production.
+The next reproduction cycle typically starts directly after weaning.
+The relative up-regulation, i.e.\ up-regulated relative to standard assimilation, is highest just prior to weaning (structural length of the baby is largest) of mother's first baby (structural length of the mother is smallest).
+
+The placenta consists of a foetal part (chorion frondosum) and a maternal part (decidua basalis).
+Mammalia typically eat their placenta (and most of the umbilicus) and neonates directly start feeding on milk.
+After birth, allocation to milk production by the mother takes over from allocation to foetal development; 
+the overhead might differ, but otherwise the dynamics is the same till weaning.
+Initially milk is the only water source for the neonate; 
+baby's water intake gradually increases during lactation, while milk becomes less watery.
+Milk consumption reaches a peak when the baby reaches a maturity threshold $E_H^s$, which coincides with permanent pouch exit in marsupials.
+The preference for milk decays till zero at weaning, i.e.\ when the baby reaches another maturity threshold level $E_H^j$ and food intake of the mother is not longer up-regulated.
+If milk and solid food are considered as substitutable parallely processed substrates and the specific searching is linked linearly to the maturity levels at peak milk intake and at weaning, we arrive at
+\[
+  \{\dot{J}_{EA}\} = y_{EX} \{\dot{J}_{XAm}\} f_X + y_{EY} \{\dot{J}_{YAm}\} f_Y
+\] 
+with 
+\[
+  \begin{array}{ll}
+    f_X = \frac{\{\dot{F}_{Xm}\} X} {\{\dot{h}_{XAm}\} + \{\dot{F}_{Xm}\} X + \{\dot{F}_{Ym}\} Y};
+    &
+    f_Y = \frac{\{\dot{F}_{Ym}\} Y} {\{\dot{h}_{YAm}\} + \{\dot{F}_{Xm}\} X + \{\dot{F}_{Ym}\} Y}
+    \\
+    \{\dot{F}_{Xm}\} = \frac{E_H^j - E_H} {E_H^j - E_H^s} \{\dot{F}_{Xm}^s\}
+    &
+    \{\dot{F}_{Ym}\} = \frac{E_H - E_H^s} {E_H^j - E_H^s} \{\dot{F}_{Ym}^j\}
+  \end{array}
+\]
+  
+Milk production is not always done by the mother in mammals;
+the Dayak fruit-eating bat \emph{Dyacopterus spadiceus} sports paternal lactation.
+The masked stingaree  \emph{Trygonoptera personata} feeds their offspring with uterine milk; many pigeons do this with gastric milk.
+
+The composition of (cow) milk, c.f. Table \ref{tab:RQ} is\\
+\centerline{
+\begin{tabular}{llllll}\hline\small
+compound     & formula                         &  g/g-wet milk  & kJ/g  & g/mol & mol/mol-dry milk \\\hline
+carbohydrate & CH$_2$O                         &  0.046         & 17.2  & 30    &    0.38          \\
+lipid        & CH$_{1.92}$O$_{0.12}$           &  0.015         & 38.9  & 15.84 &    0.24          \\
+protein      & CH$_{1.61}$O$_{0.33}$N$_{0.28}$ &  0.035         & 17.6  & 22.81 &    0.38          \\
+mineral      &                                 &  0.007         &  0    &       &    0             \\
+water        & H$_2$O                          &  0.877         &  0    & 18    &    0             \\
+\hline
+\end{tabular}}
+which amounts to 2\,kJ\,g$^{-1}$ wet milk or 16.26\,kJ\,g$^{-1}$ dry milk or 4\,mmol\,g$^{-1}$ wet milk and an overall formula of CH$_{1.83}$O$_{0.53}$N$_{0.11}$ for dry milk.
+The water content typically decreases during the lactation period, which motivates to work in dry milk and consider water balances separately.
+We need this to evaluate respiration during lactation.
+To that end, the organic fluxes $\dot{\bm J}_{\cal O}$ are extended with $\dot{J}_L$ as 
+\[
+  \dot{\bm J}_{\cal O}^T = \left( \begin{array}{ccccc}
+   \dot{J}_X & \dot{J}_V & \dot{J}_E & \dot{J}_P & \dot{J}_L
+  \end{array} \right)
+\]
+and the chemical indices with a new column
+\[
+   {\bm  n}_{\cal O} =  \left( \begin{array}{ccccc}
+      n_{CX} & n_{CV} & n_{CE} & n_{CP} & n_{CL}\\ 
+      n_{HX} & n_{HV} & n_{HE} & n_{HP} & n_{HL}\\
+      n_{OX} & n_{OV} & n_{OE} & n_{OP} & n_{OL}\\ 
+      n_{NX} & n_{NV} & n_{NE} & n_{NP} & n_{NL}
+    \end{array} \right) 
+\]
+and the basic powers with
+\[
+  \dot{\bm p}^T = \left( \begin{array}{cccc}
+   \dot{p}_A & \dot{p}_D & \dot{p}_G & \dot{p}_L
+  \end{array} \right)
+\]
+and the mass-energy couplers ${\bm \eta}_{\cal O}$ with a new row and column
+\[
+   {\bm  \eta}_{\cal O} =  \left( \begin{array}{ccccc}
+      -\eta_{XA}      & 0                 & 0                 & 0\\ 
+      0               & 0                 & \eta_{VG}         & 0\\ 
+      \ol{\mu}_E^{-1} & - \ol{\mu}_E^{-1} & - \ol{\mu}_E^{-1} & 0\\ 
+      \eta_{PA}       & 0                 & 0                 & 0\\
+      0               & 0                 & 0                 & \eta_{LL}
+    \end{array} \right)  
+\]
+were $\eta_{LL} = 2\,\mu$mol\,J${^-1}$.
+Notice that $\dot{J}_{E_r} = 0$ during lactation.
+The mineral fluxes now follow from (\ref{eqn:JM}) and (\ref{eqn:JO}).
+
+\section*{7.8 Extra life--stages}
+\phantomsection
+\pdfbookmark[1]{7.8 Extra life--stages}{sec_c:life_stage}
+\label{sec_c:life_stage}
+
+Subsection 7.8.1 assumes that you have has a glance at subsection 7.8.2 on acceleration, an odd consequence of following the (sub)sections of the {\sc deb} book.
+
+\subsection*{7.8.1 The abp and sbp model for copepods}
+\phantomsection
+\pdfbookmark[2]{7.8.1 The abp and sbp model for copepods}{ssec_c:Copepods}
+\label{ssec_c:Copepods}
+
+Copepods have sexual reproduction in last copepodite stage.  
+They moult 11 times: 5 naupliar stages and 6 copepodite stages.
+The naupliar and copepodite stages differ substantially in morphology, so the transition can be called metamorphosis.
+In cyclopoids, the last copepodite stage is carnivore, younger copepodites are omnivore, and the nauplii are herbivore.
+This feeding pattern suggests that only the last copepodite stage allocates to reproduction, so has to be classified as adult, in the context of {\sc deb} theory, and the other copepodite and nauplii stages as juvenile.
+Length versus time curves show a clear upcurving till the final stage, where growth ceases.
+This indicates that metabolic acceleration lasts till the final stage, implying that metamorphosis only affects morphology, not metabolism.
+
+\subsubsection*{The abp model} 
+
+The simplest {\sc deb} model that captures this pattern is that the embryo follows the standard model without acceleration, the juvenile the standard model with type $\cal M$ acceleration.
+The adult increases somatic maintenance such that growth ceases. 
+Another way to cease growth is that $\kappa$ switches $\kappa_a = \frac{[\dot{p}_M] L_p} {\{\dot{p}_{Am}^*\} e}$, where $\{\dot{p}_{Am}^*\} = \{\dot{p}_{Am}\} s_{\cal M}$. 
+The end of acceleration coincides with puberty, so $L_j = L_p$ and $s_{\cal M} = L_p/ L_b$.
+Expressed in the specific assimilation at birth, $\kappa$ of adults amounts to $\kappa_a = \frac{[\dot{p}_M] L_b} {\{\dot{p}_{Am}\} e}$, which changes in time because scaled reserve density $e$ does.
+The juvenile is growing exponentially at constant food density, with specific growth rate $\dot{r}_j = \frac{\kappa \dot{p}_A - \dot{p}_M} {f [E_m] + [E_G]} = \dot{v} \frac{f/ L_b - 1/ L_m}{f + g}$, so $L(t) = L_b \exp(\dot{r}_j t/3)$, where $t$ is time since birth. 
+During the adult stage, where $\dot{r} = 0$, the reserve mobilisation rate amounts to $\dot{p}_C = \dot{v}^* E/ L_p = \dot{v} E/ L_b$, where $v^* = v s_{\cal M}$.
+See Eq (2.12) for $\dot{r} = 0$. 
+No allocation to growth, as long as reserve allows, and allocation to the reproduction buffer is $\dot{p}_R = (1 - \kappa_a) \dot{p}_C - \dot{k}_J E_H^p = \dot{p}_C - \dot{p}_M - \dot{k}_J E_H^p$.
+The mean reproduction rate amounts to $\dot{R} = \kappa_R \dot{p}_R/ E_0$, as before.
+
+Since food quality changes during ontogeny, it is at this moment not sure that $\{\dot{p}_{Am}\}$ remains constant and that $\{\dot{p}_{Xm}\}$ and $\kappa_X$ are changing.
+Unless contra-evidence shows up, we make that assumption, however, meaning that assimilation amounts to $\dot{p}_A = f \{\dot{p}_{Am}\} L^3/ L_b$, where $L$ grows from $L_b$ to $L_p$ during the juvenile period, after which it remains constant at $L_p$.
+
+If dilution be growth can be neglected in the ageing process, we have the cubed Weibull aging rate $\dot{h}_W^3 = \frac{\ddot{h}_a e \dot{v}} {6 L_b}$ and the Gompertz ageing rate $\dot{h}_G = \frac{s_G e \dot{v} L_p^3} {L_b L_m^3}$, while the survival probability Eq (6.5) still applies.
+For small $s_G$, so small $\dot{h}_G$, the mean age at death is approximately $\Gamma(4/3)/ \dot{h}_W$, as before.
+
+Copepods differ from insects, metabolically, by the larval stages being juvenile, rather than adult. 
+Moults are triggered by maturity levels in copepods, but this cannot be the case in insects since maturity no longer increases during the adult stage.
+Notice that cladocerans don't accelerate and do grow as adult; quite a difference with copepods.
+May be that spiders, scorpions and ostracods also follow the copepod pattern.
+
+\subsubsection*{The sbp model} 
+
+\emph{Calanus sinicus} was found to follow the standard {\sc deb} model without acceleration till puberty, where growth ceases, like in the abp-model.
+So the $\kappa$ no longer applies after puberty.
+
+Both the abp and the sbp model suffer from the property that asymptotic length is not observable, which substantially complicates the estimation of $[\dot{p}_M]$ and $\kappa$.
+
+\subsection*{7.8.1 The hep model for ephemeropterans}
+\phantomsection
+\pdfbookmark[2]{7.8.1 The hep model for ephemeropterans}{ssec_c:Ephemeropterans}
+\label{ssec_c:Ephemeropterans}
+
+Nymphs of ephemeropterans transform into flying subimagos, which subsequently transform into imagos withing minutes till 3 days (depending on species and temperature).
+Imagos live several days, and, like subimagos, don't feed, implying that nymphs allocate to reproduction.
+Ephemeropterans are presently the only insects that moult (once) while having wings.
+The hep model also applies to Odonata and possibly some other groups as well.
+
+To capture this pattern the hep model assumes that type $\cal M$ acceleration occurs between birth (event $b$) and puberty (event $p$), and transformation to subimago occurs when reproduction buffer exceeds a threshold (event $j$), called $[E_R^j]$. 
+So (isomorphic) growth occurs in the adult nymph, but not in the (sub)imago.
+We assume that the heating length is zero, i.e.\ $L_T = 0$, so $l_T = 0$ as well.
+
+Allocation to reproduction at constant food amounts to $\frac{d} {dt} E_R = \dot{p}_R = \kappa_R \left( (1 - \kappa) \dot{p}_C  - \dot{p}_J \right)$, with reserve mobilisation $\dot{p}_C = [E_m] L^3 (\frac{\dot{v} s_{\cal M}} {L} + \dot{k}_M) \frac{e g} {e + g}$, maturity maintenance $\dot{p}_J = \dot{k}_J E_H^p$, acceleration factor $s_{\cal M} = L_p/ L_b = l_p/ l_b$.
+If emergence would not kick in, $L \rightarrow L_\infty = s_{\cal M} f L_m$ and the reproduction buffer density grows at constant rate $\frac{d} {dt} [E_R] \rightarrow \frac{1 - \kappa} {\kappa} [\dot{p}_M] - \frac{\dot{p}_J} {L_\infty^3}$. 
+The change in reproduction buffer density is $\frac{d} {dt} [E_R] = [\dot{p}_R] - \dot{r}_B (L_\infty/ L - 1) [E_R]$.
+Since reproduction buffer density starts at zero at event $p$, we are sure that it hits any finite threshold, but we need to find the first event as long as $(1 - \kappa) [\dot{p}_M] L_\infty^3 > \kappa \dot{p}_J$, to allow for puberty to be reached.
+In the hex model (see next section), the reproduction buffer density has a maximum, due to acceleration, and therefore does not hit a threshold value for sure.
+
+At constant food density, scaled length changes in scaled time as $\frac{d} {d \tau} l = r_B(l_\infty - l)$ or $l(\tau) = l_\infty - (l_\infty - l_p) \exp(r_B \tau)$ with $r_B = (3 + 3 f/g)^{-1}$ and $l_\infty = s_{\cal M} f$.
+The dimensionless scaled reproduction buffer density $v_R = \frac{\kappa} {1 - \kappa} \, \frac{[E_R]} {[E_G]}$ changes as 
+$\frac{d} {d \tau} v_R = \frac{f g s_{\cal M}/ l + f} {g + f} - \frac{k v_H^p} {l^3} - r_B v_R (f s_{\cal M} / l - 1)$.
+So scaled time at emergence is $\tau_j = \int_0^{v_R^j} \frac{d} {d v_R} \tau$ and $l(0) = l_p$ and $l(\tau_j) = l_j$ with  $v_R^j = \frac{\kappa} {1 - \kappa} \, \frac{[E_R^j]} {[E_G]}$. 
+The number of eggs at emergence is $N = \kappa_R [E_R^j] L_j^3/ E_0 = (1 - \kappa) \kappa_R v_R^j l_j^3/ u_E^0$
+
+\subsection*{7.8.1 The hex model for holometabolic insects}
+\phantomsection
+\pdfbookmark[2]{7.8.1 The hex model for holometabolic insects}{ssec_c:pupa}
+\label{ssec_c:pupa}
+
+Work with James Maino and Mike Kearney on holometabolic insects shows that insect larvae, like copepods, most fish and molluscs, sport metabolic acceleration \cite{KooyPecq2011,Kooy2014} (i.e.\ behave as V1-morphs).
+So energy conductance $\dot{v}$ and specific maximum assimilation $\{\dot{J}_{EAm}\}$ and searching $\{\dot{F}_m\}$ rates  are increasing with length between birth (event $b$) and metamorphosis (event $j$), while the embryo (in the egg) and the imago (in the pupa) grow isomorphically;
+growth ceases after emergence.
+
+Some insect taxa don't feed as imago (e.g. ephemeropterans), meaning that allocation to reproduction must have taken place during the larval stage, which classifies larvae as adults.
+Insects thus skip the juvenile stage and directly go from embryos to adults, like \emph{Oikopleura}, see \ref{ssec:cum_reprod}, and maturity remains constant during the larval stages.
+Maturity is linked to structure and larval structure transforms to reserve in the pupa, so maturity of that structure becomes irrelevant and maturity of the imago builds up from zero till emergence.
+
+Thysanura, the most basal insect order continues moulting till death, like Collembola (also hexapods, but not insects);
+the total number of moults amounting from 17 to 66. 
+The ephemeropterans sport some 45 moults, the anisopterans some 8 till 18 moults (avaraging at 12.5 moults \cite{Corb2002}). 
+These two taxa comprise the Palaeoptera (which develop wings gradually and cannot fold them), while other insects are classified as Neoptera (which develop wings in the transition to the final moult only and can fold them).
+The neopterans are subsequently divided in the hemi- and holo-metabolic insects.
+The number of moults in the holo-metabola, the most advanced neopterans is around 6 (and also sport pupae and some endothermy), revealing a dramatic reduction of the number of moults in insect evolution.
+
+Moulting occurs when the surface area of the gut (which grows continuously and controls food digestion) exceeds that of the head (which remains fixed during each instar and controls food acquisition) by some threshold value, so when $L^2(t)/ L_i^2 > s_i$, where $L_i$ is set to $L(t)$ at moulting.
+The idea is that food acquisition and processing (digestion) need to be in balance, a practical problem for ecdysozoans.
+Ephemeropterans are unique among insects by having an instar in the imago stage, that can fly but not eat;
+this moult must be triggered differently.
+
+Reserve mobilisation during the larval stages amounts to $\dot{p}_C = E (\dot{k}_E - \dot{r})$, while $[E_G] \frac{d} {dt} V = [E_G] \dot{r} V = \kappa p_C - [\dot{p}_M] V$, so $\dot{r} = \frac{\kappa [E] \dot{k}_E - [\dot{p}_M]} {\kappa [E] + [E_G]} = \frac{e \dot{k}_E - g \dot{k}_M} {e + g} = g \dot{k}_M \frac{e/ l_b - 1} {e + g}$.
+Reserve turnover $\dot{k}_E$ relates to energy conductance of the embryo $\dot{v}$ as $\dot{k}_E = \dot{v}/ L_b$.
+Notice that $\frac{\dot{k}_E} {g \dot{k}_M} = \frac{1} {l_b}$.
+At constant food, we have $e = f$ and structural length grows as $L(a_b) = L_b \exp(t \dot{r}/3)$ for $t$ is time since birth.
+So the first moult occurs at $L^2 = L_b^2 \exp(t_1 \dot{r} 2/ 3) = s_1 L_b^2$, i.e.\ time $t_1 = \frac{3 \log(s_1)} {2 \dot{r}}$ after birth. 
+The  second moult occurs at time $t_2 = \frac{3 \log(s_2)} {2 \dot{r}}$ after the first one, etc.
+The values $s_i$ will probably don't differ very much, so the inter-moult period remains constant, like the ratio of surface areas (and lengths and volumes);
+the detailed nature of the moulting trigger only reveals by comparing different feeding levels.
+The moulting triggers are not part of the DEB model.
+Since $L_b$ depends on the nutritional status via the maternal effect, all lengths at moulting do.
+Feeding actually ceases around moulting, which modifies the growth trajectory;
+this is here treated as a modifying `detail'.
+Shrinking will probably hardly occur in insects, since the reproduction buffer only becomes depleted if starvation is really extreme.
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(7,6)\small
+\put(0.3,0.3){\scalebox{.5}{\includegraphics{Tayl27}}}
+\put(3,0){time, h}
+\put(0,1){\rotatebox{90}{mm$^3$\,O$_2$\,g$^{-1}$h$^{-1}$}}
+\end{picture}
+\parbox[b]{9cm}{
+\caption[]{\label{fig:Tayl27}\protect\small
+  Dioxygen consumption in the blowfly \emph{Phormia regina} at 20-24\,$^\circ$C. 
+  From Taylor \cite{Tayl27}
+}}
+\end{figure}
+
+Metamorphosis (pupation, event $j$) occurs when the reproduction buffer per amount of structure exceeds the value $[E_R^j]$.
+This trigger also induces spawning in molluscs, see Section \ref{ssec:buffer}.
+Allocation to reproduction amounts to $\dot{p}_R = (1 - \kappa) \dot{p}_C - \dot{p}_J$, with constant $\dot{p}_J = \dot{k}_J E_H^b$, and the reproduction buffer builds up as $E_R(t) = \int_{a_b}^t \dot{p}_R(s) \, ds$. 
+So at constant food, where $e = f$ and $\dot{r}$ are constant, we have for time $t$ since birth
+\begin{eqnarray*} 
+  E_R(t) &=& (1 - \kappa) (\dot{k}_E - \dot{r}) f [E_m] \int_0^t V(s) \, ds - t \dot{p}_J 
+  \\
+  &=& (1 - \kappa) E_b \frac{g + l_b} {e - l_b} (\exp(\dot{r} t) - 1) - t \dot{p}_J \quad \mbox{with} \quad E_b = f [E_m] V_b
+\end{eqnarray*}
+Pupation occurs when $E_R(t)/ V(t) = [E_R^j]$, a time which has to be evaluated numerically.
+This time decreases for decreasing $f$, but the size at metamorphosis, and so the number of eggs, decrease as well.
+The maximum value $[E_R]$ can take for increasing $V(t)$ is $[E_R^m] = (1 - \kappa) f [E_m] (\dot{k}_E/ \dot{r} - 1) = (1 - \kappa) f [E_m] \frac{g + l_b} {f - l_b}$, which is reached asymptotically only.
+It might be useful to define the stress value $s_j = [E_R^j]/ [E_R^{\mbox{\tiny ref}}]$, with $[E_R^{\mbox{\tiny ref}}] =  (1 - \kappa) [E_m] g \frac{\dot{k}_E + \dot{k}_M} {\dot{k}_E - g \dot{k}_M} = (1 - \kappa) [E_m] \frac{g + l_b} {1 - l_b}$, which is $[E_R^m]$ for $f = 1$, as parameter.
+The maximum reproduction buffer density at $f$ thus becomes $[E_R^m] = [E_R^{\mbox{\tiny ref}}] f \frac{1 - l_b} { f - l_b}$. 
+This rule for metamorphosis, i.e.\ metamorphosis occurs when $[E_R] = s_j [E_R^{\mbox{\tiny ref}}]$, allows that the number of instars can depend on food density.
+
+Stress $s_j$ has a simple relationship with scaled reproduction buffer density: $v_R^j = \frac{[E_R^j]} {[E_G]} \, \frac{\kappa} {1 - \kappa} = s_j \frac{1 + l_b/ g} {1 - l_b}$.
+Scaled time since birth at pupation, $\tau_j = t_j \dot{k}_M$, can be found from $v_R^j = \frac{f} {g} \, \frac{g + l_b} {f - l_b} (1 - \exp( - r \tau_j)) - \tau_j k v_H^b \exp(-\tau_j r)/ l_b^3$ with $r = \frac{\dot{r}} {\dot{k}_M} = \frac{f/ l_b - 1} {f/ g + 1}$.
+A decrease of food availability, $f$ from 1 to $l_b$ decreases allocation to reproduction, but even more to growth, with the effect that pupation is reached earlier, but at a smaller size.
+
+The simplifying assumption that the chemical composition of the structures of imago and lava are equal in terms of relative elemental frequencies seems to be rather natural.
+The measured respiration of pupae follows the pattern that can be expected on the basis of {\sc deb} theory, see Figure \ref{fig:Tayl27}.
+We see an initial decline during the final stages of the transformation of structure of the juvenile to reserve, followed by an increase when the structure of the adult builds up.
+This once more demonstrates that reserve does not require maintenance.
+More in particular the mineral fluxes of the pupa simplify to 
+${\bm 0} = {\bm n}_{\cal M} \dot{\bm J}_{\cal M} + {\bm n}_{\cal O} \dot{\bm J}_{\cal O}$ with
+${\bm n}_{\cal O}^T = \left( \begin{array}{cccc} n_{CV} & n_{HV} & n_{OV} & n_{NV} \\ n_{CE} & n_{HE} & n_{OE} & n_{NE} \end{array} \right)$ and
+$\dot{\bm J}_{\cal O}^T = \left( \begin{array}{cc} \dot{J}_V & \dot{J}_E \end{array} \right)$, 
+\begin{eqnarray*}
+  \dot{J}_V &=& - M_V^l \dot{k}_E^l + M_V \dot{r} \quad 
+  \mbox{with } \frac{d} {dt} M_V^l = - \dot{k}_E^l M_V^l
+  \mbox{ and } \frac{d} {dt} M_V = \dot{r} M_V
+  \\
+  \dot{J}_E &=& y_{EV}^l M_V^l \dot{k}_E  - \dot{J}_{EC} \quad 
+  \mbox{with } \dot{J}_{EC} = M_E (\dot{v}_j/ L - \dot{r}) 
+  \mbox{ and } \kappa {J}_{EC} = y_{EV} \dot{r} M_V + j_{EM} M_V
+\end{eqnarray*}
+where $M_V^l(t)$ and $y_{EV}^l$ refer to the larval structure and $M_E$, $M_V$, $L$ to the reserve and structure of the imago;
+$\dot{v}_j = \dot{v} L_j/ L_b$ is the elevated energy conductance, where $L_b$ and $L_j$ are the lengths are birth and metamorphosis.
+A simplifying assumption is $\dot{k}_E = \dot{k}_E^l$, although the substrates for both transformations differ.
+Since maturity builds up, no allocation to reproduction occurs during the pupal stage.
+Applications of the model should reveal if the reproduction buffer that has been build up during the larval stages remains separate from the reserve in the pupa, or that they merge;
+merging leads to earlier emergence and a reduction of effects of nutritional condition on emergence.
+The inverse yield for structure (of the image) on reserve  $y_{EV}^{-1} = y_{VE}$ must be smaller than  $y_{VE}^l$ if structure of larva and imago are chemically identical, else the interconversion to reserve would be without overhead.
+
+Although the gradual decay of larval structure is important to capture the U-shaped profile of pupal respiration in time, for the state at emergence we can simplify by assuming that the conversion is instantaneous. 
+In that case, reserve  at pupation (excluding the reproduction buffer) amounts to $E_j = y_{EV}^l M_V^j \mu_E + E(t_j)$, where $M_V^j$ is larval structure at pupation and $E(t_j)$ larval reserve at pupation.
+So the pupa evolves from $(L, E, E_H) = (0, E_j, 0)$ to $(L_e, E_e, E_H^e)$, where $E_H^e$ is a parameter.
+The method to derive $L_e$ and $E_e$ differs from that of egg development, because egg initial reserve was unknown, but reserve density at birth was.
+The changes in $u_E$, $l$ and $u_H$ given in (2.26-28) still apply, where the start now has label $j$, and 'birth' label $e$.
+The scaled quantity $v_H = \frac{u_H} {1 - \kappa}$ changes as $\frac{d} {d \tau} v_H = - \frac{d}{d \tau} u_E - k v_H$ and the scaled time since pupation is given by $\tau_e = \int_0^{v_H^e} \frac{d \tau} {d v_H}$ with $\frac{d} {d \tau} u_E =  - u_E l^2 \frac{g + l} {u_E + l^3}$ and $\frac{d} {d \tau} l =  \frac{1} {3} \, \frac{g u_E - l^4} {u_E + l^3}$ and $u_E(0) = l_j^3 (\kappa \kappa_V + f/ g)$ with $\kappa_V = y_{EV}^l/ y_{EV}$ is the conversion efficiency from larval reserve to larval structure, back to imago reserve.
+
+The weight at emergence has contributions from structure, reserve and reproduction buffer; 
+the latter is the same as at pupation.
+Substitution gives $W_w^e = V_e d_V^w + (E + E_R) \frac{d_V^w w_E} {d_E \mu_E} = d_V^w L_m^3 (l_e^3 + \frac{[E_G] w_E} {\kappa d_E \mu_E} ((1 - \kappa) v_R^j l_e^3 + u_E^e))$ with typically $d_V^w = 1$\,g\,cm$^{-3}$.
+
+Reserve mobilisation in imagos is at a constant rate to fuel (somatic plus maturity) maintenance, while the reproduction buffer is also mobilised at a constant rate to production of batches of eggs.
+Metabolic history prior to pupation can dominate reproductive output after emergence (such as in ephemeropterans) and buffer handling rules can be species specific; 
+The steady state reproduction rate, where assimilation balances mobilisation, is $\dot{R} = (\dot{p}_X^e \kappa_X - \dot{p}_J^e - \dot{p}_M^e)/ E_0$, where $\dot{p}_X^e = f \{\dot{p}_{Xm}\} L_e^2$ is the feeding rate (in J\,d$^{-1}$), $\dot{p}_J^e = \dot{k}_J E_H^e$ is the (constant) maturity maintenance rate of the imago, $\dot{p}_M^e = [\dot{p}_M] L_e^3$ is the (constant) somatic maintenance rate and $E_0$ the energy cost of an egg at $f$.
+Since food of larvae and imagos is very different, the specific assimilation rates might differ as well.
+Imagos typically heat their body before and during flying \cite{Hein93}, so somatic maintenance is temporarily increased.
+Since the reproduction buffer is also used for maintenance if reserve mobilisation is not sufficient, it hardly makes sense to separate reserve from the reproduction buffer in imagos.
+Like larvae, imagos don't change in maturity.
+
+Given the reasoning of ageing, it is likely that larvae live too short for ageing to be important and that ageing is reset at pupation.
+On the assumption that ageing acceleration does not occur ($s_G = 0$) and that ageing during pupation can be neglected and given that growth is ceased after emergence ($\dot{r} = 0$), (\ref{eqn:dmQ}) reduces to $\frac{d} {dt} m_Q = \eta_{QC} \frac{\dot{p}_C} {M_V}$ and $\frac{d} {dt} m_D = \dot{k}_W y_{DQ} m_Q$.
+For constant $\dot{p}_C$ and $m_Q(0) = 0$ and $m_D(0) = 0$, this leads to $m_Q(t) = \eta_{QC} \frac{\dot{p}_C} {M_V} t$ and $m_D(t) = \dot{k}_W y_{DQ} \eta_{QC} \frac{\dot{p}_C} {2 M_V} t^2$.
+The result is that the hazard rate equals $\dot{h}(t) = 3 \dot{h}_W t^2$ and the mean time since emergence at death is $t_m = \Gamma(\frac{4} {3})/ \dot{h}_W$.
+
+Hibernation can occur in all stadia and impressive migratory movements are known in a variety of insect species \cite{Lemp72}.
+
+This model differs from the standard {\sc deb} model with acceleration by the acceleration that here occurs during the adult stage; the end of acceleration is not triggered by a maturity threshold by by a threshold of $[E_R]$.
+Moreover larval structure is transformed to reserve, maturity is reset at pupation and growth of the imago is ceased at emergence.
+For comparative reasons it might be of interest to derive a maturity threshold at pupation if maturation would continue during larval development.
+With $\dot{r} = \frac{f \dot{k}_E - g \dot{k}_M} {f + g}$ and $\dot{p}_C = f [E_m] V g \frac{\dot{k}_E + \dot{k}_M} {f + g}$, maturity would change as $\frac{d} {dt} E_H = (1 - \kappa) \dot{p}_C - \dot{k}_J E_H$, which amount to $E_H(t) = E_H^b \exp(-\dot{k}_J t) + \frac{1 - \exp(- (\dot{r} + \dot{k}_J) t)} {\dot{r} + \dot{k}_J} (1 - \kappa) \dot{p}_C(t)$ for $t$ is time since birth.
+
+\subsection*{7.8.2 Metabolic acceleration}
+\phantomsection
+\pdfbookmark[2]{7.8.2 Metabolic acceleration}{ssec_c:acceleration}
+\label{ssec_c:acceleration}
+
+\begin{table}
+\caption[]{\protect\small\label{tab:acceleration}
+  The different types of acceleration, the variables and/or parameter values that change, the approximate events of start and end of changes and the observable changes (\textcolor{blue}{decrease in blue}, \textcolor{red}{increase in red}), relative to the standard DEB model.}
+\begin{center}
+\begin{tabular}{llll} \hline
+type & variable & period & regulation \\ \hline
+$R$  & $\kappa$ & 
+   $h$ - $j$ &      
+   \color{red}{$\dot{J}_O$, $\frac{d} {dt} E_H$}, 
+   \color{blue}{$\frac{d} {dt} W$, $a_b$, $a_j$, $a_p$, $W_j$, $W_p$} \\
+$X$  & $X$ & 
+   $b$ - $\infty$ & 
+   \color{red}{$\dot{J}_O$, $\dot{R}_m$, $\frac{d} {dt} W$, $W_j$, $W_p$, $W/ L^3$}, 
+   \color{blue}{$a_j$, $a_p$} \\
+$A$  & $\{\dot{p}_{Am}\}$ & 
+   $b$ - $p$ &      
+   \color{red}{$\dot{J}_O$, $\dot{R}_m$, $\frac{d} {dt} W$, $W_j$, $W_p$, $W/ L^3$}, 
+   \color{blue}{$a_j$, $a_p$} \\
+$\cal M$ & $\{\dot{p}_{Am}\}$, $\dot{v}$ & 
+   $b$ - $j$ & 
+   \color{red}{$\dot{J}_O$, $\dot{R}_m$, $\frac{d} {dt} W$, $W_j$, $W_p$}, 
+   \color{blue}{$a_b$, $a_j$, $a_p$} \\
+$T$  & $\{\dot{p}_{Am}\}$, $\dot{v}$, $\dot{k}_J$, $[\dot{p}_M]$ & 
+   $0$ - $b$ & 
+   \color{red}{$\dot{J}_O$, $\dot{R}_m$, $\frac{d} {dt} W$}, 
+	 \color{blue}{$a_b$, $a_j$, $a_p$} \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Metabolic acceleration is defined as a long-term increase in respiration, relative to expectation based on the standard {\sc deb} model.
+Table \ref{tab:acceleration} presents 5 types of metabolic acceleration that have been found, as discussed in \cite{Kooy2013b}.
+The maturation type does not concern an increase in specific feeding, assimilation or mobilisation, only in change in allocation.
+The 4 other types do involve such an increase and concern an increasing number of parameters.
+
+\subsubsection*{7.8.2.1 Maturation}
+\phantomsection
+\pdfbookmark[3]{7.8.2.1 Maturation}{sssec_c:acceleration_J}
+\label{sssec_c:acceleration_J}
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_Wd_Pb}}}
+\end{picture}
+\begin{picture}(8,5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_JO_Pb}}}
+	\put(2,4){\emph{P. bibronii}}
+\end{picture}
+\begin{picture}(8,5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_Wd_Cg}}}
+\end{picture}
+\begin{picture}(8,5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_JO_Cg}}}
+	\put(2,4){\emph{C. georgiana}}
+\end{picture}
+\caption[]{\label{fig:MuelAugu2012}\protect\small
+Dry weight (left) and dioxygen consumption (right) of two similar myobatrachid frogs \emph{P. bibronii} (top) and \emph{C. georgiana} (bottom)  at 12\,$\circ$C.
+Both sport indirect development, via a tadpole stage.
+Hatching, birth and metamorphosis are indicated, but the first two coincide in  \emph{P. bibronii}.  
+The tadpoles of this species live in permanent pools, while that of \emph{C. georgiana} in temporary ones that dry up, soon after their metamorphosis. 
+\emph{C. georgiana} accelerates maturation by lowering $\kappa$ temporarily, as indicated, which also reduces growth. 
+In this way it can leave the pond at the age of 110 days, while \emph{P. bibronii} needs 200 d. 
+\emph{C. georgiana} is 4\,mg at metamorphosis, \emph{P. bibrionii} 35\,mg dry, while the maximum weights are 500 and 200\,mg, respectively. 
+Both frogs have a (constant) specific somatic maintenance rate of some 400\,J\,d$^{-1}$cm$^{-3}$.
+The curves are based on DEB theory and have been estimated simultaneously per species \cite{MuelAugu2012}.
+The step-up in respiration at birth is due to the onset of assimilation.
+The egg sizes differ by a factor 2 $E_0 = 65$ and $144$\,J, while the maximum adult sizes of these frogs differ by a factor 10, $W_d = 0.15$ and $1.2$\,g for \emph{P. bibronii} and \emph{C. georgiana}, respectively.
+Some parameters are for \emph{P. bibronii}: 
+$E_H^b = 9$\,J, 
+$E_H^j = 314$\,J, 
+$E_H^p = 2103$\,J, 
+$v = 0.040$\,cm\,d$^{-1}$, 
+$\kappa = 0.69$, 
+$[\dot{p}_M] = 491$\,J\,d$^{-1}$cm$^{-3}$.
+And for \emph{C. georgiana}:
+$E_H^h = 1.5$\,J, 
+$E_H^b = 8$\,J, 
+$E_H^j = 71$\,J, 
+$E_H^p = 1686$\,J, 
+$v = 0.056$\,cm\,d$^{-1}$, 
+$\kappa_h = 0.86$, 
+$\kappa_b = 0.61$, 
+$[\dot{p}_M] = 369$\,J\,d$^{-1}$cm$^{-3}$.}
+\end{figure}
+
+An illustrative and remarkable form of acceleration of maturation has been observed in the Australian myobatrachid \emph{Crinia georgiana}, compared to \emph{Pseudophryne bibronii} \cite{MuelAugu2012}, see figure \ref{fig:MuelAugu2012}. 
+\emph{Crinia} sports developmental acceleration, \emph{Pseudophryne} does not.
+Their maximum body weights are similar, but \emph{Crinia} has larger eggs.
+They both have a free-swimming tadpole stage, but we also found the pattern in species with direct development.
+
+When \emph{Crinia} hatches, before it starts feeding, and the water table in their pond is low, it decreases allocation fraction $\kappa$ steadily till birth.
+Between birth and metamorphosis $\kappa$ remains constant at a low level, and is reset after metamorphosis.
+This has several coordinated effects:
+respiration is increased, growth is decrease and maturation increased.
+In view of growth overheads, a decrease of growth might expected a decrease in respiration.
+But that does not happen: all reserve that embryos and juveniles allocate to the $(1 - \kappa)$ branch of mobilised reserve is spend on maturity maintenance and maturation, and eventually ends up as carbon doixide, water and N-waste, which comes with the use of dioxygen.
+The ecological significance is that they reach metamorphosis much earlier and smaller, allowing them to leave their pond before it dried out.
+It seems that the rate at which reserve is mobilized, which depends on the amounts of reserve and structure, is not changed.
+That is, the absolute mobilised flux steadily increases, and the one relative to structure steadily decreases.
+Mobilisation also does not change during the late embryo stage when the acceleration of maturation occurs.
+So respiration increases, but mobilisation does not.
+
+Acceleration of maturation is remarkable, because it demonstrates the trait off between growth and maturation.
+Acceleration is achieved by changing $\kappa$, while it typically remains constant during the full life cycle \cite{LikaKooy2011}.
+The fact that it occurs in direct as well as indirectly developing frogs shows that the mode of development has nothing to do with acceleration of maturation.
+
+In summary, the diagnostic characteristics of this type of acceleration are
+\begin{itemize}
+  \item no change in size-specific feeding or mobilisation
+	\item a temporary decrease in allocation fraction $\kappa$, with the effect of 
+	  \subitem a decrease of growth
+		\subitem an increase in maturation, 
+		\subitem a reduction of the size at stage transitions
+		\subitem an increase in respiration
+\end{itemize}
+Since this type of acceleration is only found in embryos and juveniles, and the change in $\kappa$ is only temporary, effects on reproduction are probably minor. 
+
+\subsubsection*{7.8.2.2 Intake}
+\phantomsection
+\pdfbookmark[3]{7.8.2.2 Intake}{sssec_c:acceleration_X}
+\label{sssec_c:acceleration_X}
+
+A rather frequently occurring  form of acceleration is an increase in feeding rate combined with shifts in food preference.
+The feeding capacity just increases with squared structural length, but the amount of food and/or the food quality increases faster for some period and remains higher.
+Acceleration type $X$ stands for `food', and differs from other acceleration types because the parameters of the individual remain constant. 
+The individual as a dynamic system does not change, only the interaction with the environment (food).
+
+Neonates need high-quality food to cover their relatively high growth needs, compared to later stages that mainly need to cover maintenance needs.
+Fed with the same type of food, neonates do less well and can sport retarded growth.
+Taxa like fish are born tiny and change in food preference to bigger prey while growing.
+Not only because they are bigger themselves, but they also can swim faster. 
+This can sometimes lead to an extra increase in food intake.
+
+When some large individuals of perch \emph{Perca fluviatilis} become cannibalistic, they grow into giants \cite{PersClae2004}.
+The conversion efficiency from fish to fish is higher than from zooplankton to fish.
+
+An increase in food availability means an increase in growth rate.
+Such a cause can be detected by comparing different diets and food availability levels.
+If the amount of up-curving of length-at-age is sensitive to such changes, this indicates for a type $X$ acceleration.
+When fed with abundant food of high quality, length, or the cubic root of weight, increases linearly for neonates and incubation times are be well-predicted by the standard DEB model.
+So acceleration disappears in such situations.
+Although actual intake is increased, intake capacity is not.
+
+In summary, the diagnostic characteristics of this type of acceleration are
+\begin{itemize}
+  \item an increase in size-specific feeding and assimilation
+	\item no increase in size-specific maximum assimilation
+	  \subitem an increase of growth, maturation and reproduction
+		\subitem little change in size at stage transitions
+		\subitem an increase in respiration
+	\item acceleration disappears if high quality food is provided and incubation time is then predicted well by the standard model
+\end{itemize}
+
+\subsubsection*{7.8.2.3 Assimilation}
+\phantomsection
+\pdfbookmark[3]{7.8.2.3 Assimilation}{sssec_c:acceleration_A}
+\label{sssec_c:acceleration_A}
+
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,5.5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_L_Doryteuthis}}}
+  %\put(1.4,4.5){\scalebox{.3}{\includegraphics{Doryteuthis}}}
+\end{picture}
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,5.5)
+  \put(0,0){\scalebox{.4}{\includegraphics{t_W_Mirounga}}}
+  %\put(1.4,4.5){\scalebox{.2}{\includegraphics{mirounga}}}
+\end{picture}
+\parbox[t]{9cm}{\caption[]{\label{fig:Dorytheutis}\protect\small
+  Length-at-time since birth of male (blue) and female (red) longfin inshore squid \emph{Doryteuthis pealei}.
+  Data from \cite{Summ71}.
+  The fits assume that the mean temperature was 15\,$^\circ$C.
+  The parameters of both sexes are identical, except for the maximum specific assimilation rate $\{\dot{p}_{Am}\}$.
+  The measured and predicted age at birth are\\
+  \centerline{ 
+  \begin{tabular}{lll}
+  temperature  & measured  & predicted\\ 
+  ($^\circ$C) & (d) & (d)\\
+  \hline
+  22 &    10.71  &  11.14 \\
+  18 &    18.54  &  17.35 \\
+  15 &    26.75  &  25.83 \\
+  \hline
+  \end{tabular}}
+  Data from \cite{McMaSumm71}}} 
+\hspace{5mm}
+\parbox[t]{65mm}{\caption[]{\label{fig:Mirounga}\protect\small
+  Weight-at-time since birth of male (blue) and female (red) southern elephant seal \emph{Mirounga leonina}.
+  Data from \cite{Bryd69}.
+  The fits assume that the body temperature was 38.1\,$^\circ$C.
+  The parameters of both sexes are identical, except for the maximum specific assimilation rate $\{\dot{p}_{Am}\}$ of the male makes an instantaneous jump up at puberty.}} 
+\end{figure}
+
+Type $A$ acceleration concerns in increase in surface area-specific assimilation capacity at some stage in development.
+This acceleration does not disappear at abundant high-quality food.
+Males of the longfin inshore squid seem to make this step-up at birth, see Figure \ref{fig:Dorytheutis}, the southern elephant seal at puberty, see Figure \ref{fig:Mirounga}.
+The curve for the male elephant seal assumes that puberty is an event; 
+the data shows that puberty takes a period rather than an event, but this `detail' is omitted for simplicity's sake.
+Food intake matches this capacity increase, since if not, we would not notice the increase.
+Where type $X$ acceleration typically concerns a shift in food preference, type $A$ acceleration is a step-up in the assimilation rate and with a constant digestion efficiency this goes with a step-up in the feeding rate.
+When assimilation is increased, but not reserve mobilisation (see next acceleration type), reserve capacity increases.
+As a consequence of the increase of reserve density (the amount of reserve per structure), mobilisation increases but not as a result of an increase in mobilisation capacity.
+This step-up in reserve capacity comes with a decrease of growth rate and an increase in capacity to survive starvation.
+
+The function of this sex-dimorphy is probably social.
+So far, I don't know of examples of type $A$ acceleration that affects both sexes.
+
+In summary, the diagnostic characteristics of this type of acceleration are
+\begin{itemize}
+  \item change in size-specific feeding and assimilation, but not mobilisation
+	\item change in reserve structure ratio during acceleration at constant food
+		\subitem an increase in growth, maturation, reproduction and respiration
+		\subitem on effect on  size at stage transitions
+		\subitem an increase in respiration
+	\item acceleration does not disappear if high quality food is provided
+	\item incubation time is predicted well by the best fitting standard model
+\end{itemize}
+
+
+\subsubsection*{7.8.2.4 Mobilisation}
+\phantomsection
+\pdfbookmark[3]{7.8.2.4 Mobilisation}{sssec_c:acceleration_M}
+\label{sssec_c:acceleration_M}
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,5)
+\put(0,0){\scalebox{.45}{\includegraphics{t_Wd_Ap}}}
+\end{picture}
+\parbox[b]{8cm}{
+\caption[]{\label{fig:t_Wd_Ap}\protect\small
+  The pea aphid \emph{Acyrthosiphon pisum} accelerates, like other insects, till the final moult, where growth is ceased.
+	Data from \cite{Sequ91}.}}
+\end{figure}
+
+A different and much more common form of acceleration is by the simultaneous increase of surface-area specific assimilation rate and energy conductance during the period between birth and metamorphosis \cite{KooyPecq2011}.
+The increase is proportional to structural length.
+The factor with which these parameters at birth are multiplied to arrive at those at (metabolic) metamorphosis, the acceleration factor, depends on feeding conditions.
+At high feeding levels, acceleration is larger than at low ones.
+So two individuals might be identical in terms of parameters and state variables (amounts of reserve and structure) at birth, might be in different environments during the early juvenile period, and remain different for the rest of their lives, even when exposed to the same environment.
+This pattern can be captured concisely in DEB theory by assuming that the embryo, late juvenile and adult stages behave as isomorphs, while the early juvenile stage increases its surface area proportional to structural volume, rather than volume to the power 2/3.
+Since assimilation and mobilisation increase simultaneously, reserve turnover increases, but reserve density is unaffected.
+Acceleration type $\cal M$ stands for `morph', and differs from type $A$ acceleration by the involvement of the energy conductance and by taking place between birth and metamorphosis.
+Metabolic metamorphosis is defined as the moment of switching back to the isomorphic state and might, or might not, correspond with a sudden morphological change.
+This type of acceleration can be recognised by an up-curving of length-at-time since birth at constant food, an incubation time that is longer than expected without acceleration, and reserve density is unaffected.
+
+Type $\cal M$ acceleration was first discovered in anchovy \emph{Engraulis encrasicolus} \cite{Pecq2008,PecqPeti2009}, bluefin tuna \emph{Thunnus orientalis} \cite{JusuKlan2011} and zebrafish \emph{Danio rerio} \cite{AuguGagn2011}.
+Acceleration has now been found in many ray-finned fish (actinopterygii) at scattered places, but not in cartilage fish (chondrichthyes), although all orders of this class are represented in the collection \cite{KooyLika2014}.
+Ray-finned fish produce tiny eggs, compared to cartilage fish, and many (but not all) species first elongate their body as neonate and later become more bulky.
+When they elongate their body, they change in shape in the way described above.
+Quite a few other taxa, e.g.\ annelids, bivalves, echinoderms, have larval stages that have a very different morphology, compared to the late juvenile and adult stages.
+These larval stages develop slower than the late juvenile and adult stages.
+Other taxa, e.g.\ cephalopods, don't have deviating morphology of early juveniles, but still show acceleration.
+Figure \ref{fig:Dorytheutis} shows this for squid \emph{Dorytheutis}.
+Although the acceleration is rather small in this example, and the up-curving of length-at-age is not really visible in the data (although it is in several other cephalopod species in the add\_my\_pet collection), type $\cal M$ acceleration is still detectable in squid because of the long incubation times.
+Without type $\cal M$ acceleration, the parameters that would describe post-embryonic growth correctly, would under-estimate incubation times considerably.
+Figure \ref{fig:t_Wd_Ap} gives an example of an insect, which sport extreme acceleration.
+The collembola \emph{Folsomia} (enthognatha) represents a transition stage, where acceleration clearly occurs in the neonate till puberty, but most growth (after puberty) is of the von Bertalanffy type, so without acceleration.
+Insects evolved from crustations, according to many workers.
+It is remarkable that none of the 13 species of branchiopods in the collection have acceleration and all 4 species of maxillopods have it.
+Maxillopods have nymph stadia with a deviating morphology, which branchiopods don't have.
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(16,11)
+\put(0,0){\scalebox{.6}{\includegraphics{acceleration_taxa}}}
+\end{picture}
+\caption[]{\label{fig:sM}\protect\small
+  The distribution of acceleration in animal taxa.
+  The colour of the font refers to the value of the acceleration coefficient.
+  Taxa can have more or less accelerating species, which is why colours can vary within a word.
+  The acceleration coefficient refers to the factor with which the specific assimilation and energy conductance for neonates have to be multiplied to arrive at values for late juveniles and adults.}
+\end{figure}
+
+Figure \ref{fig:sM} gives an overview of where type $\cal M$ acceleration has been found.
+It evolved at least 5 times in animal kingdom.
+We cannot be sure that accelerating metabolism is the original mode in animals and that it is lost in many taxa.
+Although species with larval stages typically accelerate, not all accelerating species have larval stages.
+Starting metabolism slowly seems to be more general than having larval forms.
+Larval development it thought to have evolved many times independently \cite{HallWake99}.
+It is likely, therefore, that metabolic acceleration also evolved many times independently.
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(6.5,6.5)
+  \put(0,0){\scalebox{.35}{\includegraphics{sM_eHb}}}
+\end{picture}
+\begin{picture}(8,6.5)
+  \put(4.5,0){\scalebox{.35}{\includegraphics{legend_RSED}}}
+  \put(-1.5,0){\scalebox{.35}{\includegraphics{sM_eHp}}}
+\end{picture}
+\begin{picture}(6.5,5.5)
+ \put(0,0){\scalebox{.35}{\includegraphics{sM_lb}}}
+\end{picture}
+\begin{picture}(8,5.5)
+ \put(0,0){\scalebox{.35}{\includegraphics{sM_lp}}}
+\end{picture}
+\begin{picture}(8,5.5)
+ \put(0,0){\scalebox{.35}{\includegraphics{sM_EHpb}}}
+\end{picture}
+\begin{picture}(8,5.5)
+ \put(0,0){\scalebox{.35}{\includegraphics{sM_sH}}}
+\end{picture}
+\caption[]{\label{fig:sM-eHb}\protect\small
+  Maturity density at birth and puberty hardly depend on acceleration. 
+	Relative length at birth decreases with the acceleration factor, but length at puberty hardly so.
+	As a consequence, maturity ratio $s_H^{pb} = E_H^p/ E_H^b$ increases with the acceleration factor, but $[E_H^p]/ [E_H^b]$ hardly so.
+	Data for 785 species of the add\_my\_pet collection, sampling date 2017/05/14}
+\end{figure}
+
+Big-bodied species typically get big-bodied offspring. 
+The co-variation rules of DEB parameters specify that maturity at birth (and puberty) increase proportional with maximum structural volume.
+When we compare species of very different maximum body sizes, it is natural to compare them on the basis of maturity density:
+the ratio of maturity and maximum structural volume.
+Maturity density at birth and puberty have no clear relationship with acceleration, see Figure \ref{fig:sM-eHb}.
+The figure also illustrates that relative size at birth is taxon-specific, the lophotrochozoans, that is mostly the molluscs and specifically the bivalves, have really small neonates.
+
+What could be the function of type $\cal M$ acceleration?
+The patterns for Actinopterygii, where relative length at birth hardly depends on ultimate length, suggest and neonates need to have a particular small size to stay very close to the surface, where algae and small-bodied grazers are, which serve as food. 
+Large-bodied fish species accelerate more to reduce the time to reach puberty.
+This seems to be an adaptation to the problem that their food are predators of their offspring.
+They try to super-saturate the predators of their neonates, by reducing the spawning period, and meeting in relatively small spawning grounds.
+This reminds of the strategy of bamboos, which suffer from chickens that feed on their seed. 
+They synchronize flowering, skipping years, to avoid that these birds can build up high population densities.
+
+Species range from supply to demand systems. 
+Supply-species `eat what is available' and demand-species `eat what they need'.
+Insects and cnidarians are more to the supply end of the spectrum, bird and mammals to the demand end.
+The standard DEB model has a supply-organisation for growth and maturation (or reproduction) and a demand-organisation for maintenance.
+This set-up already reveals that no species are at the extremes of the spectrum.
+Independent of where species are in the spectrum, there must always be a balance between acquisition and use of resources.
+
+Figure \ref{fig:Li-par} shows the energy conductance as function of maximum structural length before and after acceleration.
+The scatter is large and there is no really clear pattern to discover for acceleration species.
+They do not have a low energy conductance before acceleration, combined with a typical one after, nor do they have a typical energy conductance before acceleration, combined with a larger one after.
+The figure does confirm the expectation of the co-variation rules of DEB theory that energy conductance does not depend on maximum structural length.
+When we look at the maturity levels at birth, metamorphosis and puberty, the pattern is much more clear:
+accelerating species have lower values than non-accelerating species, but the differences decrease from birth to puberty.
+Although size at birth, metamorphosis and puberty not only depend on parameter values, but also on food availability, generally size increases with maturity level.
+Figure \ref{fig:Li-dV} shows that the absolute neonate growth is larger for non-acceleration species, but at puberty it is smaller.
+Relative neonate growth is independent of acceleration, but accelerating species grow relatively faster at puberty. 
+The difference between absolute and relative growth is caused by neonate accelerating species are relatively smaller than non-accelerating ones, see Figure \ref{fig:sM-eHb}.
+
+\begin{figure}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5.3,4.5)
+  \put(0,0){\scalebox{.27}{\includegraphics{Li_dVb.png}}}
+\end{picture}
+\begin{picture}(5.3,4.5)
+  \put(0.5,0){\scalebox{.27}{\includegraphics{Li_dVj.png}}}
+\end{picture}
+\begin{picture}(5.3,4.5)
+  \put(0.5,0){\scalebox{.27}{\includegraphics{Li_dVp.png}}}
+\end{picture}
+\begin{picture}(5.3,4.5)
+  \put(0,0){\scalebox{.27}{\includegraphics{Li_rb.png}}}
+\end{picture}
+\begin{picture}(5.3,4.5)
+  \put(0.5,0){\scalebox{.27}{\includegraphics{Li_rj.png}}}
+\end{picture}
+\begin{picture}(5.3,4.5)
+  \put(0.5,0){\scalebox{.27}{\includegraphics{Li_rp.png}}}
+\end{picture}
+\caption[]{\label{fig:Li-dV}\protect\small
+  The growth rate (first row) at birth (left), metamorphosis (middle) and puberty (right), and the specific ones (second row) at 20\,$^\circ$C as functions of maximum structural length. 
+	Colours relate to acceleration: black = no acceleration, via blue and red, to white = max acceleration.
+  Birth and metamorphosis coincide for non-accelerating species.
+	Data from the add\_my\_pet collection, sampling date 2017/05/05 at 784 species.}
+\end{figure}
+
+A low metabolic rate at birth allows for more time to learn finding and selecting food, capturing it and digesting it.
+The specific somatic maintenance costs for accelerating and non-accelerating species turn out to be the same (not illustrated).
+So in terms of demand, a small size means less need for resources, which is thus less for accelerating species when young.
+Digestion frequently involves a gut flora that first needs to settle and might need time to function well in interaction with the host.
+The host supports gut flora by secreting polysaccharides into the gut, which might not only support the flora, but might also select for particular species.
+This illustrates the need of fine tuning between host and gut flora.
+A low level of metabolism only requires a low assimilation rate to support it.
+Endotherms have a high metabolic rate, because of their high body temperature, and don't sport acceleration.
+They do have advanced forms of parental care, however, and mammals typically feed milk to their neonates.
+Milk composition beautifully matches the needs of the neonate and changes dynamically with the needs.
+Kangaroos can have new neonates, while the joey of the previous reproductive cycle still suckles, but from different nipples that give milk of different composition.
+Both birds and mammals typically inoculate the gut flora of their neonates via saliva.
+So here the parents assist in covering the metabolic need of the neonates;
+the consideration on acceleration helps to understand why parental care evolved in endotherms.
+These examples serve to illustrate that the initiation of assimilation is a delicate process and point to the functionality of starting slowly.
+
+Since all species with larval forms have acceleration, and larvae thus have a lower metabolic rate before, compared to after metamorphosis, the suggested function of acceleration is in nice harmony with the idea of Garstang on the function of marine larvae as a mechanism for dispersal \cite{Gars51}.
+Slow metabolism allows for more dispersal time, especially in situations where dispersal rate is not metabolically controlled, but depend on water or air transport, for instance.
+
+Not all larvae feed, while DEB theory defines birth as the onset of assimilation (potential), not as hatching.
+This classifies non-feeding larvae as embryos;
+they may represent transition to direct development, where the larval stage is completely taken out of the life cycle.
+With the reduction of the larval period, the embryo needs to increase metabolic rate, or the juvenile and adult need to decrease metabolic rate to avoid a sudden step up.
+Few data on metabolic rate of embryos and juveniles are available.
+Most data are consistent with the idea that acceleration of metabolism is initiated at birth.
+Data on early larval development of the Japanese oyster \emph{Crassostrea gigantea} shows that acceleration only starts after birth and ceases at settlement.
+This pattern might be more general, and probably applies to most bivalves and possibly to many other taxa as well.
+The pondsnail \emph{Lymnaea stagnalis} still has a trochophora larval stage, but it passes through this stage inside the egg.
+It even seems to start feeding inside the egg (pers.\ comm.\ Elke Zimmer), but continues to accelerate after hatching.
+Both examples show different cases of uncoupling between larval stage and acceleration.
+
+In summary, the diagnostic characteristics of this type of acceleration are
+\begin{itemize}
+  \item change in size-specific feeding and assimilation and mobilisation
+	\item no change in reserve structure ratio during acceleration at constant food
+		\subitem an increase in growth, maturation, reproduction and respiration
+		\subitem on effect on  size at stage transitions
+		\subitem an increase in respiration
+	\item acceleration does not appear if high quality food is provided
+	\item incubation time is predicted well by the best fitting standard model
+\end{itemize}
+
+\subsubsection*{7.8.2.5 Temperature}
+\phantomsection
+\pdfbookmark[3]{7.8.2.5 Temperature}{sssec_c:acceleration_T}
+\label{sssec_c:acceleration_T}
+
+Endotherms can accelerate during ontogeny due to an increase in body temperature, which stands for type $T$.
+Birds and mammals are ectotherms as embryo, and many need maternal care to keep body temperature in a healthy range.
+Since embryos are kept relatively warm by their parents, metabolism is high, so is heat generation, which increases with size.
+Although this rest-heat is not sufficient to maintain a constant body temperature, it does elevate body temperature, also because surface area per volume decreases.
+While growing, their capacity to maintain a constant body temperature increases, which is visible as an acceleration of growth \cite{Kooy94a}.
+This is why (sigmoid) Gompertz curves and logistic curves have been used to describe size-at-age for birds, see Section \ref{ssec:reconstruction_temp}.
+Measured and predicted the body temperature and growth curve of the guillemot match perfectly, see \cite[Figure 4.28]{Kooy2010}. 
+Such a cause can be detected by studying growth at sufficiently high environmental temperatures, such that body temperature is constant, even if the capacity to heat the body is less than adequate.
+This does not always work, however, because some species need a lower temperature and a temperature gradient during embryo development.
+Brunnich's guillemot seems to need a 40\,$^{\circ}$C temperature difference between one side of the egg and the other to develop \cite{Remm80}.
+
+
+\subsection*{7.8.2 Derivation of Eq. (\ref{eqn:deLU_metam})}
+\phantomsection
+\pdfbookmark[2]{7.8.2 Derivation of Eq. (7.84)}{sec_c:metamorphosis}
+\label{sec_c:metamorphosis}
+
+All surface areas should be divided by the shape correction function ${\cal M}(V)$ during the juvenile I stage.
+Since the dimension length in the energy conductance $\dot{v}$ is the ratio of a volume and a surface area, $\dot{v}$ should be replaced by $\dot{v}^* = \dot{v} {\cal M}(V)$.
+The maximum specific searching rate $\{F_m\}$ and the maximum feeding rate $\{\dot{J}_{XAm}\}$ are both multiplied by the shape correction function, which implies that half saturation coefficient $K = \{\dot{J}_{XAm}\}/ \{F_m\}$ remains constant; 
+for constant food density $X$, the scaled functional response $f = \frac{X} {K + X}$ remains constant as well.
+The equation for $\frac{d}{dt} e$ is given in Eq. (\ref{eqn:de}), where $\dot{v}$ is replaced by $\dot{v}^*$.
+
+The specific growth rate for the standard DEB model is given in Eq. (\ref{eqn:dV}): 
+$\dot{r} = \dot{v} \frac{e/ L - (1 + L_T/ L)/ L_m} {e + g}$.
+Since $g = \frac{[E_G] \dot{v}} {\kappa \{\dot{p}_{Am}\}}$, and $\dot{v}$ as well as $\{\dot{p}_{Am}\}$ are affected by the changes in shape during the juvenile I stage in the same way, $g$ is not affected.
+Since $L_m = \frac{\kappa \{\dot{p}_{Am}\}} {[\dot{p}_M]} = \frac{\dot{v}} {\dot{k}_M g}$, $L_m$ is affected and should be replaced by $L_m^*$.
+The replacement of $\dot{v}$ by $\dot{v}^*$ gives the result for $\dot{r}$.
+The equation for $\frac{d}{dt} L$ is given above Eq. (\ref{eqn:Bert}); notice that $\dot{v}$ should be $\dot{r}$, as mentioned in the errata.
+
+The equation for $\frac{d} {dt} U_H$ found from that for $\frac{d} {dt} E_H$ given in Eq. (\ref{$E_H$}), that for $\dot{p}_C$ given in Eq. (\ref{eqn:pC_M}) and that for $\dot{p}_J$ given in Eq. (\ref{eqn:pJ}).
+The substitutions for the standard model for juveniles amount to 
+\begin{eqnarray}
+  \frac{d} {dt} E_H &=& (1 - \kappa) E (\frac{\dot{v}}{L} - \dot{r}) - \dot{k}_J E_H
+  \\
+       &=& (1 - \kappa) e L^3 \frac{\{\dot{p}_{Am}\}} {\dot{v}} (\frac{\dot{v}}{L} - \dot{r}) - \dot{k}_J E_H
+  \\
+       &=& (1 - \kappa) e L^2 \{\dot{p}_{Am}\} \frac{g + (L + L_T)/ L_m}{e + g} - \dot{k}_J E_H
+\end{eqnarray}
+where $L_T$ is set equal to zero.
+In this equation $\{\dot{p}_{Am}\}$ should be replaced by $\{\dot{p}_{Am}\}^*$ and $L_m$ by $L_m^*$ for changing shape during the juvenile I stage.
+Now we divide by the left and right hand sides by $\{\dot{p}_{Am}\}$ to remove energy, $U_H = E_H/ \{\dot{p}_{Am}\}$, 
+but this assimilation power $\{\dot{p}_{Am}\}$ only serves as a reference to eliminate the dimension energy, and should not be replaced.
+The result is
+\begin{eqnarray}
+  \frac{d} {dt} U_H 
+       &=& (1 - \kappa) e L^2 \frac{\{\dot{p}_{Am}\}^*}{\{\dot{p}_{Am}\}} \frac{g + L / L_m^*}{e + g} - \dot{k}_J U_H
+  \\
+       &=& (1 - \kappa) e L^2 \frac{g^* + L / L_m}{e + g} - \dot{k}_J U_H
+\end{eqnarray}
+which is given in Eq. (\ref{eqn:deLU_metam}).
+
+\subsection*{7.8.2 Metamorphosis at constant food}
+\phantomsection
+\pdfbookmark[2]{7.8.2 Metamorphosis at constant food}{sec_c:metamorphosis_a}
+\label{sec_c:metamorphosis_a}
+
+The amount of metabolic acceleration of type $\cal M$ at abundant food can be quantified by acceleration factor $s_{\cal M} = {\cal M}(V_j) = L_j/ L_b$.
+The end of acceleration, an event called metamorphosis $j$, can, or cannot, be linked to an abrupt change in morphology.
+The use of physical length measures is problematic when shapes are changing.
+Generally the shape coefficient before, $\delta_{\cal M}^b$, and after, $\delta_{\cal M}^j$, acceleration can differ.
+Although no strict rules exist for how to link physical to structural length during acceleration, a natural choice for a shape coefficient is $\delta_{\cal M} (L) = w_b \delta_{\cal M}^b \delta_{\cal M}^b + (1 - w_a) \delta_{\cal M}^j$, with $w_a = {\cal M}(L^3)$.
+
+If food density is constant, and $e = f$, the juvenile I is growing exponentially at specific growth rate $\dot{r}_j$, say, where ${\cal M}(V) = L/ L_b$ increases from ${\cal M}(V_b) = 1$ to ${\cal M}(V_j) = L_j/ L_b = s_{\cal M}$. 
+Type $\cal M$ metabolic acceleration is assumed to affect $\{\dot{F}_m\}$, $\{\dot{p}_{Am}\}$, $\dot{v}$ and $\{\dot{p}_T\}$ before acceleration by a factor $s_{\cal M}$ after the end of acceleration.
+
+Work with Starrlight Augustine and Go\c{c}alo Marques showed the following simplifications. 
+At metamorphosis length growth switches to von Bertalanffy growth in a smooth way, with the implication that $L_j = \frac{L_\infty} {1 + \frac{\dot{r}_j} {3 \dot{r}_B}}$. 
+$L_m = \frac{\dot{v}} {\dot{k}_M g}$ does not have the interpretation of the maximum length. 
+We have for $L(a_b) = L_b$ and $L(a_j) = L_j$ and $L_T = \frac{\{\dot{p}_T\}} {[\dot{p}_M]} < e L_m - L_b$, where $\{\dot{p}_T\}$ is the value at birth, while $\{\dot{p}_T\} = 0$ before birth.
+\begin{eqnarray*}
+   \frac{d} {da} L &=& L \dot{r}_j/ 3 \quad \mbox{with } 
+   \dot{r}_j = \dot{v} \frac{e/ L_b - (1 + L_T/ L_b)/ L_m} {e + g} \stackrel{L_T = 0}{=} \dot{k}_M \frac{e L_m/ L_b - 1} {1 + e/ g}
+   \mbox{ for } a_b \le a < a_j 
+   \\
+   L(a) &=& L_b \exp \left( \dot{r}_j (a - a_b)/ 3 \right) 
+   \quad \mbox{for } a_b \le a < a_j
+   \\
+   \frac{d} {da} L &=& \dot{r}_B (L_\infty - L) \quad \mbox{with } 
+   \dot{r}_B = \frac{\dot{k}_M/ 3} {1 + e/ g} \mbox{ and } 
+   L_\infty = e L_m s_{\cal M} - L_T s_{\cal M} \mbox{ for } a \ge a_j 
+   \\
+   L(a) &=& L_\infty - (L_\infty - L_j) \exp \left( - \dot{r}_B (a - a_j) \right)
+   \mbox{ for } a \ge a_j
+\end{eqnarray*}
+The specific growth rate $\dot{r}$ relates to the von Bertalanffy growth rate $\dot{r}_B$ as $L \dot{r}/ 3 =  \dot{r}_B (L_\infty - L)$, which leads to
+\[
+   \dot{r} = 3 \dot{r}_B \frac{L_\infty - L} {L}
+	         = \frac{\dot{k}_M} {1 + e/ g} \, \frac{e L_m s_{\cal M} - L_T s_{\cal M} - L} {L}
+	         = \frac{\dot{v}} {e + g} \, \frac{e s_{\cal M} - (L + L_T s_{\cal M})/ L_m} {L}
+\]
+with $\dot{r} = \dot{r}_j$ for $L = L_j$.
+
+To find length at metamorphosis $L_j$ given maturity at metamorphosis $E_H^j$, we first need the mobilisation rate from Eq. (\ref{eqn:pC_M}) and then the change in maturity from Eq. (\ref{eqn:pR})
+\begin{eqnarray*}
+  \dot{p}_C &=& e [E_m] L^3 (\dot{v} s_{\cal M}/ L - \dot{r}) \stackrel{L = L_j} {=} f [E_m] L_j^3 (\dot{v}/ L_b -\dot{r}_j)
+  \\
+  \frac{d} {da} E_H &=& (1 - \kappa) \dot{p}_C - \dot{k}_J E_H \quad \mbox{or} \quad
+	\frac{d} {da} U_H  =  (1 - \kappa) e L^3 (1/ L_b - \dot{r}/ \dot{v}) - \dot{k}_J U_H
+\end{eqnarray*}
+starting from the state at birth $(a, e, L, E_H) = (a_b, f, L_b, E_H^b)$.
+The length at metamorphosis is found by integration of
+\[
+  \frac{d} {d E_H} L = \frac{\dot{r}_j L/ 3} {(1 - \kappa) \dot{p}_C - \dot{k}_J E_H} 
+  \quad \mbox{with } L(E_H^b) = L_b \mbox{ and }
+  L(E_H^j) = L_j = \int_{E_H^b}^{E_H^j} \left( \frac{d} {d E_H} L \right) \, d E_H
+\]
+
+An alternative way to find $L_j$ is to solve the {\sc ode} for $E_H$ first.
+For $t$ being the time since birth, $t = a - a_b$
+\[
+  E_H(t) = (1 - \kappa) f [E_m] L_b^3 (\dot{v}/ L_b - \dot{r}_j)
+  \frac{\exp( \dot{r}_j t) - \exp( - \dot{k}_J t)}{\dot{r}_j + \dot{k}_J} + E_H^b \exp(- \dot{k}_J t)
+\]
+Now we should solve $E_H(t_j) = E_H^j$ and the solution for $t_j$ must be found numerically.
+Finally we have $L_j = L_b \exp(\dot{r}_j t_j/ 3)$.
+
+In scaled quantities, for 
+$u_E = \frac{E} {g [E_m] L_m^3}$, 
+$v_H = \frac{E_H} {(1 - \kappa) g [E_m] L_m^3}$, 
+$l = \frac{L} {L_m}$,
+$\tau = \frac{t} {\dot{k}_M}$ (where $t$ is time since birth),
+$k = \frac{\dot{k}_J} {\dot{k}_M}$, 
+$r_B = \frac{\dot{r}_B} {\dot{k}_M}$,
+$r_j = \frac{\dot{r}_j} {\dot{k}_M}$,
+we have the following. 
+The scaled specific growth rates $r$ during and after acceleration amount for  $l_\infty = s_{\cal M} (f - l_T)$  and $r = 3 r_B (l_\infty/ l - 1)$ to
+\[
+    r_j =  \frac{g} {f + g} \frac{f - l_T - l_b} {l_b}
+		\quad \mbox{and} \quad
+    r   =  \frac{g} {f + g} \frac{f s_{\cal M} - l_T s_{\cal M} - l} {l}
+	 \quad \mbox{while} \quad
+    r_B = \frac{g/ 3} {f + g}
+\]
+where $r_j = r$ for $l = l_j$.
+Or in terms of $u_E = e l^3/ g$ rather than $f = e = g u_E/ l^3$
+\[
+    r_j =  \frac{g u_E l_b^{-1} - l^3 l_T/ l_b - l^3} {u_E + l^3}
+		\quad \mbox{and} \quad
+    r   =  \frac{g u_E l^{-1} s_{\cal M} - l^2 l_T s_{\cal M} - l^3} {u_E + l^3}
+\]
+Given $(\tau, e, l, v_H) = (\tau_j, f, l_j, v_H^j)$ at metamorphosis and assuming $v_H^j < v_H^p$
+\begin{eqnarray*}
+ \frac{d} {d \tau} l &=& l r_j/3 \quad \mbox{or} \quad l r/3 = r_B (l_\infty - l) \quad \mbox{before or after $j$}
+ \\
+ \frac{d} {d \tau} u_E &=& f l^3/ l_b - u_E (g/ l_b - r_j) 
+   \quad \mbox{or} \quad 
+ f s_{\cal M} l^2 - u_E (g s_{\cal M}/ l - r) \quad \mbox{before or after $j$}
+ \\
+  \frac{d} {d \tau} v_H &=& e l^3 (1/ l_b - r_j/ g) - k v_H
+  \quad \mbox{or} \quad 
+	e l^2 (s_{\cal M} - l r/ g)  - k v_H \quad \mbox{before or after $j$}
+ \\
+ \frac{d} {d v_H} l &=& \frac{r_j l/ 3} {e l^3 (1/ l_b - r_j/ g) - k v_H} \quad \mbox{or} \quad 
+                     \frac{r l/ 3} {e l^2 (s_{\cal M} - l r/ g)  - k v_H} \mbox{ with }
+\end{eqnarray*}
+\[
+ l(v_H^b) = l_b; \quad
+ l(v_H^j) = l_j = \int_{v_H^b}^{v_H^j} \left( \frac{d} {d v_H} l \right) \, d v_H; \quad
+ l(v_H^p) = l_p = \int_{v_H^j}^{v_H^p} \left( \frac{d} {d v_H} l \right) \, d v_H
+\]
+Scaled maturity during acceleration ($\tau < \tau_j$) amounts to
+\[
+  v_H(\tau) = f l_b^3 \frac{1/ l_b - r_j/ g} {k + r_j} (\exp(r_j \tau) - \exp(- k \tau)) + v_H^b \exp(-k \tau)
+\]
+with $v_H(\tau_j) = v_H^j$, $l(\tau_j) = l_j = l_b \exp(\tau_j r_j/ 3)$ or $\exp(\tau_j r_j) = (l_j/ l_b)^3 = s_{\cal M}^3$ and $\exp(-k \tau_j) = s_{\cal M}^{-3 k/ r_j}$. 
+Substitution gives
+\[
+  v_H^j = f l_b^3 \frac{1/ l_b - r_j/ g} {k + r_j} (s_{\cal M}^3 - s_{\cal M}^{-3 k/ r_j}) + v_H^b s_{\cal M}^{-3 k/ r_j}
+\]
+from which $s_{\cal M}$, and so $l_j$, can be solved numerically.
+Change in scaled maturity after acceleration ($\tau \ge \tau_j$) is $\frac{d} {d \tau} v_H = f l^2 (s_{\cal M} - \frac{l_\infty - l} {f + g}) - k v_H = b_2 l^2 + b_3 l^3 - k v_H$ for $b_2 = f s_{\cal M} - b_3 l_\infty$ and $b_3 = \frac{f} {f + g}$. Scaled maturity as function of scaled time since metamorphosis becomes
+\[
+  v_H(\tau) = \left( v_H^j + \sum_{i = 0}^3 a_i \right) e^{- k \tau} - \sum_{i = 0}^3 a_i e^{- i r_B \tau}
+\]
+with
+\parbox[t]{8cm}{
+\begin{eqnarray*}
+  a_0 &=& - (b_2 + b_3 l_\infty) l_\infty^2 / k\\
+  a_1 &=& -(2 b_2 + 3 b_3 l_\infty) l_\infty l_\delta / (r_B -k)\\
+  a_2 &=& (b_2 + 3 b_3 l_\infty) l_\delta^2 / (2r_B - k)\\
+  a_3 &=& - b_3 l_\delta^3 / (3r_B - k)
+\end{eqnarray*}}
+\parbox[t]{8cm}{
+\begin{eqnarray*}
+	\tau_p &=& \frac{1} {r_B} \ln \frac{l_\infty - l_b} {l_\infty - l_p}\\
+	l_\delta &=& l_\infty - l_j\\
+	l_\infty &=& s_{\cal M} (f - l_T)
+\end{eqnarray*}}
+from with $l_p$ can be solved numerically, while $v_H(\tau_p) = v_H^p$.
+
+The reproduction rate $\dot{R}$ as function of length $L$ can be found from Eq. (\ref{eqn:pR_p})
+\begin{eqnarray*}
+  \dot{p}_C &=& e [E_m] L^3 (\dot{v} s_{\cal M}/ L - \dot{r}) 
+  \\ 
+  &=& \{\dot{p}_{Am}\} \frac{e L^2} {e + g} (g s_{\cal M} + (L + L_T s_{\cal M})/ L_m) = \{\dot{p}_{Am}\} S_C
+  \\
+  \dot{R} &=& \frac{\kappa_R} {E_0} \dot{p}_R = \frac{\kappa_R} {E_0} \left( (1 - \kappa) \dot{p}_C - \dot{k}_J E_H^p \right)
+  = \frac{\kappa_R} {U_E^0} \left( (1 - \kappa) S_C - \dot{k}_J U_H^p \right)
+\end{eqnarray*}
+
+
+The gonado-somatic index (\ref{eqn:GSI}) at time $t_1$ since emptying the reproduction buffer amounts to 
+\[
+  Q = \frac{M_{E_R}} {M_E + M_V} = \frac{t_1 \dot{p}_R} {E + L^3 [M_V] \mu_E} = \frac{t_1 \dot{p}_R} {L^3 (f [E_m] + [E_G] y_{VE})}
+\]
+For a fully grown individual, with $\{\dot{p}_T\} = 0$ and $\dot{r} = 0$ and $L = f L_m s_{\cal M} = L_\infty$ and $e = f$, the mobilisation rate reduces to $\dot{p}_C = e [E_m] L_\infty^2 s_{\cal M} \dot{v} = f^3 [E_m] L_m^2 s_{\cal M}^3 \dot{v}$ and the allocation to reproduction to $\dot{p}_R = (1 - \kappa) \dot{p}_C - \dot{k}_J E_H^p  = (1 - \kappa) f^3 [E_m] L_m^2 s_{\cal M}^3 \dot{v} - \dot{k}_J E_H^p$.
+The gonado-somatic index becomes
+\[
+  Q = \frac{t_1 \dot{k}_M g/ f^3} {f  + \kappa g y_{VE}} \left( (1 - \kappa) f^3 - \frac{\dot{k}_M^2 g^2} {s_{\cal M}^3 \dot{v}^2 \{\dot{p}_{Am}\}} \dot{k}_J E_H^p \right) 
+\]
+This reduces to (\ref{eqn:GSI}) for $s_{\cal M} = 1$.
+
+\subsection*{7.8.2 Maturation ceasing at puberty}
+\phantomsection
+\pdfbookmark[2]{7.8.2 Maturation ceasing at puberty}{sec_c:metamorphosis_aa}
+\label{sec_c:metamorphosis_aa}
+
+The minimum scaled functional response to reach puberty in the case of acceleration at constant food, is found from the conditions that both growth and maturation cease eventually.
+Growth ceases if $L_\infty = L_p$, which leads to $l_p = (f - l_T) s_{\cal M}$.
+Maturation ceases if $(1 - \kappa) \dot{p}_C = \dot{k}_J E_H^p$, with $\dot{p}_C$ at $L = L_p$ and $\dot{r} = 0$ equals $\dot{p}_C = f [E_m] L_p^2 \dot{v} s_{\cal M}$.
+Substitution gives $k v_H^p = f (f - l_T)^2 s_{\cal M}^3$.
+In absence of acceleration, we have $s_{\cal M} = 1$ and the condition reduces to the one that is found in \hyperref[ssec_c:puberty]{Section 2.6.3 of the comments}.
+\hyperref[sssec_c:bijection_pars_bounds]{Section 4.10.0.3 of the comments} states that supply stress at constant food amounts to $s_s = \kappa^2 (1 - \kappa) k v_H^p s_{\cal M}^{-3}$.
+Substitution in the minimum $f$ condition learns that $f$ can also be found from $s_s = \kappa^2 (1 - \kappa) f (f - l_T)^2$.
+
+\subsection*{7.8.2 Acceleration of metabolism at birth}
+\phantomsection
+\pdfbookmark[2]{7.8.2 Acceleration of metabolism at birth}{sec_c:metamorphosis_b}
+\label{sec_c:metamorphosis_b}
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,6)(0,0)
+  \put(0,0){\scalebox{0.5}{\includegraphics{acceleration}}}
+  \put(3, -0.1){time since birth}
+  \put(0,1){\rotatebox{90}{length}}
+\end{picture}
+\parbox[b]{8cm}{
+\caption[]{\label{fig:acceleration}\protect\small
+  Length as function of time at constant food during acceleration.
+  Time is scaled such that the inclination point (i.e. transition from V1- to iso-morphic stage) is at value 1.
+  Length is scaled such that the asymptote has value 1.
+  The green curves represent expo-von Bertalanffy-curves, for different choices of maximum growth rates, the red curve is the Gompertz one.}}
+\end{figure} 
+
+Type $\cal M$ acceleration amounts to the insertion of a V1-morphic stage between birth and metamorphosis, which has the effect that $\{\dot{p}_{Am}\}$ and $\dot{v}$ increase during this period \cite{KooyPecq2011}.
+The effect on growth is illustrated in Figure \ref{fig:acceleration}.
+The transition from the V1- to the iso-morphic stage is smooth, since the growth rate depends on reserve mobilisation, so on the amounts of reserve and structure, and the amounts don't change suddenly.
+The resulting exo-von Bertalanffy curve has 4 parameters.
+The smooth transition between the exponential and von Bertalanffy stages implies $\dot{r}_j = 3 \dot{r}_B (e L_m/ L_j - 1)$.
+Apart from anchovy \emph{Engraulis encrasicolus} \cite{Pecq2008}, this also has been found for Pacific bluefin tuna \emph{Thunnus orientalis} \cite{JusuKlan2011}, zebrafish \emph{Danio rerio} \cite{AuguGagn2011}, copepods, crabs and quite a few other species, see Figure \ref{fig:sM}.
+A remarkable implication is that if two identical neonates are exposed to different temperature and/or food conditions, their values for $\{\dot{p}_{Am}\}$ and $\dot{v}$ differ at metamorphosis and remain different, even if they experience the same conditions after metamorphosis.
+Figures \ref{fig:Danio} and \ref{fig:AuguGagn2011}, show a small sub-sample of the zebrafish data that have been used to estimate parameter values (see the \href{http:\\www.bio.vu.nl/thb/deb/deblab/add_my_pet/}{add\_my\_pet collection}.
+The acceleration by a factor $l_j/ l_b = 3$ is clearly visible in the growth data of \cite{LawrEber2008}.
+The parameters, as given in Figure \ref{fig:AuguGagn2011} can be used to obtain the maturity levels at the various life stages, see Tables \ref{tab:EmbryoDev} and \ref{tab:PostEmbryoDev}.
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,6)(0,0)
+  \put(0,0){\scalebox{0.5}{\includegraphics{tL_LawrEber2008}}}
+  \put(3, -0.1){age, d}
+  \put(0,2){\rotatebox{90}{TL, cm}}
+\end{picture}
+\begin{picture}(5,6)(0,0)
+ \put(0,0){\scalebox{0.6}{\includegraphics{aS_GerhKauf2002}}}
+\put(3, -0.1){age, d}
+\put(0,2.5){\rotatebox{90}{survival, -}}
+\end{picture}  
+\caption[]{\label{fig:Danio}\protect\small
+  Total Length (snout till end of caudal fin, left) and survival probability (right) as functions of age for the zebrafish \emph{Danio rerio}.
+  From \cite{AuguGagn2011}, based on data from \cite{LawrEber2008,GerhKauf2002}.}
+\end{figure} 
+
+\begin{figure}\small
+\setlength{\unitlength}{1cm}
+\begin{picture}(7.5,6)(-1,0)\footnotesize
+  \put(0,0.1){\scalebox{0.5}{\includegraphics{tL_Exp1}}}
+  \put(2,0){age, d}
+  \put(-0.1,2){\rotatebox{90}{SL, cm}}
+  \put(2.6,2.2){\vector(-1,1){0.6}}
+\end{picture}
+\begin{picture}(7.5,6)(-1,0)\footnotesize
+  \put(0 ,0.1){\scalebox{0.5}{\includegraphics{tR_Exp1}}}
+  \put(2.3,0){age, d}
+  \put(-0.1,2){\rotatebox{90}{cumulated $\#\,\mbox{eggs}$}}
+\end{picture}
+\caption[]{\label{fig:AuguGagn2011}\protect\small
+   Observations, the symbols refer to the different individuals, and model predictions, solid lines, for growth (left) and reproduction (right) during 82 days of caloric restriction at two feeding levels which are estimated at $f_1=0.74$ and $f_2=0.69$.
+   Animals are 116 d of age and 2 cm standard length SL (tip of snout till base of caudal fin) at arrival. 
+   They are acclimated to laboratory conditions for two weeks. 
+   Caloric restriction is initiated at age 132 d (arrow). 
+   From \cite{AuguGagn2011}.
+   The shape coefficient during the acceleration was assumed to decrease linearly in length:
+   $\delta_{\cal M}(L) = \delta_{\cal M}^b + (\delta_{\cal M}^j - \delta_{\cal M}^b) \frac{L_j -L} {L_j -L_b}$.
+   In combination with data illustrated in Figure \ref{fig:Danio} and other data, the parameters were estimated to be:
+   $\{\dot{p}_{Am}\} = 246.3$\,J\,d$^{-1}$cm$^{-2}$ (for the embryo),
+   $\dot{v} = 0.0278$\,cm\,d$^{-1}$ (for the embryo),
+   $\kappa = 0.437$,
+   $\kappa_X = 0.5$ (for Tetramin),
+   $\kappa_R = 0.95$,
+   $[\dot{p}_M] = 500.9$\,J\,d$^{-1}$cm$^{-3}$,
+   $\dot{k}_J = 0.0166$\,d$^{-1}$,
+   $[E_G] = 4652$\,J\,cm$^{-3}$, 
+   $E_H^b = 0.54$\,J,
+   $E_H^j = 19.66$\,J,
+   $E_H^p = 2062$\,J,
+   $T_A = 3000$\,K,
+   $\ddot{h}_a = 1.96\,10^{-9}$\,d$^{-2}$, 
+   $s_G = 0.0405$, 
+   $\delta_{\cal M}^b =  0.1325$ (for TL of embryo),
+   $\delta_{\cal M}^j = 0.1054$ (for TL after metamorphosis).}
+\end{figure}
+
+
+\begin{table}\footnotesize
+ \caption[]{\label{tab:EmbryoDev}\protect\small
+   Maturity levels for the embryonic developmental milestones of the zebrafish \emph{D. rerio}. 
+   Developmental stages and ages (28.5\,$^\circ$C) are as defined by \cite{KimmBall95}. 
+   Ages are presented in hours post fecundation, hpf.
+   The ages depend on temperature and food conditions, the maturity levels do not.}    
+\setlength{\unitlength}{1cm}
+\parbox[b]{7.5cm}{
+\begin{tabbing}
+  xxxxx\=xxxxxx\=xxxxxxxxxxxxxx\=xxxxxx\=xxxxxxx\=\kill
+  \rule{70mm}{.1mm} \\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \> \> {\bf Stage} \> {\bf Age} \> {\bf $E_H$}\\
+  \> \>             \>  hpf      \>     mJ     \\
+  \rule{70mm}{.1mm}\\[3mm] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_0_75}}} \end{picture} 
+    \> \> 2-cell  \> 0.75  \> 0.01               
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_1_5}}} \end{picture} 
+    \> 4-cell  \> 1     \>    0.02           
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_1_25}}} \end{picture}
+    \> \> 8-cell  \> 1.25  \>    0.02 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_1_5}}} \end{picture}
+    \> 16-cell \> 1.5   \>    0.02 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_1_75}}} \end{picture}
+    \> \> 32-cell \> 1.75  \>    0.02 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_2}}} \end{picture}
+    \> 64-cell \> 2     \>    0.03 
+  \\[3mm]
+%% Blastula period  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_2_25}}} \end{picture}  
+    \> \> 128-cell     \> 2.25  \>    0.03 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_2_5}}} \end{picture} 
+    \> 256-cell     \> 2.5   \>    0.04 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_2_75}}} \end{picture} 
+    \> \> 512-cell     \> 2.75  \>    0.05 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_3}}} \end{picture} 
+    \> 1k-cell      \> 3     \>    0.07 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_3_3}}} \end{picture} 
+    \> \> High         \> 3.33  \>    0.088 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_3_7}}} \end{picture} 
+    \> Oblong        \> 3.66  \>    0.11 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_4}}} \end{picture} 
+    \> \> Sphere       \> 4     \>    0.14
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_4_3}}} \end{picture} 
+    \> Dome         \> 4.33  \>     0.171 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_4_7}}} \end{picture} 
+    \> \> 30\%-epiboly \> 4.66  \>     0.20 
+  \\[3mm]
+%% Gastrula period  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_5_3}}} \end{picture} 
+    \> 50\%-epiboly         \> 5.25  \>     0.27 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.25}{\includegraphics{Danio_5_7}}} \end{picture} 
+    \> \> Germ-ring            \> 5.66  \>     0.33 
+  \\[2mm]
+  \rule{70mm}{.1mm} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tabbing}}
+\hspace{5mm}
+\parbox[b]{8cm}{
+\begin{tabbing}
+  xxxxxxx\=xxxxxxxxxx\=xxxxxxxxxxxxxxxx\=xxxxxx\=xxxxxxx\=\kill
+  \rule{8cm}{.1mm} \\  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \> \> {\bf Stage} \> {\bf Age} \> {\bf $E_H$}\\
+  \> \>             \>  hpf      \>     mJ     \\
+  \rule{8cm}{.1mm}\\[3mm] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_6}}} \end{picture} 
+    \> Shield               \> 6     \>     0.38 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_8}}} \end{picture} 
+    \> \> 75\%-epiboly         \> 8     \>     0.71 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_9}}} \end{picture} 
+    \> 90\%-epiboly         \> 9     \>     0.96  
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_10}}} \end{picture} 
+    \> \> Bud                  \> 10    \>     1.3 
+  \\[3mm]
+%%  Segmentation period %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \> \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_11}}} \end{picture} 
+    \> 3-somite            \> 11    \>     1.7 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\scalebox{0.20}{\includegraphics{Danio_12}}} \end{picture} 
+    \> \> 6-somite            \> 12    \>     2.1 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\rotatebox{90}{\scalebox{0.20}{\includegraphics{Danio_16}}}} \end{picture} 
+    \> 14-somite           \> 16    \>     4.6
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\rotatebox{90}{\scalebox{0.20}{\includegraphics{Danio_21}}}} \end{picture} 
+    \> \> 21-somite           \> 19.5  \>   8.0 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(0,-0.3){\rotatebox{90}{\scalebox{0.20}{\includegraphics{Danio_22}}}} \end{picture} 
+    \> 26-somite           \> 22    \>     11.2 
+  \\[3mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\multicolumn{5}{l}{Pharyngula period} \tabularnewline
+  \begin{picture}(0,0) \put(0,-0.6){\rotatebox{90}{\scalebox{0.20}{\includegraphics{Danio_25}}}} \end{picture} 
+    \> \> Prim-6            \> 25    \>     16.0 
+  \\[3mm]
+  \> \begin{picture}(0,0) \put(-0.3,-0.3){\rotatebox{90} {\scalebox{0.20}{\includegraphics{Danio_31}}}} \end{picture} 
+    \> Prim-16           \> 31    \>     29.5 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.6){\rotatebox{83}{\scalebox{0.20}{\includegraphics{Danio_35}}}} \end{picture}  
+    \> \> Prim-22           \> 35    \>     41.4 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){ \rotatebox{90} {\scalebox{0.20}{\includegraphics{Danio_42}}}} \end{picture} 
+    \> \> High-pec          \> 42    \>    68.9  
+  \\[3mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\multicolumn{5}{l}{Hatching period} \tabularnewline
+  \begin{picture}(0,0) \put(0,-0.3){\rotatebox{90} {\scalebox{0.20}{\includegraphics{Danio_48}}}} \end{picture} 
+    \> \> Long-pec          \> 48    \>     99.6  
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.3){\rotatebox{90} {\scalebox{0.20}{\includegraphics{Danio_60}}}} \end{picture} 
+    \> \> Pec-fin           \> 60    \>     180 
+  \\[3mm]
+  \begin{picture}(0,0) \put(0,-0.6){\rotatebox{90} {\scalebox{0.20}{\includegraphics{Danio_72}}}} \end{picture} 
+    \> \> Protruding-mouth  \> 72    \>     280 
+  \\[9mm]
+  \rule{8cm}{.1mm} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tabbing}}
+\end{table}
+
+\begin{table}
+  \caption[]{\label{tab:PostEmbryoDev}\protect\small
+  Maturity levels for post embryonic developmental milestones of the zebrafish \emph{D. rerio}.
+  Standard length SL (tip of snout till base of caudal fin), developmental stages and names as given in \cite{PariEliz2009}. 
+  Ages, in days post fecundation (dpf), at $f = 0.63$ and $f = 1$ as well as SL at $f = 1$ are model predictions at 28.5\,$^\circ$C.
+  Birth corresponds with stage pSB+; metamorphosis is just before stage PR; puberty corresponds with stage A.
+  The ages and lengths depend on temperature and food conditions, the maturity levels do not.}
+  \setlength{\unitlength}{1cm}
+  \begin{tabbing}
+  xxxxxxxxxxxxxx\=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\=xxxxx\=xxxxxx\=xxxxxx\=xxxxx\=xxxxxx\=xxxxx\kill
+  \rule{\textwidth}{.1mm}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \\
+  \> {\bf Stage} \> {\bf age} \> {\bf SL}  \> {\bf age} \> {\bf SL}  \> {\bm $E_H$}\\
+  \>             \>     dpf   \>    cm     \>     dpf   \>     cm    \>    J\\
+  \rule{\textwidth}{.1mm} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \\[4mm]
+  \> \> $\stackrel{f = 0.63}{\rule{2cm}{.1mm}}$ \> \> $\stackrel{f = 1}{\rule{2cm}{.1mm}}$ 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_PSB+}}} \end{picture}          
+    \>  pSB+ swim bladder inflation
+    \> 4.5   \> 3.8   \> 4.0   \> 3.7      \> {\bf 0.5} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_FLe}}} \end{picture}       
+    \> Fle early flexion  
+    \> 7.2   \> 4.5   \> 6.3   \> 4.6      \> {\bf 1.1} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\rotatebox{5}{\scalebox{0.35}{\includegraphics{Danio_CR}}}} \end{picture}        
+    \> CR caudal fin ray
+    \> 8.9   \> 4.9   \> 7.4   \> 5.1      \> {\bf 1.6} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_AC}}} \end{picture}    
+    \> AC anal fin condensation
+    \> 10.5  \> 5.4   \> 8.5   \> 5.9      \> {\bf 2.3} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_DC}}} \end{picture}       
+    \> DC dorsal fin condensation
+    \> 12.3  \> 5.7   \> 9.6   \> 5.8      \> {\bf 3.3} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_MMA}}} \end{picture}      
+    \> MMA metamorphic melanophore app.
+    \> 12.9  \> 5.9   \> 10.0  \> 6.0      \> {\bf 3.8} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_AR}}} \end{picture}     
+    \> AR anal fin ray appearance
+    \> 14.2  \> 6.2   \> 10.9  \> 6.3      \> {\bf 5}   
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_DR}}} \end{picture}      
+    \> DR dorsal fin ray appearance
+    \> 15.0  \> 6.4   \> 11.4  \> 6.5      \> {\bf 5.9} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_PB+}}} \end{picture}      
+    \> PB+ following pelvic fin bud app.
+    \> 18.7  \> 7.6   \> 13.8  \> 7.7      \> {\bf 12.7} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_PR}}} \end{picture}      
+    \> PR pelvic fin ray appearance
+    \> 21.3  \> 8.5   \> 15.5  \> 8.5      \> {\bf 21.9} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_PR+}}} \end{picture}      
+    \> PR+  following pelvic fin ray app.
+    \> 22.5  \> 9.2   \> 16.3  \> 9.3      \> {\bf 27.9} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_SP}}} \end{picture}      
+    \> SP onset of posterior squamation
+    \> 23.8  \> 9.8   \> 17.2  \> 9.8      \> {\bf 34.9} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_SA}}} \end{picture}       
+    \> SA onset of anterior squamation   
+    \> 25.0  \> 10.4  \> 17.9  \> 10.5     \> {\bf 42.3} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_J}}} \end{picture}       
+    \> J juvenile
+    \> 26.2  \> 11.0  \> 18.7  \> 11.0     \> {\bf 50.9} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(0,0){\scalebox{0.35}{\includegraphics{Danio_J+}}} \end{picture}       
+    \> J+ following juvenile   
+    \> 30.8  \> 13.0  \> 21.6  \> 13.2     \> {\bf 91.7} 
+  \\[4mm]
+  \begin{picture}(0,0) \put(-0.1,0){\scalebox{0.3}{\includegraphics{Danio_J++}}} \end{picture}      
+    \> J++ following juvenile  
+    \> 40.7  \> 16.0  \> 27.5  \> 16.4     \> {\bf 221.6} 
+  \\[5mm]
+  \begin{picture}(0,0) \put(-0.2,0){\scalebox{0.3}{\includegraphics{Danio_Af}}} 
+        \put(3,0){\scalebox{0.3}{\includegraphics{Danio_Am}}} \end{picture}      
+    \> \hspace{3cm} A  adults   
+    \> 218   \> 26.0  \> 59.9  \> 30.6     \> {\bf 2061} 
+  \\[3mm]
+  \rule{\textwidth}{.1mm}
+  \end{tabbing} 
+\end{table}
+
+During the V1-morphic early juvenile stage, assimilation, dissipation and growth are all proportional to weight at constant food, so respiration is proportional to weight.
+This is exactly what \cite{PostLee96,KillCost2007,MoraWell2007} found for prior to metamorphosis in seven species of fish: 
+common carp (\emph{Cyprinus carpio}), 
+rainbow trout (\emph{Oncorhynchus mykiss}), 
+red sea bream (\emph{Pagrus major}), 
+ocean pout (\emph{Macrozoarces americanus}), 
+lumpfish (\emph{Cyclopterus lumpus}), 
+shorthorn sculpin (\emph{Myoxocephalus scorpius}), 
+yellowtail kingfish (\emph{Seriola lalandi}).
+After metamorphosis, respiration was found to be less than proportional to weight, again as expected.
+
+Acceleration has the effect that the residence time of molecules in the reserve does not change during acceleration, see \hyperref[sec_c_b:reserve_dynamics]{Section 2.3} of the comments, while it would increase with length in absence of acceleration.
+The maximum reserve residence time $t_{Em} = L_m/ \dot{v}$ is unaffected by acceleration.
+The mean value of energy conductance $\dot{v}$ at 20\,$^\circ$C before and after acceleration are 0.05 and 0.11\,cm\,d$^{-1}$ and the corresponding coefficients of variation are 1.2 and 2.1, respectively.
+So both in mean and in variation coefficient, this means a step-up of a factor 2 for all species together.
+Species that accelerate have a mean $\dot{v}$ before and after acceleration of 0.035 and 0.26\,cm\,d$^{-1}$, while species that don't accelerate have 0.055\,cm\,d$^{-1}$.
+Species that accelerate start with a relatively low $\dot{v}$ and end-up with a substantially larger one.
+
+Bivalves vary on the acceleration scheme by accelerating at a later stage:
+the embryo and early juvenile stages follow the standard model, the V1-morphic phase is around metamorphosis, after which they follow the standard model again. 
+The jump up in $\{\dot{p}_{Am}\}$ and $\dot{v}$ is around a factor 10 for \emph{Crassostrea}, compared to pre-metamorphosis, as is beautifully illustrated in its mydata-file.
+The reserve capacity $[E_m] = \{\dot{p}_{Am}\}/ \dot{v}$ is unaffected by the acceleration.
+
+The Gompertz growth curve 
+\[
+  L(t) = L_\infty \exp(-\exp(\delta_G - \dot{r}_G t))
+\]
+where $\delta_G = \ln(\ln(L_\infty/ L_b))$ and $t$ is time since birth, is frequently used to describe growth empirically.
+It has 3 parameters, while the expo-von Bertalanffy curve has 4, so that latter has more plasticity in shape.
+We can compare both curves on the basis of the same values for length at birth $L_b = L(0)$, ultimate length $L_\infty = L(\infty)$ and moment of inclination, $t_j$.
+The Gompertz curve reaches maximum growth at $t_j = \delta_G/ \dot{r}_G$, with $L_j = L(t_j) = L_\infty/ e$ and $\frac{d} {dt} L(t_j) = L_\infty \dot{r}_G/ e$.
+The expo-von Bertalanffy curve has $\frac{d} {dt} L(t_j) = L_j \dot{r}_j$ and $\dot{r}_j = 3 \dot{r}_B (f L_m/ L_j - 1)$.
+
+Writing $l = L/ L_\infty$, so $\delta_G = \ln( - \ln(l_b))$, and $\tau = t/ t_j$, the Gompertz curve reduces to $l(\tau) = \exp(-\exp(\delta_G (1 - \tau)))$ and the expo-von Bertalanffy curve to $l(\tau) = l_b \exp( \tau r_j/ 3)$ for $\tau < 1$ or $l(\tau) = 1 - (1 - l_j) \exp( -r_B (\tau - 1))$ for $\tau > 1$, where $r_j = \dot{r}_j t_j$, $r_B = \dot{r}_B t_j = \frac{r_j t_j} {3/ l_j - 3}$ and $l_j = l_b \exp(r_j/ 3)$.
+To compare both curves, we now require that the latter equals the one for the Gompertz curve, $l_j = \exp(-1)$, from which follows $r_j = -3 - 3 \ln l_b$.
+Figure \ref{fig:acceleration} compares both curves. 
+The scaled Gompertz curve has a scaled maximum growth rate of $\frac{d} {d \tau} l (1) = \frac{\delta_G} {\exp(1)}$ and the scaled expo-von Bertalanffy one of $\frac{d} {d \tau} l (1) = - \frac{1 + \ln l_b} {\exp(1)}$.
+The latter is larger.
+
+\subsection*{7.8.3 Programmed shrinking}
+\phantomsection
+\pdfbookmark[2]{7.8.3 Programmed shrinking}{sec_c:programmed_shrinking}
+\label{sec_c:programmed_shrinking}
+
+Fish of the superorder Elopomorpha and of the order Ophidiiformes and several other scattered taxa, such as the paradoxal frog \emph{Pseudis paradoxa} and the midwife toad \emph{Alytes obstetricans}, show substantial programmed shrinking at some point during their juvenile period, during which they cease feeding.
+This coincides with substantial changes in morphology, so it can be called metamorphosis.
+Unfortunately little is known about details of their embryo and early juvenile development, relative to later development.
+For the moment we assume that these events only affect shape and size, but its basis is lack of better knowledge.
+
+To quantify their development, the assumptions are that they generally follow the standard model (for isomorphs).
+When maturity hits threshold $E_H^s$, shrinking starts at event called $s$, with specific rate $\dot{k}_E$, which lasts some period $t_0$.
+Structure, reserve and maturity shrink in harmony, so reserve density and maturity density do not change during this period of programmed shrinking. 
+At event called $j$, the process is completed and the standard model is followed again with the same parameters.
+So if the state variables $V_s$, $E_s$ and $E_H^s$ apply at event $s$, the values at event $j$ are $V_j = \delta_{sj} V_s$, $E_j = \delta_{sj} E_s$ and $E_H^j = \delta_{sj} E_H^s$, where $\delta_{sj} = \exp(-\dot{k}_E t_{sj})$.
+Like all rates and times, $t_{sj}$ and $\dot{k}_E$ depend on temperature.
+ 
+
+\section*{7.9 Changing parameter values}
+\phantomsection
+\pdfbookmark[1]{7.9 Changing parameter values}{sec_c:par_change}
+\label{sec_c:par_change}
+
+As discussed in subsection \hyperref[ssec_c:maturation]{2.5.2} of the comments, some frogs accelerate maturation by temporarily lowering $\kappa$.
+Some fish species insert a V1-morphic stage between birth and metamorphosis, and bivalves do this at metamorphosis, as discussed in subsection \hyperref[sec_c:metamorphosis_b]{7.8.2} of the comments.
+
+\subsection*{7.9.2 Suicide reproduction}
+\phantomsection
+\pdfbookmark[2]{7.9.2 Suicide reproduction}{sec_c:suicide}
+\label{sec_c:suicide}
+
+The occurrence of suicide reproduction is remarkably distributed among taxa, suggesting that it evolved many times independently.
+The lampreys (\emph{Hyperoartia}) sport suicidal reproduction, but the hagfishes (\emph{Myxini}) not.
+Like in eel and salmon, suicidal reproduction is coupled to spawning and an early development in freshwater and marine existence in between.
+
+The North Pacific giant octopus \emph{Enteroctopus doflein} reproduces only once at an age of 5 till 7 years when it can weigh some 70\,kg.
+The mother lays some $10^5$ eggs in a burrow and guards and cares for half a year without feeding. 
+She dies when the eggs hatch.
+Although the temperature is low, such long starvation times are only possible for large-bodied species.
+
+\section*{7.10 Summary}
+\phantomsection
+\pdfbookmark[1]{7.10 Summary}{sec_c:summary}
+\label{sec_c:d_i-states}
+
+Add\_my\_Pet has 10 related {\sc deb} models, which specification can be summarized as follows, where
+the environmental variables, temperature $T(t)$ and food density $X(t)$, can change in time $t$.
+All models are variations on the standard (std) model and
+all models deal with environmental variables in the same way:
+
+\vspace{5mm}\noindent{\bf\em Effect of temperature on any rate $\dot{k}$}: {\small
+\begin{description}
+   \item[Basic: ]  $\frac{\dot{k}(T)} {\dot{k}(T_{\mbox{\tiny ref}})} =  
+	    \exp \left( \frac{T_A} {T_{\mbox{\tiny ref}}} - \frac{T_A} {T} \right)$
+
+   \item[Extended: ]  $\frac{\dot{k}(T)} {\dot{k}(T_{\mbox{\tiny ref}})} =  
+	    \exp \left( \frac{T_A} {T_{\mbox{\tiny ref}}} - \frac{T_A} {T} \right) 
+			\frac{1 + \exp\left(\frac{T_{AL}} {T_{\mbox{\tiny ref}}} - \frac{T_{AL}} {T_L}\right)_+ + 
+			          \exp\left(\frac{T_{AH}} {T_H} - \frac{T_{AH}} {T_{\mbox{\tiny ref}}}\right)_+}
+	         {1 + \exp \left( \frac{T_{AL}} {T} - \frac{T_{AL}} {T_L} \right)_+ + \exp \left(\frac{T_{AH}} {T_H} - \frac{T_{AH}} {T} \right)_+}$
+\end{description}}
+
+\vspace{5mm}\noindent{\bf\em Effect of food on assimilation}: {\small
+\begin{description}
+  \item if $E_H < E_H^b$, $\dot{p}_X = 0$,  else $\dot{p}_X = f \{\dot{p}_{Xm}\} L^2$ with 
+	   $f = \frac{X} {K + X}$ and $K = \frac{\{\dot{J}_{Xm}\}} {\{\dot{F}_m\}}$ and
+		 $\{\dot{p}_{Xm}\} = \{\dot{p}_{Am}\}/ \kappa_X$
+\end{description}}
+
+\subsection*{7.10.1 s-models}
+\phantomsection
+\pdfbookmark[2]{7.10.1 s-models}{sec_c:s-models}
+\label{sec_c:s-models}
+
+s-models assume isomorphy throughout the full life cycle.
+
+\subsubsection*{7.10.1.1 std model}
+\phantomsection
+\pdfbookmark[3]{7.10.1.1 std model}{sec_c:std}
+\label{sec_c:std}
+
+The std-model follows from the assumptions as listed in Table 2.4.\\
+Within the family of {\sc deb} models, the std-model can be seen as a canonical form.
+
+\vspace{5mm}\noindent{\bf\em Main characteristics}: {\small
+\begin{description}
+  \item[$\circ$] 1 type of food $X$, 1 type of structure $V$, 1 type of reserve $E$, 1 type of feces $P$ 
+	
+	\item[$\circ$] 4 minerals (carbon dioxide $C$, water $H$, dioxygen $O$, N-waste $N$); $O$ is not limiting 
+	
+  \item[$\circ$] 3 life stages (embryo, juvenile, adult) triggered by maturity thresholds
+	
+	  \subitem $\bullet$ birth is defined as start of assimilation via food uptake 
+		
+		\subitem $\bullet$ puberty as end of maturation and start of allocation to reproduction
+		
+	\item[$\circ$] If mobilisation is not fast enough to cover maturity and/or somatic maintenance,
+	  rejuvenation and/or some shrinking can occur, but only after use of the reproduction buffer
+		
+	\item[$\circ$] The reproduction buffer is continuously converted to a spawning buffer, which is instantaneously converted to exported eggs,
+	  if the spawning buffer exceeds a density threshold
+\end{description}}
+
+\vspace{5mm}\noindent{\bf\em Parameters}: {\small
+\begin{description}
+  \item[Temperature: ] $T_A$, $T_L$, $T_H$, $T_{AL}$, $T_{AH}$ 
+	
+	\item[Hazard: ] $\ddot{h}_a$, $s_G$, $\delta_L$, $\dot{h}_J$, $\dot{h}_0$, $\dot{h}_0^e$
+	
+	\item[Life stage: ] $E_H^b$, $E_H^p$
+	
+  \item[Core: ] $\{\dot{F}_m\}$, $\{\dot{p}_{Am}\}$, $[\dot{p}_M]$, $\{\dot{p}_T\}$, $\dot{k}_J$, $\dot{k}_J^\prime$, 
+	  $\dot{v}$, $[E_G]$, $\kappa$, $\kappa_X$, $\kappa_P$, $\kappa_R$, $[E_R^s]$
+		
+  \item[Chemical: ] $[M_V]$, 
+	  ${\bm d}_{\cal O} = (\begin{array}{cccc} d_X & d_V & d_E & d_P \end{array})$, 
+	  ${\bm \mu}_{\cal O} = (\begin{array}{cccc} \ol{\mu}_X & \ol{\mu}_V & \ol{\mu}_E & \ol{\mu}_P\end{array})$,
+	  ${\bm n}_{\cal M}$, ${\bm n}_{\cal O}^d$,\\
+		  where the chemical coefficients for minerals and (dry) organic compounds are\\
+	  ${\bm n}_{\cal M} = \left( 
+      \begin{array}{cccc} 
+        1 & 0 & 0 & n_{CN}\\ 
+			  0 & 2 & 0 & n_{HN}\\ 
+        2 & 1 & 2 & n_{ON}\\ 
+			  0 & 0 & 0 & n_{NN} 
+      \end{array} \right)$ and 
+	  $ {\bm n}_{\cal O}^d = \left( 
+    \begin{array}{cccc}
+      1        & 1        & 1        & 1       \\ 
+			n_{HX}^d & n_{HV}^d & n_{HE}^d & n_{HP}^d\\
+      n_{OX}^d & n_{OV}^d & n_{OE}^d & n_{OP}^d\\ 
+			n_{NX}^d & n_{NV}^d & n_{NE}^d & n_{NP}^d 
+    \end{array} \right)$.\\ 
+		If the N-waste is ammonia, we have $n_{CN} = 0$, $n_{HN} = 3$, $n_{ON} = 0$, $n_{NN} = 1$.
+\end{description}}
+
+
+\vspace{5mm}\noindent{\bf\em Help quantities (for the specification of changes in state)}: {\small
+\begin{description}
+  \item [wet/dry mass: ]
+	  The chemical coefficients of wet organic mass $n_{*_1 *_2}^w$ relate to that of dry mass $n_{*_1 *_2}^d$ 
+		  for $*_1 \in \{H, O\}$ and $*_2 \in \{X, V, E, P\}$ as 
+			$n_{H *_2}^w = 2 x_{*_2} + n_{H *_2}^d$ and $n_{O *_2}^w = x_{*_2} + n_{O *_2}^d$, 
+			while $n_{C *_2}^w = n_{C *_2}^d$ and $n_{N *_2}^w = n_{N *_2}^d$, 
+			where $x_{*_2} = \frac{1 - d_{*_2}^d/ d_{*_2}^w} {18}$, 
+		  while $d_{*_2}^w \simeq 1$\,g/cm$^3$.\\
+		%The molecular weights of dry mass are $w_{*_2}^d = 12 n_{C *_2}^d + n_{H *_2}^d + 16 n_{O *_2}^d + 14 n_{N *_2}^d$.\\
+    %The molecular weights of wet mass relate to that of dry mass as $w_{*_2}^w =  w_{*_2}^d + 18 x_{*_2}$.\\
+
+  \item[mass fluxes: ] $\dot{\bm J}_{\cal O} = (
+		\begin{array}{cccc} 
+	     \dot{J}_X & \dot{J}_V & (\dot{J}_E + \dot{J}_{E_R}) &  \dot{J}_P 
+	  \end{array})$
+    relate to energy fluxes 
+		$\dot{\bm p} = \left(\begin{array}{ccc} \dot{p}_A & \dot{p}_D & \dot{p}_G \end{array} \right)$, as
+    $\dot{\bm J}_{\cal O} = {\bm \eta}_{\cal O} \dot{\bm p}$ with 
+    ${\bm \eta}_{\cal O} = 
+		  \left( \begin{array}{ccc} 
+        -\frac{1} {\kappa_X \ol{\mu}_X}       & 0                       & 0\\ 
+			  0                                     & 0                       & \frac{\kappa_G} {\ol{\mu}_V}\\ 
+        \frac{1} {\ol{\mu}_E}                 & - \frac{1} {\ol{\mu}_E} & - \frac{1} {\ol{\mu}_E}\\ 
+        \frac{\kappa_P} {\kappa_X \ol{\mu}_P} & 0                       & 0 
+      \end{array} \right)$
+	  and $\kappa_G = \ol{\mu}_V \frac{[M_V]} {[E_G]}$
+	
+  \item[assimilation: ] $\dot{p}_A = \kappa_X \dot{p}_X$ 
+
+	\item[somatic maintenance: ] $\dot{p}_S = [\dot{p}_S] L^3$.		
+	  If $E_H < E_H^b$, $[\dot{p}_S] = [\dot{p}_M]$, else $[\dot{p}_S] = [\dot{p}_M]  + \{\dot{p}_T\}/ L$
+			
+	\item[maturity maintenance: ] if $(1 - \kappa) \dot{p}_C > \dot{k}_J E_H$ (no rejuvenation), 
+	  $\dot{p}_J = \dot{k}_J E_H$, else $\dot{p}_J = \dot{k}_J^\prime E_H$
+		
+	\item[mobilization: ] $\dot{p}_C = E (\dot{v}/ L - \dot{r})$. 
+	  If $[E] \ge \frac{[\dot{p}_S] L} {\dot{v} \kappa}$ (no shrinking), 
+		  $\dot{r} = \frac{[E] \dot{v}/ L - [\dot{p}_S]/ \kappa} {[E] + [E_G]/ \kappa}$, 
+		else if $E_R > 0$, $\dot{r} = 0$, or if $E_R \le 0$, 
+		  $\dot{r} = \frac{[E] \dot{v}/ L - [\dot{p}_S]/ \kappa} {[E] + [E_G] \kappa_G/ \kappa}$ (shrinking)
+
+	\item[growth: ] $\dot{p}_G = \kappa \dot{p}_C - \dot{p}_S$, 
+	  but if $\kappa \dot{p}_C < \dot{p}_S$ and $E_R > 0$: $\dot{p}_G = 0$
+
+  \item[maturation/reproduction: ] $\dot{p}_R = (1 - \kappa) \dot{p}_C - \dot{p}_J$, 
+	  but if $(1 - \kappa) \dot{p}_C < \dot{p}_J$ and $E_R > 0$: $\dot{p}_R = 0$
+
+	\item[dissipation: ] if $E_H < E_H^p$, $\dot{p}_D = \dot{p}_S + \dot{p}_J + \dot{p}_R$,  
+	  else $\dot{p}_D = \dot{p}_S + \dot{p}_J + (1 - \kappa_R) \dot{p}_R$
+\end{description}}
+		
+		
+\vspace*{5mm}\noindent{\bf\em Initial states}: {\small
+$L(0) = 0$, $E_H(0) = 0$, $E_R(0) = 0$, $\ddot{q}(0) = 0$, $\dot{h}_A(0) = 0$ and $E(0) = E_0$ 
+  such that $[E](a_b)$ equals that of mother at egg production}
+
+\vspace*{5mm}\noindent{\bf\em Changes in state}: {\small
+\begin{description}
+  \item[structure: ] $\frac{d} {dt} L = L \dot{r}/ 3$.
+		So, initial change is $\frac{d} {dt} L(0) = \dot{v}/ 3$
+			
+  \item[reserve:] If $E_H < E_H^b$ (embryo), $\frac{d} {dt} [E] = - [E] \dot{v}/ L$, else $\frac{d} {dt} [E] = (\{\dot{p}_{Am}\} f - [E] \dot{v})/ L$
+	
+  \item[maturity:] If $E_H < E_H^p$ (embryo or juvenile), $\frac{d} {dt} E_H = \dot{p}_R$, else $\frac{d} {dt} E_H = 0$. 
+	  However, if $\dot{p}_J < 0$ and $E_R = 0$ (rejuvenation), 
+	    $\frac{d} {dt} E_H = \dot{p}_J^\prime$ with $\dot{p}_J^\prime = \min(0, \dot{p}_J \dot{k}_J^\prime/ \dot{k}_J)$
+			
+  \item[buffer:] If $E_H = E_H^p$ (adult), $\frac{d} {dt} E_R = \dot{p}_R - \dot{p}_J^\prime - \dot{p}_G^\prime$, 
+	  else ($E_H < E_H^p$) $\frac{d} {dt} E_R = 0$.
+		If adult and $E_R > 0$, $\dot{p}_G^\prime = \max(0, [\dot{p}_S] L^3 - \kappa \dot{p}_C)$, 
+		  else ($E_R \le 0$) $\dot{p}_J^\prime = 0$ and $\dot{p}_G^\prime = 0$.
+		The buffer is partitioned as $E_R = E_R^0 + E_R^1$, where $E_R^0$ converts, for positive $E_R^0$, to $E_R^1$ at rate
+			$\dot{p}_R^{\max} = \frac{1 - \kappa} {\kappa} L^3 \frac{[E_G] \dot{v}/L + [\dot{p}_S]} {1 + g} - \dot{p}_J$ and 
+			$g = \frac{[E_G] \dot{v}}{\kappa \{\dot{p}_{Am}\}}$.
+			
+  \item[hazard:] $\dot{h} = \dot{h}_A + \dot{h}_X + \dot{h}_B + \dot{h}_P$
+	
+	  \subitem $\bullet$ aging: 
+			$\frac{d} {dt} \ddot{q} = (\ddot{q} \frac{L^3} {L_m^3} s_G + \ddot{h}_a) e (\frac{\dot{v}} {L} - \dot{r}) - \dot{r} \ddot{q}; \quad 
+      \frac{d} {dt} \dot{h}_A = \ddot{q} - \dot{r} \dot{h}_A$
+				
+	  \subitem $\bullet$ starving (food): If $E_H < E_H^b$, $\dot{h}_X = 0$, else if $\dot{p}_C   < \frac{\dot{k}_J E_H} {1 - \kappa}$, 
+			$\dot{h}_X = \dot{h}_J (1 - \frac{\dot{p}_C (1 - \kappa)} {\dot{k}_J E_H})$.\\
+			\hspace*{9mm} Let $L_0$ be the length at which $\dot{r} = 0$ for the last time.\\ 
+			\hspace*{9mm} If $L = \delta_L L_0$, $h_X \, dt = \infty$ (instant death due to shrinking)
+				
+		\subitem $\bullet$ accidental (background): If $E_H < E_H^b$, $\dot{h}_B = \dot{h}_B^{0b}$, else $\dot{h}_B = \dot{h}_B^{bi}$; both constant
+			
+	  \subitem $\bullet$ thinning (predation): If $E_H \ge E_H^b$, $\dot{h}_P = \frac{2} {3} \dot{r}$, else $\dot{h}_P = 0$	
+\end{description}}
+	
+\vspace{5mm}\noindent{\bf\em Input/output fluxes}: {\small
+\begin{description}
+  \item[food: ] $\dot{J}_X = \frac{\dot{p}_A} {\kappa_X \ol{\mu}_X}$ 
+		
+  \item[feces: ] $\dot{J}_P = \frac{\kappa_P \dot{p}_A} {\kappa_X \ol{\mu}_P}$
+		
+  \item[eggs: ] If $E_R^1 = [E_R^s] L^3$: $\dot{R}\,dt = \kappa_R [E_R^s] L^3/ E_0$ eggs are produced and $E_R^1$ is set to $0$ 
+		
+  \item[minerals: ] $\dot{\bm J}_{\cal M} = - {\bm n}_{\cal M}^{-1} {\bm n}_{\cal O}^w \dot{\bm J}_{\cal O}$, where 
+		$\dot{\bm J}_{\cal M} = (\begin{array}{cccc} \dot{J}_C  & \dot{J}_H & \dot{J}_O  & \dot{J}_N \end{array})$
+			
+	\item[heat: ] $\dot{p}_{T+} = - \ol{\bm \mu}_{\cal O}^T \dot{\bm J}_{\cal O}$
+		
+	\item[death: ] at death, $[M_V] L^3$ moles of structure and $(E + E_R)/ \ol{\mu}_E$ moles of reserve become available in the environment
+\end{description}}
+
+
+\subsubsection*{7.10.1.2 stf-model}
+\phantomsection
+\pdfbookmark[3]{7.10.1.2 stf-model}{sec_c:stf}
+\label{sec_c:stf}
+
+Like the std-model but with
+\begin{description}
+  \item[$\circ$] fetal development (rather than egg development, see also the stx-model)
+\end{description}
+Budding, as found in cnidarians and salps has, metabolically, similarities with fetal propagation: 
+  no assimilation by buds during development.
+This type of fetal development is found in e.g. some cartilaginous and ray-finned fish, Peripatus.
+
+The deviation from the standard model amounts for the fetus, which has $E_H < E_H^b$, to 
+  $E(0) = 0$ and $\frac{d} {dt} [E] = (\{\dot{p}_{Am}\} f - [E] \dot{v})/ L$, where $f$ equals the value of the mother.
+For the mother, the deviation amounts to $\frac{d} {dt} E_R = \dot{p}_R - n \{\dot{p}_{Am}\} f L_e^2$, where $L_e$ is the structural length of the fetus, $n$ the number of fetuses, such that $\dot{p}_R a_b = n f \{\dot{p}_{Am}\} \int_0^{a_b} L_e^2(t) \, dt$.
+The effect is that $E_R = 0$ at the end of the gestation period.
+ 
+\subsubsection*{7.10.1.3 stx-model}
+\phantomsection
+\pdfbookmark[3]{7.10.1.3 stx-model}{sec_c:stx}
+\label{sec_c:stx}
+
+Like the stf-model  but with 
+\begin{description}
+  \item[$\circ$] fetal development (rather than egg development) that first starts with a preparation stage and then sparks off at a time, 
+	  $t_0$, that is an extra parameter 
+	
+  \item[$\circ$] a baby stage (for mammals) just after birth, ended by weaning, where the juvenile switches from feeding on milk to solid food 
+	  at maturity level $E_H^x$.
+    Weaning is between birth and puberty, so $E_H^b \le E_H^x \le E_Hp$.  
+\end{description}
+In its simplest form, it is a two parameter extension of std-model at abundant food.
+Food quality and up-regulation of assimilation can involve more parameters.
+This life history is found in placentalia.
+Milk production is from up-regulated feeding/assimilation.
+
+\subsubsection*{7.10.1.4 ssj-model}
+\phantomsection
+\pdfbookmark[3]{7.10.1.4 ssj-model}{sec_c:ssj}
+\label{sec_c:ssj}
+
+Like the std-model but with 
+\begin{description}
+   \item[$\circ$] a non-feeding stage between events $s$ and $j$ during the juvenile stage 
+	    that is initiated at a particular maturity level, $E_H^s$ and lasts a particular time, $t_{sj}$.
+      Substantial metabolically controlled shrinking occurs during this period, with specific rate $\dot{k}_E$, 
+			faster than can be explained by starvation.  
+\end{description}
+It is a three parameter extension of the std-model.
+This life history is found in Elopiformes, Albuliformes, Notacanthiformes, Anguilliformes, Ophidiiformes, some Anura and Echinodermata.
+The comments on Section 7.8.3 give more background.
+
+Given $V = V_s$, $E = E_s$, $E_H = E_H^s$ at time $t$, $V = \delta_{sj} V_s$, $E = \delta_{sj} E_s$ and $E_H = \delta_{sj} E_H^s$ 
+  at time $t + t_{sj}$, with $\delta_{sj} = \exp(- \dot{k}_E \delta_{sj})$, while $\dot{p}_X = 0$ for $t \in (t, t + t_{sj})$.
+ 
+\subsubsection*{7.10.1.5 sbp-model}
+\phantomsection
+\pdfbookmark[3]{7.10.1.5 sbp-model}{sec_c:sbp}
+\label{sec_c:sbp}
+
+Like the std model but with 
+\begin{description}
+  \item[$\circ$] growth ceases at puberty, meaning that the $\kappa$-rule is not operational in adults.   
+\end{description}
+It has the same parameters as the std-model, and is similar to the abp-model, which differs by acceleration.
+This life history is found in Calanus, while other copepods accelerate. 
+
+At puberty, growth ceases. so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
+Mobilisation after puberty is $\dot{p}_C = \dot{v} E/ L_p$, 
+  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.
+
+\subsection*{7.10.2 a-models}
+\phantomsection
+\pdfbookmark[2]{7.10.1 a-models}{sec_c:a-models}
+\label{sec_c:a-models}
+
+a-models also assume isomorphy, but during part of the life cycle metabolism accelerates following the rules for V1-morphy.
+
+\subsubsection*{7.10.2.1 abj-model}
+\phantomsection
+\pdfbookmark[3]{7.10.2.1 abj-model}{sec_c:abj}
+\label{sec_c:abj}
+
+The {\sc deb} model with type $\cal M$ acceleration is like std-model, but 
+\begin{description}
+  \item[$\circ$] acceleration between birth $b$ and metamorphosis $j$
+	
+  \item[$\circ$] before and after acceleration: isomorphy
+\end{description}
+Metamorphosis is before puberty and occurs at maturity $E_H^j$, so $E_H^b \le E_H^j \le E_Hp$, which might or might not correspond with changes in morphology.
+Type $\cal M$ acceleration has never been found in cartilaginous fish, amphibians, reptiles, birds or mammals, 
+  and typically occurs in taxa with larval stages.
+
+The abj-model is a one-parameter extension of std-model and reduces to the std-model for $E_H^j = E_H^b$.
+During metabolic acceleration, $\{\dot{p}_{Am}\} = \{\dot{p}_{Am}^b\} L/ L_b$ and $\dot{v} = \dot{v}^b L/ L_b$, 
+  where $\{\dot{p}_{Am}^b\}$ and $\dot{v}^b$ refer to the values at birth.
+At $j$, acceleration ceases: $\{\dot{p}_{Am}\} = \{\dot{p}_{Am}^b\} s_{\cal M}$ and $\dot{v} = \dot{v}^b s_{\cal M}$, 
+  with acceleration factor $s_{\cal M} = L_j/ L_b$.
+ 
+\subsubsection*{7.10.2.2 asj-model}
+\phantomsection
+\pdfbookmark[3]{7.10.2.2 asj-model}{sec_c:asj}
+\label{sec_c:asj}
+
+The {\sc deb} model with delayed type {\cal M} acceleration is like abj-model, but 
+\begin{description}
+  \item[$\circ$] start of acceleration is delayed till maturity level $E_H^s$ and lasts till metamorphosis at maturity level $E_H^j$
+	
+  \item[$\circ$] Before and after acceleration: isomorphy
+\end{description}
+Metamorphosis is still before puberty, so $E_H^b \le E_H^s \le E_H^j \le E_Hp$ and the acceleration factor is $s_{\cal M} = L_j/ L_s$.
+This model is a one-parameter extension of the abj-model and reduces to the std-model for $E_H^b = E_H^s = E_H^j$.
+This life history is found in Mnemiopsis, Crassostrea and Aplysia.
+Further improvement of data might require a change from abj- to asj-models for quite a few species.
+
+\subsubsection*{7.10.2.3 abp-model}
+\phantomsection
+\pdfbookmark[3]{7.10.2.3 abp-model}{sec_c:abp}
+\label{sec_c:abp}
+
+The {\sc deb} model with type {\cal M} acceleration is like model-abj, but 
+\begin{description}
+  \item[$\circ$] acceleration between birth and puberty
+	
+  \item[$\circ$] before acceleration: isomorphy
+	
+  \item[$\circ$] after acceleration: no growth, so no $\kappa$-rule
+\end{description}
+Metamorphosis can occur before puberty and occurs at maturity $E_H^j$, but only affects morphology, not metabolism.
+This model has the same number of parameters as the std-model.
+The acceleration factor is $s_{\cal M} = L_p/ L_b$. 
+It is similar to the sbp-model, which has no acceleration.
+It applies to copepods, may be also to ostracods, spiders and scorpions.
+
+At puberty, growth ceases, so $\dot{p}_G = 0$, and the $\kappa$-rule no longer applies. 
+Mobilisation after puberty is $\dot{p}_C = s_{\cal M} \dot{v} E/ L_p = \dot{v} E/ L_b$, 
+  and allocation to reproduction is $\dot{p}_R = \dot{p}_C - \dot{p}_M - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.
+
+\subsection*{7.10.3 h-models}
+\phantomsection
+\pdfbookmark[2]{7.10.1 h-models}{sec_c:h-models}
+\label{sec_c:h-models}
+
+h-models also assume isomorphy, but during part of the life cycle metabolism accelerates following the rules for V1-morphy
+
+\subsubsection*{7.10.3.1 hep-model}
+\phantomsection
+\pdfbookmark[3]{7.10.3.1 hep-model}{sec_c:hep}
+\label{sec_c:hep}
+
+The  {\sc deb} for ephemeropterans, odonata and possibly other insect groups. 
+Its characteristics are
+\begin{description}
+  \item[$\circ$] morphological life stages: egg, larva, (sub)imago; functional stages: embryo, juvenile, adult, imago
+	
+  \item[$\circ$] the embryo still behaves like the std-model
+	
+  \item[$\circ$] acceleration starts at birth and ends at puberty
+	
+  \item[$\circ$] puberty occurs during the larval stage
+	
+  \item[$\circ$] emergence of the imago occurs when reproduction buffer density, $E_R/ L^3 = [E_R^j]$, hits a threshold
+	
+  \item[$\circ$] the (sub)imago does not grow or allocate to reproduction. 
+	  It mobilizes reserve to match constant (somatic plus maturity) maintenance
+\end{description}
+The model is discussed in the comments for Section 7.8.
+The difference with the abp-model is that growth continues at puberty, ceasing of growth uses on another trigger and imago's don't allocate to reproduction.
+
+Between $p$ and $j$, allocation to reproduction is $\dot{p}_R = (1 - \kappa) \dot{p}_C - \dot{p}_J$.
+After $j$, mobilisation is $\dot{p}_C = \dot{p}_M + \dot{p}_J$, allocation to reproduction is $\dot{p}_R = 0$.
+
+\subsubsection*{7.10.3.2 hex-model}
+\phantomsection
+\pdfbookmark[3]{7.10.3.2 hex-model}{sec_c:hex}
+\label{sec_c:hex}
+
+The {\sc deb} model for holometabolic insects (and some other hexapods). Its characteristics are
+\begin{description}
+  \item[$\circ$] morphological life stages: egg, larva, (pupa), imago; functional stages: embryo, adult, (pupa), imago
+	
+  \item[$\circ$] the embryo still behaves like the std-model
+	
+  \item[$\circ$] the larval stage accelerates (V1-morph) and behaves as adult, i.e. no maturation, allocation to reproduction and $E_H^b = E_H^p$.
+	
+  \item[$\circ$] pupation occurs when reproduction buffer density hits a threshold, $E_R/ L^3 = [E_R^j]$
+	
+  \item[$\circ$] pupa behaves like an isomorphic embryo of the std-model, emergence occurs at $E_H = E_H^e$
+	  Larval structure rapidly transforms to pupal reserve just after start of pupation, and sets $E_H = 0$ at $j$.
+		
+  \item[$\circ$] the reproduction buffer remains unchanged during the pupal stage
+	
+  \item[$\circ$] the imago does not grow or allocate to reproduction. 
+	  Imago's reserve mobilisation matched somatic plus maturity maintenance $\dot{p}_C = \dot{p}_M + \dot{p}_J$.
+\end{description}
+Hemi-metabolic insects skip the pupal stage, don't convert larval structure to reserve. 
+Imago structure equals larval structure when reproduction buffer density hits a threshold.
+The model is discussed in the comments for Section 7.8.
+
+For $\dot{k}_E = \dot{v}/ L_b$, reserve mobilisation prior to pupation (i.e. during acceleration) is $\dot{p}_C = E (\dot{k}_E - \dot{r})$ 
+  with $\dot{r} = \frac{\kappa [E] \dot{k}_E - [\dot{p}_M]} {\kappa [E] + [E_G]} = g \dot{k}_M \frac{e/ l_b - 1} {e + g}$.
+The larva allocates to reproduction as $\dot{p}_R = (1- \kappa) \dot{p}_C - \dot{p}_J$, with $\dot{p}_J = \dot{k}_J E_H^p$.
+$[E_R]$ has a maximum at $[E_R^m] = [E_R^{\mbox{\tiny ref}}] f \frac{1 - l_b} {f - l_b}$ with$[E_R^{\mbox{\tiny ref}}] = (1 - \kappa) [E_m] \frac{g + l_b} {1 - l_b}$, so pupation occurs when $[E_R] = s_j [E_R^{\mbox{\tiny ref}}]$, with $s_j = [E_R^j]/ [E_R^{\mbox{\tiny ref}}]$.
+
+Reserve mobilisation of the imago is $\dot{p}_C = \dot{p}_M^e + \dot{p}_J^e$, where $\dot{p}_M^e = [\dot{p}_M] L_e^3$ and $\dot{p}_J^e = \dot{k}_J E_H^e$.
+
+\subsubsection*{7.10.3.3 hax-model}
+\phantomsection
+\pdfbookmark[3]{7.10.3.3 hax-model}{sec_c:hax}
+\label{sec_c:hax}
+
+The hax model is a hybrid between the hep and hex models: the hep-rules are followed till $[E_R] = [E_R^j]$, then pupation follows, with an emergence and an imago stage which might or might not feed. 
+An example of a hax model with a non-feeding imago-stage is the harlequin fly \emph{Chironomus riparius}.

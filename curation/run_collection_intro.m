@@ -68,8 +68,8 @@ if ~info; return; end
 write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 
 % write add_my_pet/AmPdata/AmPdata.zip
-cdAmPdata; 
-  zip('AmPdata', {'allStat.mat','popStat.mat','cdAmPdata.m'}); 
+cdAmPdata; load allUnits; load allLabel
+  zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
   n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
 cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata

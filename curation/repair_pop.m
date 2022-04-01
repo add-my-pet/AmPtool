@@ -1,4 +1,4 @@
-function repair_my_pet_pop
+function repair_pop
 
 WD = cdCur; cd('../../deblab/add_my_pet/entries_web/Daphnia_magna');
 txt = ['<script src="../../sys/ftiens4.js"></script>', char(10)];

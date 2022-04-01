@@ -3,7 +3,7 @@
 
 %%
 function prt_species_names
-% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, , 2017/10/25, 2021/02/20
+% created at 2016/12/30 by Bas Kooijman, modified 2017/10/13, 2017/10/20, 2017/10/24, 2017/10/25, 2021/02/20, 2022/02/10
 
 %% Syntax
 % <../../add_my_pet/prt_species_names.m *prt_species_names*>
@@ -138,7 +138,7 @@ fprintf(fid_Spec, '      <div class = "newspaper">\n');
 fprintf(fid_Spec, '        <ul id="scientific_nm">\n');
 
 for i = 1:n
-fprintf(fid_Spec,['          <li><a target="_top" href="entries_web/', snm{i}, '/', snm{i}, '_res.html" title="', nms{i,2}, '">', snm_prt{i}, '</a></li>\n']);
+fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{i},snm{i},nms{i,2},snm_prt{i});
 end
 fprintf(fid_Spec, '        </ul>\n');
 fprintf(fid_Spec, '      </div>\n\n');  
@@ -151,7 +151,7 @@ fprintf(fid_Spec, '        Click here for scientific names">Common names</a></H2
 fprintf(fid_Spec, '      <div class = "newspaper">\n');  
 fprintf(fid_Spec, '        <ul id="common_nm">');
 for i = 1:n
-fprintf(fid_Spec,['          <li><a target="_top" href="entries_web/', snm{index(i)}, '/', snm{index(i)}, '_res.html" title="', snm_prt{index(i)}, '">', cnm{i}, '</a></li>\n']);
+fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{index(i)},snm{index(i)},snm_prt{index(i)},cnm{i});
 end
 fprintf(fid_Spec, '        </ul>\n');
 fprintf(fid_Spec, '      </div>\n\n'); 
