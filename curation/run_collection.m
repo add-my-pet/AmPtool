@@ -65,28 +65,28 @@ for i = 1:nargin
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
 
-%   cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
-%   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
-%   % !Rscript zip2DataOne.r
-%   doi = 'xxxxxx';
+  cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
+  filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
+  % !Rscript zip2DataOne.r
+  doi = 'xxxxxx';
   
   % print files
   cdCur;
-%   prt_my_pet_toolbar(varargin{i}, cur2ewmp);                                      % my_pet_toolbar.html
-%   prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
-%   bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
-%   prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
+  prt_my_pet_toolbar(varargin{i}, cur2ewmp);                                      % my_pet_toolbar.html
+  prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
+  bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
+  prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
   prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, cur2ewmp);   % my_pet_res.html
   prt_my_pet_par(metaData, metaPar, par, txtPar, cur2ewmp);                       % my_pet_par.html
   prt_my_pet_stat(metaData, metaPar, par, cur2ewmp);                              % my_pet_stat.html, including pie-png's
    
-  % get reprodCode, which is used in prt_my_pet_pop
+  %get reprodCode, which is used in prt_my_pet_pop
   close all
-%   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
-%     prt_my_pet_pop({metaData, metaPar, par}, [], [], [], cur2ewmp, 1);    % my_pet_pop.html, including fig's
-%   else
-%     prt_my_pet_pop({metaData, metaPar, par}, [], '0.5', [], cur2ewmp, 1); % my_pet_pop.html, including fig's
-%   end
+  if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
+    prt_my_pet_pop({metaData, metaPar, par}, [], [], [], cur2ewmp, 1);    % my_pet_pop.html, including fig's
+  else
+    prt_my_pet_pop({metaData, metaPar, par}, [], '0.5', [], cur2ewmp, 1); % my_pet_pop.html, including fig's
+  end
   close all
   fclose all;
 end
