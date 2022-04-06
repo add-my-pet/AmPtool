@@ -3,7 +3,8 @@
 
 %%
 function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
-% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25 Bas Kooijman
+% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 
+% 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25, 2022/04/06 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_stat.m *prt_my_pet_stat*> (metaData, metaPar, par, destinationFolder) 
@@ -15,9 +16,9 @@ function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
 %
 % Input:
 %
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
-% * par: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
+% * par: structure (output of pars_init_my_pet-file)
 % * destinationFolder: optional string with destination folder to which my_pet_stat.html is printed (default: current folder)
 
 %% Example of use
@@ -82,7 +83,7 @@ fprintf(oid, '      <H1 id = "portaltop">Implied properties for this entry</H1>\
 			
 % print out text before the tables
 % fprintf(oid, '<H2>Implied properties for this entry</H2>');
-fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
+fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
 
 % print SGJR pies
 fprintf(oid, '      <H3>Energy investment, cumulated over the embryo period (left), and allocation during ontogeny</H3>\n');

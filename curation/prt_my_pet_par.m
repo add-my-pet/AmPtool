@@ -18,10 +18,10 @@ function prt_my_pet_par(metaData, metaPar, par, txtPar, destinationFolder)
 %
 % Input:
 %
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
-% * par: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
-% * txtPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
+% * par: structure (output of pars_init_my_pet-file)
+% * txtPar: structure (output of pars_init_my_pet-file)
 % * destinationFolder : optional string with destination folder the files
 % are printed to (default: current folder)
 
@@ -103,7 +103,7 @@ fprintf(oid, '      <!----------------------------------------------------------
 
 % Print out text before the tables:
 % fprintf(oid, '<H2>Parameter values for this entry</H2>');
-fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
+fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
 % ----------------------------------------  
 
 % Print table with primary parameters:

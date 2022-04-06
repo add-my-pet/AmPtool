@@ -6,7 +6,7 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 % created 2015/04/11 by Starrlight & Goncalo Marques; modified 2015/08/23 Starrlight augustine; 
 % modified 2016/03/09 Bas Kooijman; 2016/09/21 Starrlight Augustine;
 % 2016/11/05, 2017/01/04, 2017/08/21, 2017/09/29, 2017/10/13, 2017/10/26, 2018/02/06, 2018/04/28, 2018/05/05, 
-% 2018/06/21, 2021/12/, 2021/02/06 Bas Kooijman
+% 2018/06/21, 2021/12/, 2021/02/06, 2022/04/06 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_res.m *prt_my_pet_res*> (data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
@@ -16,12 +16,12 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 %
 % Input:
 %
-% * data: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * prdData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Predict_file *predict_my_pet_par*> file)
-% * auxData: structure  (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * txtData:  structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * data: structure (output of mydata_my_pet-file)
+% * prdData: structure (output of predict_my_pet-file)
+% * auxData: structure  (output of mydata_my_pet-file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * txtData:  structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
 % * destinationFolder : optional string with destination folder the files
 % are printed to (default: current folder)
 
@@ -120,10 +120,10 @@ txtData    = rmfield_wtxt(txtData, 'psd');
 
 %  table for zero-variate data sets:
 fprintf(oid, '      <p>\n');
-fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data">Zero-variate data</a></h2>\n');
+fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Zero-variate_data.html">Zero-variate data</a></h2>\n');
 fprintf(oid, '      <table id="t01">\n');
 fprintf(oid,['        <tr class="head"><th>Data</th> <th>Observed</th> <th>Predicted</th> ' ...
-    '<th><a href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" target="_blank">(RE)</a></th> '...
+    '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> '...
     '<th>Unit</th> <th>Description</th> <th>Reference</th></tr>\n']);
 [nm, nst] = fieldnmnst_st(data); % cell array of string with fieldnames of data
 
@@ -171,10 +171,10 @@ if n_fig > 0
   else
     labels = '<th>1st independent variable</th> <th>2nd independent variable</th>  <th>Dependent variable</th> ';
   end
-  fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Univariate_data">Uni-</a> and <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Bi-variate_data">bivariate data</a></h2>\n');
+  fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Uni-variate_data.html">Uni-</a> and <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Bi-variate_data.html">bivariate data</a></h2>\n');
   fprintf(oid, '      <table id="t01">\n');
   fprintf(oid,['        <tr class="head"><th>Data</th> <th>Figure</th> %s', ...
-      '<th><a href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" target="_blank">(RE)</a></th> <th>Reference</th></tr>\n'], labels);  
+      '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> <th>Reference</th></tr>\n'], labels);  
   %
   for i=1:n_fig
     % label
@@ -229,7 +229,7 @@ end
 
 % table with pseudo-data:
 fprintf(oid, '      <p>\n');
-fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Pseudo-data">Pseudo-data at T<sub>ref</sub> = 20&deg;C</a> </h2>\n');
+fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Pseudo_data.html">Pseudo-data at T<sub>ref</sub> = 20&deg;C</a> </h2>\n');
 [nm, nst] = fieldnmnst_st(pseudo);
 fprintf(oid, '      <table id="t01">\n');
 fprintf(oid, '        <tr class="head"><th>Data</th> <th>Generalised animal</th> <th>%s</th> <th>Unit</th> <th>Description</th></tr>\n', strrep(metaData.species, '_', ' '));
