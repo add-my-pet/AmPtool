@@ -109,6 +109,8 @@ dd_col = [dd_col, '        <button onclick="showDropdown(''package'')" class="dr
 dd_col = [dd_col, '        <div id="package" class="dropdown-content">\n'];
 dd_col = [dd_col, '          <a href="', path2DEBtool, 'index.html" target="_blank">DEB Tool</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmPtool, 'index.html" target="_blank">AmP Tool</a>\n'];
+dd_col = [dd_col, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny App</a>\n'];
+dd_col = [dd_col, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny App</a>\n'];
 dd_col = [dd_col, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
 dd_col = [dd_col, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
 dd_col = [dd_col, '        </div>\n'];

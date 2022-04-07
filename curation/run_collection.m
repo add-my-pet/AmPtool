@@ -80,7 +80,7 @@ for i = 1:nargin
   prt_my_pet_par(metaData, metaPar, par, txtPar, cur2ewmp);                       % my_pet_par.html
   prt_my_pet_stat(metaData, metaPar, par, cur2ewmp);                              % my_pet_stat.html, including pie-png's
    
-  %get reprodCode, which is used in prt_my_pet_pop
+  % get reprodCode, which is used in prt_my_pet_pop
   close all
   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
     prt_my_pet_pop({metaData, metaPar, par}, [], [], [], cur2ewmp, 1);    % my_pet_pop.html, including fig's
