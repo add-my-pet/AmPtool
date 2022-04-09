@@ -1,6 +1,3 @@
-Aetobatus
-Aetomylaeus
-Manta
-Mobula
-Myliobatis
-Rhinoptera
+Myliobatinae
+Mobulinae
+Rhinopterinae
