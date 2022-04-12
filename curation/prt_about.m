@@ -170,14 +170,14 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/pie_model.png" width="350px">\n');
 fprintf(fid_about, '        <div class="caption">\n');
-fprintf(fid_about, '          A <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models" target="_blank">variety of related models</a>\n');
+fprintf(fid_about, '          A <a href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html" target="_blank">variety of related models</a>\n');
 fprintf(fid_about, '          captures animal life-cycle diversity and quantifies properties in <a href="pars.html" target="_blank">parameters</a>.\n');
 fprintf(fid_about, '          <a href="https://youtu.be/E4ag2-WzhmQ" target="_blank"><img src="img/YouTube.png"  height = "15px" title="14:14"></a>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <h2 class="clear"></h2>\n');
-fprintf(fid_about, '      Although <a href="http://www.debtheory.org/wiki/" target = "_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms,\n');
+fprintf(fid_about, '      Although <a href="https://add-my-pet.github.io/DEBportal/docs/index.html" target="_blank">Dynamic Energy Budget (DEB) theory</a> applies to all organisms,\n');
 fprintf(fid_about, '        the AmP collection only deals with <a href="phyla.html">animals</a>.\n');
 fprintf(fid_about, '      The reason is that animals eat other organisms, which don''t vary that much in chemical composition. \n');
 fprintf(fid_about, '      Given the habitat, their environment can be characterized by the variables food availability and temperature as a first rough approximation.\n');
@@ -199,8 +199,8 @@ fprintf(fid_about, '      so it is always possible to undo the temperature corre
 
 fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      At 2018/01/01, when the collection had 1000 entries, there were \n');
-fprintf(fid_about, '      112 <a href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data" TARGET="_blank">zero-variate data types</a>, and \n');
-fprintf(fid_about, '      153 <a href="http://www.debtheory.org/wiki/index.php?title=Uni-variate_data" TARGET="_blank">univariate data types</a>, in \n');
+fprintf(fid_about, '      112 <a href="https://add-my-pet.github.io/DEBportal/docs/Zero-variate_data.html target="_blank">zero-variate data types</a>, and \n');
+fprintf(fid_about, '      153 <a href="https://add-my-pet.github.io/DEBportal/docs/Uni-variate_data.html" target="_blank">univariate data types</a>, in \n');
 fprintf(fid_about, '      588 combinations, written by 125 <a href="authors.html">authors</a>. \n');
 fprintf(fid_about, '      So, few entries share the same data type combination and the number of data types is very much larger than the number of parameters. \n');
 fprintf(fid_about, '      This argues for comparison on the basis of parameters, since all parameters were estimated for all species. \n');
@@ -224,14 +224,14 @@ fprintf(fid_about, '         <a href="https://www.youtube.com/watch?v=WKtPWGmJzJ
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/COMPLETE.png" width="350px">\n');
 fprintf(fid_about, '        <div class="caption">   \n');
-fprintf(fid_about, '          <a href="" title="A survivor function gives the fraction that exceeds the value of the argument">Survivor function</a> of <a href="http://www.debtheory.org/wiki/index.php?title=Completeness" target="_blank">data completeness</a>.\n');
+fprintf(fid_about, '          <a href="" title="A survivor function gives the fraction that exceeds the value of the argument">Survivor function</a> of <a href="https://add-my-pet.github.io/DEBportal/docs/Completeness.html" target="_blank">data completeness</a>.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/MRE.png" width="350px">\n');
 fprintf(fid_about, '        <div class = "caption">   \n');
-fprintf(fid_about, '          Survivor functions of the <a href="http://www.debtheory.org/wiki/index.php?title=AmP_estimation_procedure#Data_quality_and_availability" target="_blank">Mean Relative Error (MRE) and Symmetric Mean Squared Error (SMSE)</a>.\n');
+fprintf(fid_about, '          Survivor functions of the <a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">Mean Relative Error (MRE) and Symmetric Mean Squared Error (SMSE)</a>.\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -245,7 +245,7 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <div class="sidelement2">\n');
 fprintf(fid_about, '        <img src="img/about/MRE_SMSE.png" width="350px">\n');
 fprintf(fid_about, '        <div class="caption">\n');
-fprintf(fid_about, '        The relationship between <a href="http://www.debtheory.org/wiki/index.php?title=Symmetric_mean_squared_error" TARGET="_blanck">symmetric mean squared error (SMSE)</a> and mean relative error. \n');
+fprintf(fid_about, '        The relationship between <a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">symmetric mean squared error (SMSE)</a> and mean relative error. \n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
 
@@ -321,7 +321,7 @@ fprintf(fid_about, '      </div>\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Background documentation </h2>\n\n');
     
-fprintf(fid_about, '      <a href="http://www.debtheory.org/wiki/index.php?title=DEB_literature_and_publications" TARGET="_blank">\n');
+fprintf(fid_about, '      <a href="https://add-my-pet.github.io/DEBportal/docs/DEBpapers" target="_blank">\n');
 fprintf(fid_about, '      An increasing number of papers has been published on the add-my-pet collection, \n');
 fprintf(fid_about, '        both on the methodology and ecological and evolutionary patterns in parameter values among species.</a>\n\n');
 
