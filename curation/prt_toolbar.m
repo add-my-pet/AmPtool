@@ -194,14 +194,14 @@ oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
 
-fprintf(oid_amp, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
+fprintf(oid_amp, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
 fprintf(oid_budget, [tbh, dd_deb, dd_con, dd_col, dd_bud, dd_app, tbt]);
-fprintf(oid_app, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
-fprintf(oid_entry, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
-fprintf(oid_AmPtool, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
-fprintf(oid_DEBtool, [tbh, dd_box, dd_deb, dd_con, dd_col, dd_app, tbt]);
-fprintf(oid_DEBportal, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
-fprintf(oid_AmPtox, [tbh, dd_deb, dd_con, dd_col, dd_app, tbt]);
+fprintf(oid_app, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
+fprintf(oid_entry, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
+fprintf(oid_AmPtool, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
+fprintf(oid_DEBtool, [tbh, dd_box, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
+fprintf(oid_DEBportal, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
+fprintf(oid_AmPtox, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
 fprintf(oid_deblab, [tbh, dd_deb, dd_cod, dd_dat, dd_sup, dd_cou, dd_app, tbt]);
 fprintf(oid_subdeblab, [tbh, dd_deb, dd_cod, dd_dat, dd_sup, dd_cou, dd_app, tbt]);
 
