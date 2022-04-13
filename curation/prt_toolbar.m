@@ -195,7 +195,7 @@ oid_deblab = fopen('toolbar_deblab.html', 'w+');
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
 
 fprintf(oid_amp, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_budget, [tbh, dd_deb, dd_con, dd_col, dd_bud, dd_app, tbt]);
+fprintf(oid_budget, [tbh, dd_deb, dd_con, dd_col, dd_bud, dd_cod, dd_app, tbt]);
 fprintf(oid_app, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
 fprintf(oid_entry, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
 fprintf(oid_AmPtool, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
