@@ -112,7 +112,6 @@ dd_pac = [dd_pac, '          <a href="', path2AmPtool, 'index.html" target="_bla
 dd_pac = [dd_pac, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny App</a>\n'];
 dd_pac = [dd_pac, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny App</a>\n'];
 dd_pac = [dd_pac, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
-dd_pac = [dd_pac, '          <a href="https://github.com/add-my-pet/AmPtox/docs/" target="_blank">AmP Tox</a>\n'];
 dd_pac = [dd_pac, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
 dd_pac = [dd_pac, '        </div>\n'];
 dd_pac = [dd_pac, '      </div>\n\n'];
