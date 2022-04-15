@@ -103,18 +103,18 @@ dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRi.html">At ultimate
 dd_bud = [dd_bud, '        </div>\n'];
 dd_bud = [dd_bud, '      </div>\n\n'];
 
-dd_cod = []; % dropdown PACKAGE
-dd_col = [dd_col, '      <div class="dropdown">\n'];
-dd_col = [dd_col, '        <button onclick="showDropdown(''package'')" class="dropbtn">PACKAGE</button>\n'];
-dd_col = [dd_col, '        <div id="package" class="dropdown-content">\n'];
-dd_col = [dd_col, '          <a href="', path2DEBtool, 'index.html" target="_blank">DEB Tool</a>\n'];
-dd_col = [dd_col, '          <a href="', path2AmPtool, 'index.html" target="_blank">AmP Tool</a>\n'];
-dd_col = [dd_col, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny App</a>\n'];
-dd_col = [dd_col, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny App</a>\n'];
-dd_col = [dd_col, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
-dd_col = [dd_col, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
-dd_col = [dd_col, '        </div>\n'];
-dd_col = [dd_col, '      </div>\n\n'];
+dd_pak = []; % dropdown PACKAGE
+dd_pak = [dd_pak, '      <div class="dropdown">\n'];
+dd_pak = [dd_pak, '        <button onclick="showDropdown(''package'')" class="dropbtn">PACKAGE</button>\n'];
+dd_pak = [dd_pak, '        <div id="package" class="dropdown-content">\n'];
+dd_pak = [dd_pak, '          <a href="', path2DEBtool, 'index.html" target="_blank">DEB Tool</a>\n'];
+dd_pak = [dd_pak, '          <a href="', path2AmPtool, 'index.html" target="_blank">AmP Tool</a>\n'];
+dd_pak = [dd_pak, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny App</a>\n'];
+dd_pak = [dd_pak, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny App</a>\n'];
+dd_pak = [dd_pak, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
+dd_pak = [dd_pak, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
+dd_pak = [dd_pak, '        </div>\n'];
+dd_pak = [dd_pak, '      </div>\n\n'];
 
 dd_dat = []; % dropdown DATA BASE
 dd_dat = [dd_dat, '      <div class="dropdown">\n'];
@@ -194,16 +194,16 @@ oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
 
-fprintf(oid_amp, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_budget, [tbh, dd_deb, dd_con, dd_col, dd_bud, dd_cod, dd_app, tbt]);
-fprintf(oid_app, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_entry, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_AmPtool, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_DEBtool, [tbh, dd_box, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_DEBportal, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_AmPtox, [tbh, dd_deb, dd_con, dd_col, dd_cod, dd_app, tbt]);
-fprintf(oid_deblab, [tbh, dd_deb, dd_cod, dd_dat, dd_sup, dd_cou, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh, dd_deb, dd_cod, dd_dat, dd_sup, dd_cou, dd_app, tbt]);
+fprintf(oid_amp,    [tbh,         dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_budget, [tbh,         dd_deb, dd_con, dd_col, dd_bud,         dd_pak, dd_app, tbt]);
+fprintf(oid_app,    [tbh,         dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_entry,  [tbh,         dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_AmPtool,[tbh,         dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_DEBtool,[tbh, dd_box, dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_DEBportal, [tbh,      dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_AmPtox, [tbh,         dd_deb, dd_con, dd_col,                 dd_pak, dd_app, tbt]);
+fprintf(oid_deblab, [tbh,         dd_deb, dd_con, dd_dat, dd_sup, dd_cou, dd_pak, dd_app, tbt]);
+fprintf(oid_subdeblab, [tbh,      dd_deb, dd_con, dd_dat, dd_sup, dd_cou, dd_pak, dd_app, tbt]);
 
 fclose all;
 
