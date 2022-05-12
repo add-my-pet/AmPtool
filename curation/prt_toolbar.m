@@ -3,7 +3,7 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman, modified 2021/03/09
+% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
@@ -20,7 +20,7 @@ function  prt_toolbar
 %% Example of use
 % prt_toolbar 
 
-WD = cdCur;
+WD = cdCur; % cd ../../deblab/add_my_pet/sys/
 
 path2DEBportal = 'https://add-my-pet.github.io/DEBportal/docs/';
 path2DEBtool = 'https://add-my-pet.github.io/DEBtool_M/docs/';
@@ -28,14 +28,22 @@ path2AmPtool = 'https://add-my-pet.github.io/AmPtool/docs/';
 path2deblab = set_path2server; % set relative path to deblab, while being in add_my_pet
 path2AmP = [set_path2server, 'add_my_pet/'];
 
+bar = '      <div class="dropdown"><a class="bar">|</a></div>\n\n'; % separator of local from general dropdowns
+bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
+
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
 tbh = [tbh, '    <div class="logo">\n'];		
 tbh = [tbh, '      <a href="', path2deblab, '"><img src="', path2AmP, 'img/bannercycle.png"  height = "60px"></a>\n'];
 tbh = [tbh, '    </div>\n\n'];
+tbh = [tbh, '    <div id="navwrapper">\n'];
 
+tbt = []; % toolbar tail
+tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
+tbt = [tbt, '  </div> <!-- end of top -->\n'];
+
+%% general dropdowns
 dd_deb = []; % dropdown DEB
-dd_deb = [dd_deb, '    <div id="navwrapper">\n'];
 dd_deb = [dd_deb, '      <div class="dropdown">\n'];
 dd_deb = [dd_deb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</button>\n'];
 dd_deb = [dd_deb, '        <div id="deb" class="dropdown-content">\n'];
@@ -92,17 +100,6 @@ dd_app = [dd_app, '          <a href="https://add-my-pet.github.io/AmPtox/docs/"
 dd_app = [dd_app, '        </div>\n'];
 dd_app = [dd_app, '      </div>\n\n'];
 
-dd_bud = []; % dropdown ENERGY BUDGET
-dd_bud = [dd_bud, '      <div class="dropdown">\n'];
-dd_bud = [dd_bud, '        <button onclick="showDropdown(''budget'')" class="dropbtn">ENERGY BUDGET</button>\n'];
-dd_bud = [dd_bud, '        <div id="budget" class="dropdown-content">\n'];
-dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_SGJRb.html">Over embryo</a>\n'];
-dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRb.html">At birth</a>\n'];
-dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRp.html">At puberty</a>\n'];
-dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRi.html">At ultimate</a>\n'];
-dd_bud = [dd_bud, '        </div>\n'];
-dd_bud = [dd_bud, '      </div>\n\n'];
-
 dd_pac = []; % dropdown PACKAGE
 dd_pac = [dd_pac, '      <div class="dropdown">\n'];
 dd_pac = [dd_pac, '        <button onclick="showDropdown(''package'')" class="dropbtn">PACKAGE</button>\n'];
@@ -127,6 +124,41 @@ dd_dat = [dd_dat, '          <a href="https://deb.bolding-bruggeman.com/" target
 dd_dat = [dd_dat, '          <a href="http://www.ibi.vu.nl/programs/phylopars/phytoplankton" target="_blank">Phyto_pars</a>\n'];
 dd_dat = [dd_dat, '        </div>\n'];
 dd_dat = [dd_dat, '      </div>\n\n'];
+
+%% local dropdowns
+dd_bud = []; % dropdown ENERGY BUDGET
+dd_bud = [dd_bud, '      <div class="dropdown">\n'];
+dd_bud = [dd_bud, '        <button onclick="showDropdown(''budget'')" class="dropbtn">ENERGY BUDGET</button>\n'];
+dd_bud = [dd_bud, '        <div id="budget" class="dropdown-content">\n'];
+dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_SGJRb.html">Over embryo</a>\n'];
+dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRb.html">At birth</a>\n'];
+dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRp.html">At puberty</a>\n'];
+dd_bud = [dd_bud, '          <a href="', path2AmP, 'pie_pSGJRi.html">At ultimate</a>\n'];
+dd_bud = [dd_bud, '        </div>\n'];
+dd_bud = [dd_bud, '      </div>\n\n'];
+
+dd_box = []; % dropdown TOOLBOX
+dd_box = [dd_box, '      <div class="dropdown">\n'];
+dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
+dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
+dd_box = [dd_box, '          <a href="./">DEBtool</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_enzyme.html">enzyme</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_microbe.html">microbe</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_animal.html">animal</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_iso_21.html">iso_21</a>\n'];      
+dd_box = [dd_box, '          <a href="./DEBtool_plant.html">plant</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_community.html">community</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_degrad.html">degrad</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_fig_3.html">fig_3</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_misc.html">lib_misc</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_regr.html">lib_regr</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_prob.html">lib_prob</a></li>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n'];
+dd_box = [dd_box, '        </div>\n'];
+dd_box = [dd_box, '      </div>\n\n'];
 
 dd_sup = []; % dropdown SUPPORT
 dd_sup = [dd_sup, '      <div class="dropdown">\n'];
@@ -155,55 +187,28 @@ dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank
 dd_cou = [dd_cou, '        </div>\n'];
 dd_cou = [dd_cou, '      </div>\n\n'];
 
-dd_box = []; % dropdown TOOLBOX
-dd_box = [dd_box, '      <div class="dropdown">\n'];
-dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
-dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
-dd_box = [dd_box, '          <a href="./">DEBtool</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_enzyme.html">enzyme</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_microbe.html">microbe</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_animal.html">animal</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_iso_21.html">iso_21</a>\n'];      
-dd_box = [dd_box, '          <a href="./DEBtool_plant.html">plant</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_community.html">community</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_degrad.html">degrad</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_fig_3.html">fig_3</a>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_lib_misc.html">lib_misc</a></li>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_lib_regr.html">lib_regr</a></li>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_lib_prob.html">lib_prob</a></li>\n'];
-dd_box = [dd_box, '          <a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n'];
-dd_box = [dd_box, '        </div>\n'];
-dd_box = [dd_box, '      </div>\n\n'];
-
-tbt = []; % toolbar tail
-tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
-tbt = [tbt, '  </div> <!-- end of top -->\n'];
-
-% write toolbars
-oid_amp = fopen('toolbar_amp.html', 'w+');       
-oid_app = fopen('toolbar_app.html', 'w+');       
-oid_budget = fopen('toolbar_budget.html', 'w+'); 
-oid_entry = fopen('toolbar_entry.html', 'w+');   
-oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
-oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
+%% write toolbars
 oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
-oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
+oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
+oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
+oid_amp = fopen('toolbar_amp.html', 'w+');       
+oid_entry = fopen('toolbar_entry.html', 'w+');   
+oid_budget = fopen('toolbar_budget.html', 'w+'); 
+oid_app = fopen('toolbar_app.html', 'w+');       
+oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_amp,    [tbh,         dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_budget, [tbh,         dd_deb, dd_con, dd_col, dd_bud,         dd_pac, dd_app, tbt]);
-fprintf(oid_app,    [tbh,         dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_entry,  [tbh,         dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtool,[tbh,         dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_DEBtool,[tbh, dd_box, dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_DEBportal, [tbh,      dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtox, [tbh,         dd_deb, dd_con, dd_col,                 dd_pac, dd_app, tbt]);
-fprintf(oid_deblab, [tbh,         dd_deb, dd_con, dd_dat, dd_sup, dd_cou, dd_pac, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh,      dd_deb, dd_con, dd_dat, dd_sup, dd_cou, dd_pac, dd_app, tbt]);
+fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
+fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
+fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_AmPtool,   [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_amp,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_entry,     [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_budget,    [tbh, dd_bud, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_app,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_AmPtox,    [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 
 fclose all;
 

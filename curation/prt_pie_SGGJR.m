@@ -83,11 +83,11 @@ fprintf(oid, '<!--   use "contentFull" for 1 column                          -->
 fprintf(oid, '<!--   use "content" if you want two columns"                  -->\n');
 fprintf(oid, '<!--------------------------------------------------------------->\n\n');
 
-fprintf(oid, '<div id = "main">\n');
-fprintf(oid, '  <div id = "main-wrapper">\n');
+fprintf(oid, '<div id="main">\n');
+fprintf(oid, '  <div id="main-wrapper">\n');
 fprintf(oid, '    <div id="contentFull">\n');
-fprintf(oid,['      <H1 id = "pie" align = "center">', header{j}, '</H1>\n']);	
-fprintf(oid, '      <div class = "headercap">\n');	
+fprintf(oid,['      <H1 id="pie" align="center">', header{j}, '</H1>\n']);	
+fprintf(oid, '      <div class="headercap">\n');	
 fprintf(oid,['        ', header_txt{j}, '<br>\n']);	
 fprintf(oid, '      </div>\n');	
 			
@@ -98,12 +98,12 @@ if nm_en(1)>='a' && nm_en(1)<='z' % replace lower case by uppercase if necessary
   nm_en(1)=char(nm_en(1)-32);
 end
 if mod(i,4) == 1
-fprintf(oid, '      <div class = "pierow">\n');
+fprintf(oid, '      <div class="pierow">\n');
 end
-fprintf(oid,['        <div class = "pie" id = "', entries{i},'">\n']);
-fprintf(oid,['          <a href = "entries_web/', entries{i}, '/', entries{i},'_stat.html">\n']);
+fprintf(oid,['        <div class="pie" id="', entries{i},'">\n']);
+fprintf(oid,['          <a href="entries_web/', entries{i}, '/', entries{i},'_stat.html">\n']);
 fprintf(oid,['          <img src="entries_web/', entries{i}, '/', entries{i}, '_', pie{j}, '.png"  width="260px"></a>\n']);
-fprintf(oid,'           <div class = "piecap">\n');
+fprintf(oid,'           <div class="piecap">\n');
 fprintf(oid,['             <i>', strrep(entries{i}, '_', ' '), '</i><br>\n']);
 fprintf(oid,['             ', nm_en, '\n']);
 fprintf(oid,'           </div>\n');
