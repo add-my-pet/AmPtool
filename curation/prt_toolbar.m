@@ -187,8 +187,30 @@ dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank
 dd_cou = [dd_cou, '        </div>\n'];
 dd_cou = [dd_cou, '      </div>\n\n'];
 
+dd_sec = []; % dropdown SECTION
+dd_sec = [dd_sec, '      <div class="dropdown">\n'];
+dd_sec = [dd_sec, '        <button onclick="showDropdown(''section'')" class="dropbtn">SECTION</button>\n'];
+dd_sec = [dd_sec, '        <div id="section" class="dropdown-content">\n'];
+dd_sec = [dd_sec, '          <a href="#Introduction">Introduction</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Data">Data and data tyes</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Data_quality">Data quality and availability</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Data_completeness">Data completeness</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Weight">Weight coefficients</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Loss">Loss function</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Mimimization">Minimization of loss function</a>\n'];
+dd_sec = [dd_sec, '          <a href="#Evaluation">Evaluation of estimates</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Goodness">Goodness of fit</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Confidence">Confidence intervals</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Multi-spieces">Multi-species parameter estimation</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Co-variation">Co-variation rules</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Augmented">Augmented loss function</a>\n'];      
+dd_sec = [dd_sec, '          <a href="#Remarks">General remarks</a>\n'];      
+dd_sec = [dd_sec, '        </div>\n'];
+dd_sec = [dd_sec, '      </div>\n\n'];
+
 %% write toolbars
 oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
+oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
 oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
@@ -200,6 +222,7 @@ oid_app = fopen('toolbar_app.html', 'w+');
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
 fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
 fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
 fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
@@ -221,6 +244,7 @@ movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
 movefile toolbar_DEBportal.html '../../DEBportal/docs/'
+movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
 movefile toolbar_AmPtox.html '../../AmPtox/docs/'
 
 cd(WD);
