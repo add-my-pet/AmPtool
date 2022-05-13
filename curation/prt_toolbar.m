@@ -9,7 +9,9 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html, toolbar_DEBportal 
+% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html, toolbar_DEBportal,
+% toolbar_AmPestimation, toolbar_DEBpapers, toolbar_deblab, toolbar_subdeblab, toolbar_DEBtool, toolbar_AmPtool, toolbar_budget,
+% toolbar_AmPtox
 
 %% Remarks
 % The most toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys
@@ -22,13 +24,12 @@ function  prt_toolbar
 
 WD = cdCur; % cd ../../deblab/add_my_pet/sys/
 
-path2DEBportal = 'https://add-my-pet.github.io/DEBportal/docs/';
-path2DEBtool = 'https://add-my-pet.github.io/DEBtool_M/docs/';
-path2AmPtool = 'https://add-my-pet.github.io/AmPtool/docs/';
-path2deblab = set_path2server; % set relative path to deblab, while being in add_my_pet
+path2DEBportal = 'https://debportal.debtheory.org/docs/';
+path2DEBtool = 'https://debtool.debtheory.org/docs/';
+path2AmPtool = 'https://amptool.debtheory.org/docs/';
+path2deblab = set_path2server; 
 path2AmP = [set_path2server, 'add_my_pet/'];
 
-bar = '      <div class="dropdown"><a class="bar">|</a></div>\n\n'; % separator of local from general dropdowns
 bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
 
 tbh = ''; % toolbar head
@@ -113,17 +114,6 @@ dd_pac = [dd_pac, '          <a href="https://github.com/jornbr/plotreader/relea
 dd_pac = [dd_pac, '        </div>\n'];
 dd_pac = [dd_pac, '      </div>\n\n'];
 
-dd_dat = []; % dropdown DATA BASE
-dd_dat = [dd_dat, '      <div class="dropdown">\n'];
-dd_dat = [dd_dat, '        <button onclick="showDropdown(''data'')" class="dropbtn">DATA BASE</button>\n'];
-dd_dat = [dd_dat, '        <div id="data" class="dropdown-content">\n'];
-dd_dat = [dd_dat, '          <a href="', path2AmP, 'index.html" target="_blank">Add_my_Pet</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny app</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny app</a>\n'];
-dd_dat = [dd_dat, '          <a href="https://deb.bolding-bruggeman.com/" target="_blank">DEB species explorer</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://www.ibi.vu.nl/programs/phylopars/phytoplankton" target="_blank">Phyto_pars</a>\n'];
-dd_dat = [dd_dat, '        </div>\n'];
-dd_dat = [dd_dat, '      </div>\n\n'];
 
 %% local dropdowns
 dd_bud = []; % dropdown ENERGY BUDGET
@@ -241,8 +231,8 @@ oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');
 fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_DEBpapers, [tbh, dd_top, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
+fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_AmPtool,   [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_amp,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
