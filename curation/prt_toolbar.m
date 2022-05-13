@@ -209,9 +209,25 @@ dd_sec = [dd_sec, '          <a href="#Remarks">General remarks</a>\n'];
 dd_sec = [dd_sec, '        </div>\n'];
 dd_sec = [dd_sec, '      </div>\n\n'];
 
+dd_top = []; % dropdown TOPIC
+dd_top = [dd_top, '      <div class="dropdown">\n'];
+dd_top = [dd_top, '        <button onclick="showDropdown(''topic'')" class="dropbtn">TOPIC</button>\n'];
+dd_top = [dd_top, '        <div id="topic" class="dropdown-content">\n'];
+dd_top = [dd_top, '          <a href="#DEBlib">DEB library</a>\n'];
+dd_top = [dd_top, '          <a href="#SIs">Special issues</a>\n'];
+dd_top = [dd_top, '          <a href="#Editorials">Editorials</a>\n'];
+dd_top = [dd_top, '          <a href="#Intros">Introductions</a>\n'];
+dd_top = [dd_top, '          <a href="#Evolution">Evolutionary context</a>\n'];      
+dd_top = [dd_top, '          <a href="#Estimation">Parameter estimation</a>\n'];
+dd_top = [dd_top, '          <a href="#Patterns">Patterns in parameter values</a>\n'];      
+dd_top = [dd_top, '          <a href="#Tumors">Tumor growth</a>\n'];      
+dd_top = [dd_top, '        </div>\n'];
+dd_top = [dd_top, '      </div>\n\n'];
+
 %% write toolbars
 oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
 oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
+oid_DEBpapers = fopen('toolbar_DEBpapers.html', 'w+');  
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
 oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
@@ -224,6 +240,7 @@ oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');
 
 fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_DEBpapers, [tbh, dd_top, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
 fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
 fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
 fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
@@ -236,16 +253,17 @@ fprintf(oid_AmPtox,    [tbh,                      dd_deb, dd_con, dd_col, dd_pac
 
 fclose all;
 
-movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_deblab.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_AmPtool.html '../../AmPtool/docs/'
-movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
 movefile toolbar_DEBportal.html '../../DEBportal/docs/'
 movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
+movefile toolbar_DEBpapers.html '../../DEBportal/docs/'
+movefile toolbar_deblab.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
+movefile toolbar_AmPtool.html '../../AmPtool/docs/'
+movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_AmPtox.html '../../AmPtox/docs/'
 
 cd(WD);
