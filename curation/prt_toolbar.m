@@ -188,11 +188,11 @@ dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Data'')">Data & data typ
 %dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Data_completeness'')">Data completeness</a>\n'];
 dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Weight'')">Weight coefficients</a>\n'];
 dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Loss'')">Loss function</a>\n'];      
-dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Mimimization'')">Minimization of loss function</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Minimization'')">Minimization of loss function</a>\n'];
 dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Evaluation'')">Evaluation of estimates</a>\n'];      
 %dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Goodness'')">Goodness of fit</a>\n'];      
 %dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Confidence'')">Confidence intervals</a>\n'];      
-dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Multi-spieces'')">Multi-species parameter estimation</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Multi-species'')">Multi-species parameter estimation</a>\n'];      
 %dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Co-variation'')">Co-variation rules</a>\n'];      
 dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Augmented'')">Augmented loss function</a>\n'];      
 dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Remarks'')">General remarks</a>\n'];      
@@ -203,14 +203,14 @@ dd_top = []; % dropdown TOPIC
 dd_top = [dd_top, '      <div class="dropdown">\n'];
 dd_top = [dd_top, '        <button onclick="showDropdown(''topic'')" class="dropbtn">TOPIC</button>\n'];
 dd_top = [dd_top, '        <div id="topic" class="dropdown-content">\n'];
-dd_top = [dd_top, '          <a href="#DEBlib">DEB library</a>\n'];
-dd_top = [dd_top, '          <a href="#SIs">Special issues</a>\n'];
-dd_top = [dd_top, '          <a href="#Editorials">Editorials</a>\n'];
-dd_top = [dd_top, '          <a href="#Intros">Introductions</a>\n'];
-dd_top = [dd_top, '          <a href="#Evolution">Evolutionary context</a>\n'];      
-dd_top = [dd_top, '          <a href="#Estimation">Parameter estimation</a>\n'];
-dd_top = [dd_top, '          <a href="#Patterns">Patterns in parameter values</a>\n'];      
-dd_top = [dd_top, '          <a href="#Tumors">Tumor growth</a>\n'];      
+dd_top = [dd_top, '          <a onclick="onclick(''DEBlib'')">DEB library</a>\n'];
+dd_top = [dd_top, '          <a onclick="onclick(''SIs'')">Special issues</a>\n'];
+dd_top = [dd_top, '          <a onclick="onclick(''Editorials'')">Editorials</a>\n'];
+dd_top = [dd_top, '          <a onclick="onclick(''Intros'')">Introductions</a>\n'];
+dd_top = [dd_top, '          <a onclick="onclick(''Evolution'')">Evolutionary context</a>\n'];      
+dd_top = [dd_top, '          <a onclick="onclick(''Estimation'')">Parameter estimation</a>\n'];
+dd_top = [dd_top, '          <a onclick="onclick(''Patterns'')">Patterns in parameter values</a>\n'];      
+dd_top = [dd_top, '          <a onclick="onclick(''Tumors'')">Tumor growth</a>\n'];      
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
