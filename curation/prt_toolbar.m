@@ -203,14 +203,14 @@ dd_top = []; % dropdown TOPIC
 dd_top = [dd_top, '      <div class="dropdown">\n'];
 dd_top = [dd_top, '        <button onclick="showDropdown(''topic'')" class="dropbtn">TOPIC</button>\n'];
 dd_top = [dd_top, '        <div id="topic" class="dropdown-content">\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''DEBlib'')">DEB library</a>\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''SIs'')">Special issues</a>\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''Editorials'')">Editorials</a>\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''Intros'')">Introductions</a>\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''Evolution'')">Evolutionary context</a>\n'];      
-dd_top = [dd_top, '          <a onclick="onclick(''Estimation'')">Parameter estimation</a>\n'];
-dd_top = [dd_top, '          <a onclick="onclick(''Patterns'')">Patterns in parameter values</a>\n'];      
-dd_top = [dd_top, '          <a onclick="onclick(''Tumors'')">Tumor growth</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''DEBlib'')">DEB library</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''SIs'')">Special issues</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Editorials'')">Editorials</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Intros'')">Introductions</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Evolution'')">Evolutionary context</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Estimation'')">Parameter estimation</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Patterns'')">Patterns in parameter values</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth</a>\n'];      
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
