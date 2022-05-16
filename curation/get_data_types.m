@@ -25,7 +25,7 @@ function get_data_types
 global data_types_0 data_types_1
 
 % zerovariate data types
-url = 'http://www.debtheory.org/wiki/index.php?title=Zero-variate_data';
+url = 'https://debportal.debtheory.org/docs/Zero-variate_data.html';
 if ismac || isunix
   system(['wget ', url, ' -O txt.html']);
 else
@@ -47,7 +47,7 @@ for i = 2:n % scan rows
 end
 
 % univariate data types
-url = 'http://www.debtheory.org/wiki/index.php?title=Univariate_data';
+url = 'https://debportal.debtheory.org/docs/Uni-variate_data.html';
 if ismac || isunix
   system(['wget ', url, ' -O txt.html']);
 else
