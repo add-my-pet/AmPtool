@@ -129,8 +129,8 @@ for i = 1:n
       kap = linspace(1e-6,1,100); ss = kap.^2 .* (1 - kap); 
       plot(log10(ss), kap, 'k', 'Linewidth', 2)
       ylim([0 1]);
-      saveas(Hfig, [path, 'ss_kap.png'])
-      saveas(Hleg, [path, 'legend_ss_kap.png'])
+      saveas(Hfig, [path, 'log_ss_kap.png'])
+      saveas(Hleg, [path, 'legend_log_ss_kap.png'])
 
     case 8 % Fig 8: ss - kap
       shstat_options('x_transform', 'none');
