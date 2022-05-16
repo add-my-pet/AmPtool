@@ -40,10 +40,9 @@ fprintf(fid_Spec, '  <script src="sys/w3data.js"></script>\n\n');
 
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .newspaper {\n');
-fprintf(fid_Spec, '      -webkit-column-count: 4; /* Chrome, Safari, Opera */\n');
-fprintf(fid_Spec, '      -moz-column-count: 4; /* Firefox */\n');
-fprintf(fid_Spec, '      column-count: 4;\n');
-fprintf(fid_Spec, '      width: 1000px;\n');
+fprintf(fid_Spec, '      -webkit-column-count: 5; /* Chrome, Safari, Opera */\n');
+fprintf(fid_Spec, '      -moz-column-count: 5; /* Firefox */\n');
+fprintf(fid_Spec, '      column-count: 5;\n');
 fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    * {\n');
@@ -119,8 +118,7 @@ fprintf(fid_Spec, '</HEAD>\n\n');
 fprintf(fid_Spec, '<BODY>\n\n');
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
-fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
-fprintf(fid_Spec, '<script>w3IncludeHTML();</script>\n\n');
+fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n\n');
 	
 fprintf(fid_Spec, '<div id = "main">\n');
 fprintf(fid_Spec, '  <div id = "main-wrapper-species">    \n');
