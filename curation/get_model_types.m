@@ -33,8 +33,8 @@ n = length(i_0); model_types = cell(n,1);
 for i = 1:n % scan rows
   row_i = url(i_0(i):i_1(i)); % substring between <tr>...</tr>
 
-  j_0 = 4 + strfind(row_i,'<td>'); j_1 = strfind(row_i,'</td>') - 2; % a trailing end-of-line exists
-  model_types(i-1) = {row_i(j_0(1):j_1(1))}; % substring between first <td>...</td>   
+  j_0 = 4 + strfind(row_i,'<td>'); j_1 = strfind(row_i,'</td>') - 1; 
+  model_types(i) = {row_i(j_0(1):j_1(1))}; % substring between first <td>...</td>   
 end
 
 
