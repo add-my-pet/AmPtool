@@ -1,5 +1,5 @@
 %% get_data_types
-% copies data types from DEBwiki pages to globals data_types_0 data_types_1
+% copies data types from DEBportaldocs/Zero-variate_data.html and to globals data_types_0 data_types_1
 
 %%
 function get_data_types
@@ -17,7 +17,6 @@ function get_data_types
 % * http://www.debtheory.org/wiki/index.php?title=Zero-variate_data
 % * http://www.debtheory.org/wiki/index.php?title=Univariate_data
 %
-% Since the Lisbon server is slow, this function assigns to globals, rather than explicit output
 
 %% Example of use
 % get_data_types
