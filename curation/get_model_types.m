@@ -28,7 +28,7 @@ i = strfind(url, '</table>') -1; url = url(1:i); % remove txt till </table>
 
 % get all rows of the code table
 i_0 = 4 + strfind(url,'<tr>'); i_1 = strfind(url,'</tr>') - 1; 
-n = length(i_0); model_types = cell(n-1,1);
+n = length(i_0); model_types = cell(n,1);
 
 for i = 1:n % scan rows
   row_i = url(i_0(i):i_1(i)); % substring between <tr>...</tr>
