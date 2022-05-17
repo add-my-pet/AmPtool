@@ -24,7 +24,7 @@ for i = 1:n
     cnm{i} = cnm_prt;
   end
 end
-nms(:,2) = cnm; [cnm index] = sort(cnm);
+nms(:,2) = cnm; [cnm, index] = sort(cnm);
 
 WD = cdCur;
 fid_Spec = fopen('../../deblab/add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
