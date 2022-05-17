@@ -1,5 +1,5 @@
 %% get_data_types
-% copies data types from DEBportaldocs/Zero-variate_data.html and to globals data_types_0 data_types_1
+% copies data types from DEBportaldocs/Zero-variate_data.html and Uni-variate_data.html to globals data_types_0 data_types_1
 
 %%
 function get_data_types
