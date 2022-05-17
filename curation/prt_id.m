@@ -2,11 +2,11 @@
 % prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function prt_id(pets, save)
-% created 2021/08/14 by Bas Kooijman
+function fileName = prt_id(pets, save)
+% created 2021/08/14 by Bas Kooijman, modified 2022/05/17
 
 %% Syntax
-% <prt_id *prt_id*>(pets, save)
+% fileName = <prt_id *prt_id*>(pets, save)
 
 %% Description
 % prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
@@ -16,6 +16,10 @@ function prt_id(pets, save)
 %
 % * pets: cell array with names of existing entries
 % * save: optional boolean for saving the table in AmPTool/curation (default 0: do not save)
+%
+% Output:
+%
+% * fileName: string with name of output file
 
 %% Remarks
 % This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
