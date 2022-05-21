@@ -204,7 +204,7 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Editorials'')">Editorial
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Intros'')">Introductions</a>\n'];
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Evolution'')">Evolutionary context</a>\n'];      
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Estimation'')">Parameter estimation</a>\n'];
-dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Species'')">Species account</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Species'')">Species accounts</a>\n'];      
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Patterns'')">Patterns in parameter values</a>\n'];      
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''PopDyn'')">Population dynamics</a>\n'];      
 dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth</a>\n'];      
