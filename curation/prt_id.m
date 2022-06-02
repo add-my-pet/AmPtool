@@ -38,7 +38,12 @@ function fileName = prt_id(pets, save)
   end
 
   n = length(pets); 
-     
+  linkPets = pets; 
+  path = [set_path2server, 'add_my_pet/entries_web/'];
+  for i=1:n
+    linkPets{i} = ['<a href="', path, pets{i}, '/', pets{i}, '_res.html" target="_blank">', pets{i},'</a>']; 
+  end
+
   % initiate
   CoL = cell(n,1); 
   ITIS = cell(n,1); 
@@ -47,6 +52,7 @@ function fileName = prt_id(pets, save)
   ADW = cell(n,1); 
   Taxo = cell(n,1); 
   WoRMS = cell(n,1); 
+  
   molluscabase = cell(n,1); 
   scorpion = cell(n,1); 
   spider = cell(n,1); 
@@ -81,7 +87,7 @@ function fileName = prt_id(pets, save)
   header = {'AmP entry', 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
        'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'};
-  val = [pets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
+  val = [linkPets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
        molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
        fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge];
    

@@ -71,7 +71,12 @@ try
     web([address, id_Taxo],'-browser');
   end
 catch
-  fprintf('Warning from get_id_Taxo: Unable to contact server\n');
+  if ~isempty(strfind(my_pet, '_'))
+   fprintf('Warning from get_id_Taxo: species not found, now try genus\n');
+   my_pet = strsplit(my_pet, '_'); my_pet = my_pet{1}; id_Taxo = get_id_Taxo(my_pet); return
+  else
+   fprintf('Warning from get_id_Taxo: Unable to contact server or genus not found\n');
+  end
   id_Taxo = [];
 end
 
