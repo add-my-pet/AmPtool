@@ -85,6 +85,7 @@ dd_col = [dd_col, '          <a href="', path2AmP, 'species_tree_Animalia.html">
 dd_col = [dd_col, '          <a href="', path2AmP, 'species_names.html">Species Names</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'authors.html">Authors</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
+dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
 img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
 table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];

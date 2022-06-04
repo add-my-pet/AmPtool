@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>select_mydata</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-23"><meta name="DC.source" content="select_mydata.m"><style type="text/css">
+      --><title>select_mydata</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-04"><meta name="DC.source" content="select_mydata.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>select_mydata</h1><!--introduction--><p>gets list of species that belongs to a taxon and has a specified string in its mydata-file</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[species, nm, sel]  = <a href="../select_mydata.m"><b>select_mydata</b></a> (varargin)</p><h2 id="4">Description</h2><p>gets all species in the add_my_pet collection with mydata files that contain a character string.</p><p>Input:</p><div><ul><li>taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')</li><li>str: character string</li><li>info: optional boolean to search locally if true (only for curators)</li></ul></div><p>Output:</p><div><ul><li>species: cell string with all species in the add_my_pet collection that belong to that taxon and have a mydata-file that contains str</li><li>nm: string with names of entries that were subjected to selection</li><li>sel: vector of bouleans, which entries are selected or not</li></ul></div><h2 id="5">Remarks</h2><p>This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all mydata-files are read from the web</p><h2 id="6">Example of use</h2><p>nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>select_mydata</h1><!--introduction--><p>gets list of species that belongs to a taxon and has a specified string in its mydata-file</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[species, nm, sel]  = <a href="../select_mydata.m"><b>select_mydata</b></a> (varargin)</p><h2 id="4">Description</h2><p>gets all species in the add_my_pet collection with mydata files that contain a character string.</p><p>Input:</p><div><ul><li>taxon: character string with name of taxon or cell string with names of species (default: 'Animalia')</li><li>str: character string</li><li>info: optional boolean to search locally if true (only for curators)</li></ul></div><p>Output:</p><div><ul><li>species: cell string with all species in the add_my_pet collection that belong to that taxon and have a mydata-file that contains str</li><li>nm: string with names of entries that were subjected to selection</li><li>sel: vector of bouleans, which entries are selected or not</li></ul></div><h2 id="5">Remarks</h2><p>This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all mydata-files are read from the web</p><h2 id="6">Example of use</h2><p>nm = select_mydata('Emig') or nm = select_mydata('Aves','Killpack')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% select_mydata
 % gets list of species that belongs to a taxon and has a specified string in its mydata-file
@@ -84,7 +84,7 @@ function [species, nm, sel] = select_mydata(varargin)
 %
 % Input:
 %
-% * taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')
+% * taxon: character string with name of taxon or cell string with names of species (default: 'Animalia')
 % * str: character string 
 % * info: optional boolean to search locally if true (only for curators)
 %
