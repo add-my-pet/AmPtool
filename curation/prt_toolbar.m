@@ -241,18 +241,18 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_app = fopen('toolbar_app.html', 'w+');       
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, strrep(toolbar_DEBportal, '?1?', path2VUdeb));
-fprintf(oid_AmPestimation, strrep(toolbar_AmPestimation, '?1?', path2VUdeb));
-fprintf(oid_DEBpapers, strrep(toolbar_DEBpapers, '?1?', path2VUdeb));
-fprintf(oid_deblab, toolbar_deblab);
-fprintf(oid_subdeblab, strrep(toolbar_subdeblab, '?1?', '../'));
-fprintf(oid_DEBtool, strrep(toolbar_DEBtool, '?1?', path2VUdeb));
-fprintf(oid_AmPtool, strrep(toolbar_AmPtool, '?1?', path2VUdeb));
-fprintf(oid_amp, strrep(toolbar_amp, '?1?', './'));
-fprintf(oid_entry, strrep(toolbar_entry, '?1?', './'));
-fprintf(oid_budget, strrep(toolbar_budget, '?1?', './'));
-fprintf(oid_app, strrep(toolbar_app, '?1?', './'));
-fprintf(oid_AmPtox, strrep(toolbar_AmPtox, '?1?', path2VUdeb));
+txt = strrep(toolbar_DEBportal, '?1?', path2VUdeb); fprintf(oid_DEBportal, txt);
+txt = strrep(toolbar_AmPestimation, '?1?', path2VUdeb); fprintf(oid_AmPestimation, txt);
+txt = strrep(toolbar_DEBpapers, '?1?', path2VUdeb); fprintf(oid_DEBpapers, txt);
+txt = strrep(toolbar_deblab, '?1?', './'); fprintf(oid_deblab, txt);
+txt = strrep(toolbar_subdeblab, '?1?', '../'); fprintf(oid_subdeblab, txt);
+txt = strrep(toolbar_DEBtool, '?1?', path2VUdeb); fprintf(oid_DEBtool, txt);
+txt = strrep(toolbar_AmPtool, '?1?', path2VUdeb); fprintf(oid_AmPtool, txt);
+txt = strrep(toolbar_amp, '?1?', './'); fprintf(oid_amp, txt);
+txt = strrep(toolbar_entry, '?1?', './'); fprintf(oid_entry, txt);
+txt = strrep(toolbar_budget, '?1?', './'); fprintf(oid_budget, txt);
+txt = strrep(toolbar_app, '?1?', './'); fprintf(oid_app, txt);
+txt = strrep(toolbar_AmPtox, '?1?', path2VUdeb); fprintf(oid_AmPtox, txt);
 
 fclose all;
 
