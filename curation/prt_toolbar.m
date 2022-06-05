@@ -27,7 +27,7 @@ WD = cdCur; % cd ../../deblab/add_my_pet/sys/
 path2DEBportal = 'https://debportal.debtheory.org/docs/';
 path2DEBtool = 'https://debtool.debtheory.org/docs/';
 path2AmPtool = 'https://amptool.debtheory.org/docs/';
-path2deblab = './deblab/'; 
+path2deblab = './'; 
 path2AmP = [path2deblab, 'add_my_pet/'];
 
 bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
@@ -240,18 +240,18 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_app = fopen('toolbar_app.html', 'w+');       
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, '%s', strrep(toolbar_DEBportal, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_AmPestimation, '%s', strrep(toolbar_AmPestimation, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_DEBpapers, '%s', strrep(toolbar_DEBpapers, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_deblab,    '%s', toolbar_deblab);
-fprintf(oid_subdeblab, '%s', strrep(toolbar_subdeblab, './', '../'));
-fprintf(oid_DEBtool,   '%s', strrep(toolbar_DEBtool, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_AmPtool,   '%s', strrep(toolbar_AmPtool, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_amp,       '%s', toolbar_amp);
-fprintf(oid_entry,     '%s', toolbar_entry);
-fprintf(oid_budget,    '%s', toolbar_budget);
-fprintf(oid_app,       '%s', toolbar_app);
-fprintf(oid_AmPtox,    '%s', strrep(toolbar_AmPtox, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_DEBportal, strrep(toolbar_DEBportal, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_AmPestimation, strrep(toolbar_AmPestimation, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_DEBpapers, strrep(toolbar_DEBpapers, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_deblab, toolbar_deblab);
+fprintf(oid_subdeblab, strrep(toolbar_subdeblab, './', '../'));
+fprintf(oid_DEBtool, strrep(toolbar_DEBtool, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_AmPtool, strrep(toolbar_AmPtool, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_amp, toolbar_amp);
+fprintf(oid_entry, toolbar_entry);
+fprintf(oid_budget, toolbar_budget);
+fprintf(oid_app, toolbar_app);
+fprintf(oid_AmPtox, strrep(toolbar_AmPtox, './', 'https://www.bio.vu.nl/thb/deb/'));
 
 fclose all;
 
