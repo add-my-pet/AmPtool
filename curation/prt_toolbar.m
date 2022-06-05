@@ -27,8 +27,9 @@ WD = cdCur; % cd ../../deblab/add_my_pet/sys/
 path2DEBportal = 'https://debportal.debtheory.org/docs/';
 path2DEBtool = 'https://debtool.debtheory.org/docs/';
 path2AmPtool = 'https://amptool.debtheory.org/docs/';
-path2deblab = './'; 
-path2AmP = [path2deblab, 'add_my_pet/'];
+path2VUdeb = 'https://www.bio.vu.nl/thb/deb/';
+path2deblab = '?2?'; % path from deblab/add_my_pet, to be replaced by ../
+path2AmP = '?1?'; % path from deblab/add_my_pet, to be replace by ./
 
 bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
 
@@ -240,18 +241,18 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_app = fopen('toolbar_app.html', 'w+');       
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, strrep(toolbar_DEBportal, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_AmPestimation, strrep(toolbar_AmPestimation, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_DEBpapers, strrep(toolbar_DEBpapers, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_DEBportal, strrep(toolbar_DEBportal, '?1?', path2VUdeb));
+fprintf(oid_AmPestimation, strrep(toolbar_AmPestimation, '?1?', path2VUdeb));
+fprintf(oid_DEBpapers, strrep(toolbar_DEBpapers, '?1?', path2VUdeb));
 fprintf(oid_deblab, toolbar_deblab);
-fprintf(oid_subdeblab, strrep(toolbar_subdeblab, './', '../'));
-fprintf(oid_DEBtool, strrep(toolbar_DEBtool, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_AmPtool, strrep(toolbar_AmPtool, './', 'https://www.bio.vu.nl/thb/deb/'));
-fprintf(oid_amp, toolbar_amp);
-fprintf(oid_entry, toolbar_entry);
-fprintf(oid_budget, toolbar_budget);
-fprintf(oid_app, toolbar_app);
-fprintf(oid_AmPtox, strrep(toolbar_AmPtox, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_subdeblab, strrep(toolbar_subdeblab, '?1?', '../'));
+fprintf(oid_DEBtool, strrep(toolbar_DEBtool, '?1?', path2VUdeb));
+fprintf(oid_AmPtool, strrep(toolbar_AmPtool, '?1?', path2VUdeb));
+fprintf(oid_amp, strrep(toolbar_amp, '?1?', './'));
+fprintf(oid_entry, strrep(toolbar_entry, '?1?', './'));
+fprintf(oid_budget, strrep(toolbar_budget, '?1?', './'));
+fprintf(oid_app, strrep(toolbar_app, '?1?', './'));
+fprintf(oid_AmPtox, strrep(toolbar_AmPtox, '?1?', path2VUdeb));
 
 fclose all;
 
