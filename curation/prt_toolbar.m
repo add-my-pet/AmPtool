@@ -27,8 +27,8 @@ WD = cdCur; % cd ../../deblab/add_my_pet/sys/
 path2DEBportal = 'https://debportal.debtheory.org/docs/';
 path2DEBtool = 'https://debtool.debtheory.org/docs/';
 path2AmPtool = 'https://amptool.debtheory.org/docs/';
-path2deblab = set_path2server; 
-path2AmP = [set_path2server, 'add_my_pet/'];
+path2deblab = './deblab/'; 
+path2AmP = [path2deblab, 'add_my_pet/'];
 
 bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
 
@@ -212,6 +212,20 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth<
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
+dd_all = [dd_deb, dd_con, dd_col, dd_pac, dd_app];
+toolbar_DEBportal     = [tbh, dd_all, tbt];
+toolbar_AmPestimation = [tbh, dd_sec, bar, dd_all, tbt];
+toolbar_DEBpapers     = [tbh, dd_top, bar, dd_all, tbt];
+toolbar_deblab        = [tbh, dd_sup, dd_cou, bar, dd_all, tbt];
+toolbar_subdeblab     = [tbh, dd_sup, dd_cou, bar, dd_all, tbt];
+toolbar_DEBtool       = [tbh, dd_box, bar, dd_all, tbt];
+toolbar_AmPtool       = [tbh, dd_all, tbt];
+toolbar_amp           = [tbh, dd_all, tbt];
+toolbar_entry         = [tbh, dd_all, tbt];
+toolbar_budget        = [tbh, dd_bud, bar, dd_all, tbt];
+toolbar_app           = [tbh, dd_all, tbt];
+toolbar_AmPtox        = [tbh, dd_all, tbt];
+
 %% write toolbars
 oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
 oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
@@ -226,18 +240,18 @@ oid_budget = fopen('toolbar_budget.html', 'w+');
 oid_app = fopen('toolbar_app.html', 'w+');       
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBpapers, [tbh, dd_top, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtool,   [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_amp,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_entry,     [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_budget,    [tbh, dd_bud, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_app,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtox,    [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+fprintf(oid_DEBportal, '%s', strrep(toolbar_DEBportal, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_AmPestimation, '%s', strrep(toolbar_AmPestimation, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_DEBpapers, '%s', strrep(toolbar_DEBpapers, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_deblab,    '%s', toolbar_deblab);
+fprintf(oid_subdeblab, '%s', strrep(toolbar_subdeblab, './', '../'));
+fprintf(oid_DEBtool,   '%s', strrep(toolbar_DEBtool, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_AmPtool,   '%s', strrep(toolbar_AmPtool, './', 'https://www.bio.vu.nl/thb/deb/'));
+fprintf(oid_amp,       '%s', toolbar_amp);
+fprintf(oid_entry,     '%s', toolbar_entry);
+fprintf(oid_budget,    '%s', toolbar_budget);
+fprintf(oid_app,       '%s', toolbar_app);
+fprintf(oid_AmPtox,    '%s', strrep(toolbar_AmPtox, './', 'https://www.bio.vu.nl/thb/deb/'));
 
 fclose all;
 
