@@ -9,15 +9,14 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html, toolbar_DEBportal,
-% toolbar_AmPestimation, toolbar_DEBpapers, toolbar_deblab, toolbar_subdeblab, toolbar_DEBtool, toolbar_AmPtool, toolbar_budget,
-% toolbar_AmPtox
+% Prints internalhtml-toolbars deblab, subdeblab, amp, budget, entry, app, 
+% and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
-% The most toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys
-% but toolbar_AmPtool.html, toolbar_DEBportal on GitHup
-% Sync Github after running this file
-% Indent of 2 spaces used for printing to html page 
+% Some toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, but others are used in Githup. 
+% Sync Github after running this file.
+% Indent of 2 spaces used for printing to html page. 
+% First dropdowns are composed, then collected in toolbars. 
 
 %% Example of use
 % prt_toolbar 
@@ -29,8 +28,9 @@ path2DEBtool = 'https://debtool.debtheory.org/docs/';
 path2AmPtool = 'https://amptool.debtheory.org/docs/';
 path2deblab = set_path2server; 
 path2AmP = [set_path2server, 'add_my_pet/'];
+% all dropdowns have absolute addresses, but some will be made relative for internal toolbars at the end
 
-bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
+bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
@@ -43,7 +43,7 @@ tbt = []; % toolbar tail
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
 
-%% general dropdowns
+%% standard dropdowns (for all toolbars)
 dd_deb = []; % dropdown DEB
 dd_deb = [dd_deb, '      <div class="dropdown">\n'];
 dd_deb = [dd_deb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</button>\n'];
@@ -114,7 +114,6 @@ dd_pac = [dd_pac, '          <a href="http://www.debtox.info/software.php" targe
 dd_pac = [dd_pac, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
 dd_pac = [dd_pac, '        </div>\n'];
 dd_pac = [dd_pac, '      </div>\n\n'];
-
 
 %% local dropdowns
 dd_bud = []; % dropdown ENERGY BUDGET
@@ -212,46 +211,54 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth<
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
-%% write toolbars
-oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
-oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
-oid_DEBpapers = fopen('toolbar_DEBpapers.html', 'w+');  
+%% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
-oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
-oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 oid_amp = fopen('toolbar_amp.html', 'w+');       
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_app = fopen('toolbar_app.html', 'w+');       
+oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
+oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
+oid_DEBpapers = fopen('toolbar_DEBpapers.html', 'w+');  
+oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
+oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBpapers, [tbh, dd_top, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtool,   [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_amp,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_entry,     [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_budget,    [tbh, dd_bud, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_app,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtox,    [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_app]; % standard dropdowns for all toolbars
+% all toolbars start with tbh and end with tbt bar separates local from standard dropdowns
+% server info is removed from internal toolbars to make the IUEM server functional
+% internal toolbars
+fprintf(oid_deblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, ''));
+fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
+fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
+fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+% external toolbars
+fprintf(oid_DEBportal, [tbh, dd_std, tbt]);
+fprintf(oid_AmPestimation, [tbh, dd_sec, bar, dd_std, tbt]);
+fprintf(oid_DEBpapers, [tbh, dd_top, bar, dd_std, tbt]);
+fprintf(oid_DEBtool,   [tbh, dd_box, bar, dd_std, tbt]);
+fprintf(oid_AmPtool,   [tbh, dd_std, tbt]);
+fprintf(oid_AmPtox,    [tbh, dd_std, tbt]);
 
 fclose all;
 
-movefile toolbar_DEBportal.html '../../DEBportal/docs/'
-movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
-movefile toolbar_DEBpapers.html '../../DEBportal/docs/'
+%% move toolbars
+% move internal toolbars, being in AmPtool\curation
 movefile toolbar_deblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
-movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+% move external toolbars, being in AmPtool\curation
+movefile toolbar_DEBportal.html '../../DEBportal/docs/'
+movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
+movefile toolbar_DEBpapers.html '../../DEBportal/docs/'
+movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
+movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 movefile toolbar_AmPtox.html '../../AmPtox/docs/'
 
 cd(WD);
