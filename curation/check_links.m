@@ -21,11 +21,11 @@ function check_links(pets, site)
 % * site: optional string for a site, default all sites
 
 %% Remarks
-% This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
-% AmP supports 23 websites: 7 general, 16 taxon-specific. 
-% New id's are collected by get_id_site.
-% After runing, syncing still has to occur.
-% The names of the entries are not always accepted in CoL, but these are not changed.
+% * This function uses results_my_pet.mat files in local directories of add_my_pet.entries;
+% * AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% * New id's are collected by get_id_site.
+% * After runing, syncing still has to occur.
+% * The names of the entries are not always accepted in CoL, but these are not changed.
 
 %% Example
 % check_links(select('Crustacea'))

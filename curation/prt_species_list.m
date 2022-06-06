@@ -14,8 +14,8 @@ function prt_species_list
 % deletes and writes ../../deblab/add_my_pet/species_list.html 
 
 %% Remarks
-% Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
-% Reads from allStat and each row in the table has an id
+% * Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
+% * Reads from allStat and each row in the table has an id
 
 WD = cdCur;
 % get basic data for species_list

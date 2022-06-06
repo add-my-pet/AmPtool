@@ -23,10 +23,10 @@ function allStat = get_addStat(entries, T, f)
 % * allStat: structure with all parameters and statistics values
 
 %% Remarks
-% Statistics are given at T_typical or T. 
-% Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
-% See <get_addStat.html *get_addStat*> for all entries of select.
-% The units and labels are given in AmPdata/allUnits and allLabel
+% * Statistics are given at T_typical or T. 
+% * Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
+% * See <get_addStat.html *get_addStat*> for all entries of select.
+% * The units and labels are given in AmPdata/allUnits and allLabel
 
 %% Example of use
 % see write_addStat

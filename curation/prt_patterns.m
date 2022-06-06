@@ -21,10 +21,10 @@ function prt_patterns(index)
 % * png-files written in ../../deblab/add_my_pet/img/patterns/
 
 %% Remarks
-% all figures are closed automatically if input is not specified. 
-% For presentation on the web, copy png files to 
+% * All figures are closed automatically if input is not specified. 
+% * For presentation on the web, copy png files to 
 % /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
-% Display in entries_admin/patterns.html
+% * Display in entries_admin/patterns.html
 
 path = '../../deblab/add_my_pet/img/patterns/';
 

@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>write_addStat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-06-26"><meta name="DC.source" content="write_addStat.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>write_addStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="write_addStat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>write_addStat</h1><!--introduction--><p>writes a structure with all pars and stats for selected entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[allStat, info] = <a href="write_addStat"><b>write_addStat</b></a> (taxa, T, f)</p><h2 id="4">Description</h2><p>Appends/overwrites result of <a href="get_addStat.html"><b>get_addStat</b></a> to file allStat.mat, which is loaded and overwritten. Members of taxa should also be members of select. They should occur in sister-directory entries. If T and f are specified, all members of taxa are added with the same values; consider multiple calls otherwise.</p><p>Input:</p><div><ul><li>T: optional scalar with body temperature in Kelvin (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Ouput:</p><div><ul><li>allStat: stucture with all parameters and statistics of all entries</li><li>info: boolean for species in taxa present in  lists-of-lists (1), or not (0)</li></ul></div><h2 id="5">Remarks</h2><p>See <a href="write_allStat.html"><b>write_allStat</b></a> for writing allStat from fresh for all entries. See <a href="read_allStat.html"><b>read_allStat</b></a> for extracting values from allStat.mat.</p><h2 id="6">Example of use</h2><p>write_addStat({'Regulus_regulus'})</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>write_addStat</h1><!--introduction--><p>writes a structure with all pars and stats for selected entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[allStat, info] = <a href="write_addStat"><b>write_addStat</b></a> (taxa, T, f)</p><h2 id="4">Description</h2><p>Appends/overwrites result of <a href="get_addStat.html"><b>get_addStat</b></a> to file allStat.mat, which is loaded and overwritten. Members of taxa should also be members of select. They should occur in sister-directory entries. If T and f are specified, all members of taxa are added with the same values; consider multiple calls otherwise.</p><p>Input:</p><div><ul><li>T: optional scalar with body temperature in Kelvin (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Ouput:</p><div><ul><li>allStat: stucture with all parameters and statistics of all entries</li><li>info: boolean for species in taxa present in  lists-of-lists (1), or not (0)</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>See <a href="write_allStat.html"><b>write_allStat</b></a> for writing allStat from fresh for all entries.</li><li>See <a href="read_allStat.html"><b>read_allStat</b></a> for extracting values from allStat.mat.</li></ul></div><h2 id="6">Example of use</h2><p>write_addStat('Regulus_regulus') or write_addStat('Etheostoma')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% write_addStat
 % writes a structure with all pars and stats for selected entries
@@ -95,12 +96,20 @@ function [allStat, info] = write_addStat(taxa, T, f)
 % * info: boolean for species in taxa present in  lists-of-lists (1), or not (0)
 
 %% Remarks
-% See <write_allStat.html *write_allStat*> for writing allStat from fresh for all entries.
-% See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
+% * See <write_allStat.html *write_allStat*> for writing allStat from fresh for all entries.
+% * See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
 
 %% Example of use
-% write_addStat({'Regulus_regulus'})
+% write_addStat('Regulus_regulus') or write_addStat('Etheostoma') 
+  
+  clear global
 
+  if ischar(taxa)  && isempty(strfind(taxa,'_'))
+    taxa = select(taxa);
+  elseif ischar(taxa)
+    taxa = {taxa};
+  end
+  
   % check if all members of taxa are in select('Animalia')
   n = length(taxa); taxa_src = select; absent = 0; info = true;
   for i = 1:n
@@ -110,32 +119,33 @@ function [allStat, info] = write_addStat(taxa, T, f)
     end
   end
   if absent > 0
-    info = false; return
+    info = false; allStat = []; return
   end
   
+  % write number of entries in lists-of-lists in Amtool/taxa/n_taxa.mat; this avoids the need to run length(select)
+  n_entries = length(taxa_src); WD = cdCur; cd ../taxa; save('n_entries.mat', 'n_entries'); cd(WD);
+
   % check if some members of taxa are already in allStat
-  load allStat.mat
+  WD = cdAmPdata; load allStat.mat % load allUnits allLabel;
   present = isfield(allStat, taxa);
   if any(present)
     fprintf('Warning from write_addStat: Not all members of taxa are absent in existing allStat.mat\n');
   end
   
   % check if all members of taxa are in entries
-  WD = pwd;                % store current path
-  absent = 0;
+  absent = 0; cd(['../entries/', taxa{1}]);
   for i = 1:n
     try % goto entries
-      cd(['../../entries/', taxa{i}]) 
+      cd(['../', taxa{i}]) 
     catch
       fprintf(['Warning from write_addStat: ', taxa{i}, ' does not occur in sister-directory entries\n']);
       absent = absent + 1;
     end
-    cd(WD)                 % goto original path
   end
   if absent > 0
     return
   end
-  
+    
   % get data from get_addStat
   if ~exist('f', 'var') 
     if ~exist('T', 'var')
@@ -148,14 +158,27 @@ function [allStat, info] = write_addStat(taxa, T, f)
   end
   
   % check if length of allStat corresponds with number of entries in lists-of-lists
-  n_entries = length(taxa_src); n_allStat = length(fields(allStat));
+  n_entries = length(taxa_src); taxa_fld = fields(allStat); n_allStat = length(taxa_fld);
   if ~(n_allStat == n_entries)
     fprintf(['Warning from write_addStat:  allStat has ', num2str(n_allStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
+    diff = setdiff(taxa_src, taxa_fld);
+      fprintf('present in lists-of-lists, but not in allstat\n');
+    if ~isempty(diff)
+      diff
+    end
+    diff = setdiff(taxa_fld, taxa_src);
+    if ~isempty(diff)
+      fprintf('present in allstat, but not in lists-of-lists\n');
+      diff
+    end
+    return
   end
   allStat = orderfields(allStat, taxa_src); % re-order fields in allStat to match lists-of-lists
 
-  cdAmPdata;                        
-  save('allStat.mat','allStat') % overwrite allStat.mat
-  cd(WD)
+  cdAmPdata; 
+  save('allStat.mat','allStat'); 
+  %save('allUnits.mat','allUnits'); save('allLabel.mat','allLabel'); 
+  cd(WD); % overwrite allStat.mat
+  
 ##### SOURCE END #####
 --></body></html>

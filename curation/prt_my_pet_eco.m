@@ -18,9 +18,9 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 % * destinationFolder: specification of destination folder 
 
 %% Remarks
-% Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
-% This latter function reads codes and labels in url AmPeco.html.
-% Make sure that family, order, class, phylum as specified in results_my_pet.mat occur in lists-of-lists.
+% * Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
+% * This latter function reads codes and labels in url AmPeco.html.
+% * Make sure that family, order, class, phylum as specified in results_my_pet.mat occur in lists-of-lists.
 
 global eco_types
 

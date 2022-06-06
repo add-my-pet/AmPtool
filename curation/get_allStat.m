@@ -24,10 +24,10 @@ function allStat = get_allStat(T, f)
 % * allStat: structure with all parameters and statistics values
 
 %% Remarks
-% Statistics are given at T_typical or T. 
-% Meant to be used in combination with <write_allStat.html *write_allStat*> and <../../html/read_allStat.html *read_allStat*>.
-% Since running this function takes some time, progress is written to screen.
-% Units and labels are given in the static structures AmPdata/allUnits and allLabel
+% * Statistics are given at T_typical or T. 
+% * Meant to be used in combination with <write_allStat.html *write_allStat*> and <../../html/read_allStat.html *read_allStat*>.
+% * Since running this function takes some time, progress is written to screen.
+% * Units and labels are given in the static structures AmPdata/allUnits and allLabel
 
 %% Example of use
 % allStat = get_allStat; see mydata_shstat

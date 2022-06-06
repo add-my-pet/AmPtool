@@ -25,14 +25,14 @@ function prt_species_tree_taxa_js(taxa)
 
 %% Remarks
 % file ../../add_my_pet/species_tree_taxa{i}.html calls 
-%  - java-scripts ../../add_my_pet/sys/ftiens4.js, ua.js
-%  - gif's ../../add_my_pet/img/nm.gif
-%  - jpg's ../../add_my_pet/img/tree/nm.jpg
-%  - txt's ../../add_my_pet/img/tree/nm.txt
+%  * java-scripts ../../add_my_pet/sys/ftiens4.js, ua.js
+%  * gif's ../../add_my_pet/img/nm.gif
+%  * jpg's ../../add_my_pet/img/tree/nm.jpg
+%  * txt's ../../add_my_pet/img/tree/nm.txt
 
 %% Example of use
-% prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results
-% prt_species_tree_taxa_js({'Tetrapoda'}); open ../../species_tree_Tetrapoda.html to see the result
+% * prt_species_tree_taxa_js; open ../../species_tree_Animalia.html  to see the results
+% * prt_species_tree_taxa_js({'Tetrapoda'}); open ../../species_tree_Tetrapoda.html to see the result
     
 %  check_entries; % test presence of entries in tree against local and server
   

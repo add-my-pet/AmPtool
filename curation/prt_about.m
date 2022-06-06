@@ -27,13 +27,13 @@ function prt_about
 % * file is written in ../../add_my_pet_web/about.html
 
 %% Remarks
-% First run write_allStat
-% Don't forget to refresh species_tree_js with prt_species_tree_js.m
+% * First run write_allStat
+% * Don't forget to refresh species_tree_js with prt_species_tree_js.m
 %   This is done automatically in run_collection_intro
-% Don't forget to refresh ../../DEB Library.bib by exporting in Bibtex-mode from Zotero
-% After running prt_about, copy png files to 
+% * Don't forget to refresh ../../DEB Library.bib by exporting in Bibtex-mode from Zotero
+% * After running prt_about, copy png files to 
 %   /mnt/group-new/bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img
-% and about.html file to
+% * and about.html file to
 %   /mnt/group-new/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet
 % to present them on the web.
 

@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_links</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-14"><meta name="DC.source" content="get_links.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>get_links</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="get_links.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_links</h1><!--introduction--><p>gets links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[links, id] = <a href="get_links"><b>get_links</b></a>(taxon, open)</p><h2 id="4">Description</h2><p>Gets cell strings with links and descriptions for an entry and open the webpages. Without inputs, the function will open all websites that are supported by AmP.</p><p>Input:</p><div><ul><li>my_pet: optional character string with name of entry</li><li>open: optional boolean for opening the web pages (default 0: not open)</li></ul></div><p>Output:</p><div><ul><li>links: (n,2)-cell array with links and names for links</li><li>id: (n,2)-cell array with id's and values, as in metaData.links of mydata</li></ul></div><h2 id="5">Remarks</h2><p>This function first tries to find results_my_pet.mat or mydata_my_pet in local directories; in failure, it downloads it from the web via powershell function wget, but this file is not deleted after downloading, because of use of the function in curator_report</p><h2 id="6">Example</h2><p>get_links('Daphnia_magna',1)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_links</h1><!--introduction--><p>gets links to web-pages from  results_my_pet.mat, as specified in metaData.links</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[links, id] = <a href="get_links"><b>get_links</b></a>(taxon, open)</p><h2 id="4">Description</h2><p>Gets cell strings with links and descriptions for an entry and open the webpages. Without inputs, the function will open all websites that are supported by AmP.</p><p>Input:</p><div><ul><li>my_pet: optional character string with name of entry</li><li>open: optional boolean for opening the web pages (default 0: not open)</li></ul></div><p>Output:</p><div><ul><li>links: (n,2)-cell array with links and names for links</li><li>id: (n,2)-cell array with id's and values, as in metaData.links of mydata</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;</li><li>in failure, it downloads it from the web via powershell function wget, but this file is not deleted after downloading, because of use of the function in curator_report</li></ul></div><h2 id="6">Example</h2><p>get_links('Daphnia_magna',1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_links
 % gets links to web-pages from  results_my_pet.mat, as specified in metaData.links
@@ -93,8 +94,8 @@ function [links, id] = get_links(my_pet, open)
 % * id: (n,2)-cell array with id's and values, as in metaData.links of mydata
 
 %% Remarks
-% This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
-% in failure, it downloads it from the web via powershell function wget,
+% * This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
+% * in failure, it downloads it from the web via powershell function wget,
 % but this file is not deleted after downloading, because of use of the function in curator_report
 
 %% Example
@@ -104,21 +105,30 @@ function [links, id] = get_links(my_pet, open)
    id = [];
    links = { ...
    % general links
-     'http://www.catalogueoflife.org/col/'; ...
-     'http://eol.org/'; ...
-     'http://en.wikipedia.org/wiki/'; ...
-     'http://animaldiversity.org/'; ...
+     'https://www.catalogueoflife.org/col/'; ...
+     'https://www.itis.gov/'; ...
+     'https://eol.org/'; ...
+     'https://en.wikipedia.org/wiki/'; ...
+     'https://animaldiversity.org/'; ...
      'http://taxonomicon.taxonomy.nl/'; ...
-     'http://marinespecies.org/'; ...
+     'https://marinespecies.org/'; ...
    % taxon-specific links
-     'http://www.molluscabase.org/'; ...
-     'http://www.fishbase.org/'; ...
-     'http://amphibiaweb.org/search/'; ...
-     'http://reptile-database.reptarium.cz/'; ...
+     'https://www.molluscabase.org/'; ...
+     'https://www.ntnu.no/ub/scorpion-files/'; ...
+     'https://wsc.nmbe.ch/'; ...
+     'https://www.collembola.org/'; ...
+     'http://Orthoptera.SpeciesFile.org'; ...
+     'http://phasmida.speciesfile.org/'; ...
+     'http://aphid.speciesfile.org/'; ...
+     'https://diptera.info/'; ...
+     'http://www.nhm.ac.uk/our-science/data/lepindex/'; ...
+     'https://www.fishbase.se/summary/'; ...
+     'https://amphibiaweb.org/search/'; ...
+     'https://reptile-database.reptarium.cz/'; ...
      'https://avibase.bsc-eoc.org/'; ...
      'http://datazone.birdlife.org/'; ...
      'https://www.departments.bucknell.edu/biology/resources/msw3/'; ...
-     'http://genomics.senescence.info/'};
+     'https://genomics.senescence.info/'};
    n_links = length(links);
    for i= 1:n_links 
      web(links{i},'-browser');
@@ -127,9 +137,9 @@ function [links, id] = get_links(my_pet, open)
   end
 
   % set all id's on empty
-  id_CoL=[]; id_EoL=[]; id_Wiki=[]; id_ADW=[]; id_Taxo=[]; id_WoRMS=[];                                                 
-  id_molluscabase=[]; id_fishbase=[]; id_amphweb=[]; id_ReptileDB=[]; id_avibase=[]; id_birdlife=[]; id_MSW3=[]; id_AnAge=[];
-  
+  id_CoL=''; id_ITIS=''; id_EoL=''; id_Wiki=''; id_ADW=''; id_Taxo=''; id_WoRMS='';  
+  id_molluscabase=''; id_scorpion=''; id_spider=''; id_collembola=''; id_orthoptera=''; id_phasmida=''; id_aphid=''; id_diptera=''; id_lepidoptera='';
+  id_fishbase=''; id_amphweb=''; id_ReptileDB=''; id_avibase=''; id_birdlife=''; id_MSW3=''; id_AnAge='';
   
   % overwrite id's with those in mydata_my_pet
   fnmmat = ['results_', my_pet,'.mat'];  
@@ -156,25 +166,35 @@ function [links, id] = get_links(my_pet, open)
   % compose (n,2) cell-array with links and descriptions
   links = { ...
   % general links
-  ['http://www.catalogueoflife.org/col/details/species/id/', id_CoL], 'Cat of Life';  
-  ['http://eol.org/pages/', id_EoL], 'Ency of Life';
-  ['http://en.wikipedia.org/wiki/', id_Wiki], 'Wikipedia';
-  ['http://animaldiversity.org/accounts/', id_ADW], 'ADW';
+  ['https://www.catalogueoflife.org/data/taxon/', id_CoL], 'Cat of Life';  
+  ['https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=', id_ITIS], 'ITIS';  
+  ['https://eol.org/pages/', id_EoL], 'Ency of Life';
+  ['https://en.wikipedia.org/wiki/', id_Wiki], 'Wikipedia';
+  ['https://animaldiversity.org/accounts/', id_ADW], 'ADW';
   ['http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=', id_Taxo], 'Taxonomicon';
-  ['http://marinespecies.org/aphia.php?p=taxdetails&id=', id_WoRMS], 'WoRMS';
+  ['https://marinespecies.org/aphia.php?p=taxdetails&id=', id_WoRMS], 'WoRMS';
   % taxon-specific links
-  ['http://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
-  ['http://www.fishbase.org/summary/', id_fishbase], 'fishbase';
-  ['http://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
-  ['http://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
+  ['https://www.molluscabase.org/aphia.php?p=taxdetails&id=', id_molluscabase], 'MolluscaBase';
+  ['https://www.ntnu.no/ub/scorpion-files/', id_scorpion], 'Scorpiones'; 
+  ['https://wsc.nmbe.ch/species/', id_spider], 'Araneae';
+  ['https://www.collembola.org/taxa/', id_collembola], 'Entognatha';
+  ['http://lsid.speciesfile.org/urn:lsid:Orthoptera.speciesfile.org:TaxonName:', id_orthoptera], 'Orthoptera';
+  ['http://lsid.speciesfile.org/urn:lsid:Phasmida.speciesfile.org:TaxonName:', id_phasmida], 'Phasmatodea';
+  ['http://lsid.speciesfile.org/urn:lsid:Aphid.speciesfile.org:TaxonName:', id_aphid], 'Aphididae';
+  ['https://diptera.info/search.php?stext=', id_diptera, '&search=Search&method=OR&forum_id=0&stype=photos'], 'Diptera';
+  ['http://www.nhm.ac.uk/our-science/data/lepindex/detail/?taxonno=', id_lepidoptera], 'Lepidoptera';
+  ['https://www.fishbase.se/summary/', id_fishbase], 'fishbase';
+  ['https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name=', id_amphweb], 'Amphibiaweb';
+  ['https://reptile-database.reptarium.cz/species?', id_ReptileDB], 'ReptileDB';
   ['https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid=', id_avibase], 'Avibase';
   ['http://datazone.birdlife.org/species/factsheet/', id_birdlife], 'Birdlife';
   ['https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id=', id_MSW3], 'Mammal Spec World';
-  ['http://genomics.senescence.info/species/entry.php?species=', id_AnAge], 'AnAge'};
+  ['https://genomics.senescence.info/species/entry.php?species=', id_AnAge], 'AnAge'};
   % remove empty links
   links = links(~cellfun(@isempty, { ...
-    id_CoL, id_EoL, id_Wiki, id_ADW, id_Taxo, id_WoRMS, ...                                                  % general/animal web sites
-    id_molluscabase, id_fishbase, id_amphweb, id_ReptileDB, id_avibase, id_birdlife, id_MSW3, id_AnAge}),:); % taxon web sites
+    id_CoL, id_ITIS, id_EoL, id_Wiki, id_ADW, id_Taxo, id_WoRMS, ...                                                     % general/animal web sites
+    id_molluscabase, id_scorpion, id_spider, id_collembola, id_orthoptera, id_phasmida, id_aphid, id_diptera, id_lepidoptera, ... 
+    id_fishbase, id_amphweb, id_ReptileDB, id_avibase, id_birdlife, id_MSW3, id_AnAge}),:);                              % taxon web sites
   n_links = size(links,1); 
     
   if n_links == 0

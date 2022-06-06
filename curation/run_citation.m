@@ -9,7 +9,8 @@ function run_citation
 % <../run_citatation.m *run_citation*> 
 
 %% Description
-% Writes citation.html a
+% Writes citation.html
+%
 % Output:
 %
 % * 1 html-file is written in ../entries_web 

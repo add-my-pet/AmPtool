@@ -21,8 +21,8 @@ function [info, id] = test_links(my_pet)
 % * id: (n,1)-cell array with short names of website
 
 %% Remarks
-% Uses <get_links.html *get_links*> to get links.
-% Warning: EoL results in true, even if it should be false
+% * Uses <get_links.html *get_links*> to get links.
+% * Warning: EoL results in true, even if it should be false
 
 %% Example of use
 % test_link('Daphnia_magna')

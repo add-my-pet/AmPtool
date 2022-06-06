@@ -16,9 +16,9 @@ function repair_id(my_pet)
 % * my_pet: string with name of existing entry
 
 %% Remarks
-% AmP supports 23 websites: 7 general, 16 taxon-specific. 
-% Print table with id's with <prt_id.html *prt_id*>.
-% Still needs syncing with server afterwards
+% * AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% * Print table with id's with <prt_id.html *prt_id*>.
+% * Still needs syncing with server afterwards
 
 %% Example
 % repair_id('Ceriodaphnia_dubia')

@@ -3,7 +3,7 @@
 
 %%
 function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06
 
 %% Syntax
 % <run_collection_intro *run_collection_intro*> (entries)
@@ -26,32 +26,34 @@ function run_collection_intro(entries)
 % * no explicit output, but many files are written
 
 %% Remarks
-% All variables will be cleared
-% SyncBackPro is used to copy the following files to server 
+% * All variables will be cleared
+% * SyncBackPro is used to copy the following files to server 
 %
-% ../about.html
-% ../authors.html
-% ../pars.html
-% ../pie_*.html
-% ../species_list.html 
-% ../species_names.html 
+% * ../about.html
+% * ../authors.html
+% * ../pars.html
+% * ../pie_*.html
+% * ../species_list.html 
+% * ../species_names.html 
+% * ../links.html
 %
-% ../sys/species_tree_Animalia.js
-% ../sys/species_tree_Animalia_search.html
-% ../sys/toolbar_*.html
+% * ../sys/specJump.js
+% * ../sys/species_tree_Animalia.js
+% * ../sys/species_tree_Animalia_search.html
+% & ../sys/toolbar_*.html
 %
-% ../AmPdata/AmPdata.zip
+% * ../AmPdata/AmPdata.zip
 %
-% ../img/about/*.png 
-% ../img/pars/*.png
-% ../img/patterns/*.png
-% ../img/tree/*.jpg and *.jpg.txt
+% * ../img/about/*.png 
+% * ../img/pars/*.png
+% * ../img/patterns/*.png
+% * ../img/tree/*.jpg and *.jpg.txt
 %
-% ../entries/*
-% ../entries_web/*
-% ../entries_zip/*
+% * ../entries/*
+% * ../entries_web/*
+% * ../entries_zip/*
 %
-% Repository AmPtool is synced with Github
+% * Repository AmPtool is synced with Github
 
 WD = cdCur; % go to AmPtool/curation
 

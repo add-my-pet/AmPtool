@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_specJump</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-20"><meta name="DC.source" content="prt_specJump.m"><style type="text/css">
+      --><title>prt_specJump</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_specJump.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,14 +67,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_specJump</h1><!--introduction--><p>writes add_my_pet/sys/specJump.js</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_specJump"><b>prt_specJump</b></a></p><h2 id="4">Description</h2><p>writes add_my_pet/sys/specJump.js for use in entry-toolbars to jump to the previous or following entry using current lists-of-lists. Meant to be called in run_collection_intro.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_specJump</h1><!--introduction--><p>writes add_my_pet/sys/specJump.js</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_specJump"><b>prt_specJump</b></a></p><h2 id="4">Description</h2><p>writes add_my_pet/sys/specJump.js for use in entry-toolbars to jump to the previous or following entry using current lists-of-lists.</p><p>Meant to be called in run_collection_intro.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_specJump
 % writes add_my_pet/sys/specJump.js
 
 %%
 function prt_specJump
-% created 2021/12/19 by Bas Kooijman
+% created 2021/12/19 by Bas Kooijman; modified 2021/12/21
 
 %% Syntax
 % <prt_specJump *prt_specJump*>
@@ -82,6 +82,7 @@ function prt_specJump
 %% Description
 % writes add_my_pet/sys/specJump.js for use in entry-toolbars 
 % to jump to the previous or following entry using current lists-of-lists.
+%
 % Meant to be called in run_collection_intro.
 
 entries = select; n_entries = length(entries);
@@ -97,19 +98,31 @@ for i = 1:n_entries-1
 end
 fprintf(fid, '    "%s"\n', entries{n_entries});
 fprintf(fid, '  ];\n\n');
-fprintf(fid, '  for (i = 0; i < entries.length; i++) {\n');
+
+fprintf(fid, '  var n = entries.length;\n');
+fprintf(fid, '  for (i = 0; i < n; i++) {\n');
 fprintf(fid, '    if (entry == entries [i]) {\n');
 fprintf(fid, '      if (up == "1") {\n');
-fprintf(fid, '        next = entries [Math.min(entries.length,i+1)];\n');
+fprintf(fid, '        next = entries [Math.min(n-1,i+1)];\n');
 fprintf(fid, '        break;\n');
 fprintf(fid, '      } else {\n');
 fprintf(fid, '        next = entries [Math.max(0,i-1)];\n');
 fprintf(fid, '        break;\n');
 fprintf(fid, '      }\n');
 fprintf(fid, '    }\n');
+fprintf(fid, '  }\n\n');
+
+fprintf(fid, '  var current = window.location.href;\n');
+fprintf(fid, '  if (current.includes("_res.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_res.html";\n');
+fprintf(fid, '  } else if (current.includes("_par.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_par.html";\n');
+fprintf(fid, '  } else if (current.includes("_stat.html")) {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_stat.html";\n');
+fprintf(fid, '  } else {\n');
+fprintf(fid, '    window.location.href = "../" + next + "/" + next + "_pop.html";\n');
 fprintf(fid, '  }\n');
-fprintf(fid, '  window.location.href = "../" + next + "/" + next + "_res.html";\n');
-fprintf(fid, '  }\n');
+fprintf(fid, '}\n\n');
 
 fclose(fid);
 cd(WD);

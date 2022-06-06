@@ -18,8 +18,8 @@ function [n model index] = pie_model_sah
 % * index: (ne,nm) binary matrix with models of each of ne members of the taxon
 
 %% Remarks
-% sum(n) = total number of animal species in the add_my_pet collection
-% about_add_my_pet make a plot of this
+% * sum(n) = total number of animal species in the add_my_pet collection
+% * about_add_my_pet make a plot of this
 
 %% Example of use
 % [n model index] = pie_model;

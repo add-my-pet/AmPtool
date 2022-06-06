@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_jpg</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="check_jpg.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>check_jpg</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="check_jpg.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -68,7 +69,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
   </style></head><body><div class="content"><h1>check_jpg</h1><!--introduction--><p>Checks jpg's for nodes in the tree</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../check_jpg.m"><b>check_jpg</b></a>(info)</p><h2 id="4">Description</h2><p>checks presence jpg's for nodes in the tree</p><p>Input:</p><div><ul><li>info: optional scalar (default 0) with</li></ul></div><pre>   - 0 check tree against local
    - 1 check local against server
-   - 2 check tree against local and local against server</pre><p>Output:</p><div><ul><li>prints warnings on screen</li></ul></div><h2 id="5">Remarks</h2><p>The root of the tree is Animalia Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool Assumes that jpg's and txt's are in sister directory img/tree of AmPtool Assumes that path to jpg's on server is: <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree">http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree</a> All files in img/tree must have extension '.jpg' or '.jpg.txt'</p><h2 id="6">Example of use</h2><p>check_jpg</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+   - 2 check tree against local and local against server</pre><p>Output:</p><div><ul><li>prints warnings on screen</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>The root of the tree is Animalia</li><li>Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool</li><li>Assumes that jpg's and txt's are in sister directory img/tree of AmPtool</li><li>Reads the path to jpg's on server from set_path2server + add_my_pet/img/tree</li><li>All files in img/tree must have extension '.jpg' or '.jpg.txt'</li></ul></div><h2 id="6">Example of use</h2><p>check_jpg</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_jpg
 % Checks jpg's for nodes in the tree
@@ -95,11 +96,11 @@ function check_jpg(info)
 % * prints warnings on screen
 
 %% Remarks
-% The root of the tree is Animalia
-% Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% Assumes that jpg's and txt's are in sister directory img/tree of AmPtool
-% Assumes that path to jpg's on server is: http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree
-% All files in img/tree must have extension '.jpg' or '.jpg.txt' 
+% * The root of the tree is Animalia
+% * Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool
+% * Assumes that jpg's and txt's are in sister directory img/tree of AmPtool
+% * Reads the path to jpg's on server from set_path2server + add_my_pet/img/tree
+% * All files in img/tree must have extension '.jpg' or '.jpg.txt' 
 
 %% Example of use
 % check_jpg
@@ -112,7 +113,7 @@ if ~(info == 1)
   tree = list_taxa('', 1); n_tree = length(tree); % cell string with node names of tree, excluding entries
 end
 
-local = cellstr(ls('../../img/tree')); local([1 2]) = [];  % cell string with local node names 
+local = cellstr(ls('../../deblab/add_my_pet/img/tree')); local([1 2]) = [];  % cell string with local node names 
 i = cellfun('isempty',strfind(local, '.txt')); local_txt = local(i); local_jpg = local(~i); % split local in jpg and txt
 % reduce jpg and txt names to that of nodes 
 n_jpg = length(local_jpg);
@@ -147,7 +148,8 @@ end
 
 if info > 0
   % cell string with server nodes stored in server
-  txt = urlread('https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/tree/');
+  path = [set_path2server, 'add_my_pet/img/tree/'];
+  eval(['!Powershell wget ', path, ' -o txt.html']); txt = fileread('txt.html'); delete('txt.html');
   head = strfind(txt,'[IMG]'); txt(1:head(1)) = []; 
   n_server = length(strfind(txt,'href="')); server = cell(n_server,1);
   for i = 1:n_server

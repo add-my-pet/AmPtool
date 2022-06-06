@@ -23,8 +23,9 @@ function  prt_pie_SGGJR_tex(path_in, path_out)
 
 %% Remarks
 % Function prt_pie_SGGJR_tex is 
-%   assumed to be ran in entries_admin, 
-%   using <../select.m *select*> to identify entry names.
+%
+% * assumed to be ran in entries_admin, 
+% * using <../select.m *select*> to identify entry names.
 
 %% Example of use
 % prt_pie_SGGJR_tex

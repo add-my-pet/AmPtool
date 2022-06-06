@@ -11,6 +11,7 @@ function prt_specJump
 %% Description
 % writes add_my_pet/sys/specJump.js for use in entry-toolbars 
 % to jump to the previous or following entry using current lists-of-lists.
+%
 % Meant to be called in run_collection_intro.
 
 entries = select; n_entries = length(entries);

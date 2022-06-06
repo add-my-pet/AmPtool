@@ -24,10 +24,10 @@ function [diff_0, diff_1] = check_results(varargin)
 % if an entry is not in allStat, the check is skipped without notice
 
 %% Example of use
-% [d0, d1] = check_results('Mola_mola') or
-% [d0, d1] = check_results('Mola_mola', 'Molva_molva') or
-% [d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or 
-% [d0, d1] = check_results('Clitellata');
+% * [d0, d1] = check_results('Mola_mola') or
+% * [d0, d1] = check_results('Mola_mola', 'Molva_molva') or
+% * [d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or 
+% * [d0, d1] = check_results('Clitellata');
 
   persistent allStat
   
