@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_toolbar</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-05-13"><meta name="DC.source" content="prt_toolbar.m"><style type="text/css">
+      --><title>prt_toolbar</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_toolbar.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_toolbar</h1><!--introduction--><p>prints the menu bar that is used for the whole collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li><li><a href="#7">general dropdowns</a></li><li><a href="#8">local dropdowns</a></li><li><a href="#9">write toolbars</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_toolbar.m"><b>prt_toolbar</b></a></p><h2 id="4">Description</h2><p>Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html, toolbar_DEBportal, toolbar_AmPestimation, toolbar_DEBpapers, toolbar_deblab, toolbar_subdeblab, toolbar_DEBtool, toolbar_AmPtool, toolbar_budget, toolbar_AmPtox</p><h2 id="5">Remarks</h2><p>The most toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys but toolbar_AmPtool.html, toolbar_DEBportal on GitHup Sync Github after running this file Indent of 2 spaces used for printing to html page</p><h2 id="6">Example of use</h2><p>prt_toolbar</p><h2 id="7">general dropdowns</h2><h2 id="8">local dropdowns</h2><h2 id="9">write toolbars</h2><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_toolbar</h1><!--introduction--><p>prints the menu bar that is used for the whole collection</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li><li><a href="#7">standard dropdowns (for all toolbars)</a></li><li><a href="#8">local dropdowns</a></li><li><a href="#9">write toolbars in AmPtool\curation</a></li><li><a href="#10">move toolbars</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_toolbar.m"><b>prt_toolbar</b></a></p><h2 id="4">Description</h2><p>Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, app, and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox</p><h2 id="5">Remarks</h2><div><ul><li>Some toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, but others are used in GitHup.</li><li>Sync Github after running this file.</li><li>The internal addresses in the toolbars are relative, but the external ones are absolute, linking to the VU server.% When the VU server is down, AmP can still be used on the IUEM server, avoiding the use of toolbars on GitHub,</li><li>First dropdowns are composed, then collected in toolbars.</li></ul></div><h2 id="6">Example of use</h2><p>prt_toolbar</p><h2 id="7">standard dropdowns (for all toolbars)</h2><h2 id="8">local dropdowns</h2><h2 id="9">write toolbars in AmPtool\curation</h2><h2 id="10">move toolbars</h2><p>move internal toolbars, being in AmPtool\curation</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_toolbar
 % prints the menu bar that is used for the whole collection
@@ -80,15 +80,14 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints toolbar_amp.html, toolbar_app.html, toolbar_budget.html, toolbar_entry.html, toolbar_AmPtool.html, toolbar_DEBportal,
-% toolbar_AmPestimation, toolbar_DEBpapers, toolbar_deblab, toolbar_subdeblab, toolbar_DEBtool, toolbar_AmPtool, toolbar_budget,
-% toolbar_AmPtox
+% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, app, 
+% and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
-% The most toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys
-% but toolbar_AmPtool.html, toolbar_DEBportal on GitHup
-% Sync Github after running this file
-% Indent of 2 spaces used for printing to html page 
+% * Some toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, but others are used in GitHup.
+% * Sync Github after running this file.
+% * The internal addresses in the toolbars are relative, but the external ones are absolute, linking to the VU server.% When the VU server is down, AmP can still be used on the IUEM server, avoiding the use of toolbars on GitHub,
+% * First dropdowns are composed, then collected in toolbars. 
 
 %% Example of use
 % prt_toolbar 
@@ -100,8 +99,9 @@ path2DEBtool = 'https://debtool.debtheory.org/docs/';
 path2AmPtool = 'https://amptool.debtheory.org/docs/';
 path2deblab = set_path2server; 
 path2AmP = [set_path2server, 'add_my_pet/'];
+% all dropdowns have absolute addresses, but some will be made relative for internal toolbars at the end
 
-bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from general dropdowns
+bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
@@ -114,7 +114,7 @@ tbt = []; % toolbar tail
 tbt = [tbt, '    </div> <!REPLACE_WITH_DASH_DASH end of navwrapper REPLACE_WITH_DASH_DASH>\n'];
 tbt = [tbt, '  </div> <!REPLACE_WITH_DASH_DASH end of top REPLACE_WITH_DASH_DASH>\n'];
 
-%% general dropdowns
+%% standard dropdowns (for all toolbars)
 dd_deb = []; % dropdown DEB
 dd_deb = [dd_deb, '      <div class="dropdown">\n'];
 dd_deb = [dd_deb, '        <button onclick="showDropdown(''deb'')" class="dropbtn">DEB</button>\n'];
@@ -156,6 +156,7 @@ dd_col = [dd_col, '          <a href="', path2AmP, 'species_tree_Animalia.html">
 dd_col = [dd_col, '          <a href="', path2AmP, 'species_names.html">Species Names</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'authors.html">Authors</a>\n'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
+dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
 img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
 table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
 dd_col = [dd_col, '          <a href="', path2AmP, 'AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
@@ -184,18 +185,6 @@ dd_pac = [dd_pac, '          <a href="http://www.debtox.info/software.php" targe
 dd_pac = [dd_pac, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
 dd_pac = [dd_pac, '        </div>\n'];
 dd_pac = [dd_pac, '      </div>\n\n'];
-
-dd_dat = []; % dropdown DATA BASE
-dd_dat = [dd_dat, '      <div class="dropdown">\n'];
-dd_dat = [dd_dat, '        <button onclick="showDropdown(''data'')" class="dropbtn">DATA BASE</button>\n'];
-dd_dat = [dd_dat, '        <div id="data" class="dropdown-content">\n'];
-dd_dat = [dd_dat, '          <a href="', path2AmP, 'index.html" target="_blank">Add_my_Pet</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny app</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny app</a>\n'];
-dd_dat = [dd_dat, '          <a href="https://deb.bolding-bruggeman.com/" target="_blank">DEB species explorer</a>\n'];
-dd_dat = [dd_dat, '          <a href="http://www.ibi.vu.nl/programs/phylopars/phytoplankton" target="_blank">Phyto_pars</a>\n'];
-dd_dat = [dd_dat, '        </div>\n'];
-dd_dat = [dd_dat, '      </div>\n\n'];
 
 %% local dropdowns
 dd_bud = []; % dropdown ENERGY BUDGET
@@ -263,21 +252,16 @@ dd_sec = []; % dropdown SECTION
 dd_sec = [dd_sec, '      <div class="dropdown">\n'];
 dd_sec = [dd_sec, '        <button onclick="showDropdown(''section'')" class="dropbtn">SECTION</button>\n'];
 dd_sec = [dd_sec, '        <div id="section" class="dropdown-content">\n'];
-dd_sec = [dd_sec, '          <a href="#Introduction">Introduction</a>\n'];
-dd_sec = [dd_sec, '          <a href="#Models">Typified models</a>\n'];
-dd_sec = [dd_sec, '          <a href="#Data">Data & data types</a>\n'];
-%dd_sec = [dd_sec, '          <a href="#Data_quality">Data quality & availability</a>\n'];
-%dd_sec = [dd_sec, '          <a href="#Data_completeness">Data completeness</a>\n'];
-dd_sec = [dd_sec, '          <a href="#Weight">Weight coefficients</a>\n'];
-dd_sec = [dd_sec, '          <a href="#Loss">Loss function</a>\n'];      
-dd_sec = [dd_sec, '          <a href="#Mimimization">Minimization of loss function</a>\n'];
-dd_sec = [dd_sec, '          <a href="#Evaluation">Evaluation of estimates</a>\n'];      
-%dd_sec = [dd_sec, '          <a href="#Goodness">Goodness of fit</a>\n'];      
-%dd_sec = [dd_sec, '          <a href="#Confidence">Confidence intervals</a>\n'];      
-dd_sec = [dd_sec, '          <a href="#Multi-spieces">Multi-species parameter estimation</a>\n'];      
-%dd_sec = [dd_sec, '          <a href="#Co-variation">Co-variation rules</a>\n'];      
-dd_sec = [dd_sec, '          <a href="#Augmented">Augmented loss function</a>\n'];      
-dd_sec = [dd_sec, '          <a href="#Remarks">General remarks</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Introduction'')">Introduction</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Models'')">Typified models</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Data'')">Data & data types</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Weight'')">Weight coefficients</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Loss'')">Loss function</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Minimization'')">Minimization of loss function</a>\n'];
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Evaluation'')">Evaluation of estimates</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Multi-species'')">Multi-species parameter estimation</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Augmented'')">Augmented loss function</a>\n'];      
+dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Remarks'')">General remarks</a>\n'];      
 dd_sec = [dd_sec, '        </div>\n'];
 dd_sec = [dd_sec, '      </div>\n\n'];
 
@@ -285,57 +269,67 @@ dd_top = []; % dropdown TOPIC
 dd_top = [dd_top, '      <div class="dropdown">\n'];
 dd_top = [dd_top, '        <button onclick="showDropdown(''topic'')" class="dropbtn">TOPIC</button>\n'];
 dd_top = [dd_top, '        <div id="topic" class="dropdown-content">\n'];
-dd_top = [dd_top, '          <a href="#DEBlib">DEB library</a>\n'];
-dd_top = [dd_top, '          <a href="#SIs">Special issues</a>\n'];
-dd_top = [dd_top, '          <a href="#Editorials">Editorials</a>\n'];
-dd_top = [dd_top, '          <a href="#Intros">Introductions</a>\n'];
-dd_top = [dd_top, '          <a href="#Evolution">Evolutionary context</a>\n'];      
-dd_top = [dd_top, '          <a href="#Estimation">Parameter estimation</a>\n'];
-dd_top = [dd_top, '          <a href="#Patterns">Patterns in parameter values</a>\n'];      
-dd_top = [dd_top, '          <a href="#Tumors">Tumor growth</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''DEBlib'')">DEB library</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''SIs'')">Special issues</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Editorials'')">Editorials</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Intros'')">Introductions</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Evolution'')">Evolutionary context</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Estimation'')">Parameter estimation</a>\n'];
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Species'')">Species accounts</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Patterns'')">Patterns in parameter values</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''PopDyn'')">Population dynamics</a>\n'];      
+dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth</a>\n'];      
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
-%% write toolbars
-oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
-oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
-oid_DEBpapers = fopen('toolbar_DEBpapers.html', 'w+');  
+%% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
 oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');  
-oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
-oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 oid_amp = fopen('toolbar_amp.html', 'w+');       
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_app = fopen('toolbar_app.html', 'w+');       
+oid_DEBportal = fopen('toolbar_DEBportal.html', 'w+');  
+oid_AmPestimation = fopen('toolbar_AmPestimation.html', 'w+');  
+oid_DEBpapers = fopen('toolbar_DEBpapers.html', 'w+');  
+oid_DEBtool = fopen('toolbar_DEBtool.html', 'w+');  
+oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');  
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
-fprintf(oid_DEBportal, [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPestimation, [tbh, dd_sec, bar,     dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBpapers, [tbh, dd_top, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_deblab,    [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
-fprintf(oid_subdeblab, [tbh, dd_sup, dd_cou, bar, dd_deb, dd_con, dd_dat, dd_pac, dd_app, tbt]);
-fprintf(oid_DEBtool,   [tbh, dd_box, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtool,   [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_amp,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_entry,     [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_budget,    [tbh, dd_bud, bar,         dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_app,       [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
-fprintf(oid_AmPtox,    [tbh,                      dd_deb, dd_con, dd_col, dd_pac, dd_app, tbt]);
+dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_app]; % standard dropdowns for all toolbars
+% all toolbars start with tbh and end with tbt; bar separates local from standard dropdowns
+% server info is removed from internal toolbars to make the IUEM server functional when the VU server is down
+% internal toolbars
+fprintf(oid_deblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, ''));
+fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
+fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
+fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+% external toolbars
+fprintf(oid_DEBportal, [tbh, dd_std, tbt]);
+fprintf(oid_AmPestimation, [tbh, dd_sec, bar, dd_std, tbt]);
+fprintf(oid_DEBpapers, [tbh, dd_top, bar, dd_std, tbt]);
+fprintf(oid_DEBtool,   [tbh, dd_box, bar, dd_std, tbt]);
+fprintf(oid_AmPtool,   [tbh, dd_std, tbt]);
+fprintf(oid_AmPtox,    [tbh, dd_std, tbt]);
 
 fclose all;
 
-movefile toolbar_DEBportal.html '../../DEBportal/docs/'
-movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
-movefile toolbar_DEBpapers.html '../../DEBportal/docs/'
+%% move toolbars
+% move internal toolbars, being in AmPtool\curation
 movefile toolbar_deblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
-movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+% move external toolbars, being in AmPtool\curation
+movefile toolbar_DEBportal.html '../../DEBportal/docs/'
+movefile toolbar_AmPestimation.html '../../DEBportal/docs/'
+movefile toolbar_DEBpapers.html '../../DEBportal/docs/'
+movefile toolbar_DEBtool.html '../../DEBtool_M/docs/'
+movefile toolbar_AmPtool.html '../../AmPtool/docs/'
 movefile toolbar_AmPtox.html '../../AmPtox/docs/'
 
 cd(WD);
