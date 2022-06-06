@@ -17,7 +17,6 @@ function  prt_toolbar
 % Sync Github after running this file.
 % The internal addresses in the toolbars are relative, but the external ones are absolute, linking to the VU server.
 % When the VU server is down, AmP can still be used on the IUEM server, avoiding the use of toolbars on GitHub,
-% Indent of 2 spaces used for printing to html page. 
 % First dropdowns are composed, then collected in toolbars. 
 
 %% Example of use
