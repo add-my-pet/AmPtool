@@ -9,7 +9,7 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints internalhtml-toolbars deblab, subdeblab, amp, budget, entry, app, 
+% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, app, 
 % and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
