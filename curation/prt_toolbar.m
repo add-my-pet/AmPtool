@@ -226,7 +226,7 @@ oid_AmPtool = fopen('toolbar_AmPtool.html', 'w+');
 oid_AmPtox = fopen('toolbar_AmPtox.html', 'w+');  
 
 dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_app]; % standard dropdowns for all toolbars
-% all toolbars start with tbh and end with tbt bar separates local from standard dropdowns
+% all toolbars start with tbh and end with tbt; bar separates local from standard dropdowns
 % server info is removed from internal toolbars to make the IUEM server functional
 % internal toolbars
 fprintf(oid_deblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, ''));
