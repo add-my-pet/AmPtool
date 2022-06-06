@@ -13,8 +13,10 @@ function  prt_toolbar
 % and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
-% Some toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, but others are used in Githup. 
+% Some toolbars are used in deblab/add_my_pet and parked in deblab/add_my_pet/sys, but others are used in GitHup. 
 % Sync Github after running this file.
+% The internal addresses in the toolbars are relative, but the external ones are absolute, linking to the VU server.
+% When the VU server is down, AmP can still be used on the IUEM server, avoiding the use of toolbars on GitHub,
 % Indent of 2 spaces used for printing to html page. 
 % First dropdowns are composed, then collected in toolbars. 
 
