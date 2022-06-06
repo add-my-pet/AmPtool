@@ -52,7 +52,7 @@ function [codes, entries] = read_allEco(varargin)
     end
   end
 
-  codes = cell(n,nargin);
+  codes = cell(n_entries,nargin);
   
   for i = 1:n_fields
     for j = 1:nargin
