@@ -76,7 +76,7 @@ cdAmPdata; load allUnits; load allLabel
 cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
-prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
+prt_toolbar_old; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
 % add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
 prt_specJump; % write sys/specJump.js for navigation
 

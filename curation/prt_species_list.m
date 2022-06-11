@@ -113,8 +113,8 @@ fprintf(fid_Spec, '<body>\n\n');  % open body
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
 	
-fprintf(fid_Spec, '<div id = "main">\n');
-fprintf(fid_Spec, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_Spec, '<div id="main">\n');
+fprintf(fid_Spec, '  <div id="main-wrapper-species">    \n');
 fprintf(fid_Spec, '    <div id="contentFull">\n\n');
 fprintf(fid_Spec, '      <H2><a href="" title="Goto entries by clicking on entry names">Species list: taxonomic view</a></H2>\n\n');
 
@@ -197,7 +197,7 @@ fprintf(fid_Spec, '          // Loop through all table rows, and hide those who 
 fprintf(fid_Spec, '          for (i = 0; i < tr.length; i++) {\n');
 fprintf(fid_Spec, '          td = tr[i].getElementsByTagName("td")[nBox];\n');
 fprintf(fid_Spec, '          if (td) {\n');
-fprintf(fid_Spec, '            if (td.innerhtml.toUpperCase().indexOf(filter) > -1) {\n');
+fprintf(fid_Spec, '            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
 fprintf(fid_Spec, '              tr[i].style.display = "";\n');
 fprintf(fid_Spec, '            } else {\n');
 fprintf(fid_Spec, '              tr[i].style.display = "none";\n');

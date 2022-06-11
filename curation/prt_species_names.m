@@ -118,10 +118,10 @@ fprintf(fid_Spec, '</HEAD>\n\n');
 fprintf(fid_Spec, '<BODY>\n\n');
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
-fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n\n');
+fprintf(fid_Spec, '<div><script>include_toolbar(''amp'')</script></div>\n\n');
 	
-fprintf(fid_Spec, '<div id = "main">\n');
-fprintf(fid_Spec, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_Spec, '<div id="main">\n');
+fprintf(fid_Spec, '  <div id="main-wrapper-species">    \n');
 fprintf(fid_Spec, '    <div id="contentFull">\n\n');
 
 fprintf(fid_Spec, '      <div>\n');
@@ -132,7 +132,7 @@ fprintf(fid_Spec, '      </div>\n\n');
 fprintf(fid_Spec, '      <H2 id="scientific_name"><a href="#common_name" title="Locate entries by scientific name.\n');
 fprintf(fid_Spec, '        Goto entries by clicking on entry names.\n');
 fprintf(fid_Spec, '        Click here for common names">Scientific names</a></H2>\n');
-fprintf(fid_Spec, '      <div class = "newspaper">\n'); 
+fprintf(fid_Spec, '      <div class="newspaper">\n'); 
 fprintf(fid_Spec, '        <ul id="scientific_nm">\n');
 
 for i = 1:n
@@ -146,7 +146,7 @@ fprintf(fid_Spec, '        Species can have several common names; the first one 
 fprintf(fid_Spec, '        Goto entries by clicking on entry names.\n');
 fprintf(fid_Spec, '        Click here for scientific names">Common names</a></H2>\n\n');
 
-fprintf(fid_Spec, '      <div class = "newspaper">\n');  
+fprintf(fid_Spec, '      <div class="newspaper">\n');  
 fprintf(fid_Spec, '        <ul id="common_nm">');
 for i = 1:n
 fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{index(i)},snm{index(i)},snm_prt{index(i)},cnm{i});

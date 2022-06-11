@@ -1,19 +1,32 @@
 %% set_path2server
 % set path for browser to server
 
-function path2server = set_path2server
-% created 2021/02/25 by Bas Kooijman
+function path = set_path2server(svr)
+% created 2021/02/25 by Bas Kooijman, modified 2022/06/10
 
 %% Syntax
-% path2server = <../set_path2server.m *set_path2server*>
+% path = <../set_path2server.m *set_path2server*>(svr)
 
 %% Description
 % fill a global with the name of the path to the deblab folder on the server
 %
+% Input
+%
+% * svr: optional string with name of server (default 'VU')
+%
 % Output
 %
-% * path2server: character string with paht to server
+% * path: haracter string with paht to server
 
-path2server = 'https://www.bio.vu.nl/thb/deb/deblab/';
+if ~exist('svr', 'var')
+    svr = 'VU';
+end
 
-% path2server = 'https://debtheory.fr/';
+switch svr
+  case 'VU'
+    path = 'https://www.bio.vu.nl/thb/deb/deblab/';
+  case 'IUEM'
+    path = 'https://debtheory.fr/';
+  otherwise
+    path = '';
+end  
