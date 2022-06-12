@@ -146,7 +146,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[tbh, dd_std, dd_bud, dd_sup, dd_cou] = set_dd('IUEM'); % set remaining head and dropdowns
+[tbh, dd_std] = set_dd('IUEM'); % set remaining head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
