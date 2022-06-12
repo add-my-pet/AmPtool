@@ -93,17 +93,8 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth<
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
-dd_ser = []; % dropdown SERVER
-dd_ser = [dd_ser, '      <div class="dropdown">\n'];
-dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn">SERVER</button>\n'];
-dd_ser = [dd_ser, '        <div id="server" class="dropdown-content">\n'];
-dd_ser = [dd_ser, '          <a onclick="changeServer(''VU'')">VU</a>\n'];
-dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
-dd_ser = [dd_ser, '        </div>\n'];
-dd_ser = [dd_ser, '      </div>\n\n'];
-
 % now dropdowns that do use server info
-[tbh, dd_std, dd_bud, dd_sup, dd_cou] = set_dd('VU'); % set remaining tb-head and dropdowns
+[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
 %% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -146,7 +137,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[tbh, dd_std] = set_dd('IUEM'); % set remaining head and dropdowns
+[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
@@ -182,7 +173,7 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/'
 cd(WD);
 end
 
-function [tbh, dd_std, dd_bud, dd_sup, dd_cou] = set_dd(svr)
+function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   % set toolbar components for server svr
   
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
@@ -311,5 +302,15 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou] = set_dd(svr)
   dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank">Methods in TB</a>\n'];
   dd_cou = [dd_cou, '        </div>\n'];
   dd_cou = [dd_cou, '      </div>\n\n'];
+  
+  dd_ser = []; % dropdown SERVER
+  dd_ser = [dd_ser, '      <div class="dropdown">\n'];
+  dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn"><img src="img/server_', svr, '.png" height="30px"></button>\n'];
+  dd_ser = [dd_ser, '        <div id="server" class="dropdown-content">\n'];
+  dd_ser = [dd_ser, '          <a onclick="changeServer(''VU'')">VU</a>\n'];
+  dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
+  dd_ser = [dd_ser, '        </div>\n'];
+  dd_ser = [dd_ser, '      </div>\n\n'];
+
 
 end
