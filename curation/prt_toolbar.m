@@ -34,7 +34,7 @@ bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from stand
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
 tbh = [tbh, '    <div class="logo">\n'];		
-tbh = [tbh, '      <img src="img/bannercycle.png"  height = "60px"></a>\n'];
+tbh = [tbh, '      <img src="img/bannercycle.png" height="60px">\n'];
 tbh = [tbh, '    </div>\n\n'];
 tbh = [tbh, '    <div id="navwrapper">\n'];
  
@@ -306,7 +306,8 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   
   dd_ser = []; % dropdown SERVER
   dd_ser = [dd_ser, '      <div class="dropdown">\n'];
-  dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn"><img src="img/server_', svr, '.png" height="60px"></button>\n'];
+  %dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn"><img src="img/server_', svr, '.png" height="40px"></button>\n'];
+  dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn">SERVER</button>\n'];
   dd_ser = [dd_ser, '        <div id="server" class="dropdown-content">\n'];
   dd_ser = [dd_ser, '          <a onclick="changeServer(''VU'')">VU</a>\n'];
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
