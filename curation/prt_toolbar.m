@@ -31,6 +31,13 @@ path2AmP = [set_path2server, 'add_my_pet/'];
 %% set toolbar components
 bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
+tbh = ''; % toolbar head
+tbh = [tbh, '  <div id="top">\n'];
+tbh = [tbh, '    <div class="logo">\n'];		
+tbh = [tbh, '      <img src="img/bannercycle.png"  height = "60px"></a>\n'];
+tbh = [tbh, '    </div>\n\n'];
+tbh = [tbh, '    <div id="navwrapper">\n'];
+ 
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
@@ -94,7 +101,7 @@ dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
 % now dropdowns that do use server info
-[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
+[dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
 %% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -137,7 +144,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
+[dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
@@ -173,7 +180,8 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/'
 cd(WD);
 end
 
-function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
+function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
+
   % set toolbar components for server svr
   
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
@@ -182,14 +190,7 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
 
   path2deblab = set_path2server(svr); 
   path2AmP = [path2deblab, 'add_my_pet/'];
-
-  tbh = ''; % toolbar head
-  tbh = [tbh, '  <div id="top">\n'];
-  tbh = [tbh, '    <div class="logo">\n'];		
-  tbh = [tbh, '      <a href="', path2deblab, '"><img src="', path2AmP, 'img/bannercycle.png"  height = "60px"></a>\n'];
-  tbh = [tbh, '    </div>\n\n'];
-  tbh = [tbh, '    <div id="navwrapper">\n'];
-  
+ 
   %% standard dropdowns (for all toolbars)
   dd_deb = []; % dropdown DEB
   dd_deb = [dd_deb, '      <div class="dropdown">\n'];
@@ -305,7 +306,7 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   
   dd_ser = []; % dropdown SERVER
   dd_ser = [dd_ser, '      <div class="dropdown">\n'];
-  dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn"><img src="img/server_', svr, '.png" height="30px"></button>\n'];
+  dd_ser = [dd_ser, '        <button onclick="showDropdown(''server'')" class="dropbtn"><img src="img/server_', svr, '.png" height="60px"></button>\n'];
   dd_ser = [dd_ser, '        <div id="server" class="dropdown-content">\n'];
   dd_ser = [dd_ser, '          <a onclick="changeServer(''VU'')">VU</a>\n'];
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
