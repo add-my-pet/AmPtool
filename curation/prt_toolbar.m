@@ -34,7 +34,7 @@ bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from stand
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
 tbh = [tbh, '    <div class="logo">\n'];		
-tbh = [tbh, '      <img src="img/bannercycle.png" height="60px">\n'];
+tbh = [tbh, '      <img src="img/bannercycle.png" height="55px">\n'];
 tbh = [tbh, '    </div>\n\n'];
 tbh = [tbh, '    <div id="navwrapper">\n'];
  
@@ -242,7 +242,7 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
 
   dd_app = []; % dropdown APPLICATIONS
   dd_app = [dd_app, '      <div class="dropdown">\n'];
-  dd_app = [dd_app, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPLICATIONS</button>\n'];
+  dd_app = [dd_app, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPS</button>\n'];
   dd_app = [dd_app, '        <div id="applications" class="dropdown-content">\n'];
   dd_app = [dd_app, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
   dd_app = [dd_app, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
