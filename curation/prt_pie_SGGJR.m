@@ -46,10 +46,9 @@ oid = fopen(['../../deblab/add_my_pet/', pie{j}, '.html'], 'w+'); % open file fo
 fprintf(oid, '<!DOCTYPE html>\n');
 fprintf(oid, '<HTML>\n');
 fprintf(oid, '<HEAD>\n');
-fprintf(oid,['  <TITLE>',pie{j},'</TITLE>\n']);
+fprintf(oid, '  <TITLE>%s</TITLE>\n', pie{j});
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n'); 
-fprintf(oid, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="sys/jscrips.js"></script>\n');
 fprintf(oid, '  <style>\n');
 fprintf(oid, '    .pierow{\n');
 fprintf(oid, '      max-width: 1080px;\n');
@@ -74,7 +73,6 @@ fprintf(oid, '<BODY>\n\n');
 
 fprintf(oid, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(oid, '<div w3-include-html="sys/toolbar_budget.html"></div>\n');
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '<!--------------------------------------------------------------->\n');
 fprintf(oid, '<!--   PART main                                               -->\n');

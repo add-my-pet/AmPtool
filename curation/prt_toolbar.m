@@ -3,7 +3,7 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12
+% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12, 2022/06/13
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
@@ -170,10 +170,13 @@ movefile toolbar_AmPestimation_VU.html '../../DEBportal/docs/'
 movefile toolbar_AmPestimation_IUEM.html '../../DEBportal/docs/'
 movefile toolbar_DEBpapers_VU.html '../../DEBportal/docs/'
 movefile toolbar_DEBpapers_IUEM.html '../../DEBportal/docs/'
+%
 movefile toolbar_DEBtool_VU.html '../../DEBtool_M/docs/'
 movefile toolbar_DEBtool_IUEM.html '../../DEBtool_M/docs/'
+%
 movefile toolbar_AmPtool_VU.html '../../AmPtool/docs/'
 movefile toolbar_AmPtool_IUEM.html '../../AmPtool/docs/'
+%
 movefile toolbar_AmPtox_VU.html '../../AmPtox/docs/'
 movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/'
 

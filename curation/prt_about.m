@@ -144,7 +144,6 @@ fprintf(fid_about, '<body>\n\n');
 % ----------------------------------------------------------
 fprintf(fid_about, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_about, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
-fprintf(fid_about, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(fid_about, '<!--------------------------------------------------------------->\n');
 fprintf(fid_about, '<!--   PART main                                               -->\n');

@@ -35,8 +35,7 @@ fprintf(fid_Spec, '<HTML>\n');
 fprintf(fid_Spec, '<HEAD>\n');
 fprintf(fid_Spec, '  <TITLE>Species Names</TITLE>\n');
 fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
-fprintf(fid_Spec, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_Spec, '  <script src="sys/w3data.js"></script>\n\n');
+fprintf(fid_Spec, '  <script src="sys/jscript.js"></script>\n');
 
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .newspaper {\n');
@@ -118,7 +117,7 @@ fprintf(fid_Spec, '</HEAD>\n\n');
 fprintf(fid_Spec, '<BODY>\n\n');
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
-fprintf(fid_Spec, '<div><script>include_toolbar(''amp'')</script></div>\n\n');
+fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
 	
 fprintf(fid_Spec, '<div id="main">\n');
 fprintf(fid_Spec, '  <div id="main-wrapper-species">    \n');
