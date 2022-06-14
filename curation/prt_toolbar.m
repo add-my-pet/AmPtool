@@ -315,6 +315,6 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
   dd_ser = [dd_ser, '        </div>\n'];
   dd_ser = [dd_ser, '      </div>\n\n'];
-  dd_ser = [dd_ser, '      <div><img src="img/server_', svr, '.png" height="30px"></div>\n\n']; % icon for server
+  dd_ser = [dd_ser, '      <div><img class="icon" src="img/server_', svr, '.png" height="30px"></div>\n\n']; % icon for server
 
 end
