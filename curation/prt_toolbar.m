@@ -30,8 +30,6 @@ path2AmP = [set_path2server, 'add_my_pet/'];
 
 %% set toolbar components
 bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
-svr_VU   = '      <div><img scr="img/server_VU.png height="30px""</div>\n\n'; % icon for VU server
-svr_IUEM = '      <div><img scr="img/server_IUEM.png" height="30px""</div>\n\n'; % icon for IUEM server
 
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
@@ -138,21 +136,21 @@ fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 %
 % external toolbars for VU
-fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, svr_VU, tbt]);
-fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, svr_VU, tbt]);
-fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, svr_VU, tbt]);
-fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, svr_VU, tbt]);
-fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, svr_VU, tbt]);
-fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
 [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
-fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
-fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, svr_IUEM, tbt]);
-fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, svr_IUEM, tbt]);
-fprintf(oid_DEBtool_IUEM,   [tbh, dd_box, bar, dd_std, dd_ser, svr_IUEM, tbt]);
-fprintf(oid_AmPtool_IUEM,   [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
-fprintf(oid_AmPtox_IUEM,    [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBtool_IUEM,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtool_IUEM,   [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtox_IUEM,    [tbh, dd_std, dd_ser, tbt]);
 
 fclose all;
 
@@ -186,8 +184,7 @@ cd(WD);
 end
 
 function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
-
-  % set toolbar components for server svr
+  % set toolbar dropdowns for server svr
   
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
   path2DEBtool = 'https://debtool.debtheory.org/docs/';
@@ -245,7 +242,7 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '        </div>\n'];
   dd_col = [dd_col, '      </div>\n\n'];	
 
-  dd_app = []; % dropdown APPLICATIONS
+  dd_app = []; % dropdown APPS
   dd_app = [dd_app, '      <div class="dropdown">\n'];
   dd_app = [dd_app, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPS</button>\n'];
   dd_app = [dd_app, '        <div id="applications" class="dropdown-content">\n'];
@@ -318,6 +315,6 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
   dd_ser = [dd_ser, '        </div>\n'];
   dd_ser = [dd_ser, '      </div>\n\n'];
-
+  dd_ser = [dd_ser, '      <div><img src="img/server_', svr, '.png" height="30px"></div>\n\n']; % icon for server
 
 end
