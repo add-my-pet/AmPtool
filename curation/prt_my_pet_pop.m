@@ -191,9 +191,7 @@ fprintf(oid, '  <TITLE>%s pop</TITLE>\n', species);
 if AmP
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
 
-fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/jscripts.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
@@ -283,7 +281,6 @@ if AmP
 fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
 fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
 fprintf(oid, '<div id="top2" w3-include-html="%s_toolbar.html\n"></div>', species);
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '<div id = "main">\n');
 fprintf(oid, '  <div id = "main-wrapper">\n');

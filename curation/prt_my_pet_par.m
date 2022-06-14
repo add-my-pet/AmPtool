@@ -70,12 +70,10 @@ oid = fopen(fileName, 'w+'); % % open file for writing, delete existing content
 fprintf(oid, '<!DOCTYPE html>\n');
 fprintf(oid, '<HTML>\n');
 fprintf(oid, '<HEAD>\n');
-fprintf(oid,['  <TITLE>',metaData.species,'</TITLE>\n']);
+fprintf(oid, '  <TITLE>%s</TITLE>\n', metaData.species);
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
 
-fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/jscripts.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
@@ -85,8 +83,7 @@ fprintf(oid, '<BODY>\n\n');
 
 fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
 fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
-fprintf(oid,['<div id="top2" w3-include-html="', metaData.species, '_toolbar.html"></div>\n']);
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
+fprintf(oid, '<div id="top2" w3-include-html="%s_toolbar.html"></div>\n', metaData.species);
 
 fprintf(oid, '<!--------------------------------------------------------------->\n');
 fprintf(oid, '<!--   PART main                                               -->\n');

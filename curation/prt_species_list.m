@@ -47,8 +47,7 @@ fprintf(fid_Spec, '<html>\n\n'); % open html
 fprintf(fid_Spec, '<head>\n');   % open head
 fprintf(fid_Spec, '  <title>Species List</title>\n');
 fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
-fprintf(fid_Spec, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_Spec, '  <script src="sys/w3data.js"></script>\n');
+fprintf(fid_Spec, '  <script src="sys/jscripts.js"></script>\n');
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .Search {\n');
 fprintf(fid_Spec, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');

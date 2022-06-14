@@ -29,7 +29,9 @@ path2AmP = [set_path2server, 'add_my_pet/'];
 % all dropdowns have absolute addresses, but some will be made relative for internal toolbars at the end
 
 %% set toolbar components
-bar = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
+bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
+svr_VU   = '      <div><img scr="img/server_VU.png height="30px""</div>\n\n'; % icon for VU server
+svr_IUEM = '      <div><img scr="img/server_IUEM.png" height="30px""</div>\n\n'; % icon for IUEM server
 
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
@@ -136,21 +138,21 @@ fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 %
 % external toolbars for VU
-fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, svr_VU, tbt]);
+fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, svr_VU, tbt]);
 %
 % external toolbars for IUEM
 [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
-fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBtool_IUEM,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtool_IUEM,   [tbh, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtox_IUEM,    [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_DEBtool_IUEM,   [tbh, dd_box, bar, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_AmPtool_IUEM,   [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
+fprintf(oid_AmPtox_IUEM,    [tbh, dd_std, dd_ser, svr_IUEM, tbt]);
 
 fclose all;
 
@@ -164,21 +166,21 @@ movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
 
 % move external toolbars, being in AmPtool\curation
-movefile toolbar_DEBportal_VU.html '../../DEBportal/docs/'
-movefile toolbar_DEBportal_IUEM.html '../../DEBportal/docs/'
-movefile toolbar_AmPestimation_VU.html '../../DEBportal/docs/'
-movefile toolbar_AmPestimation_IUEM.html '../../DEBportal/docs/'
-movefile toolbar_DEBpapers_VU.html '../../DEBportal/docs/'
-movefile toolbar_DEBpapers_IUEM.html '../../DEBportal/docs/'
+movefile toolbar_DEBportal_VU.html '../../DEBportal/docs/sys/'
+movefile toolbar_DEBportal_IUEM.html '../../DEBportal/docs/sys/'
+movefile toolbar_AmPestimation_VU.html '../../DEBportal/docs/sys/'
+movefile toolbar_AmPestimation_IUEM.html '../../DEBportal/docs/sys/'
+movefile toolbar_DEBpapers_VU.html '../../DEBportal/docs/sys/'
+movefile toolbar_DEBpapers_IUEM.html '../../DEBportal/docs/sys/'
 %
-movefile toolbar_DEBtool_VU.html '../../DEBtool_M/docs/'
-movefile toolbar_DEBtool_IUEM.html '../../DEBtool_M/docs/'
+movefile toolbar_DEBtool_VU.html '../../DEBtool_M/docs/sys/'
+movefile toolbar_DEBtool_IUEM.html '../../DEBtool_M/docs/sys/'
 %
-movefile toolbar_AmPtool_VU.html '../../AmPtool/docs/'
-movefile toolbar_AmPtool_IUEM.html '../../AmPtool/docs/'
+movefile toolbar_AmPtool_VU.html '../../AmPtool/docs/sys/'
+movefile toolbar_AmPtool_IUEM.html '../../AmPtool/docs/sys/'
 %
-movefile toolbar_AmPtox_VU.html '../../AmPtox/docs/'
-movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/'
+movefile toolbar_AmPtox_VU.html '../../AmPtox/docs/sys/'
+movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/sys/'
 
 cd(WD);
 end

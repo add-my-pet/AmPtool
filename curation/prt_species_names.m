@@ -35,7 +35,7 @@ fprintf(fid_Spec, '<HTML>\n');
 fprintf(fid_Spec, '<HEAD>\n');
 fprintf(fid_Spec, '  <TITLE>Species Names</TITLE>\n');
 fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
-fprintf(fid_Spec, '  <script src="sys/jscript.js"></script>\n');
+fprintf(fid_Spec, '  <script src="sys/jscripts.js"></script>\n');
 
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .newspaper {\n');

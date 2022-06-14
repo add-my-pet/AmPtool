@@ -66,12 +66,9 @@ fprintf(oid, '<head>\n');
 fprintf(oid, '  <title>%s</title>\n', metaData.species);
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
 
-fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/jscripts.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/modal.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
 
 fprintf(oid, '  <style>\n');
@@ -87,7 +84,6 @@ fprintf(oid, '<body>\n\n');
 fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
 fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
 fprintf(oid, '<div id="top2" w3-include-html="%s_toolbar.html"></div>\n', metaData.species);
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '<!--------------------------------------------------------------->\n');
 fprintf(oid, '<!--   PART main                                               -->\n');
@@ -306,13 +302,11 @@ end
 fprintf(oid, '      <p>\n');
 fprintf(oid, '      <h3 style="clear:both" class="pet"><a class="link" href = "%s_bib.bib" target = "_blank">Bibliography</a></h3>\n', metaData.species);
 fprintf(oid, '      <div w3-include-html="%s_bib.html"></div>\n', metaData.species);
-fprintf(oid, '      <script>w3IncludeHTML();</script>\n\n');
   
 % Citation:
 fprintf(oid, '      <p>\n');
 fprintf(oid, '      <h3 style="clear:both" class="pet">Citation</h3>\n');
 fprintf(oid, '      <div w3-include-html="%s_cit.html"></div>\n', metaData.species);
-fprintf(oid, '      <script>w3IncludeHTML();</script>\n\n');
 
 % ----------------------------------------------------------
 

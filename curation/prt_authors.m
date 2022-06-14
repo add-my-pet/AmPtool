@@ -117,8 +117,7 @@ fprintf(fid_authors, '      display: block;\n');
 fprintf(fid_authors, '    }\n\n');
 
 fprintf(fid_authors, '  </style>\n');
-fprintf(fid_authors, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_authors, '  <script src="sys/w3data.js"></script>\n');
+fprintf(fid_authors, '  <script src="sys/jscripts.js"></script>\n');
 fprintf(fid_authors, '</head>\n\n');
 fprintf(fid_authors, '<body>\n\n');
 
