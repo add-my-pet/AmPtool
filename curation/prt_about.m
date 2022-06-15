@@ -126,7 +126,7 @@ fprintf(fid_about, '<html>\n');
 fprintf(fid_about, '<head>\n');
 fprintf(fid_about, '  <title>About AmP</title>\n');
 fprintf(fid_about, '  <link rel="stylesheet" type="text/css" href="sys/style.css"> \n');
-fprintf(fid_about, '  <script src="sys/jscript.js"></script>\n');
+fprintf(fid_about, '  <script src="sys/jscripts.js"></script>\n');
 %fprintf(fid_about, '  <script type="text/javascript" language="javascript">\n');
 fprintf(fid_about, '    function changeImage(img){\n');
 fprintf(fid_about, '      document.getElementById(''daphnia'').src=img;\n');

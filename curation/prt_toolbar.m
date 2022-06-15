@@ -37,7 +37,14 @@ tbh = [tbh, '    <div class="logo">\n'];
 tbh = [tbh, '      <img src="img/bannercycle.png" height="55px">\n'];
 tbh = [tbh, '    </div>\n\n'];
 tbh = [tbh, '    <div id="navwrapper">\n'];
- 
+
+tbhs = ''; % toolbar head for entries
+tbhs = [tbhs, '  <div id="top">\n'];
+tbhs = [tbhs, '    <div class="logo">\n'];		
+tbhs = [tbhs, '      <img src="../../img/bannercycle.png" height="55px">\n'];
+tbhs = [tbhs, '    </div>\n\n'];
+tbhs = [tbhs, '    <div id="navwrapper">\n'];
+
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
@@ -129,9 +136,9 @@ oid_AmPtox_IUEM = fopen('toolbar_AmPtox_IUEM.html', 'w+');
 %
 % internal toolbars (no server info, relative addresses only)
 fprintf(oid_deblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, ''));
-fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
+fprintf(oid_subdeblab, strrep([tbhs, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
 fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
-fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
+fprintf(oid_entry, strrep([tbhs, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 %
@@ -301,7 +308,7 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/quizz/quizz" target="_blank">Quizzes</a>\n'];
   dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/essays" target="_blank">Essays</a>\n'];
   dd_cou = [dd_cou, '          <a href="http://www.zotero.org/groups/500643/deb_library/" target="_blank">Theses</a>\n'];
-  dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/archieve/quest2001.html" target="_blank">Questions</a>\n'];      
+  dd_cou = [dd_cou, '          <a href="', path2deblab, 'course/archieve/questions/quest2001.html" target="_blank">Questions</a>\n'];      
   dd_cou = [dd_cou, '          <a href="', path2deblab, 'tb/tb.pdf" target="_blank">Methods in TB</a>\n'];
   dd_cou = [dd_cou, '        </div>\n'];
   dd_cou = [dd_cou, '      </div>\n\n'];
@@ -315,6 +322,9 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
   dd_ser = [dd_ser, '        </div>\n'];
   dd_ser = [dd_ser, '      </div>\n\n'];
-  dd_ser = [dd_ser, '      <div><img class="icon" src="img/server_', svr, '.png" height="30px"></div>\n\n']; % icon for server
-
+  if strcmp(svr,'VU') % the names server_VU.png and server_IUEM.png gave problems with syncing with GitHub
+    dd_ser = [dd_ser, '      <div class="icon"><img src="img/servervu.png" height="35px"></div>\n\n']; % icon for server
+  else 
+    dd_ser = [dd_ser, '      <div class="icon"><img src="img/serveriuem.png" height="35px"></div>\n\n']; % icon for server
+  end
 end
