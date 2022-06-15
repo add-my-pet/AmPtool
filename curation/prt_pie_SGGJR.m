@@ -48,7 +48,7 @@ fprintf(oid, '<HTML>\n');
 fprintf(oid, '<HEAD>\n');
 fprintf(oid, '  <TITLE>%s</TITLE>\n', pie{j});
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n'); 
-fprintf(oid, '  <script src="sys/jscrips.js"></script>\n');
+fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
 fprintf(oid, '  <style>\n');
 fprintf(oid, '    .pierow{\n');
 fprintf(oid, '      max-width: 1080px;\n');

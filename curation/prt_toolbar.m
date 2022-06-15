@@ -34,16 +34,9 @@ bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from 
 tbh = ''; % toolbar head
 tbh = [tbh, '  <div id="top">\n'];
 tbh = [tbh, '    <div class="logo">\n'];		
-tbh = [tbh, '      <img src="img/bannercycle.png" height="55px">\n'];
+tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
 tbh = [tbh, '    </div>\n\n'];
 tbh = [tbh, '    <div id="navwrapper">\n'];
-
-tbhs = ''; % toolbar head for entries
-tbhs = [tbhs, '  <div id="top">\n'];
-tbhs = [tbhs, '    <div class="logo">\n'];		
-tbhs = [tbhs, '      <img src="../../img/bannercycle.png" height="55px">\n'];
-tbhs = [tbhs, '    </div>\n\n'];
-tbhs = [tbhs, '    <div id="navwrapper">\n'];
 
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
@@ -136,9 +129,9 @@ oid_AmPtox_IUEM = fopen('toolbar_AmPtox_IUEM.html', 'w+');
 %
 % internal toolbars (no server info, relative addresses only)
 fprintf(oid_deblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, ''));
-fprintf(oid_subdeblab, strrep([tbhs, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
+fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2deblab, '../'));
 fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
-fprintf(oid_entry, strrep([tbhs, dd_std, tbt], path2AmP, '../../'));
+fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 %
