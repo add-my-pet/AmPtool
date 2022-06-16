@@ -53,7 +53,7 @@ function include_toolbar(tb) {
   nm = window.location.href.split("/");
   n_nm = nm.length; nm = nm[n_nm - 1]; nm = nm.split("."); nm = nm[0];
   server = get_cookie('server'); if (server == ""){server = "VU"};  
-  file = "toolbar_" + tb + "_" + server + ".html";
+  file = "sys/toolbar_" + tb + "_" + server + ".html";
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -96,4 +96,54 @@ window.onclick = function(event) {
       }
     }
   }
+}
+
+function modal() {
+  var modal = document.getElementById("myModal");
+  var i;
+
+  var img = document.getElementsByClassName("myImg");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+
+  for(i=0;i< img.length;i++) {
+    img[i].onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+  }
+
+  // When the user clicks on modelImg, close the modal
+  modalImg.onclick = function() {
+    modal.style.display = "none";
+  }
+}
+
+function OpenTreeAtTaxon(taxon) {
+  var newURL = "../../species_tree_Animalia.html"  + '?pic="' + taxon + '.jpg"';
+  newwin = window.open(newURL);
+  SetCookie("clickedFolder", taxon);
+  newwin.document.taxonSearch = taxon;
+}    
+
+
+function OpenListAtTaxon(taxon) {
+  newwin = window.open("../../species_list.html");      
+  let stateCheck = setInterval(() => {
+    if (newwin.document.readyState == 'complete') {
+      clearInterval(stateCheck);
+      var elmnt = newwin.document.getElementById(taxon);
+      var height = elmnt.offsetTop;
+      newwin.window.scrollTo(0, height + 250);
+    }
+  }, 100);
+}
+
+function OpenPageAtId(id) {
+  window.open("","_parent");
+  window.scrollTo(0,0);
+  var elmnt = document.getElementById(id);
+  var height = elmnt.offsetTop; 
+  window.scrollTo(0, height + 100); /* add 100 for toolbar */
 }

@@ -176,7 +176,7 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/sys/'
 cd(WD);
 end
 
-function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr);
+function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
 
   % set toolbar dropdowns for server svr
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
