@@ -31,13 +31,6 @@ path2AmP = [set_path2server, 'add_my_pet/'];
 %% set toolbar components
 bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
-tbh = ''; % toolbar head
-tbh = [tbh, '  <div id="top">\n'];
-tbh = [tbh, '    <div class="logo">\n'];		
-tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
-tbh = [tbh, '    </div>\n\n'];
-tbh = [tbh, '    <div id="navwrapper">\n'];
-
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
@@ -101,7 +94,7 @@ dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
 % now dropdowns that do use server info
-[dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
+[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
 %% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -144,7 +137,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
+[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
@@ -183,16 +176,23 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/sys/'
 cd(WD);
 end
 
-function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
+function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr);
+
   % set toolbar dropdowns for server svr
-  
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
   path2DEBtool = 'https://debtool.debtheory.org/docs/';
   path2AmPtool = 'https://amptool.debtheory.org/docs/';
-
+  %
   path2deblab = set_path2server(svr); 
   path2AmP = [path2deblab, 'add_my_pet/'];
  
+  tbh = ''; % toolbar head
+  tbh = [tbh, '  <div id="top">\n'];
+  tbh = [tbh, '    <div class="logo">\n'];		
+  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
+  tbh = [tbh, '    </div>\n\n'];
+  tbh = [tbh, '    <div id="navwrapper">\n'];
+
   %% standard dropdowns (for all toolbars)
   dd_deb = []; % dropdown DEB
   dd_deb = [dd_deb, '      <div class="dropdown">\n'];
@@ -315,9 +315,7 @@ function [dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_ser = [dd_ser, '          <a onclick="changeServer(''IUEM'')">IUEM</a>\n'];
   dd_ser = [dd_ser, '        </div>\n'];
   dd_ser = [dd_ser, '      </div>\n\n'];
-  if strcmp(svr,'VU') % the names server_VU.png and server_IUEM.png gave problems with syncing with GitHub
-    dd_ser = [dd_ser, '      <div class="icon"><img src="img/servervu.png" height="35px"></div>\n\n']; % icon for server
-  else 
-    dd_ser = [dd_ser, '      <div class="icon"><img src="img/serveriuem.png" height="35px"></div>\n\n']; % icon for server
-  end
+  % the names server_VU.png and server_IUEM.png gave problems
+  dd_ser = [dd_ser, '      <div class="icon"><img src="img/server', lower(svr), '.png" height="35px"></div>\n\n']; % icon for server
+
 end
