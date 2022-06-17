@@ -36,7 +36,7 @@ tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
 
 % first some dropdowns that do not use server info
-dd_box = []; % dropdown TOOLBOX
+dd_box = []; % dropdown TOOLBOX for dd_DEBtool
 dd_box = [dd_box, '      <div class="dropdown">\n'];
 dd_box = [dd_box, '        <button onclick="showDropdown(''toolbox'')" class="dropbtn">TOOLBOX</button>\n'];
 dd_box = [dd_box, '        <div id="toolbox" class="dropdown-content">\n'];
@@ -59,7 +59,22 @@ dd_box = [dd_box, '          <a href="./DEBtool_lib_pet.html">lib_pet</a></li>\n
 dd_box = [dd_box, '        </div>\n'];
 dd_box = [dd_box, '      </div>\n\n'];
 
-dd_sec = []; % dropdown SECTION
+dd_sct = []; % dropdown SECTION for dd_AmPtool
+dd_sct = [dd_sct, '      <div class="dropdown">\n'];
+dd_sct = [dd_sct, '        <button onclick="showDropdown(''section'')" class="dropbtn">SECTION</button>\n'];
+dd_sct = [dd_sct, '        <div id="section" class="dropdown-content">\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''portaltop'')">AmPtool</a>\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''data'')">Data</a>\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''tree'')">Taxonomic tree</a>\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''selection'')">Selection of entries</a>\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''legend'')">Legend</a>\n'];      
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''plotting'')">Spotting patterns</a>\n'];
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''context'')">Linked websites</a>\n'];      
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''distance'')">Distances between species</a>\n'];      
+dd_sct = [dd_sct, '        </div>\n'];
+dd_sct = [dd_sct, '      </div>\n\n'];
+
+dd_sec = []; % dropdown SECTION for dd_AmPestimation
 dd_sec = [dd_sec, '      <div class="dropdown">\n'];
 dd_sec = [dd_sec, '        <button onclick="showDropdown(''section'')" class="dropbtn">SECTION</button>\n'];
 dd_sec = [dd_sec, '        <div id="section" class="dropdown-content">\n'];
@@ -76,7 +91,7 @@ dd_sec = [dd_sec, '          <a onclick="OpenPageAtId(''Remarks'')">General rema
 dd_sec = [dd_sec, '        </div>\n'];
 dd_sec = [dd_sec, '      </div>\n\n'];
 
-dd_top = []; % dropdown TOPIC
+dd_top = []; % dropdown TOPIC for dd_DEBpapers
 dd_top = [dd_top, '      <div class="dropdown">\n'];
 dd_top = [dd_top, '        <button onclick="showDropdown(''topic'')" class="dropbtn">TOPIC</button>\n'];
 dd_top = [dd_top, '        <div id="topic" class="dropdown-content">\n'];
@@ -132,7 +147,7 @@ fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBtool_VU,   [tbh, dd_sct, bar, dd_box, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
@@ -142,7 +157,7 @@ fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBtool_IUEM,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtool_IUEM,   [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtool_IUEM,   [tbh, dd_sct, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_IUEM,    [tbh, dd_std, dd_ser, tbt]);
 
 fclose all;
