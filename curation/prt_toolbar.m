@@ -147,8 +147,8 @@ fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBtool_VU,   [tbh, dd_sct, bar, dd_box, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_AmPtool_VU,   [tbh, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_box, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_AmPtool_VU,   [tbh, dd_sct, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
