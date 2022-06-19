@@ -75,23 +75,23 @@ fprintf(fid_Spec, '      /* Add a grey background color to the table header and 
 fprintf(fid_Spec, '      background-color: #f1f1f1;\n');
 fprintf(fid_Spec, '    }\n\n');
 
+fprintf(fid_Spec, '    .ent {\n'); % entry
+fprintf(fid_Spec, '      color: blue;\n');
+fprintf(fid_Spec, '    }\n\n');
+
 fprintf(fid_Spec, '    .mod {\n'); % model
-%fprintf(fid_Spec, '      text-align: center;\n');
 fprintf(fid_Spec, '      background-color: #ffc6a5;\n');
 fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    .mre {\n'); % MRE
-%fprintf(fid_Spec, '      text-align: center;\n');
 fprintf(fid_Spec, '      background-color: #ffe7c6;\n');
 fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    .smse {\n'); % SMSE
-%fprintf(fid_Spec, '      text-align: center;\n');
 fprintf(fid_Spec, '      background-color: #ffe7c6;\n');
 fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    .com {\n'); % COMPLETE
-%fprintf(fid_Spec, '      text-align: center;\n');
 fprintf(fid_Spec, '      background-color: #ffce9c;\n');
 fprintf(fid_Spec, '    }\n\n');
 
@@ -163,7 +163,8 @@ function prt_species_row(fid_Spec, id)
   n_data_0 = length(data_0); n_data_1 = length(data_1); 
   
   fprintf(fid_Spec, '          <td>%s</td>  <td>%s</td> <td>%s</td> <td>%s</td>\n', phylum, class, order, family);
-  fprintf(fid_Spec, '          <td><button onclick="lnk(%s)">%s</button></td> <td>%s</td>\n', species_txt, species_prt, species_en);
+  %fprintf(fid_Spec, '          <td><button onclick="lnk(%s)">%s</button></td> <td>%s</td>\n', species_txt, species_prt, species_en);
+  fprintf(fid_Spec, '          <td><a class="ent" onclick="lnk(%s)">%s</a></td> <td>%s</td>\n', species_txt, species_prt, species_en);
   fprintf(fid_Spec, '          <td class="mod">%s</td> <td class="mre">%8.3f</td> <td class="smse">%8.3f</td> <td class="com">%g</td>\n', model, MRE, SMSE, COMPLETE);
   fprintf(fid_Spec, '          ');
   for i = 1:n_data_0 % scan zero-variate data
