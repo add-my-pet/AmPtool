@@ -43,7 +43,7 @@ function fileName = prt_id(pets, save)
   n = length(pets); 
   linkPets = pets; 
   for i=1:n
-    linkPets{i} = ['<button onclick="lnk(1,''', pets{i},  ''')">', pets{i}, '</button>']; 
+    linkPets{i} = ['<a onclick="lnk(1,''', pets{i},  ''')">', pets{i}, '</a>']; 
   end
 
   % initiate
@@ -83,7 +83,8 @@ function fileName = prt_id(pets, save)
        eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
        pars = [col.(nm), ',',  idNm,];
        if ~isempty(id)
-         eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
+         %eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
+         eval([nm,'{i} = ''<a onclick="lnk(', pars, ')">', id, '</a>'';']);
        end
     end
   end
@@ -107,45 +108,52 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
   fprintf(oid, '  <title>%s</title>\n',  'Links');
+  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
+  fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
   fprintf(oid, '  <style id="myStyleSheet">\n');
+  
+  fprintf(oid, '    body {\n');
+  fprintf(oid, '      background-color: #ffffff;\n');
+  fprintf(oid, '    }\n\n');
+
   fprintf(oid, '    div.tab {\n');
-  fprintf(oid, '      width: 90%%;\n');
   fprintf(oid, '      margin: auto;\n'); 
-  fprintf(oid, '      padding-top: 30px;\n'); 
+  fprintf(oid, '      padding-top: 90px;\n'); % make room for toolbar
   fprintf(oid, '    }\n\n');
     
   fprintf(oid, '    .head {\n');
-  fprintf(oid, '      background-color: #FFE7C6;\n');                   % pink header background
+  fprintf(oid, '      background-color: #ffe7c6;\n'); % pink header background, also part of style.css
+  fprintf(oid, '      color: blue;\n');
   fprintf(oid, '    }\n\n');
 
   fprintf(oid, '    #tabId {\n');
-  fprintf(oid, '      border-style: solid hidden solid hidden;\n');     % border top & bottom only
+  fprintf(oid, '      border-style: solid hidden solid hidden;\n'); % border top & bottom only
   fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n');% grey on even rows
-  
-  fprintf(oid, '    button {\n');
-  fprintf(oid, '      background-color: #FFFFFF;\n');
   fprintf(oid, '      color: blue;\n');
-  fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
-  fprintf(oid, '      font-size: 0.9em;\n');
-  fprintf(oid, '      border-style: none;\n');
   fprintf(oid, '    }\n\n');
 
+  fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n'); % grey on even rows, also part of style.css
+  
   fprintf(oid, '  </style>\n');
   fprintf(oid, '</head>\n\n');
   fprintf(oid, '<body>\n\n');
-  
+ 
+  load('n_entries', 'n_entries')
+  if n == n_entries 
+    fprintf(oid, '<div w3-include-html="sys/toolbar_amp.html"></div>\n\n');
+    
+    fprintf(oid, '    <div id="contentFull">\n\n');
+  end
+
   fprintf(oid, '  <div class="tab">\n');
   fprintf(oid, '  <table id="tabId">\n');
 
   % header
   if ~isempty(header)
     fprintf(oid, '    <tr class="head">\n');
-    fprintf(oid, '       <th><button class="head" onclick="undoHide()">%s</button></th>\n', header{1});
+    fprintf(oid, '       <th><a class="head" onclick="undoHide()">%s</a></th>\n', header{1});
     for j = 2:n_cols
-      fprintf(oid, '       <th><button class="head" onclick="hideCol(%d)">%s</button></th>\n', j, header{j});
+      fprintf(oid, '       <th><a class="head" onclick="hideCol(%d)">%s</a></th>\n', j, header{j});
     end
     fprintf(oid, '    </tr>\n\n');
   end
@@ -208,6 +216,13 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '      }\n');
   fprintf(oid, '    }\n');
   fprintf(oid, '  </script>\n\n');
+
+  if n == n_entries
+    fprintf(oid, '    </div> <!-- end of content -->\n\n');
+
+    fprintf(oid, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
+    fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
+  end
   
   fprintf(oid, '</body>\n');
   fprintf(oid, '</html>\n');
