@@ -1,6 +1,8 @@
+Rattus_argentiventer
 Rattus_exulans
 Rattus_fuscipes
 Rattus_lutreolus
 Rattus_norvegicus
 Rattus_norvegicus_Wistar
 Rattus_rattus
+Rattus_tiomanicus
