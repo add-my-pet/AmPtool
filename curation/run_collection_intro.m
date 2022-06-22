@@ -95,15 +95,28 @@ delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
 delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
+% and DEBtool_M/docs/sys/, AmPtox/docs/sys
 if ismac || isunix
   % system('git status');
-  system('git add ../taxa/* ../docs/*');
+  system('git add ../taxa/* ../docs/* ../docs/sys/*');
   system('git commit -am "extension"');
+  system('git push origin master');
+  system('git add ../../DEBtool_M/docs/sys/*'); % toolbars
+  system('git commit -am "toolbars"');
+  system('git push origin master');
+  system('git add ../../AmPtox/docs/sys/*');
+  system('git commit -am "toolbars"');
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add ../taxa/* ../docs/*');
+  system('powershell git add ../taxa/* ../docs/* ../docs/sys/*');
   system('powershell git commit -am "extension"');
+  system('powershell git push origin master');
+  system('powershell git add ../../DEBtool_M/docs/sys/*'); % toolbars
+  system('powershell git commit -am "toolbars"');
+  system('powershell git push origin master');
+  system('powershell git add ../../AmPtox/docs/sys/*');
+  system('powershell git commit -am "toolbars"');
   system('powershell git push origin master');
 end
 
