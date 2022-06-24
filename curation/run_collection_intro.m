@@ -109,13 +109,13 @@ if ismac || isunix
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add ../taxa/* ../docs/* ../docs/sys/*');
+  system('powershell git add AmPtool ../taxa/* ../docs/* ../docs/sys/*'); % toolbars + taxa
   system('powershell git commit -am "extension"');
   system('powershell git push origin master');
-  system('powershell git add ../../DEBtool_M/docs/sys/*'); % toolbars
+  system('powershell git add DEBtool_M ../../DEBtool_M/docs/sys/*'); % toolbars
   system('powershell git commit -am "toolbars"');
   system('powershell git push origin master');
-  system('powershell git add ../../AmPtox/docs/sys/*');
+  system('powershell git add AmPtox ../../AmPtox/docs/sys/*'); % toolbars
   system('powershell git commit -am "toolbars"');
   system('powershell git push origin master');
 end
