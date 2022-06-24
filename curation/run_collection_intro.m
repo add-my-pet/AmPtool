@@ -96,29 +96,31 @@ delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % 
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 % and DEBtool_M/docs/sys/, AmPtox/docs/sys
+cdCur;
 if ismac || isunix
   % system('git status');
-  system('git add ../taxa/* ../docs/* ../docs/sys/*');
+  cd ../; system('git add taxa/* docs/* docs/sys/*');
   system('git commit -am "extension"');
   system('git push origin master');
-  system('git add ../../DEBtool_M/docs/sys/*'); % toolbars
+  cd ../DEBtool_M; system('git add docs/sys/*'); % toolbars
   system('git commit -am "toolbars"');
   system('git push origin master');
-  system('git add ../../AmPtox/docs/sys/*');
+  cd ../AmPtox; system('git add docs/sys/*');
   system('git commit -am "toolbars"');
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add AmPtool ../taxa/* ../docs/* ../docs/sys/*'); % toolbars + taxa
+  cd ../; system('powershell git add taxa/* docs/* docs/sys/*'); % toolbars + taxa
   system('powershell git commit -am "extension"');
   system('powershell git push origin master');
-  system('powershell git add DEBtool_M ../../DEBtool_M/docs/sys/*'); % toolbars
+  cd ../DEBtool_M; system('powershell git add docs/sys/*'); % toolbars
   system('powershell git commit -am "toolbars"');
   system('powershell git push origin master');
-  system('powershell git add AmPtox ../../AmPtox/docs/sys/*'); % toolbars
+  cd ../AmPtox; system('powershell git add docs/sys/*'); % toolbars
   system('powershell git commit -am "toolbars"');
   system('powershell git push origin master');
 end
+cdCur;
 
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 if ismac || isunix
