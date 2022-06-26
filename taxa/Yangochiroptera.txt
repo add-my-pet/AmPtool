@@ -1,6 +1,9 @@
 Miniopteridae
-Mystacinidae
 Noctilionidae
+Mystacinidae
+Thyropteridae
 Phyllostomidae
 Molossidae
+Emballonuridae
+Natalidae
 Vespertilionidae
