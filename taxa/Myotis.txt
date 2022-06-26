@@ -1,6 +1,8 @@
 Myotis_blythii
+Myotis_capaccinii
 Myotis_grisescens
 Myotis_lucifugus
 Myotis_macrodactylus
 Myotis_myotis
+Myotis_septentrionalis
 Myotis_velifer
