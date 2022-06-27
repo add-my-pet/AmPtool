@@ -5,6 +5,7 @@ Aeorestes
 Nycticeius
 Nyctalus
 Pipistrellus
+Corynorhinus
 Plecotus
 Scotophilus
 Hypsugo
