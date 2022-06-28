@@ -132,6 +132,17 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '      color: blue;\n');
   fprintf(oid, '    }\n\n');
 
+  fprintf(oid, '    .Search {\n');
+  fprintf(oid, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
+  fprintf(oid, '      background-position: 2px -10px; /* Position the search icon */\n');
+  fprintf(oid, '      background-repeat: no-repeat; /* Do not repeat the icon image */\n');
+  fprintf(oid, '      width: 70%%; /* Width of search field */\n');
+  fprintf(oid, '      font-size: 14px; /* Increase font-size */\n');
+  fprintf(oid, '      padding: 5px 10px 7px 40px; /* Add some padding */\n');
+  fprintf(oid, '      border: 1px solid #ddd; /* Add a grey border */\n');
+  fprintf(oid, '      margin-bottom: 12px; /* Add some space below the input */\n');
+  fprintf(oid, '    }\n\n');
+
   fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n'); % grey on even rows, also part of style.css
   
   fprintf(oid, '  </style>\n');
@@ -140,7 +151,7 @@ function fileName = prt_id(pets, save)
  
   load('n_entries', 'n_entries')
   if n == n_entries 
-    fprintf(oid, '<div w3-include-html="sys/toolbar_amp.html"></div>\n\n');
+    fprintf(oid, '<div w3-include-html="sys/toolbar_links.html"></div>\n\n');
     
     fprintf(oid, '    <div id="contentFull">\n\n');
   end
@@ -174,7 +185,7 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '  <script>\n');
   fprintf(oid, '    function undoHide() {\n');
   fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
-  fprintf(oid, '      if (styleSheet.cssRules.length > 5){\n'); % there are presently 5 style rules (see above)
+  fprintf(oid, '      if (styleSheet.cssRules.length > 6){\n'); % there are presently 6 style rules (see above)
   fprintf(oid, '        styleSheet.deleteRule(0);\n');
   fprintf(oid, '      }\n');
   fprintf(oid, '    }\n\n');
@@ -214,7 +225,26 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '        case 24: window.open("https://genomics.senescence.info/species/entry.php?species=" + id); break;\n');
   fprintf(oid, '        default:\n');
   fprintf(oid, '      }\n');
+  fprintf(oid, '    }\n\n');
+  
+  fprintf(oid, '    function searchList() {\n');
+  fprintf(oid, '      var input, filter, table, tr, td, i;\n');
+  fprintf(oid, '      input = document.getElementById("Species");\n');
+  fprintf(oid, '      filter = input.value.toUpperCase();\n');
+  fprintf(oid, '      table = document.getElementById("tabId");\n');
+  fprintf(oid, '      tr = table.getElementsByTagName("tr");\n');
+  fprintf(oid, '      for (i = 0; i < tr.length; i++) {\n');
+  fprintf(oid, '        td = tr[i].getElementsByTagName("td")[0];\n');
+  fprintf(oid, '        if (td) {\n');
+  fprintf(oid, '          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
+  fprintf(oid, '            tr[i].style.display = "";\n');
+  fprintf(oid, '          } else {\n');
+  fprintf(oid, '            tr[i].style.display = "none";\n');
+  fprintf(oid, '          }\n');
+  fprintf(oid, '        }\n');
+  fprintf(oid, '      }\n');
   fprintf(oid, '    }\n');
+
   fprintf(oid, '  </script>\n\n');
 
   if n == n_entries

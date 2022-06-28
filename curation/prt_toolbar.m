@@ -31,6 +31,8 @@ path2AmP = [set_path2server, 'add_my_pet/'];
 %% set toolbar components
 bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
+srch = '      <div class="dropdown"><input type="text" class="Search" id="Species" onkeyup="searchList()" placeholder="Species .."></div>\n\n';
+
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
 tbt = [tbt, '  </div> <!-- end of top -->\n'];
@@ -118,6 +120,7 @@ oid_amp = fopen('toolbar_amp.html', 'w+');
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_app = fopen('toolbar_app.html', 'w+');   
+oid_links = fopen('toolbar_links.html', 'w+');  
 %
 oid_DEBportal_VU = fopen('toolbar_DEBportal_VU.html', 'w+');  
 oid_AmPestimation_VU = fopen('toolbar_AmPestimation_VU.html', 'w+');  
@@ -142,6 +145,7 @@ fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
 fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
 %
 % external toolbars for VU
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
@@ -170,6 +174,7 @@ movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_links.html '../../deblab/add_my_pet/sys/'
 
 % move external toolbars, being in AmPtool\curation
 movefile toolbar_DEBportal_VU.html '../../DEBportal/docs/sys/'
