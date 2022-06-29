@@ -1,10 +1,5 @@
-Aquila
-Haliaeetus
-Gyps
-Neophron
-Necrosyrtes
-Accipiter
-Circus
-Milvus
-Butastur
-Buteo
+Gypaetinae
+Gypinae
+Aquilinae
+Accipitrinae
+Buteoninae
