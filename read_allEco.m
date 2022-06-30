@@ -21,7 +21,8 @@ function [codes, entries] = read_allEco(varargin)
 % * entries: n-cell string with names of entries
 
 %% Remarks
-% Field migrate can be empty in case of no migration or torpor.
+% * Field migrate can be empty in case of no migration or torpor.
+% * See also <prt_ecoCodes.html *prt_ecoCodes*> to print a table with ecoCodes.
 
 %% Example of use
 % gender_embryo = read_allEco('gender', 'embryo'); 

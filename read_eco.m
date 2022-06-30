@@ -21,7 +21,8 @@ function codes = read_eco(entries, varargin)
 % * codes: (n,x)-cell-array with codes
 
 %% Remarks
-% Use <read_allEco.html *read_allEco*> to include all entries.
+% * Use <read_allEco.html *read_allEco*> to include all entries.
+% * See also <prt_ecoCodes.html *prt_ecoCodes*> to print a table with ecoCodes.
 
 %% Example of use
 % embryo = read_eco(select('Aves'), 'embryo'); 

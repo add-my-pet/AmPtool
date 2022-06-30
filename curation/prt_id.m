@@ -37,7 +37,7 @@ function fileName = prt_id(pets, save)
   end
   
   if save
-    WD = cdCur; cd ../../deblab/add_my_pet/
+    WD0 = cdCur; cd ../../deblab/add_my_pet/
   end
 
   n = length(pets); 
@@ -98,7 +98,7 @@ function fileName = prt_id(pets, save)
        molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
        fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge];
    
-  n_rows = length(pets); n_cols = length(header);
+  n_rows = n; n_cols = length(header);
    
   fileName = 'links.html';
   oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
@@ -265,6 +265,6 @@ function fileName = prt_id(pets, save)
     delete(fileName)
   end  
    
-  cd(WD);
+  cd(WD0);
 
 end

@@ -88,6 +88,7 @@ prt_pars; % add_my_pet/pars.html
 prt_patterns; % add_my_pet/patterns.html
 prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
 prt_about; % add_my_pet/about.html
+prt_ecoCodes(select,1); % ecoCodes of all entries
 prt_id(select,1); % id of all links to html pages
 
 % cleanup

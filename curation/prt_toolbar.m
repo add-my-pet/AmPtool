@@ -255,6 +255,7 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '          <a href="', path2AmP, 'species_names.html">Species Names</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'authors.html">Authors</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
+  dd_col = [dd_col, '          <a href="', path2AmP, 'ecoCodes.html">EcoCodes</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
   img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
   table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];

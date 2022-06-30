@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>read_allEco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-05-10"><meta name="DC.source" content="read_allEco.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>read_allEco</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-30"><meta name="DC.source" content="read_allEco.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>read_allEco</h1><!--introduction--><p>read eco-codes in allEco.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[codes, entries] = <a href="../read_allEco.m"><b>read_allEco</b></a>(varargin)</p><h2 id="4">Description</h2><p>read eco-codes in allEco.mat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.</p><p>Input:</p><div><ul><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>codes: (n,x)-cell-array with codes</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>Field migrate can be empty in case of no migration or torpor.</p><h2 id="6">Example of use</h2><p>gender_embryo = read_allEco('gender', 'embryo');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>read_allEco</h1><!--introduction--><p>read eco-codes in allEco.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[codes, entries] = <a href="../read_allEco.m"><b>read_allEco</b></a>(varargin)</p><h2 id="4">Description</h2><p>read eco-codes in allStat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.</p><p>Input:</p><div><ul><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>codes: (n,x)-cell-array with codes</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Field migrate can be empty in case of no migration or torpor.</li><li>See also <a href="prt_ecoCodes.html"><b>prt_ecoCodes</b></a> to print a table with ecoCodes.</li></ul></div><h2 id="6">Example of use</h2><p>gender_embryo = read_allEco('gender', 'embryo'); gender = read_allEco('gender'); [sel, nm] = select_01('Testudines'); prt_tab({nm(sel), gender(sel)});</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% read_allEco
 % read eco-codes in allEco.mat
@@ -79,7 +80,7 @@ function [codes, entries] = read_allEco(varargin)
 % [codes, entries] = <../read_allEco.m *read_allEco*>(varargin)
 
 %% Description
-% read eco-codes in allEco.mat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.
+% read eco-codes in allStat. Possible arguments are: climate, ecozone, habitat, embryo, migrate, food, gender, reprod.
 %
 % Input:
 %
@@ -91,26 +92,46 @@ function [codes, entries] = read_allEco(varargin)
 % * entries: n-cell string with names of entries
 
 %% Remarks
-% Field migrate can be empty in case of no migration or torpor.
+% * Field migrate can be empty in case of no migration or torpor.
+% * See also <prt_ecoCodes.html *prt_ecoCodes*> to print a table with ecoCodes.
 
 %% Example of use
 % gender_embryo = read_allEco('gender', 'embryo'); 
+% gender = read_allEco('gender'); [sel, nm] = select_01('Testudines'); prt_tab({nm(sel), gender(sel)});
   
-  load('allEco')        % get all codes in structure allEco
-  entries = fieldnames(allEco); n = length(entries); 
+  persistent allStat
+
+  if ~exist('allStat','var') || length(allStat) == 0
+    load('allStat','allStat') % get all parameters and statistics in structure allStat
+  end
+
+  entries = fieldnames(allStat); n_fields = length(entries); 
+  load('n_entries', 'n_entries');
+  if ~(n_fields == n_entries)
+    fprintf(['Warning from read_allEco: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
+    date_check;
+  end
+
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
   end
   nargin = length(varargin);    
-  codes = cell(n,nargin);
   
-  for i = 1:n
-    for j = 1:nargin
-      codes{i,j} = allEco.(entries{i}).(varargin{j});
+  for j = 1:nargin
+    if ~ismember(varargin{j}, {'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender', 'reprod'})
+      fprintf (['Error in read_allEco: variable "', varargin{j}, '" is not recognized\n']);
+      codes = [];  entries = []; return
     end
   end
+
+  codes = cell(n_entries,nargin);
+  
+  for i = 1:n_fields
+    for j = 1:nargin
+      codes{i,j} = allStat.(entries{i}).ecoCode.(varargin{j});
+    end
   end
-    
+      
 
 ##### SOURCE END #####
 --></body></html>

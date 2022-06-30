@@ -17,7 +17,7 @@ function entries = check_dates
 % * entries: cell string with entries, where dates are not in the correct sequence
 
 %% Remarks
-% date of accepetance might equal date of last modification
+% date of acceptance might equal date of last modification
 
 %% Example of use
 % check_dates
