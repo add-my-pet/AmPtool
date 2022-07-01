@@ -47,14 +47,14 @@
 
     The parameters and implied properties for all entries can be downloaded from <b>AmPdata</b>, the last item in the COLLECTION dropdown.
     Unpack the zip in a directory and make a <a href="https://www.mathworks.com/help/matlab/ref/path.html">path to this directory in Matlab</a>.
-    If you load a new version of AmPdata, the next thing you should do is to give the Malab command "clear all", else the previous version might be used.
+    If you load a new version of AmPdata, the next thing you should do is to give the Malab command <code>clear all</code>, else the previous version might be used.
     The size of allStat (and popStat), should exactly match the lists-of-lists of AmPtool (see below), else errors will occur.
     The functions <a href="../html/date_allStat.html">date_allStat</a>, <a href="../html/date_popStat.html">date_popStat</a> and <a href="../html/date_taxa.html">date_taxa</a>
     can be used to check version dates.    
     
     <p>
     All data (i.e. meta-data, parameters, meta-parameters, 
-      <A href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</A>, 
+      <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</a>, 
       but no empirical data) of all entries are collected by function 
       <a href="../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
       Only curators who have all entries locally can run this function, but the result is available for anybody. 
