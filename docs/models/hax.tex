@@ -10,7 +10,7 @@
 \usepackage{latexsym}
 
 
-\title{DEB model description: 'hax'}
+\title{DEB model description: `hax'}
 %\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
 
 
@@ -18,9 +18,27 @@
 
 \maketitle
 
-This document specifies the standard DEB model 'hax'.
-The hax model is a hybrid between the hep and hex models: the hep-rules are followed till $[E_R] = [E_R^j]$, then pupation follows, with an emergence and an imago stage which might or might not feed. 
-An example of a hax model with a non-feeding imago-stage is the harlequin fly \emph{Chironomus riparius}.
+This document specifies the typified  {\sc deb}  model `hax'.
+The `hax' model is a hybrid between the `hep' and `hex' models. Its characteristics are
+\begin{itemize}
+  \item  morphological life stages: egg, larva, pupa, imago; functional stages: embryo, adult, pupa, imago
+ \item  the embryo behaves like model std
+ \item the larval stage accelerates (V1-morph) till puberty
+ \item after puberty it no longer accelerates
+ \item  pupation occurs when reproduction buffer density hits a threshold
+ \item  pupa behaves like an isomorphic embryo of model std; larval structure rapidly transforms to pupal reserve just after start of pupation
+ \item  the reproduction buffer remains unchanged during the pupal stage
+ \item emergence of imago occurs if maturity hits a threshold value
+ \item  the imago does not grow or allocate to reproduction. It mobilises reserve to match constant (somatic plus maturity) maintenance
+\end{itemize}
+  
+% the `hep'-rules are followed till $[E_R] = [E_R^j]$, then pupation follows, with an emergence and an imago stage which might or might not feed. 
+An example of a `hax' model with a non-feeding imago-stage is the harlequin fly \emph{Chironomus riparius}.
+
+Reserve mobilisation prior to puberty (i.e., during acceleration) is $\dot{p}_C = E (\dot{k}_E - \dot{r})$ 
+  with $\dot{k}_E = \dot{v}/ L_b$ and $\dot{r} = \frac{\kappa [E] \dot{k}_E - [\dot{p}_M]} {\kappa [E] + [E_G]} = g \dot{k}_M \frac{e/ l_b - 1} {e + g}$. 
+  From puberty (event $p$) to pupation (event $j$) reserve mobilisation is $\dot{p}_C = E (\dot{v} s_{\cal M}- \dot{r})$ with $s_{\cal M}=L_p/L_b$ and 
+  $\dot{r} = \frac{\kappa [E] \dot{v}s_{\cal M}/L - [\dot{p}_M]} {\kappa [E] + [E_G]}$.
 
 \section{Background}
 

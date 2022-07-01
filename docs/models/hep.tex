@@ -10,7 +10,7 @@
 \usepackage{latexsym}
 
 
-\title{DEB model description: 'hep'}
+\title{DEB model description: `hep'}
 %\author{S.A.L.M. Kooijman and K. Lika and S. Augustine and N. Marn and others?}
 
 
@@ -18,11 +18,11 @@
 
 \maketitle
 
-This document specifies the typified DEB model \citep{MarqAugu2018} 'hep'.
-The the 'hep typified model is a DEB model for hemi-metabolic insects, such as ephemeropterans, odonata and possibly other insect groups. It characterics are:
+This document specifies the typified DEB model  `hep' \citep{MarqAugu2018}.
+The `hep' typified model is a {\sc deb} model for hemi-metabolic insects, such as ephemeropterans, odonata and possibly other insect groups. Its characteristics are:
 \begin{itemize}
 \item morphological life stages: egg, larva, (sub)imago; functional stages: embryo, juvenile, adult, imago
-    the embryo still behaves like model std
+ \item    the embryo still behaves like model std
 \item acceleration starts at birth and ends at puberty
 \item  puberty occurs during the larval stage
 \item emergence occurs when reproduction buffer density hits a threshold
@@ -43,7 +43,7 @@ The change in reproduction buffer density is $\frac{d} {dt} [E_R] = [\dot{p}_R] 
 Since reproduction buffer density starts at zero at event $p$, we are sure that it hits any finite threshold, but we need to find the first event as long as $(1 - \kappa) [\dot{p}_M] L_\infty^3 > \kappa \dot{p}_J$, to allow for puberty to be reached.
 %In the hex model (see next section), the reproduction buffer density has a maximum, due to acceleration, and therefore does not hit a threshold value for sure.
 
-At constant food density, scaled length changes in scaled time as $\frac{d} {d \tau} l = r_B(l_\infty - l)$ or $l(\tau) = l_\infty - (l_\infty - l_p) \exp(r_B \tau)$ with $r_B = (3 + 3 f/g)^{-1}$ and $l_\infty = s_{\cal M} f$.
+At constant food density, scaled length changes in scaled time as $\frac{d} {d \tau} l = r_B(l_\infty - l)$ or $l(\tau) = l_\infty - (l_\infty - l_p) \exp(r_B \tau)$ with scaled $r_B = (3 + 3 f/g)^{-1}$ and $l_\infty = s_{\cal M} f$.
 The dimensionless scaled reproduction buffer density $v_R = \frac{\kappa} {1 - \kappa} \, \frac{[E_R]} {[E_G]}$ changes as 
 $\frac{d} {d \tau} v_R = \frac{f g s_{\cal M}/ l + f} {g + f} - \frac{k v_H^p} {l^3} - 3 r_B v_R (f s_{\cal M} / l - 1)$.
 So scaled time at emergence is $\tau_j = \int_0^{v_R^j} \frac{d} {d v_R} \tau$ and $l(0) = l_p$ and $l(\tau_j) = l_j$ with  $v_R^j = \frac{\kappa} {1 - \kappa} \, \frac{[E_R^j]} {[E_G]}$. 
