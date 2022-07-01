@@ -27,8 +27,8 @@
 
     
     <a href="http://www.github.com/add-my-pet/AmPtool/" target="_top">AmPtool</a> 
-       contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection.
-    It is an extension of <A HREF="https://github.com/add-my-pet/DEBtool_M/" target="_top">DEBtool_M</A>, and makes frequent use of it.
+    contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection;
+    it has no data and is an extension of <A HREF="https://github.com/add-my-pet/DEBtool_M/" target="_top">DEBtool_M</A>, and makes frequent use of it.
     All parameters and (population) traits for all entries are available in dropdown <code>COLLECTION/AmPdata</code> as a zip-file.
     Save the files <code>allStat.mat</code>, <code>popStat.mat</code>, <code>allUnits.mat</code> and <code>allLabel.mat</code> from the linked zip into one directory.
     Open Matlab and set paths to AmPtool, DEBtool_M (including subdirectories) and to the directory with the <code>.mat</code> files. 
@@ -45,11 +45,19 @@
 
     <H2 id="data">Data</H2>
 
+    The parameters and implied properties for all entries can be downloaded from <b>AmPdata</b>, the last item in the COLLECTION dropdown.
+    Unpack the zip in a directory and make a <a href="https://www.mathworks.com/help/matlab/ref/path.html">path to this directory in Matlab</a>.
+    If you load a new version of AmPdata, the next thing you should do is to give the Malab command "clear all", else the previous version might be used.
+    The size of allStat (and popStat), should exactly match the lists-of-lists of AmPtool (see below), else errors will occur.
+    The functions <a href="../html/date_allStat.html">date_allStat</a>, <a href="../html/date_popStat.html">date_popStat</a> and <a href="../html/date_taxa.html">date_taxa</a>
+    can be used to check version dates.    
+    
+    <p>
     All data (i.e. meta-data, parameters, meta-parameters, 
       <A href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</A>, 
       but no empirical data) of all entries are collected by function 
       <a href="../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
-    Only curators who have all entries locally can run this function, but the result is available for anybody.
+      Only curators who have all entries locally can run this function, but the result is available for anybody. 
     To read data directly, use <code>load allStat</code>, or better <a href="../html/read_allStat.html">read_allStat</a> for all entries, 
       or <a href="../html/read_stat.html">read_stat</a> for specified entries.
     The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href="../html/select.html">select</a> (see below).
@@ -69,7 +77,8 @@
     All functions that analyse data read in <code>allStat</code>, using function 
       <a href="../html/read_allStat.html">read_allStat</a> or <a href="../html/read_stat.html">read_stat</a>.
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code>; convert to temperature <code>T_ref</code> with
-      <code>[var, nm, units, label] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print with <code>prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})</code>.
+      <code>[var, nm, units, label] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print with
+      <code>prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})</code>.
     Oviparous species will have value <code>NaN</code> (Not-a-Number).
     Find all entries that have model <code>std</code> with <code>[model, nms] = read_allStat('model'); nms(strcmp('std', model))</code>.
 
