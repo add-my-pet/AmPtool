@@ -44,7 +44,11 @@ catch
 end
 
 if isempty(id)
-  id_syn = get_synonym(get_id_CoL(my_pet));
+  try
+    id_syn = get_synonym(get_id_CoL(my_pet));
+  catch
+    id_syn = '';
+  end
   if ~isempty(id_syn)
     try
       url = urlread([address, id_syn]);
