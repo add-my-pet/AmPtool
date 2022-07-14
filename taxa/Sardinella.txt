@@ -1,4 +1,5 @@
 Sardinella_aurita
 Sardinella_albella
+Sardinella_brasiliensis
 Sardinella_gibbosa
 Sardinella_longiceps
