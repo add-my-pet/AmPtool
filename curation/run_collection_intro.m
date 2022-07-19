@@ -76,8 +76,7 @@ cdAmPdata; load allUnits; load allLabel
 cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
-prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
-% add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
+prt_toolbar; % 20 toolbars
 prt_specJump; % write sys/specJump.js for navigation
 
 prt_species_names; % add_my_pet/species_names.html
@@ -90,6 +89,7 @@ prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, p
 prt_about; % add_my_pet/about.html
 prt_ecoCodes(select,1); % ecoCodes of all entries
 prt_id(select,1); % id of all links to html pages
+prt_taxa; % all thumbnails plus sys/taxaSel.js for selection
 
 % cleanup
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
