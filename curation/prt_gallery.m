@@ -178,7 +178,7 @@ function prt_gallery
   fid = fopen('sys/galSel.js', 'w+'); % open file for writing, delete existing content
   fprintf(fid, 'function galSel(taxon){\n');
   fprintf(fid, '  var i, id, taxa;\n');
-  fprintf(fid, '  document.getElementById("taxon").innerHTML = "taxon;\n');
+  fprintf(fid, '  document.getElementById("taxon").innerHTML = taxon;\n');
   fprintf(fid, '  const z = document.getElementsByClassName("jpg");\n');
   fprintf(fid, '  switch(taxon) {\n');
   for i = 1:n_notGen
@@ -188,16 +188,12 @@ function prt_gallery
     fprintf(fid, '      taxa = %s;\n', txt);
     fprintf(fid, '      for (i = 0; i < z.length; i++) {\n');
     fprintf(fid, '        id = document.getElementsByClassName("jpgcap")[i].innerHTML;\n');
-    fprintf(fid, '        if (taxa.includes(id)) {\n');
-    fprintf(fid, '          z[i].style.display = "";\n');
-    fprintf(fid, '        } else {\n');
-    fprintf(fid, '          z[i].style.display = "none";\n');
-    fprintf(fid, '        }\n');
+    fprintf(fid, '        if (taxa.includes(id)) {z[i].style.display = "";} else {z[i].style.display = "none";}\n');
     fprintf(fid, '      } break;\n');
+
   end
   fprintf(fid, '    default:\n');
   fprintf(fid, '      for (i = 0; i < z.length; i++) {z[i].style.display = "";}\n');
-  fprintf(fid, '      document.getElementById("taxon").innerHTML = "Animalia";\n');
   fprintf(fid, '  }\n');
   fprintf(fid, '}\n');
   fclose(fid);
