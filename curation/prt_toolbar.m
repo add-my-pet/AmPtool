@@ -131,7 +131,7 @@ dd_gal = [dd_gal,  '      </div> <!-- end TaxonDropdown -->\n'];
 dd_gal = [dd_gal,  '    </div> <!-- end galSearch -->\n\n'];
 
 % now dropdowns that do use server info
-[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
+[tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
 %% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -167,7 +167,7 @@ fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
-fprintf(oid_gal, strrep([tbh, dd_gal, btn_all, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_gal, strrep([tbh_gal, dd_gal, btn_all, bar, dd_std, tbt], path2AmP, ''));
 %
 % external toolbars for VU
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
@@ -178,7 +178,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_sct, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
+[tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
@@ -219,7 +219,7 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/sys/'
 cd(WD);
 end
 
-function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
+function [tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
 
   % set toolbar dropdowns for server svr
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
@@ -235,6 +235,13 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
   tbh = [tbh, '    </div>\n\n'];
   tbh = [tbh, '    <div id="navwrapper">\n'];
+
+  tbh_gal = ''; % toolbar head for gallery toolbar
+  tbh_gal = [tbh_gal, '  <div id="top">\n'];
+  tbh_gal = [tbh_gal, '    <div class="logo">\n'];		
+  tbh_gal = [tbh_gal, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="galSel(''Animalia'')" height="55px">\n'];
+  tbh_gal = [tbh_gal, '    </div>\n\n'];
+  tbh_gal = [tbh_gal, '    <div id="navwrapper">\n'];
 
   %% standard dropdowns (for all toolbars)
   dd_deb = []; % dropdown DEB
