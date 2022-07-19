@@ -28,10 +28,17 @@ path2deblab = set_path2server('VU');
 path2AmP = [set_path2server, 'add_my_pet/'];
 % all dropdowns have absolute addresses, but some will be made relative for internal toolbars at the end
 
+taxa = list_taxa('Animalia',1); % all taxa, except entries
+genus = list_taxa('Animalia',3); % all genera
+notGen = setdiff(taxa,genus); % all taxa, except entries and genera
+n_notGen = length(notGen);
+
 %% set toolbar components
-bar      = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
+bar  = '      <div class="dropdown">|</div>\n\n'; % separator of local from standard dropdowns
 
 srch = '      <div class="dropdown"><input type="text" class="Search" id="Species" onkeyup="searchList()" placeholder="Species .."></div>\n\n';
+
+btn_all = '    <div class="dropdown" id="taxon"><button onclick="galSel(''Animalia'')">Animalia</button></div>\n\n';
 
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
@@ -110,6 +117,19 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth<
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
+dd_gal = []; % dropdown galSearch for gallery
+dd_gal = [dd_gal,  '    <div class="galSearch">\n'];
+dd_gal = [dd_gal,  '      <input id="TaxonDropdownInput" class="galSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputGalSearch(''TaxonDropdown'')"\n'];
+dd_gal = [dd_gal,  '        placeholder="Taxon.." type="text" title="Type part of name and click on list">\n'];
+dd_gal = [dd_gal,  '      <div id="TaxonDropdown" class="galSearch-content">\n'];
+dd_gal = [dd_gal,  '        <ul id="TaxonDropdownSearchlist" class="galSearch">\n'];
+for j = 1:n_notGen
+dd_gal = [dd_gal,  '          <li><a onclick="galSel(''',notGen{j},''')">',notGen{j},'</a></li>\n'];
+end    
+dd_gal = [dd_gal,  '        </ul> <!-- end TaxonDropdownSearchlist -->\n'];
+dd_gal = [dd_gal,  '      </div> <!-- end TaxonDropdown -->\n'];
+dd_gal = [dd_gal,  '    </div> <!-- end galSearch -->\n\n'];
+
 % now dropdowns that do use server info
 [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
@@ -121,6 +141,7 @@ oid_entry = fopen('toolbar_entry.html', 'w+');
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_app = fopen('toolbar_app.html', 'w+');   
 oid_links = fopen('toolbar_links.html', 'w+');  
+oid_gal = fopen('toolbar_gal.html', 'w+');  
 %
 oid_DEBportal_VU = fopen('toolbar_DEBportal_VU.html', 'w+');  
 oid_AmPestimation_VU = fopen('toolbar_AmPestimation_VU.html', 'w+');  
@@ -146,6 +167,7 @@ fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_gal, strrep([tbh, dd_gal, btn_all, bar, dd_std, tbt], path2AmP, ''));
 %
 % external toolbars for VU
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
@@ -175,6 +197,7 @@ movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_links.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_gal.html '../../deblab/add_my_pet/sys/'
 
 % move external toolbars, being in AmPtool\curation
 movefile toolbar_DEBportal_VU.html '../../DEBportal/docs/sys/'
@@ -257,6 +280,7 @@ function [tbh, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'ecoCodes.html">EcoCodes</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
+  dd_col = [dd_col, '          <a href="', path2AmP, 'gallery.html">Gallery</a>\n'];
   img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
   table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
