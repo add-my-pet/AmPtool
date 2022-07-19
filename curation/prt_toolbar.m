@@ -119,7 +119,7 @@ dd_top = [dd_top, '      </div>\n\n'];
 
 dd_taxa = []; % dropdown taxaSearch for taxa
 dd_taxa = [dd_taxa,  '    <div class="taxaSearch">\n'];
-dd_taxa = [dd_taxa,  '      <input id="TaxonDropdownInput" class="taxaSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputtaxaSearch(''TaxonDropdown'')"\n'];
+dd_taxa = [dd_taxa,  '      <input id="TaxonDropdownInput" class="taxaSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputTaxaSearch(''TaxonDropdown'')"\n'];
 dd_taxa = [dd_taxa,  '        placeholder="Taxon.." type="text" title="Type part of name and click on list">\n'];
 dd_taxa = [dd_taxa,  '      <div id="TaxonDropdown" class="taxaSearch-content">\n'];
 dd_taxa = [dd_taxa,  '        <ul id="TaxonDropdownSearchlist" class="taxaSearch">\n'];
