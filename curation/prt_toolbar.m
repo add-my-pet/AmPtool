@@ -38,7 +38,7 @@ bar  = '      <div class="dropdown">|</div>\n\n'; % separator of local from stan
 
 srch = '      <div class="dropdown"><input type="text" class="Search" id="Species" onkeyup="searchList()" placeholder="Species .."></div>\n\n';
 
-btn_all = '    <div class="dropdown" id="taxon"><button onclick="galSel(''Animalia'')">Animalia</button></div>\n\n';
+btn_all = '    <div class="dropdown" id="taxon"><button onclick="taxaSel(''Animalia'')">Animalia</button></div>\n\n';
 
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
@@ -117,21 +117,21 @@ dd_top = [dd_top, '          <a onclick="OpenPageAtId(''Tumors'')">Tumor growth<
 dd_top = [dd_top, '        </div>\n'];
 dd_top = [dd_top, '      </div>\n\n'];
 
-dd_gal = []; % dropdown galSearch for gallery
-dd_gal = [dd_gal,  '    <div class="galSearch">\n'];
-dd_gal = [dd_gal,  '      <input id="TaxonDropdownInput" class="galSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputGalSearch(''TaxonDropdown'')"\n'];
-dd_gal = [dd_gal,  '        placeholder="Taxon.." type="text" title="Type part of name and click on list">\n'];
-dd_gal = [dd_gal,  '      <div id="TaxonDropdown" class="galSearch-content">\n'];
-dd_gal = [dd_gal,  '        <ul id="TaxonDropdownSearchlist" class="galSearch">\n'];
+dd_taxa = []; % dropdown taxaSearch for taxa
+dd_taxa = [dd_taxa,  '    <div class="taxaSearch">\n'];
+dd_taxa = [dd_taxa,  '      <input id="TaxonDropdownInput" class="taxaSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputtaxaSearch(''TaxonDropdown'')"\n'];
+dd_taxa = [dd_taxa,  '        placeholder="Taxon.." type="text" title="Type part of name and click on list">\n'];
+dd_taxa = [dd_taxa,  '      <div id="TaxonDropdown" class="taxaSearch-content">\n'];
+dd_taxa = [dd_taxa,  '        <ul id="TaxonDropdownSearchlist" class="taxaSearch">\n'];
 for j = 1:n_notGen
-dd_gal = [dd_gal,  '          <li><a onclick="galSel(''',notGen{j},''')">',notGen{j},'</a></li>\n'];
+dd_taxa = [dd_taxa,  '          <li><a onclick="taxaSel(''',notGen{j},''')">',notGen{j},'</a></li>\n'];
 end    
-dd_gal = [dd_gal,  '        </ul> <!-- end TaxonDropdownSearchlist -->\n'];
-dd_gal = [dd_gal,  '      </div> <!-- end TaxonDropdown -->\n'];
-dd_gal = [dd_gal,  '    </div> <!-- end galSearch -->\n\n'];
+dd_taxa = [dd_taxa,  '        </ul> <!-- end TaxonDropdownSearchlist -->\n'];
+dd_taxa = [dd_taxa,  '      </div> <!-- end TaxonDropdown -->\n'];
+dd_taxa = [dd_taxa,  '    </div> <!-- end taxaSearch -->\n\n'];
 
 % now dropdowns that do use server info
-[tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
+[tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('VU'); % set remaining tb-head and dropdowns
 
 %% write toolbars in AmPtool\curation 
 oid_deblab = fopen('toolbar_deblab.html', 'w+');  
@@ -141,7 +141,7 @@ oid_entry = fopen('toolbar_entry.html', 'w+');
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
 oid_app = fopen('toolbar_app.html', 'w+');   
 oid_links = fopen('toolbar_links.html', 'w+');  
-oid_gal = fopen('toolbar_gal.html', 'w+');  
+oid_taxa = fopen('toolbar_taxa.html', 'w+');  
 %
 oid_DEBportal_VU = fopen('toolbar_DEBportal_VU.html', 'w+');  
 oid_AmPestimation_VU = fopen('toolbar_AmPestimation_VU.html', 'w+');  
@@ -167,7 +167,7 @@ fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
-fprintf(oid_gal, strrep([tbh_gal, dd_gal, btn_all, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, btn_all, bar, dd_std, tbt], path2AmP, ''));
 %
 % external toolbars for VU
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
@@ -178,7 +178,7 @@ fprintf(oid_AmPtool_VU,   [tbh, dd_sct, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
 % external toolbars for IUEM
-[tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
+[tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd('IUEM'); % set remaining tb-head and dropdowns
 fprintf(oid_DEBportal_IUEM, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_IUEM, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_IUEM, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
@@ -197,7 +197,7 @@ movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_links.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_gal.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_taxa.html '../../deblab/add_my_pet/sys/'
 
 % move external toolbars, being in AmPtool\curation
 movefile toolbar_DEBportal_VU.html '../../DEBportal/docs/sys/'
@@ -219,7 +219,7 @@ movefile toolbar_AmPtox_IUEM.html '../../AmPtox/docs/sys/'
 cd(WD);
 end
 
-function [tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
+function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
 
   % set toolbar dropdowns for server svr
   path2DEBportal = 'https://debportal.debtheory.org/docs/';
@@ -236,12 +236,12 @@ function [tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   tbh = [tbh, '    </div>\n\n'];
   tbh = [tbh, '    <div id="navwrapper">\n'];
 
-  tbh_gal = ''; % toolbar head for gallery toolbar
-  tbh_gal = [tbh_gal, '  <div id="top">\n'];
-  tbh_gal = [tbh_gal, '    <div class="logo">\n'];		
-  tbh_gal = [tbh_gal, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="galSel(''Animalia'')" height="55px">\n'];
-  tbh_gal = [tbh_gal, '    </div>\n\n'];
-  tbh_gal = [tbh_gal, '    <div id="navwrapper">\n'];
+  tbh_taxa = ''; % toolbar head for taxalery toolbar
+  tbh_taxa = [tbh_taxa, '  <div id="top">\n'];
+  tbh_taxa = [tbh_taxa, '    <div class="logo">\n'];		
+  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="55px">\n'];
+  tbh_taxa = [tbh_taxa, '    </div>\n\n'];
+  tbh_taxa = [tbh_taxa, '    <div id="navwrapper">\n'];
 
   %% standard dropdowns (for all toolbars)
   dd_deb = []; % dropdown DEB
@@ -287,7 +287,7 @@ function [tbh, tbh_gal, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'ecoCodes.html">EcoCodes</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
-  dd_col = [dd_col, '          <a href="', path2AmP, 'gallery.html">Gallery</a>\n'];
+  dd_col = [dd_col, '          <a href="', path2AmP, 'taxa.html">Taxa</a>\n'];
   img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
   table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];

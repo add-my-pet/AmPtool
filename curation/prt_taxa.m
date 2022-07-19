@@ -1,29 +1,29 @@
-%% prt_gallery
-% writes gallery.html with jpg's of nodes
+%% prt_taxa
+% writes taxa.html with jpg's of nodes
 
 %%
-function prt_gallery
+function prt_taxa
 % created 2022/07/16 Bas Kooijman
 
 %% Syntax
-% <../prt_gallery.m *prt_gallery*> 
+% <../prt_taxa.m *prt_taxa*> 
 
 %% Description
-% Writes gallery.html in directory add_my_pet with taxon jpg's, where taxon.
-% The toolbar_gal.html, written by prt_toolbar has search/selection options.
+% Writes taxa.html in directory add_my_pet with taxon jpg's, where taxon.
+% The toolbar_tax.html, written by prt_toolbar has search/selection options.
 % A click on a picture opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position.
-% Refresh the picture-page if you return to it, to reset previous selections.
+% Refresh the taxa-page by clicking on the logo-icon.
 %
 % Output:
 % 
-% * writes files ../../add_my_pet/gallery.html 
-% * writes files ../../add_my_pet/sys/gallery_search.html for i = 1, 2, ..
+% * writes files ../../add_my_pet/taxa.html 
+% * writes files ../../add_my_pet/sys/taxaSel.html 
 
 %% Remarks
 % The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level.
 
 %% Example of use
-% prt_gallery, which results in add_my_pet/gallery.html
+% prt_taxa, which results in add_my_pet/taxa.html
 
   % for 3300 entries, there are 4000 taxa (excluding entries) and 2100 genera
   taxa = list_taxa('Animalia',1); n_taxa = length(taxa); % all taxa, except entries
@@ -31,16 +31,16 @@ function prt_gallery
   notGen = setdiff(taxa,genus); n_notGen = length(notGen); % all taxa, except entries and genera
   
   WD = cdCur; cd ../../deblab/add_my_pet
-  fnm = 'gallery.html'; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
+  fnm = 'taxa.html'; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
      
   fprintf(oid, '<!DOCTYPE html>\n');
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
-  fprintf(oid, '  <title>%s</title>\n', 'Gallery');
+  fprintf(oid, '  <title>%s</title>\n', 'Taxa');
   fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
   
   fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
-  fprintf(oid, '  <script src="sys/galSel.js"></script>\n');
+  fprintf(oid, '  <script src="sys/taxaSel.js"></script>\n');
   
   fprintf(oid, '  <script>\n'); 
   fprintf(oid, '    function shTree(taxon) {\n');
@@ -49,7 +49,7 @@ function prt_gallery
   fprintf(oid, '      TreeSearch(taxon);\n');
   fprintf(oid, '    }\n\n'); 
   
-  fprintf(oid, '    function InputGalSearch(Dropdown) {\n');
+  fprintf(oid, '    function InputTaxaSearch(Dropdown) {\n');
   fprintf(oid, '      var input, filter, ul, li, tag, i;\n');
   fprintf(oid, '      input = document.getElementById(Dropdown+''Input'');\n');
   fprintf(oid, '      filter = input.value.toUpperCase();\n');
@@ -68,8 +68,8 @@ function prt_gallery
 
   fprintf(oid, '    // Close the dropdown if the user clicks outside of it\n');
   fprintf(oid, '    window.onclick = function(event) {\n');
-  fprintf(oid, '      if (!event.target.matches(''.galSearch_dropbtn'')) {\n');
-  fprintf(oid, '        var dropdowns = document.getElementsByClassName("galSearch-content");\n');
+  fprintf(oid, '      if (!event.target.matches(''.taxaSearch_dropbtn'')) {\n');
+  fprintf(oid, '        var dropdowns = document.getElementsByClassName("taxaSearch-content");\n');
   fprintf(oid, '        var i;\n');
   fprintf(oid, '        for (i = 0; i < dropdowns.length; i++) {\n');
   fprintf(oid, '          var openDropdown = dropdowns[i];\n');
@@ -82,7 +82,7 @@ function prt_gallery
   fprintf(oid, '  </script>\n\n');
 
   fprintf(oid, '  <style>\n');
-  fprintf(oid, '    .galSearch_dropbtn {\n');
+  fprintf(oid, '    .taxaSearch_dropbtn {\n');
   fprintf(oid, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
   fprintf(oid, '      background-position: 2px -10px; /* Position the search icon */\n');
   fprintf(oid, '      background-repeat: no-repeat; /* Do not repeat the icon image */\n');
@@ -94,16 +94,16 @@ function prt_gallery
   fprintf(oid, '      cursor: pointer;\n');  
   fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    .galSearch_dropbtn:hover, .galSearch_dropbtn:focus {\n');
+  fprintf(oid, '    .taxaSearch_dropbtn:hover, .taxaSearch_dropbtn:focus {\n');
   fprintf(oid, '      background-color: #f9f9f9;\n');
   fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    .galSearch {\n');
+  fprintf(oid, '    .taxaSearch {\n');
   fprintf(oid, '      position: relative;\n');
   fprintf(oid, '      display: inline-block;\n');
   fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    .galSearch-content {\n');
+  fprintf(oid, '    .taxaSearch-content {\n');
   fprintf(oid, '      display: none;\n');
   fprintf(oid, '      position: absolute;\n');
   fprintf(oid, '      background-color: #f9f9f9;\n');
@@ -112,7 +112,7 @@ function prt_gallery
   fprintf(oid, '      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n'); 
   fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    .galSearch-content a {\n');
+  fprintf(oid, '    .taxaSearch-content a {\n');
   fprintf(oid, '      color: black;\n');
   fprintf(oid, '      padding: 12px 16px;\n');
   fprintf(oid, '      text-decoration: none;\n');
@@ -121,14 +121,14 @@ function prt_gallery
 
   fprintf(oid, '    .show {display:block;}\n\n');
 
-  fprintf(oid, '    div.galSearch {\n');
+  fprintf(oid, '    div.taxaSearch {\n');
   fprintf(oid, '      padding: 20px 0px 0px 20px;\n');
   fprintf(oid, '      margin: 0px;\n');
   fprintf(oid, '      float: left;\n');
   fprintf(oid, '	  max-width: 180px;\n');
   fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    ul.galSearch {\n');
+  fprintf(oid, '    ul.taxaSearch {\n');
   fprintf(oid, '      list-style-type: none;\n');
   fprintf(oid, '      font-size: 14px;\n');
   fprintf(oid, '      margin: 0;\n');
@@ -152,7 +152,7 @@ function prt_gallery
   fprintf(oid, '<body>\n\n');
 
   fprintf(oid, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
-  fprintf(oid, '<div w3-include-html="sys/toolbar_gal.html"></div>\n\n');
+  fprintf(oid, '<div w3-include-html="sys/toolbar_taxa.html"></div>\n\n');
 
   fprintf(oid, '<div id = "main">\n');
   fprintf(oid, '  <div id = "main-wrapper">\n');
@@ -173,10 +173,10 @@ function prt_gallery
   fprintf(oid, '</html>\n');
   fclose(oid);
  
-  % write galSel.js, which is used by dropdown galSearch in toolbar_gal.html of gallery.html for selection of taxa that are shown
+  % write taxaSel.js, which is used by dropdown taxaSearch in toolbar_taxa.html of taxa.html for selection of taxa that are shown
   
-  fid = fopen('sys/galSel.js', 'w+'); % open file for writing, delete existing content
-  fprintf(fid, 'function galSel(taxon){\n');
+  fid = fopen('sys/taxaSel.js', 'w+'); % open file for writing, delete existing content
+  fprintf(fid, 'function taxaSel(taxon){\n');
   fprintf(fid, '  var i, id, taxa;\n');
   fprintf(fid, '  document.getElementById("taxon").innerHTML = taxon;\n');
   fprintf(fid, '  const z = document.getElementsByClassName("jpg");\n');
