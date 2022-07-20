@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_taxa</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-07-19"><meta name="DC.source" content="prt_taxa.m"><style type="text/css">
+      --><title>prt_taxa</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-07-20"><meta name="DC.source" content="prt_taxa.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,34 +67,35 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_taxa</h1><!--introduction--><p>writes taxa.html with jpg's of nodes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_taxa.m"><b>prt_taxa</b></a></p><h2 id="4">Description</h2><p>Writes taxa.html in directory add_my_pet with taxon jpg's, where taxon. The toolbar_tax.html, written by prt_toolbar has search/selection options. A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the taxa-page by clicking on the logo-icon.</p><p>Output:</p><div><ul><li>writes files ../../add_my_pet/taxa.html</li><li>writes files ../../add_my_pet/sys/taxaSel.html</li></ul></div><h2 id="5">Remarks</h2><p>The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level.</p><h2 id="6">Example of use</h2><p>prt_taxa, which results in add_my_pet/taxa.html</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_taxa</h1><!--introduction--><p>writes taxa.html with jpg's of nodes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_taxa.m"><b>prt_taxa</b></a></p><h2 id="4">Description</h2><p>Writes taxa.txt and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html The toolbar_tax.html, written by prt_toolbar has search/selection options. A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the taxa-page by clicking on the logo-icon.</p><p>Output:</p><div><ul><li>writes file ../../add_my_pet/taxa.txt</li><li>writes file ../../add_my_pet/sys/taxaSel.js</li></ul></div><h2 id="5">Remarks</h2><p>The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level. Writes both taxa.txt and taxaSel.js, since each AmP addition requires a new update of both.</p><h2 id="6">Example of use</h2><p>prt_taxa</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_taxa
 % writes taxa.html with jpg's of nodes
 
 %%
-function prt_taxa
+function prt_taxa_new
 % created 2022/07/16 Bas Kooijman
 
 %% Syntax
 % <../prt_taxa.m *prt_taxa*> 
 
 %% Description
-% Writes taxa.html in directory add_my_pet with taxon jpg's, where taxon.
+% Writes taxa.txt and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html
 % The toolbar_tax.html, written by prt_toolbar has search/selection options.
 % A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position.
 % Refresh the taxa-page by clicking on the logo-icon.
 %
 % Output:
 % 
-% * writes files ../../add_my_pet/taxa.html 
-% * writes files ../../add_my_pet/sys/taxaSel.html 
+% * writes file ../../add_my_pet/taxa.txt
+% * writes file ../../add_my_pet/sys/taxaSel.js 
 
 %% Remarks
 % The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level.
+% Writes both taxa.txt and taxaSel.js, since each AmP addition requires a new update of both. 
 
 %% Example of use
-% prt_taxa, which results in add_my_pet/taxa.html
+% prt_taxa
 
   % for 3300 entries, there are 4000 taxa (excluding entries) and 2100 genera
   taxa = list_taxa('Animalia',1); n_taxa = length(taxa); % all taxa, except entries
@@ -102,148 +103,15 @@ function prt_taxa
   notGen = setdiff(taxa,genus); n_notGen = length(notGen); % all taxa, except entries and genera
   
   WD = cdCur; cd ../../deblab/add_my_pet
-  fnm = 'taxa.html'; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
-     
-  fprintf(oid, '<!DOCTYPE html>\n');
-  fprintf(oid, '<html>\n');
-  fprintf(oid, '<head>\n');
-  fprintf(oid, '  <title>%s</title>\n', 'Taxa');
-  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
-  
-  fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
-  fprintf(oid, '  <script src="sys/taxaSel.js"></script>\n');
-  
-  fprintf(oid, '  <script>\n'); 
-  fprintf(oid, '    function shTree(taxon) {\n');
-  fprintf(oid, '      var newURL = "species_tree_Animalia.html?pic=" + ''"'' + taxon + ".jpg" + ''"'';\n');
-  fprintf(oid, '      newwin = window.open(newURL);\n');
-  fprintf(oid, '      TreeSearch(taxon);\n');
-  fprintf(oid, '    }\n\n'); 
-  
-  fprintf(oid, '    function InputTaxaSearch(Dropdown) {\n');
-  fprintf(oid, '      var input, filter, ul, li, tag, i;\n');
-  fprintf(oid, '      input = document.getElementById(Dropdown+''Input'');\n');
-  fprintf(oid, '      filter = input.value.toUpperCase();\n');
-  fprintf(oid, '      ul = document.getElementById(Dropdown+''Searchlist'');\n');
-  fprintf(oid, '      li = ul.getElementsByTagName("li");\n\n');
-  
-  fprintf(oid, '      for (i = 0; i < li.length; i++) {\n');
-  fprintf(oid, '        tag = li[i].getElementsByTagName("a")[0];\n');
-  fprintf(oid, '        if (tag.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
-  fprintf(oid, '          li[i].style.display = "block";\n');
-  fprintf(oid, '        } else {\n');
-  fprintf(oid, '          li[i].style.display = "none";\n');
-  fprintf(oid, '        }\n');
-  fprintf(oid, '      }\n');
-  fprintf(oid, '    }\n\n');
 
-  fprintf(oid, '    // Close the dropdown if the user clicks outside of it\n');
-  fprintf(oid, '    window.onclick = function(event) {\n');
-  fprintf(oid, '      if (!event.target.matches(''.taxaSearch_dropbtn'')) {\n');
-  fprintf(oid, '        var dropdowns = document.getElementsByClassName("taxaSearch-content");\n');
-  fprintf(oid, '        var i;\n');
-  fprintf(oid, '        for (i = 0; i < dropdowns.length; i++) {\n');
-  fprintf(oid, '          var openDropdown = dropdowns[i];\n');
-  fprintf(oid, '          if (openDropdown.classList.contains(''show'')) {\n');
-  fprintf(oid, '            openDropdown.classList.remove(''show'');\n');
-  fprintf(oid, '          }\n');
-  fprintf(oid, '        }\n');
-  fprintf(oid, '      }\n');
-  fprintf(oid, '    }\n');
-  fprintf(oid, '  </script>\n\n');
+  % write taxa.txt, which is included in static taxa.html
 
-  fprintf(oid, '  <style>\n');
-  fprintf(oid, '    .taxaSearch_dropbtn {\n');
-  fprintf(oid, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
-  fprintf(oid, '      background-position: 2px -10px; /* Position the search icon */\n');
-  fprintf(oid, '      background-repeat: no-repeat; /* Do not repeat the icon image */\n');
-  fprintf(oid, '      width: 80px; /* Width of search field */\n');
-  fprintf(oid, '      font-size: 14px; /* Increase font-size */\n');
-  fprintf(oid, '      padding: 5px 10px 7px 40px; /* Add some padding */\n');
-  fprintf(oid, '      border: 1px solid #ddd; /* Add a grey border */\n');
-  fprintf(oid, '      margin-bottom: 12px; /* Add some space below the input */\n');
-  fprintf(oid, '      cursor: pointer;\n');  
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .taxaSearch_dropbtn:hover, .taxaSearch_dropbtn:focus {\n');
-  fprintf(oid, '      background-color: #f9f9f9;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .taxaSearch {\n');
-  fprintf(oid, '      position: relative;\n');
-  fprintf(oid, '      display: inline-block;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .taxaSearch-content {\n');
-  fprintf(oid, '      display: none;\n');
-  fprintf(oid, '      position: absolute;\n');
-  fprintf(oid, '      background-color: #f9f9f9;\n');
-  fprintf(oid, '      min-width: 100px;\n');
-  fprintf(oid, '      overflow: auto;\n');
-  fprintf(oid, '      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n'); 
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .taxaSearch-content a {\n');
-  fprintf(oid, '      color: black;\n');
-  fprintf(oid, '      padding: 12px 16px;\n');
-  fprintf(oid, '      text-decoration: none;\n');
-  fprintf(oid, '      display: block;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .show {display:block;}\n\n');
-
-  fprintf(oid, '    div.taxaSearch {\n');
-  fprintf(oid, '      padding: 20px 0px 0px 20px;\n');
-  fprintf(oid, '      margin: 0px;\n');
-  fprintf(oid, '      float: left;\n');
-  fprintf(oid, '	  max-width: 180px;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    ul.taxaSearch {\n');
-  fprintf(oid, '      list-style-type: none;\n');
-  fprintf(oid, '      font-size: 14px;\n');
-  fprintf(oid, '      margin: 0;\n');
-  fprintf(oid, '      padding: 0;\n');
-  fprintf(oid, '      line-height: 10%%;\n');
-  fprintf(oid, '      max-width: 200px;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    .jpg{\n');
-  fprintf(oid, '      position: relative;\n');
-  fprintf(oid, '      display: inline-block;\n');
-  fprintf(oid, '      float: left;\n');
-  fprintf(oid, '      padding: 5px;\n');
-  fprintf(oid, '    }\n\n');
-  
-  fprintf(oid, '    .jpgcap{\n');
-  fprintf(oid, '      text-align: center;\n');
-  fprintf(oid, '    }\n');
-  fprintf(oid, '  </style>\n');
-  fprintf(oid, '</head>\n\n');
-  fprintf(oid, '<body>\n\n');
-
-  fprintf(oid, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
-  fprintf(oid, '<div w3-include-html="sys/toolbar_taxa.html"></div>\n\n');
-
-  fprintf(oid, '<div id = "main">\n');
-  fprintf(oid, '  <div id = "main-wrapper">\n');
-  fprintf(oid, '    <div id="contentFull">\n\n');
-			
+  oid = fopen('taxa.txt', 'w+'); % open file for writing, delete existing content
   for i = 1:n_taxa % for each jpg is one jpgcap
-    fprintf(oid, '      <div class="jpg"><img src="img/tree/%s.jpg"  width="260px" onclick="shTree(''%s'')"><div class="jpgcap">%s</div></div>\n', taxa{i},taxa{i},taxa{i});
+    fprintf(oid, '<div class="jpg"><img src="img/tree/%s.jpg"  width="260px" onclick="shTree(''%s'')"><div class="jpgcap">%s</div></div>\n', taxa{i},taxa{i},taxa{i});
   end 
-
-  fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of contentFull REPLACE_WITH_DASH_DASH>\n\n');
-  
-  fprintf(oid, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
-  fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
-
-  fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
-  fprintf(oid, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
-  fprintf(oid, '</body>\n');
-  fprintf(oid, '</html>\n');
   fclose(oid);
- 
+
   % write taxaSel.js, which is used by dropdown taxaSearch in toolbar_taxa.html of taxa.html for selection of taxa that are shown
   
   fid = fopen('sys/taxaSel.js', 'w+'); % open file for writing, delete existing content
@@ -261,7 +129,6 @@ function prt_taxa
     fprintf(fid, '        id = document.getElementsByClassName("jpgcap")[i].innerHTML;\n');
     fprintf(fid, '        if (taxa.includes(id)) {z[i].style.display = "";} else {z[i].style.display = "none";}\n');
     fprintf(fid, '      } break;\n');
-
   end
   fprintf(fid, '    default:\n');
   fprintf(fid, '      for (i = 0; i < z.length; i++) {z[i].style.display = "";}\n');
@@ -272,8 +139,6 @@ function prt_taxa
   cd(WD)
 
 end
-
-
 
 ##### SOURCE END #####
 --></body></html>

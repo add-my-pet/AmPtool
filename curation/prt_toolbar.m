@@ -38,7 +38,7 @@ bar  = '      <div class="dropdown">|</div>\n\n'; % separator of local from stan
 
 srch = '      <div class="dropdown"><input type="text" class="Search" id="Species" onkeyup="searchList()" placeholder="Species .."></div>\n\n';
 
-btn_all = '    <div class="dropdown" id="taxon"><button onclick="taxaSel(''Animalia'')">Animalia</button></div>\n\n';
+tax_ani = '    <div class="dropdown" id="taxon">Animalia</div>\n\n';
 
 tbt = []; % toolbar tail (used for external toolbars)
 tbt = [tbt, '    </div> <!-- end of navwrapper -->\n'];
@@ -167,7 +167,7 @@ fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
-fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, btn_all, bar, dd_std, tbt], path2AmP, ''));
+fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, tax_ani, bar, dd_std, tbt], path2AmP, ''));
 %
 % external toolbars for VU
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
