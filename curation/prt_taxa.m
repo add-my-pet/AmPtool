@@ -9,14 +9,14 @@ function prt_taxa_new
 % <../prt_taxa.m *prt_taxa*> 
 
 %% Description
-% Writes taxa.txt and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html
+% Writes taxa.amp and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html
 % The toolbar_tax.html, written by prt_toolbar has search/selection options.
 % A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position.
 % Refresh the taxa-page by clicking on the logo-icon.
 %
 % Output:
 % 
-% * writes file ../../add_my_pet/taxa.txt
+% * writes file ../../add_my_pet/taxa.amp
 % * writes file ../../add_my_pet/sys/taxaSel.js 
 
 %% Remarks
@@ -35,7 +35,7 @@ function prt_taxa_new
 
   % write taxa.txt, which is included in static taxa.html
 
-  oid = fopen('taxa.txt', 'w+'); % open file for writing, delete existing content
+  oid = fopen('taxa.amp', 'w+'); % open file for writing, delete existing content
   for i = 1:n_taxa % for each jpg is one jpgcap
     fprintf(oid, '<div class="jpg"><img src="img/tree/%s.jpg"  width="260px" onclick="shTree(''%s'')"><div class="jpgcap">%s</div></div>\n', taxa{i},taxa{i},taxa{i});
   end 
