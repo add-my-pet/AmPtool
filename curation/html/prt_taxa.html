@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_taxa</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-07-20"><meta name="DC.source" content="prt_taxa.m"><style type="text/css">
+      --><title>prt_taxa</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-07-21"><meta name="DC.source" content="prt_taxa.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_taxa</h1><!--introduction--><p>writes taxa.html with jpg's of nodes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_taxa.m"><b>prt_taxa</b></a></p><h2 id="4">Description</h2><p>Writes taxa.txt and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html The toolbar_tax.html, written by prt_toolbar has search/selection options. A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the taxa-page by clicking on the logo-icon.</p><p>Output:</p><div><ul><li>writes file ../../add_my_pet/taxa.txt</li><li>writes file ../../add_my_pet/sys/taxaSel.js</li></ul></div><h2 id="5">Remarks</h2><p>The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level. Writes both taxa.txt and taxaSel.js, since each AmP addition requires a new update of both.</p><h2 id="6">Example of use</h2><p>prt_taxa</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_taxa</h1><!--introduction--><p>writes taxa.html with jpg's of nodes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_taxa.m"><b>prt_taxa</b></a></p><h2 id="4">Description</h2><p>Writes taxa.amp and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html The toolbar_tax.html, written by prt_toolbar has search/selection options. A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position. Refresh the taxa-page by clicking on the logo-icon.</p><p>Output:</p><div><ul><li>writes file ../../add_my_pet/taxa.amp</li><li>writes file ../../add_my_pet/sys/taxaSel.js</li></ul></div><h2 id="5">Remarks</h2><p>The page show all taxa (genus-level and higher), but the search-dropdown only allows selection above the genus-level. Writes both taxa.txt and taxaSel.js, since each AmP addition requires a new update of both.</p><h2 id="6">Example of use</h2><p>prt_taxa</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_taxa
 % writes taxa.html with jpg's of nodes
@@ -80,14 +80,14 @@ function prt_taxa_new
 % <../prt_taxa.m *prt_taxa*> 
 
 %% Description
-% Writes taxa.txt and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html
+% Writes taxa.amp and taxaSel.js in directory add_my_pet with taxon jpg's, to be included in taxa.html
 % The toolbar_tax.html, written by prt_toolbar has search/selection options.
 % A click on a thumbnail opens species_tree.html at the clicked taxon, where you can see the name of the species and its phylogenetic position.
 % Refresh the taxa-page by clicking on the logo-icon.
 %
 % Output:
 % 
-% * writes file ../../add_my_pet/taxa.txt
+% * writes file ../../add_my_pet/taxa.amp
 % * writes file ../../add_my_pet/sys/taxaSel.js 
 
 %% Remarks
@@ -106,7 +106,7 @@ function prt_taxa_new
 
   % write taxa.txt, which is included in static taxa.html
 
-  oid = fopen('taxa.txt', 'w+'); % open file for writing, delete existing content
+  oid = fopen('taxa.amp', 'w+'); % open file for writing, delete existing content
   for i = 1:n_taxa % for each jpg is one jpgcap
     fprintf(oid, '<div class="jpg"><img src="img/tree/%s.jpg"  width="260px" onclick="shTree(''%s'')"><div class="jpgcap">%s</div></div>\n', taxa{i},taxa{i},taxa{i});
   end 
