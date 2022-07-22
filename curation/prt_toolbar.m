@@ -268,7 +268,8 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_con = [dd_con, '          <a href="', path2AmP, 'index.html">AmP Portal</a>\n'];
   dd_con = [dd_con, '          <a href="', path2DEBportal, 'AmPestimation.html" target="_blank">AmP Estimation</a>\n'];
   dd_con = [dd_con, '          <a href="', path2AmP, 'AmPeco.html">AmP Ecology</a>\n'];
-  dd_con = [dd_con, '          <a href="', path2AmP, 'phyla.html">Phyla</a>\n'];
+  dd_con = [dd_con, '          <a href="', path2AmP, 'phyla.html">Phyla</a>\n'];  
+  dd_con = [dd_con, '          <a href="', path2AmP, 'taxa.html">Taxa</a>\n'];
   dd_con = [dd_con, '          <a href="', path2AmP, 'pars.html">Parameters</a>\n'];
   dd_con = [dd_con, '          <a href="', path2AmP, 'patterns.html">Patterns</a>\n'];
   dd_con = [dd_con, '          <a href="', path2DEBportal, 'AmPeps.html">Entry prepare</a>\n'];
@@ -287,7 +288,6 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '          <a href="', path2AmP, 'pie_pSGJRi.html">Energy Budgets</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'ecoCodes.html">EcoCodes</a>\n'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'links.html">Links</a>\n'];
-  dd_col = [dd_col, '          <a href="', path2AmP, 'taxa.html">Taxa</a>\n'];
   img_zip = ['<IMG SRC="', path2AmP,'img/zipicon.png" WIDTH="30px"  BORDER="0">'];
   table = ['<tr> <td rowspan="2">', img_zip, '</td><td>AmPdata</td></tr><tr><td>', datestr(datenum(date), 'yyyymmdd'), '</td></tr>'];
   dd_col = [dd_col, '          <a href="', path2AmP, 'AmPdata/AmPdata.zip"><table>', table, '</table></a>\n'];
