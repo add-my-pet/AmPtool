@@ -1,4 +1,5 @@
-Ardenna_tenuirostris
+Ardenna_carneipes
 Ardenna_gravis
 Ardenna_grisea
-Ardenna_carneipes
+Ardenna_pacifica
+Ardenna_tenuirostris
