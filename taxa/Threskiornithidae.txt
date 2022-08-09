@@ -1,5 +1,2 @@
-Eudocimus
-Geronticus
-Lophotibis
-Platalea
-Plegadis
+Plataleinae
+Threskiornithinae
