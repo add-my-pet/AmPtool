@@ -1,5 +1,6 @@
 Eos
-Melopsittacus
-Psittaculirostris
-Prosopeia
 Eunymphicus
+Melopsittacus
+Prosopeia
+Psittaculirostris
+Trichoglossus
