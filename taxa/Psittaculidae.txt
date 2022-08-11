@@ -1,6 +1,3 @@
-Eos
-Eunymphicus
-Melopsittacus
-Prosopeia
-Psittaculirostris
-Trichoglossus
+Lorinae
+Playcerninae
+Psittaculinae
