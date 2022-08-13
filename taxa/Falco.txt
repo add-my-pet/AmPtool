@@ -1,3 +1,4 @@
-Falco_naumanni
-Falco_tinnunculus
 Falco_columbarius
+Falco_naumanni
+Falco_sparverius
+Falco_tinnunculus
