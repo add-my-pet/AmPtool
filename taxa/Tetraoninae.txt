@@ -1,4 +1,5 @@
-Tetrastes
-Lagopus
 Dendragapus
+Lagopus
+Tetrao
+Tetrastes
 Tympanuchus
