@@ -1,8 +1,9 @@
-Tolmomyias
-Rhynchocyclus
-Tyrannus
-Sayornis
 Empidonax
 Leptopogon
 Mionectes
+Myiarchus
+Rhynchocyclus
+Sayornis
+Tolmomyias
+Tyrannus
 Zimmerius
