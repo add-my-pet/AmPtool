@@ -173,9 +173,27 @@ if n_fig > 0
       '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> <th>Reference</th></tr>\n'], labels);  
   %
   for i=1:n_fig
-    % label
-    label = dataSet_nFig{i,1};  
-    labels = ['<td>',txtData.label.(dataSet_nFig{i,1}){1},'</td> <td>',txtData.label.(dataSet_nFig{i,1}){2},'</td>'];
+    % name of dataset
+    if isfield(auxData.temp, dataSet_nFig{i,1}) && 1 == length(auxData.temp.(dataSet_nFig{i,1}))
+      temp = auxData.temp.(dataSet_nFig{i,1});
+      if strcmp(txtData.units.temp.(dataSet_nFig{i,1}), 'K')
+        temp = K2C(temp);
+      end
+      name = ['<a href="" title="Temperature: ', num2str(temp), ' C">', dataSet_nFig{i,1}, '</a>'];
+    else
+      name = dataSet_nFig{i,1};
+    end
+    % labels for x,y and, possibly, z axes
+    labels = ['<td>',txtData.label.(dataSet_nFig{i,1}){1},'</td> ']; % independent var
+    if 3==k && 3==length(txtData.label.(dataSet_nFig{i,1})) && 3==length(txtData.units.(dataSet_nFig{i,1})) % 2 dependent vars
+      labely = [txtData.label.(dataSet_nFig{i,1}){2},'<br>', txtData.label.(dataSet_nFig{i,1}){3}];
+    else % 1 dependent var
+      labely = txtData.label.(dataSet_nFig{i,1}){2};
+    end
+    if isfield(txtData, 'comment') && isfield(txtData.comment, dataSet_nFig{i,1}) % add possible coment as hover text to y-label
+      labely   = ['<a href="" title="', txtData.comment.(dataSet_nFig{i,1}), '">', labely, '</a>'];
+    end        
+    labels = [labels, '<td>', labely, '</td>'];
     if zlab % table has at least one bi-variate data figure in 3D
       if 3==txtData.label.(dataSet_nFig{i,1}) && isfield(auxData,'treat') && auxData.treat.(dataSet_nFig{i,1}){1}>1
         labels = [labels, ' <td>',txtData.label.(dataSet_nFig{i,1}){3},'</td> '];
@@ -205,13 +223,13 @@ if n_fig > 0
     ii = 1:nst; ii=ii(strcmp(nm,dataSet_nFig{i,1}));
     re = metaPar.RE(ii,1); % "relative error"
     % REF
-    ref = txtData.bibkey.(label); REF = ref;
+    ref = txtData.bibkey.(dataSet_nFig{i,1}); REF = ref;
     if iscell(ref) % if there are several references
       n = length(ref); REF = ref{1}; % number of references    
       for j = 2:n; REF = [REF,', ',ref{j}]; end
     end
     %
-    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', label, fig, labels, re, REF);        
+    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', name, fig, labels, re, REF);        
   end
   fprintf(oid, '      </table>\n\n'); 
   
