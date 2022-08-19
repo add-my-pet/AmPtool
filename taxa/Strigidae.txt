@@ -1,6 +1,3 @@
-Athene
-Otus
-Asio
-Bubo
-Strix
-Ninox
+Ieraglaucinae
+Surniinae
+Striginae
