@@ -1,5 +1,3 @@
-Aphelocoma
-Corvus
-Cyanopica
-Gymnorhinus
-Pica
+Perisoreinae
+Cyanocoracinae
+Corvinae
