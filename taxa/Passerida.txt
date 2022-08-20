@@ -3,6 +3,7 @@ Paroidea
 Sylvioidea
 Reguloidea
 Certhiodea
+Bombycilloidea
 Muscicapoidea
 Passeroidea
 Emberizoidea
