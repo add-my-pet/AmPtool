@@ -1,5 +1,3 @@
-Erithacus
-Ficedula
-Myrmecocichla
-Oenanthe
-Saxicola
+Muscicapinae
+Erithacinae
+Saxicolinae
