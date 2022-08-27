@@ -11,7 +11,7 @@ function WD = cdEntr(my_pet, ed)
 % cd to the add_my_pet/entries/my_pet directory and open source files in
 % Matlab editor
 %
-% * my_pet: strong with name of entry
+% * my_pet: string with name of entry
 % * ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files
 %
 % Output
@@ -19,7 +19,7 @@ function WD = cdEntr(my_pet, ed)
 % * WD: current path 
 
 %% Remarks
-% Intended use: WD = cdEntr('Daphnia_magna'); ..code.. cd(WD)
+% Intended use: WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)
 
 WD = pwd; cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
 
