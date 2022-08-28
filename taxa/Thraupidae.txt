@@ -1,4 +1,5 @@
-Sporophila
-Geospiza
 Chlorochrysa
+Geospiza
 Lanio
+Sporophila
+Tersina
