@@ -1,5 +1,6 @@
 Larus_argentatus
-Larus_fuscus
 Larus_dominicanus
+Larus_fuscus
+Larus_glaucescens
 Larus_occidentalis
 Larus_pacificus
