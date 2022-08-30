@@ -1,6 +1,7 @@
 Alaudidae
 Hirundinidae
 Sylvidae
+Paradoxornithidae
 Phylloscopidae
 Acrocephalidae
 Leiothrichidae
