@@ -1,5 +1,2 @@
-Apus
-Aerodramus
-Aeronautes
-Chaetura
-Cypseloides
+Cypseloidinae
+Apodinae
