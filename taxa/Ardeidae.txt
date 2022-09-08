@@ -2,4 +2,6 @@ Ardea
 Bubulcus
 Butorides
 Cochlearius
+Egretta
+Ixobrychus
 Nycticorax
