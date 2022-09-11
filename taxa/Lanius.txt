@@ -1,3 +1,4 @@
 Lanius_collurio
+Lanius_excubitor
 Lanius_phoenicuroides
 Lanius_senator
