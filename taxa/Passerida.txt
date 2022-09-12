@@ -2,7 +2,7 @@ Eupetida
 Paroidea
 Sylvioidea
 Reguloidea
-Certhiodea
+Certhioidea
 Bombycilloidea
 Muscicapoidea
 Passeroidea
