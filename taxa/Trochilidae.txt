@@ -4,5 +4,6 @@ Chionomesa
 Coeligena
 Doricha
 Lampornis
+Phaethornis
 Phlogophilus
 Sternoclyta
