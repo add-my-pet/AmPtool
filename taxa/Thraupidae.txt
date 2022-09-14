@@ -3,3 +3,4 @@ Geospiza
 Lanio
 Sporophila
 Tersina
+Thraupis
