@@ -7,4 +7,5 @@ Rhynchocyclus
 Sayornis
 Tolmomyias
 Tyrannus
+Xolmis
 Zimmerius

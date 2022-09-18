@@ -3,5 +3,6 @@ Emberizoides
 Geospiza
 Lanio
 Sporophila
+Tangara
 Tersina
 Thraupis

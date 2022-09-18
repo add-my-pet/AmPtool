@@ -1,6 +1,7 @@
 Acanthis
 Carduelis
 Chlorodrepanis
+Euphonia
 Haemorhous
 Leucosticte
 Spinus
