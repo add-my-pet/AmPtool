@@ -1,5 +1,6 @@
 Tachycineta_albilinea
 Tachycineta_bicolor
+Tachycineta_cyaneoviridis
 Tachycineta_leucorrhoa
 Tachycineta_stolzmanni
 Tachycineta_thalassina
