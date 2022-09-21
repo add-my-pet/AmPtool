@@ -79,13 +79,13 @@ function fileName = prt_id(pets, save)
     id = metaData.links; vars_pull(id);
     flds = fields(id); n_flds = length(flds);
     for j = 1:n_flds
-       nm = strsplit(flds{j}, '_'); nm = nm{2};
-       eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
-       pars = [col.(nm), ',',  idNm,];
-       if ~isempty(id)
-         %eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
-         eval([nm,'{i} = ''<a onclick="lnk(', pars, ')">', id, '</a>'';']);
-       end
+      nm = strsplit(flds{j}, '_'); nm = nm{2};
+      eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
+      pars = [col.(nm), ',',  idNm,];
+      if ~isempty(id)
+        %eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
+        eval([nm,'{i} = ''<a onclick="lnk(', pars, ')">', id, '</a>'';']);
+      end
     end
   end
   cd(WD);
