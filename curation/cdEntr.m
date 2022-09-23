@@ -21,6 +21,9 @@ function WD = cdEntr(my_pet, ed)
 %% Remarks
 % Intended use: WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)
 
+if isempty(findstr(my_pet,'_'))
+  my_pet = strrep(my_pet,' ','_');
+end
 WD = pwd; cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
 
 if exist('ed', 'var')
