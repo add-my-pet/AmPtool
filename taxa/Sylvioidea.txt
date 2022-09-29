@@ -1,9 +1,4 @@
-Alaudidae
-Hirundinidae
 Sylviidae
 Paradoxornithidae
-Phylloscopidae
-Acrocephalidae
-Leiothrichidae
-Donacobiidae
 Zosteropidae
+Leiothrichidae
