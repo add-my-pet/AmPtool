@@ -31,10 +31,15 @@ if ~exist('open','var')
   open = 0;
 end
 
-id = strrep(my_pet,' ','_'); 
+id = strrep(my_pet,' ','_');  
 
-check = urlread([address, id]);
-if ~isempty(strfind(check, 'not found'))
+try
+  check = urlread([address, id]);
+  if ~isempty(strfind(check, 'not found'))
+    id = ''; return
+  end
+catch
+  fprintf('AnAge cannot be reached\n');
   id = ''; return
 end
 
