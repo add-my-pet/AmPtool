@@ -2,4 +2,5 @@ Buteo_jamaicensis
 Buteo_lineatus
 Buteo_oreophilus
 Buteo_platypterus
+Buteo_rufofuscus
 Buteo_swainsoni
