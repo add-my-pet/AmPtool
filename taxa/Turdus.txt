@@ -3,6 +3,7 @@ Turdus_hauxwelli
 Turdus_iliacus
 Turdus_merula
 Turdus_migratorius
+Turdus_olivaceus
 Turdus_philomelos
 Turdus_rufiventris
 Turdus_torquatus
