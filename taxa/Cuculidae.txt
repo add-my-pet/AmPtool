@@ -1,7 +1,3 @@
-Cacomantis
-Centropus
-Chalcites
-Clamator
-Cuculus
-Dromococcyx
-Geococcyx
+Neomorphinae
+Centropodinae
+Cuculinae
