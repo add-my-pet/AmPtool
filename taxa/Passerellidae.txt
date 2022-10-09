@@ -2,6 +2,7 @@ Arremon
 Artemisiospiza
 Atlapetes
 Chlorospingus
+Junco
 Melospiza
 Melozone
 Passerculus
