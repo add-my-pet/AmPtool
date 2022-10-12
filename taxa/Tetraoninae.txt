@@ -1,5 +1,6 @@
 Dendragapus
 Lagopus
+Perdix
 Tetrao
 Tetrastes
 Tympanuchus
