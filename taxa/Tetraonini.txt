@@ -1,6 +1,9 @@
+Bonasa
+Centrocercus
 Dendragapus
+Falcipennis
 Lagopus
-Perdix
+Meleagris
 Tetrao
 Tetrastes
 Tympanuchus

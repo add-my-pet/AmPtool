@@ -1,1 +1,3 @@
 Lagopus_lagopus
+Lagopus_leucura
+Lagopus_muta
