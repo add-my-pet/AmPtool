@@ -1,4 +1,6 @@
 Crex
 Fulica
 Gallinula
+Porphyrio
+Porzana
 Rallus
