@@ -1,7 +1,9 @@
-Calidris_ferruginea
 Calidris_alpina
 Calidris_bairdii
+Calidris_ferruginea
+Calidris_fuscicollis
 Calidris_himantopus
+Calidris_maritima
 Calidris_minuta
 Calidris_minutilla
-Calidris_maritima
+Calidris_pusilla
