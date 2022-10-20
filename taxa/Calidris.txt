@@ -4,6 +4,7 @@ Calidris_ferruginea
 Calidris_fuscicollis
 Calidris_himantopus
 Calidris_maritima
+Calidris_mauri
 Calidris_minuta
 Calidris_minutilla
 Calidris_pusilla
