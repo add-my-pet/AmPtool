@@ -1,4 +1,5 @@
-Sterna_paradisaea
-Sterna_hirundo
 Sterna_dougallii
+Sterna_forsteri
+Sterna_hirundo
+Sterna_paradisaea
 Sterna_sumatrana
