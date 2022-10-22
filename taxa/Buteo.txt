@@ -1,6 +1,9 @@
+Buteo_brachyurus
 Buteo_jamaicensis
+Buteo_lagopus
 Buteo_lineatus
 Buteo_oreophilus
+Buteo_plagiatus
 Buteo_platypterus
 Buteo_rufofuscus
 Buteo_swainsoni
