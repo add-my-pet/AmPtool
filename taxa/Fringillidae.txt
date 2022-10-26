@@ -4,5 +4,6 @@ Drepanidini
 Euphonia
 Haemorhous
 Leucosticte
+Pinicola
 Serinus
 Spinus
