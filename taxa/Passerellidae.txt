@@ -2,7 +2,9 @@ Ammospiza
 Arremon
 Artemisiospiza
 Atlapetes
+Calamospiza
 Chlorospingus
+Chondestes
 Junco
 Melospiza
 Melozone
