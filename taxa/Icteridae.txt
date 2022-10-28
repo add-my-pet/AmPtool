@@ -4,6 +4,7 @@ Amblyramphus
 Dolichonyx
 Euphagus
 Hypopyrrhus
+Icterus
 Molothrus
 Pseudoleistes
 Quiscalus
