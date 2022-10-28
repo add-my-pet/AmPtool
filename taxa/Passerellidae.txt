@@ -3,6 +3,7 @@ Arremon
 Artemisiospiza
 Atlapetes
 Calamospiza
+Centronyx
 Chlorospingus
 Chondestes
 Junco
