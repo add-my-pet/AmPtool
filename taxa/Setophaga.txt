@@ -1,3 +1,5 @@
 Setophaga_aestiva
+Setophaga_citrina
+Setophaga_kirtlandii
 Setophaga_ruticilla
 Setophaga_striata
