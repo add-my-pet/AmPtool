@@ -1,5 +1,7 @@
 Setophaga_aestiva
+Setophaga_caerulescens
 Setophaga_citrina
+Setophaga_discolor
 Setophaga_kirtlandii
 Setophaga_ruticilla
 Setophaga_petechia
