@@ -6,3 +6,5 @@ Setophaga_kirtlandii
 Setophaga_ruticilla
 Setophaga_petechia
 Setophaga_striata
+Setophaga_townsendi
+Setophaga_virens
