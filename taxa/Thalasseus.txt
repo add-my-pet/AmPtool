@@ -1,2 +1,3 @@
-Thalasseus_sandvicensis
+Thalasseus_bergii
 Thalasseus_elegans
+Thalasseus_sandvicensis

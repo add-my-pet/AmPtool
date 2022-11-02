@@ -1,6 +1,7 @@
 Charadrius_hiaticula
 Charadrius_melodus
 Charadrius_montanus
+Charadrius_morinellus
 Charadrius_nivosus
 Charadrius_pecuarius
 Charadrius_semipalmatus
