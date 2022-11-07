@@ -1,7 +1,2 @@
-Aphrastura
-Dendrocolaptes
-Dendroplex
-Phacellodomus
-Premnoplex
-Pseudoseisura
-Thripadectes
+Dendrocolaptinae
+Furnariinae
