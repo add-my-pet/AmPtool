@@ -1,2 +1,3 @@
 Haliaeetus_albicilla
 Haliaeetus_leucocephalus
+Haliaeetus_pelagicus
