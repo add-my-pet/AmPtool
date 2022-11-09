@@ -48,7 +48,7 @@ if exist('id','var')
     end
     id_bow = id_bow{ismember(id_bow(:,1), id),2};  return
   else % id is a species name
-    id_bow = id_bow{ismember(id_bow(:,2), id),1};  
+    id_bow = id_bow{ismember(id_bow(:,2), strrep(id, ' ', '_')),1};  
     if exist('open', 'var') && open
       web([address, id_bow],'-browser');
     end
