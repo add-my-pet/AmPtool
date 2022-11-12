@@ -1,4 +1,6 @@
 Stercorarius_longicaudus
+Stercorarius_parasiticus
+Stercorarius_pomarinus
 Stercorarius_skua
 Stercorarius_maccormicki
 Stercorarius_antarcticus
