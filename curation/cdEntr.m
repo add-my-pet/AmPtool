@@ -22,7 +22,7 @@ function WD = cdEntr(my_pet, ed, nm)
 %% Remarks
 % Intended use: 
 % * WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)
-% * nm = cdEntr('my_pet1',1,{}); edit mydata_mypet1; nm = cdEntr('my_pet2',1,nm); edit mydata_mypet2; 
+% * nm = cdEntr('my_pet1',1,{}); edit mydata_mypet1; nm = cdEntr('my_pet2',1,nm); edit mydata_mypet2; ...
 % * run_collection(nm); run_collection_intro(nm);
 
 if ~contains(my_pet,'_')
