@@ -32,7 +32,7 @@ if exist('nm','var')
   WD = [nm; my_pet];
   get_id_bow(my_pet,1);
 else
-   WD = pwd; 
+  WD = pwd; 
 end
 cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
 
