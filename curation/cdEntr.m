@@ -30,11 +30,11 @@ if ~contains(my_pet,'_')
 end
 if exist('nm','var')
   WD = [nm; my_pet];
-  try 
-    get_id_bow(my_pet,1);
-  catch
-    fprintf('warning from cdEntr: not found in bow\n');
-  end
+%   try 
+%     get_id_bow(my_pet,1);
+%   catch
+%     fprintf('warning from cdEntr: not found in bow\n');
+%   end
 else
   WD = pwd; 
 end
