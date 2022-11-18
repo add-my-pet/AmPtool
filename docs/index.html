@@ -98,11 +98,13 @@
     The function reads parameters in <code>allStat</code> and specifies scaled functional response and temperature for each trait.
     The function is also used during the parameter estimation procedure for entries that are not yet in the collection with 
       <code>estim_options('results_output', 4);</code> in the <code>run_my_pet</code> file.
-    In this application the data are not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
+    In this application the data is not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
     This is handy for checking that a particular parameter combination is yes or no realistic.
     With <code>estim_options('results_output', 5);</code>, related species are included in the report to compare parameters and implied traits.
     These related species in the collection are identified with function <a href="../html/clade.html">clade</a> (see below), and if two or more related species are found, 
       color coding is applied to highlight eccentricity of values.
+    The selection of "related" species can be specified explicitly by delaring global variable <code>refPets</code> and fill it with a cell-string of species names.
+    Variable <code>refPets</code> is only used if output-level is 5 or higher.
 
     <H2 id="tree">Taxonomic tree: lists-of-lists</H2>
 
@@ -147,8 +149,8 @@
 
     <p>
     A few taxa have a special status.
-    Reptilia and Sarcopterygii are used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
-    Pisces are not used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+    <code>Reptilia</code> and <code>Sarcopterygii</code> are used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+    <code>Pisces</code> is not used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
   
 
     <div>
