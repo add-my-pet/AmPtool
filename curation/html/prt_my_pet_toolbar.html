@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_toolbar</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-25"><meta name="DC.source" content="prt_my_pet_toolbar.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>prt_my_pet_toolbar</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_my_pet_toolbar.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_toolbar</h1><!--introduction--><p>prints the menu bar which is used for the pages which are specific for a given species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_toolbar.m"><b>prt_my_pet_toolbar</b></a> (metaData, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html. Reads links-info from results_my_pet.mat, and</p><p>Input:</p><div><ul><li>my_pet: character string with name of entry</li><li>destinationFolder : optional string with destination folder the files are printed to (default: current folder)</li></ul></div><h2 id="5">Remarks</h2><p>Indent of 2 spaces used for printing to html page Edit /sys/drowdown.js for adding dropdwn's</p><h2 id="6">Example of use</h2><p>prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_toolbar</h1><!--introduction--><p>prints the menu bar which is used for the pages which are specific for a given species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_toolbar.m"><b>prt_my_pet_toolbar</b></a> (metaData, destinationFolder)</p><h2 id="4">Description</h2><p>Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html. Reads links-info from results_my_pet.mat, and assumes that the current directory contains that file</p><p>Input:</p><div><ul><li>my_pet: character string with name of entry</li><li>destinationFolder : optional string with destination folder the files starting from AmPtool/curation are printed to (default: current folder),</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Indent of 2 spaces used for printing to html page</li><li>Edit /sys/drowdown.js for adding dropdwn's</li></ul></div><h2 id="6">Example of use</h2><p>prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_toolbar
 % prints the menu bar which is used for the pages which are specific for a given species
@@ -80,34 +81,37 @@ function  prt_my_pet_toolbar(my_pet, destinationFolder)
 
 %% Description
 % Prints my_pet_toolbar.html for presentation in my_pet_res.html, my_pet_par.html, my_pet_stat.html.
-% Reads links-info from results_my_pet.mat, and 
+% Reads links-info from results_my_pet.mat, and assumes that the current directory contains that file
 %
 % Input:
 %
 % * my_pet: character string with name of entry
-% * destinationFolder : optional string with destination folder the files are printed to (default: current folder)
+% * destinationFolder : optional string with destination folder the files starting from AmPtool/curation
+% are printed to (default: current folder),
 
 %% Remarks
-% Indent of 2 spaces used for printing to html page
-% Edit /sys/drowdown.js for adding dropdwn's
+% * Indent of 2 spaces used for printing to html page
+% * Edit /sys/drowdown.js for adding dropdwn's
 
 %% Example of use
 % prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder
 
-load(['../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
-genus = strsplit(my_pet,'_'); genus = genus{1}; % identify genus for link to species_tree_Animalia
+%load(['../../../add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat'])
 
-if exist('destinationFolder','var') && isempty('destinationFolder')
-  oid = [];
+if exist('destinationFolder','var') && isempty(destinationFolder)
+  oid = []; load(['/results_', my_pet,'.mat'],'metaData');
 elseif exist('destinationFolder','var') 
+  WD = cdCur; load(['../../deblab/add_my_pet/entries/', my_pet, '/results_', my_pet,'.mat']); cd(WD);
   oid = fopen([destinationFolder, metaData.species, '_toolbar.html'], 'w+'); % open file for reading and writing and deletes old content
 else
   oid = fopen([my_pet, '_toolbar.html'], 'w+');                    % open file for reading and writing and deletes old content   
+  load(['/results_', my_pet,'.mat'],'metaData');
 end
+genus = strsplit(my_pet,'_'); genus = genus{1}; % identify genus for link to species_tree_Animalia
 
 fprintf(oid, '  <h1 class="alignleft2">\n');
 fprintf(oid, '    &nbsp; <a onclick="OpenListAtTaxon(''%s'')" title="click to go to species_list">%s</a> &nbsp;\n', my_pet, my_pet);
-fprintf(oid, '    (<a onclick="OpenTreeAtTaxon(''%s'')" title="click to go to species_tree">%s</a>): &nbsp;\n', genus, metaData.species_en);
+fprintf(oid, '    (<a onclick="OpenTreeAtTaxon(''%s'')" title="click to go to species_tree">%s</a>): &nbsp;\n', genus, metaData.species_en); 
 fprintf(oid, '  </h1>\n\n');
 
 fprintf(oid, '  <div id="navwrapper">\n');
@@ -122,28 +126,34 @@ fprintf(oid, '        <a href="%s_cit.html">Citation</a>\n', my_pet);
 fprintf(oid, '      </div>\n');
 fprintf(oid, '    </div>\n\n');
 
-zip = get_zip(my_pet); n_zip = size(zip, 1); % see if there are any obsolete zip's in the archive
-fprintf(oid, '    <div class = "dropdown"><button onclick="showDropdown(''code'')" class="dropbtn">Code</button>\n');
+WD = cdCur; zip = get_zip(my_pet); n_zip = size(zip, 1);cd(WD); % see if there are any obsolete zip's in the archive
+fprintf(oid, '    <div class="dropdown"><button onclick="showDropdown(''code'')" class="dropbtn">Code</button>\n');
 fprintf(oid, '      <div id="code" class="dropdown-content">\n');
 fprintf(oid, '        <a href="../../entries/%s/mydata_%s.m" target="_blank">mydata</a>\n', my_pet, my_pet);
 fprintf(oid, '        <a href="../../entries/%s/pars_init_%s.m" target="_blank">pars_init</a>\n', my_pet, my_pet);
 fprintf(oid, '        <a href="../../entries/%s/predict_%s.m" target="_blank">predict</a>\n', my_pet, my_pet);
-fprintf(oid, '        <a HREF="../../entries_zip/%s_%s.zip" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n', my_pet, datestr(datenum(metaData.date_acc), 'yyyymmdd'));
+fprintf(oid, '        <a href="../../entries_zip/%s_%s.zip" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n', my_pet, datestr(datenum(metaData.date_acc), 'yyyymmdd'));
 fprintf(oid, '          <IMG SRC="../../img/zipicon.png" WIDTH="30px"  BORDER="0">%s</a>\n', datestr(datenum(metaData.date_acc), 'yyyymmdd'));
 for i = 1:n_zip % work from bottom to top to get oldest zip's on bottom
-fprintf(oid, '        <a HREF="../../entries_archive/%s_%s.zip" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n', my_pet, zip{n_zip-i+1,2});
+fprintf(oid, '        <a href="../../entries_archive/%s_%s.zip" TARGET="_top" onMouseOver="window.status=Close submenu; return true;">\n', my_pet, zip{n_zip-i+1,2});
 fprintf(oid, '          <IMG SRC="../../img/zipicon.png" WIDTH="30px"  BORDER="0">%s</a>\n', zip{n_zip-i+1,2});
 end
 fprintf(oid, '      </div>\n');
 fprintf(oid, '    </div>\n\n');
 
 links = get_links(my_pet); n_links = size(links,1);
-fprintf(oid, '    <div class = "dropdown"><button onclick="showDropdown(''link'')" class="dropbtn">Links</button>\n');
+
+fprintf(oid, '    <div class="dropdown"><button onclick="showDropdown(''link'')" class="dropbtn">Links</button>\n');
 fprintf(oid, '      <div id="link" class="dropdown-content">\n');
 for i = 1:n_links
 fprintf(oid, '        <a href="%s" target="_blank">%s</a>\n', links{i,1}, links{i,2});
 end
 fprintf(oid, '      </div>\n');
+fprintf(oid, '    </div>\n\n');
+
+fprintf(oid, '    <div class="jump">\n');
+fprintf(oid, '      <img onclick="specJump(''%s'',''0'')" src="../../img/specDwn.png" width="40px">\n', my_pet);
+fprintf(oid, '      <img onclick="specJump(''%s'',''1'')" src="../../img/specUp.png" width="40px">\n', my_pet);
 fprintf(oid, '    </div>\n\n');
 
 fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH end of navwrapper REPLACE_WITH_DASH_DASH>\n');

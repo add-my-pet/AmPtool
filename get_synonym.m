@@ -34,6 +34,10 @@ end
  end
  i_0 = i_0(1) + 19; i_1 = strfind(url(i_0:end),'"');
  nm = url(i_0 + i_1(1): i_0 + i_1(2));
- nm = strsplit(nm, ' '); nm = [nm{1}, '_', nm{2}];
+ if ~isempty(strfind(nm,' '))
+   nm = strsplit(nm, ' '); nm = [nm{1}, '_', nm{2}];
+ else
+   nm = '';
+ end
  
 

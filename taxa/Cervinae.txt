@@ -1,2 +1,5 @@
-Muntiacus
 Cervus
+Dama
+Elaphurus
+Muntiacus
+Rusa

@@ -3,7 +3,8 @@
 
 %%
 function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
-% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25 Bas Kooijman
+% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 
+% 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25, 2022/04/06 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_stat.m *prt_my_pet_stat*> (metaData, metaPar, par, destinationFolder) 
@@ -15,21 +16,19 @@ function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
 %
 % Input:
 %
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
-% * par: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
+% * par: structure (output of pars_init_my_pet-file)
 % * destinationFolder: optional string with destination folder to which my_pet_stat.html is printed (default: current folder)
 
 %% Example of use
-% load('results_my_pet.mat');
+% * load('results_my_pet.mat');
 % prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
-
-% % Removes underscores and makes first letter of english name be in capital:
-% speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
-% speciesprintnm_en = strrep(metaData.species_en, '_', ' ');
-% if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
+% * Removes underscores and makes first letter of english name be in capital:
+% * speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
+% * speciesprintnm_en = strrep(metaData.species_en, '_', ' ');
+% * if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
 %   speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);
-% end
 
 f = 1; % ad libitum feeding
 [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
@@ -53,9 +52,7 @@ fprintf(oid, '<HEAD>\n');
 fprintf(oid,['  <TITLE>',metaData.species,'</TITLE>\n']);
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
 
-fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/jscripts.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
@@ -66,7 +63,6 @@ fprintf(oid, '<BODY>\n\n');
 fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
 fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
 fprintf(oid,['<div id="top2" w3-include-html="', metaData.species, '_toolbar.html"></div>\n']);
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '<!--------------------------------------------------------------->\n');
 fprintf(oid, '<!--   PART main                                               -->\n');
@@ -82,7 +78,7 @@ fprintf(oid, '      <H1 id = "portaltop">Implied properties for this entry</H1>\
 			
 % print out text before the tables
 % fprintf(oid, '<H2>Implied properties for this entry</H2>');
-fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
+fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
 
 % print SGJR pies
 fprintf(oid, '      <H3>Energy investment, cumulated over the embryo period (left), and allocation during ontogeny</H3>\n');

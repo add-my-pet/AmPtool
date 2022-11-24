@@ -1,4 +1,10 @@
 Larus_argentatus
-Larus_fuscus
+Larus_californicus
+Larus_crassirostris
+Larus_delawarensis
 Larus_dominicanus
+Larus_fuscus
+Larus_glaucescens
+Larus_marinus
+Larus_occidentalis
 Larus_pacificus

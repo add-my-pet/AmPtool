@@ -1,0 +1,5 @@
+Hipposideros_armiger
+Hipposideros_cineraceus
+Hipposideros_larvatus
+Hipposideros_pomona
+Hipposideros_speoris

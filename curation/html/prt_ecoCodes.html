@@ -1,0 +1,260 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_ecoCodes</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-30"><meta name="DC.source" content="prt_ecoCodes.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_ecoCodes</h1><!--introduction--><p>prints an html-page with all ecoCodes for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>fileName = <a href="prt_ecoCodes"><b>prt_ecoCodes</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all ecoCodes for specified AmP entries as present in allStat; Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses <a href="read_eco"><b>read_eco</b></a>.</li><li>Repair id of an entry with <a href="repair_ecoCode.html"><b>repair_ecoCode</b></a>.</li></ul></div><h2 id="6">Example</h2><p>prt_ecoCodes(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_ecoCodes
+% prints an html-page with all ecoCodes for specified AmP entries 
+
+%%
+function fileName = prt_ecoCodes(pets, save)
+% created 2022/06/130 by Bas Kooijman
+
+%% Syntax
+% fileName = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
+
+%% Description
+% prints an html-page with all ecoCodes for specified AmP entries as present in allStat; 
+% Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.
+%
+% Input:
+%
+% * pets: cell array with names of existing entries
+% * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
+%
+% Output:
+%
+% * fileName: string with name of output file
+
+%% Remarks
+% * This function uses <read_eco *read_eco*>.
+% * Repair id of an entry with <repair_ecoCode.html *repair_ecoCode*>.
+
+%% Example
+% prt_ecoCodes(select('Crustacea'))
+
+  if ~exist('save','var')
+    save = false;
+  end
+         
+  version = datestr(date_allStat, 'yyyy/mm/dd');
+  header = {['AmP ', version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
+  n_rows = length(pets); n_cols = length(header);
+  
+  val = [pets, read_eco(pets, {'climate','ecozone','habitat','embryo','migrate','food','gender','reprod'})];
+
+  fileName = 'ecoCodes.html';
+  oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
+
+  % file head
+  fprintf(oid, '<!DOCTYPE html>\n');
+  fprintf(oid, '<html>\n');
+  fprintf(oid, '<head>\n');
+  fprintf(oid, '  <title>%s</title>\n',  'ecoCodes');
+  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
+  fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
+  fprintf(oid, '  <style id="myStyleSheet">\n');
+  
+  fprintf(oid, '    body {\n');
+  fprintf(oid, '      background-color: #ffffff;\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    div.tab {\n');
+  fprintf(oid, '      margin: auto;\n'); 
+  fprintf(oid, '      padding-top: 90px;\n'); % make room for toolbar
+  fprintf(oid, '    }\n\n');
+    
+  fprintf(oid, '    .head {\n');
+  fprintf(oid, '      background-color: #ffe7c6;\n'); % pink header background, also part of style.css
+  fprintf(oid, '      color: blue;\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    #tabEco {\n');
+  fprintf(oid, '      border-style: solid hidden solid hidden;\n'); % border top & bottom only
+  fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
+  fprintf(oid, '      color: blue;\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    .Search {\n');
+  fprintf(oid, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
+  fprintf(oid, '      background-position: 2px -10px; /* Position the search icon */\n');
+  fprintf(oid, '      background-repeat: no-repeat; /* Do not repeat the icon image */\n');
+  fprintf(oid, '      width: 70%%; /* Width of search field */\n');
+  fprintf(oid, '      font-size: 14px; /* Increase font-size */\n');
+  fprintf(oid, '      padding: 5px 10px 7px 40px; /* Add some padding */\n');
+  fprintf(oid, '      border: 1px solid #ddd; /* Add a grey border */\n');
+  fprintf(oid, '      margin-bottom: 12px; /* Add some space below the input */\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n'); % grey on even rows, also part of style.css
+  
+  fprintf(oid, '  </style>\n');
+  fprintf(oid, '</head>\n\n');
+  fprintf(oid, '<body>\n\n');
+ 
+  load('n_entries', 'n_entries')
+  if n_rows == n_entries 
+    fprintf(oid, '<div w3-include-html="sys/toolbar_links.html"></div>\n\n');
+    
+    fprintf(oid, '    <div id="contentFull">\n\n');
+  end
+
+  fprintf(oid, '  <div class="tab">\n');
+  fprintf(oid, '  <table id="tabEco">\n');
+
+  % header
+  if ~isempty(header)
+    fprintf(oid, '    <tr class="head">\n');
+    fprintf(oid, '       <th><a class="head" onclick="undoHide()">%s</a></th>\n', header{1});
+    for j = 2:n_cols
+      fprintf(oid, '       <th><a class="head" onclick="hideCol(%d)">%s</a></th>\n', j, header{j});
+    end
+    fprintf(oid, '    </tr>\n\n');
+  end
+
+  % body
+  for i = 1:n_rows
+    fprintf(oid, '    <tr>\n      ');
+    fprintf(oid, '<td>%s</td> ', val{i,1});
+    for j = 2:n_cols
+      fprintf(oid, '<td>%s</td> ', cell2str(val{i,j}));
+    end
+    fprintf(oid, '  \n    </tr>\n\n');
+  end
+ 
+  % file tail
+  fprintf(oid, '  </table>\n'); % close table
+  fprintf(oid, '  </div>\n\n');
+  
+  fprintf(oid, '  <script>\n');
+  fprintf(oid, '    function undoHide() {\n');
+  fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
+  fprintf(oid, '      if (styleSheet.cssRules.length > 6){\n'); % there are presently 6 style rules (see above)
+  fprintf(oid, '        styleSheet.deleteRule(0);\n');
+  fprintf(oid, '      }\n');
+  fprintf(oid, '    }\n\n');
+      
+  fprintf(oid, '    function hideCol(col) {\n');
+  fprintf(oid, '      var table = document.getElementById("tabId");\n');
+  fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
+  fprintf(oid, '      var rule = "table td:nth-child("+ col +"), table th:nth-child("+ col +") {display: none;}";\n');
+  fprintf(oid, '      styleSheet.insertRule(rule);\n');
+  fprintf(oid, '    }\n\n');
+    
+  fprintf(oid, '    function searchList() {\n');
+  fprintf(oid, '      var input, filter, table, tr, td, i;\n');
+  fprintf(oid, '      input = document.getElementById("Species");\n');
+  fprintf(oid, '      filter = input.value.toUpperCase();\n');
+  fprintf(oid, '      table = document.getElementById("tabId");\n');
+  fprintf(oid, '      tr = table.getElementsByTagName("tr");\n');
+  fprintf(oid, '      for (i = 0; i < tr.length; i++) {\n');
+  fprintf(oid, '        td = tr[i].getElementsByTagName("td")[0];\n');
+  fprintf(oid, '        if (td) {\n');
+  fprintf(oid, '          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
+  fprintf(oid, '            tr[i].style.display = "";\n');
+  fprintf(oid, '          } else {\n');
+  fprintf(oid, '            tr[i].style.display = "none";\n');
+  fprintf(oid, '          }\n');
+  fprintf(oid, '        }\n');
+  fprintf(oid, '      }\n');
+  fprintf(oid, '    }\n');
+
+  fprintf(oid, '  </script>\n\n');
+
+  if n_rows == n_entries
+    fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
+
+    fprintf(oid, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
+    fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
+  end
+  
+  fprintf(oid, '</body>\n');
+  fprintf(oid, '</html>\n');
+
+  fclose(oid);
+
+  web(fileName,'-browser') % open html in systems browser
+  pause(2)
+  if ~save
+    delete(fileName)
+  end  
+
+end
+
+function str = cell2str(cell)
+  n = length(cell); str = '';
+  for i = 1:n
+    str = [str, ',', cell{i}];
+  end
+  if  n > 0
+    str(1) = '';
+  end
+end
+##### SOURCE END #####
+--></body></html>

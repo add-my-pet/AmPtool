@@ -1,3 +1,2 @@
-Apus
-Aerodramus
-Cypseloides
+Cypseloidinae
+Apodinae

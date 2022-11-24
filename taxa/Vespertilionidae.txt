@@ -1,9 +1,12 @@
 Myotis
 Antrozous
 Eptesicus
+Aeorestes
 Nycticeius
 Nyctalus
 Pipistrellus
-Hypsugo
+Corynorhinus
 Plecotus
 Scotophilus
+Hypsugo
+Vespertilio

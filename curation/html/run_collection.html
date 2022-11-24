@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-30"><meta name="DC.source" content="run_collection.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>run_collection</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="run_collection.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,14 +67,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>run_collection</h1><!--introduction--><p>generates files for AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../run_collection.m"><b>run_collection</b></a> (varargin)</p><h2 id="4">Description</h2><p>Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip. Deletes .cache, .wn, .asv, .bib,  .bbl', .html files from entries. Calls function bib2html, which writes and deletes the .aux file as source for Bibtex, runs Bibtex, which writes a bbl-file, which is also deleted. Writes my_pet_toolbar.html, which is included by my_pet_res.html, my_pet_par.html, my_pet_stat.html and my_pet_pop.html.</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Output:</p><div><ul><li>1 bib-file, 4 html-files and 4 png-files per entry are written in ../entries_web</li><li>1 zip-file is written in ../entries_zip</li></ul></div><h2 id="5">Remarks</h2><p>run_collection_intro to generate about and access files for the collection</p><h2 id="6">Example of use</h2><p>run_collection or run_collection('Mola_mola') or run_collection('Mola_mola', 'Molva_molva') or run_collection({'Mola_mola', 'Molva_molva'}) or run_collection('Clitellata');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>run_collection</h1><!--introduction--><p>generates files for AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../run_collection.m"><b>run_collection</b></a> (varargin)</p><h2 id="4">Description</h2><p>Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip. Deletes .cache, .wn, .asv, .bib,  .bbl', .html files from entries. Calls function bib2html, which writes and deletes the .aux file as source for Bibtex, runs Bibtex, which writes a bbl-file, which is also deleted. Writes my_pet_toolbar.html, which is included by my_pet_res.html, my_pet_par.html, my_pet_stat.html and my_pet_pop.html.</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Output:</p><div><ul><li>1 bib-file, 4 html-files and 4 png-files per entry are written in ../entries_web</li><li>1 zip-file is written in ../entries_zip</li></ul></div><h2 id="5">Remarks</h2><p>run_collection_intro to generate about and access files for the collection</p><h2 id="6">Example of use</h2><div><ul><li>run_collection or</li><li>run_collection('Mola_mola') or</li><li>run_collection('Mola_mola', 'Molva_molva') or</li><li>run_collection({'Mola_mola', 'Molva_molva'}) or</li><li>run_collection('Clitellata');</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% run_collection
 % generates files for AmP website 
 
 %%
 function run_collection(varargin)
-% created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30 Bas Kooijman
+% created 2016/11/13 Bas Kooijman and Starrlight Augustine
+% modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30, 2020/05/17 Bas Kooijman
 
 %% Syntax
 % <../run_collection.m *run_collection*> (varargin)
@@ -97,11 +99,11 @@ function run_collection(varargin)
 % run_collection_intro to generate about and access files for the collection
 
 %% Example of use
-% run_collection or 
-% run_collection('Mola_mola') or
-% run_collection('Mola_mola', 'Molva_molva') or
-% run_collection({'Mola_mola', 'Molva_molva'}) or 
-% run_collection('Clitellata');
+% * run_collection or 
+% * run_collection('Mola_mola') or
+% * run_collection('Mola_mola', 'Molva_molva') or
+% * run_collection({'Mola_mola', 'Molva_molva'}) or 
+% * run_collection('Clitellata');
 
 if isempty(varargin)
   varargin = select('Animalia');
@@ -111,51 +113,56 @@ elseif iscell(varargin{1})
   varargin = varargin{:}; % unpack cell string  
 end
 
+%check_results(varargin); % warn if parameters in results do not match those in pars_init
+
+% path setting for curators 
+cur2ew = '../../deblab/add_my_pet/entries_web/'; % path from AmPtool/curation to entries_web
+cur2e = '../../deblab/add_my_pet/entries/'; % path from AmPtool/curation to entries
+
 nargin = length(varargin); % number of entries to scan    
-WD = pwd; cdCur
+WD = cdCur;
 
 for i = 1:nargin 
-  destinationFolder = ['../../add_my_pet/entries_web/', varargin{i},'/']; % target for html and png files
-  mkdir(destinationFolder);
-  fprintf(' %g : %s \n', i, varargin{i}) % report progress to screen 
+  cur2ewmp = [cur2ew, varargin{i},'/']; % path from AmPtool/curation to entries_web/my_pet
+  cur2emp = [cur2e, varargin{i},'/']; % path from AmPtool/curation to entries/my_pet
+  mkdir(cur2ewmp);
+  cd(cur2emp); % goto entry i in dir entries
+  fprintf(' %g : %s \n', i, varargin{i}); % report progress to screen 
   
-  cd(['../../add_my_pet/entries/', varargin{i}]) % goto entry i in dir entries
-
   feval(['run_', varargin{i}]); close all;
-  load(['results_', varargin{i}, '.mat']) % load results_my_pet.mat 
+  load(['results_', varargin{i}, '.mat']); % load results_my_pet.mat 
   [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
   prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
   prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
   delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
-  cdCur % cd to curation, but print to destinationFolder
 
-  cd('../../add_my_pet/entries_zip');
+  cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
   filenm = zip_my_pet(varargin{i}, '../entries'); % zip the entry and save
   % !Rscript zip2DataOne.r
   doi = 'xxxxxx';
-  cdCur  % cd to curation   
   
   % print files
-  prt_my_pet_toolbar(varargin{i}, destinationFolder) % my_pet_toolbar.html
-  prt_my_pet_bib(metaData.species, metaData.biblist, destinationFolder)                         % my_pet_bib.bib 
-  bib2html([metaData.species, '_bib'], destinationFolder)                                       % my_pet_bib.html 
-  prt_my_pet_cit(metaData, doi, destinationFolder)                                              % citation.html
-  prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)         % my_pet_res.html
-  prt_my_pet_par(metaData, metaPar, par, txtPar, destinationFolder)                             % my_pet_par.html
-  prt_my_pet_stat(metaData, metaPar, par, destinationFolder)                                    % my_pet_stat.html, including pie-png's
+  cdCur;
+  prt_my_pet_toolbar(varargin{i}, cur2ewmp);                                      % my_pet_toolbar.html
+  prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
+  bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
+  prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
+  prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, cur2ewmp);   % my_pet_res.html
+  prt_my_pet_par(metaData, metaPar, par, txtPar, cur2ewmp);                       % my_pet_par.html
+  prt_my_pet_stat(metaData, metaPar, par, cur2ewmp);                              % my_pet_stat.html, including pie-png's
    
   % get reprodCode, which is used in prt_my_pet_pop
   close all
-  reprodCode = metaData.ecoCode.reprod;
   if any(ismember({'z_m','E_Hbm','E_Hxm','E_Hjm','E_Hpm'},fieldnames(par)))
-    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], [], [], destinationFolder, 1);    % my_pet_pop.html, including fig's
+    prt_my_pet_pop({metaData, metaPar, par}, [], [], [], cur2ewmp, 1);    % my_pet_pop.html, including fig's
   else
-    prt_my_pet_pop({metaData, metaPar, par, reprodCode{1}}, [], '0.5', [], destinationFolder, 1); % my_pet_pop.html, including fig's
+    prt_my_pet_pop({metaData, metaPar, par}, [], '0.5', [], cur2ewmp, 1); % my_pet_pop.html, including fig's
   end
   close all
-  cd(WD)
+  fclose all;
 end
-    
+
+cd(WD);
 
 ##### SOURCE END #####
 --></body></html>

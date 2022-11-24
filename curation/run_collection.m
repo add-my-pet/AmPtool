@@ -28,11 +28,11 @@ function run_collection(varargin)
 % run_collection_intro to generate about and access files for the collection
 
 %% Example of use
-% run_collection or 
-% run_collection('Mola_mola') or
-% run_collection('Mola_mola', 'Molva_molva') or
-% run_collection({'Mola_mola', 'Molva_molva'}) or 
-% run_collection('Clitellata');
+% * run_collection or 
+% * run_collection('Mola_mola') or
+% * run_collection('Mola_mola', 'Molva_molva') or
+% * run_collection({'Mola_mola', 'Molva_molva'}) or 
+% * run_collection('Clitellata');
 
 if isempty(varargin)
   varargin = select('Animalia');

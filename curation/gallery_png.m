@@ -9,7 +9,7 @@ function gallery_png(taxon)
 % <../gallery_png.m *gallery_png*> (taxon)
 
 %% Description
-% Writes html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon.
+% Writes fig_png.html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon.
 % The html is opened in the system browser.
 % A click on a picture to go to the entry
 %
@@ -25,8 +25,13 @@ function gallery_png(taxon)
 
   WD = pwd; % current work directory
   
-  pets = select(taxon); n_pets = length(pets); n_row = 4;
-  fnm = [taxon, '_png.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
+  if isstring(taxon)
+    pets = select(taxon); 
+  else
+    pets = taxon;
+  end
+  n_pets = length(pets); n_row = 4;
+  fnm = 'fig_png.html'; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
   path2pet = [set_path2server, 'add_my_pet/entries/'];
   path2sys = [set_path2server, 'add_my_pet/sys/'];
   
@@ -50,7 +55,7 @@ function gallery_png(taxon)
   fprintf(oid, '<!DOCTYPE html>\n');
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
-  fprintf(oid, '  <title>%s</title>\n', taxon);
+  fprintf(oid, '  <title>%s</title>\n', fnm);
   fprintf(oid, '  <link rel="stylesheet" type="text/css" href="%sstyle.css">\n\n', path2sys); 
   
   fprintf(oid, '  <script src="%sw3data.js"></script>\n', path2sys);

@@ -1,5 +1,11 @@
-Turdus_merula
-Turdus_philomelos
-Turdus_migratorius
 Turdus_eremita
 Turdus_hauxwelli
+Turdus_iliacus
+Turdus_merula
+Turdus_migratorius
+Turdus_olivaceus
+Turdus_philomelos
+Turdus_rubrocanus
+Turdus_rufiventris
+Turdus_torquatus
+Turdus_viscivorus

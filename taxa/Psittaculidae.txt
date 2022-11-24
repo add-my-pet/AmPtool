@@ -1,5 +1,4 @@
-Eos
-Melopsittacus
-Psittaculirostris
-Prosopeia
-Eunymphicus
+Agapornithinae
+Lorinae
+Platycerninae
+Psittaculinae

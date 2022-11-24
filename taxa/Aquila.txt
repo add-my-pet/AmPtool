@@ -1,1 +1,4 @@
 Aquila_chrysaetos
+Aquila_rapax
+Aquila_spilogaster
+Aquila_verreauxii

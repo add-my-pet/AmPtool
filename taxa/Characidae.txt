@@ -1,5 +1,6 @@
 Astyanax
 Hyphessobrycon
 Moenkhausia
+Gymnocharacinus
 Brycon
 Salminus

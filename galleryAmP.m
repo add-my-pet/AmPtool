@@ -3,7 +3,7 @@
 
 %%
 function galleryAmP(taxon)
-% created 2021/03/07 Bas Kooijman
+% created 2021/03/07 Bas Kooijman, modified 2022/07/18
 
 %% Syntax
 % <../galleryAmP.m *galleryAmP*> (taxon)
@@ -24,7 +24,7 @@ function galleryAmP(taxon)
 %% Example of use
 % galleryAmP('Mollusca'), which results in opening Mollusca_jpg.html
 
-  taxa = list_taxa(taxon,1); n_taxa = length(taxa); n_jpg = 4;
+  taxa = list_taxa(taxon,1); n_taxa = length(taxa);
   fnm = [taxon, '_jpg.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
   path2jpg = [set_path2server, 'add_my_pet/img/tree/'];
   path2sys = [set_path2server, 'add_my_pet/sys/'];
@@ -51,17 +51,15 @@ function galleryAmP(taxon)
   fprintf(oid, '  <style>\n');
   fprintf(oid, '    body {\n');
   fprintf(oid, '      background: #ffffff;\n');
-  fprintf(oid, '    }\n');
-  fprintf(oid, '    .jpgrow{\n');
-  fprintf(oid, '      max-width: 1080px;\n');
-  fprintf(oid, '      float: left;\n');
-  fprintf(oid, '    }\n');
+  fprintf(oid, '    }\n\n');
+  
   fprintf(oid, '    .jpg{\n');
   fprintf(oid, '      position: relative;\n');
   fprintf(oid, '      display: inline-block;\n');
   fprintf(oid, '      float: left;\n');
   fprintf(oid, '      padding: 5px;\n');
-  fprintf(oid, '    }\n');
+  fprintf(oid, '    }\n\n');
+  
   fprintf(oid, '    .jpgcap{\n');
   fprintf(oid, '      text-align: center;\n');
   fprintf(oid, '    }\n');
@@ -74,24 +72,12 @@ function galleryAmP(taxon)
   fprintf(oid, '  <div id = "main-wrapper">\n');
   fprintf(oid, '    <div id="contentFull">\n\n');
 			
-  for i = 1:n_taxa
-    
-    if mod(i,n_jpg) == 1
-      fprintf(oid, '      <div class="jpgrow">\n');
-    end
+  for i = 1:n_taxa   
     fprintf(oid, '        <div class="jpg">\n');
     fprintf(oid, '          <img src="%s%s.jpg"  width="260px" onclick="shTree(''%s'')">\n', path2jpg, taxa{i}, taxa{i});
     fprintf(oid, '          <div class="jpgcap">%s</div>\n', taxa{i});
     fprintf(oid, '        </div><!-- end of jpg -->\n');
-
-    if mod(i,n_jpg) == 0 
-      fprintf(oid, '      </div><!-- end of jpgrow -->\n\n');
-    end
-  end % end of entry scan
-
-  if mod(i,n_jpg) > 0 % close last div if necessary
-    fprintf(oid, '      </div><!-- end of jpgrow -->\n\n');    
-  end
+  end 
 
   fprintf(oid, '    </div> <!-- end of content -->\n\n');
 

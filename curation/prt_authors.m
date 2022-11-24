@@ -117,14 +117,12 @@ fprintf(fid_authors, '      display: block;\n');
 fprintf(fid_authors, '    }\n\n');
 
 fprintf(fid_authors, '  </style>\n');
-fprintf(fid_authors, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_authors, '  <script src="sys/w3data.js"></script>\n');
+fprintf(fid_authors, '  <script src="sys/jscripts.js"></script>\n');
 fprintf(fid_authors, '</head>\n\n');
 fprintf(fid_authors, '<body>\n\n');
 
 fprintf(fid_authors, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_authors, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
-fprintf(fid_authors, '<script>w3IncludeHTML();</script>\n\n');
 	
 fprintf(fid_authors, '<div id="main">\n');
 fprintf(fid_authors, '  <div id="main-wrapper">    \n');

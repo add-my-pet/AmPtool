@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_results</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-10"><meta name="DC.source" content="check_results.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>check_results</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="check_results.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_results</h1><!--introduction--><p>checks parameters in results_my_pet.mat versus pars_init_my_pet.m and allStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[diff_0, diff_1] = <a href="../check_results.m"><b>check_results</b></a> (varargin)</p><h2 id="4">Description</h2><p>checks parameters in results_my_pet.mat against pars_init_my_pet.m and allStat.mat</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Output:</p><div><ul><li>diff_0: cell-string with names of entries for which results_my_pet.mat differs from pars_init_my_pet.m</li><li>diff_1: cell-string with names of entries for which results_my_pet.mat differs from allStat.mat</li></ul></div><h2 id="5">Remarks</h2><p>if an entry is not in allStat, the check is skipped without notice</p><h2 id="6">Example of use</h2><p>[d0, d1] = check_results('Mola_mola') or [d0, d1] = check_results('Mola_mola', 'Molva_molva') or [d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or [d0, d1] = check_results('Clitellata');</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>check_results</h1><!--introduction--><p>checks parameters in results_my_pet.mat versus pars_init_my_pet.m and allStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[diff_0, diff_1] = <a href="../check_results.m"><b>check_results</b></a> (varargin)</p><h2 id="4">Description</h2><p>checks parameters in results_my_pet.mat against pars_init_my_pet.m and allStat.mat</p><p>Input:</p><div><ul><li>varargin: optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li></ul></div><p>Output:</p><div><ul><li>diff_0: cell-string with names of entries for which results_my_pet.mat differs from pars_init_my_pet.m</li><li>diff_1: cell-string with names of entries for which results_my_pet.mat differs from allStat.mat</li></ul></div><h2 id="5">Remarks</h2><p>if an entry is not in allStat, the check is skipped without notice</p><h2 id="6">Example of use</h2><div><ul><li>[d0, d1] = check_results('Mola_mola') or</li><li>[d0, d1] = check_results('Mola_mola', 'Molva_molva') or</li><li>[d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or</li><li>[d0, d1] = check_results('Clitellata');</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_results
 % checks parameters in results_my_pet.mat versus pars_init_my_pet.m and allStat.mat
@@ -94,10 +95,16 @@ function [diff_0, diff_1] = check_results(varargin)
 % if an entry is not in allStat, the check is skipped without notice
 
 %% Example of use
-% [d0, d1] = check_results('Mola_mola') or
-% [d0, d1] = check_results('Mola_mola', 'Molva_molva') or
-% [d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or 
-% [d0, d1] = check_results('Clitellata');
+% * [d0, d1] = check_results('Mola_mola') or
+% * [d0, d1] = check_results('Mola_mola', 'Molva_molva') or
+% * [d0, d1] = check_results({'Mola_mola', 'Molva_molva'}) or 
+% * [d0, d1] = check_results('Clitellata');
+
+  persistent allStat
+  
+if ~exist('allStat','var') || length(allStat) == 0
+  WD = cdAmPdata; load('allStat'); cd(WD); % get all parameters and statistics in structure allStat
+end
 
 if isempty(varargin)
   varargin = select('Animalia');
@@ -107,24 +114,25 @@ elseif iscell(varargin{1})
   varargin = varargin{:}; % unpack cell string  
 end
 
-load allStat
-
 nargin = length(varargin); % number of entries to scan    
 WD = cdEntr(varargin{1}); % path setting for curators 
 diff_0 = cell(0,1); diff_1 = cell(0,1); % prepare output
 
 for i = 1:nargin 
-  cd ../varargin{i}
-  load(['results_', varargin{i}]);
+  cd(['../',varargin{i}])
+  
+  fprintf([num2str(i), ': ', varargin{i},'\n'])
+
+  load(['results_', varargin{i}], 'par','metaData');
   [par_pi, ~, ~] = feval(['pars_init_',varargin{i}],metaData); 
-  flds = fields(par_pi);
+  par_pi = rmfield(par_pi,'free'); flds = fields(par_pi); 
   n_flds = length(flds);
   
   sum_0 = 0; sum_1 = 0;
   for j = 1:n_flds
-    sum_0 = sum_0 + abs(par_pi.(flds{i}) - par.(flds{i})); 
-    if isfield(allStat,varargin{1})
-      sum_1 = sum_1 + abs(par_pi.(flds{i}) - allstat.(varargin{1}).(flds{i}));  
+    sum_0 = sum_0 + abs(par_pi.(flds{j}) - par.(flds{j})); 
+    if isfield(allStat,varargin{i})
+      sum_1 = sum_1 + abs(par_pi.(flds{j}) - allStat.(varargin{i}).(flds{j}));  
     end
   end
   

@@ -23,8 +23,8 @@ function [links, id] = get_links(my_pet, open)
 % * id: (n,2)-cell array with id's and values, as in metaData.links of mydata
 
 %% Remarks
-% This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
-% in failure, it downloads it from the web via powershell function wget,
+% * This function first tries to find results_my_pet.mat or mydata_my_pet in local directories;
+% * in failure, it downloads it from the web via powershell function wget,
 % but this file is not deleted after downloading, because of use of the function in curator_report
 
 %% Example

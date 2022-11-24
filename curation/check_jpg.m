@@ -23,11 +23,11 @@ function check_jpg(info)
 % * prints warnings on screen
 
 %% Remarks
-% The root of the tree is Animalia
-% Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% Assumes that jpg's and txt's are in sister directory img/tree of AmPtool
-% Reads the path to jpg's on server from set_path2server + add_my_pet/img/tree
-% All files in img/tree must have extension '.jpg' or '.jpg.txt' 
+% * The root of the tree is Animalia
+% * Assumes that this function is ran in dir AmPtool/curation and that entries is a sister directory of AmPtool
+% * Assumes that jpg's and txt's are in sister directory img/tree of AmPtool
+% * Reads the path to jpg's on server from set_path2server + add_my_pet/img/tree
+% * All files in img/tree must have extension '.jpg' or '.jpg.txt' 
 
 %% Example of use
 % check_jpg

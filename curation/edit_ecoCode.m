@@ -17,9 +17,9 @@ function edit_ecoCode(my_pet, code)
 % * code: (n,2)-cell array with fields and values, as in metaData.ecoCode.field of mydata
 
 %% Remarks
-% fields and codes must occur in <www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html *AmPeco*> 
-% Run run_collection_intro to update allStat.mat and AmPdata.
-% Sync files with server after running this function 
+% * Fields and codes must occur in <www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html *AmPeco*> 
+% * Run run_collection_intro to update allStat.mat and AmPdata.
+% * Sync files with server after running this function 
 
 %% Example of use
 % edit_ecoCode('Abramis_brama', {'climate', {'Cfb', 'Dfb'}})

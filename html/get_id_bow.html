@@ -1,0 +1,186 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>get_id_bow</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-10-20"><meta name="DC.source" content="get_id_bow.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>get_id_bow</h1><!--introduction--><p>gets id of name in birds of the world</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>id_bow = <a href="../get_id_bow.m"><b>get_id_bow</b></a> (id)</p><h2 id="4">Description</h2><p>Gets identifiers for birds-of-the-world. If input id is specified but not a species name, the page is opened, but output is empty; If input id is a species name, the character string id_bow is returned.</p><p>Input:</p><div><ul><li>id: optional character string with id for page to open or species name to find id % open: boolean for opening the website if id is a species name</li></ul></div><p>Output:</p><div><ul><li>character string with code if id was species name, species name if is was code or, but if no input:</li><li>id_bow: (n,5) cell array with all id's, species-names, version, date, sel in bow;   sel: boolean for presence of subdir /cur/breeding</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>bow has 11073 id's, of which 10824 are species;</li><li>Subdir /cur/breeding of an entry can have detailed info on growth of nestlings.</li><li>2022/10/14: 290 entries has "Growth And Development", and all are in the first 3200 entries.</li><li>bow is not used as standard AmP website for birds, because it requires subscription.</li><li>This function takes some running time.</li></ul></div><h2 id="6">Example of use</h2><p>id_bow = get_id_bow;</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% get_id_bow
+% gets id of name in birds of the world
+
+%%
+function id_bow = get_id_bow (id, open)
+% created 2022/10/14 by Bas Kooijman
+
+%% Syntax
+% id_bow = <../get_id_bow.m *get_id_bow*> (id)
+
+%% Description
+% Gets identifiers for birds-of-the-world. 
+% If input id is specified but not a species name, the page is opened, but output is empty;
+% If input id is a species name, the character string id_bow is returned.
+%
+% Input:
+%
+% * id: optional character string with id for page to open or species name to find id
+% % open: boolean for opening the website if id is a species name
+%
+% Output:
+%
+% * character string with code if id was species name, species name if is was code or, but if no input: 
+% * id_bow: (n,5) cell array with all id's, species-names, version, date, sel in bow;
+%   sel: boolean for presence of subdir /cur/breeding
+
+%% Remarks
+%
+% * bow has 11073 id's, of which 10824 are species; 
+% * Subdir /cur/breeding of an entry can have detailed info on growth of nestlings. 
+% * 2022/10/14: 290 entries has "Growth And Development", and all are in the first 3200 entries. 
+% * bow is not used as standard AmP website for birds, because it requires subscription.
+% * This function takes some running time.
+
+%% Example of use
+% id_bow = get_id_bow;
+
+address = 'https://birdsoftheworld.org/bow/species/';
+
+if exist('id','var')
+  if isempty(strfind(id,' ')) && isempty(strfind(id,'_')) % id is a bow id
+    load id_bow.mat id_bow
+    try 
+      web([address, id,'/cur/breeding'],'-browser');
+    catch
+      web([address, id],'-browser');
+    end
+    id_bow = id_bow{ismember(id_bow(:,1), id),2};  return
+  else % id is a species name
+    id_bow = id_bow{ismember(id_bow(:,2), id),1};  
+    if exist('open', 'var') && open
+      web([address, id_bow],'-browser');
+    end
+    return
+  end
+end
+
+% open and read specieslist
+url = urlread('https://birdsoftheworld.org/bow/specieslist');
+
+% extract all id's
+i_0 = 19+strfind(url,'href="/bow/species/'); % start index
+i_1 = -1+strfind(url,'/cur/introduction');   % stop index
+n = length(i_0); % number of id's
+id_bow = cell(n,5);  % initiate cell-string with id's
+for i=1:n
+  id_bow{i,1} = url(i_0(i):i_1(i)); % fill id's
+end
+
+% identify entries with subdir /cur/breeding
+for i=1:n % scan all id's
+  try
+    url = urlread([address, id_bow{i,1}, '/cur/breeding']);
+    id_bow{i,5} = true;
+  catch
+    url = urlread([address, id_bow{i,1}, '/cur/introduction']);
+    id_bow{i,5} = false;
+  end
+  
+  % get date
+  i_0 = 31+strfind(url,'citation_online_date" content="'); % start index
+  id_bow{i,4} = url(i_0:i_0+9); % date of type 2020/03/04
+  
+  % get species name
+  i_0 = 27+strfind(url,'<title class="notranslate">'); % start index	 
+  i_1 = -1+strfind(url,'</title>');   % stop index
+  url_nm = url(i_0(1):i_1(1));
+  i_01 = strfind(url_nm,' - ');
+  id_bow{i,2} = strrep(url_nm(3+i_01(end-1):i_01(end)-1), ' ', '_');
+  
+  % get version
+  i_0 = 23+strfind(url,'citation_doi" content="'); % start index
+  if isempty(i_0)
+    id_bow{i,3} = '';
+  else
+    i_1 = strfind(url(i_0:end),'"'); i_1 = i_0(1)-2+i_1(1); % stop index	
+    url_ver = url(i_0:i_1);
+    i_0 = 1+strfind(url_ver,'.'); i_0 = i_0(end); % start index
+    id_bow{i,3} = url_ver(i_0:end);
+  end
+  
+  if 0 == mod(i,100) % monitor progress
+    fprintf([num2str(i), ': ', id_bow{i,1},  ' ', id_bow{i,2}, ' ', id_bow{i,3}, ' ', num2str(id_bow{i,4}), '\n'])
+  end
+
+end
+
+% save to AmPtool/curation/id_bow.mat and id_bow.html
+WD=cdCur; save('id_bow.mat','id_bow');  
+prt_tab({(1:n)', id_bow}, {'#','id_bow','species','version','date','breed'}, 'birdsoftheworld', 1);
+cd(WD);
+
+
+##### SOURCE END #####
+--></body></html>

@@ -169,7 +169,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     if isempty(id{16}) && ~strcmp(my_pet,my_pet_acc); id{16} = get_id_lepidoptera(my_pet); end
     address{16} = strrep(address{16}, 'id_diptera', id{16});
   end
-  if ismember(lin(ismember(rank,'Class')), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+  if ismember(lin(ismember(rank,{'Class','Gigaclass'})), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
     select_id(17) = true;
     id{17} = get_id_fishbase(my_pet_acc); id_txt{17} = 'id_fishbase';
     if isempty(id{17}) && ~strcmp(my_pet,my_pet_acc); id{17} = get_id_fishbase(my_pet); end

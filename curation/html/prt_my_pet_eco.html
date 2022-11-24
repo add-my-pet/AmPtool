@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_eco</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-28"><meta name="DC.source" content="prt_my_pet_eco.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>prt_my_pet_eco</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_my_pet_eco.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,14 +67,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_eco</h1><!--introduction--><p>writes html table with model, COMPLETE, MRE, SMRE  and eco-codes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_my_pet_eco"><b>prt_my_pet_eco</b></a>(metaData, metaPar, destinationFolder)</p><h2 id="4">Description</h2><p>Writes html table with model, MRE, SMRE, COMPLETE, eco-codes, classification</p><p>Input:</p><div><ul><li>metaData: structure as specified by results_my_pet.mat in directory entries</li><li>metaPar: structure as specified by results_my_pet.mat in directory entries</li><li>destinationFolder: specification of destination folder</li></ul></div><h2 id="5">Remarks</h2><p>Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types. This latter function reads codes and labels in url AmPeco.html. Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_eco</h1><!--introduction--><p>writes html table with model, COMPLETE, MRE, SMRE  and eco-codes</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="prt_my_pet_eco"><b>prt_my_pet_eco</b></a>(metaData, metaPar, destinationFolder)</p><h2 id="4">Description</h2><p>Writes html table with model, MRE, SMRE, COMPLETE, eco-codes, classification</p><p>Input:</p><div><ul><li>metaData: structure as specified by results_my_pet.mat in directory entries</li><li>metaPar: structure as specified by results_my_pet.mat in directory entries</li><li>destinationFolder: specification of destination folder</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.</li><li>This latter function reads codes and labels in url AmPeco.html.</li><li>Make sure that family, order, class, phylum as specified in results_my_pet.mat occur in lists-of-lists.</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_eco
 % writes html table with model, COMPLETE, MRE, SMRE  and eco-codes
 
 %%
 function prt_my_pet_eco(metaData, metaPar, destinationFolder)
-% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05, 2019/12/28
+% created 2018/05/05 by Bas Kooijman, modified 2018/06/21, 2018/12/05, 2019/12/28, 2022/04/06
 
 %% Syntax
 % <prt_my_pet_eco *prt_my_pet_eco*>(metaData, metaPar, destinationFolder)
@@ -88,21 +89,21 @@ function prt_my_pet_eco(metaData, metaPar, destinationFolder)
 % * destinationFolder: specification of destination folder 
 
 %% Remarks
-% Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
-% This latter function reads codes and labels in url AmPeco.html.
-% Make sure that family, oder, class, phylum as specied in results_my_pet.mat occur in lists-of-lists.
+% * Intended use is writing a snippet for my_pet_res.html. Make sure that eco-labels are updated using get_eco_types.
+% * This latter function reads codes and labels in url AmPeco.html.
+% * Make sure that family, order, class, phylum as specified in results_my_pet.mat occur in lists-of-lists.
 
 global eco_types
 
-if length(eco_types) == 0 
-  get_eco_types('../../add_my_pet_web/');
+if isempty(eco_types)
+  WD = cdCur; get_eco_types('../../deblab/add_my_pet/'); cd(WD);
 end
 
 % unpack metaData and metaPar
 species = metaData.species; family = metaData.family; order = metaData.order; class = metaData.class; phylum = metaData.phylum; 
 COMPLETE = metaData.COMPLETE;
 model = metaPar.model; MRE = metaPar.MRE; SMSE = metaPar.SMSE;
-vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
+reprod = ''; vars_pull(metaData.ecoCode); % assign [climate, ecozone, habitat, embryo, migrate, food, gender, reprod] 
 
 oid = fopen([destinationFolder, species, '_res.html'], 'a'); % open file for appending
 
@@ -160,18 +161,20 @@ for i = 1:n_R
 end
 code_R(end - (0:1)) = []; 
 
+modelTxT = ['<a href="https://add-my-pet.github.io/AmPtool/docs/models/', model, '.pdf">',model,'</a>'];
+
 % write (4,4)-table in html
-fprintf(oid, '      <table>\n');    
+fprintf(oid, '      <table id="ecoCodes">\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td width=250><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models">Model: </a>', model,'</td>\n']);    
-fprintf(oid,['          <td><a href="../../AmPeco.html#C" target="_blank">climate: </a></td> <td width=250>', code_C, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#M" target="_blank">migrate: </a></td> <td width=250>', code_M, '</td>\n']);
-fprintf(oid,['          <td>phylum: <button id="phylum" onclick="OpenTreeAtTaxon(''', phylum, ''')">', phylum, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html">Model</a>: %s</td>\n', modelTxT);    
+fprintf(oid, '          <td><a href="../../AmPeco.html#C" target="_blank">climate: </a> %s</td>\n',code_C);
+fprintf(oid, '          <td><a href="../../AmPeco.html#M" target="_blank">migrate: </a> %s</td>\n',code_M);
+fprintf(oid, '          <td>phylum: <button id="phylum" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',phylum,phylum);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Completeness" >COMPLETE</a>',' = %3.1f </td>\n'], COMPLETE);
-fprintf(oid,['          <td><a href="../../AmPeco.html#E" target="_blank">ecozone: </a></td> <td>', code_E, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#F" target="_blank">food:    </a></td> <td>', code_F, '</td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Completeness.html">COMPLETE</a> = %3.1f </td>\n', COMPLETE);
+fprintf(oid, '          <td><a href="../../AmPeco.html#E" target="_blank">ecozone: </a>%s</td>\n',code_E);
+fprintf(oid, '          <td><a href="../../AmPeco.html#F" target="_blank">food:    </a>%s</td>\n',code_F);
 if strcmp(class, 'Reptilia')
   switch order
     case {'Rhynchocephalia','Squamata'}
@@ -180,20 +183,20 @@ fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon('
 fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''Archelosauria'')">Reptilia</button></td>\n');
   end
 else
-fprintf(oid,['          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''', class, ''')">', class, '</button></td>\n']);
+fprintf(oid, '          <td>class: <button id="class" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',class,class);
 end
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" >MRE</a>',' = %8.3f </td>\n'], MRE);   
-fprintf(oid,['          <td><a href="../../AmPeco.html#H" target="_blank">habitat: </a></td> <td>', code_H, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#G" target="_blank">gender:  </a></td> <td>', code_G, '</td>\n']);
-fprintf(oid,['          <td>order: <button id="order" onclick="OpenTreeAtTaxon(''', order, ''')">', order, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html">MRE</a> = %8.3f </td>\n', MRE);   
+fprintf(oid, '          <td><a href="../../AmPeco.html#H" target="_blank">habitat: </a>%s</td>\n',code_H);
+fprintf(oid, '          <td><a href="../../AmPeco.html#G" target="_blank">gender:  </a>%s</td>\n',code_G);
+fprintf(oid, '          <td>order: <button id="order" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',order,order);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '        <tr>\n');    
-fprintf(oid,['          <td><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Symmetric_mean_squared_error" >SMSE</a>',' = %8.3f </td>\n'], SMSE);   
-fprintf(oid,['          <td><a href="../../AmPeco.html#B" target="_blank">embryo:  </a></td> <td>', code_B, '</td>\n']);
-fprintf(oid,['          <td><a href="../../AmPeco.html#R" target="_blank">reprod:  </a></td> <td>', code_R, '</td>\n']);
-fprintf(oid,['          <td>family: <button id="family" onclick="OpenTreeAtTaxon(''', family, ''')">', family, '</button></td>\n']);
+fprintf(oid, '          <td><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html">SMSE</a> = %8.3f </td>\n', SMSE);   
+fprintf(oid, '          <td><a href="../../AmPeco.html#B" target="_blank">embryo:  </a>%s</td>\n',code_B);
+fprintf(oid, '          <td><a href="../../AmPeco.html#R" target="_blank">reprod:  </a>%s</td>\n',code_R);
+fprintf(oid, '          <td>family: <button id="family" onclick="OpenTreeAtTaxon(''%s'')">%s</button></td>\n',family,family);
 fprintf(oid, '        </tr>\n');    
 fprintf(oid, '      </table>\n\n');     
 

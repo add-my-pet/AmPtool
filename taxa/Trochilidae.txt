@@ -1,6 +1,4 @@
-Archilochus
-Sternoclyta
-Doricha
-Coeligena
-Lampornis
-Phlogophilus
+Phaethornithinae
+Lesbiinae
+Trochilinae
+

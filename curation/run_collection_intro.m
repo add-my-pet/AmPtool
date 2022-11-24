@@ -3,7 +3,7 @@
 
 %%
 function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06
 
 %% Syntax
 % <run_collection_intro *run_collection_intro*> (entries)
@@ -26,32 +26,34 @@ function run_collection_intro(entries)
 % * no explicit output, but many files are written
 
 %% Remarks
-% All variables will be cleared
-% SyncBackPro is used to copy the following files to server 
+% * All variables will be cleared
+% * SyncBackPro is used to copy the following files to server 
 %
-% ../about.html
-% ../authors.html
-% ../pars.html
-% ../pie_*.html
-% ../species_list.html 
-% ../species_names.html 
+% * ../about.html
+% * ../authors.html
+% * ../pars.html
+% * ../pie_*.html
+% * ../species_list.html 
+% * ../species_names.html 
+% * ../links.html
 %
-% ../sys/species_tree_Animalia.js
-% ../sys/species_tree_Animalia_search.html
-% ../sys/toolbar_*.html
+% * ../sys/specJump.js
+% * ../sys/species_tree_Animalia.js
+% * ../sys/species_tree_Animalia_search.html
+% & ../sys/toolbar_*.html
 %
-% ../AmPdata/AmPdata.zip
+% * ../AmPdata/AmPdata.zip
 %
-% ../img/about/*.png 
-% ../img/pars/*.png
-% ../img/patterns/*.png
-% ../img/tree/*.jpg and *.jpg.txt
+% * ../img/about/*.png 
+% * ../img/pars/*.png
+% * ../img/patterns/*.png
+% * ../img/tree/*.jpg and *.jpg.txt
 %
-% ../entries/*
-% ../entries_web/*
-% ../entries_zip/*
+% * ../entries/*
+% * ../entries_web/*
+% * ../entries_zip/*
 %
-% Repository AmPtool is synced with Github
+% * Repository AmPtool is synced with Github
 
 WD = cdCur; % go to AmPtool/curation
 
@@ -74,8 +76,7 @@ cdAmPdata; load allUnits; load allLabel
 cdCur; 
 % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
 % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
-prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
-% add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
+prt_toolbar; % 20 toolbars
 prt_specJump; % write sys/specJump.js for navigation
 
 prt_species_names; % add_my_pet/species_names.html
@@ -86,23 +87,41 @@ prt_pars; % add_my_pet/pars.html
 prt_patterns; % add_my_pet/patterns.html
 prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
 prt_about; % add_my_pet/about.html
+prt_ecoCodes(select,1); % ecoCodes of all entries
+prt_id(select,1); % id of all links to html pages
+prt_taxa; % all thumbnails plus sys/taxaSel.js for selection
 
 % cleanup
 delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
 delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
+% and DEBtool_M/docs/sys/, AmPtox/docs/sys
+cdCur;
 if ismac || isunix
   % system('git status');
-  system('git add ../taxa/* ../docs/*');
+  cd ../; system('git add taxa/* docs/* docs/sys/*');
   system('git commit -am "extension"');
+  system('git push origin master');
+  cd ../DEBtool_M; system('git add docs/sys/*'); % toolbars
+  system('git commit -am "toolbars"');
+  system('git push origin master');
+  cd ../AmPtox; system('git add docs/sys/*');
+  system('git commit -am "toolbars"');
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add ../taxa/* ../docs/*');
+  cd ../; system('powershell git add taxa/* docs/* docs/sys/*'); % toolbars + taxa
   system('powershell git commit -am "extension"');
   system('powershell git push origin master');
+  cd ../DEBtool_M; system('powershell git add docs/sys/*'); % toolbars
+  system('powershell git commit -am "toolbars"');
+  system('powershell git push origin master');
+  cd ../AmPtox; system('powershell git add docs/sys/*'); % toolbars
+  system('powershell git commit -am "toolbars"');
+  system('powershell git push origin master');
 end
+cdCur;
 
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 if ismac || isunix

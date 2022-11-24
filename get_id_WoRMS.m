@@ -41,10 +41,10 @@ if ~isempty(strfind(my_pet, ' '));
 end
 
 % AphiaID suggested by Bart Vanhoorne info@marinespecies.org
-url = urlread(['http://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
+url = urlread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
 i_0 = strfind(url,'"valid_AphiaID":'); 
 if isempty(i_0)
-  url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', strrep(my_pet, '_', '+')]);
+  url = urlread(['https://webservice.catalogueoflife.org/col/webservice?name=', strrep(my_pet, '_', '+')]);
   if isempty(strfind(url,'www.marinespecies.org')); return; end
   i_0 = strfind(url,'aphia.php?p=taxdetails&amp;id=');
   if isempty(i_0)

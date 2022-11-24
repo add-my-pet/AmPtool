@@ -13,7 +13,7 @@ function [species, nm, sel] = select_mydata(varargin)
 %
 % Input:
 %
-% * taxon: optional character string with name of taxon or cell string with names of species (default: 'Animalia')
+% * taxon: character string with name of taxon or cell string with names of species (default: 'Animalia')
 % * str: character string 
 % * info: optional boolean to search locally if true (only for curators)
 %

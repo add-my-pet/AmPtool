@@ -31,11 +31,15 @@ function [par, metaPar, txtPar, metaData, info] = allStat2par(my_pet)
 %% Example of use
 % [par, txtPar, metaPar, metaData] = allStat2par('Daphnia_magna');
 
-  persistent allStat
+  persistent allStat allUnits allLabel
 
   if ~exist('allStat','var') || isempty(allStat)
     load allStat        % get all parameters and statistics in structure allStat
+  end
+  if ~exist('allUnits','var') || isempty(allUnits)
     load allUnits
+  end
+  if ~exist('allLabel','var') || isempty(allLabel)
     load allLabel
   end
 

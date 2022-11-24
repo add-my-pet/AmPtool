@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_my_pet_stat</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="prt_my_pet_stat.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>prt_my_pet_stat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_my_pet_stat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,14 +67,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_my_pet_stat</h1><!--introduction--><p>Prints my_pet_stat.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_stat.m"><b>prt_my_pet_stat</b></a> (metaData, metaPar, par, destinationFolder)</p><h2 id="4">Description</h2><p>Read and writes my_pet_stat.html and write png files in current folder (irrespective of destinationFolder). This page contains a list of implied model properties of my_pet. It calls AmPtool/curation/get_statfields to see what statistics are printed in which order on the web.</p><p>Input:</p><div><ul><li>metaData: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Mydata_file"><b>mydata_my_pet_par</b></a> file)</li><li>metaPar: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Pars_init_file"><b>pars_init_my_pet_par</b></a> file)</li><li>par: structure (output of <a href="http://www.debtheory.org/wiki/index.php?title=Pars_init_file"><b>pars_init_my_pet_par</b></a> file)</li><li>destinationFolder: optional string with destination folder to which my_pet_stat.html is printed (default: current folder)</li></ul></div><h2 id="5">Example of use</h2><p>load('results_my_pet.mat'); prt_my_pet_stat(metaData, metaPar, par, destinationFolder)</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_my_pet_stat</h1><!--introduction--><p>Prints my_pet_stat.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../prt_my_pet_stat.m"><b>prt_my_pet_stat</b></a> (metaData, metaPar, par, destinationFolder)</p><h2 id="4">Description</h2><p>Read and writes my_pet_stat.html and write png files in current folder (irrespective of destinationFolder). This page contains a list of implied model properties of my_pet. It calls AmPtool/curation/get_statfields to see what statistics are printed in which order on the web.</p><p>Input:</p><div><ul><li>metaData: structure (output of mydata_my_pet-file)</li><li>metaPar: structure (output of pars_init_my_pet-file)</li><li>par: structure (output of pars_init_my_pet-file)</li><li>destinationFolder: optional string with destination folder to which my_pet_stat.html is printed (default: current folder)</li></ul></div><h2 id="5">Example of use</h2><div><ul><li>load('results_my_pet.mat'); prt_my_pet_stat(metaData, metaPar, par, destinationFolder)</li><li>Removes underscores and makes first letter of english name be in capital:</li><li>speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];</li><li>speciesprintnm_en = strrep(metaData.species_en, '_', ' ');</li><li>if speciesprintnm_en(1)&gt;='a' &amp;&amp; speciesprintnm_en(1)&lt;='z'   speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_my_pet_stat
 % Prints my_pet_stat.html 
 
 %%
 function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
-% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25 Bas Kooijman
+% created 2016/03/30 Starrlight; modified 2016/09/23 Starrlight Augustine; 
+% 2016/11/05, 2017/05/18 2017/09/29, 2017/10/13, 2018/04/28, 2018/06/25, 2022/04/06 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_stat.m *prt_my_pet_stat*> (metaData, metaPar, par, destinationFolder) 
@@ -85,23 +87,19 @@ function prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
 %
 % Input:
 %
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
-% * par: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
+% * par: structure (output of pars_init_my_pet-file)
 % * destinationFolder: optional string with destination folder to which my_pet_stat.html is printed (default: current folder)
 
 %% Example of use
-% load('results_my_pet.mat');
+% * load('results_my_pet.mat');
 % prt_my_pet_stat(metaData, metaPar, par, destinationFolder)
-
-% % Removes underscores and makes first letter of english name be in capital:
-% speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
-% speciesprintnm_en = strrep(metaData.species_en, '_', ' ');
-% if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
+% * Removes underscores and makes first letter of english name be in capital:
+% * speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
+% * speciesprintnm_en = strrep(metaData.species_en, '_', ' ');
+% * if speciesprintnm_en(1)>='a' && speciesprintnm_en(1)<='z'
 %   speciesprintnm_en(1)=char(speciesprintnm_en(1)-32);
-% end
-
-path = '../../add_my_pet/';
 
 f = 1; % ad libitum feeding
 [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
@@ -123,9 +121,15 @@ fprintf(oid, '<!DOCTYPE html>\n');
 fprintf(oid, '<HTML>\n');
 fprintf(oid, '<HEAD>\n');
 fprintf(oid,['  <TITLE>',metaData.species,'</TITLE>\n']);
-fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n'); 
+fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
+
 fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
+
 fprintf(oid, '</HEAD>\n\n');
 fprintf(oid, '<BODY>\n\n');
 
@@ -148,7 +152,7 @@ fprintf(oid, '      <H1 id = "portaltop">Implied properties for this entry</H1>\
 			
 % print out text before the tables
 % fprintf(oid, '<H2>Implied properties for this entry</H2>');
-fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
+fprintf(oid,['      <H2>Model: <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html" >&nbsp;', metaPar.model,' &nbsp;</a></H2>\n\n']);
 
 % print SGJR pies
 fprintf(oid, '      <H3>Energy investment, cumulated over the embryo period (left), and allocation during ontogeny</H3>\n');
@@ -186,7 +190,7 @@ fprintf(oid, '      </TABLE>\n\n');
 
 fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
 
-fprintf(oid, '    <div w3-include-html="../../add_my_pet/sys/footer_amp.html"></div>\n');
+fprintf(oid, '    <div w3-include-html="../../sys/footer_amp.html"></div>\n');
 fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');

@@ -21,10 +21,10 @@ function prt_patterns(index)
 % * png-files written in ../../deblab/add_my_pet/img/patterns/
 
 %% Remarks
-% all figures are closed automatically if input is not specified. 
-% For presentation on the web, copy png files to 
+% * All figures are closed automatically if input is not specified. 
+% * For presentation on the web, copy png files to 
 % /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
-% Display in entries_admin/patterns.html
+% * Display in entries_admin/patterns.html
 
 path = '../../deblab/add_my_pet/img/patterns/';
 
@@ -129,8 +129,8 @@ for i = 1:n
       kap = linspace(1e-6,1,100); ss = kap.^2 .* (1 - kap); 
       plot(log10(ss), kap, 'k', 'Linewidth', 2)
       ylim([0 1]);
-      saveas(Hfig, [path, 'ss_kap.png'])
-      saveas(Hleg, [path, 'legend_ss_kap.png'])
+      saveas(Hfig, [path, 'log_ss_kap.png'])
+      saveas(Hleg, [path, 'legend_log_ss_kap.png'])
 
     case 8 % Fig 8: ss - kap
       shstat_options('x_transform', 'none');

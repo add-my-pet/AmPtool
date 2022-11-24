@@ -17,10 +17,10 @@ function check_data(my_pet)
 % * my_pet: character string with name of entry 
 
 %% Remarks
-% run get_data_types to copy DEBwiki info to labels for typified data. 
-% If check_data is run for the first time, waiting time can be several minutes, due to Lisbon's DEBwiki server being slow.
-% If typified data labels are not recognized, change the labels, or add labels to the Zero-variate/Univariate data pages at DEBwiki.
-% If get_COMPLETE returns NaN, add the data-combination and the COMPLETE value to this function.
+% * run get_data_types to copy DEBwiki info to labels for typified data. 
+% * If check_data is run for the first time, waiting time can be several minutes, due to Lisbon's DEBwiki server being slow.
+% * If typified data labels are not recognized, change the labels, or add labels to the Zero-variate/Univariate data pages at DEBwiki.
+% * If get_COMPLETE returns NaN, add the data-combination and the COMPLETE value to this function.
 
 %% Example of use
 % check_data('Turdus_merula')

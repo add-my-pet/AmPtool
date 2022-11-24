@@ -25,8 +25,8 @@ function [allStat, info] = write_addStat(taxa, T, f)
 % * info: boolean for species in taxa present in  lists-of-lists (1), or not (0)
 
 %% Remarks
-% See <write_allStat.html *write_allStat*> for writing allStat from fresh for all entries.
-% See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
+% * See <write_allStat.html *write_allStat*> for writing allStat from fresh for all entries.
+% * See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
 
 %% Example of use
 % write_addStat('Regulus_regulus') or write_addStat('Etheostoma') 

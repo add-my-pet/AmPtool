@@ -24,9 +24,9 @@ function [allStat, info] = write_allStat(T, f)
 % * info: boolean for all species in lists-of-lists are present in dir entries (1) or not (0)
 
 %% Remarks
-% See <write_addStat.html *write_addStat*> for appending a few entries to allStat.
-% For a11 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate.
-% See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
+% * See <write_addStat.html *write_addStat*> for appending a few entries to allStat.
+% ^For a11 entries, the allStat.mat file is 2.6 Mb. and write_allStat takes 8 minutes to generate.
+% * See <read_allStat.html *read_allStat*> for extracting values from allStat.mat.
 
 %% Example of use
 % write_allStat;

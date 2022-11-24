@@ -17,10 +17,10 @@ function [tree, local, server] = check_entries
 % * prints warnings on screen
 
 %% Remarks
-% The root of the tree is Animalia. The dates are not checked
-% Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% Reads to path to entries on server from set_path2server
-% VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
+% * The root of the tree is Animalia. The dates are not checked
+% * Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
+% * Reads to path to entries on server from set_path2server
+% * VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
 % check_entries;

@@ -1,8 +1,14 @@
+Bartramia
+Numenius
+Limosa
+Arenaria
 Calidris
 Philomachus
-Tringa
-Coenocorypha
 Limnodromus
-Limosa
-Numenius
+Scolopax
+Coenocorypha
+Gallinago
+Phalaropus
+Actitis
+Tringa
 

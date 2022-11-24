@@ -1,5 +1,5 @@
 %% get_data_types
-% copies data types from DEBwiki pages to globals data_types_0 data_types_1
+% copies data types from DEBportaldocs/Zero-variate_data.html and Uni-variate_data.html to globals data_types_0 data_types_1
 
 %%
 function get_data_types
@@ -17,7 +17,6 @@ function get_data_types
 % * http://www.debtheory.org/wiki/index.php?title=Zero-variate_data
 % * http://www.debtheory.org/wiki/index.php?title=Univariate_data
 %
-% Since the Lisbon server is slow, this function assigns to globals, rather than explicit output
 
 %% Example of use
 % get_data_types
@@ -25,45 +24,46 @@ function get_data_types
 global data_types_0 data_types_1
 
 % zerovariate data types
-url = 'http://www.debtheory.org/wiki/index.php?title=Zero-variate_data';
+url = 'https://debportal.debtheory.org/docs/Zero-variate_data.html';
 if ismac || isunix
   system(['wget ', url, ' -O txt.html']);
 else
   system(['powershell wget ', url, ' -O txt.html']);
 end
 url = fileread('txt.html'); delete('txt.html');
-i_1 = strfind(url, '</table>') + 8; url(1:i_1(end-1)) = []; % remove txt till after first table
-i_0 = 25 + strfind(url, '<table class="wikitable">'); i_1 = strfind(url, '</table>') - 1;
-url = url(i_0:i_1); % substring between <table>...</table>
-
-i_0 = 4 + strfind(url,'<tr>'); i_1 = strfind(url,'</tr>') - 1; 
-n = length(i_0); data_types_0 = cell(n-1,1);
-
-for i = 2:n % scan rows
-  row_i = url(i_0(i):i_1(i)); % substring between <tr>...</tr>
-
-  j_0 = 6 + strfind(row_i,'<code>'); j_1 = strfind(row_i,'</code>') - 1; 
-  data_types_0(i-1) = {row_i(j_0:j_1)}; % substring between <code>...</code>   
-end
-
-% univariate data types
-url = 'http://www.debtheory.org/wiki/index.php?title=Univariate_data';
-if ismac || isunix
-  system(['wget ', url, ' -O txt.html']);
-else
-  system(['powershell wget ', url, ' -O txt.html']);
-end
-url = fileread('txt.html'); delete('txt.html');
-i_0 = 25 + strfind(url, '<table class="wikitable">'); i_1 = strfind(url, '</table>') - 1;
+i_0 = strfind(url, '<th>Data labels</th>'); i_0 = i_0 + 5 + strfind(url(i_0:end), '</tr>'); 
+i_1 = i_0(1) + strfind(url(i_0:end), '</table>') - 2;
 url = url(i_0:i_1(end)); % substring between <table>...</table>
 
 i_0 = 4 + strfind(url,'<tr>'); i_1 = strfind(url,'</tr>') - 1; 
-n = length(i_0); data_types_1 = cell(n-1,1);
+n = length(i_0); data_types_0 = cell(n,1);
 
-for i = 2:n % scan rows
+for i = 1:n % scan rows
   row_i = url(i_0(i):i_1(i)); % substring between <tr>...</tr>
 
-  j_0 = 6 + strfind(row_i,'<code>'); j_1 = strfind(row_i,'</code>') - 1; 
-  data_types_1(i-1) = {row_i(j_0(1):j_1(1))}; % substring between <code>...</code>   
+  j_0 = 4 + strfind(row_i,'<td>'); j_1 = strfind(row_i,'</td>') - 1; 
+  data_types_0(i) = {row_i(j_0(1):j_1(1))}; % substring between first <td>...</td>   
+end
+
+% univariate data types
+url = 'https://debportal.debtheory.org/docs/Uni-variate_data.html';
+if ismac || isunix
+  system(['wget ', url, ' -O txt.html']);
+else
+  system(['powershell wget ', url, ' -O txt.html']);
+end
+url = fileread('txt.html'); delete('txt.html');
+i_0 = strfind(url, '<th>Data labels</th>'); i_0 = i_0 + 5 + strfind(url(i_0:end), '</tr>'); 
+i_1 = i_0(1) + strfind(url(i_0:end), '</table>') - 2;
+url = url(i_0:i_1(end)); % substring between <table>...</table>
+
+i_0 = 4 + strfind(url,'<tr>'); i_1 = strfind(url,'</tr>') - 1; 
+n = length(i_0); data_types_1 = cell(n,1);
+
+for i = 1:n % scan rows
+  row_i = url(i_0(i):i_1(i)); % substring between <tr>...</tr>
+
+  j_0 = 4 + strfind(row_i,'<td>'); j_1 = strfind(row_i,'</td>') - 1; 
+  data_types_1(i) = {row_i(j_0(1):j_1(1))}; % substring between first <td>...</td>   
 end
 

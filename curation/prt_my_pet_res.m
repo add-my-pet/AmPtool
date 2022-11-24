@@ -6,7 +6,7 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 % created 2015/04/11 by Starrlight & Goncalo Marques; modified 2015/08/23 Starrlight augustine; 
 % modified 2016/03/09 Bas Kooijman; 2016/09/21 Starrlight Augustine;
 % 2016/11/05, 2017/01/04, 2017/08/21, 2017/09/29, 2017/10/13, 2017/10/26, 2018/02/06, 2018/04/28, 2018/05/05, 
-% 2018/06/21, 2021/12/, 2021/02/06 Bas Kooijman
+% 2018/06/21, 2021/12/, 2021/02/06, 2022/04/06 Bas Kooijman
 
 %% Syntax
 % <../prt_my_pet_res.m *prt_my_pet_res*> (data, prdData, auxData, metaData, txtData, metaPar, destinationFolder)
@@ -16,12 +16,12 @@ function prt_my_pet_res(data, prdData, auxData, metaData, txtData, metaPar, dest
 %
 % Input:
 %
-% * data: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * prdData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Predict_file *predict_my_pet_par*> file)
-% * auxData: structure  (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaData: structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * txtData:  structure (output of <http://www.debtheory.org/wiki/index.php?title=Mydata_file *mydata_my_pet_par*> file)
-% * metaPar: structure (output of <http://www.debtheory.org/wiki/index.php?title=Pars_init_file *pars_init_my_pet_par*> file)
+% * data: structure (output of mydata_my_pet-file)
+% * prdData: structure (output of predict_my_pet-file)
+% * auxData: structure  (output of mydata_my_pet-file)
+% * metaData: structure (output of mydata_my_pet-file)
+% * txtData:  structure (output of mydata_my_pet-file)
+% * metaPar: structure (output of pars_init_my_pet-file)
 % * destinationFolder : optional string with destination folder the files
 % are printed to (default: current folder)
 
@@ -66,12 +66,9 @@ fprintf(oid, '<head>\n');
 fprintf(oid, '  <title>%s</title>\n', metaData.species);
 fprintf(oid, '  <link rel="stylesheet" type="text/css" href="../../sys/style.css">\n\n');
 
-fprintf(oid, '  <script src="../../sys/dropdown.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/openattaxon.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/w3data.js"></script>\n');
+fprintf(oid, '  <script src="../../sys/jscripts.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/ftiens4.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/specJump.js"></script>\n');
-fprintf(oid, '  <script src="../../sys/modal.js"></script>\n');
 fprintf(oid, '  <script src="../../sys/species_tree_Animalia.js"></script>\n\n');
 
 fprintf(oid, '  <style>\n');
@@ -87,7 +84,6 @@ fprintf(oid, '<body>\n\n');
 fprintf(oid, '<div w3-include-html="../../sys/wallpaper_entry.html"></div>\n');
 fprintf(oid, '<div w3-include-html="../../sys/toolbar_entry.html"></div>\n');
 fprintf(oid, '<div id="top2" w3-include-html="%s_toolbar.html"></div>\n', metaData.species);
-fprintf(oid, '<script>w3IncludeHTML();</script>\n\n');
 
 fprintf(oid, '<!--------------------------------------------------------------->\n');
 fprintf(oid, '<!--   PART main                                               -->\n');
@@ -120,10 +116,10 @@ txtData    = rmfield_wtxt(txtData, 'psd');
 
 %  table for zero-variate data sets:
 fprintf(oid, '      <p>\n');
-fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Zero-variate_data">Zero-variate data</a></h2>\n');
+fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Zero-variate_data.html">Zero-variate data</a></h2>\n');
 fprintf(oid, '      <table id="t01">\n');
 fprintf(oid,['        <tr class="head"><th>Data</th> <th>Observed</th> <th>Predicted</th> ' ...
-    '<th><a href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" target="_blank">(RE)</a></th> '...
+    '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> '...
     '<th>Unit</th> <th>Description</th> <th>Reference</th></tr>\n']);
 [nm, nst] = fieldnmnst_st(data); % cell array of string with fieldnames of data
 
@@ -171,15 +167,33 @@ if n_fig > 0
   else
     labels = '<th>1st independent variable</th> <th>2nd independent variable</th>  <th>Dependent variable</th> ';
   end
-  fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Univariate_data">Uni-</a> and <a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Bi-variate_data">bivariate data</a></h2>\n');
+  fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Uni-variate_data.html">Uni-</a> and <a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Bi-variate_data.html">bivariate data</a></h2>\n');
   fprintf(oid, '      <table id="t01">\n');
   fprintf(oid,['        <tr class="head"><th>Data</th> <th>Figure</th> %s', ...
-      '<th><a href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error" target="_blank">(RE)</a></th> <th>Reference</th></tr>\n'], labels);  
+      '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> <th>Reference</th></tr>\n'], labels);  
   %
   for i=1:n_fig
-    % label
-    label = dataSet_nFig{i,1};  
-    labels = ['<td>',txtData.label.(dataSet_nFig{i,1}){1},'</td> <td>',txtData.label.(dataSet_nFig{i,1}){2},'</td>'];
+    % name of dataset
+    if isfield(auxData.temp, dataSet_nFig{i,1}) && 1 == length(auxData.temp.(dataSet_nFig{i,1}))
+      temp = auxData.temp.(dataSet_nFig{i,1});
+      if strcmp(txtData.units.temp.(dataSet_nFig{i,1}), 'K')
+        temp = K2C(temp);
+      end
+      name = ['<a href="" title="Temperature: ', num2str(temp), ' C">', dataSet_nFig{i,1}, '</a>'];
+    else
+      name = dataSet_nFig{i,1};
+    end
+    % labels for x,y and, possibly, z axes
+    labels = ['<td>',txtData.label.(dataSet_nFig{i,1}){1},'</td> ']; % independent var
+    if 3==k && 3==length(txtData.label.(dataSet_nFig{i,1})) && 3==length(txtData.units.(dataSet_nFig{i,1})) % 2 dependent vars
+      labely = [txtData.label.(dataSet_nFig{i,1}){2},'<br>', txtData.label.(dataSet_nFig{i,1}){3}];
+    else % 1 dependent var
+      labely = txtData.label.(dataSet_nFig{i,1}){2};
+    end
+    if isfield(txtData, 'comment') && isfield(txtData.comment, dataSet_nFig{i,1}) % add possible coment as hover text to y-label
+      labely   = ['<a href="" title="', txtData.comment.(dataSet_nFig{i,1}), '">', labely, '</a>'];
+    end        
+    labels = [labels, '<td>', labely, '</td>'];
     if zlab % table has at least one bi-variate data figure in 3D
       if 3==txtData.label.(dataSet_nFig{i,1}) && isfield(auxData,'treat') && auxData.treat.(dataSet_nFig{i,1}){1}>1
         labels = [labels, ' <td>',txtData.label.(dataSet_nFig{i,1}){3},'</td> '];
@@ -209,13 +223,13 @@ if n_fig > 0
     ii = 1:nst; ii=ii(strcmp(nm,dataSet_nFig{i,1}));
     re = metaPar.RE(ii,1); % "relative error"
     % REF
-    ref = txtData.bibkey.(label); REF = ref;
+    ref = txtData.bibkey.(dataSet_nFig{i,1}); REF = ref;
     if iscell(ref) % if there are several references
       n = length(ref); REF = ref{1}; % number of references    
       for j = 2:n; REF = [REF,', ',ref{j}]; end
     end
     %
-    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', label, fig, labels, re, REF);        
+    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', name, fig, labels, re, REF);        
   end
   fprintf(oid, '      </table>\n\n'); 
   
@@ -229,7 +243,7 @@ end
 
 % table with pseudo-data:
 fprintf(oid, '      <p>\n');
-fprintf(oid, '      <h2><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Pseudo-data">Pseudo-data at T<sub>ref</sub> = 20&deg;C</a> </h2>\n');
+fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Pseudo_data.html">Pseudo-data at T<sub>ref</sub> = 20&deg;C</a> </h2>\n');
 [nm, nst] = fieldnmnst_st(pseudo);
 fprintf(oid, '      <table id="t01">\n');
 fprintf(oid, '        <tr class="head"><th>Data</th> <th>Generalised animal</th> <th>%s</th> <th>Unit</th> <th>Description</th></tr>\n', strrep(metaData.species, '_', ' '));
@@ -306,13 +320,11 @@ end
 fprintf(oid, '      <p>\n');
 fprintf(oid, '      <h3 style="clear:both" class="pet"><a class="link" href = "%s_bib.bib" target = "_blank">Bibliography</a></h3>\n', metaData.species);
 fprintf(oid, '      <div w3-include-html="%s_bib.html"></div>\n', metaData.species);
-fprintf(oid, '      <script>w3IncludeHTML();</script>\n\n');
   
 % Citation:
 fprintf(oid, '      <p>\n');
 fprintf(oid, '      <h3 style="clear:both" class="pet">Citation</h3>\n');
 fprintf(oid, '      <div w3-include-html="%s_cit.html"></div>\n', metaData.species);
-fprintf(oid, '      <script>w3IncludeHTML();</script>\n\n');
 
 % ----------------------------------------------------------
 

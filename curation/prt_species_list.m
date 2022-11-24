@@ -4,7 +4,8 @@
 %%
 function prt_species_list
 % created by Bas Kooijman; modified 2015/04/14 Starrlight Augustine & Goncalo Marques; 
-%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25, 2019/12/22, 2021/02/20, 2022/01/08  Bas Kooijman
+%   modified 2015/07/21, 2015/08/28 Starrlight Augustine; 
+% 2016/11/05, 2017/10/13, 2017/10/24, 2018/01/25, 2019/12/22, 2021/02/20, 2022/01/08, 2022/06/05  Bas Kooijman
 
 %% Syntax
 % <../prt_species_list.m *prt_species_list*>
@@ -13,8 +14,8 @@ function prt_species_list
 % deletes and writes ../../deblab/add_my_pet/species_list.html 
 
 %% Remarks
-% Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
-% Reads from allStat and each row in the table has an id
+% * Uses subfunctions open_species_list_html, prt_species_row and close_species_list_html
+% * Reads from allStat and each row in the table has an id
 
 WD = cdCur;
 % get basic data for species_list
@@ -42,12 +43,11 @@ fid_Spec = fopen('../../deblab/add_my_pet/species_list.html', 'w+'); % open file
   
 % make head and header for species_list.html :
 fprintf(fid_Spec, '<!DOCTYPE html>\n');
-fprintf(fid_Spec, '<HTML>\n\n'); % open html
-fprintf(fid_Spec, '<HEAD>\n');   % open head
-fprintf(fid_Spec, '  <TITLE>Species List</TITLE>\n');
-fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css"> \n');
-fprintf(fid_Spec, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_Spec, '  <script src="sys/w3data.js"></script>\n');
+fprintf(fid_Spec, '<html>\n\n'); % open html
+fprintf(fid_Spec, '<head>\n');   % open head
+fprintf(fid_Spec, '  <title>Species List</title>\n');
+fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
+fprintf(fid_Spec, '  <script src="sys/jscripts.js"></script>\n');
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .Search {\n');
 fprintf(fid_Spec, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
@@ -62,8 +62,8 @@ fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    #speciesTable {\n');
 fprintf(fid_Spec, '      border-collapse: collapse; /* Collapse borders */\n');
-fprintf(fid_Spec, '      width: 100%%; /* Full-width */\n\n');
-fprintf(fid_Spec, '    }\n');
+fprintf(fid_Spec, '      width: 100%%; /* Full-width */\n');
+fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    #speciesTable th, #speciesTable td {\n');
 fprintf(fid_Spec, '      text-align: left; /* Left-align text */\n');
@@ -73,19 +73,47 @@ fprintf(fid_Spec, '    }\n\n');
 fprintf(fid_Spec, '    #speciesTable tr.header, #speciesTable tr:hover {\n');
 fprintf(fid_Spec, '      /* Add a grey background color to the table header and on hover */\n');
 fprintf(fid_Spec, '      background-color: #f1f1f1;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .ent {\n'); % entry
+fprintf(fid_Spec, '      color: blue;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .mod {\n'); % model
+fprintf(fid_Spec, '      background-color: #ffc6a5;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .mre {\n'); % MRE
+fprintf(fid_Spec, '      background-color: #ffe7c6;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .smse {\n'); % SMSE
+fprintf(fid_Spec, '      background-color: #ffe7c6;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .com {\n'); % COMPLETE
+fprintf(fid_Spec, '      background-color: #ffce9c;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .d0 {\n'); % data_0
+fprintf(fid_Spec, '      background-color: #ffffc6;\n');
+fprintf(fid_Spec, '    }\n\n');
+
+fprintf(fid_Spec, '    .d1 {\n'); % data_1
+fprintf(fid_Spec, '      background-color: #ffff9c;\n');
 fprintf(fid_Spec, '    }\n');
+
 fprintf(fid_Spec, '  </style>\n');
 
-fprintf(fid_Spec, '</HEAD>\n\n'); % close head
+fprintf(fid_Spec, '</head>\n\n'); % close head
 
-fprintf(fid_Spec, '<BODY>\n\n');  % open body
+fprintf(fid_Spec, '<body>\n\n');  % open body
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
-fprintf(fid_Spec, '<script>w3IncludeHTML();</script>\n\n');
 	
-fprintf(fid_Spec, '<div id = "main">\n');
-fprintf(fid_Spec, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_Spec, '<div id="main">\n');
+fprintf(fid_Spec, '  <div id="main-wrapper-species">    \n');
 fprintf(fid_Spec, '    <div id="contentFull">\n\n');
 fprintf(fid_Spec, '      <H2><a href="" title="Goto entries by clicking on entry names">Species list: taxonomic view</a></H2>\n\n');
 
@@ -100,15 +128,15 @@ fprintf(fid_Spec, '        <input type="text" class="Search" id="Model" onkeyup=
 fprintf(fid_Spec, '      </div>\n\n');
 
 fprintf(fid_Spec, '      <table id="speciesTable">\n'); % open species table
-fprintf(fid_Spec, '        <TR HEIGHT=60 BGCOLOR = "#FFE7C6">\n');
-fprintf(fid_Spec, '          <TH><a class="link" target = "_blank" href="phyla.html">phylum</a></TH>\n');
-fprintf(fid_Spec, '          <TH>class</TH> <TH>order</TH> <TH>family</TH> <TH>species</TH> <TH>common name</TH>\n');
-fprintf(fid_Spec, '          <TH BGCOLOR = "#FFC6A5"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Typified_models">&nbsp; model &nbsp;</a></TH>\n');
-fprintf(fid_Spec, '          <TH BGCOLOR = "#FFE7C6"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Mean_relative_error">&nbsp; MRE &nbsp;</a></TH>\n');
-fprintf(fid_Spec, '          <TH BGCOLOR = "#FFE7C6"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=SMSE" >&nbsp; SMSE &nbsp;</a></TH>\n');
-fprintf(fid_Spec, '          <TH BGCOLOR = "#FFCE9C"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Completeness" >&nbsp; complete &nbsp;</a></TH>\n');
-fprintf(fid_Spec, '          <TH BGCOLOR = "#FFFFC6"><a class="link" target = "_blank" href="http://www.debtheory.org/wiki/index.php?title=Data_types" >&nbsp; data &nbsp;</a></TH>\n');
-fprintf(fid_Spec, '        </TR>\n\n');
+fprintf(fid_Spec, '        <tr HEIGHT=60 BGCOLOR = "#FFE7C6">\n');
+fprintf(fid_Spec, '          <th><a class="link" target = "_blank" href="phyla.html">phylum</a></th>\n');
+fprintf(fid_Spec, '          <th>class</th> <th>order</th> <th>family</th> <th>species</th> <th>common name</th>\n');
+fprintf(fid_Spec, '          <th BGCOLOR="#FFC6A5"><a class="link" target="_blank" href="https://add-my-pet.github.io/DEBportal/docs/Typified_models.html">&nbsp; model &nbsp;</a></th>\n');
+fprintf(fid_Spec, '          <th BGCOLOR="#FFE7C6"><a class="link" target="_blank" href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html">&nbsp; MRE &nbsp;</a></th>\n');
+fprintf(fid_Spec, '          <th BGCOLOR="#FFE7C6"><a class="link" target="_blank" href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" >&nbsp; SMSE &nbsp;</a></th>\n');
+fprintf(fid_Spec, '          <th BGCOLOR="#FFCE9C"><a class="link" target="_blank" href="https://add-my-pet.github.io/DEBportal/docs/Completeness.html" >&nbsp; complete &nbsp;</a></th>\n');
+fprintf(fid_Spec, '          <th BGCOLOR="#FFFFC6"><a class="link" target="_blank" href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" >&nbsp; data &nbsp;</a></th>\n');
+fprintf(fid_Spec, '        </tr>\n\n');
 
 end
 
@@ -121,31 +149,32 @@ function prt_species_row(fid_Spec, id)
   phylum = id{1}; class = id{2}; order = id{3}; family = id{4}; species = id{5}; species_en = id{6}; 
   model = id{7}; MRE = id{8}; SMSE = id{9}; COMPLETE = id{10}; data = id{11};
   
-  fprintf(fid_Spec,['        <TR id = "', species, '">\n']); % open and identify the species row
+  fprintf(fid_Spec, '        <tr id="%s">\n', species); % open and identify the species row
 
   % edit species and species_en
   species_prt = strrep(species, '_', ' ');      % remove underscores 
+  species_txt = ['''', species, ''''];
   if species_en(1) >= 'a' && species_en(1)<='z' % put first letter of common name in capital
     species_en(1) = char(species_en(1) - 32);
   end
 
   % separate zero- and uni-variate data
-  sel = cellfun(@isempty, strfind(data, '-')); data_0 = data(sel); data_1 = data(~sel);
+  sel = ~contains(data, '-'); data_0 = data(sel); data_1 = data(~sel);
   n_data_0 = length(data_0); n_data_1 = length(data_1); 
   
-  fprintf(fid_Spec,['          <TD>', phylum, '</TD>  <TD>', class, '</TD> <TD>', order, '</TD> <TD>', family, '</TD>\n']);
-  fprintf(fid_Spec,['          <TD><A TARGET="_top" HREF="entries_web/', species, '/', species, '_res.html">', species_prt, '</A></TD> <TD>', species_en, '</TD>\n']);
-  fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFC6A5">%s</TD>\n', model);
-  fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFE7C6">%8.3f</TD>\n', MRE);
-  fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFE7C6">%8.3f</TD>\n', SMSE);
-  fprintf(fid_Spec, '          <TD style="text-align:center"  BGCOLOR = "#FFCE9C">%g</TD>\n', COMPLETE);
+  fprintf(fid_Spec, '          <td>%s</td>  <td>%s</td> <td>%s</td> <td>%s</td>\n', phylum, class, order, family);
+  %fprintf(fid_Spec, '          <td><button onclick="lnk(%s)">%s</button></td> <td>%s</td>\n', species_txt, species_prt, species_en);
+  fprintf(fid_Spec, '          <td><a class="ent" onclick="lnk(%s)">%s</a></td> <td>%s</td>\n', species_txt, species_prt, species_en);
+  fprintf(fid_Spec, '          <td class="mod">%s</td> <td class="mre">%8.3f</td> <td class="smse">%8.3f</td> <td class="com">%g</td>\n', model, MRE, SMSE, COMPLETE);
+  fprintf(fid_Spec, '          ');
   for i = 1:n_data_0 % scan zero-variate data
-    fprintf(fid_Spec, '          <TD BGCOLOR = "#FFFFC6">%s</TD>\n', data_0{i});      
+    fprintf(fid_Spec, '<td class="d0">%s</td> ', data_0{i});      
   end
+  fprintf(fid_Spec, '\n          ');
   for i = 1:n_data_1 % scan univariate data
-    fprintf(fid_Spec, '          <TD BGCOLOR = "#FFFF9C">%s</TD>\n', data_1{i});  
+    fprintf(fid_Spec, '<td class="d1">%s</td> ', data_1{i});  
   end
-  fprintf(fid_Spec, '        </TR>\n\n'); % close the species row
+  fprintf(fid_Spec, '\n        </tr>\n\n'); % close the species row
 end
 
 %% subfunction close_species_list
@@ -175,6 +204,10 @@ fprintf(fid_Spec, '              tr[i].style.display = "none";\n');
 fprintf(fid_Spec, '              }\n');
 fprintf(fid_Spec, '            }\n');
 fprintf(fid_Spec, '          }\n');
+fprintf(fid_Spec, '        }\n\n');
+
+fprintf(fid_Spec, '        function lnk(id) {\n');
+fprintf(fid_Spec, '          window.open("entries_web/" + id + "/" + id + "_res.html");\n');
 fprintf(fid_Spec, '        }\n');
 fprintf(fid_Spec, '      </script>\n\n');
 
@@ -186,7 +219,7 @@ fprintf(fid_Spec, '    <script>w3IncludeHTML();</script>\n\n');
 fprintf(fid_Spec, '  </div> <!-- main wrapper -->\n');
 fprintf(fid_Spec, '</div> <!-- main -->\n');
 
-fprintf(fid_Spec, '</BODY>\n'); % close body
-fprintf(fid_Spec, '</HTML>\n'); % close html
+fprintf(fid_Spec, '</body>\n'); % close body
+fprintf(fid_Spec, '</html>\n'); % close html
 fclose(fid_Spec);
 end

@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<HTML>
-<HEAD>
-  <TITLE>AmPtool</TITLE>
-  <link rel="stylesheet" type="text/css" href="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/style.css"> 
-  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/dropdown.js"></script>
-  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/w3data.js"></script>
-</HEAD>
-<BODY>
+<html>
+<head>
+  <title>AmPtool</title>
+  <link rel="stylesheet" type="text/css" href="sys/style.css"> 
+  <script src="sys/jscripts.js"></script>
+</head>
+<body>
 
-  <div w3-include-html="wallpaper_AmPtool.html"></div>
-  <script>w3IncludeHTML();</script>
-
-  <div w3-include-html="toolbar_AmPtool.html"></div>
-  <script>w3IncludeHTML();</script>
+  <div w3-include-html="sys/wallpaper_AmPtool.html"></div>
+  <div id="tb"></div><script>include_toolbar('AmPtool')</script>
 
 <!--------------------------------------------------------------->
 <!--   PART main                                               -->
@@ -20,19 +16,19 @@
 <!--   use "contentFull" for 1 column                          -->
 <!--   use "content" if you want two columns"                  -->
 <!--------------------------------------------------------------->
-<div id = "main">
-  <div id = "main-wrapper">    
+<div id="main">
+  <div id="main-wrapper">    
     <div id="contentFull">
 
     <H1 id="portaltop">
       AmPtool
-      <a href="https://youtu.be/hIJtytohzIs" target="_blank"><img src="img/YouTube.png"  height = "50px" align="right" title="10:22"></a>
+      <a href="https://youtu.be/hIJtytohzIs" target="_blank"><img src="img/YouTube.png"  height="50px" align="right" title="10:22"></a>
     </H1>
 
     
     <a href="http://www.github.com/add-my-pet/AmPtool/" target="_top">AmPtool</a> 
-       contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection.
-    It is an extension of <A HREF="https://github.com/add-my-pet/DEBtool_M/" target="_top">DEBtool_M</A>, and makes frequent use of it.
+    contains Matlab functions for the visualisation and analysis of patterns in (functions of) parameter values of the Add-my-Pet (AmP) collection;
+    it has no data and is an extension of <A HREF="https://github.com/add-my-pet/DEBtool_M/" target="_top">DEBtool_M</A>, and makes frequent use of it.
     All parameters and (population) traits for all entries are available in dropdown <code>COLLECTION/AmPdata</code> as a zip-file.
     Save the files <code>allStat.mat</code>, <code>popStat.mat</code>, <code>allUnits.mat</code> and <code>allLabel.mat</code> from the linked zip into one directory.
     Open Matlab and set paths to AmPtool, DEBtool_M (including subdirectories) and to the directory with the <code>.mat</code> files. 
@@ -49,11 +45,19 @@
 
     <H2 id="data">Data</H2>
 
+    The parameters and implied properties for all entries can be downloaded from <b>AmPdata</b>, the last item in the COLLECTION dropdown.
+    Unpack the zip in a directory and make a <a href="https://www.mathworks.com/help/matlab/ref/path.html">path to this directory in Matlab</a>.
+    If you load a new version of AmPdata, the next thing you should do is to give the Matlab command <code>clear all</code>, else the previous version might be used.
+    The size of allStat (and popStat), should exactly match the lists-of-lists of AmPtool (see below), else errors will occur.
+    The functions <a href="../html/date_allStat.html">date_allStat</a>, <a href="../html/date_popStat.html">date_popStat</a> and <a href="../html/date_taxa.html">date_taxa</a>
+    can be used to check version dates.    
+    
+    <p>
     All data (i.e. meta-data, parameters, meta-parameters, 
-      <A href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</A>, 
-      but no empirical data) of all entries are collected by function 
+      <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/statistics_st.html" target="_top">implied traits</a>, 
+      but no empirical data) of all entries is collected by function 
       <a href="../curation/html/write_allStat.html">write_allStat</a> into the Matlab-structure <b>allStat.mat</b>.
-    Only curators who have all entries locally can run this function, but the result is available for anybody.
+      Only curators who have all entries locally can run this function, but the result is available for anybody. 
     To read data directly, use <code>load allStat</code>, or better <a href="../html/read_allStat.html">read_allStat</a> for all entries, 
       or <a href="../html/read_stat.html">read_stat</a> for specified entries.
     The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href="../html/select.html">select</a> (see below).
@@ -73,7 +77,8 @@
     All functions that analyse data read in <code>allStat</code>, using function 
       <a href="../html/read_allStat.html">read_allStat</a> or <a href="../html/read_stat.html">read_stat</a>.
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code>; convert to temperature <code>T_ref</code> with
-      <code>[var, nm, units, label] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print with <code>prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})</code>.
+      <code>[var, nm, units, label] = read_allStat('t_g','c_T'); tg_Tref = var(:,1).*var(:,2);</code> and print with
+      <code>prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})</code>.
     Oviparous species will have value <code>NaN</code> (Not-a-Number).
     Find all entries that have model <code>std</code> with <code>[model, nms] = read_allStat('model'); nms(strcmp('std', model))</code>.
 
@@ -85,7 +90,7 @@
       <a href="../html/read_allEco.html">read_allEco</a> or <a href="../html/read_eco.html">read_eco</a>.
    
     <p>
-    <a href="../../DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
+    <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
       implied traits for specific entries.
     <code>prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars"
       to reduce the length of the table.
@@ -93,11 +98,13 @@
     The function reads parameters in <code>allStat</code> and specifies scaled functional response and temperature for each trait.
     The function is also used during the parameter estimation procedure for entries that are not yet in the collection with 
       <code>estim_options('results_output', 4);</code> in the <code>run_my_pet</code> file.
-    In this application the data are not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
+    In this application the data is not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
     This is handy for checking that a particular parameter combination is yes or no realistic.
     With <code>estim_options('results_output', 5);</code>, related species are included in the report to compare parameters and implied traits.
     These related species in the collection are identified with function <a href="../html/clade.html">clade</a> (see below), and if two or more related species are found, 
       color coding is applied to highlight eccentricity of values.
+    The selection of "related" species can be specified in the run-file explicitly by declaring global variable <code>refPets</code> and filling it with a cell-string of AmP-species names.
+    Variable <code>refPets</code> is only used if results_output level is 5 or higher.
 
     <H2 id="tree">Taxonomic tree: lists-of-lists</H2>
 
@@ -142,8 +149,8 @@
 
     <p>
     A few taxa have a special status.
-    Reptilia and Sarcopterygii are used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
-    Pisces are not used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+    <code>Reptilia</code> and <code>Sarcopterygii</code> are used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
+    <code>Pisces</code> is not used in <code>mydata</code>, will not occur in <code>lineage</code>, but can be used in <code>select</code>.
   
 
     <div>
@@ -165,7 +172,7 @@
       </div>
     </div>
 
-    <H2 class = "clear" id="selection">Selection of entries</H2>
+    <H2 class="clear" id="selection">Selection of entries</H2>
 
     AmP has a number of select-functions, i.e. functions that either return a cell-string of entry names or a vector of booleans (i.e. of the true/false type).
     These functions scan the whole collection and select entries that comply to a variety of specified criteria.
@@ -255,7 +262,7 @@
        <code>[x,nm,sel_m]=select_predict('Aves','male'); [x,nm,sel_T]=select_predict(nm,'del_l'); nm(sel_m|sel_T)</code>.
     
 
-    <H2 id="legend">Legends exploit selections</H2>
+    <H2 id="legend">Legend exploits selections</H2>
 
     Spotting patterns in (functions of) parameters of entries starts with plot function <a href="../html/shstat.html">shstat</a> 
       (see below; the name stands for "show statistics"), which has inputs data and legend (and optional further inputs).
@@ -276,8 +283,8 @@
       this is a consequence of the fact that one taxon can contain another one.
 
     <H2 id="plotting">
-      Spotting patterns in data with legends
-      <a href="https://youtu.be/NYxAk25N_wo" target="_blank"><img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/YouTube.png"  height = "50px" align="right" title="10:14"></a>
+      Spotting patterns in data with legend
+      <a href="https://youtu.be/NYxAk25N_wo" target="_blank"><img src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/img/YouTube.png"  height="50px" align="right" title="10:14"></a>
     </H2>
 
     Function <a href="../html/shstat.html">shstat</a> can be used in symbolic mode for 1-, 2- and 3-variate data, as given in <code>allStat</code>.
@@ -320,11 +327,11 @@
     E.g. CoL cannot find 'Daphnia magna', only 'Daphnia (Ctenodaphnia) magna'.
 
     <p>
-    The <a href="https://add-my-pet.github.io/AmPtool/curation/id_20220105" target="_top">id-table</a> gives an overview of all id's for all entries and supported websites.
+    The <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/links.html" target="_top">id-table</a> gives an overview of all id's for all entries and supported websites.
     Click on a web-site column-header to let it disappear, and on the entry-header to let it re-appear. 
     
 
-    <h2 id="distance">Distances between species</h2>
+    <h2 id="distance">Distances between species: Multi-dimensional scaling</h2>
 
     Function <a href="../html/dist_taxa.html" target="_top">dist_taxa</a> computes the taxonomic distances between species (it is computational intensive), and  
     <a href="../html/dist_traits.html" target="_top">dist_traits</a> for trait-distances.
@@ -337,10 +344,10 @@
 
     </div> <!-- end of content -->
  
-    <div w3-include-html="footer_amp.html"></div>
+    <div w3-include-html="sys/footer_amp.html"></div>
     <script>w3IncludeHTML();</script>
 
   </div> <!-- end of main wrapper -->
 </div> <!-- end of main -->
-</BODY>
-</HTML>
+</body>
+</html>

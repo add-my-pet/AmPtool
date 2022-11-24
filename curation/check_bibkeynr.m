@@ -21,8 +21,8 @@ function [nm nr] = check_bibkeynr(species)
 % * nr: (n,2) array with corresponding numbers of bib items in mydata and .bib
 
 %% Remarks
-% Assumes to be run from AmPtool/curation and entries are in sister-directory add_my_pet/entries for mydata-files.
-% reads bib-files from the web. Assumes that bibkey = " only occurs in the references.
+% * Assumes to be run from AmPtool/curation and entries are in sister-directory add_my_pet/entries for mydata-files.
+% * Reads bib-files from the web. Assumes that bibkey = " only occurs in the references.
 
 %% Example of use
 % check_bibkeynr('Turdus_merula') or

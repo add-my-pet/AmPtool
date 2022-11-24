@@ -29,11 +29,11 @@ function CD = COMPLETE_data
 % * CD: (n,2)-cell array with complet values and data combinations
 
 %% Remarks
-% Before adding a data-combination, make sure that it not already exists, by running this function with NaN as result.
-% Before changing either a combination or a COMPLETE setting, first find out which entries are affected, 
+% * Before adding a data-combination, make sure that it not already exists, by running this function with NaN as result.
+% * Before changing either a combination or a COMPLETE setting, first find out which entries are affected, 
 %   by running <../../html/select_data.html *select_data*>, with a copy-paste of the combination to be changed.
-% All changes should be carried through systematically. Activate test for uniqueness at the end of this function after edits.
-% This function is called by get_COMPLETE.
+% * All changes should be carried through systematically. Activate test for uniqueness at the end of this function after edits.
+% * This function is called by get_COMPLETE.
 
 %% Example of use
 % cd = COMPLETE_data

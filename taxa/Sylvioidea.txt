@@ -1,6 +1,4 @@
-Alaudidae
-Hirundinidae
-Sylvidae
-Phylloscopidae
-Acrocephalidae
+Sylviidae
+Paradoxornithidae
+Zosteropidae
 Leiothrichidae

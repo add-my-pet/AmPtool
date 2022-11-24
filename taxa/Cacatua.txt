@@ -1,3 +1,4 @@
 Cacatua_ophthalmica
 Cacatua_moluccensis
+Cacatua_pastinator
 Cacatua_tenuirostris

@@ -1,5 +1,7 @@
-Turdus
 Catharus
-Myadestes
-Hylocichla
 Chlamydochaera
+Geokichla
+Hylocichla
+Myadestes
+Sialia
+Turdus

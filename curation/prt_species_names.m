@@ -24,7 +24,7 @@ for i = 1:n
     cnm{i} = cnm_prt;
   end
 end
-nms(:,2) = cnm; [cnm index] = sort(cnm);
+nms(:,2) = cnm; [cnm, index] = sort(cnm);
 
 WD = cdCur;
 fid_Spec = fopen('../../deblab/add_my_pet/species_names.html', 'w+'); % open file for writing, delete existing content
@@ -35,15 +35,13 @@ fprintf(fid_Spec, '<HTML>\n');
 fprintf(fid_Spec, '<HEAD>\n');
 fprintf(fid_Spec, '  <TITLE>Species Names</TITLE>\n');
 fprintf(fid_Spec, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
-fprintf(fid_Spec, '  <script src="sys/dropdown.js"></script>\n');
-fprintf(fid_Spec, '  <script src="sys/w3data.js"></script>\n\n');
+fprintf(fid_Spec, '  <script src="sys/jscripts.js"></script>\n');
 
 fprintf(fid_Spec, '  <style>\n');
 fprintf(fid_Spec, '    .newspaper {\n');
-fprintf(fid_Spec, '      -webkit-column-count: 4; /* Chrome, Safari, Opera */\n');
-fprintf(fid_Spec, '      -moz-column-count: 4; /* Firefox */\n');
-fprintf(fid_Spec, '      column-count: 4;\n');
-fprintf(fid_Spec, '      width: 1000px;\n');
+fprintf(fid_Spec, '      -webkit-column-count: 5; /* Chrome, Safari, Opera */\n');
+fprintf(fid_Spec, '      -moz-column-count: 5; /* Firefox */\n');
+fprintf(fid_Spec, '      column-count: 5;\n');
 fprintf(fid_Spec, '    }\n\n');
 
 fprintf(fid_Spec, '    * {\n');
@@ -120,10 +118,9 @@ fprintf(fid_Spec, '<BODY>\n\n');
 
 fprintf(fid_Spec, '<div w3-include-html="sys/wallpaper_amp.html"></div>\n');
 fprintf(fid_Spec, '<div w3-include-html="sys/toolbar_amp.html"></div>\n');
-fprintf(fid_Spec, '<script>w3IncludeHTML();</script>\n\n');
 	
-fprintf(fid_Spec, '<div id = "main">\n');
-fprintf(fid_Spec, '  <div id = "main-wrapper-species">    \n');
+fprintf(fid_Spec, '<div id="main">\n');
+fprintf(fid_Spec, '  <div id="main-wrapper-species">    \n');
 fprintf(fid_Spec, '    <div id="contentFull">\n\n');
 
 fprintf(fid_Spec, '      <div>\n');
@@ -134,7 +131,7 @@ fprintf(fid_Spec, '      </div>\n\n');
 fprintf(fid_Spec, '      <H2 id="scientific_name"><a href="#common_name" title="Locate entries by scientific name.\n');
 fprintf(fid_Spec, '        Goto entries by clicking on entry names.\n');
 fprintf(fid_Spec, '        Click here for common names">Scientific names</a></H2>\n');
-fprintf(fid_Spec, '      <div class = "newspaper">\n'); 
+fprintf(fid_Spec, '      <div class="newspaper">\n'); 
 fprintf(fid_Spec, '        <ul id="scientific_nm">\n');
 
 for i = 1:n
@@ -148,7 +145,7 @@ fprintf(fid_Spec, '        Species can have several common names; the first one 
 fprintf(fid_Spec, '        Goto entries by clicking on entry names.\n');
 fprintf(fid_Spec, '        Click here for scientific names">Common names</a></H2>\n\n');
 
-fprintf(fid_Spec, '      <div class = "newspaper">\n');  
+fprintf(fid_Spec, '      <div class="newspaper">\n');  
 fprintf(fid_Spec, '        <ul id="common_nm">');
 for i = 1:n
 fprintf(fid_Spec, '          <li><a target="_top" href="entries_web/%s/%s_res.html" title="%s">%s</a></li>\n', snm{index(i)},snm{index(i)},snm_prt{index(i)},cnm{i});

@@ -19,8 +19,8 @@ function  prt_my_pet_toolbar(my_pet, destinationFolder)
 % are printed to (default: current folder),
 
 %% Remarks
-% Indent of 2 spaces used for printing to html page
-% Edit /sys/drowdown.js for adding dropdwn's
+% * Indent of 2 spaces used for printing to html page
+% * Edit /sys/drowdown.js for adding dropdwn's
 
 %% Example of use
 % prt_my_pet_toolbar('Daphnia_magna') if you wish to print in the current folder

@@ -20,8 +20,8 @@ function bib2html(my_pet_bib, destinationFolder, filenm)
 % Calls bib2bbl and bbl2html, which writes and deletes .uax and .bbl files
 
 %% example
-% bib2html(my_pet_bib) for printing in local directory
-% bib2html(my_pet_bib, ../../myFolder) or for printing in myFolder
+% * bib2html(my_pet_bib) for printing in local directory
+% * bib2html(my_pet_bib, ../../myFolder) or for printing in myFolder
 
 % write my_pet_bib.html from my_pet_bib.bib
 WD = pwd;
