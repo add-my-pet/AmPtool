@@ -1,15 +1,16 @@
 function repair_pop
 
-WD = cdCur; cd('../../deblab/add_my_pet/entries_web/Daphnia_magna');
-txt = ['<script src="../../sys/ftiens4.js"></script>', char(10)];
+WD = cdAmPdata; load('popStat.mat','popStat');pop_allStat = popStat;
+cdCur; cd('../../deblab/add_my_pet/entries_web/Daphnia_magna');
 entries = select; n_entries = length(entries);
 
 for i=1:n_entries
   cd(['../',entries{i}])
-  res = fileread([entries{i},'_pop.html']);
-  res = strrep(res, txt, [txt, '  <script src="../../sys/specJump.js"></script>', char(10)]);
-  oid = fopen([entries{i},'_pop.html'], 'w+'); fprintf(oid, '%s', res); fclose(oid);
-  fprintf([entries{i}, '\n'])
+  fprintf([num2str(i), ': ', entries{i}, '\n'])% print progress to screen
+  load([entries{i}, '_pop.mat'])
+  popStat.(entries{i}).pwd
+  
 end
 
+cdAmPdata; save('popStat.mat','popStat');
 cd(WD);
