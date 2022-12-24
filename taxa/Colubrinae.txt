@@ -3,4 +3,5 @@ Orthriophis
 Elaphe
 Hierophis
 Rhabdophis
+Spalerosophis
 Tantilla
