@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>check_entries</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="check_entries.m"><style type="text/css">
+      --><title>check_entries</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-12-29"><meta name="DC.source" content="check_entries.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,37 +67,32 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>check_entries</h1><!--introduction--><p>Checks entries for member inconsistencies</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[tree, local, server] = <a href="../check_entries.m"><b>check_entries</b></a></p><h2 id="4">Description</h2><p>checks tree leaves against subdirectories of entries, local and on server</p><p>Output:</p><div><ul><li>tree, local, server: cell strings with names of entries</li><li>prints warnings on screen</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>The root of the tree is Animalia. The dates are not checked</li><li>Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool</li><li>Reads to path to entries on server from set_path2server</li><li>VU server blocks urlread, so html pages are first copied into local txt.html and then deleted</li></ul></div><h2 id="6">Example of use</h2><p>check_entries;</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>check_entries</h1><!--introduction--><p>Checks entries for member inconsistencies</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../check_entries.m"><b>check_entries</b></a></p><h2 id="4">Description</h2><p>checks tree leaves against subdirectories of entries, local and on server and prints warings to screen</p><h2 id="5">Remarks</h2><div><ul><li>The root of the tree is Animalia. The dates are not checked;</li><li>Assumes that this function is run in dir AmPtool/curation and that entries is a subdirectory of sister directory deblab/add_my_pet;</li><li>Reads to path to entries on server from set_path2server;</li><li>VU server blocks urlread, so html pages are first copied into local txt.html and then deleted</li></ul></div><h2 id="6">Example of use</h2><p>check_entries;</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% check_entries
 % Checks entries for member inconsistencies
 
 %%
-function [tree, local, server] = check_entries
+function check_entries
 % created 2017/04/07 by Bas Kooijman, modified 2018/12/18
 
 %% Syntax
-% [tree, local, server] = <../check_entries.m *check_entries*>
+% <../check_entries.m *check_entries*>
 
 %% Description
-% checks tree leaves against subdirectories of entries, local and on server
-%
-% Output:
-% 
-% * tree, local, server: cell strings with names of entries
-% * prints warnings on screen
+% checks tree leaves against subdirectories of entries, local and on server and prints warings to screen
 
 %% Remarks
-% * The root of the tree is Animalia. The dates are not checked
-% * Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% * Reads to path to entries on server from set_path2server
+% * The root of the tree is Animalia. The dates are not checked;
+% * Assumes that this function is run in dir AmPtool/curation and that entries is a subdirectory of sister directory deblab/add_my_pet;
+% * Reads to path to entries on server from set_path2server;
 % * VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
 % check_entries;
 
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
-local = cellstr(ls('../../deblab/add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
+local = cellstr(ls('../../deblab/add_my_pet/entries')); local(1:2) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
 path = [set_path2server, 'add_my_pet/'];
 
@@ -109,7 +104,6 @@ for i = 1:n_server
   kill = strfind(txt,'href="'); txt(1:kill(1) + 5)= [];
   server{i} = txt(1:strfind(txt,'/"') - 1);
 end
-server(end) = []; % this last element is "entries"
 
 % cell string with server entries_web stored on server
 eval(['!Powershell wget ', path, 'entries_web/ -o txt.html']); txt = fileread('txt.html');

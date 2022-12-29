@@ -2,31 +2,26 @@
 % Checks entries for member inconsistencies
 
 %%
-function [tree, local, server] = check_entries
+function check_entries
 % created 2017/04/07 by Bas Kooijman, modified 2018/12/18
 
 %% Syntax
-% [tree, local, server] = <../check_entries.m *check_entries*>
+% <../check_entries.m *check_entries*>
 
 %% Description
-% checks tree leaves against subdirectories of entries, local and on server
-%
-% Output:
-% 
-% * tree, local, server: cell strings with names of entries
-% * prints warnings on screen
+% checks tree leaves against subdirectories of entries, local and on server and prints warings to screen
 
 %% Remarks
-% * The root of the tree is Animalia. The dates are not checked
-% * Assumes that this function is run in dir AmPtool/curation and that entries is a sister directory of AmPtool
-% * Reads to path to entries on server from set_path2server
+% * The root of the tree is Animalia. The dates are not checked;
+% * Assumes that this function is run in dir AmPtool/curation and that entries is a subdirectory of sister directory deblab/add_my_pet;
+% * Reads to path to entries on server from set_path2server;
 % * VU server blocks urlread, so html pages are first copied into local txt.html and then deleted
 
 %% Example of use
 % check_entries;
 
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
-local = cellstr(ls('../../deblab/add_my_pet/entries')); local([1 2]) = []; n_local = length(local); % cell string with local entry names 
+local = cellstr(ls('../../deblab/add_my_pet/entries')); local(1:2) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
 path = [set_path2server, 'add_my_pet/'];
 
@@ -38,7 +33,6 @@ for i = 1:n_server
   kill = strfind(txt,'href="'); txt(1:kill(1) + 5)= [];
   server{i} = txt(1:strfind(txt,'/"') - 1);
 end
-server(end) = []; % this last element is "entries"
 
 % cell string with server entries_web stored on server
 eval(['!Powershell wget ', path, 'entries_web/ -o txt.html']); txt = fileread('txt.html');

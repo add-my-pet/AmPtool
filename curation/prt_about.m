@@ -53,12 +53,19 @@ saveas (gca, [path, 'pie_model.png'])
 close all
 
 % # of entries in time
+dates_subm = get_date_subm;
+surv_dates_subm = [0 2009 ; surv(dates_subm, 2009)]; 
+surv_dates_subm([end - 1; end],:) = [];    
+n_subm = size(surv_dates_subm, 1)/2 - 2;
+plot(surv_dates_subm(:,1), n_subm * (1 - surv_dates_subm(:,2)), 'b', 'Linewidth', 2)
+hold on
+%
 [dates, entries_new, dates_new] = get_date_acc;
 surv_dates = [0 2009 ; surv(dates, 2009)]; 
 surv_dates([end - 1; end],:) = [];    
 n = size(surv_dates, 1)/2 - 2;
 %    
-plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
+plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'r', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('time, yr')
 ylabel('# of AmP entries')
@@ -262,7 +269,8 @@ fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/entries.png" width="350px">\n');
 fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          The Add-my-Pet collection started at 2009/02/12 as part of the \n');
-fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.<br>\n');
+fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.\n');
+fprintf(fid_about, '          Dates of <font color="blue">first submission</font> and <font color="red">latest modification</font> are shown.<br>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
     

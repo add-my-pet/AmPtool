@@ -82,6 +82,7 @@ function allStat = get_allStat(T, f)
       allStat.(entries{i}).COMPLETE = metaData.COMPLETE; 
       allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
       allStat.(entries{i}).author = get_author(metaData); 
+      allStat.(entries{i}).date_subm = metaData.date_subm; 
       allStat.(entries{i}).date_acc = metaData.date_acc; 
       allStat.(entries{i}).T_ref = par.T_ref; 
       allStat.(entries{i}).T_typical = metaData.T_typical; 
