@@ -20,6 +20,8 @@ function check_entries
 %% Example of use
 % check_entries;
 
+WD=cdCur;
+
 tree = select; n_tree = length(tree);                                             % cell string with entry names of tree
 local = cellstr(ls('../../deblab/add_my_pet/entries')); local(1:2) = []; n_local = length(local); % cell string with local entry names 
 stat = read_allStat('species');
@@ -143,3 +145,5 @@ if ~isempty(diff)
   fprintf('warning from check_entries: present in entries_archive local, but not in entries_archive on server\n');
   diff
 end
+
+cd(WD);
