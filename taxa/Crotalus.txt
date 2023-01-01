@@ -1,3 +1,4 @@
 Crotalus_horridus
+Crotalus_lepidus
 Crotalus_oreganus
 Crotalus_pricei
