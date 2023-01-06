@@ -4,3 +4,4 @@ Sceloporus_magister
 Sceloporus_occidentalis
 Sceloporus_orcutti
 Sceloporus_undulatus
+Sceloporus_virgatus
