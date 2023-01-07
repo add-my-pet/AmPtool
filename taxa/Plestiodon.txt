@@ -1,2 +1,3 @@
 Plestiodon_chinensis
+Plestiodon_fasciatus
 Plestiodon_septentrionalis
