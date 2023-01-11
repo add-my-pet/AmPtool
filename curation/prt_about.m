@@ -215,6 +215,7 @@ fprintf(fid_about, '        and predict un-measured properties of species as fun
 fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      Apart from extant species, the collection also has a number of extinct ones, demonstrating that DEB models can still be applied if data availability is poor.\n');
 fprintf(fid_about, '      Examples are: \n');
+fprintf(fid_about, '        <a href="entries_web/Chioninia_coctei/Chioninia_coctei_res.html">giant skink</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Deinosuchus_rugosus/Deinosuchus_rugosus_res.html">Deinosuchus</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Pterodaustro_guinazui/Pterodaustro_guinazui_res.html">Pterodaustro</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Tyrannosaurus_rex/Tyrannosaurus_rex_res.html">Tyrannosaurus</a>,\n');
