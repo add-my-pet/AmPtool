@@ -2,4 +2,5 @@ Darevskia_bendimahiensis
 Darevskia_clarkorum
 Darevskia_dryada
 Darevskia_parvula
+Darevskia_rudis
 Darevskia_valentini
