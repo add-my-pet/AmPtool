@@ -99,9 +99,15 @@ for i = 1:n_bib % scan bibitems
   bibitem_i = strrep(bibitem_i, '\={a}', '&#227;');
   bibitem_i = strrep(bibitem_i, '{\l}',  '&#322;');
   bibitem_i = strrep(bibitem_i, '{\L}',  '&#321;');
+  bibitem_i = strrep(bibitem_i, '\c{c}', '&#231;');
+  bibitem_i = strrep(bibitem_i, '\c{C}', '&#199;');
+  bibitem_i = strrep(bibitem_i, '\u{g}', '&#287;');
+  bibitem_i = strrep(bibitem_i, '\u{G}', '&#286;');
   bibitem_i = strrep(bibitem_i, '\v{c}', '&#269;');
   bibitem_i = strrep(bibitem_i, '\v{e}', '&#283;');
-  bibitem_i = strrep(bibitem_i, '\v{g}', '&#287;');
+  bibitem_i = strrep(bibitem_i, '\v{E}', '&#282;');
+  bibitem_i = strrep(bibitem_i, '\v{g}', '&#487;');
+  bibitem_i = strrep(bibitem_i, '\v{G}', '&#486;');
   bibitem_i = strrep(bibitem_i, '\v{s}', '&#347;');
   bibitem_i = strrep(bibitem_i, '\v{S}', '&#346;');
   bibitem_i = strrep(bibitem_i, '\v{z}', '&#382;');
