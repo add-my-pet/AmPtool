@@ -4,6 +4,7 @@ Rana_iberica
 Rana_macrocnemis
 Rana_muscosa
 Rana_sakuraii
+Rana_sauteri
 Rana_sierrae
 Rana_tagoi
 Rana_temporaria
