@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SpecPerGenus</title>
+  <link rel="stylesheet" type="text/css" href="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/style.css">
+  <style>
+    body {
+      background-color: white;
+    }
+
+    .Search {
+      float: right;
+      width: 10%; /* Width of search field */
+      font-size: 14px; /* Increase font-size */
+      padding: 5px 5px 7px 5px; /* Add some padding */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #genera {
+      list-style-type: '';
+    }
+
+    .newspaper {
+      -webkit-column-count: 5; /* Chrome, Safari, Opera */
+      -moz-column-count: 5; /* Firefox */
+      column-count: 5;
+    }
+  </style>
+  <script src="https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/sys/jscripts.js"></script>
+</head>
+
+<body>
+
+<div>
+  <div id="main-wrapper">    
+    <div id="contentFull">
+
+      <H2><a href="" title="Click on a name to go to species-tree and on the picture to re-load, in case of unsuccessful loading">        Genera of Amphibia with number of AmP entries</a>
+        <div class="Search">
+          <input id="select" type="text" onkeyup="searchList()" placeholder="select >0">
+        </div>
+      </H2>
+
+      <table id="t00"><tr><td>
+      <div class="newspaper">
+        <ul id="genera">
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Alytes')">Alytes 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Ambystoma')">Ambystoma 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Amphiuma')">Amphiuma 1</a></li>
+          <li class="3"><a onclick="OpenTreeAtTaxonLoc('Anaxyrus')">Anaxyrus 3</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Andrias')">Andrias 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Aneides')">Aneides 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Batrachoseps')">Batrachoseps 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Bolitoglossa')">Bolitoglossa 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Bombina')">Bombina 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Boulengerula')">Boulengerula 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Bufo')">Bufo 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Calotriton')">Calotriton 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Ceratophrys')">Ceratophrys 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Chioglossa')">Chioglossa 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Conraua')">Conraua 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Crinia')">Crinia 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Cryptobranchus')">Cryptobranchus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Dermatonotus')">Dermatonotus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Dermophis')">Dermophis 1</a></li>
+          <li class="5"><a onclick="OpenTreeAtTaxonLoc('Desmognathus')">Desmognathus 5</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Dicamptodon')">Dicamptodon 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Dyscophus')">Dyscophus 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Echinotriton')">Echinotriton 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Eleutherodactylus')">Eleutherodactylus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Engystomops')">Engystomops 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Euphlyctis')">Euphlyctis 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Eurycea')">Eurycea 2</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Geocrinia')">Geocrinia 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Glandirana')">Glandirana 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Gyrinophilus')">Gyrinophilus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Hoplobatrachus')">Hoplobatrachus 1</a></li>
+          <li class="3"><a onclick="OpenTreeAtTaxonLoc('Hyla')">Hyla 3</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Hylarana')">Hylarana 2</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Hynobius')">Hynobius 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Hyperolius')">Hyperolius 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Ichthyophis')">Ichthyophis 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Ichthyosaura')">Ichthyosaura 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Kurixalus')">Kurixalus 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Leptodactylus')">Leptodactylus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Limnodynastes')">Limnodynastes 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Lissotriton')">Lissotriton 1</a></li>
+          <li class="3"><a onclick="OpenTreeAtTaxonLoc('Lithobates')">Lithobates 3</a></li>
+          <li class="3"><a onclick="OpenTreeAtTaxonLoc('Lyciasalamandra')">Lyciasalamandra 3</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Mannophryne')">Mannophryne 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Mantidactylus')">Mantidactylus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Mertensiella')">Mertensiella 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Microhyla')">Microhyla 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Nanorana')">Nanorana 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Neurergus')">Neurergus 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Notophthalmus')">Notophthalmus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Ommatotriton')">Ommatotriton 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Onychodactylus')">Onychodactylus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pachyhynobius')">Pachyhynobius 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Paramesotriton')">Paramesotriton 1</a></li>
+          <li class="4"><a onclick="OpenTreeAtTaxonLoc('Pelobates')">Pelobates 4</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pelodytes')">Pelodytes 1</a></li>
+          <li class="9"><a onclick="OpenTreeAtTaxonLoc('Pelophylax')">Pelophylax 9</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Peltophryne')">Peltophryne 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Phaeognathus')">Phaeognathus 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Plethodon')">Plethodon 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pleurodeles')">Pleurodeles 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pleurodema')">Pleurodema 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Proteus')">Proteus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pseudis')">Pseudis 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pseudophryne')">Pseudophryne 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Pyxicephalus')">Pyxicephalus 1</a></li>
+          <li class="10"><a onclick="OpenTreeAtTaxonLoc('Rana')">Rana 10</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Rhacophorus')">Rhacophorus 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Rhaebo')">Rhaebo 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Rhinella')">Rhinella 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Rhyacotriton')">Rhyacotriton 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Salamandra')">Salamandra 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Salamandrella')">Salamandrella 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Salamandrina')">Salamandrina 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Sclerophrys')">Sclerophrys 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Siphonops')">Siphonops 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Siren')">Siren 1</a></li>
+          <li class="2"><a onclick="OpenTreeAtTaxonLoc('Speleomantes')">Speleomantes 2</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Sylvirana')">Sylvirana 1</a></li>
+          <li class="3"><a onclick="OpenTreeAtTaxonLoc('Triturus')">Triturus 3</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Tylototriton')">Tylototriton 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Typhlonectes')">Typhlonectes 1</a></li>
+          <li class="1"><a onclick="OpenTreeAtTaxonLoc('Xenopus')">Xenopus 1</a></li>
+        </ul>
+      </div> <!-- end of newspaper -->
+      </td></tr></table>
+
+      <script>
+        function searchList() {
+          // Declare variables
+          var ul, li, i, n, nSel;
+          nSel = Number(document.getElementById("select").value);
+          ul = document.getElementById("genera");
+          li = ul.getElementsByTagName("li");
+
+          // Loop through all items, and hide those who don't match the search query
+          for (i = 0; i < li.length; i++) {
+            n = Number(li[i].className);
+            if (n > nSel) {
+              li[i].style.display = "";
+            } else {
+              li[i].style.display = "none";
+            }
+          }
+        }
+
+        function OpenTreeAtTaxonLoc(taxon) {
+          var newURL = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/species_tree_Animalia.html"  + '?pic="' + taxon + '.jpg"';
+          newwin = window.open(newURL);
+          SetCookie("clickedFolder", taxon);
+          newwin.document.taxonSearch = taxon;
+        }
+      </script>
+
+    </div> <!-- end of contentFull -->
+
+  </div> <!-- main wrapper -->
+</div> <!-- main -->
+</body>
+</html>

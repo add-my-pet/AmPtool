@@ -141,7 +141,7 @@ fprintf(fid_Spec, '        </ul>\n');
 fprintf(fid_Spec, '      </div>\n\n');  
 
 fprintf(fid_Spec, '      <H2 id="common_name"><a href="#scientific_name" title="Locate entries by common name.\n');
-fprintf(fid_Spec, '        Species can have several common names; the first one mentioned in Wikipedia has been chosen.\n');
+fprintf(fid_Spec, '        Species can have several common names, only one was chosen.\n');
 fprintf(fid_Spec, '        Goto entries by clicking on entry names.\n');
 fprintf(fid_Spec, '        Click here for scientific names">Common names</a></H2>\n\n');
 

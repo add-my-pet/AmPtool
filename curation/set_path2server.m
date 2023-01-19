@@ -16,7 +16,7 @@ function path = set_path2server(svr)
 %
 % Output
 %
-% * path: haracter string with paht to server
+% * path: haracter string with path to server
 
 if ~exist('svr', 'var')
     svr = 'VU';
