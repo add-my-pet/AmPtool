@@ -322,17 +322,19 @@
       you want to see how the implied traits relate to the ones in the collection.
     Three actions need to take place in preparation
     <ul>
-      <li> your entry needs to be added to the local structures allStat and popStat.
+      <li> your entry needs to be added to the local structures <code>allStat</code> and <code>popStat</code>.
 	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top">addEntryLoc</a>.
-	Notice that these edits go lost if you re-download AmPdata from the AmP website, while AmPdata is changing frequently.</li>
-      <li> the species needs to be added to the lists-of-lists in AmPtool/taxa.
+	Notice that these edits go lost if you re-download <code>AmPdata</code> from the AmP-website, while <code>AmPdata</code> is changing frequently.</li>
+      <li> the species needs to be added to the lists-of-lists in <code>AmPtool/taxa</code>.
 	This means that the genus of your entry needs to be added to the family-list, if it is not already there, and your species needs to be added to the genus-list.
-	If the genus is also not already present, a new list genus-list needs to be created with your entry-name, which must have an underscore with no spaces.
+	If the genus is also not already present, a new list genus-list needs to be created with your entry-name, which must have an underscore and no spaces.
 	Some large families have subfamilies, or even tribes, meaning that your genus might need to be added there, rather than in the family-list.
-	Notice that these edits go lost if you reload AmPtool from GitHub.</li>
+	Notice that these edits go lost if you reload <code>AmPtool</code> from GitHub.</li>
       <li> you possibly want to edit a legend to recognize your species in plots.
 	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
     </ul>
+    Functions <code>shstat</code>, <code>read_stat</code>, <code>read_popStat</code> and <code>read_allStat</code> assume that
+      the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
 
     <h2 id="context">Linked websites</h2>
 
