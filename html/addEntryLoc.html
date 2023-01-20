@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>addEntryLoc</h1><!--introduction--><p>adds an entry to allStat and popStat outside the AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../addEntryLoc.m"><b>addEntryLoc</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Overwrites AmPdata/allStat and popStat using local results_my_pet.mat.</p><p>Input:</p><div><ul><li>my_pet: string with name of entry to be added</li></ul></div><p>Output:</p><div><ul><li>no explicit output</li></ul></div><h2 id="5">Remarks</h2><p>This function assumes that the file results_my_pet.mat exists in the local directory, where my_pet is replaced with the name of your entry. It also assumes that your entry is already added to the lists-of-lists.</p><h2 id="6">Example of use</h2><p>addEntryLoc('my_pet'), where my_pet is replaced with the name of your entry.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>addEntryLoc</h1><!--introduction--><p>adds an entry to allStat and popStat outside the AmP website</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../addEntryLoc.m"><b>addEntryLoc</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Overwrites AmPdata/allStat and popStat using local results_my_pet.mat.</p><p>Input:</p><div><ul><li>my_pet: string with name of entry to be added</li></ul></div><p>Output:</p><div><ul><li>no explicit output</li></ul></div><h2 id="5">Remarks</h2><p>This function assumes that the file results_my_pet.mat exists in the local directory, where my_pet is replaced with the name of your entry. It also assumes that the species is already added to the lists-of-lists. This function does not change AmPdata.zip, allUnits, allLabel Warning: this function replaces AmPdata/allStat.mat, popStat.mat and AmPtool/n_entries.mat.</p><h2 id="6">Example of use</h2><p>addEntryLoc('my_pet'), where my_pet is replaced with the name of your entry.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% addEntryLoc
 % adds an entry to allStat and popStat outside the AmP website 
@@ -91,13 +91,19 @@ function addEntryLoc(my_pet)
 % * no explicit output
 
 %% Remarks
-% This function assumes that the file results_my_pet.mat exists in the
-% local directory, where my_pet is replaced with the name of your entry.
-% It also assumes that your entry is already added to the lists-of-lists.
+% This function assumes that the file results_my_pet.mat exists in the local directory, where my_pet is replaced with the name of your entry.
+% It also assumes that the species is already added to the lists-of-lists.
+% This function does not change AmPdata.zip, allUnits, allLabel 
+% Warning: this function replaces AmPdata/allStat.mat, popStat.mat and AmPtool/n_entries.mat.
 
 %% Example of use
 % addEntryLoc('my_pet'), where my_pet is replaced with the name of your entry.
 
+% check required inputs
+if isempty(select(my_pet))
+  fprintf('Warning from addEntryLoc: name %s is not found in lists-of-lists\n', my_pet);
+  return
+end
 source = ['results_', my_pet, '.mat'];
 try
   load(source); % load results_my_pet.mat 
@@ -106,19 +112,32 @@ catch
   return
 end
 
-WD = cdCur; % go to AmPtool/curation
+WD = pwd;
 
-if ~exist('entries','var')
-  entries = select;
+cdCur; % go to AmPtool/curation
+% write number of entries in lists-of-lists in Amtool/taxa/n_taxa.mat; this avoids the need to run length(select)
+n_entries = length(select); WD = cdCur; cd ../taxa; save('n_entries.mat', 'n_entries'); cd(WD);
+
+% go to AmPdata and check if my_pet is already in allStat
+cdAmPdata; clear allStat popStat; 
+load allStat.mat % load allUnits allLabel;
+if isfield(allStat, my_pet)
+  fprintf('Warning from addEntryLoc: %s already exists allStat.mat\n', my_pet);
+  return
 end
-
-% allStat and popStat are made persistent and must be overwritten
-clear all; load('temporary.mat'); 
-
 % write add_my_pet/AmPdata/allStat.mat and popStat.mat
 [allStat, info] = write_addStat(my_pet); % this adds/modifies allStat for selected entries
-if ~info; return; end
-write_popStat_loc(my_pet); % collects entries_web/my_pet_pop.mat files in structure popStat
+if ~info 
+   fprintf('Warning from addEntryLoc: addition to allStat.mat was unsuccessful\n');
+   return
+end
+
+% prepare adding to popStat
+load popStat
+[stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
+popStat.(my_pet) = stat; popStat.(my_pet).T = T; 
+popStat.(my_pe).model = model; popStat.(my_pet).par = par; 
+save('popStat.mat','popStat'); 
 
 cd(WD); % return to original directory
 

@@ -20,11 +20,10 @@ function addEntryLoc(my_pet)
 % * no explicit output
 
 %% Remarks
-% This function assumes that the file results_my_pet.mat exists in the
-% local directory, where my_pet is replaced with the name of your entry.
+% This function assumes that the file results_my_pet.mat exists in the local directory, where my_pet is replaced with the name of your entry.
 % It also assumes that the species is already added to the lists-of-lists.
 % This function does not change AmPdata.zip, allUnits, allLabel 
-% Warning: this function uses clear all to replace AmPdata/allStat.mat, popStat.mat and AmPtool/n_entries.mat.
+% Warning: this function replaces AmPdata/allStat.mat, popStat.mat and AmPtool/taxa/n_entries.mat.
 
 %% Example of use
 % addEntryLoc('my_pet'), where my_pet is replaced with the name of your entry.
@@ -44,17 +43,18 @@ end
 
 WD = pwd;
 
-cdCur; % go to AmPtool/curation
+cdCur; cd ../taxa; % go to AmPtool/curation/taxa
 % write number of entries in lists-of-lists in Amtool/taxa/n_taxa.mat; this avoids the need to run length(select)
-n_entries = length(select); WD = cdCur; cd ../taxa; save('n_entries.mat', 'n_entries'); cd(WD);
+n_entries = length(select); save('n_entries.mat', 'n_entries');
 
 % go to AmPdata and check if my_pet is already in allStat
-cdAmPdata; clear all; load allStat.mat % load allUnits allLabel;
+cdAmPdata; clear allStat popStat; 
+load allStat.mat % load allUnits allLabel;
 if isfield(allStat, my_pet)
   fprintf('Warning from addEntryLoc: %s already exists allStat.mat\n', my_pet);
   return
 end
-% write add_my_pet/AmPdata/allStat.mat and popStat.mat
+% write add_my_pet/AmPdata/allStat.mat
 [allStat, info] = write_addStat(my_pet); % this adds/modifies allStat for selected entries
 if ~info 
    fprintf('Warning from addEntryLoc: addition to allStat.mat was unsuccessful\n');
