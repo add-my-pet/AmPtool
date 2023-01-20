@@ -275,6 +275,8 @@
     Customised legends can be composed by functions 
       <a href="../html/select_legend.html">select_legend</a>, <a href="../html/select_legend_eco.html">select_legend_eco</a> and 
       <a href="../html/select_llegend.html">select_llegend</a>.
+      Alternatively, you can copy the contents of a template, such as <a href="../legend_RSED.m">legend_RSED</a>, and edit it.
+      The result does not need to be a function; it can be just a variable in some function.
     The choice of possible taxa is restricted to the ones present in the lists-of-lists and that of eco-codes to the codes mentioned in 
       <a href = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>.
     Legends can be shown in a figure with DEBtool_M functions <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shlegend.html">shlegend</a> and 
@@ -313,6 +315,24 @@
     <p>
     Get a rapid overview of distributions of a number of (compound) parameters or statistics for selected taxa with <a href="../html/compare_taxa.html">compare_taxa</a>.
     Plot (compound) parameters or statistics as function of normalised taxonomic distance with (computation-time intensive) function <a href="../html/shstat_taxa.html">shstat_taxa</a>.
+
+    <h3>Plotting with entries that are not (yet) in the AmP collection</h3>
+
+    Suppose that you have an entry locally, i.e. the 4 source files, but this entry is not yet in the collection and
+      you want to see how the implied traits relate to the ones in the collection.
+    Three actions need to take place in preparation
+    <ul>
+      <li> your entry needs to be added to the local structures allStat and popStat.
+	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top">addEntryLoc</a>.
+	Notice that these edits go lost if you re-download AmPdata from the AmP website, while AmPdata is changing frequently.</li>
+      <li> the species needs to be added to the lists-of-lists in AmPtool/taxa.
+	This means that the genus of your entry needs to be added to the family-list, if it is not already there, and your species needs to be added to the genus-list.
+	If the genus is also not already present, a new list genus-list needs to be created with your entry-name, which must have an underscore with no spaces.
+	Some large families have subfamilies, or even tribes, meaning that your genus might need to be added there, rather than in the family-list.
+	Notice that these edits go lost if you reload AmPtool from GitHub.</li>
+      <li> you possibly want to edit a legend to recognize your species in plots.
+	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
+    </ul>
 
     <h2 id="context">Linked websites</h2>
 
