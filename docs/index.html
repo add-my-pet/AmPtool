@@ -318,18 +318,19 @@
 
     <h3>Plotting with entries that are not (yet) in the AmP collection</h3>
 
-    Suppose that you have an entry locally, i.e. the 4 source files, but this entry is not yet in the collection and
+    Suppose that you have an entry locally, i.e. the file <code>results_my_pet.mat</code> that is created by <code>estim_pars</code>, but this entry is not yet in the collection and
       you want to see how the implied traits relate to the ones in the collection.
     Three actions need to take place in preparation
     <ul>
-      <li> your entry needs to be added to the local structures <code>allStat</code> and <code>popStat</code>.
-	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top">addEntryLoc</a>.
-	Notice that these edits go lost if you re-download <code>AmPdata</code> from the AmP-website, while <code>AmPdata</code> is changing frequently.</li>
       <li> the species needs to be added to the lists-of-lists in <code>AmPtool/taxa</code>.
 	This means that the genus of your entry needs to be added to the family-list, if it is not already there, and your species needs to be added to the genus-list.
 	If the genus is also not already present, a new list genus-list needs to be created with your entry-name, which must have an underscore and no spaces.
 	Some large families have subfamilies, or even tribes, meaning that your genus might need to be added there, rather than in the family-list.
 	Notice that these edits go lost if you reload <code>AmPtool</code> from GitHub.</li>
+      <li> your entry needs to be added to the local structures <code>allStat</code> and <code>popStat</code>.
+	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top">addEntryLoc</a>.
+	Make sure that your entry is added to the lists-of-lists before you run <code>addEntryLoc</code>.
+	Notice that these edits go lost if you re-download <code>AmPdata</code> from the AmP-website, while <code>AmPdata</code> is changing frequently.</li>
       <li> you possibly want to edit a legend to recognize your species in plots.
 	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
     </ul>
