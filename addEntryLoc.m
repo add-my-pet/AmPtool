@@ -41,11 +41,11 @@ catch
   return
 end
 
-WD = pwd;
+WD = pwd; % store current working directory
 
 cdCur; cd ../taxa; % go to AmPtool/curation/taxa
 % write number of entries in lists-of-lists in Amtool/taxa/n_taxa.mat; this avoids the need to run length(select)
-n_entries = length(select); save('n_entries.mat', 'n_entries');
+n_entries = length(select); save('n_entries.mat', 'n_entries'); % write AmPtool/taxa/n_entries.mat
 
 % go to AmPdata and check if my_pet is already in allStat
 cdAmPdata; clear allStat popStat; 
@@ -54,11 +54,11 @@ if isfield(allStat, my_pet)
   fprintf('Warning from addEntryLoc: %s already exists allStat.mat\n', my_pet);
   return
 end
-% write add_my_pet/AmPdata/allStat.mat
-[allStat, info] = write_addStat(my_pet); % this adds/modifies allStat for selected entries
+%
+[allStat, info] = write_addStat(my_pet); % write add_my_pet/AmPdata/allStat.mat
 if ~info 
-   fprintf('Warning from addEntryLoc: addition to allStat.mat was unsuccessful\n');
-   return
+  fprintf('Warning from addEntryLoc: addition to allStat.mat was unsuccessful\n');
+  return
 end
 
 % prepare adding to popStat
@@ -66,6 +66,6 @@ load popStat
 [stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
 popStat.(my_pet) = stat; popStat.(my_pet).T = T; 
 popStat.(my_pe).model = model; popStat.(my_pet).par = par; 
-save('popStat.mat','popStat'); 
+save('popStat.mat','popStat'); % write add_my_pet/AmPdata/popStat.mat
 
 cd(WD); % return to original directory
