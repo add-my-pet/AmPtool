@@ -24,6 +24,7 @@ function addEntryLoc(my_pet)
 % It also assumes that the species is already added to the lists-of-lists.
 % This function does not change AmPdata.zip, allUnits, allLabel 
 % Warning: this function replaces AmPdata/allStat.mat, popStat.mat and AmPtool/taxa/n_entries.mat.
+% See the AmPtool manual for further instructions.
 
 %% Example of use
 % addEntryLoc('my_pet'), where my_pet is replaced with the name of your entry.
@@ -48,7 +49,7 @@ cdCur; cd ../taxa; % go to AmPtool/curation/taxa
 n_entries = length(select); save('n_entries.mat', 'n_entries'); % write AmPtool/taxa/n_entries.mat
 
 % go to AmPdata and check if my_pet is already in allStat
-cdAmPdata; clear allStat popStat; 
+cdAmPdata; clear allStat popStat; % These structures are persistent and need to be removed to replace
 load allStat.mat % load allUnits allLabel;
 if isfield(allStat, my_pet)
   fprintf('Warning from addEntryLoc: %s already exists allStat.mat\n', my_pet);
