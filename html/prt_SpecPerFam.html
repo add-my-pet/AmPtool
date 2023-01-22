@@ -1,0 +1,213 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>prt_SpecPerFam</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-01-22"><meta name="DC.source" content="prt_SpecPerFam.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>prt_SpecPerFam</h1><!--introduction--><p>Print list of families with number of AmP entries for a taxon SpecPerFam.html</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[nm, n_spec] = <a href="../prt_SpecPerFam.m"><b>prt_SpecPerFam</b></a>(taxon)</p><h2 id="4">Description</h2><p>Print list of families with number of AmP entries for a taxon to SpecPerFam.html in local directory and open it in browser. Click on names to go to species_tree.</p><p>Input:</p><div><ul><li>taxon: optional string with name of taxon (default 'Animalia')</li></ul></div><p>Output</p><div><ul><li>nm: n-cellstring with names of families</li><li>n_spec: n-vector number of entries per family</li></ul></div><h2 id="5">Remarks</h2><p>If species_tree does not open correctly, click on picture to reload. Visit <a href="file:///C:/Users/bas.xps/Documents/deb/deblab/add_my_pet/entries_zip/"><b>AmP/entries_zip/</b></a> for the zip-files.</p><h2 id="6">Example of use</h2><p>prt_SpecPerFam('Amphibia');</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% prt_SpecPerFam
+% Print list of families with number of AmP entries for a taxon SpecPerFam.html
+
+%%
+function [nm, n_spec] = prt_SpecPerFam(taxon)
+  % created by Bas Kooijman 2023/01/21
+  
+  %% Syntax 
+  % [nm, n_spec] = <../prt_SpecPerFam.m *prt_SpecPerFam*>(taxon)
+  
+  %% Description
+  % Print list of families with number of AmP entries for a taxon to SpecPerFam.html in local directory and open it in browser. 
+  % Click on names to go to species_tree.
+  %
+  % Input:
+  %
+  % * taxon: optional string with name of taxon (default 'Animalia')
+  %
+  % Output
+  %
+  % * nm: n-cellstring with names of families
+  % * n_spec: n-vector number of entries per family
+  
+  %% Remarks
+  % If species_tree does not open correctly, click on picture to reload.
+  % Visit
+  % <file:///C:/Users/bas.xps/Documents/deb/deblab/add_my_pet/entries_zip/
+  % *AmP/entries_zip/*> for the zip-files.
+  
+  %% Example of use 
+  % prt_SpecPerFam('Amphibia');
+
+  path = [set_path2server, 'add_my_pet/'];
+  if ~exist('taxon','var')
+    taxon = 'Animalia';
+  end
+  nm = list_taxa(taxon, 4); % families
+
+  n_fam = length(nm); n_spec = zeros(n_fam,1);
+  for i=1:n_fam
+    n_spec(i) = length(select(nm{i})); % number of species
+  end
+
+  % prepare for writing SpecPerFam.html
+  fid_SpG = fopen('SpecPerFam.html', 'w+'); % open file for writing, delete existing content
+  
+  % write header for SpecPerFam.html :
+  fprintf(fid_SpG, '<!DOCTYPE html>\n');
+  fprintf(fid_SpG, '<html>\n');
+  fprintf(fid_SpG, '<head>\n');
+  fprintf(fid_SpG, '  <title>SpecPerFam</title>\n');
+  fprintf(fid_SpG, '  <link rel="stylesheet" type="text/css" href="%ssys/style.css">\n', path);
+  fprintf(fid_SpG, '  <style>\n');
+  fprintf(fid_SpG, '    body {\n');
+  fprintf(fid_SpG, '      background-color: white;\n');
+  fprintf(fid_SpG, '    }\n\n');
+
+  fprintf(fid_SpG, '    .Search {\n');
+  fprintf(fid_SpG, '      float: right;\n');
+  fprintf(fid_SpG, '      width: 10%%; /* Width of search field */\n');
+  fprintf(fid_SpG, '      font-size: 14px; /* Increase font-size */\n');
+  fprintf(fid_SpG, '      padding: 5px 5px 7px 5px; /* Add some padding */\n');
+  fprintf(fid_SpG, '      margin-bottom: 12px; /* Add some space below the input */\n');
+  fprintf(fid_SpG, '    }\n\n');
+
+  fprintf(fid_SpG, '    #fam {\n');
+  fprintf(fid_SpG, '      list-style-type: '''';\n');
+  fprintf(fid_SpG, '    }\n\n');
+
+  fprintf(fid_SpG, '    .newspaper {\n');
+  fprintf(fid_SpG, '      -webkit-column-count: 5; /* Chrome, Safari, Opera */\n');
+  fprintf(fid_SpG, '      -moz-column-count: 5; /* Firefox */\n');
+  fprintf(fid_SpG, '      column-count: 5;\n');
+  fprintf(fid_SpG, '    }\n');
+  fprintf(fid_SpG, '  </style>\n');
+  fprintf(fid_SpG, '  <script src="%ssys/jscripts.js"></script>\n', path);
+  fprintf(fid_SpG, '</head>\n\n');
+  fprintf(fid_SpG, '<body>\n\n');
+	
+  fprintf(fid_SpG, '<div>\n');
+  fprintf(fid_SpG, '  <div id="main-wrapper">    \n');
+  fprintf(fid_SpG, '    <div id="contentFull">\n\n');
+  fprintf(fid_SpG, '      <H2><a href="" title="Click on a name to go to species-tree and on the picture to re-load, in case of unsuccessful loading">');
+  fprintf(fid_SpG, '        Families of %s with number of AmP entries</a>\n', taxon);
+  fprintf(fid_SpG, '        <div class="Search">\n');
+  fprintf(fid_SpG, '          <input id="select" type="text" onkeyup="searchList()" placeholder="select >0">\n');
+  fprintf(fid_SpG, '        </div>\n');
+  fprintf(fid_SpG, '      </H2>\n\n');
+
+  fprintf(fid_SpG, '      <table id="t00"><tr><td>\n');  
+  fprintf(fid_SpG, '      <div class="newspaper">\n');  
+  fprintf(fid_SpG, '        <ul id="fam">\n');
+  for i = 1:n_fam % scan all families
+  fprintf(fid_SpG, '          <li class="%d"><a onclick="OpenTreeAtTaxonLoc(''%s'')">%s %g</a></li>\n', n_spec(i), nm{i}, nm{i}, n_spec(i));
+  end
+  fprintf(fid_SpG, '        </ul>\n');
+  fprintf(fid_SpG, '      </div> <!REPLACE_WITH_DASH_DASH end of newspaper REPLACE_WITH_DASH_DASH>\n'); 
+  fprintf(fid_SpG, '      </td></tr></table>\n\n');  
+
+  fprintf(fid_SpG, '      <script>\n');
+  fprintf(fid_SpG, '        function searchList() {\n');
+  fprintf(fid_SpG, '          // Declare variables\n');
+  fprintf(fid_SpG, '          var ul, li, i, n, nSel;\n');
+  fprintf(fid_SpG, '          nSel = Number(document.getElementById("select").value);\n');
+  fprintf(fid_SpG, '          ul = document.getElementById("fam");\n');
+  fprintf(fid_SpG, '          li = ul.getElementsByTagName("li");\n\n');
+
+  fprintf(fid_SpG, '          // Loop through all items, and hide those who don''t match the search query\n');
+  fprintf(fid_SpG, '          for (i = 0; i < li.length; i++) {\n');
+  fprintf(fid_SpG, '            n = Number(li[i].className);\n');
+  fprintf(fid_SpG, '            if (n > nSel) {\n');
+  fprintf(fid_SpG, '              li[i].style.display = "";\n');
+  fprintf(fid_SpG, '            } else {\n');
+  fprintf(fid_SpG, '              li[i].style.display = "none";\n');
+  fprintf(fid_SpG, '            }\n');
+  fprintf(fid_SpG, '          }\n');
+  fprintf(fid_SpG, '        }\n\n');
+
+  fprintf(fid_SpG, '        function OpenTreeAtTaxonLoc(taxon) {\n');
+  fprintf(fid_SpG, '          var newURL = "%sspecies_tree_Animalia.html"  + ''?pic="'' + taxon + ''.jpg"'';\n', path);
+  fprintf(fid_SpG, '          newwin = window.open(newURL);\n');
+  fprintf(fid_SpG, '          SetCookie("clickedFolder", taxon);\n');
+  fprintf(fid_SpG, '          newwin.document.taxonSearch = taxon;\n');
+  fprintf(fid_SpG, '        }\n');    
+
+  fprintf(fid_SpG, '      </script>\n\n');
+
+  fprintf(fid_SpG, '    </div> <!REPLACE_WITH_DASH_DASH end of contentFull REPLACE_WITH_DASH_DASH>\n\n');
+
+  fprintf(fid_SpG, '  </div> <!REPLACE_WITH_DASH_DASH main wrapper REPLACE_WITH_DASH_DASH>\n');
+  fprintf(fid_SpG, '</div> <!REPLACE_WITH_DASH_DASH main REPLACE_WITH_DASH_DASH>\n');
+
+  fprintf(fid_SpG, '</body>\n');
+  fprintf(fid_SpG, '</html>\n');
+  fclose(fid_SpG);
+
+  web('SpecPerFam.html', '-browser')
+  
+end
+
+##### SOURCE END #####
+--></body></html>
