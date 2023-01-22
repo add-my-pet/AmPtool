@@ -64,7 +64,7 @@ end
 
 % prepare adding to popStat
 load popStat
-[stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par);
+[stat, Hfig_surv, Hfig_stab] = popStatistics_st(metaData.model, par);
 popStat.(my_pet) = stat; popStat.(my_pet).T = metaData.T_typical; 
 popStat.(my_pe).model = model; popStat.(my_pet).par = par; 
 save('popStat.mat','popStat'); % write add_my_pet/AmPdata/popStat.mat
