@@ -35,6 +35,7 @@ function [nm, n_spec] = prt_SpecPerGenus(taxon)
     taxon = 'Animalia';
   end
   nm = list_taxa(taxon, 3); % genera
+  version = datestr(datenum(date),'yyyy/mm/dd');
 
   n_gen = length(nm); n_spec = zeros(n_gen,1);
   for i=1:n_gen
@@ -81,7 +82,7 @@ function [nm, n_spec] = prt_SpecPerGenus(taxon)
   fprintf(fid_SpG, '  <div id="main-wrapper">    \n');
   fprintf(fid_SpG, '    <div id="contentFull">\n\n');
   fprintf(fid_SpG, '      <H2><a href="" title="Click on a name to go to species-tree and on the picture to re-load, in case of unsuccessful loading">');
-  fprintf(fid_SpG, '        Genera of %s with number of AmP entries</a>\n', taxon);
+  fprintf(fid_SpG, '        Genera of %s with number of AmP entries</a> %s\n', taxon, version);
   fprintf(fid_SpG, '        <div class="Search">\n');
   fprintf(fid_SpG, '          <input id="select" type="text" onkeyup="searchList()" placeholder="select >0">\n');
   fprintf(fid_SpG, '        </div>\n');
