@@ -49,22 +49,20 @@ cdCur; cd ../taxa; % go to AmPtool/curation/taxa
 n_entries = length(select); save('n_entries.mat', 'n_entries'); % write AmPtool/taxa/n_entries.mat
 
 % go to AmPdata and check if my_pet is already in allStat
-cdAmPdata; clear allStat popStat; % These structures are persistent and need to be removed to replace
+cdAmPdata; clear allStat; % These structures are persistent and need to be removed to replace
 load allStat.mat % load allUnits allLabel;
 if isfield(allStat, my_pet)
   fprintf('Warning from addEntryLoc: %s already exists allStat.mat\n', my_pet);
   return
 end
-%
-[allStat, info] = write_addStat(my_pet); % write add_my_pet/AmPdata/allStat.mat
-if ~info 
-  fprintf('Warning from addEntryLoc: addition to allStat.mat was unsuccessful\n');
-  return
-end
+
+cd(WD);
+allStat.(my_pet) = addStat(my_pet); % use T_typical and f=1
+cdAmPdata; save('allStat.mat','allStat'); % write add_my_pet/AmPdata/popStat.mat
 
 % prepare adding to popStat
-load popStat
-[stat, Hfig_surv, Hfig_stab] = popStatistics_st(metaData.model, par);
+clear popStat; load popStat
+[stat, Hfig_surv, Hfig_stab] = popStatistics_st(metaPar.model, par);
 popStat.(my_pet) = stat; popStat.(my_pet).T = metaData.T_typical; 
 popStat.(my_pe).model = model; popStat.(my_pet).par = par; 
 save('popStat.mat','popStat'); % write add_my_pet/AmPdata/popStat.mat

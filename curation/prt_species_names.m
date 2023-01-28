@@ -11,9 +11,9 @@ function prt_species_names
 %% Description
 % deletes and writes ../../deblab/add_my_pet/species_names.html with scientific and common names on alphabeth
 
-[nms entries] = read_allStat('species','species_en');
+[nms, entries] = read_allStat('species','species_en');
 n = length(entries); 
-[x index] = sort(nms(:,1)); nms = nms(index,:); 
+[x, index] = sort(nms(:,1)); nms = nms(index,:); 
 snm = nms(:,1); cnm = nms(:,2); snm_prt = snm; 
 for i = 1:n
   snm_prt{i} = strrep(snm{i}, '_', ' '); % replace "_" by space
