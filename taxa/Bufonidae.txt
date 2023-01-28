@@ -2,6 +2,7 @@ Anaxyrus
 Bufo
 Bufotes
 Duttaphrynus
+Epidalea
 Nimbaphrynoides
 Peltophryne
 Rhaebo
