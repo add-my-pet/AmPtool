@@ -328,16 +328,22 @@
 	Some large families have subfamilies, or even tribes, meaning that your genus might need to be added there, rather than in the family-list.
 	Likewise, if the family is not already in the lists-of-lists, it should be added to its order-list and a new family list should be created.
 	Each taxon above the species-level should occur exactly 2 times in the lists-of-lists, once as member of a higher taxon and once as name of its own list.
-	Use function <a href="../html/pedigree.html"><code>pedigree</code></a> to check if the addition was correct.
+	Check the successful addition to the lists-of-lists with function <a href="../html/pedigree.html"><code>pedigree</code></a>.
 	Notice that these edits go lost if you reload <code>AmPtool</code> from GitHub.</li>
+      
       <li> your entry needs to be added to the local structures <code>allStat</code> and <code>popStat</code>.
 	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top">addEntryLoc</a>.
 	Make sure that your entry is added to the lists-of-lists before you run <code>addEntryLoc</code> and that the path to AmPdata has been set within Matlab.
 	The addition to allStat and popStat is done with the default temperature for allStat, namely <code>T_typical</code>, and food is abundant, <code>f=1</code>;
 	Use the entry-specific temperature correction factor, <code>c_T</code> and the temperature parameters, for other temperatures.
+	Check the successful addition to <code>allStat</code> with <code>load allStat; allStat.my_pet</code>, where <code>my_pet</code> is replaced by the name of your entry.
 	Notice that these edits go lost if you re-download <code>AmPdata</code> from the AmP-website, while <code>AmPdata</code> is changing frequently.</li>
+      
       <li> you possibly want to edit a legend to recognize your species in plots.
-	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
+	Allthough the example templates like <a href="https://add-my-pet.github.io/DEBtool/lib/misc/html/legend_RSED.html" target="_top">legend_RSED</a>
+	are functions that fill a variable, it can be a variable directly.
+	Check the proper formulation of a legend with <a href="https://add-my-pet.github.io/DEBtool/lib/misc/html/shlegend.html" target="_top">shlegend</a>.</li>
+	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.
     </ul>
     Functions <code>shstat</code>, <code>read_stat</code>, <code>read_popStat</code> and <code>read_allStat</code> assume that
       the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
