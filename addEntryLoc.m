@@ -62,6 +62,7 @@ cdAmPdata; save('allStat.mat','allStat'); % write add_my_pet/AmPdata/popStat.mat
 
 try % prepare adding to popStat
   clear popStat; load popStat
+  par.reprodCode = metaData.ecoCode.reprod; par.genderCode = metaData.ecoCode.gender;
   [stat, Hfig_surv, Hfig_stab] = popStatistics_st(metaPar.model, par);
   popStat.(my_pet) = stat; popStat.(my_pet).T = metaData.T_typical; 
   popStat.(my_pet).model = metaPar.model; popStat.(my_pet).par = par; 
