@@ -1,7 +1,9 @@
 Rana_amurensis
 Rana_arvalis
 Rana_chensinensis
+Rana_dalmatina
 Rana_iberica
+Rana_italica
 Rana_latastei
 Rana_macrocnemis
 Rana_muscosa
