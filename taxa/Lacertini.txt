@@ -3,6 +3,7 @@ Apathya
 Darevskia
 Dinarolacerta
 Lacerta
+Parvilacerta
 Podarcis
 Takydromus
 Timon
