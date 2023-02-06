@@ -5,4 +5,5 @@ Dinarolacerta
 Lacerta
 Podarcis
 Takydromus
+Timon
 Zootoca
