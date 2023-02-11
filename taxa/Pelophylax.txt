@@ -1,5 +1,6 @@
 Pelophylax_bedriagae
 Pelophylax_caralitanus
+Pelophylax_chosenicus
 Pelophylax_epeiroticus
 Pelophylax_esculentus
 Pelophylax_lessonae
