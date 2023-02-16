@@ -275,6 +275,8 @@
     Customised legends can be composed by functions 
       <a href="../html/select_legend.html">select_legend</a>, <a href="../html/select_legend_eco.html">select_legend_eco</a> and 
       <a href="../html/select_llegend.html">select_llegend</a>.
+      Alternatively, you can copy the contents of a template, such as <a href="../legend_RSED.m">legend_RSED</a>, and edit it.
+      The result does not need to be a function; it can be just a variable in some function.
     The choice of possible taxa is restricted to the ones present in the lists-of-lists and that of eco-codes to the codes mentioned in 
       <a href = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>.
     Legends can be shown in a figure with DEBtool_M functions <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shlegend.html">shlegend</a> and 
@@ -313,6 +315,41 @@
     <p>
     Get a rapid overview of distributions of a number of (compound) parameters or statistics for selected taxa with <a href="../html/compare_taxa.html">compare_taxa</a>.
     Plot (compound) parameters or statistics as function of normalised taxonomic distance with (computation-time intensive) function <a href="../html/shstat_taxa.html">shstat_taxa</a>.
+    An example of the use of presentation tools of AmPtool is given in <a href="https://add-my-pet.github.io/AmPtool/mydata_Cephalopoda.m"><code>mydata_Cephalopoda</code></a>.
+    Several papers in the <a href="https://debportal.debtheory.org/docs/DEBpapers.html" target="_top">section Patterns in parameter values of the DEBpapers-page</a>
+    point to supporting information (SI) with code to create the figures of these papers as examples of the presentation capabilities of AmPtool.
+
+    <h3>Plotting with entries that are not (yet) in the AmP collection</h3>
+
+    Suppose that you have an entry locally, i.e. the file <code>results_my_pet.mat</code> that is created by <code>estim_pars</code>, but this entry is not yet in the collection and
+      you want to see how the implied traits relate to the ones in the collection.
+    Three actions need to take place in preparation
+    <ul>
+      <li> the species needs to be added to the lists-of-lists in <code>AmPtool/taxa</code>.
+	This means that the genus of your entry needs to be added to its family-list, if it is not already there, and your species needs to be added to the genus-list.
+	If the genus is also not already present, a new list for that genus needs to be created with your entry-name, which must have an underscore and no spaces.
+	Some large families have subfamilies, or even tribes, meaning that your genus might need to be added there, rather than in the family-list.
+	Likewise, if the family is not already in the lists-of-lists, it should be added to its order-list and a new family list should be created.
+	Each taxon above the species-level should occur exactly 2 times in the lists-of-lists, once as member of a higher taxon and once as name of its own list.
+	Check the successful addition to the lists-of-lists with function <a href="../html/pedigree.html"><code>pedigree</code></a>.
+	Notice that these edits go lost if you reload <code>AmPtool</code> from GitHub.</li>
+      
+      <li> your entry needs to be added to the local structures <code>allStat</code> and <code>popStat</code>.
+	This can be done by running <a href="https://add-my-pet.github.io/AmPtool/html/addEntryLoc.html" target="_top"><code>addEntryLoc</code></a>.
+	Make sure that your entry is added to the lists-of-lists before you run <code>addEntryLoc</code> and that the path to AmPdata has been set within Matlab.
+	The addition to allStat and popStat is done with the default temperature for allStat, namely <code>T_typical</code>, and food is abundant, <code>f=1</code>;
+	Use the entry-specific temperature correction factor, <code>c_T</code> and the temperature parameters, for other temperatures.
+	Check the successful addition to <code>allStat</code> with <code>load allStat; allStat.my_pet</code>, where <code>my_pet</code> is replaced by the name of your entry.
+	Notice that these edits go lost if you re-download <code>AmPdata</code> from the AmP-website, while <code>AmPdata</code> is changing frequently.</li>
+      
+      <li> you possibly want to edit a legend to recognize your species in plots.
+	Allthough the example templates like <a href="https://add-my-pet.github.io/AmPtool/legend_RSED.m" target="_top"><code>legend_RSED</code></a>
+	  are functions that fill a variable, it can be a variable directly.
+	Check the proper formulation of a legend with <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shlegend.html" target="_top"><code>shlegend</code></a>.
+	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
+    </ul>
+    Functions <code>shstat</code>, <code>read_stat</code>, <code>read_popStat</code> and <code>read_allStat</code> assume that
+      the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
 
     <h2 id="context">Linked websites</h2>
 

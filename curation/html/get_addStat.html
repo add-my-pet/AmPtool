@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_addStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="get_addStat.m"><style type="text/css">
+      --><title>get_addStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-01-28"><meta name="DC.source" content="get_addStat.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_addStat</h1><!--introduction--><p>adds all pars and stats to allStat.mat for specified entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="get_addStat"><b>get_addStat</b></a> (taxa, T, f)</p><h2 id="4">Description</h2><p>gets model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics of specified entries. Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.</p><p>Input:</p><div><ul><li>entries: cell string with taxa to be added</li><li>T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Output:</p><div><ul><li>allStat: structure with all parameters and statistics values</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Statistics are given at T_typical or T.</li><li>Meant to be used in combination with <a href="write_addStat.html"><b>write_addStat</b></a>, which checks presence in sister-directory entries.</li><li>See <a href="get_addStat.html"><b>get_addStat</b></a> for all entries of select.</li><li>The units and labels are given in AmPdata/allUnits and allLabel</li></ul></div><h2 id="6">Example of use</h2><p>see write_addStat</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>get_addStat</h1><!--introduction--><p>adds all pars and stats to allStat.mat for specified entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>allStat = <a href="get_addStat"><b>get_addStat</b></a> (taxa, T, f)</p><h2 id="4">Description</h2><p>gets model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics of specified entries. Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.</p><p>Input:</p><div><ul><li>entries: cell string with taxa to be added</li><li>T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Output:</p><div><ul><li>allStat: structure with all parameters and statistics values</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Data are extracted and added in <a href="addStat.html"><b>addStat</b></a></li><li>Meant to be used in combination with <a href="write_addStat.html"><b>write_addStat</b></a>, which checks presence in sister-directory entries.</li><li>The units and labels are given in AmPdata/allUnits and allLabel</li></ul></div><h2 id="6">Example of use</h2><p>see write_addStat</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% get_addStat
 % adds all pars and stats to allStat.mat for specified entries
@@ -94,9 +94,8 @@ function allStat = get_addStat(entries, T, f)
 % * allStat: structure with all parameters and statistics values
 
 %% Remarks
-% * Statistics are given at T_typical or T. 
+% * Data are extracted and added in <addStat.html *addStat*>
 % * Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
-% * See <get_addStat.html *get_addStat*> for all entries of select.
 % * The units and labels are given in AmPdata/allUnits and allLabel
 
 %% Example of use
@@ -122,69 +121,9 @@ function allStat = get_addStat(entries, T, f)
     for i = 1:ne
       cd (['../', entries{i}])
       fprintf([num2str(i), ': ', entries{i}, '\n']); % show progress on screen (takes some time)
-      load (['results_', entries{i}])
-      
-      % metaData
-      allStat.(entries{i}).species = metaData.species; 
-      allStat.(entries{i}).species_en = metaData.species_en; 
-      allStat.(entries{i}).family  = metaData.family;  
-      allStat.(entries{i}).order   = metaData.order;   
-      allStat.(entries{i}).class   = metaData.class;   
-      allStat.(entries{i}).phylum  = metaData.phylum;  
-      if isfield(metaData.links, 'id_CoL')
-        allStat.(entries{i}).id_CoL  = metaData.links.id_CoL; 
-      else
-        allStat.(entries{i}).id_CoL  = ''; 
-      end
-      allStat.(entries{i}).ecoCode.climate = metaData.ecoCode.climate; allStat.(entries{i}).units.ecoCode.climate = '-'; allStat.(entries{i}).label.ecoCode.climate = 'ecoCode climate';
-      allStat.(entries{i}).ecoCode.ecozone = metaData.ecoCode.ecozone; allStat.(entries{i}).units.ecoCode.ecozone = '-'; allStat.(entries{i}).label.ecoCode.ecozone = 'ecoCode ecozone';
-      allStat.(entries{i}).ecoCode.habitat = metaData.ecoCode.habitat; allStat.(entries{i}).units.ecoCode.habitat = '-'; allStat.(entries{i}).label.ecoCode.habitat = 'ecoCode habitat';
-      allStat.(entries{i}).ecoCode.embryo  = metaData.ecoCode.embryo;  allStat.(entries{i}).units.ecoCode.embryo  = '-'; allStat.(entries{i}).label.ecoCode.embryo  = 'ecoCode embryo';
-      allStat.(entries{i}).ecoCode.migrate = metaData.ecoCode.migrate; allStat.(entries{i}).units.ecoCode.migrate = '-'; allStat.(entries{i}).label.ecoCode.migrate = 'ecoCode migrate';
-      allStat.(entries{i}).ecoCode.food    = metaData.ecoCode.food;    allStat.(entries{i}).units.ecoCode.food    = '-'; allStat.(entries{i}).label.ecoCode.food    = 'ecoCode food';
-      allStat.(entries{i}).ecoCode.gender  = metaData.ecoCode.gender;  allStat.(entries{i}).units.ecoCode.gender  = '-'; allStat.(entries{i}).label.ecoCode.gender  = 'ecoCode gender';
-      allStat.(entries{i}).ecoCode.reprod  = metaData.ecoCode.reprod;  allStat.(entries{i}).units.ecoCode.reprod  = '-'; allStat.(entries{i}).label.ecoCode.reprod  = 'ecoCode reprod';
 
-      % data/model
-      allStat.(entries{i}).model = metaPar.model; 
-      allStat.(entries{i}).MRE = metaPar.MRE; 
-      allStat.(entries{i}).SMSE = metaPar.SMSE; 
-      allStat.(entries{i}).COMPLETE = metaData.COMPLETE; 
-      allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
-      allStat.(entries{i}).author = get_author(metaData); 
-      allStat.(entries{i}).date_acc = metaData.date_acc; 
-      allStat.(entries{i}).T_ref = par.T_ref;  
-      allStat.(entries{i}).T_typical = metaData.T_typical;  
-            
-      % parameters
-      coreParFields = get_parfields(metaPar.model, 1); % get coreParFileds, including chemical pars
-      par = rmfield_wtxt(par, 'free');   % remove substructure free from par
-      [nm, nst] = fieldnmnst_st(par);    % get number of parameter fields
-      for j = 1:nst % add core parameters at T_ref
-        if ismember(nm{j},coreParFields)
-          allStat.(entries{i}).(nm{j}) = par.(nm{j});
-        end
-        if isfield(par,'T_L')
-          allStat.(entries{i}).T_L = par.T_L; allStat.(entries{i}).T_AL = par.T_AL;
-        end
-        if isfield(par,'T_H') 
-          allStat.(entries{i}).T_H = par.T_H; allStat.(entries{i}).T_AH = par.T_AH;
-        end
-      end
-      
-      % statistics
-      allStat.(entries{i}).f = f; % overwrite scaled function response
-      if set_T == 0
-        [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
-      else
-        [stat, txtStat] = statistics_st(metaPar.model, par, T, f);
-      end
-      [nm, nst] = fieldnmnst_st(stat);    % get number of parameter fields
-      for j = 1:nst % add all statistis at T or T_typical
-        allStat.(entries{i}).(nm{j}) = stat.(nm{j});
-      end
+      allStat.(entries{i}).species = addStat(entries{i}); 
     end
-   
   catch 
     disp(['Warning from get_addStat: Statistics of entry ', entries{i},' could not be extracted'])
     keyboard

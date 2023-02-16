@@ -22,7 +22,7 @@ function popStat = write_popStat_loc(varargin)
 % * popStat: stucture with all population statistics of all entries
 
 %% Example of use
-% popStat = write_popStat;
+% popStat = write_popStat_loc;
 
   clear global
   

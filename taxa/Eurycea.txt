@@ -1,2 +1,6 @@
+Eurycea_bislineata
+Eurycea_longicauda
 Eurycea_lucifuga
+Eurycea_multiplicata
+Eurycea_quadridigitata
 Eurycea_tonkawae

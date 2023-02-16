@@ -1,3 +1,4 @@
-Varanus_komodoensis
 Varanus_bengalensis
 Varanus_juxtindicus
+Varanus_komodoensis
+Varanus_niloticus

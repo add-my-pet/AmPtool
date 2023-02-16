@@ -2,7 +2,7 @@
 % writes taxa.html with jpg's of nodes
 
 %%
-function prt_taxa_new
+function prt_taxa
 % created 2022/07/16 Bas Kooijman
 
 %% Syntax

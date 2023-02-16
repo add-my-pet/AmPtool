@@ -33,7 +33,7 @@ function prt_my_pet_pop(species, T, f, h_B, destinationFolder, AmP)
 %
 % Output:
 %
-% * no Malab output, but write files my_pet_pop.html, my_pet_pop_01.png, my_pet_pop_02.png and my_pet_pop.mat. 
+% * no Malab output, but writes files my_pet_pop.html, my_pet_pop_01.png, my_pet_pop_02.png and my_pet_pop.mat. 
 %   The html-file opens automatically in the system browser if AmP=0 (default)
 %
 %% Remarks
@@ -171,6 +171,7 @@ end
  
 % species: get statistics
 [stat, Hfig_surv, Hfig_stab] = popStatistics_st(model, par, T, f);
+%stat = popStatistics_st(model, par, T, f); % 2022/12/14 repair Y_VX
 % save statistics in structure popStat
 popStat.(species) = stat; popStat.(species).T = T; 
 popStat.(species).model = model; popStat.(species).par = par; 
@@ -405,8 +406,8 @@ end
 fprintf(oid, '      </TABLE>\n\n');
 
 % save figure, produced by popStatistics_st
-saveas (Hfig_surv,[destinationFolder, species, '_pop_01.png']);
-saveas (Hfig_stab,[destinationFolder, species, '_pop_02.png']);
+saveas (Hfig_surv,[destinationFolder, species, '_pop_01.png']); % 2022/12/14
+saveas (Hfig_stab,[destinationFolder, species, '_pop_02.png']); % 2022/12/14
 close all
 
 % remarks

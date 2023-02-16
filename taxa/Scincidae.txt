@@ -1,3 +1,6 @@
+Carinascincus
+Chioninia
+Ctenotus
 Eulamprus
 Tiliqua
 Egernia
@@ -5,3 +8,5 @@ Liopholis
 Chalcides
 Oligosoma
 Plestiodon
+Scincella
+Varzea

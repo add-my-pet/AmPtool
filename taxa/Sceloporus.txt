@@ -1,2 +1,9 @@
-Sceloporus_undulatus
+Sceloporus_graciosus
+Sceloporus_grammicus
+Sceloporus_jarrovii
+Sceloporus_magister
 Sceloporus_occidentalis
+Sceloporus_orcutti
+Sceloporus_spinosus
+Sceloporus_undulatus
+Sceloporus_virgatus

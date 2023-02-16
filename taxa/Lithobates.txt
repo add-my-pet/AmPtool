@@ -1,2 +1,6 @@
-Lithobates_sphenocephalus
+Lithobates_catesbeianus
+Lithobates_chiricahuensis
 Lithobates_clamitans
+Lithobates_septentrionalis
+Lithobates_sphenocephalus
+Lithobates_virgatipes

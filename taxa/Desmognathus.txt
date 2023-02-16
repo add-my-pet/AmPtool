@@ -1,3 +1,6 @@
-Desmognathus_ocoee
+Desmognathus_brimleyorum
+Desmognathus_fuscus
 Desmognathus_monticola
+Desmognathus_ochrophaeus
+Desmognathus_ocoee
 Desmognathus_quadramaculatus

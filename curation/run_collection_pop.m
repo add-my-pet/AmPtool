@@ -6,7 +6,7 @@ function run_collection_pop(varargin)
 % created 2016/11/13 Bas Kooijman and Starrlight Augustine; modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21 Bas Kooijman
 
 %% Syntax
-% <../run_collection.m *run_collection*> (varargin)
+% <../run_collection_pop.m *run_collection_pop*> (varargin)
 
 %% Description
 % Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip.
@@ -28,11 +28,11 @@ function run_collection_pop(varargin)
 % run_collection_intro to generate about and access files for the collection
 
 %% Example of use
-% run_collection or 
-% run_collection('Mola_mola') or
-% run_collection('Mola_mola', 'Molva_molva') or
-% run_collection({'Mola_mola', 'Molva_molva'}) or 
-% run_collection('Clitellata');
+% run_collection_pop or 
+% run_collection_pop('Mola_mola') or
+% run_collection_pop('Mola_mola', 'Molva_molva') or
+% run_collection_pop({'Mola_mola', 'Molva_molva'}) or 
+% run_collection_pop('Clitellata');
 
 if isempty(varargin)
   varargin = select('Animalia');
@@ -66,9 +66,9 @@ for i = 1:nargin
   %cd(WD)  % goto original path    
 
   % get reprodCode, which is used in prt_my_pet_pop
-  [~, ~, ~, ~, ~, ~, ~, reprodCode] = get_eco(varargin{i});
+  reprodCode = metaData.ecoCode.reprod;
   
-  mkdir(destinationFolder);
+  %mkdir(destinationFolder); 2022/12/14 repair Y_VX
   
   % print files
   %prt_my_pet_toolbar(metaData.species,metaData.species_en,metaData.date_acc, destinationFolder) % my_pet_toolbar.html

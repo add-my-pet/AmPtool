@@ -1,1 +1,4 @@
 Bombina_bombina
+Bombina_maxima
+Bombina_orientalis
+Bombina_variegata

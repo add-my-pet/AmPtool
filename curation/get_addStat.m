@@ -23,9 +23,8 @@ function allStat = get_addStat(entries, T, f)
 % * allStat: structure with all parameters and statistics values
 
 %% Remarks
-% * Statistics are given at T_typical or T. 
+% * Data are extracted and added in <addStat.html *addStat*>
 % * Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
-% * See <get_addStat.html *get_addStat*> for all entries of select.
 % * The units and labels are given in AmPdata/allUnits and allLabel
 
 %% Example of use
@@ -51,69 +50,9 @@ function allStat = get_addStat(entries, T, f)
     for i = 1:ne
       cd (['../', entries{i}])
       fprintf([num2str(i), ': ', entries{i}, '\n']); % show progress on screen (takes some time)
-      load (['results_', entries{i}])
-      
-      % metaData
-      allStat.(entries{i}).species = metaData.species; 
-      allStat.(entries{i}).species_en = metaData.species_en; 
-      allStat.(entries{i}).family  = metaData.family;  
-      allStat.(entries{i}).order   = metaData.order;   
-      allStat.(entries{i}).class   = metaData.class;   
-      allStat.(entries{i}).phylum  = metaData.phylum;  
-      if isfield(metaData.links, 'id_CoL')
-        allStat.(entries{i}).id_CoL  = metaData.links.id_CoL; 
-      else
-        allStat.(entries{i}).id_CoL  = ''; 
-      end
-      allStat.(entries{i}).ecoCode.climate = metaData.ecoCode.climate; allStat.(entries{i}).units.ecoCode.climate = '-'; allStat.(entries{i}).label.ecoCode.climate = 'ecoCode climate';
-      allStat.(entries{i}).ecoCode.ecozone = metaData.ecoCode.ecozone; allStat.(entries{i}).units.ecoCode.ecozone = '-'; allStat.(entries{i}).label.ecoCode.ecozone = 'ecoCode ecozone';
-      allStat.(entries{i}).ecoCode.habitat = metaData.ecoCode.habitat; allStat.(entries{i}).units.ecoCode.habitat = '-'; allStat.(entries{i}).label.ecoCode.habitat = 'ecoCode habitat';
-      allStat.(entries{i}).ecoCode.embryo  = metaData.ecoCode.embryo;  allStat.(entries{i}).units.ecoCode.embryo  = '-'; allStat.(entries{i}).label.ecoCode.embryo  = 'ecoCode embryo';
-      allStat.(entries{i}).ecoCode.migrate = metaData.ecoCode.migrate; allStat.(entries{i}).units.ecoCode.migrate = '-'; allStat.(entries{i}).label.ecoCode.migrate = 'ecoCode migrate';
-      allStat.(entries{i}).ecoCode.food    = metaData.ecoCode.food;    allStat.(entries{i}).units.ecoCode.food    = '-'; allStat.(entries{i}).label.ecoCode.food    = 'ecoCode food';
-      allStat.(entries{i}).ecoCode.gender  = metaData.ecoCode.gender;  allStat.(entries{i}).units.ecoCode.gender  = '-'; allStat.(entries{i}).label.ecoCode.gender  = 'ecoCode gender';
-      allStat.(entries{i}).ecoCode.reprod  = metaData.ecoCode.reprod;  allStat.(entries{i}).units.ecoCode.reprod  = '-'; allStat.(entries{i}).label.ecoCode.reprod  = 'ecoCode reprod';
 
-      % data/model
-      allStat.(entries{i}).model = metaPar.model; 
-      allStat.(entries{i}).MRE = metaPar.MRE; 
-      allStat.(entries{i}).SMSE = metaPar.SMSE; 
-      allStat.(entries{i}).COMPLETE = metaData.COMPLETE; 
-      allStat.(entries{i}).data = [metaData.data_0(:); metaData.data_1(:)]; 
-      allStat.(entries{i}).author = get_author(metaData); 
-      allStat.(entries{i}).date_acc = metaData.date_acc; 
-      allStat.(entries{i}).T_ref = par.T_ref;  
-      allStat.(entries{i}).T_typical = metaData.T_typical;  
-            
-      % parameters
-      coreParFields = get_parfields(metaPar.model, 1); % get coreParFileds, including chemical pars
-      par = rmfield_wtxt(par, 'free');   % remove substructure free from par
-      [nm, nst] = fieldnmnst_st(par);    % get number of parameter fields
-      for j = 1:nst % add core parameters at T_ref
-        if ismember(nm{j},coreParFields)
-          allStat.(entries{i}).(nm{j}) = par.(nm{j});
-        end
-        if isfield(par,'T_L')
-          allStat.(entries{i}).T_L = par.T_L; allStat.(entries{i}).T_AL = par.T_AL;
-        end
-        if isfield(par,'T_H') 
-          allStat.(entries{i}).T_H = par.T_H; allStat.(entries{i}).T_AH = par.T_AH;
-        end
-      end
-      
-      % statistics
-      allStat.(entries{i}).f = f; % overwrite scaled function response
-      if set_T == 0
-        [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
-      else
-        [stat, txtStat] = statistics_st(metaPar.model, par, T, f);
-      end
-      [nm, nst] = fieldnmnst_st(stat);    % get number of parameter fields
-      for j = 1:nst % add all statistis at T or T_typical
-        allStat.(entries{i}).(nm{j}) = stat.(nm{j});
-      end
+      allStat.(entries{i}) = addStat(entries{i}); 
     end
-   
   catch 
     disp(['Warning from get_addStat: Statistics of entry ', entries{i},' could not be extracted'])
     keyboard

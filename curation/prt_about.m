@@ -53,12 +53,19 @@ saveas (gca, [path, 'pie_model.png'])
 close all
 
 % # of entries in time
+dates_subm = get_date_subm;
+surv_dates_subm = [0 2009 ; surv(dates_subm, 2009)]; 
+surv_dates_subm([end - 1; end],:) = [];    
+n_subm = size(surv_dates_subm, 1)/2 - 2;
+plot(surv_dates_subm(:,1), n_subm * (1 - surv_dates_subm(:,2)), 'b', 'Linewidth', 2)
+hold on
+%
 [dates, entries_new, dates_new] = get_date_acc;
 surv_dates = [0 2009 ; surv(dates, 2009)]; 
 surv_dates([end - 1; end],:) = [];    
 n = size(surv_dates, 1)/2 - 2;
 %    
-plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
+plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'r', 'Linewidth', 2)
 set(gca, 'FontSize', 15, 'Box', 'on')
 xlabel('time, yr')
 ylabel('# of AmP entries')
@@ -208,6 +215,7 @@ fprintf(fid_about, '        and predict un-measured properties of species as fun
 fprintf(fid_about, '      <p>\n');
 fprintf(fid_about, '      Apart from extant species, the collection also has a number of extinct ones, demonstrating that DEB models can still be applied if data availability is poor.\n');
 fprintf(fid_about, '      Examples are: \n');
+fprintf(fid_about, '        <a href="entries_web/Chioninia_coctei/Chioninia_coctei_res.html">giant skink</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Deinosuchus_rugosus/Deinosuchus_rugosus_res.html">Deinosuchus</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Pterodaustro_guinazui/Pterodaustro_guinazui_res.html">Pterodaustro</a>,\n');
 fprintf(fid_about, '        <a href="entries_web/Tyrannosaurus_rex/Tyrannosaurus_rex_res.html">Tyrannosaurus</a>,\n');
@@ -262,7 +270,8 @@ fprintf(fid_about, '      <div class="sidelement">\n');
 fprintf(fid_about, '        <img src="img/about/entries.png" width="350px">\n');
 fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          The Add-my-Pet collection started at 2009/02/12 as part of the \n');
-fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.<br>\n');
+fprintf(fid_about, '          <A href="AmP@DEB2021.html" target="_blank">DEB course</A>.\n');
+fprintf(fid_about, '          Dates of <font color="blue">first submission</font> and <font color="red">latest modification</font> are shown.<br>\n');
 fprintf(fid_about, '        </div>\n');
 fprintf(fid_about, '      </div>\n\n');
     

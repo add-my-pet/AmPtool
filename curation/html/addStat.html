@@ -1,0 +1,180 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>addStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-01-28"><meta name="DC.source" content="addStat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>addStat</h1><!--introduction--><p>adds all pars and stats to allStat.mat for a specified entry</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>my_pet_st = <a href="addStat"><b>addStat</b></a> (my_pet, T, f)</p><h2 id="4">Description</h2><p>gets model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics of a specified entry using results_my_pet.mat. Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.</p><p>Input:</p><div><ul><li>my_pet: string with name of entry to be added to allStat</li><li>T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)</li><li>f: optional scalar with scaled functional response (default 1)</li></ul></div><p>Output:</p><div><ul><li>my_pet_st: structure with all parameters and statistics values for my_pet</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>Statistics are given at T_typical or T.</li><li>Meant to be used in combination with <a href="write_addStat.html"><b>write_addStat</b></a>, which checks presence in sister-directory entries.</li><li>See <a href="get_addStat.html"><b>get_addStat</b></a> for all entries of select.</li><li>The units and labels are given in AmPdata/allUnits and allLabel</li></ul></div><h2 id="6">Example of use</h2><p>see write_addStat</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% addStat
+% adds all pars and stats to allStat.mat for a specified entry
+
+%%
+function my_pet_st = addStat(my_pet, T, f)
+% created 2023/01/27 by Bas Kooijman
+
+%% Syntax
+% my_pet_st = <addStat *addStat*> (my_pet, T, f)
+
+%% Description
+% gets model, MRE, SMSE, CLOMPLETE, author, date_subm, date_acc, all parameters and statistics of a specified entry using results_my_pet.mat.
+% Parameters are always expressed at T_ref, i.e. C2K(20), irrespective of input T.
+%
+% Input:
+%
+% * my_pet: string with name of entry to be added to allStat
+% * T: optional scalar with body temperature in Kelvin for ststistics (default T_typical, which is entry-specific)
+% * f: optional scalar with scaled functional response (default 1)
+%
+% Output:
+% 
+% * my_pet_st: structure with all parameters and statistics values for my_pet
+
+%% Remarks
+% * Statistics are given at T_typical or T. 
+% * Meant to be used in combination with <write_addStat.html *write_addStat*>, which checks presence in sister-directory entries.
+% * See <get_addStat.html *get_addStat*> for all entries of select.
+% * The units and labels are given in AmPdata/allUnits and allLabel
+
+%% Example of use
+% see write_addStat
+  
+  if ~exist('T', 'var') || isempty(T)
+    set_T = 0; % identifier for temperature setting
+  else 
+    set_T = 1;
+  end
+ 
+  if ~exist('f', 'var') || isempty(f) 
+    f = 1;
+  end
+
+  load (['results_', my_pet])
+      
+  % metaData
+  my_pet_st.species = metaData.species; 
+  my_pet_st.species_en = metaData.species_en; 
+  my_pet_st.family  = metaData.family;  
+  my_pet_st.order   = metaData.order;   
+  my_pet_st.class   = metaData.class;   
+  my_pet_st.phylum  = metaData.phylum;  
+  if isfield(metaData.links, 'id_CoL')
+    my_pet_st.id_CoL  = metaData.links.id_CoL; 
+  else
+    my_pet_st.id_CoL  = ''; 
+  end
+  my_pet_st.ecoCode.climate = metaData.ecoCode.climate; 
+  my_pet_st.ecoCode.ecozone = metaData.ecoCode.ecozone; 
+  my_pet_st.ecoCode.habitat = metaData.ecoCode.habitat; 
+  my_pet_st.ecoCode.embryo  = metaData.ecoCode.embryo;  
+  my_pet_st.ecoCode.migrate = metaData.ecoCode.migrate; 
+  my_pet_st.ecoCode.food    = metaData.ecoCode.food;    
+  my_pet_st.ecoCode.gender  = metaData.ecoCode.gender;  
+  my_pet_st.ecoCode.reprod  = metaData.ecoCode.reprod;
+
+  % data/model
+  my_pet_st.model = metaPar.model; 
+  my_pet_st.MRE = metaPar.MRE; 
+  my_pet_st.SMSE = metaPar.SMSE; 
+  my_pet_st.COMPLETE = metaData.COMPLETE; 
+  my_pet_st.data = [metaData.data_0(:); metaData.data_1(:)]; 
+  my_pet_st.author = get_author(metaData); 
+  my_pet_st.date_subm = metaData.date_subm; 
+  my_pet_st.date_acc = metaData.date_acc; 
+  my_pet_st.T_ref = par.T_ref;  
+  my_pet_st.T_typical = metaData.T_typical;  
+            
+  % parameters
+  coreParFields = get_parfields(metaPar.model, 1); % get coreParFileds, including chemical pars
+  par = rmfield_wtxt(par, 'free');   % remove substructure free from par
+  [nm, nst] = fieldnmnst_st(par);    % get number of parameter fields
+  for j = 1:nst % add core parameters at T_ref
+    if ismember(nm{j},coreParFields)
+      my_pet_st.(nm{j}) = par.(nm{j});
+    end
+    if isfield(par,'T_L')
+      my_pet_st.T_L = par.T_L; my_pet_st.T_AL = par.T_AL;
+    end
+    if isfield(par,'T_H') 
+      my_pet_st.T_H = par.T_H; my_pet_st.T_AH = par.T_AH;
+    end
+  end
+      
+  % statistics
+  my_pet_st.f = f; % overwrite scaled function response
+  if set_T == 0
+    [stat, txtStat] = statistics_st(metaPar.model, par, metaData.T_typical, f);
+  else
+    [stat, txtStat] = statistics_st(metaPar.model, par, T, f);
+  end
+  [nm, nst] = fieldnmnst_st(stat);    % get number of parameter fields
+  for j = 1:nst % add all statistis at T or T_typical
+    my_pet_st.(nm{j}) = stat.(nm{j});
+  end
+end
+
+##### SOURCE END #####
+--></body></html>
