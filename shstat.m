@@ -90,16 +90,14 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       case 1
         [val entries units label] = read_allStat(vars{1});
         units_x = units{1}; label_x = label{1}; 
-        n_entries = length(entries); 
       case 2
         [val entries units label] = read_allStat(vars{1},vars{2});
         units_x = units{1}; units_y = units{2}; label_x = label{1}; label_y = label{2};
-        n_entries = length(entries); 
       case 3
         [val entries units label] = read_allStat(vars{1},vars{2},vars{3});
-        units_x = units{1}; units_y = units{2}; units_z = units{3}; label_x = label{1}; label_y = label{2}; label_z = label{3};
-        n_entries = length(entries); 
+        units_x = units{1}; units_y = units{2}; units_z = units{3}; label_x = label{1}; label_y = label{2}; label_z = label{3};       
     end
+    n_entries = length(entries); 
   end
 
   % compose selection matrix, missing entries
@@ -285,10 +283,10 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         for j = 1:n_taxa
           i = n_taxa - j + 1; % reverse sequence of plotting to get crossings of lines natural
           line = legend{i,1}; LT = line{1}; LW = line{2}; LC = line{3};  
-          x_median = median(val_plot(sel(:,i)==1,1)); x_min = min(val_plot(sel(:,i)==1,1));
+          x_median = median(val_plot(sel(:,i)==1,1)); x_min = min(val_plot(sel(:,i)==1,1)');
           surv_x = surv(val_plot(sel(:,i)==1, 1)); 
-          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color', LC, 'Linewidth', 1.5, 'LineStyle', ':')
-          plot(surv_x(:,1), surv_x(:,2), LT, 'Color', LC, 'Linewidth', LW, 'LineStyle', '-')
+          plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color',LC, 'Linewidth',1.5, 'LineStyle',':')
+          plot(surv_x(:,1), surv_x(:,2), LT, 'Color',LC, 'Linewidth',LW, 'LineStyle','-')
           xlim_min = min(xlim_min,min(surv_x(:,1))); 
         end
         xlim([xlim_min inf])
