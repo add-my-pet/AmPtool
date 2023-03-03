@@ -47,7 +47,6 @@
 	
 	<img src="img/collection_amptool.png" alt="screen shot of webpage where AmPdata can be dowloaded" width="600" >
 	
-	
     Notice that the date the data was written into the AmPdata files is specified. 
 	AmPdata is stored as a zip-file which when you extract locally on your device contains four files: 
 	<ol start="4">
@@ -141,13 +140,21 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 		[model, nms] = read_allStat('model'); nms(strcmp('std', model))
 	</code></pre>
 	
-
+	<p>
+	Some further examples of code to try:
+	<pre><code class="matlab">
+		prt_tab({select('Daphniidae'),read_stat(select('Daphniidae'),{'p_M','R_i'})},{'species','[p_M]','R_i'}) % outputs a table with selected properties of selected species to html format
+		prt_tab({select('Daphniidae'),read_stat(select('Daphniidae'),{'p_M','R_i'})}) % outputs same table without headers
+		read_stat(select('Daphniidae'),{'p_M','R_i'}) % outputs to matlab console, no species names printed, just numbers
+		read_stat('Daphnia_magna','p_M') % outputs spec maintenance for D. magna to console
+	</code></pre>
+	
     <p>
     Subfields <b>ecoCode</b> in <code>allStat</code> specifies climate, ecozone, habitat, embryo environment, 
       migration/torpor, food, gender and reproduction mode for each entry.
     The codes are explained in <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>, assigned in the mydata-files.
     All functions that analyse eco-codes use function 
-      <a href="../html/read_allEco.html">read_allEco</a> or <a href="../html/read_eco.html">read_eco</a>.
+      <a href="../html/read_allEco.html"><code>read_allEco</code></a> or <a href="../html/read_eco.html"><code>read_eco</code></a>.
    
     <p>
     <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
