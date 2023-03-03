@@ -157,9 +157,9 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       <a href="../html/read_allEco.html"><code>read_allEco</code></a> or <a href="../html/read_eco.html"><code>read_eco</code></a>.
    
     <p>
-    <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/prt_report_my_pet.html">prt_report_my_pet</a> can be used to get parameters and 
+    <a href="http://add-my-pet.github.io/DEBtool_M/lib/pet/html/prt_report_my_pet.html"><code>prt_report_my_pet</code></a> can be used to get parameters and 
       implied traits for specific entries.
-    <code>prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars"
+    <code class="matlab">prt_report_my_pet('Daphnia_magna');</code> will open an htlm-page in your browser, that allows for searching of traits and has the option "short/medium/long/pars"
       to reduce the length of the table.
     The "implied traits"-pages on the AmP-website present a subset of the shown list (but has no searching facilities).
     The function reads parameters in <code>allStat</code> and specifies scaled functional response and temperature for each trait.
@@ -168,7 +168,7 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
     In this application the data is not read from <code>allStat</code>, but computed from parameters, using the same routines that were used to obtain <code>allStat</code>.
     This is handy for checking that a particular parameter combination is yes or no realistic.
     With <code>estim_options('results_output', 5);</code>, related species are included in the report to compare parameters and implied traits.
-    These related species in the collection are identified with function <a href="../html/clade.html">clade</a> (see below), and if two or more related species are found, 
+    These related species in the collection are identified with function <a href="../html/clade.html"><code>clade</code></a> (see below), and if two or more related species are found, 
       color coding is applied to highlight eccentricity of values.
     The selection of "related" species can be specified in the run-file explicitly by declaring global variable <code>refPets</code> and filling it with a cell-string of AmP-species names.
     Variable <code>refPets</code> is only used if results_output level is 5 or higher.
@@ -196,22 +196,22 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/species_tree_Animalia.html">species-tree</a> is composed from this tree.
 
     <p>
-    Compose your own interactive tree with <a href="../html/treeview_taxa.html">treeview_taxa</a>, with any node as root, 
-      including pictures on the nodes and links on the leaves, if you are web-connected, e.g. <code>treeview_taxa('Crustacea')</code>.
+    Compose your own interactive tree with <a href="../html/treeview_taxa.html"><code>treeview_taxa</code></a>, with any node as root, 
+      including pictures on the nodes and links on the leaves, if you are web-connected, e.g. <code class="matlab">treeview_taxa('Crustacea')</code>.
     It can also show the distribution of some statistic, i.e. parameter or implied trait, among the taxa in the (small) tree with background colour gradients.
     This statistic can be symbolic, with a name matching some field in <code>allStat</code>, or numeric, e.g. computed from values in <code>allStat</code>: 
       <code>treeview_taxa('Cladocera', 'kap')</code>.
-    Function <a href="../html/select_taxon.html">select_taxon</a> let you choose a taxon from a list of all possibilities.
+    Function <a href="../html/select_taxon.html"><code>select_taxon</code></a> let you choose a taxon from a list of all possibilities.
     If you are not sure about the possible nodes, or want to avoid spelling errors: 
-      <code>treeview_taxa(select_taxon('Arthropoda', 5))</code> let you choose from all arthropod orders.
+    <pre>  <code class="matlab">treeview_taxa(select_taxon('Arthropoda', 5))</code></pre> lets you choose from all arthropod orders.
 
     <p>
-    The tree can be read in the direction from leaves to root with the function <a href="../html/lineage.html">lineage</a>,
-      and in the direction from root to leaves with the function <a href="../html/pedigree.html">pedigree</a>. 
+    The tree can be read in the direction from leaves to root with the function <a href="../html/lineage.html"><code>lineage</code></a>,
+      and in the direction from root to leaves with the function <a href="../html/pedigree.html"><code>pedigree</code></a>. 
     The default input of pedigree is the root Animalia, but can also be any node, which becomes the root of the output-tree.
     The (character) string produced by pedigree can directly be printed to the screen, which is useful for small trees. 
     The tree can be used to identify useful taxa for analysis.
-    The function <a href="../html/galleryAmP.html">galleryAmP('Cephalopoda')</a> composes a gallery of pictures for taxon Cephalopoda (in this case); 
+    The function <a href="../html/galleryAmP.html"><code>galleryAmP('Cephalopoda')</code></a> composes a gallery of pictures for taxon Cephalopoda (in this case); 
     clicking on a picture opens the tree at the seleted taxon.
 
     <p>
@@ -248,40 +248,44 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 
     A motivation for this type of selection could be to study evolutionary adaptations of parameter values and implied traits.
     Inclusion of very unrelated species in plots of traits typically results in a blurr that is not very informative.  
-    Selection of entries via the tree is done with the functions <a href="../html/select.html">select</a> and <a href="../html/select_01.html">select_01</a>.
+    Selection of entries via the tree is done with the functions <a href="../html/select.html"><code>select</code></a> and <a href="../html/select_01.html"><code>select_01</code></a>.
     Select returns a cell-string with names of selected entries, <code>select_01</code> a vector of booleans and a cell-string with the names of all entries.
     Notice that <code>allStat</code> and the lists-of-lists change continuously, so do the results of <code>select</code> and <code>select_01</code>.
     
     <p>
-    Function <a href="../html/clade.html">clade</a> finds the lowest taxon (= node in the tree) that contains a set of specified taxa, and all its members at exist in the collection.
+    Function <a href="../html/clade.html"><code>clade</code></a> finds the lowest taxon (= node in the tree) that contains a set of specified taxa, and all its members at exist in the collection.
     It combines functions <code>lineage</code> and <code>pedigree</code> and can also be used to find the closest relatives of a single specified taxon.
     If a species is not found in the AmP collection, 
     it searches the <a href="http://www.catalogueoflife.org/">Catalog of Life</a> and <a href="http://taxonomicon.taxonomy.nl/">the Taxonomicon</a> for lineages, 
-    with functions <a href="../html/lineage_CoL.html">lineage_CoL</a> and <a href="../html/lineage_Taxo.html">lineage_Taxo</a> and 
+    with functions <a href="../html/lineage_CoL.html"><code>lineage_CoL</code></a> and <a href="../html/lineage_Taxo.html"><code>lineage_Taxo</code></a> and 
     presents the AmP species that are most related.
 
     <p>
-    Print (compound) parameters or statistics of selected entries to screen with <a href="../html/prtStat.html">prtStat</a>, or, 
-      including the tree-structure, with <a href="../html/pedigree.html">pedigree</a>.
-    Use <a href="../html/clade.html">clade</a> to select related entries and catenate with prtStat by e.g. <code>prtStat(clade('Lemmus_trimucronatus'),'p_M');</code>.<br>
-    Include the tree as well by e.g. <code>[~, taxon] = clade('Lemmus_trimucronatus'); pedigree(taxon,'p_M')</code>.
+    Print (compound) parameters or statistics of selected entries to screen with <a href="../html/prtStat.html"><code>prtStat</code></a>, or, 
+      including the tree-structure, with <a href="../html/pedigree.html"><code>pedigree</code></a>.
+    Use <a href="../html/clade.html"><code>clade</code></a> to select related entries and catenate with prtStat by e.g. 
+	<pre><code class = "matlab">prtStat(clade('Lemmus_trimucronatus'),'p_M');
+	</code></pre><br>
+    Include the tree as well by e.g. 
+	<pre><code class = "matlab">[~, taxon] = clade('Lemmus_trimucronatus'); pedigree(taxon,'p_M')</code></pre>
 
     <h4>Selection on eco-codes</h4>
 
     A motivation for this type of selection could be to study ecological adaptations of parameter values.
     Selection on eco-codes is done with function <a href="../html/select_eco.html">select_eco</a>. 
     It allows selection for a single variable, and multiple codes in OR mode.
-    Selection of all (terrestrial and marine) Antarctic species is done with <code>select_eco('ecozone', {'MS','TS'})</code>.
+    Selection of all (terrestrial and marine) Antarctic species is done with <code class = "matlab">select_eco('ecozone', {'MS','TS'})</code>.
     Apart from the names of the entries, it returns selection identifiers (booleans) for the whole collection, allowing to combine the result with multiple calls to this function.
     For example all species in the collection that eat invertebrates (in some stage) and occur in the North-Atlantic are found with: 
       <code>[nm, s1]=select_eco('food',{'Ci'}); [nm,s2]=select_eco('ecozone',{'MAN'}); nm=select; nm(s1&s2)</code>.
     While food-code <code>Cim</code> selects for feeding on molluscs, entries with code <code>Ci</code> will not be selected, but some of them might eat molluscs as well.
     In reverse, entries with code <code>Cim</code> will be selected if <code>Ci</code> is specified, due to the hierarchical nature of the coding system.
-    Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../html/read_stat.html">read_stat</a>: 
+    Codes for one particular entry <code>my_pet</code> can be extracted with function <a href="../html/read_stat.html"><code>read_stat</code></a>: 
       <code>eco = read_stat({my_pet}, 'ecoCode'); eco{1}</code>.
     Possible variables and codes are given on the <a href="http://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html" target="_blank">AmP ecology page</a>.
     Although the codes for food and habitat have stage-identifiers, they are presently not used in <code>select_eco</code>.
-    Print, e.g. the value of reproduction efficiency <code>kap_R</code> for all entries that are simultaneous hermaphrodite: <code>prtStat(select_eco('gender','Hh'),'kap_R');</code>
+    Print, e.g. the value of reproduction efficiency <code>kap_R</code> for all entries that are simultaneous hermaphrodite: 
+	<pre><code class = "matlab">prtStat(select_eco('gender','Hh'),'kap_R');</code></pre>
     
     <h4>Selection on data types that were used for estimation</h4>
 
@@ -291,31 +295,39 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       <a href="../html/select_data.html">select_data</a>.
     This selection can be restricted to particular <a href="http://www.debtheory.org/wiki/index.php?title=Typified_models">typified models</a>, 
       which can be handy for preparing a predict-file for a new species, and for linking parameter values to source data types.
-    The Matlab expression <code>prtStat(select_data({'t-Le','Wwb'},'std'),'v');</code> prints entry names and their values for the energy conductance at 20 C 
+    The Matlab expression 
+	<pre><code class="matlab">prtStat(select_data({'t-Le','Wwb'},'std'),'v');</code></pre> 
+	prints entry names and their values for the energy conductance at 20 C 
       for all entries with standard (std) models that have the data time-length for embryos as well as wet weight at birth. 
 
     <h4>Selection on strings in mydata and predict files</h4>
 
      A motivation for this type of selection could be the question 'which entries have a changing (scaled) function response in time' and 
        which of these entries have  males and females with different parameters)? 
-     The answer involves <a href="../html/select_predict.html">select_predict</a>, using the knowlegde that such predict files make use of 
+     The answer involves <a href="../html/select_predict.html"><code>select_predict</code></a>, using the knowlegde that such predict files make use of 
        the string 'f = spline1(t, tf)' and 'male', respectively. 
-     The required code is <code>[species, nm] = select_predict('f = spline1(t, tf)'); select_predict(nm, 'males')</code>. 
+     The required code is
+    <pre><code class="matlab">[species, nm] = select_predict('f = spline1(t, tf)'); select_predict(nm, 'males')</code></pre> 
      Notice that the default first argument of <code>select_predict</code> is absent in the first call (so 'Animalia' is assumed), but present in the second call. 
-     Similarly, <a href="../html/select_mydata.html">select_mydata</a> can be used for mydata files, e.g. to search for particular authors in references.
+     Similarly, <a href="../html/select_mydata.html"><code>select_mydata</code></a> can be used for mydata files, e.g. to search for particular authors in references.
 
     <h4>Selection in general</h4>
 
     A general multi-step way of selecting entries on the basis of a variety of criteria is, e.g. mammals that have a <code>COMPLETE</code> score larger than 2.6: 
-      <code>[sel_M,nm]=select_01('Mammalia');sel_C=read_allStat('COMPLETE')>2.6;nm=nm(sel_M&sel_C)</code>.
-    Plot for those entries e.g. energy conductance as function of specific somatic maintenance <code>pM_v=read_stat(nm,'p_M','v')</code> with: 
-      <code>Hfig=figure(1);plot(pM_v(:,1),pM_v(:,2),'or');</code>. 
+      <pre><code class="matlab">[sel_M,nm]=select_01('Mammalia');sel_C=read_allStat('COMPLETE')>2.6;nm=nm(sel_M&sel_C)</code></pre>
+    Plot for those entries e.g. energy conductance as function of specific somatic maintenance <code class="matlab">pM_v=read_stat(nm,'p_M','v')</code> with: 
+      <code class="matlab">Hfig=figure(1);plot(pM_v(:,1),pM_v(:,2),'or');</code>. 
     See entry names by clicking on points in this figure with: 
-      <code>h=datacursormode(Hfig);h.UpdateFcn=@(obj,event_obj)xylabels(obj,event_obj,nm,pM_v);datacursormode on</code>.
+      <code class= "matlab">h=datacursormode(Hfig);h.UpdateFcn=@(obj,event_obj)xylabels(obj,event_obj,nm,pM_v);datacursormode on</code>.
     Select terrestrial Arthropods with <code>[sel_A nm]=select_01('Arthropoda'); [~,sel_T]=select_eco('habitat','T'); nm(sel_A&sel_T)</code>.
     (Notice that the stage-codes are not used in the selection, and that the result includes species that combine terrestrial with aquatic life stages.)
-    Select North American freshwater fish with <code>[sel_P,nm]=select_01('Pisces'); [~,sel_TH]=select_eco('ecozone','TH'); [~,sel_THp]=select_eco('ecozone','THp');
-    nm=nm(sel_P&sel_TH&~sel_THp)</code>. 
+    Select North American freshwater fish with 
+	<pre><code class="matlab">
+	[sel_P,nm]=select_01('Pisces'); 
+	[~,sel_TH]=select_eco('ecozone','TH'); 
+	[~,sel_THp]=select_eco('ecozone','THp');
+    nm=nm(sel_P&sel_TH&~sel_THp)
+	</code></pre> 
     (Notice that the holarctic, <code>TH</code>, comprises the palearctic, <code>THp</code>, and the nearctic, <code>THn</code>.
     Selection for nearctic species would miss the holarctic ones. 
     Although Pisces is not a clade (= natural taxon), so not a node in the tree, it can serve handy functions.)
@@ -323,11 +335,14 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       the three types of selection can be combined.
 
     <p>
-    <a href="../html/select_mydata.html">select_mydata</a> and <a href="../html/select_predict.html">select_predict</a> have selection-booleans as
+    <a href="../html/select_mydata.html"><code>select_mydata</code></a> and <a href="../html/select_predict.html"><code>select_predict</code></a> have selection-booleans as
        third output, which can be used for more advanced and/or conditions. 
     The code for answering the question 'which birds have males different from females or varying body temperature during development' could read
-       <code>[x,nm,sel_m]=select_predict('Aves','male'); [x,nm,sel_T]=select_predict(nm,'del_l'); nm(sel_m|sel_T)</code>.
-    
+       <pre><code class="matlab">
+	   [x,nm,sel_m]=select_predict('Aves','male'); 
+	   [x,nm,sel_T]=select_predict(nm,'del_l'); 
+	   nm(sel_m|sel_T)
+	   </code></pre>
 
     <H2 id="legend">Legend exploits selections</H2>
 
@@ -338,18 +353,45 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
     A (marker) legend is a (n,2)-array of cells specifiying markers and taxa (= nodes and/or leaves as character strings) or eco-codes (as cell strings).
     A line legend, called <code>llegend</code>,  does this for lines and taxa; it is used for 1-variate data, e.g. survivor functions.
     Several legends are available as input-free functions that output the required cell-array, 
-      such as <a href="../html/legend_RSED.html">legend_RSED</a> and <a href="../html/legend_fish.html">legend_fish</a>.
+      such as <a href="../html/legend_RSED.html"><code>legend_RSED</code></a> and <a href="../html/legend_fish.html"><code>legend_fish</code></a>.
     Customised legends can be composed by functions 
-      <a href="../html/select_legend.html">select_legend</a>, <a href="../html/select_legend_eco.html">select_legend_eco</a> and 
-      <a href="../html/select_llegend.html">select_llegend</a>.
-      Alternatively, you can copy the contents of a template, such as <a href="../legend_RSED.m">legend_RSED</a>, and edit it.
+      <a href="../html/select_legend.html"><code>select_legend</code></a>, <a href="../html/select_legend_eco.html"><code>select_legend_eco</code></a> and 
+      <a href="../html/select_llegend.html"><code>select_llegend</code></a>.
+      Alternatively, you can copy the contents of a template, such as <a href="../legend_RSED.m"><code>legend_RSED</code></a>, and edit it.
       The result does not need to be a function; it can be just a variable in some function.
     The choice of possible taxa is restricted to the ones present in the lists-of-lists and that of eco-codes to the codes mentioned in 
       <a href = "https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPeco.html">AmPeco</a>.
-    Legends can be shown in a figure with DEBtool_M functions <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shlegend.html">shlegend</a> and 
+    Legends can be shown in a figure with DEBtool_M functions <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shlegend.html"><code>shlegend</code></a> and 
     <a href="https://add-my-pet.github.io/DEBtool_M/lib/misc/html/shllegend.html">shllegend</a>.
-    Please notice that the sequence of rows of marker legends matters, see <a href="../html/shstat.html">shstat</a>;
+    Please notice that the sequence of rows of marker legends matters, see <a href="../html/shstat.html"><code>shstat</code></a>;
       this is a consequence of the fact that one taxon can contain another one.
+
+   
+	Here are three examples of legends that are set in code:
+<pre><code class="matlab">
+legend = {...
+    {'o', 8, 3, [0 0 0], [1 1 1]}, 'Cyclostomata'; ...
+    {'o', 8, 3, [0 0 1], [1 1 1]}, 'Chondrichthyes'; ....
+    {'o', 8, 3, [1 0 0], [1 1 1]}, 'Actinopterygii'; ....
+    {'o', 8, 3, [1 0 1], [1 1 1]}, 'Latimeria'; ....
+    {'o', 8, 3, [0.5 0 0.5], [1 1 1]}, 'Dipnoi'; ....
+    {'.', 8, 3, [0 0 0], [1 1 1]}, 'vertebrata'; ....
+  };
+
+  llegend = {...
+    {'-', 2, [0 0 0]}, 'Cyclostomata'; ....
+    {'-', 2, [0 0 1]}, 'Chondrichthyes'; ....
+    {'-', 2, [1 0 0]}, 'Actinopterygii'; ....
+    {'-', 2, [1 0 1]}, 'Latimeria'; ....
+    {'-', 2, [0.5 0 0.5]}, 'Dipnoi'; ....
+  };
+
+  llegend_CAA = {...
+    {'-', 2, [0 0 0]}, 'Animalia'; ....
+    {'-', 2, [0 1 0]}, 'Chondrichthyes'; ....
+    {'-', 2, [1 0 0]}, 'Actinopterygii'; ....
+  };
+</code></pre>
 
     <H2 id="plotting">
       Spotting patterns in data with legend
