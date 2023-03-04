@@ -3,7 +3,7 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12, 2022/06/13
+% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12, 2022/06/13, 2023/03/04
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
@@ -56,6 +56,7 @@ dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_animal.html">animal</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_iso_21.html">iso_21</a>\n'];      
 dd_box = [dd_box, '          <a href="./DEBtool_plant.html">plant</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_popDyn.html">popDyn</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_community.html">community</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
@@ -232,14 +233,14 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   tbh = ''; % toolbar head
   tbh = [tbh, '  <div id="top">\n'];
   tbh = [tbh, '    <div class="logo">\n'];		
-  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
+  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="50px">\n'];
   tbh = [tbh, '    </div>\n\n'];
   tbh = [tbh, '    <div id="navwrapper">\n'];
 
-  tbh_taxa = ''; % toolbar head for taxalery toolbar
+  tbh_taxa = ''; % toolbar head for taxa galery toolbar
   tbh_taxa = [tbh_taxa, '  <div id="top">\n'];
   tbh_taxa = [tbh_taxa, '    <div class="logo">\n'];		
-  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="55px">\n'];
+  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="50px">\n'];
   tbh_taxa = [tbh_taxa, '    </div>\n\n'];
   tbh_taxa = [tbh_taxa, '    <div id="navwrapper">\n'];
 
