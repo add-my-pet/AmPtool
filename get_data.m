@@ -3,7 +3,7 @@
 
 %%
 function [data, auxData, metaData, txtData, weights] = get_data(my_pet)
-% created 2019/12/26 by Bas Kooijman
+% created 2019/12/26 by Bas Kooijman, modified 2023/03/05
 
 %% Syntax
 % [data, auxData, metaData, txtData, weights]  = <get_data *get_data*>(my_pet)
@@ -41,9 +41,9 @@ function get_mydata_my_pet(my_pet)
   catch % get results_my_pet.mat from web
     path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/';
     if ismac || isunix
-      eval(['system(wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm, ')'])
+      system(['wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm]);
     else
-      eval(['!powershell wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm])
+      system(['powershell wget ', path, my_pet, '/mydata_', my_pet, ' -O ', fnm]);
     end
   end
 end
