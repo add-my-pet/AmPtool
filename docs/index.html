@@ -101,12 +101,12 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
     One way to obtain the empirical data of an AmP entry is to dowload the species mydata-file then and run it locally. 
 	This is straightforward as	mydata-files are function which require no input.
 	You can navigate the collection via the dropdown menu collection and choosing species list, species tree or species names. 
-	From there acess the species of your choice.
+	From there access the species of your choice.
 	See screen shot here below. 
 
 	<img src="img/collection_species.png" alt="screen shot of webpage menu where the collection can be accessed" width="600" >
 
-	Next, one you are the species specificpage of your choice, you can dowload its mydata-file via the code dropdown menu. 
+	Next, once you are in the species specific page of your choice, you can dowload its mydata-file via the code dropdown menu. 
 	See screenshot here below. 
 	
 	<img src="img/code_mydata.png" alt="screen shot of webpage where a mydata file can be dowloaded" width="600" >
@@ -122,7 +122,7 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
     <p>
     All functions that analyse data do so by reading information contained in <code>allStat.mat</code> via two functions:
 	<ul>
-		<li><a href="../html/read_allStat.html"><code>read_allStat</code> (reads data from the entire collection)</a>  </li>
+		<li><a href="../html/read_allStat.html"><code>read_allStat</code></a> (reads data from the entire collection)  </li>
 		<li><a href="../html/read_stat.html"><code>read_stat</code></a> (same as previous function except that user specifies in the first argument which species to read data for)</li>
 	</ul>
     For example, (expected) gestation time <code>t_g</code> is given at <code>T_typical</code> (aka body temperature). Convert the value to the reference temperature <code>T_ref</code> with the following code:
@@ -132,7 +132,7 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 	</code></pre>
 	and then print to the console with:
 	<pre><code class="matlab">
-		prt_tab({nm, tg_Tref},{'name'}[label{1}, ', ', units{1,1}]})
+		prt_tab({nm, tg_Tref},{'name',[label{1}, ', ', units{1,1}]})
 	</code></pre>
     Oviparous species don't have a pregnancy and so will have value <code>NaN</code> (Not-a-Number).
     Here is some example code enabling a user to find all entries that have model <code>std</code>:
