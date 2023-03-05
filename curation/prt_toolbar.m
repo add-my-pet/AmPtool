@@ -79,7 +79,7 @@ dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''tree'')">Taxonomic tree<
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''selection'')">Selection of entries</a>\n'];
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''legend'')">Legend</a>\n'];      
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''plotting'')">Spotting patterns</a>\n'];
-dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''context'')">Linked websites</a>\n'];      
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''html'')">Linked websites</a>\n'];      
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''distance'')">Distances between species</a>\n'];      
 dd_sct = [dd_sct, '        </div>\n'];
 dd_sct = [dd_sct, '      </div>\n\n'];

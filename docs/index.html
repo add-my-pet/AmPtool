@@ -253,12 +253,13 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
     Notice that <code>allStat</code> and the lists-of-lists change continuously, so do the results of <code>select</code> and <code>select_01</code>.
     
     <p>
-    Function <a href="../html/clade.html"><code>clade</code></a> finds the lowest taxon (= node in the tree) that contains a set of specified taxa, and all its members at exist in the collection.
+    Function <a href="../html/clade.html"><code>clade</code></a> finds the lowest taxon (= node in the tree) that contains a set of specified taxa,
+      and all its members that exist in the collection.
     It combines functions <code>lineage</code> and <code>pedigree</code> and can also be used to find the closest relatives of a single specified taxon.
-    If a species is not found in the AmP collection, 
-    it searches the <a href="http://www.catalogueoflife.org/">Catalog of Life</a> and <a href="http://taxonomicon.taxonomy.nl/">the Taxonomicon</a> for lineages, 
-    with functions <a href="../html/lineage_CoL.html"><code>lineage_CoL</code></a> and <a href="../html/lineage_Taxo.html"><code>lineage_Taxo</code></a> and 
-    presents the AmP species that are most related.
+    If a species is not found in the AmP collection, it searches the <a href="http://www.catalogueoflife.org/">Catalog of Life</a> and
+      <a href="http://taxonomicon.taxonomy.nl/">the Taxonomicon</a> for lineages, 
+      with functions <a href="../html/lineage_CoL.html"><code>lineage_CoL</code></a> and <a href="../html/lineage_Taxo.html"><code>lineage_Taxo</code></a> and 
+      presents the AmP species that are most related.
 
     <p>
     Print (compound) parameters or statistics of selected entries to screen with <a href="../html/prtStat.html"><code>prtStat</code></a>, or, 
@@ -460,7 +461,7 @@ legend = {...
     Functions <code>shstat</code>, <code>read_stat</code>, <code>read_popStat</code> and <code>read_allStat</code> assume that
       the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
 
-    <h2 id="context">Linked websites</h2>
+    <h2 id="html">Linked websites</h2>
 
     Function <a href="../html/get_links.html" target="_top">get_links</a> can be used for the addresses of all websites, as specified in the mydata-file for that species; 
     type <code>get_links('Homo_sapiens', 1)</code> to open them all in your system-browser.
