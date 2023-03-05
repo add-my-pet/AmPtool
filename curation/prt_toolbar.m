@@ -9,7 +9,7 @@ function  prt_toolbar
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, app, taxa
+% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, use, taxa
 % and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
@@ -140,7 +140,7 @@ oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');
 oid_amp = fopen('toolbar_amp.html', 'w+');       
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
-oid_app = fopen('toolbar_app.html', 'w+');   
+oid_use = fopen('toolbar_use.html', 'w+');   
 oid_links = fopen('toolbar_links.html', 'w+');  
 oid_taxa = fopen('toolbar_taxa.html', 'w+');  
 %
@@ -166,7 +166,7 @@ fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2debl
 fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
 fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
-fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+fprintf(oid_use, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, tax_ani, bar, dd_std, tbt], path2AmP, ''));
 %
@@ -196,7 +196,7 @@ movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_use.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_links.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_taxa.html '../../deblab/add_my_pet/sys/'
 
@@ -295,15 +295,15 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '        </div>\n'];
   dd_col = [dd_col, '      </div>\n\n'];	
 
-  dd_app = []; % dropdown APPS
-  dd_app = [dd_app, '      <div class="dropdown">\n'];
-  dd_app = [dd_app, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPS</button>\n'];
-  dd_app = [dd_app, '        <div id="applications" class="dropdown-content">\n'];
-  dd_app = [dd_app, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
-  dd_app = [dd_app, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
-  dd_app = [dd_app, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
-  dd_app = [dd_app, '        </div>\n'];
-  dd_app = [dd_app, '      </div>\n\n'];
+  dd_use = []; % dropdown USE
+  dd_use = [dd_use, '      <div class="dropdown">\n'];
+  dd_use = [dd_use, '        <button onclick="showDropdown(''use'')" class="dropbtn">USE</button>\n'];
+  dd_use = [dd_use, '        <div id="use" class="dropdown-content">\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
+  dd_use = [dd_use, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
+  dd_use = [dd_use, '        </div>\n'];
+  dd_use = [dd_use, '      </div>\n\n'];
 
   dd_pac = []; % dropdown PACKAGE
   dd_pac = [dd_pac, '      <div class="dropdown">\n'];
@@ -318,7 +318,7 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_pac = [dd_pac, '        </div>\n'];
   dd_pac = [dd_pac, '      </div>\n\n'];
 
-  dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_app]; % standard dropdowns for all toolbars
+  dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_use]; % standard dropdowns for all toolbars
 
   %% local dropdowns
   dd_bud = []; % dropdown ENERGY BUDGET
