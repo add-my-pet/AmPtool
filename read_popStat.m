@@ -74,7 +74,7 @@ function [var, entries] = read_popStat(varargin)
   i = ~cellfun(@isempty,var); i = i(:,1); var = var(i); entries = entries(i); 
   var = cell2mat(var);
   
-  % convert cell array to numerical array if possible
+% convert cell array to numerical array if possible
 %   num = 0;
 %   for j = 1:nargin
 %     num = num +  isnumeric(var{1,j});
