@@ -80,8 +80,8 @@ end
 if iscell(species) 
   metaData = species{1}; metaPar = species{2}; par = species{3};  
   species = metaData.species;
-  par.reprodCode = metaData.ecoCode.reprod(1);
-  par.genderCode = metaData.ecoCode.gender(1);
+  par.reprodCode = metaData.ecoCode.reprod{1};
+  par.genderCode = metaData.ecoCode.gender{1};
   datePrintNm = ['date: ',datestr(date, 'yyyy/mm/dd')];
   n_fVal = 3; % 3 f- values: min, f and max
   if ~exist('f', 'var') || isempty(f) || (~ischar(f) && f == 1)
@@ -89,8 +89,8 @@ if iscell(species)
     f = 1;
   end
 else  % use allStat.mat as parameter source 
-  reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode(1);
-  genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode(1);
+  reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode{1};
+  genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode{1};
   [par, metaPar, txtPar, metaData, info] = allStat2par(species);
   if info == 0
     return
