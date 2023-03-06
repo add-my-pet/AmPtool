@@ -417,22 +417,22 @@ fprintf(oid, '        <ul>\n');
 if ~isempty(strfind(par.reprodCode, 'O'))
   if male % male differs from female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode(1));
     else
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode{1});
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female differ.</li>\n', par.reprodCode(1));
     end
   else % no difference between male and female
     if AmP
-      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
+      fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode(1));
     else 
-      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode{1});
+      fprintf(oid, '          <li>Reprod-code %s applies. Sex ratio is assumed to be 1:1. Parameters of male and female are the same.</li>\n', par.reprodCode(1));
     end
   end
 else
   if AmP
-    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
+    fprintf(oid, '          <li><a href="../../AmPeco.html#R">Reprod-code</a> %s applies. Data concerns population of females only.</li>\n', par.reprodCode(1));
   else
-    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', par.reprodCode{1});
+    fprintf(oid, '          <li>Reprod-code %s applies. Data concerns population of females only.</li>\n', par.reprodCode(1));
   end
 end
 switch model
