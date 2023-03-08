@@ -233,14 +233,14 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   tbh = ''; % toolbar head
   tbh = [tbh, '  <div id="top">\n'];
   tbh = [tbh, '    <div class="logo">\n'];		
-  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="50px">\n'];
+  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="40px">\n'];
   tbh = [tbh, '    </div>\n\n'];
   tbh = [tbh, '    <div id="navwrapper">\n'];
 
   tbh_taxa = ''; % toolbar head for taxa galery toolbar
   tbh_taxa = [tbh_taxa, '  <div id="top">\n'];
   tbh_taxa = [tbh_taxa, '    <div class="logo">\n'];		
-  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="50px">\n'];
+  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="40px">\n'];
   tbh_taxa = [tbh_taxa, '    </div>\n\n'];
   tbh_taxa = [tbh_taxa, '    <div id="navwrapper">\n'];
 
@@ -302,6 +302,7 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_use = [dd_use, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
   dd_use = [dd_use, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
   dd_use = [dd_use, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'aquaCulture/aquaCulture.html">Aquaculture</a>\n'];
   dd_use = [dd_use, '        </div>\n'];
   dd_use = [dd_use, '      </div>\n\n'];
 
