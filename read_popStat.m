@@ -81,13 +81,13 @@ function [var, entries] = read_popStat(entries,varargin)
            isfield(popStat.(entries{i}).(str{1}).(str{2}).(str{3}),(str{4}))
           var{i,j} = popStat.(entries{i}).(str{1}).(str{2}).(str{3}).(str{4});
         else
-          var{i,j} = []; 
+          var{i,j} = NaN; 
         end
       else
         if isfield(popStat.(entries{i}),(varargin{j}))
           var{i,j} = popStat.(entries{i}).(varargin{j});
         else
-          var{i,j} = []; 
+          var{i,j} = NaN; 
         end
       end
     end
