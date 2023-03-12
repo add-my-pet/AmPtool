@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>read_popStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-07"><meta name="DC.source" content="read_popStat.m"><style type="text/css">
+      --><title>read_popStat</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-11"><meta name="DC.source" content="read_popStat.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>read_popStat</h1><!--introduction--><p>read statistics and/or parameters in popStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[var, entries] = <a href="../read_popStat.m"><b>read_popStat</b></a>(entries, varargin)</p><h2 id="4">Description</h2><p>read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic. popStat is a structure with the entry-names as first-level fieldnames, while temperature (T), temperature correction factor (c_T) and scaled functional responses (f0, ff or f1) are second-level fieldnames.</p><p>Input:</p><div><ul><li>entries: optional string or cell string with name(s) of entries</li><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>var: (n,x)-matrix with values of variables or cell-array if some variable is not numerical</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>If particular field don't exist, empty is outputted</p><h2 id="6">Example of use</h2><p>[r, nm] = read_popStat('f1.thin0.f.r','c_T');</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>read_popStat</h1><!--introduction--><p>read statistics and/or parameters in popStat.mat</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[var, entries] = <a href="../read_popStat.m"><b>read_popStat</b></a>(entries, varargin)</p><h2 id="4">Description</h2><p>read statistics and/or parameters in popStat.mat, specifying scaled functional response (f0, ff or f1), thinning (thin0 or thin1), gender (f or m) and statistic. popStat is a structure with the entry-names as first-level fieldnames, while temperature (T), temperature correction factor (c_T) and scaled functional responses (f0, ff or f1) are second-level fieldnames.</p><p>Input:</p><div><ul><li>entries: optional string or cell string with name(s) of entries</li><li>varargin: names of variables or cell-string with names of variables</li></ul></div><p>Output</p><div><ul><li>var: (n,x)-matrix with values of variables or cell-array if some variable is not numerical</li><li>entries: n-cell string with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>If particular field don't exist, NaN is outputted</p><h2 id="6">Example of use</h2><p>[r, nm] = read_popStat('f1.thin0.f.r','c_T');</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% read_popStat
 % read statistics and/or parameters in popStat.mat
@@ -95,7 +95,7 @@ function [var, entries] = read_popStat(entries,varargin)
 % * entries: n-cell string with names of entries
 
 %% Remarks
-% If particular field don't exist, empty is outputted 
+% If particular field don't exist, NaN is outputted 
 
 %% Example of use
 % [r, nm] = read_popStat('f1.thin0.f.r','c_T'); 
@@ -152,13 +152,13 @@ function [var, entries] = read_popStat(entries,varargin)
            isfield(popStat.(entries{i}).(str{1}).(str{2}).(str{3}),(str{4}))
           var{i,j} = popStat.(entries{i}).(str{1}).(str{2}).(str{3}).(str{4});
         else
-          var{i,j} = []; 
+          var{i,j} = NaN; 
         end
       else
         if isfield(popStat.(entries{i}),(varargin{j}))
           var{i,j} = popStat.(entries{i}).(varargin{j});
         else
-          var{i,j} = []; 
+          var{i,j} = NaN; 
         end
       end
     end

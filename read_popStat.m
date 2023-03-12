@@ -24,7 +24,7 @@ function [var, entries] = read_popStat(entries,varargin)
 % * entries: n-cell string with names of entries
 
 %% Remarks
-% If particular field don't exist, empty is outputted 
+% If particular field don't exist, NaN is outputted 
 
 %% Example of use
 % [r, nm] = read_popStat('f1.thin0.f.r','c_T'); 
