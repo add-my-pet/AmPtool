@@ -30,9 +30,7 @@ function gallery_png(taxon, info)
     info = 0;
   end
   
-  if ~exist('taxon','var')
-    pets = select;
-  elseif ischar(taxon)
+  if ischar(taxon)
     pets = select(taxon); 
   else
     pets = taxon;
@@ -63,7 +61,6 @@ function gallery_png(taxon, info)
           in_1 = strfind(pngls(in_0(j):end),'</a>'); 
           pet = [pet; pets{i}]; png = [png; pngls(in_0(j):in_0(j)+in_1(1)-2)];
        end
-       delete('pngls.txt'); 
      end  
   end
   n_png = length(png);

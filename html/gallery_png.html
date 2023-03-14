@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>gallery_png</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-06-24"><meta name="DC.source" content="gallery_png.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>gallery_png</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-14"><meta name="DC.source" content="gallery_png.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,52 +67,72 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>gallery_png</h1><!--introduction--><p>Creates taxon_png.html in current directory with figures of directory entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../gallery_png.m"><b>gallery_png</b></a> (taxon)</p><h2 id="4">Description</h2><p>Writes html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon. The html is opened in the system browser. A click on a picture to go to the entry</p><p>Input</p><div><ul><li>pets: cell-array with names of entries</li></ul></div><h2 id="5">Remarks</h2><p>works only if all entries are locally available</p><h2 id="6">Example of use</h2><p>gallery_png('Cephalopoda'), which results in opening Cephalopoda_png.html</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>gallery_png</h1><!--introduction--><p>Creates taxon_png.html in current directory with figures of directory entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../gallery_png.m"><b>gallery_png</b></a> (taxon, info)</p><h2 id="4">Description</h2><p>Writes fig_png.html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon. The html is opened in the system browser. A click on a picture to go to the entry</p><p>Input</p><div><ul><li>pets: cell-array with names of entries</li><li>info: optional boolean to search locally if true (only for curators)</li></ul></div><h2 id="5">Remarks</h2><p>if info==0: png-files are read from internet</p><h2 id="6">Example of use</h2><p>gallery_png('Cephalopoda'), which results in opening Cephalopoda_png.html</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% gallery_png
 % Creates taxon_png.html in current directory with figures of directory entries
 
 %%
-function gallery_png(taxon)
-% created 2021/06/24 Bas Kooijman
+function gallery_png(taxon, info)
+% created 2021/06/24 Bas Kooijman, modified 2023/03/14
 
 %% Syntax
-% <../gallery_png.m *gallery_png*> (taxon)
+% <../gallery_png.m *gallery_png*> (taxon, info)
 
 %% Description
-% Writes html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon.
+% Writes fig_png.html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon.
 % The html is opened in the system browser.
 % A click on a picture to go to the entry
 %
 % Input
 %
 % * pets: cell-array with names of entries
+% * info: optional boolean to search locally if true (only for curators)
 
 %% Remarks
-% works only if all entries are locally available
+% if info==0: png-files are read from internet
 
 %% Example of use
 % gallery_png('Cephalopoda'), which results in opening Cephalopoda_png.html
 
   WD = pwd; % current work directory
+  path = [set_path2server, 'add_my_pet/entries/'];
+  if ~exist('info','var')
+    info = 0;
+  end
   
-  pets = select(taxon); n_pets = length(pets); n_row = 4;
-  fnm = [taxon, '_png.html']; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
+  if ischar(taxon)
+    pets = select(taxon); 
+  else
+    pets = taxon;
+  end
+  n_pets = length(pets); n_row = 4;
+  fnm = 'fig_png.html'; oid = fopen(fnm, 'w+'); % open file for writing, delete existing content
   path2pet = [set_path2server, 'add_my_pet/entries/'];
   path2sys = [set_path2server, 'add_my_pet/sys/'];
   
   pet = cell(0,1); png = cell(0,1);
   for i = 1:n_pets
-     cdEntr(pets{i});
-     if ismac || isunix
-       list = strsplit(ls); list(end) = [];
-     else
-       list = cellstr(ls);
-     end
-     list = list(Contains(list,'.png')); n_pngi = length(list);
-     for j = 1: n_pngi
-       pet = [pet; pets{i}]; png = [png; list{j}];
-     end
+     if info % png's are read locally
+       cdEntr(pets{i});
+       if ismac || isunix
+         list = strsplit(ls); list(end) = [];
+       else
+         list = cellstr(ls);
+       end
+       list = list(Contains(list,'.png')); n_pngi = length(list);
+       for j = 1:n_pngi
+         pet = [pet; pets{i}]; png = [png; list{j}];
+       end
+     else % png's are read from internet
+       eval(['!powershell wget -o pngls.txt ', path, pets{i}, '/']);
+       pngls = fileread('pngls.txt'); 
+       in_0 = 6+strfind(pngls,'.png"'); n_pngi = length(in_0);
+       for j = 1:n_pngi
+          in_1 = strfind(pngls(in_0(j):end),'</a>'); 
+          pet = [pet; pets{i}]; png = [png; pngls(in_0(j):in_0(j)+in_1(1)-2)];
+       end
+     end  
   end
   n_png = length(png);
   
@@ -120,7 +141,7 @@ function gallery_png(taxon)
   fprintf(oid, '<!DOCTYPE html>\n');
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
-  fprintf(oid, '  <title>%s</title>\n', taxon);
+  fprintf(oid, '  <title>%s</title>\n', fnm);
   fprintf(oid, '  <link rel="stylesheet" type="text/css" href="%sstyle.css">\n\n', path2sys); 
   
   fprintf(oid, '  <script src="%sw3data.js"></script>\n', path2sys);
