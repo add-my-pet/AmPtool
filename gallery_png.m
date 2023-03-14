@@ -22,7 +22,7 @@ function gallery_png(taxon, info)
 % if info==0: png-files are read from internet
 
 %% Example of use
-% gallery_png('Cephalopoda'), which results in opening Cephalopoda_png.html
+% gallery_png('Cephalopoda'), which results in opening fig_png.html
 
   WD = pwd; % current work directory
   path = [set_path2server, 'add_my_pet/entries/'];
