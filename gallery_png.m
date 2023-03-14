@@ -55,7 +55,8 @@ function gallery_png(taxon, info)
        end
      else % png's are read from internet
        if ismac || isunix
-         system(['''wget -O pngls.txt ', path, pets{i}, '/''']);
+         %system(['''wget -O pngls.txt ', path, pets{i}, '/''']);
+         eval(['system(''wget -o pngls.txt ', path, pets{i}, '/'')']);
        else
          eval(['!powershell wget -o pngls.txt ', path, pets{i}, '/']);
        end
