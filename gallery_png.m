@@ -54,7 +54,11 @@ function gallery_png(taxon, info)
          pet = [pet; pets{i}]; png = [png; list{j}];
        end
      else % png's are read from internet
-       eval(['!powershell wget -o pngls.txt ', path, pets{i}, '/']);
+       if ismac || isunix
+         system(['wget -O pngls.txt ', path, pets{i}, '/']);
+       else
+         eval(['!powershell wget -o pngls.txt ', path, pets{i}, '/']);
+       end
        pngls = fileread('pngls.txt'); 
        in_0 = 6+strfind(pngls,'.png"'); n_pngi = length(in_0);
        for j = 1:n_pngi
