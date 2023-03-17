@@ -90,8 +90,8 @@ if iscell(species)
   end
 else  % use allStat.mat as parameter source 
   [par, metaPar, txtPar, metaData, info] = allStat2par(species);
-  reprodCode = read_eco({species}, 'reprod'); par.reprodCode = reprodCode{1};
-  genderCode = read_eco({species}, 'gender'); par.genderCode = genderCode{1};
+  par.reprodCode = metaData.ecoCode.reprod{1};
+  par.genderCode = metaData.ecoCode.gender{1};
   if info == 0
     return
   end
