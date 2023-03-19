@@ -9,19 +9,25 @@ function shstat_options (key, val)
   % <../shstat_options.m *shstat_options*> (key, val)
   
   %% Description
-  % Sets options for function <shstat.html *shstat*> one by one.
-  % Type 'shstat_options' to see values or
-  %  type 'shstat_options('default') to set options at default values
-  % 
+  % A dual purpose function which :
+  
+  % Allows to see which options are set.
+  %    Type 'shstat_options' to print to console all of the options 
+  %    (a string called key) and corresponding values (a string called val) or
+  %
+  % Sets options for function <shstat.html *shstat*> 
+  %  Type 'shstat_options('default') to set all of the 6 options at default values
+  %  and/or set the values of each option one at a time. 
+ 
   % Input
   %
-  % * no input: print values to screen
-  % * one input:
+  % * no input: print values to screen (use this to see values of options)
+  % * one input: (use this to set all of the options to a default)
   %
   %   'default': sets options at default values
   %   any other key (see below): print value to screen
   %
-  % * two inputs
+  % * two inputs (use this to set one by one values for each option)
   %
   %   'x_transform', default: 'log10'
   %   'y_transform', default: 'log10'
@@ -29,10 +35,25 @@ function shstat_options (key, val)
   %
   % Output
   %
-  % * no output, but globals are set to values or values are printed to screen
+  % * no output (however globals are set to values or values are printed to
+  % screen)
 
-  %% Example of use
-  % shstat_options('default'); shstat_options('x_transform', 'none')
+%% Remarks
+% The function <shstat.html *shstat*> allows making plots in 1 till three
+% dimensions and the function <shstat_options.html *shstat_options*> is
+% allowing the user to define whether or not the x, y and z axis are 10 log
+% transform or not. Values for 'x_transform' are either '1og10' or 'none'
+% (and same applies for y and z transform options). The other option is
+% whether or not to show the labels of each axis on the figure. So in that
+% vein the option 'x_label' is either 'on' or 'off'. The same applies for y
+% and z labels. The shortest way to define all of the options is to set the
+% options to 'default' and then define only the options the user likes to
+% set different from default. If the user does not first set the options to
+% 'default' then the user must define values for each of the options before
+% calling function  <shstat.html *shstat*>.
+
+%% Example of use
+% shstat_options('default'); shstat_options('x_transform', 'none')
 
     global x_transform y_transform z_transform x_label y_label z_label
 
