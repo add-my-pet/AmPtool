@@ -10,7 +10,7 @@ function shstat_options (key, val)
   
   %% Description
   % A dual purpose function which :
-  
+  %
   % Allows to see which options are set.
   %    Type 'shstat_options' to print to console all of the options 
   %    (a string called key) and corresponding values (a string called val) or
@@ -18,20 +18,22 @@ function shstat_options (key, val)
   % Sets options for function <shstat.html *shstat*> 
   %  Type 'shstat_options('default') to set all of the 6 options at default values
   %  and/or set the values of each option one at a time. 
- 
+  %
   % Input
   %
   % * no input: print values to screen (use this to see values of options)
-  % * one input: (use this to set all of the options to a default)
+  % * one input: use this to set all of the options to a default:
   %
-  %   'default': sets options at default values
-  %   any other key (see below): print value to screen
+  %   - 'default':  sets options at default values
   %
-  % * two inputs (use this to set one by one values for each option)
+  % * two inputs: (strings key and val) use this to set one by one values for each option)
   %
-  %   'x_transform', default: 'log10'
-  %   'y_transform', default: 'log10'
-  %   'z_transform', default: 'log10'
+  %   - key 'x_transform', val 'log10',  'none' 
+  %   - key 'y_transform', val 'log10',  'none' 
+  %   - key 'z_transform', val 'log10',  'none'
+  %   - key 'x_label', val 'on',  'off' 
+  %   - key 'y_label', val 'on',  'off'
+  %   - key 'z_label', val 'on',  'off'
   %
   % Output
   %
@@ -47,10 +49,11 @@ function shstat_options (key, val)
 % whether or not to show the labels of each axis on the figure. So in that
 % vein the option 'x_label' is either 'on' or 'off'. The same applies for y
 % and z labels. The shortest way to define all of the options is to set the
-% options to 'default' and then define only the options the user likes to
-% set different from default. If the user does not first set the options to
-% 'default' then the user must define values for each of the options before
-% calling function  <shstat.html *shstat*>.
+% options to 'default' (in which case log10 transform and showing the axis
+% labels are the defaults) and then define only the options the user needs
+% to set different from default. If the user does not first set the options
+% to 'default' then the user must define values for each of the options
+% before calling function  <shstat.html *shstat*>.
 
 %% Example of use
 % shstat_options('default'); shstat_options('x_transform', 'none')

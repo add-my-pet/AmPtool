@@ -67,7 +67,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>shstat_options</h1><!--introduction--><p>Sets options for function 'shstat' one by one.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../shstat_options.m"><b>shstat_options</b></a> (key, val)</p><h2 id="4">Description</h2><p>A dual purpose function which :</p><h2 id="5">Remarks</h2><p>The function <a href="shstat.html"><b>shstat</b></a> allows making plots in 1 till three dimensions and the function <a href="shstat_options.html"><b>shstat_options</b></a> is allowing the user to define whether or not the x, y and z axis are 10 log transform or not. Values for 'x_transform' are either '1og10' or 'none' (and same applies for y and z transform options). The other option is whether or not to show the labels of each axis on the figure. So in that vein the option 'x_label' is either 'on' or 'off'. The same applies for y and z labels. The shortest way to define all of the options is to set the options to 'default' and then define only the options the user likes to set different from default. If the user does not first set the options to 'default' then the user must define values for each of the options before calling function  <a href="shstat.html"><b>shstat</b></a>.</p><h2 id="6">Example of use</h2><p>shstat_options('default'); shstat_options('x_transform', 'none')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>shstat_options</h1><!--introduction--><p>Sets options for function 'shstat' one by one.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../shstat_options.m"><b>shstat_options</b></a> (key, val)</p><h2 id="4">Description</h2><p>A dual purpose function which :</p><p>Allows to see which options are set.    Type 'shstat_options' to print to console all of the options    (a string called key) and corresponding values (a string called val) or</p><p>Sets options for function <a href="shstat.html"><b>shstat</b></a>  Type 'shstat_options('default') to set all of the 6 options at default values  and/or set the values of each option one at a time.</p><p>Input</p><div><ul><li>no input: print values to screen (use this to see values of options)</li><li>one input: use this to set all of the options to a default:</li></ul></div><pre class="language-matlab">- <span class="string">'default'</span>:  sets options <span class="string">at</span> <span class="string">default</span> <span class="string">values</span>
+</pre><div><ul><li>two inputs: (strings key and val) use this to set one by one values for each option)</li></ul></div><pre class="language-matlab">- key <span class="string">'x_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'y_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'z_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'x_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+- key <span class="string">'y_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+- key <span class="string">'z_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+</pre><p>Output</p><div><ul><li>no output (however globals are set to values or values are printed to screen)</li></ul></div><h2 id="5">Remarks</h2><p>The function <a href="shstat.html"><b>shstat</b></a> allows making plots in 1 till three dimensions and the function <a href="shstat_options.html"><b>shstat_options</b></a> is allowing the user to define whether or not the x, y and z axis are 10 log transform or not. Values for 'x_transform' are either '1og10' or 'none' (and same applies for y and z transform options). The other option is whether or not to show the labels of each axis on the figure. So in that vein the option 'x_label' is either 'on' or 'off'. The same applies for y and z labels. The shortest way to define all of the options is to set the options to 'default' (in which case log10 transform and showing the axis labels are the defaults) and then define only the options the user needs to set different from default. If the user does not first set the options to 'default' then the user must define values for each of the options before calling function  <a href="shstat.html"><b>shstat</b></a>.</p><h2 id="6">Example of use</h2><p>shstat_options('default'); shstat_options('x_transform', 'none')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% shstat_options
 % Sets options for function 'shstat' one by one.
@@ -81,7 +88,7 @@ function shstat_options (key, val)
   
   %% Description
   % A dual purpose function which :
-  
+  %
   % Allows to see which options are set.
   %    Type 'shstat_options' to print to console all of the options 
   %    (a string called key) and corresponding values (a string called val) or
@@ -89,20 +96,22 @@ function shstat_options (key, val)
   % Sets options for function <shstat.html *shstat*> 
   %  Type 'shstat_options('default') to set all of the 6 options at default values
   %  and/or set the values of each option one at a time. 
- 
+  %
   % Input
   %
   % * no input: print values to screen (use this to see values of options)
-  % * one input: (use this to set all of the options to a default)
+  % * one input: use this to set all of the options to a default:
   %
-  %   'default': sets options at default values
-  %   any other key (see below): print value to screen
+  %   - 'default':  sets options at default values
   %
-  % * two inputs (use this to set one by one values for each option)
+  % * two inputs: (strings key and val) use this to set one by one values for each option)
   %
-  %   'x_transform', default: 'log10'
-  %   'y_transform', default: 'log10'
-  %   'z_transform', default: 'log10'
+  %   - key 'x_transform', val 'log10',  'none' 
+  %   - key 'y_transform', val 'log10',  'none' 
+  %   - key 'z_transform', val 'log10',  'none'
+  %   - key 'x_label', val 'on',  'off' 
+  %   - key 'y_label', val 'on',  'off'
+  %   - key 'z_label', val 'on',  'off'
   %
   % Output
   %
@@ -118,10 +127,11 @@ function shstat_options (key, val)
 % whether or not to show the labels of each axis on the figure. So in that
 % vein the option 'x_label' is either 'on' or 'off'. The same applies for y
 % and z labels. The shortest way to define all of the options is to set the
-% options to 'default' and then define only the options the user likes to
-% set different from default. If the user does not first set the options to
-% 'default' then the user must define values for each of the options before
-% calling function  <shstat.html *shstat*>.
+% options to 'default' (in which case log10 transform and showing the axis
+% labels are the defaults) and then define only the options the user needs
+% to set different from default. If the user does not first set the options
+% to 'default' then the user must define values for each of the options
+% before calling function  <shstat.html *shstat*>.
 
 %% Example of use
 % shstat_options('default'); shstat_options('x_transform', 'none')
