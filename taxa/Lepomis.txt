@@ -1,5 +1,6 @@
 Lepomis_auritus
 Lepomis_cyanellus
+Lepomis_gibbosus
 Lepomis_gulosus
 Lepomis_humilis
 Lepomis_macrochirus

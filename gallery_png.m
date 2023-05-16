@@ -2,11 +2,11 @@
 % Creates taxon_png.html in current directory with figures of directory entries
 
 %%
-function gallery_png(taxon)
-% created 2021/06/24 Bas Kooijman
+function gallery_png(taxon, info)
+% created 2021/06/24 Bas Kooijman, modified 2023/03/14
 
 %% Syntax
-% <../gallery_png.m *gallery_png*> (taxon)
+% <../gallery_png.m *gallery_png*> (taxon, info)
 
 %% Description
 % Writes fig_png.html file with png's for figure files in the directory entries with name taxon_png.html in current directory, where taxon is replaced by name of taxon.
@@ -16,16 +16,21 @@ function gallery_png(taxon)
 % Input
 %
 % * pets: cell-array with names of entries
+% * info: optional boolean to search locally if true (only for curators)
 
 %% Remarks
-% works only if all entries are locally available
+% if info==0: png-files are read from internet
 
 %% Example of use
-% gallery_png('Cephalopoda'), which results in opening Cephalopoda_png.html
+% gallery_png('Cephalopoda'), which results in opening fig_png.html
 
   WD = pwd; % current work directory
+  path = [set_path2server, 'add_my_pet/entries/'];
+  if ~exist('info','var')
+    info = 0;
+  end
   
-  if isstring(taxon)
+  if ischar(taxon)
     pets = select(taxon); 
   else
     pets = taxon;
@@ -37,16 +42,31 @@ function gallery_png(taxon)
   
   pet = cell(0,1); png = cell(0,1);
   for i = 1:n_pets
-     cdEntr(pets{i});
-     if ismac || isunix
-       list = strsplit(ls); list(end) = [];
-     else
-       list = cellstr(ls);
-     end
-     list = list(Contains(list,'.png')); n_pngi = length(list);
-     for j = 1: n_pngi
-       pet = [pet; pets{i}]; png = [png; list{j}];
-     end
+     if info % png's are read locally
+       cdEntr(pets{i});
+       if ismac || isunix
+         list = strsplit(ls); list(end) = [];
+       else
+         list = cellstr(ls);
+       end
+       list = list(Contains(list,'.png')); n_pngi = length(list);
+       for j = 1:n_pngi
+         pet = [pet; pets{i}]; png = [png; list{j}];
+       end
+     else % png's are read from internet
+       if ismac || isunix
+         %system(['''wget -O pngls.txt ', path, pets{i}, '/''']);
+         eval(['system(''wget -o pngls.txt ', path, pets{i}, '/'')']);
+       else
+         eval(['!powershell wget -o pngls.txt ', path, pets{i}, '/']);
+       end
+       pngls = fileread('pngls.txt'); 
+       in_0 = 6+strfind(pngls,'.png"'); n_pngi = length(in_0);
+       for j = 1:n_pngi
+          in_1 = strfind(pngls(in_0(j):end),'</a>'); 
+          pet = [pet; pets{i}]; png = [png; pngls(in_0(j):in_0(j)+in_1(1)-2)];
+       end
+     end  
   end
   n_png = length(png);
   

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>shstat_options</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-04-23"><meta name="DC.source" content="shstat_options.m"><style type="text/css">
+      --><title>shstat_options</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-03-19"><meta name="DC.source" content="shstat_options.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -51,16 +52,29 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
 
-  </style></head><body><div class="content"><h1>shstat_options</h1><!--introduction--><p>Sets options for function 'shstat' one by one.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2>Syntax<a name="3"></a></h2><p><a href="../shstat_options.m"><b>shstat_options</b></a> (key, val)</p><h2>Description<a name="4"></a></h2><p>Sets options for function <a href="shstat.html"><b>shstat</b></a> one by one. Type 'shstat_options' to see values or  type 'shstat_options('default') to set options at default values</p><p>Input</p><div><ul><li>no input: print values to screen</li><li>one input:</li></ul></div><pre class="language-matlab"><span class="string">'default'</span>: sets options <span class="string">at</span> <span class="string">default</span> <span class="string">values</span>
-any <span class="string">other</span> <span class="string">key</span> <span class="string">(see below):</span> <span class="string">print</span> <span class="string">value</span> <span class="string">to</span> <span class="string">screen</span>
-</pre><div><ul><li>two inputs</li></ul></div><pre class="language-matlab"><span class="string">'x_transform'</span>, default: <span class="string">'log10'</span>
-<span class="string">'y_transform'</span>, default: <span class="string">'log10'</span>
-</pre><p>Output</p><div><ul><li>no output, but globals are set to values or values are printed to screen</li></ul></div><h2>Example of use<a name="5"></a></h2><p>shstat_options('default'); shstat_options('x_transform', 'none')</p><p class="footer"><br>
-      Published with MATLAB&reg; 7.14<br></p></div><!--
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>shstat_options</h1><!--introduction--><p>Sets options for function 'shstat' one by one.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../shstat_options.m"><b>shstat_options</b></a> (key, val)</p><h2 id="4">Description</h2><p>A dual purpose function which :</p><p>Allows to see which options are set.    Type 'shstat_options' to print to console all of the options    (a string called key) and corresponding values (a string called val) or</p><p>Sets options for function <a href="shstat.html"><b>shstat</b></a>  Type 'shstat_options('default') to set all of the 6 options at default values  and/or set the values of each option one at a time.</p><p>Input</p><div><ul><li>no input: print values to screen (use this to see values of options)</li><li>one input: use this to set all of the options to a default:</li></ul></div><pre class="language-matlab">- <span class="string">'default'</span>:  sets options <span class="string">at</span> <span class="string">default</span> <span class="string">values</span>
+</pre><div><ul><li>two inputs: (strings key and val) use this to set one by one values for each option)</li></ul></div><pre class="language-matlab">- key <span class="string">'x_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'y_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'z_transform'</span>, val <span class="string">'log10'</span>,  <span class="string">'none'</span>
+- key <span class="string">'x_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+- key <span class="string">'y_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+- key <span class="string">'z_label'</span>, val <span class="string">'on'</span>,  <span class="string">'off'</span>
+</pre><p>Output</p><div><ul><li>no output (however globals are set to values or values are printed to screen)</li></ul></div><h2 id="5">Remarks</h2><p>The function <a href="shstat.html"><b>shstat</b></a> allows making plots in 1 till three dimensions and the function <a href="shstat_options.html"><b>shstat_options</b></a> is allowing the user to define whether or not the x, y and z axis are 10 log transform or not. Values for 'x_transform' are either '1og10' or 'none' (and same applies for y and z transform options). The other option is whether or not to show the labels of each axis on the figure. So in that vein the option 'x_label' is either 'on' or 'off'. The same applies for y and z labels. The shortest way to define all of the options is to set the options to 'default' (in which case log10 transform and showing the axis labels are the defaults) and then define only the options the user needs to set different from default. If the user does not first set the options to 'default' then the user must define values for each of the options before calling function  <a href="shstat.html"><b>shstat</b></a>.</p><h2 id="6">Example of use</h2><p>shstat_options('default'); shstat_options('x_transform', 'none')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% shstat_options
 % Sets options for function 'shstat' one by one.
@@ -73,34 +87,59 @@ function shstat_options (key, val)
   % <../shstat_options.m *shstat_options*> (key, val)
   
   %% Description
-  % Sets options for function <shstat.html *shstat*> one by one.
-  % Type 'shstat_options' to see values or
-  %  type 'shstat_options('default') to set options at default values
-  % 
+  % A dual purpose function which :
+  %
+  % Allows to see which options are set.
+  %    Type 'shstat_options' to print to console all of the options 
+  %    (a string called key) and corresponding values (a string called val) or
+  %
+  % Sets options for function <shstat.html *shstat*> 
+  %  Type 'shstat_options('default') to set all of the 6 options at default values
+  %  and/or set the values of each option one at a time. 
+  %
   % Input
   %
-  % * no input: print values to screen
-  % * one input:
+  % * no input: print values to screen (use this to see values of options)
+  % * one input: use this to set all of the options to a default:
   %
-  %   'default': sets options at default values
-  %   any other key (see below): print value to screen
+  %   - 'default':  sets options at default values
   %
-  % * two inputs
+  % * two inputs: (strings key and val) use this to set one by one values for each option)
   %
-  %   'x_transform', default: 'log10'
-  %   'y_transform', default: 'log10'
+  %   - key 'x_transform', val 'log10',  'none' 
+  %   - key 'y_transform', val 'log10',  'none' 
+  %   - key 'z_transform', val 'log10',  'none'
+  %   - key 'x_label', val 'on',  'off' 
+  %   - key 'y_label', val 'on',  'off'
+  %   - key 'z_label', val 'on',  'off'
   %
   % Output
   %
-  % * no output, but globals are set to values or values are printed to screen
+  % * no output (however globals are set to values or values are printed to
+  % screen)
 
-  %% Example of use
-  % shstat_options('default'); shstat_options('x_transform', 'none')
+%% Remarks
+% The function <shstat.html *shstat*> allows making plots in 1 till three
+% dimensions and the function <shstat_options.html *shstat_options*> is
+% allowing the user to define whether or not the x, y and z axis are 10 log
+% transform or not. Values for 'x_transform' are either '1og10' or 'none'
+% (and same applies for y and z transform options). The other option is
+% whether or not to show the labels of each axis on the figure. So in that
+% vein the option 'x_label' is either 'on' or 'off'. The same applies for y
+% and z labels. The shortest way to define all of the options is to set the
+% options to 'default' (in which case log10 transform and showing the axis
+% labels are the defaults) and then define only the options the user needs
+% to set different from default. If the user does not first set the options
+% to 'default' then the user must define values for each of the options
+% before calling function  <shstat.html *shstat*>.
 
-    global x_transform y_transform x_label y_label
+%% Example of use
+% shstat_options('default'); shstat_options('x_transform', 'none')
+
+    global x_transform y_transform z_transform x_label y_label z_label
 
     if ~exist('key', 'var')
-      key = 'unkown';
+      key = 'unknown';
     end
      
     switch key
@@ -108,8 +147,10 @@ function shstat_options (key, val)
       case 'default'
 	    x_transform = 'log10';
 	    y_transform = 'log10';
+	    z_transform = 'log10';
         x_label = 'off';
         y_label = 'off';
+        z_label = 'off';
 
       case 'x_transform'
 	    if ~exist('val','var')
@@ -133,6 +174,17 @@ function shstat_options (key, val)
 	      y_transform = val;
         end
 
+      case 'z_transform'
+	    if ~exist('val','var')
+	      if numel(z_transform) ~= 0
+	        fprintf(['z_transform = ', z_transform,' \n']);  
+	      else
+            fprintf('z_transform = unknown \n');
+	      end	      
+	    else
+	      z_transform = val;
+        end
+
       case 'x_label'
 	    if ~exist('val','var')
 	      if numel(x_label) ~= 0
@@ -146,13 +198,24 @@ function shstat_options (key, val)
 
       case 'y_label'
 	    if ~exist('val','var')
-	      if numel(xylabel) ~= 0
+	      if numel(y_label) ~= 0
 	        fprintf(['y_label', y_label,' \n']);  
 	      else
             fprintf('y_label = unknown \n');
 	      end	      
 	    else
 	      y_label = val;
+        end
+
+      case 'z_label'
+	    if ~exist('val','var')
+	      if numel(z_label) ~= 0
+	        fprintf(['z_label', z_label,' \n']);  
+	      else
+            fprintf('z_label = unknown \n');
+	      end	      
+	    else
+	      z_label = val;
 	    end
 
       otherwise 
@@ -164,8 +227,28 @@ function shstat_options (key, val)
 	    if numel(y_transform) ~= 0
 	      fprintf(['y_transform = ', y_transform,' \n']);
 	    else
-	      fprintf('y_transform = unkown \n');
+	      fprintf('y_transform = unknown \n');
 	    end
-     end
+	    if numel(z_transform) ~= 0
+	      fprintf(['z_transform = ', z_transform,' \n']);
+	    else
+	      fprintf('z_transform = unknown \n');
+	    end
+ 	    if numel(x_label) ~= 0
+          fprintf(['x_label = ', x_label,' \n']);
+	    else
+	      fprintf('x_label = unknown \n');
+	    end	      
+	    if numel(y_label) ~= 0
+	      fprintf(['y_label = ', y_label,' \n']);
+	    else
+	      fprintf('y_label = unknown \n');
+	    end
+	    if numel(z_label) ~= 0
+	      fprintf(['z_label = ', z_label,' \n']);
+	    else
+	      fprintf('z_label = unknown \n');
+	    end
+    end
 ##### SOURCE END #####
 --></body></html>

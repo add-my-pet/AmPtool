@@ -1,0 +1,74 @@
+metaData.author_mod_1   = {'Bas Kooijman'};    
+metaData.date_mod_1     = [2023 04 15];              
+metaData.email_mod_1    = {'bas.kooijman@vu.nl'};            
+metaData.address_mod_1  = {'VU University, Amsterdam'};   
+
+metaData.curator     = {'Starrlight Augustine'};
+metaData.email_cur   = {'starrlight@tecnico.ulisboa.pt'}; 
+metaData.date_acc    = [2023 04 15];
+
+n=size(data.tL_f,1); for i=2:n; if data.tL_f(i,1)<=data.tL_f(i-1,1); data.tL_f(i,1)=data.tL_f(i-1,1)+1e-3; end; end
+n=size(data.tL_m,1); for i=2:n; if data.tL_m(i,1)<=data.tL_m(i-1,1); data.tL_m(i,1)=data.tL_m(i-1,1)+1e-3; end; end
+
+%% Discussion points
+D1 = 'males are assumed to differ from females by {p_Am} only';
+D2 = 'mod_1: males have equal state variables at b, compared to females';
+metaData.discussion = struct('D1',D1, 'D2',D2);  
+
+=================================
+  m_Em_m = y_E_V * E_m_m/ E_G;         % mol/mol, reserve capacity 
+  w_m = m_Em_m * w_E/ w_V;             % -, contribution of reserve to weight
+
+  std
+
+  % time-length
+  % female
+  [tvel, t_p, t_b, l_p, l_b] = get_tp(pars_tp, f_tL, [], tL_f(:,1)*kT_M);
+  ELw_f = L_m * tvel(:,4)/ del_M;   % cm, length 
+  % male
+  tvel = get_tp(pars_tpm, f_tL, [t_b, f_tL*z/z_m, l_b*z/z_m], tL_m(:,1)*kT_M);
+  ELw_m = L_mm * tvel(:,4)/ del_M;   % cm, length 
+
+  % time-weight
+  % female
+  [tvel, t_p, t_b, l_p, l_b] = get_tp(pars_tp, f_tL, [], tWw_f(:,1)*kT_M);
+  EWw_f = (L_m * tvel(:,4)).^3 .* (1 + tvel(:,3) * w);   % g, weight
+  % male
+  tvel = get_tp(pars_tpm, f_tL, [t_b, f_tL*z/z_m, l_b*z/z_m], tWw_m(:,1)*kT_M);
+  EWw_m = (L_mm * tvel(:,4)).^3 .* (1 + tvel(:,3) * w_m); % g, weight
+
+  abj
+
+  % time-length
+  % female
+  [tvel, t_j, t_p, t_b, l_j, l_p, l_b] = get_tj(pars_tj, f_tL, [], tL_f(:,1)*kT_M);
+  ELw_f = L_m * tvel(:,4)/ del_M;   % cm, length
+  % male
+  tvel = get_tj(pars_tjm, f_tL, [t_b, f_tL*z/z_m, l_b*z/z_m], tL_m(:,1)*kT_M);
+  ELw_m = L_mm * tvel(:,4)/ del_M;   % cm, length
+
+  % time-weight
+  % female
+  [tvel, t_j, t_p, t_b, l_j, l_p, l_b] = get_tj(pars_tj, f_tL, [], tWw_f(:,1)*kT_M);
+  EWw_f = (L_m * tvel(:,4)).^3 .* (1 + tvel(:,3) * w);   % g, weight
+  % male
+  tvel = get_tj(pars_tjm, f_tL, [t_b, f_tL*z/z_m, l_b*z/z_m], tWw_m(:,1)*kT_M);
+  EWw_m = (L_mm * tvel(:,4)).^3 .* (1 + tvel(:,3) * w_m); % g, weight
+
+=================================
+  mammalia: f_xb during bx, but f during 0b and xi
+ 
+  % life cycle
+  pars_tp = [g k l_T v_Hb v_Hp];
+  [tau_b, l_b] = get_tb_foetus([g, k, v_Hb]);
+  [tau_x, tau_b, l_x] = get_tp([g k l_T v_Hb v_Hx], f_bx, [tau_b, f, l_b]);
+  [tau_xp, ~, l_p, ~, info] = get_tp([g k l_T v_Hx v_Hp], f, [tau_x, f_bx, l_x]);
+  tau_p = tau_px + tau_x;
+
+  % time-weight
+  % female post weaning
+  [tvel, t_p, t_b, l_p, l_b] = get_tp(pars_tp, f, [tau_x, f_bx, l_x], tW_f(:,1)*kT_M - tau_x + tau_b);
+  EWw_f = (L_m * tvel(:,4)).^3 .* (1 + tvel(:,3) * w);   % g, weight
+  % male post weaning
+  tvel = get_tp(pars_tpm, f, [tau_x, f_bx, l_x*z/z_m], tW_m(:,1)*kT_M - tau_x + tau_b);
+  EWw_m = (L_mm * tvel(:,4)).^3 .* (1 + tvel(:,3) * w_m); % g, weight

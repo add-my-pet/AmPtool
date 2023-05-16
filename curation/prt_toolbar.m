@@ -3,13 +3,13 @@
 
 %%
 function  prt_toolbar
-% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12, 2022/06/13
+% created 2019/12/22 Bas Kooijman, modified 2021/03/09, 2022/05/12, 2022/06/13, 2023/03/04
 
 %% Syntax
 % <../prt_toolbar.m *prt_toolbar*> 
 
 %% Description
-% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, app, 
+% Prints internal html-toolbars deblab, subdeblab, amp, budget, entry, use, taxa
 % and external toolbars DEBportal, AmPestimation, DEBpapers, DEBtool, AmPtool, AmPtox
 
 %% Remarks
@@ -56,6 +56,7 @@ dd_box = [dd_box, '          <a href="./DEBtool_alga.html">alga</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_animal.html">animal</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_iso_21.html">iso_21</a>\n'];      
 dd_box = [dd_box, '          <a href="./DEBtool_plant.html">plant</a>\n'];
+dd_box = [dd_box, '          <a href="./DEBtool_popDyn.html">popDyn</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_community.html">community</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_symbi.html">symbi</a>\n'];
 dd_box = [dd_box, '          <a href="./DEBtool_tox.html">tox</a>\n'];
@@ -78,7 +79,7 @@ dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''tree'')">Taxonomic tree<
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''selection'')">Selection of entries</a>\n'];
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''legend'')">Legend</a>\n'];      
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''plotting'')">Spotting patterns</a>\n'];
-dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''context'')">Linked websites</a>\n'];      
+dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''html'')">Linked websites</a>\n'];      
 dd_sct = [dd_sct, '          <a onclick="OpenPageAtId(''distance'')">Distances between species</a>\n'];      
 dd_sct = [dd_sct, '        </div>\n'];
 dd_sct = [dd_sct, '      </div>\n\n'];
@@ -120,7 +121,7 @@ dd_top = [dd_top, '      </div>\n\n'];
 dd_taxa = []; % dropdown taxaSearch for taxa
 dd_taxa = [dd_taxa,  '    <div class="taxaSearch">\n'];
 dd_taxa = [dd_taxa,  '      <input id="TaxonDropdownInput" class="taxaSearch_dropbtn" onclick="showDropdown(''TaxonDropdown'')" onkeyup="InputTaxaSearch(''TaxonDropdown'')"\n'];
-dd_taxa = [dd_taxa,  '        placeholder="Taxon.." type="text" title="Type part of name and click on list">\n'];
+dd_taxa = [dd_taxa,  '        placeholder="Taxon>genus.." type="text" title="Type part of name higher than rank genus and click on list">\n'];
 dd_taxa = [dd_taxa,  '      <div id="TaxonDropdown" class="taxaSearch-content">\n'];
 dd_taxa = [dd_taxa,  '        <ul id="TaxonDropdownSearchlist" class="taxaSearch">\n'];
 for j = 1:n_notGen
@@ -139,7 +140,7 @@ oid_subdeblab = fopen('toolbar_subdeblab.html', 'w+');
 oid_amp = fopen('toolbar_amp.html', 'w+');       
 oid_entry = fopen('toolbar_entry.html', 'w+');   
 oid_budget = fopen('toolbar_budget.html', 'w+'); 
-oid_app = fopen('toolbar_app.html', 'w+');   
+oid_use = fopen('toolbar_use.html', 'w+');   
 oid_links = fopen('toolbar_links.html', 'w+');  
 oid_taxa = fopen('toolbar_taxa.html', 'w+');  
 %
@@ -165,7 +166,7 @@ fprintf(oid_subdeblab, strrep([tbh, dd_sup, dd_cou, bar, dd_std, tbt], path2debl
 fprintf(oid_amp, strrep([tbh, dd_std, tbt], path2AmP, ''));
 fprintf(oid_entry, strrep([tbh, dd_std, tbt], path2AmP, '../../'));
 fprintf(oid_budget, strrep([tbh, dd_bud, bar, dd_std, tbt], path2AmP, ''));
-fprintf(oid_app, strrep([tbh, dd_std, tbt], path2AmP, '../'));
+fprintf(oid_use, strrep([tbh, dd_std, tbt], path2AmP, '../'));
 fprintf(oid_links, strrep([tbh, srch, bar, dd_std, tbt], path2AmP, ''));
 fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, tax_ani, bar, dd_std, tbt], path2AmP, ''));
 %
@@ -173,7 +174,7 @@ fprintf(oid_taxa, strrep([tbh_taxa, dd_taxa, tax_ani, bar, dd_std, tbt], path2Am
 fprintf(oid_DEBportal_VU, [tbh, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPestimation_VU, [tbh, dd_sec, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_DEBpapers_VU, [tbh, dd_top, bar, dd_std, dd_ser, tbt]);
-fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_box, bar, dd_std, dd_ser, tbt]);
+fprintf(oid_DEBtool_VU,   [tbh, dd_box, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtool_VU,   [tbh, dd_sct, bar, dd_std, dd_ser, tbt]);
 fprintf(oid_AmPtox_VU,    [tbh, dd_std, dd_ser, tbt]);
 %
@@ -195,7 +196,7 @@ movefile toolbar_subdeblab.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_amp.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_entry.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_budget.html '../../deblab/add_my_pet/sys/'
-movefile toolbar_app.html '../../deblab/add_my_pet/sys/'
+movefile toolbar_use.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_links.html '../../deblab/add_my_pet/sys/'
 movefile toolbar_taxa.html '../../deblab/add_my_pet/sys/'
 
@@ -232,14 +233,14 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   tbh = ''; % toolbar head
   tbh = [tbh, '  <div id="top">\n'];
   tbh = [tbh, '    <div class="logo">\n'];		
-  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="55px">\n'];
+  tbh = [tbh, '      <img src="', path2AmP, 'img/bannercycle.png" height="40px">\n'];
   tbh = [tbh, '    </div>\n\n'];
   tbh = [tbh, '    <div id="navwrapper">\n'];
 
-  tbh_taxa = ''; % toolbar head for taxalery toolbar
+  tbh_taxa = ''; % toolbar head for taxa galery toolbar
   tbh_taxa = [tbh_taxa, '  <div id="top">\n'];
   tbh_taxa = [tbh_taxa, '    <div class="logo">\n'];		
-  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="55px">\n'];
+  tbh_taxa = [tbh_taxa, '      <img src="', path2AmP, 'img/bannercycle.png" onclick="taxaSel(''Animalia'')" height="40px">\n'];
   tbh_taxa = [tbh_taxa, '    </div>\n\n'];
   tbh_taxa = [tbh_taxa, '    <div id="navwrapper">\n'];
 
@@ -294,15 +295,16 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_col = [dd_col, '        </div>\n'];
   dd_col = [dd_col, '      </div>\n\n'];	
 
-  dd_app = []; % dropdown APPS
-  dd_app = [dd_app, '      <div class="dropdown">\n'];
-  dd_app = [dd_app, '        <button onclick="showDropdown(''applications'')" class="dropbtn">APPS</button>\n'];
-  dd_app = [dd_app, '        <div id="applications" class="dropdown-content">\n'];
-  dd_app = [dd_app, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
-  dd_app = [dd_app, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
-  dd_app = [dd_app, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
-  dd_app = [dd_app, '        </div>\n'];
-  dd_app = [dd_app, '      </div>\n\n'];
+  dd_use = []; % dropdown USE
+  dd_use = [dd_use, '      <div class="dropdown">\n'];
+  dd_use = [dd_use, '        <button onclick="showDropdown(''use'')" class="dropbtn">USE</button>\n'];
+  dd_use = [dd_use, '        <div id="use" class="dropdown-content">\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'popDyn/popDyn.html">Population Dynamics</a>\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'physBiol/physBiol.html">Physical Biology</a>\n'];
+  dd_use = [dd_use, '          <a href="https://add-my-pet.github.io/AmPtox/docs/">AmPtox</a>\n'];
+  dd_use = [dd_use, '          <a href="', path2AmP, 'aquaCulture/aquaCulture.html">Aquaculture</a>\n'];
+  dd_use = [dd_use, '        </div>\n'];
+  dd_use = [dd_use, '      </div>\n\n'];
 
   dd_pac = []; % dropdown PACKAGE
   dd_pac = [dd_pac, '      <div class="dropdown">\n'];
@@ -313,11 +315,12 @@ function [tbh, tbh_taxa, dd_std, dd_bud, dd_sup, dd_cou, dd_ser] = set_dd(svr)
   dd_pac = [dd_pac, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb_sea/" target="_blank">DEBsea Shiny App</a>\n'];
   dd_pac = [dd_pac, '          <a href="http://bioforecasts.science.unimelb.edu.au/app_direct/deb/" target="_blank">DEB Shiny App</a>\n'];
   dd_pac = [dd_pac, '          <a href="http://www.debtox.info/software.php" target="_blank">DEB Tox</a>\n'];
+  dd_pac = [dd_pac, '          <a href="https://github.com/giannamars/DEBmicroTrait.jl">DEB micro Trait</a>\n'];
   dd_pac = [dd_pac, '          <a href="https://github.com/jornbr/plotreader/releases/download/v1.56/PlotReader.msi" target="_blank">Plot Reader</a>\n'];
   dd_pac = [dd_pac, '        </div>\n'];
   dd_pac = [dd_pac, '      </div>\n\n'];
 
-  dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_app]; % standard dropdowns for all toolbars
+  dd_std = [dd_deb, dd_con, dd_col, dd_pac, dd_use]; % standard dropdowns for all toolbars
 
   %% local dropdowns
   dd_bud = []; % dropdown ENERGY BUDGET
