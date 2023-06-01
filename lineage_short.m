@@ -1,4 +1,4 @@
-%% lineage
+%% lineage_short
 % gets list of taxa to which a taxon belongs
 
 %%
