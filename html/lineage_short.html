@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>lineage_short</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-06-01"><meta name="DC.source" content="lineage_short.m"><style type="text/css">
+      --><title>lineage_short</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-06-02"><meta name="DC.source" content="lineage_short.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,17 +67,21 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>lineage_short</h1><!--introduction--><p>gets list of taxa to which a taxon belongs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>classification_short = <a href="../lineage_short.m"><b>lineage_short</b></a> (taxon)</p><h2 id="4">Description</h2><p>gets genus, family, order, class, kingdom to which a particular taxon belongs</p><p>Input:</p><div><ul><li>character string with name of taxon</li></ul></div><p>Output:</p><div><ul><li>cell string of length 6 with kingdom, phylum, class, order, family, genus</li></ul></div><h2 id="5">Remarks</h2><p>The root is Animalia. Function clade is used to detect related taxa, if not in AmP If taxon is at level higher than genus, a random AmP genus is selected. This also applies to even higher levels.</p><h2 id="6">Example of use</h2><p>classification  = lineage_short('Gorilla_gorilla')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>lineage_short</h1><!--introduction--><p>gets list of taxa to which a taxon belongs</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[classification_short info] = <a href="../lineage_short.m"><b>lineage_short</b></a> (taxon)</p><h2 id="4">Description</h2><p>gets genus, family, order, class, kingdom to which a particular taxon belongs</p><p>Input:</p><div><ul><li>character string with name of taxon</li></ul></div><p>Output:</p><div><ul><li>cell string of length 6 with kingdom, phylum, class, order, family, genus</li><li>info: output flag</li></ul></div><pre class="language-matlab">- 0, taxon <span class="string">not</span> <span class="string">recognized</span>
+- 1, species <span class="string">is</span> <span class="string">in</span> <span class="string">AmP</span>
+- 2, genus <span class="string">is</span> <span class="string">in</span> <span class="string">AmP</span>
+- 3, genus <span class="string">is</span> <span class="string">not</span> <span class="string">in</span> <span class="string">AmP</span>, but <span class="string">species</span> <span class="string">or</span> <span class="string">genus</span> <span class="string">is</span> <span class="string">in</span> <span class="string">CoL</span>
+</pre><h2 id="5">Remarks</h2><p>The root is Animalia. Function clade is used to detect related taxa,  also if not in AmP If taxon is at level higher than genus, a random AmP genus is selected. This also applies to even higher levels.</p><h2 id="6">Example of use</h2><p>lin  = lineage_short('Gorilla_gorilla')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% lineage_short
 % gets list of taxa to which a taxon belongs
 
 %%
-function classification_short = lineage_short(taxon)
+function [classification_short, info] = lineage_short(taxon)
 % created 2023/06/01 by Bas Kooijman
 
 %% Syntax
-% classification_short = <../lineage_short.m *lineage_short*> (taxon) 
+% [classification_short info] = <../lineage_short.m *lineage_short*> (taxon) 
 
 %% Description
 % gets genus, family, order, class, kingdom to which a particular taxon belongs
@@ -89,21 +93,37 @@ function classification_short = lineage_short(taxon)
 % Output:
 % 
 % * cell string of length 6 with kingdom, phylum, class, order, family, genus
+% * info: output flag
+%
+%   - 0, taxon not recognized
+%   - 1, species is in AmP
+%   - 2, genus is in AmP
+%   - 3, genus is not in AmP, but species or genus is in CoL
 
 %% Remarks
 % The root is Animalia. 
-% Function clade is used to detect related taxa, if not in AmP
+% Function clade is used to detect related taxa,  also if not in AmP
 % If taxon is at level higher than genus, a random AmP genus is selected.
 % This also applies to even higher levels.
 
 %% Example of use
-% classification  = lineage_short('Gorilla_gorilla')
+% lin  = lineage_short('Gorilla_gorilla')
 
-  taxon = strsplit(taxon, '_'); genus = select(taxon{1});
-  if ~isempty(genus) % genus is in AmP
+  genus = strsplit(taxon, '_'); genus = select(genus{1});
+  if contains(taxon, '_') && ~isempty(select(taxon))
+    info = 1;
+    my_pet = genus{1};
+  elseif ~isempty(genus) % genus is in AmP
+    info = 2;
     my_pet = genus{1};
   else
+    [id_CoL, name_status, accepted_name] = get_id_CoL(taxon);
+    if contains(taxon, '_') && ~isempty(id_CoL); info = 1; end
+    if isempty(genus); info = 3; end
     clade_my_pet = clade(taxon,1); 
+    if isempty(clade_my_pet)
+      info = 0; classification_short = []; return
+    end
     my_pet = clade_my_pet{end};
   end
   path = [set_path2server, 'add_my_pet/entries/', my_pet, '/'];
