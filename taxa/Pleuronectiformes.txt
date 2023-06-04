@@ -1,6 +1,3 @@
-Achiridae
-Soleidae
-Scophthalmidae
-Bothidae
-Paralichthyidae
-Pleuronectidae
+Citharoidea
+Pleuronectoidea
+Soleoidea
