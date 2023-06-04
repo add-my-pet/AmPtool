@@ -5,15 +5,15 @@
   <link rel="stylesheet" type="text/css" href="sys/style.css"> 
   <script src="sys/jscripts.js"></script>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <style>
-		img {
-			display: block;
-			margin: 0 auto;
-			clear: both;
-		}
-	</style>
+    img{
+      display: block;
+      margin: 0 auto;
+      clear: both;
+    }
+   </style>
 </head>
 <body>
 
@@ -76,9 +76,11 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 
     <H2 id="data">AmP Data: description of data files and functions used to write them</H2>
 
-    As we write above, parameters and traits for all entries can be downloaded from <b>AmPdata</b>, and if you load a new version of AmPdata, the next thing you should do is write <code>clear all</code> in your matlab console in order to load the new data.
+    As we write above, parameters and traits for all entries can be downloaded from <b>AmPdata</b>, and if you load a new version of AmPdata,
+      the next thing you should do is write <code>clear all</code> in your matlab console in order to load the new data.
     The size of allStat (and popStat), should exactly match the lists-of-lists of AmPtool (see below), otherwise errors will occur.
-    Type <a href="../html/date_allStat.html"><code>date_allStat</code></a>, and <a href="../html/date_taxa.html"><code>date_taxa</code></a> and <a href="../html/date_popStat.html"><code>date_popStat</code></a> in order to check which versions are being used.    
+    Type <a href="../html/date_allStat.html"><code>date_allStat</code></a>, and <a href="../html/date_taxa.html"><code>date_taxa</code></a>
+      and <a href="../html/date_popStat.html"><code>date_popStat</code></a> in order to check which versions are being used.    
     
     <p>
     For curators: All of the relevant AmP data (i.e. meta-data, parameters, meta-parameters, 
@@ -97,12 +99,13 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 
     <p>
     The AmP collection and associated AmP procedure enables extracting DEB parameters from various combinations of (fully referenced) empirical data.
-	In order to lighten the AmP data files, the empirical data is only stored in the mydata-file for each species in the collection (1 mydata-file per species), so you need to look there and not within AmPdata to manipulate and visualize those numbers.
+    In order to lighten the AmP data files, the empirical data is only stored in the mydata-file for each species in the collection (1 mydata-file per species),
+      so you need to look there and not within AmPdata to manipulate and visualize those numbers.
     One way to obtain the empirical data of an AmP entry is to dowload the species mydata-file then and run it locally. 
-	This is straightforward as	mydata-files are function which require no input.
-	You can navigate the collection via the dropdown menu collection and choosing species list, species tree or species names. 
-	From there access the species of your choice.
-	See screen shot here below. 
+    This is straightforward as	mydata-files are function which require no input.
+    You can navigate the collection via the dropdown menu collection and choosing species list, species tree or species names. 
+    From there access the species of your choice.
+    See screen shot here below. 
 
 	<img src="img/collection_species.png" alt="screen shot of webpage menu where the collection can be accessed" width="600" >
 
@@ -111,13 +114,13 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 	
 	<img src="img/code_mydata.png" alt="screen shot of webpage where a mydata file can be dowloaded" width="600" >
 	
-	If you are not interest to access the mydata-file for a species via the website, you may do this via typing an appropriate query into your Matlab console.
-    Function <a href="../html/get_data.html"><code>get_data</code></a> does the same and deletes the local mydata-file after running it:
-    <pre><code class="matlab">
-	vars_pull(get_data('Daphnia_magna'))
+	If you are not interested to access the mydata-file for a species via the website, you may do this via typing an appropriate query into your Matlab console.
+        Function <a href="../html/get_data.html"><code>get_data</code></a> does the same and deletes the local mydata-file after running it:
+        <pre><code class="matlab">
+	  vars_pull(get_data('Daphnia_magna'))
 	</code></pre> 
 	assigns all data specified in <code>mydata_Daphnia_magna.m</code> directly to variables in your work directory.
-    The rest of this guidance page focusses on meta-data and derived data: parameters, meta-parameters and implied traits.
+        The rest of this guidance page focusses on meta-data and derived data: parameters, meta-parameters and implied traits.
 
     <p>
     All functions that analyse data do so by reading information contained in <code>allStat.mat</code> via two functions:
@@ -465,7 +468,14 @@ legend = {...
 	Notice that you can always click on a point in a figure that is produced by <code>shstat</code> to see the name of the corresponding species.</li>
     </ul>
     Functions <code>shstat</code>, <code>read_stat</code>, <code>read_popStat</code> and <code>read_allStat</code> assume that
-      the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
+    the leaves (= endpoints, so the entry-names) of the lists-of-lists exactly correspond with the fields of <code>allStat</code> and <code>popStat</code>.
+
+    <h3>Plotting trajectories of states and traits</h3>
+
+    The function <a href="https://add-my-pet.github.io/AmPtool/trajectories/html/simu_my_pet.html" target="_top"><code>simu_my_pet</code></a>
+    produces plots of trajectries of the state of an individuals and some traits, from start of development to death by aging, in a possibly dynamic environment
+   (in terms of temperature and food).
+    If extracts the required parameters from the AmP, but these parameters can be overwritten.
 
     <h2 id="html">Linked websites</h2>
 
