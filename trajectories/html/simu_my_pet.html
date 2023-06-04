@@ -1,0 +1,247 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>simu_my_pet</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-06-04"><meta name="DC.source" content="simu_my_pet.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>simu_my_pet</h1><!--introduction--><p>Simulates individual dynamics using species parameters and environmental data</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li><li><a href="#6">plotting</a></li></ul></div><h2 id="3">Syntax</h2><p>tELHR = <a href="../simu_my_pet.m"><b>simu_my_pet</b></a>(species, tT, tX)</p><h2 id="4">Description</h2><p>Obtains predictions for state trajectories and some traits for start of development till death by aging, in a possibly dynamic environment, using parameters from the AmP collection. These parameter can be overwritten. It is a shell around get_indDyn_mod to plot the trajectories.</p><p>Input</p><div><ul><li>species: character-string with name of entry or cell-string with structures: {metaData, metaPar, par}</li><li>tT: optional (nT,2)-array with time and temperature in Kelvin (default: T=T_typical)     If scalar, the temperature is assumed to be constant</li><li>tf: optional (nX,2)-array with time and functional response     If scalar, the food density is assumed to be constant (default f=1)</li></ul></div><h2 id="5">Example of use</h2><div><ul><li>If results_My_Pet.mat exists in current directory (where "My_Pet" is replaced by the name of some species, but don't replace "my_pet"):   for example if My_Pet is Torpedo_marmorata then   load('results_My_Pet.mat'); simu_my_pet({metaData, metaPar, par}, tT, tf)</li><li>simu_my_pet('Torpedo_marmorata');</li><li>simu_my_pet('Torpedo_marmorata', C2K(18));</li><li>simu_my_pet('Oryzias_latipes', [0 C2K(21); 2*365 C2K(21)] ,0.8)</li><li>simu_my_pet('Megalobulimus_mogianensis', C2K(21),0.8)</li><li>simu_my_pet('Megalobulimus_mogianensis', [0 C2K(21); 10*365 C2K(21)] ,0.8)</li></ul></div><h2 id="6">plotting</h2><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% simu_my_pet
+% Simulates individual dynamics using species parameters and environmental data
+%%
+function simu_my_pet(species, tT, tf)
+ % created 2023/06/01 by Dina Lika
+  %% Syntax
+  % tELHR = <../simu_my_pet.m *simu_my_pet*>(species, tT, tX)
+    
+  %% Description
+  % Obtains predictions for state trajectories and some traits for start of development till death by aging, 
+  % in a possibly dynamic environment, using parameters from the AmP collection.
+  % These parameter can be overwritten.
+  % It is a shell around get_indDyn_mod to plot the trajectories.
+  %
+  % Input
+  %
+  % * species: character-string with name of entry or cell-string with structures: {metaData, metaPar, par}
+  % * tT: optional (nT,2)-array with time and temperature in Kelvin (default: T=T_typical)
+  %     If scalar, the temperature is assumed to be constant
+  % * tf: optional (nX,2)-array with time and functional response
+  %     If scalar, the food density is assumed to be constant (default f=1) 
+  %
+%% Example of use
+% * If results_My_Pet.mat exists in current directory (where "My_Pet" is replaced by the name of some species, but don't replace "my_pet"):
+%   for example if My_Pet is Torpedo_marmorata then
+%   load('results_My_Pet.mat'); simu_my_pet({metaData, metaPar, par}, tT, tf)
+% * simu_my_pet('Torpedo_marmorata');
+% * simu_my_pet('Torpedo_marmorata', C2K(18)); 
+% * simu_my_pet('Oryzias_latipes', [0 C2K(21); 2*365 C2K(21)] ,0.8)
+% * simu_my_pet('Megalobulimus_mogianensis', C2K(21),0.8)
+% * simu_my_pet('Megalobulimus_mogianensis', [0 C2K(21); 10*365 C2K(21)] ,0.8)
+
+% get core parameters (2 possible routes for getting pars), species and model
+if iscell(species) 
+  metaData = species{1}; metaPar = species{2}; par = species{3}; %txtPar = species{4}; 
+  species = metaData.species;
+  datePrintNm = ['date: ',datestr(date, 'yyyy/mm/dd')];
+else  % use allStat.mat as parameter source 
+  [par, metaPar, txtPar, metaData, info] = allStat2par(species); 
+  if info == 0
+    ELHR=[]; power=[]; return
+  end
+  datePrintNm = ['allStat version: ', datestr(date_allStat, 'yyyy/mm/dd')];
+end
+
+model = metaPar.model;
+switch model
+    case {'stf', 'stx', 'hep', 'hex', 'hax'}
+    fprintf('Warning from get_inDyn_mod: %s model is not coded yet; work in progress\n', model);
+    return
+end
+
+% temperature
+if ~exist('tT','var') || isempty(tT) 
+  tT = [0 metaData.T_typical];
+elseif size(tT,2) == 1
+  tT = [0 tT(1)];
+end
+
+% supply food 
+if ~exist('tf','var') || isempty(tf)
+  tf = [0 1];  
+elseif size(tf,2) == 1
+  tf = [0 tf(1)];
+end
+
+if size(tT,1) == 1 && size(tf,1) > 1 
+    tT = [0 tT(1,2); tf(end,1) tT(1,2)];
+elseif size(tT,1) > 1 && size(tf,1) == 1 
+    tf = [0 tf(1,2); tT(end,1) tf(1,2)];
+elseif size(tT,1) > 1 && size(tf,1) > 1  
+    tSim = min(tT(end,1), tf(end,1));
+    tT = tT(tT(:,1)<tSim,:); tT = [tT; tSim, tT(end,2)];
+    tf = tf(tf(:,1)<tSim,:); tf = [tf; tSim, tf(end,2)];
+end
+
+[tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod(model, par, tT, tf);
+n_col = size(tpAMGRD,2);
+
+%% plotting
+
+close all
+%
+if size(tT,1) == 1 
+    tT =[tELHR(:,1), ones(length(tELHR(:,1)),1)*tT(:,2)];
+end
+if size(tf,1) == 1 
+    tf =[tELHR(:,1), ones(length(tELHR(:,1)),1)*tf(:,2)];
+end
+
+figure(1) % environment
+subplot(2,1,1), hold on
+plot(tT(:,1), K2C(tT(:,2)), 'k', 'Linewidth', 2)
+plot([tT(1,1), tT(end,1)], [K2C(mean(tT(:,2))), K2C(mean(tT(:,2)))], 'r:', 'Linewidth', 2)
+xlabel('time, d'), ylabel('temperature, C')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,1,2), hold on
+plot(tf(:,1), tf(:,2), 'k', 'Linewidth', 2)
+plot([tf(1,1), tf(end,1)], [mean(tf(:,2)), mean(tf(:,2))], 'r:', 'Linewidth', 2)
+xlabel('time, d'), ylabel('functional response, -')
+set(gca, 'FontSize', 15, 'Box', 'on')
+
+figure(2) % t-ELHR
+subplot(2,2,1), hold on
+plot(tELHR(:,1), tELHR(:,2), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('reserve energy, J')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,2), hold on
+plot(tELHR(:,1), tELHR(:,3), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('structural length, cm')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,3), hold on
+plot(tELHR(:,1), tELHR(:,4), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('cum. energy to maturation, J')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,4), hold on
+plot(tELHR(:,1), tELHR(:,5), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('cum. energy to reprod, J')
+set(gca, 'FontSize', 15, 'Box', 'on')
+%
+figure(3) % t-LWNJX
+subplot(2,2,1), hold on
+plot(tWNXO(:,1), tWNXO(:,2), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('wet weight, g')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,2), hold on
+plot(tWNXO(:,1), tWNXO(:,3), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('cum. number of eggs, #')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,3), hold on
+plot(tWNXO(:,1), tWNXO(:,4), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('feeding rate, g/d')
+set(gca, 'FontSize', 15, 'Box', 'on')
+subplot(2,2,4), hold on
+plot(tWNXO(:,1), tWNXO(:,5), 'k', 'Linewidth', 2)
+xlabel('age, d'), ylabel('O_2 consumption, g/d')
+set(gca, 'FontSize', 15, 'Box', 'on')
+
+figure(4) % t-powers
+clr = {'b-', 'k-', 'r-', 'r:', 'k:'};
+hold on
+for i = 2:n_col
+    plot(tpAMGRD(:,1), tpAMGRD(:,i), clr{i-1}, 'Linewidth', 2)
+end
+legend('assim', 'maint', 'growth', 'matur/reprod', 'dissip', 'Location', 'best')
+xlabel('age, d'), ylabel('powers, J/d')
+set(gca, 'FontSize', 15, 'Box', 'on')
+%
+switch model
+    case {'std', 'sbp'}
+        prt_tab({{'age at birth; a_b (d)'; 'age at puberty; a_p (d)'; 'life span; a_m (d)'; ...
+        'struc length at birth; L_b (cm)'; 'struc length at puberty; L_p (cm)'; 'ultimate length; L_i (cm)';  ...
+        'wet weight at birth; Ww_b (g)'; 'wet weight at puberty; Ww_p (g)'; 'ultimate wet weigh; Ww_i (g)'}, aLW, aLWc}, ...
+        {'description; symbol (units)', 'values at T&f (event function)', 'values at mean T&f (DEBtool functions)'});
+    case 'abj'
+        prt_tab({{'age at birth; a_b (d)'; 'age at metamorphosis; a_j (d)'; 'age at puberty; a_p (d)'; 'life span; a_m (d)'; ...
+        'struc length at birth; L_b (cm)'; 'struc length at metamorphosis; L_j (cm)';  ...
+        'struc length at puberty; L_p (cm)'; 'ultimate length; L_i (cm)';  ...
+        'wet weight at birth; Ww_b (g)'; ...
+        'wet weight at metamorphosis; Ww_j (g)'; 'wet weight at puberty; Ww_p (g)'; 'ultimate wet weigh; Ww_i (g)'}, aLW, aLWc}, ...
+        {'description; symbol (units)', 'values at T&f (event function)', 'values at mean T&f (DEBtool functions)'});
+    case 'asj'
+        prt_tab({{'age at birth; a_b (d)'; 'age at start of acceleration; a_s (d)'; 'age at metamorphosis; a_j (d)'; 'age at puberty; a_p (d)'; 'life span; a_m (d)'; ...
+        'struc length at birth; L_b (cm)'; 'struc length at start of acceleration; L_s (cm)'; 'struc length at metamorphosis; L_j (cm)';  ...
+        'struc length at puberty; L_p (cm)'; 'ultimate length; L_i (cm)';  ...
+        'wet weight at birth; Ww_b (g)'; 'wet weight at start of acceleration; Ww_s (g)';...
+        'wet weight at metamorphosis; Ww_j (g)'; 'wet weight at puberty; Ww_p (g)'; 'ultimate wet weigh; Ww_i (g)'}, aLW, aLWc}, ...
+        {'description; symbol (units)', 'values at T&f (event function)', 'values at mean T&f (DEBtool functions)'});
+    case 'abp'
+        prt_tab({{'age at birth; a_b (d)'; 'age at puberty; a_p (d)'; 'life span; a_m (d)'; ...
+        'struc length at birth; L_b (cm)'; 'struc length at puberty; L_p (cm)'; 'ultimate length; L_i (cm)';  ...
+        'wet weight at birth; Ww_b (g)'; 'wet weight at puberty; Ww_p (g)'; 'ultimate wet weigh; Ww_i (g)'}, aLW, aLWc}, ...
+        {'description; symbol (units)', 'values at T&f (event function)', 'values at mean T&f (DEBtool functions)'});
+end
+##### SOURCE END #####
+--></body></html>

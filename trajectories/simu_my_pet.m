@@ -7,15 +7,18 @@ function simu_my_pet(species, tT, tf)
   % tELHR = <../simu_my_pet.m *simu_my_pet*>(species, tT, tX)
     
   %% Description
-  % Obtains predictions, using parameters and environmental data
+  % Obtains predictions for state trajectories and some traits for start of development till death by aging, 
+  % in a possibly dynamic environment, using parameters from the AmP collection.
+  % These parameter can be overwritten.
+  % It is a shell around get_indDyn_mod to plot the trajectories.
   %
   % Input
   %
   % * species: character-string with name of entry or cell-string with structures: {metaData, metaPar, par}
-  % * tT: optional (nT,2)-array with time and temperature in Kelvin (default: T_typical)
+  % * tT: optional (nT,2)-array with time and temperature in Kelvin (default: T=T_typical)
   %     If scalar, the temperature is assumed to be constant
   % * tf: optional (nX,2)-array with time and functional response
-  %     If scalar, the food supply is assumed to be constant and ad libidum (default f=1) 
+  %     If scalar, the food density is assumed to be constant (default f=1) 
   %
 %% Example of use
 % * If results_My_Pet.mat exists in current directory (where "My_Pet" is replaced by the name of some species, but don't replace "my_pet"):
