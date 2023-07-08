@@ -3,13 +3,13 @@
 metaData.data_0     = {'ab'; 'ap'; 'aR'; 'am'; 'LR'; 'Li'; 'Wwb'; 'Wwi'; 'Ri'}; 
 
 metaData.author_mod_1   = {'Bas Kooijman'};    
-metaData.date_mod_1     = [2023 07 02];              
+metaData.date_mod_1     = [2023 07 08];              
 metaData.email_mod_1    = {'bas.kooijman@vu.nl'};            
 metaData.address_mod_1  = {'VU University, Amsterdam'};   
 
 metaData.curator     = {'Starrlight Augustine'};
 metaData.email_cur   = {'starrlight@tecnico.ulisboa.pt'}; 
-metaData.date_acc    = [2023 07 02];
+metaData.date_acc    = [2023 07 08];
 
 tx -> tp
 data.tp = 135;     units.tp = 'd';    label.tp = 'time since birth at fledging/puberty'; bibkey.tp = 'ARKive';   
