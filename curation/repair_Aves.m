@@ -78,7 +78,7 @@ for i=1:n % scan entries
     movefile(zipFnm,cur2ea)    
   end
   
-  % close source file in editor
+  % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
   editorTabs(2:end).close;
 
