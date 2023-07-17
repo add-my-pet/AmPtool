@@ -6,7 +6,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
 % created 2016/04/23 by Bas Kooijman; modified 2017/04/20, 2017/10/14, 2018/01/22
 
 %% Syntax
-% [Hfig val entries missing] =  <../shstat.m *shstat*>(vars, legend, label_title, Hfig)
+% [Hfig, Hleg, val, entries, missing] =  <../shstat.m *shstat*>(vars, legend, label_title, Hfig)
 
 %% Description
 % plots statistics and/or parameters using allStat.mat as source (which must exist). 
