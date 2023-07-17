@@ -34,7 +34,7 @@ cur2ez = '../../entries_zip/'; % path from AmPtool/curation to entries_zip
 cur2ea = '../../entries_archive/'; % path from AmPtool/curation to entries_archive
 
 if 0 % this needs to be done only once
-  Aves = select('Aves'); WD = cdEntr(Aves{1}); n = length(Aves)
+  Aves = select('Aves'); WD = cdEntr(Aves{1}); n = length(Aves);
   for i=1:n
     cdEntr(Aves{i}); 
     copyfile(['../',Aves{i}],['../../Aves/',Aves{i}]);
