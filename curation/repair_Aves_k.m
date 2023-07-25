@@ -63,6 +63,10 @@ for i=1:n % scan entries
   ind = strfind('author_mod_',mydata); ind = ind(end);
   ind = ind +  strfind('}',mydata); mydata = [mydata(1:ind), ', Starrlight Augustine', mydata(ind+1:end)];
   
+  % add tx to data_0
+  if ~strcmp(
+  flnm_mydata = strrep(mydata, '''ap;''', '''ax''; ''ap'';');
+  
   % release k_J and add E_Hx
   
   % insert prediction for tx
