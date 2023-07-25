@@ -9,7 +9,7 @@ function repair_Aves_k(entries)
 
 %% Description
 %
-% * k = 0.3 as speudo-data by releasing k_J in pars_init
+% * k = 0.3 as speudo-data and releasing k_J in pars_init
 % * puberty at tp = 3 * t_x if guessed 
 % * check that the predict-file is using the pre-natal temp, and kT_M based on temp for am
 % * add tx in data_0, in mydata and in predict
@@ -53,27 +53,112 @@ for i=1:n % scan entries
   my_pet = entries{i}; 
   fprintf('%g: %s\n', i, my_pet);
   cd(['../',my_pet]);
-  
+
   % read source files
-  flnm_mydata = ['mydata_', my_pet]; mydata = fileread(flnm_mydata);
-  flnm_pars_init = ['pars_init_', my_pet]; pars_init = fileread(flnm_pars_init);
-  flnm_predict = ['predict_', my_pet]; predict = fileread(flnm_predict);
+  flnm_mydata = ['mydata_', my_pet, '.m']; mydata = fileread(flnm_mydata);
+  flnm_pars_init = ['pars_init_', my_pet, '.m']; pars_init = fileread(flnm_pars_init);
+  flnm_predict = ['predict_', my_pet, '.m']; predict = fileread(flnm_predict);
   
-  % replace modification author
-  ind = strfind('author_mod_',mydata); ind = ind(end);
-  ind = ind +  strfind('}',mydata); mydata = [mydata(1:ind), ', Starrlight Augustine', mydata(ind+1:end)];
+  fullEdit = ~contains(mydata,'''ax'';');
+
+  %% edit mydata
+  
+  % get T_typical
+  eval(['[data, auxData, metaData, txtData, weights] = mydata_', my_pet, ';'])
+  T_typical = num2str(get_T_Aves(metaData.order));
+  
+  % get tp
+  tp = num2str(3 * data.tp);
+ 
+  % get E_Hx, E_Hp
+  eval(['[par, metaPar, txtPar] = pars_init_', my_pet, '(metaData);']);
+  E_Hx = num2str(par.E_Hp); E_Hp = 3 * E_Hx;
   
   % add tx to data_0
-  if ~strcmp(
-  flnm_mydata = strrep(mydata, '''ap;''', '''ax''; ''ap'';');
+  if fullEdit
+    mydata = strrep(mydata, '''ap'';', '''ax''; ''ap'';');
+  end
   
-  % release k_J and add E_Hx
+  % replace modification author
+  ind = strfind(mydata,'author_mod_'); ind = ind(end);
+  ind = ind-2+strfind(mydata(ind:end),'}'); ind = ind(1); mydata = [mydata(1:ind), ', ''Starrlight Augustine''', mydata(ind+1:end)];
+  
+  % replace discussion point
+  txt = 'Pseudo-data point k is used, rather than k_J; prenatal T is guessed, postnatal T is based on PrinPres1991';
+  mydata = strrep(mydata, 'Puberty is assumed to coincide with fledging with a waiting time to first brood', txt);
+  
+  % add bibitem
+  PrinPres1991 = fileread('../PrinPres1991.txt');
+  ind = strfind(mydata, '];'); ind = ind(end); mydata = [mydata(1:ind), '];\n', PrinPres1991];
+ 
+  % add tx, modify tp
+  ind_0 = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
+  txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
+  txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
+  ind_2 = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
+  txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
+  mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
+
+  % set weights for k_J ad k
+  ind = 16+strfind(mydata, 'label, weights);');
+  mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 0.1;', mydata(ind+1:end)];
+  
+  % change temperatures
+  n = length(strfind(mydata, 'C2K('));
+  for j=1:n 
+    ind_0 = 3 + strfind(mydata, 'C2K(');
+    ind_1 = ind_0(j) - 1 + strfind(mydata(ind_0(j):end),')'); 
+    mydata = [mydata(1:ind_0(j)), T_typical, mydata(ind_1(1):end)]; 
+  end
+  ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
+  ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
+  mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+  
+  %% edit pars_init
+  
+  % release k_J
+  pars_init = strrep(pars_init, 'free.k_J   = 0', 'free.k_J   = 1');
+  
+  % modify E_Hp, add E_Hx
+  pars_init = strrep(pars_init, 'fledging/puberty', 'puberty');
+  ind_0 = strfind(pars_init, 'par.E_Hp'); ind_1 = strfind(pars_init, 'par.h_a');
+  txt_EHx = pars_init(ind_0:ind_1-1); txt_EHx = strrep(txt_EHx, 'E_Hp', 'E_Hx');
+  txt_EHx = strrep(txt_EHx, 'puberty', 'fledging');
+  ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '3*', pars_init(ind+1:end)];
+  ind = 20 + strfind(pars_init, '%% other parameters');
+  pars_init  = [pars_init(1:ind), txt_EHx, pars_init(ind+1:end)];
+    
+  %% edit predict
+  
+  % TC (some entries do not use TC_ab)
+  ind_0 = -1 + strfind(predict, 'TC'); ind_1 = -2 + strfind(predict, '% zero');
+  txt = ['TC_ab = tempcorr(temp.ab, T_ref, T_A);', char(13), ...
+         '  TC = tempcorr(temp.am, T_ref, T_A); kT_M = TC * k_M;', char(13), char(13)];
+  predict = [predict(1:ind_0), txt, predict(ind_1:end)];
+  
+  % aT_b
+  ind_0 = -1 + strfind(predict, 'aT_b'); ind_1 = strfind(predict, '% d,'); 
+  predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ T_ab;      ', predict(ind_1(1):end)];
   
   % insert prediction for tx
+  ind_0 = -2 + strfind(predict, 'pars_tp')'; ind_1 = -1+strfind(predict, '[t_p')'; txt_pars_tx = predict(ind_0(1):ind_1(1));
+  txt_pars_tx = strrep(txt_pars_tx, 'tp', 'tx'); txt_pars_tx = strrep(txt_pars_tx, 'v_Hp', 'v_Hx');
+  txt = ['t_x = get_tp(pars_tx, f); % -, scaled time', char(13)];
+  predict = [predict(1:ind_0(1)-1), txt_pars_tx, txt, predict(ind_0(1):end)];
+  %
+  ind_0 = strfind(predict, '% fledging/puberty'); ind_1 = -2 + strfind(predict, '% ultimate');
+  txt = ['% fledging', char(13), '  tT_x = (t_x - t_b)/ kT_M;         % d, time since birth at fledging', char(13), char(13)];
+  txt = [txt, '  % puberty', char(13), '  tT_p = (t_p - t_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
+  predict = [predict(1:ind_0), txt, predict(ind_1:end)];
+  %
+  ind = -2 + strfind(predict, 'prdData.tp');
+  predict = [predict(1:ind), ' prdData.tx = tT_x', char(13), predict(ind:end)];
+   
+  %% write/load
   
   % write edited files
-  fid_mydata = fopen(flnm_mydata, 'w+'); fprintf(fid_mydata, mydata); fclose(fid_mydata);
-  fid_pars_init = fopen(flnm_pars_init, 'w+'); fprintf(fid_pars_init, pars_inti); fclose(flnm_pars_init);
+  fid_mydata = fopen(flnm_mydata, 'w+'); sprintf(fid_mydata, mydata); fclose(fid_mydata);
+  fid_pars_init = fopen(flnm_pars_init, 'w+'); fprintf(fid_pars_init, pars_init); fclose(fid_pars_init);
   fid_predict = fopen(flnm_predict, 'w+'); fprintf(fid_predict, predict); fclose(fid_predict);
   
   % load edited files in editor
@@ -81,10 +166,14 @@ for i=1:n % scan entries
   edit(['pars_init_',my_pet,'.m'])
   edit(['predict_',my_pet,'.m'])
   
+  %% estimate
+  
   pets = {my_pet};
   check_my_pet(pets); 
   estim_options('method', 'nm'); 
   estim_pars; 
+  
+  %% finalize
   
   fprintf('type dbcont to proceed or dbquit \n'); 
   keyboard
