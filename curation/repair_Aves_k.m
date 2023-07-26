@@ -76,7 +76,7 @@ for i=1:n % scan entries
   ind = ind-2+strfind(mydata(ind:end),'}'); ind = ind(1); mydata = [mydata(1:ind), ', ''Starrlight Augustine''', mydata(ind+1:end)];
   
   % replace discussion point
-  txt = 'Pseudo-data point k is used, rather than k_J; tR and guessed tp added, prenatal T is guessed, postnatal T is based on PrinPres1991';
+  txt = 'Pseudo-data point k is used, rather than k_J; guessed tp=3*tx is added based on the empirical relationship between tx and tp for species for whcih we have both data. Prenatal T is guessed on the bases of being the optimal temperature for artificial incubation, postnatal T is based on PrinPres1991';
   mydata = strrep(mydata, 'Puberty is assumed to coincide with fledging with a waiting time to first brood', txt);
   
   % add bibitem
