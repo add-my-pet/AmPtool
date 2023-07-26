@@ -12,7 +12,7 @@ function repair_Aves_k(entries)
 %
 % Input:
 %
-% * entries: character or cell string with one or more entries
+% * entries: cell string with one or more entries
 
 %% Remarks
 % the Matlab editor should only contain this file, loading and removing source files is automatic
