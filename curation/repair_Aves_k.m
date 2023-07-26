@@ -5,7 +5,7 @@ function repair_Aves_k(entries)
 % created 2023/07/26 by Bas Kooijman
 
 %% Syntax
-% [WD, nm] = <repair_Aves_k  *repair_Aves_k*>(entries)
+% <repair_Aves_k  *repair_Aves_k*>(entries)
 
 %% Description
 % Edit 3 source files, load them in Matlab editor and run estim_pars; leave run_my_pet unused
@@ -30,6 +30,7 @@ function repair_Aves_k(entries)
 
 %% Example
 % nm=select('Aves'); repair_Aves_k(nm); 
+% continue estimation with "estim_pars; mat2parsinit" move to the next species with "dbcont" 
 % After quitting at entry i, continue with nm(1:i-1)=[]; repair_Aves_k(nm)
 % If i is lost. but entry nm_i is in the the Matlab editor, recover i by 
 % nm=select('Aves'); ind=1:length(nm); i = ind(strcmp(nm_i,nm)); nm(1:i-1)=[]; 
@@ -43,6 +44,7 @@ estim_options('max_fun_evals', 5e3);
 
 estim_options('pars_init_method', 2); 
 estim_options('results_output', 3); 
+estim_options('method', 'nm'); 
 
 n = length(entries);
 for i=1:n % scan entries
@@ -164,9 +166,7 @@ for i=1:n % scan entries
   
   pets = {my_pet};
   check_my_pet(pets); 
-  estim_options('method', 'nm'); 
-  estim_pars; 
-  mat2parsinit
+  estim_pars; mat2parsinit
 
   %% finalize
   
