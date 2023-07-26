@@ -80,7 +80,7 @@ for i=1:n % scan entries
       'guessed tp=3*tx is added based on the stylized empirical relationship between tx and tp for species for which both data were available. ' ...
       't_R is added as parameter, replacing t_N (clutch interval). '...
       'Prenatal T is guessed on the bases of being the optimal temperature for artificial incubation for several species; '...
-      'postnatal T is based on PrinPres1991'];
+      'postnatal T is based on PrinPres1991, see DEBtool_M/lib/pet/get_T_Aves.'];
   mydata = strrep(mydata, 'Puberty is assumed to coincide with fledging with a waiting time to first brood', txt);
   
   % add bibitem
@@ -88,10 +88,10 @@ for i=1:n % scan entries
   ind = -1+strfind(mydata, '];'); ind = ind(end); mydata = [mydata(1:ind), '];', char(13), PrinPres1991];
  
   % add tx, modify tp
-  ind_0 = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
+  ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
   txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
   txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
-  ind_2 = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
+  ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
   txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
   mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
 
