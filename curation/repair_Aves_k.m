@@ -17,16 +17,14 @@ function repair_Aves_k(entries)
 %% Remarks
 % the Matlab editor should only contain this file, loading and removing source files is automatic
 % Target entries are in add_my_pet/Aves_k which is a copy of Aves_new
-% Most predit files have filter t_0 < 0, but not all
-% If possible replace tp prediction for time at first moult for Paleognathae and Galloanserae
+% Most predict files have filter t_0 < 0, but not all
+% If possible, replace tp prediction for time at first moult for Paleognathae and Galloanserae
 % Compare the resulting MRE with the existing one to see if you need more continuations
 %
 % After editing all entries copy Aves_k over entries
 % and run_collection('Aves'), then run_collection_intro('Aves')
 % Requires syncing with servers when done
 % This review does not create new modifications; the last modification was very recent
-% Check MRE in the collection and compare it with current MRE; 
-% re-estimate if the current MRE is larger
 
 %% Example
 % nm=select('Aves'); repair_Aves_k(nm); 
@@ -146,7 +144,7 @@ for i=1:n % scan entries
   txt = [txt, '  % puberty', char(13), '  tT_p = (t_p - t_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
   predict = [predict(1:ind_0), txt, predict(ind_1:end)];
   
-  % add prediction fro tx to output list
+  % add prediction for tx to output list
   ind = -2 + strfind(predict, 'prdData.tp');
   predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
    
@@ -173,6 +171,8 @@ for i=1:n % scan entries
   fprintf('type dbcont to proceed or dbquit \n'); 
   keyboard
    
+  mat2parsinit
+  
   % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
   editorTabs(2:end).close;
