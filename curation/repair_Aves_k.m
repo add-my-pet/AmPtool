@@ -1,5 +1,5 @@
 %% repair_Aves_k
-% edit mydata_my_pet, write results_my_pet.mat
+% edit source files, runs estimation
 %%
 function repair_Aves_k(entries)
 % created 2023/07/26 by Bas Kooijman
@@ -65,11 +65,7 @@ for i=1:n % scan entries
   
   % get tp
   tp = num2str(3 * data.tp);
- 
-  % get E_Hx, E_Hp
-  eval(['[par, metaPar, txtPar] = pars_init_', my_pet, '(metaData);']);
-  E_Hx = num2str(par.E_Hp); E_Hp = 3 * E_Hx;
-  
+   
   % add tx to data_0
   if fullEdit
     mydata = strrep(mydata, '''ap'';', '''ax''; ''ap'';');
