@@ -165,14 +165,13 @@ for i=1:n % scan entries
   check_my_pet(pets); 
   estim_options('method', 'nm'); 
   estim_pars; 
-  
+  mat2parsinit
+
   %% finalize
   
   fprintf('type dbcont to proceed or dbquit \n'); 
   keyboard
-  
-  mat2parsinit
-  
+   
   % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
   editorTabs(2:end).close;
