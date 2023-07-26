@@ -2,21 +2,13 @@
 % edit mydata_my_pet, write results_my_pet.mat
 %%
 function repair_Aves_k(entries)
-% created 2023/06/19 by Bas Kooijman
+% created 2023/07/26 by Bas Kooijman
 
 %% Syntax
-% [WD, nm] = <repair_Aves  *repair_Aves*>(entries)
+% [WD, nm] = <repair_Aves_k  *repair_Aves_k*>(entries)
 
 %% Description
-%
-% * k = 0.3 as speudo-data and releasing k_J in pars_init
-% * puberty at tp = 3 * t_x if guessed 
-% * check that the predict-file is using the pre-natal temp, and kT_M based on temp for am
-% * add tx in data_0, in mydata and in predict
-% * edit post-natal temperatures with get_T_Aves, pre-natal temp around 33 C
-% * modify last discussion point on tp 
-% * add discussion point for temp and bibitem PrinPres1991 to biblist
-% * add Starrlight to modification authors
+% Edit 3 source files, load them in Matlab editor and run estim_pars; leave run_my_pet unused
 %
 % Input:
 %
@@ -25,6 +17,10 @@ function repair_Aves_k(entries)
 %% Remarks
 % the Matlab editor should only contain this file, loading and removing source files is automatic
 % Target entries are in add_my_pet/Aves_k which is a copy of Aves_new
+% Most predit files have filter t_0 < 0, but not all
+% If possible replace tp prediction for time at first moult for Paleognathae and Galloanserae
+% Compare the resulting MRE with the existing one to see if you need more continuations
+%
 % After editing all entries copy Aves_k over entries
 % and run_collection('Aves'), then run_collection_intro('Aves')
 % Requires syncing with servers when done
@@ -89,7 +85,7 @@ for i=1:n % scan entries
   
   % add bibitem
   PrinPres1991 = fileread('../PrinPres1991.txt');
-  ind = strfind(mydata, '];'); ind = ind(end); mydata = [mydata(1:ind), '];\n', PrinPres1991];
+  ind = -1+strfind(mydata, '];'); ind = ind(end); mydata = [mydata(1:ind), '];', char(13), PrinPres1991];
  
   % add tx, modify tp
   ind_0 = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
@@ -138,7 +134,7 @@ for i=1:n % scan entries
   
   % aT_b
   ind_0 = -1 + strfind(predict, 'aT_b'); ind_1 = strfind(predict, '% d,'); 
-  predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ T_ab;      ', predict(ind_1(1):end)];
+  predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ TC_ab;      ', predict(ind_1(1):end)];
   
   % insert prediction for tx
   ind_0 = -2 + strfind(predict, 'pars_tp')'; ind_1 = -1+strfind(predict, '[t_p')'; txt_pars_tx = predict(ind_0(1):ind_1(1));
@@ -150,16 +146,17 @@ for i=1:n % scan entries
   txt = ['% fledging', char(13), '  tT_x = (t_x - t_b)/ kT_M;         % d, time since birth at fledging', char(13), char(13)];
   txt = [txt, '  % puberty', char(13), '  tT_p = (t_p - t_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
   predict = [predict(1:ind_0), txt, predict(ind_1:end)];
-  %
+  
+  % add prediction to output list
   ind = -2 + strfind(predict, 'prdData.tp');
-  predict = [predict(1:ind), ' prdData.tx = tT_x', char(13), predict(ind:end)];
+  predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
    
   %% write/load
   
   % write edited files
-  fid_mydata = fopen(flnm_mydata, 'w+'); sprintf(fid_mydata, mydata); fclose(fid_mydata);
-  fid_pars_init = fopen(flnm_pars_init, 'w+'); fprintf(fid_pars_init, pars_init); fclose(fid_pars_init);
-  fid_predict = fopen(flnm_predict, 'w+'); fprintf(fid_predict, predict); fclose(fid_predict);
+  fid_mydata = fopen(flnm_mydata, 'w+'); fprintf(fid_mydata, '%s', mydata); fclose(fid_mydata);
+  fid_pars_init = fopen(flnm_pars_init, 'w+'); fprintf(fid_pars_init, '%s', pars_init); fclose(fid_pars_init);
+  fid_predict = fopen(flnm_predict, 'w+'); fprintf(fid_predict, '%s', predict); fclose(fid_predict);
   
   % load edited files in editor
   edit(['mydata_',my_pet,'.m'])
