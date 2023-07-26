@@ -117,6 +117,7 @@ for i=1:n % scan entries
   txt_EHx = pars_init(ind_0:ind_1-1); txt_EHx = strrep(txt_EHx, 'E_Hp', 'E_Hx');
   txt_EHx = strrep(txt_EHx, 'puberty', 'fledging');
   ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '3*', pars_init(ind+1:end)];
+  %
   ind = 20 + strfind(pars_init, '%% other parameters');
   pars_init  = [pars_init(1:ind), txt_EHx, pars_init(ind+1:end)];
     
@@ -143,7 +144,7 @@ for i=1:n % scan entries
   txt = [txt, '  % puberty', char(13), '  tT_p = (t_p - t_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
   predict = [predict(1:ind_0), txt, predict(ind_1:end)];
   
-  % add prediction to output list
+  % add prediction fro tx to output list
   ind = -2 + strfind(predict, 'prdData.tp');
   predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
    
