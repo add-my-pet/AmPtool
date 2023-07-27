@@ -28,7 +28,7 @@ function repair_Aves_k(entries)
 
 %% Example
 % nm=select('Aves'); repair_Aves_k(nm); 
-% continue estimation with "estim_pars; mat2parsinit" move to the next species with "dbcont" 
+% continue estimation with "estim_pars; mat2pars_init" move to the next species with "dbcont" 
 % After quitting at entry i, continue with nm(1:i-1)=[]; repair_Aves_k(nm)
 % If i is lost. but entry nm_i is in the the Matlab editor, recover i by 
 % nm=select('Aves'); ind=1:length(nm); i = ind(strcmp(nm_i,nm)); nm(1:i-1)=[]; 
@@ -94,14 +94,6 @@ for i=1:n % scan entries
   % add tx, modify tp
   ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
   txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
-  if contains(txt_tx, 'comment')
-    ind = strfind(txt_tx, ''''); ind = ind(end);
-    txt_tx = [txt_tx(1:ind), '; Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
-         'It depends on environmental conditions and parental care'';', char(13)];   
-  else
-    txt_tx = [txt_tx, '  comment.tx = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
-         'It depends on environmental conditions and parental care'';', char(13)];
-  end
   txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
   ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
   txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
@@ -130,8 +122,17 @@ for i=1:n % scan entries
   ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
   ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
   mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+  if contains(mydata, 'comment.ab')
+    ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
+    mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+         'It depends on environmental conditions and parental care. ', mydata(ind+1:end)];   
+  else
+    ind = -1+strfind(mydata, 'data.tx');
+    mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+         'It depends on environmental conditions and parental care'';', char(13), mydata(ind+1:end)];
   end
-  
+  end
+
   %% edit pars_init
   
   % release k_J
