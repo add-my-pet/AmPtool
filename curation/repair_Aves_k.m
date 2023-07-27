@@ -50,6 +50,11 @@ for i=1:n % scan entries
   fprintf('%g: %s\n', i, my_pet);
   cd(['../',my_pet]);
 
+  % load files in editor that are to be edited
+  edit(['mydata_',my_pet,'.m'])
+  edit(['pars_init_',my_pet,'.m'])
+  edit(['predict_',my_pet,'.m'])
+
   % read source files
   flnm_mydata = ['mydata_', my_pet, '.m']; mydata = fileread(flnm_mydata);
   flnm_pars_init = ['pars_init_', my_pet, '.m']; pars_init = fileread(flnm_pars_init);
@@ -77,11 +82,9 @@ for i=1:n % scan entries
   
   % replace discussion point
   txt = ['Pseudo-data point k is used, rather than k_J; ' ...
-      'guessed tp=3*tx is added based on the stylized empirical relationship between tx and tp for species for which both data were available. ' ...
-      't_R is added as parameter, replacing t_N (clutch interval). '...
-      'Prenatal T is guessed on the bases of being the optimal temperature for artificial incubation for several species, ' ...
-      'but depends on environmental conditions and parental care; '  ...
-      'postnatal T is based on PrinPres1991, see DEBtool_M/lib/pet/get_T_Aves.'];
+      'Data set tp and parameter t_R are added, the latter replacing clutch interval t_N. '...
+      'Postnatal T is based on PrinPres1991, see <a href="https://debtool.debtheory.org/lib/pet/html/get_T_Aves.html">get_T_Aves</a>. ' ...
+      'See further the <a href="https://debportal.debtheory.org/docs/Revision.html">revision page, theme puberty</a>'];
   mydata = strrep(mydata, 'Puberty is assumed to coincide with fledging with a waiting time to first brood', txt);
   
   % add bibitem
@@ -91,16 +94,33 @@ for i=1:n % scan entries
   % add tx, modify tp
   ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
   txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
+  if contains(txt_tx, 'comment')
+    ind = strfind(txt_tx, ''''); ind = ind(end);
+    txt_tx = [txt_tx(1:ind), '; Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+         'It depends on environmental conditions and parental care'';', char(13)];   
+  else
+    txt_tx = [txt_tx, '  comment.tx = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+         'It depends on environmental conditions and parental care'';', char(13)];
+  end
   txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
   ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
   txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
+  txt_tp = [txt_tp, '  comment.tp = ''based on the stylized empirical relationship between tx and tp for species for which both data were available'';', char(13)];
   mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
 
+  % add comment to txtData, if not already done
+  if ~contains(mydata, 'txtData.comment = comment;')
+    ind = 24+strfind(mydata,'txtData.bibkey = bibkey;');
+    mydata = [mydata(1:ind), 'txtData.comment = comment;', char(13), mydata(ind+1:end)];
+  end
+  
   % set weights for k_J ad k
   ind = 16+strfind(mydata, 'label, weights);');
   mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 0.1;', mydata(ind+1:end)];
   
-  % change temperatures
+  % change temperatures if wanted
+  tempChange = input(' Change body temparatures? type y of n ','s');
+  if strcmp(tempChange,'y')
   n = length(strfind(mydata, 'C2K('));
   for j=1:n 
     ind_0 = 3 + strfind(mydata, 'C2K(');
@@ -110,6 +130,7 @@ for i=1:n % scan entries
   ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
   ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
   mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+  end
   
   %% edit pars_init
   
@@ -169,14 +190,14 @@ for i=1:n % scan entries
   
   pets = {my_pet};
   check_my_pet(pets); 
-  estim_pars; mat2parsinit
+  estim_pars; mat2pars_init
 
   %% finalize
   
   fprintf('type dbcont to proceed or dbquit \n'); 
   keyboard
    
-  mat2parsinit
+  mat2pars_init
   
   % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
