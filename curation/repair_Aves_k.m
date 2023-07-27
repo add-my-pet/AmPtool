@@ -20,8 +20,13 @@ function repair_Aves_k(entries)
 % Most predict files have filter t_0 < 0, but not all
 % If possible, replace tp prediction for time at first moult for Paleognathae and Galloanserae
 % Compare the resulting MRE with the existing one to see if you need more continuations
+% mat2pars_init is called after each estim_pars, in compibation with fixed estim_options('pars_init_method', 2);
+% the run-file is not used and not edited
+% copy Aves_k to VU server with Filezilla
 %
-% After editing all entries copy Aves_k over entries
+% Tasks for Bas after updating Aves_k
+% Copy Aves_k from VU server over local dir with Filezilla
+% Copy Aves_k over entries locally
 % and run_collection('Aves'), then run_collection_intro('Aves')
 % Requires syncing with servers when done
 % This review does not create new modifications; the last modification was very recent
@@ -69,7 +74,7 @@ for i=1:n % scan entries
   ind = ind-2+strfind(mydata(ind:end),'}'); ind = ind(1); mydata = [mydata(1:ind), ', ''Starrlight Augustine''', mydata(ind+1:end)];
 
   % get tp
-  tp = num2str(3 * data.tp); % txt string
+  tp = num2str(3 * data.tp); % txt string; madification from tp = tx
    
   % add tx to data_0 and add tx, modify tp
   if fullEdit
