@@ -19,6 +19,7 @@ function repair_Aves_k(entries)
 % Target entries are in add_my_pet/Aves_k which is a copy of Aves_new
 % Most predict files have filter t_0 < 0, but not all
 % If possible, replace tp prediction for time at first moult for Paleognathae and Galloanserae
+% It might be necessary to release v, if fixed
 % Compare the resulting MRE with the existing one to see if you need more continuations
 % mat2pars_init is called after each estim_pars, in compibation with fixed estim_options('pars_init_method', 2);
 % the run-file is not used and not edited
