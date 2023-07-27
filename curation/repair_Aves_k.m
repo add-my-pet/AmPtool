@@ -111,7 +111,7 @@ for i=1:n % scan entries
   mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 0.1;', mydata(ind+1:end)];
   
   % change temperatures if wanted
-  tempChange = input(' Change body temparatures? type y of n ','s');
+  tempChange = input(' Change body temparatures? (y/n) ','s');
   if strcmp(tempChange,'y')
   n = length(strfind(mydata, 'C2K('));
   for j=1:n 
