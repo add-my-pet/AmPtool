@@ -190,6 +190,7 @@ for i=1:n % scan entries
   ind_0 = -1 + strfind(predict, 'aT_b'); ind_1 = strfind(predict, '% d,'); 
   predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ TC_ab;      ', predict(ind_1(1):end)];
   
+  if fullEdit
   % insert prediction for tx
   ind_0 = -2 + strfind(predict, 'pars_tp')'; ind_1 = -1+strfind(predict, '[t_p')'; txt_pars_tx = predict(ind_0(1):ind_1(1));
   txt_pars_tx = strrep(txt_pars_tx, 'tp', 'tx'); txt_pars_tx = strrep(txt_pars_tx, 'v_Hp', 'v_Hx');
@@ -204,7 +205,7 @@ for i=1:n % scan entries
   % add prediction for tx to output list
   ind = -2 + strfind(predict, 'prdData.tp');
   predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
-   
+  end 
   %% write/load
   
   % write edited files
@@ -217,15 +218,18 @@ for i=1:n % scan entries
   edit(['pars_init_',my_pet,'.m'])
   edit(['predict_',my_pet,'.m'])
   
+  pets = {my_pet};
+
+  fprintf('type dbcont to proceed to the next species or dbquit \n'); 
+  fprintf('type estim_pars; mat2pars_init to estimate \n'); 
+  keyboard
+
   %% estimate
   
-  pets = {my_pet};
   estim_pars; mat2pars_init
 
   %% finalize
   
-  fprintf('type dbcont to proceed or dbquit \n'); 
-  keyboard
    
   mat2pars_init
   
