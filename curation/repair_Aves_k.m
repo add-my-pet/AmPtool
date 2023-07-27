@@ -64,44 +64,47 @@ for i=1:n % scan entries
 
   %% edit mydata
   
-  % get T_typical
-  eval(['[data, auxData, metaData, txtData, weights] = mydata_', my_pet, ';'])
-  T_typical = num2str(get_T_Aves(metaData.order));
-  
-  % get tp
-  tp = num2str(3 * data.tp);
-   
-  % add tx to data_0
-  if fullEdit
-    mydata = strrep(mydata, '''ap'';', '''ax''; ''ap'';');
-  end
-  
   % replace modification author
   ind = strfind(mydata,'author_mod_'); ind = ind(end);
   ind = ind-2+strfind(mydata(ind:end),'}'); ind = ind(1); mydata = [mydata(1:ind), ', ''Starrlight Augustine''', mydata(ind+1:end)];
-  
+
+  % get tp
+  tp = num2str(3 * data.tp); % txt string
+   
+  % add tx to data_0 and add tx, modify tp
+  if fullEdit
+    % add tx to data_0
+    mydata = strrep(mydata, '''ap'';', '''ax''; ''ap'';');
+    % add tx, modify tp
+    ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
+    txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
+    txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
+    ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
+    txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
+    txt_tp = [txt_tp, '  comment.tp = ''based on the stylized empirical relationship between tx and tp for species for which both data were available'';', char(13)];
+    mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
+  end
+    
   % replace discussion point
-  txt = ['Pseudo-data point k is used, rather than k_J; ' ...
+  if fullEdit
+    txt = ['Pseudo-data point k is used, rather than k_J; ' ...
       'Data set tp and parameter t_R are added, the latter replacing clutch interval t_N. '...
       'Postnatal T is based on PrinPres1991, see <a href="https://debtool.debtheory.org/lib/pet/html/get_T_Aves.html">get_T_Aves</a>. ' ...
       'See further the <a href="https://debportal.debtheory.org/docs/Revision.html">revision page, theme puberty</a>'];
+  else
+    txt = ['Pseudo-data point k is used, rather than k_J; ' ...
+      'Parameter t_R is added, replacing clutch interval t_N. '...
+      'Postnatal T is based on PrinPres1991, see <a href="https://debtool.debtheory.org/lib/pet/html/get_T_Aves.html">get_T_Aves</a>. ' ...
+      'See further the <a href="https://debportal.debtheory.org/docs/Revision.html">revision page, theme puberty</a>'];
+  end
   mydata = strrep(mydata, 'Puberty is assumed to coincide with fledging with a waiting time to first brood', txt);
   
   % add bibitem
   PrinPres1991 = fileread('../PrinPres1991.txt');
   ind = -1+strfind(mydata, '];'); ind = ind(end); mydata = [mydata(1:ind), '];', char(13), PrinPres1991];
- 
-  % add tx, modify tp
-  ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
-  txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
-  txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
-  ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
-  txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
-  txt_tp = [txt_tp, '  comment.tp = ''based on the stylized empirical relationship between tx and tp for species for which both data were available'';', char(13)];
-  mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
 
   % add comment to txtData, if not already done
-  if ~contains(mydata, 'txtData.comment = comment;')
+  if ~contains(mydata, 'txtData.comment = comment;') && contains(mydata, 'comment.')
     ind = 24+strfind(mydata,'txtData.bibkey = bibkey;');
     mydata = [mydata(1:ind), 'txtData.comment = comment;', char(13), mydata(ind+1:end)];
   end
@@ -112,25 +115,30 @@ for i=1:n % scan entries
   
   % change temperatures if wanted
   tempChange = input(' Change body temparatures? (y/n) ','s');
-  if strcmp(tempChange,'y')
-  n = length(strfind(mydata, 'C2K('));
-  for j=1:n 
-    ind_0 = 3 + strfind(mydata, 'C2K(');
-    ind_1 = ind_0(j) - 1 + strfind(mydata(ind_0(j):end),')'); 
-    mydata = [mydata(1:ind_0(j)), T_typical, mydata(ind_1(1):end)]; 
-  end
-  ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
-  ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
-  mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
-  if contains(mydata, 'comment.ab')
-    ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
-    mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+  if strcmp(tempChange,'y') 
+      
+    % get T_typical
+    eval(['[data, auxData, metaData, txtData, weights] = mydata_', my_pet, ';'])
+    T_typical = num2str(get_T_Aves(metaData.order));
+
+    n = length(strfind(mydata, 'C2K('));
+    for j=1:n 
+      ind_0 = 3 + strfind(mydata, 'C2K(');
+      ind_1 = ind_0(j) - 1 + strfind(mydata(ind_0(j):end),')'); 
+      mydata = [mydata(1:ind_0(j)), T_typical, mydata(ind_1(1):end)]; 
+    end
+    ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
+    ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
+    mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+    if contains(mydata, 'comment.ab')
+      ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
+      mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
          'It depends on environmental conditions and parental care. ', mydata(ind+1:end)];   
-  else
-    ind = -1+strfind(mydata, 'data.tx');
-    mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+    else
+      ind = -1+strfind(mydata, 'data.tx');
+      mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
          'It depends on environmental conditions and parental care'';', char(13), mydata(ind+1:end)];
-  end
+    end
   end
 
   %% edit pars_init
