@@ -66,6 +66,9 @@ for i=1:n % scan entries
   flnm_pars_init = ['pars_init_', my_pet, '.m']; pars_init = fileread(flnm_pars_init);
   flnm_predict = ['predict_', my_pet, '.m']; predict = fileread(flnm_predict);
   
+  % get output of mydata_my_pet and pars_init
+  eval(['[data, auxData, metaData] = mydata_', my_pet, ';'])
+  eval(['par = pars_init_', my_pet, '(metaData);'])
   fullEdit = ~contains(mydata,'''ax'';');
 
   %% edit mydata
@@ -117,14 +120,13 @@ for i=1:n % scan entries
   
   % set weights for k_J ad k
   ind = 16+strfind(mydata, 'label, weights);');
-  mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 0.1;', mydata(ind+1:end)];
-  
+  mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 2;', mydata(ind+1:end)];
+    
   % change temperatures if wanted
   tempChange = input(' Change body temparatures? (y/n) ','s');
   if strcmp(tempChange,'y') 
       
     % get T_typical
-    eval(['[data, auxData, metaData, txtData, weights] = mydata_', my_pet, ';'])
     T_typical = num2str(get_T_Aves(metaData.order));
 
     n = length(strfind(mydata, 'C2K('));
@@ -148,16 +150,30 @@ for i=1:n % scan entries
   end
 
   %% edit pars_init
-  
+    
+  % set initial estimate for k_J
+  k_J = num2str(0.3 * par.p_M/ par.E_G); % 1/d, based on k = 0.3
+  ind_0 = 9 + strfind(pars_init, 'par.k_J = '); ind_1 =  strfind(pars_init(ind:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+  pars_init = [pars_init(1:ind_0), k_J, ';', pars_init(ind_1:end)];
+
   % release k_J
-  pars_init = strrep(pars_init, 'free.k_J   = 0', 'free.k_J   = 1');
+  ind_0 = 8 + strfind(pars_init, 'free.k_J'); ind_1 =  strfind(pars_init(ind:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+  pars_init = [pars_init(1:ind_0), ' = 1;' , pars_init(ind_1:end)];
   
+  % reduce initial estimate for kap
+  pars_init = strrep(pars_init, 'par.kap = ', 'par.kap = 0.9*');
+  
+  % fix t_R at data.tR
+  t_R = num2str(data.tR);
+  ind_0 = 9 + strfind(pars_init, 'par.t_R = '); ind_1 = strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(2);
+  pars_init = [pars_init(1:ind_0), t_R, '; free.t_R = 0;' , pars_init(ind_1:end)];
+
   % modify E_Hp, add E_Hx
   pars_init = strrep(pars_init, 'fledging/puberty', 'puberty');
   ind_0 = strfind(pars_init, 'par.E_Hp'); ind_1 = strfind(pars_init, 'par.h_a');
   txt_EHx = pars_init(ind_0:ind_1-1); txt_EHx = strrep(txt_EHx, 'E_Hp', 'E_Hx');
   txt_EHx = strrep(txt_EHx, 'puberty', 'fledging');
-  ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '3*', pars_init(ind+1:end)];
+  ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '2*', pars_init(ind+1:end)];
   %
   ind = 20 + strfind(pars_init, '%% other parameters');
   pars_init  = [pars_init(1:ind), txt_EHx, pars_init(ind+1:end)];
@@ -204,7 +220,6 @@ for i=1:n % scan entries
   %% estimate
   
   pets = {my_pet};
-  check_my_pet(pets); 
   estim_pars; mat2pars_init
 
   %% finalize
