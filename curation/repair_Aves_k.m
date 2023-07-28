@@ -78,7 +78,7 @@ for i=1:n % scan entries
   ind = ind-2+strfind(mydata(ind:end),'}'); ind = ind(1); mydata = [mydata(1:ind), ', ''Starrlight Augustine''', mydata(ind+1:end)];
 
   % get tp
-  tp = num2str(3 * data.tp); % txt string; madification from tp = tx
+  tp = num2str(3 * data.tp); % txt string; modification from tp = tx
    
   % add tx to data_0 and add tx, modify tp
   if fullEdit
@@ -123,29 +123,33 @@ for i=1:n % scan entries
   mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 2;', mydata(ind+1:end)];
     
   % change temperatures if wanted
-  tempChange = input(' Change body temparatures? (y/n) ','s');
+  tempChange = input(['T for this order is :', T_typical, '; Change body temparatures? (y/n) '],'s');
   if strcmp(tempChange,'y') 
-      
     % get T_typical
     T_typical = num2str(get_T_Aves(metaData.order));
+    if ~contains(mydata, 'embryo')  
 
-    n = length(strfind(mydata, 'C2K('));
-    for j=1:n 
-      ind_0 = 3 + strfind(mydata, 'C2K(');
-      ind_1 = ind_0(j) - 1 + strfind(mydata(ind_0(j):end),')'); 
-      mydata = [mydata(1:ind_0(j)), T_typical, mydata(ind_1(1):end)]; 
-    end
-    ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
-    ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
-    mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
-    if contains(mydata, 'comment.ab')
-      ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
-      mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+      n = length(strfind(mydata, 'C2K('));
+      for j=1:n 
+        ind_0 = 3 + strfind(mydata, 'C2K(');
+        ind_1 = ind_0(j) - 1 + strfind(mydata(ind_0(j):end),')'); 
+        mydata = [mydata(1:ind_0(j)), T_typical, mydata(ind_1(1):end)]; 
+      end
+      ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
+      ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
+      mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+      if contains(mydata, 'comment.ab')
+        ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
+        mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
          'It depends on environmental conditions and parental care. ', mydata(ind+1:end)];   
-    else
-      ind = -1+strfind(mydata, 'data.tx');
-      mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
+      else
+        ind = -1+strfind(mydata, 'data.tx');
+        mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
          'It depends on environmental conditions and parental care'';', char(13), mydata(ind+1:end)];
+      end
+    else
+      fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please edit temperatures by hand\n') 
+      fprintf('The typical body temperature for this order is %s C\n', T_typical) 
     end
   end
 
@@ -206,6 +210,7 @@ for i=1:n % scan entries
   ind = -2 + strfind(predict, 'prdData.tp');
   predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
   end 
+  
   %% write/load
   
   % write edited files
