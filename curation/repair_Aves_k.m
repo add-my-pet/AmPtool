@@ -230,15 +230,7 @@ for i=1:n % scan entries
   fprintf('type estim_pars; mat2pars_init to estimate \n'); 
   keyboard
 
-  %% estimate
-  
-  estim_pars; mat2pars_init
-
-  %% finalize
-  
-   
-  mat2pars_init
-  
+     
   % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
   editorTabs(2:end).close;
