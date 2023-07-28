@@ -122,11 +122,11 @@ for i=1:n % scan entries
   ind = 16+strfind(mydata, 'label, weights);');
   mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 2;', mydata(ind+1:end)];
     
+  T_typical = num2str(get_T_Aves(metaData.order));
   % change temperatures if wanted
   tempChange = input(['T for this order is :', T_typical, '; Change body temparatures? (y/n) '],'s');
   if strcmp(tempChange,'y') 
     % get T_typical
-    T_typical = num2str(get_T_Aves(metaData.order));
     if ~contains(mydata, 'embryo')  
 
       n = length(strfind(mydata, 'C2K('));
