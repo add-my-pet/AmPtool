@@ -42,6 +42,7 @@ function repair_Aves_k(entries)
 WD = cdCur; cd '../../deblab/add_my_pet/Aves_k/Struthio_camelus'; % first bird
  
 % set estim options
+global pets
 estim_options('default'); 
 estim_options('max_step_number', 5e2); 
 estim_options('max_fun_evals', 5e3); 
