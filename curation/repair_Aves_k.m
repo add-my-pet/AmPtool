@@ -124,7 +124,7 @@ for i=1:n % scan entries
     
   T_typical = num2str(get_T_Aves(metaData.order));
   % change temperatures if wanted
-  tempChange = input(['T for this order is :', T_typical, '; Change body temparatures? (y/n) '],'s');
+  tempChange = input(['T for this order is ', T_typical, '; Change body temparatures? (y/n) '],'s');
   if strcmp(tempChange,'y') 
     % get T_typical
     if ~contains(mydata, 'embryo')  
@@ -161,7 +161,7 @@ for i=1:n % scan entries
   pars_init = [pars_init(1:ind_0), k_J, ';', pars_init(ind_1:end)];
 
   % release k_J
-  ind_0 = 8 + strfind(pars_init, 'free.k_J'); ind_1 =  strfind(pars_init(ind:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+  ind_0 = 8 + strfind(pars_init, 'free.k_J'); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
   pars_init = [pars_init(1:ind_0), ' = 1;' , pars_init(ind_1:end)];
   
   % reduce initial estimate for kap
