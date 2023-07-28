@@ -157,7 +157,7 @@ for i=1:n % scan entries
     
   % set initial estimate for k_J
   k_J = num2str(0.3 * par.p_M/ par.E_G); % 1/d, based on k = 0.3
-  ind_0 = 9 + strfind(pars_init, 'par.k_J = '); ind_1 =  strfind(pars_init(ind:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+  ind_0 = 9 + strfind(pars_init, 'par.k_J = '); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
   pars_init = [pars_init(1:ind_0), k_J, ';', pars_init(ind_1:end)];
 
   % release k_J
