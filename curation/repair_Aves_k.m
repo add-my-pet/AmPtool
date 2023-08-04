@@ -88,10 +88,10 @@ for i=1:n % scan entries
     % add tx, modify tp
     ind_0  = strfind(mydata, 'data.tp'); ind_1 = -1+strfind(mydata, 'data.tR'); txt = mydata(ind_0:ind_1);
     txt_tx = strrep(txt, 'tp', 'tx'); txt_tx = strrep(txt_tx, 'fledging/puberty', 'fledging');
-    txt_tp = strrep(txt, 'fledging/puberty','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
+    txt_tp = strrep(txt, 'fledging','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
     ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
     txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
-    txt_tp = [txt_tp, '  comment.tp = ''based on the stylized empirical relationship between tx and tp for species for which both data were available'';', char(13)];
+    txt_tp = [txt_tp, '  comment.tp = '''';', char(13)];
     mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
   end
     
