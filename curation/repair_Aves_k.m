@@ -91,7 +91,7 @@ for i=1:n % scan entries
     txt_tp = strrep(txt, 'fledging','puberty'); ind = strfind(txt_tp,';'); txt_tp = ['data.tp = ', tp, txt_tp(ind(1):end)];
     ind_2  = 11+strfind(txt_tp, 'bibkey.tp = '); ind_3 = ind_2 + strfind(txt_tp(ind_2:end),';'); 
     txt_tp = [txt_tp(1:ind_2), '''guess'';', txt_tp(ind_3:end)];
-    txt_tp = [txt_tp, '  comment.tp = '''';', char(13)];
+%     txt_tp = [txt_tp, '  comment.tp = '''';', char(13)];
     mydata = [mydata(1:ind_0-1), txt_tx, txt_tp, mydata(ind_1+1: end)];  
   end
     
@@ -119,16 +119,21 @@ for i=1:n % scan entries
     mydata = [mydata(1:ind), 'txtData.comment = comment;', char(13), mydata(ind+1:end)];
   end
   
+% set weights for guessed tp
+  ind = 20+strfind(mydata, 'setweights(data, []);');
+  mydata = [mydata(1:ind), 'weights.tp = 0.1;', mydata(ind+1:end)];
+
   % set weights for k_J ad k
   ind = 16+strfind(mydata, 'label, weights);');
   mydata = [mydata(1:ind), 'weights.psd.k_J = 0; weights.psd.k = 2;', mydata(ind+1:end)];
     
   T_typical = num2str(get_T_Aves(metaData.order));
   % change temperatures if wanted
+   fprintf('The typical body temperature for this order is %s C\n', T_typical) 
   tempChange = input(['T for this order is ', T_typical, '; Change body temparatures? (y/n) '],'s');
   if strcmp(tempChange,'y') 
     % get T_typical
-    if ~contains(mydata, 'embryo')  
+%     if ~contains(mydata, 'embryo')  
 
       n = length(strfind(mydata, 'C2K('));
       for j=1:n 
@@ -138,7 +143,7 @@ for i=1:n % scan entries
       end
       ind_0 = 13 + strfind(mydata, 'temp.ab = C2K('); 
       ind_1 = ind_0(1) - 1 + strfind(mydata(ind_0(1):end),')'); 
-      mydata = [mydata(1:ind_0(1)), '33', mydata(ind_1(1):end)]; 
+      mydata = [mydata(1:ind_0(1)), '36', mydata(ind_1(1):end)]; 
       if contains(mydata, 'comment.ab')
         ind = strfind(mydata, 'comment.ab'); ind_0 = strfind(mydata(ind:end),''''); ind = ind + ind_0(1);
         mydata = [mydata(1:ind), 'Temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
@@ -148,26 +153,46 @@ for i=1:n % scan entries
         mydata = [mydata(1:ind), '  comment.ab = ''temperature is guessed based on being the optimal temperature for artificial incubation for several species; ' , ...
          'It depends on environmental conditions and parental care'';', char(13), mydata(ind+1:end)];
       end
-    else
-      fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please edit temperatures by hand\n') 
-      fprintf('The typical body temperature for this order is %s C\n', T_typical) 
-    end
+%     else
+%       fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please edit temperatures by hand\n') 
+%       fprintf('The typical body temperature for this order is %s C\n', T_typical) 
+%     end
+        if contains(mydata, 'embryo') 
+            fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please double check the temperatures \n') 
+        end
   end
 
   %% edit pars_init
     
+ % set initial estimate for v
+  pars_init = strrep(pars_init, 'par.v = ', 'par.v = 0.02;');
+  pars_init = strrep(pars_init, 'free.kap   = 1;', 'free.kap   = 0;');
+
+  
+  % free v
+  ind_0 = 8 + strfind(pars_init, 'free.v'); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+  pars_init = [pars_init(1:ind_0), ' = 1;' , pars_init(ind_1:end)];
+
   % set initial estimate for k_J
-  k_J = num2str(0.3 * par.p_M/ par.E_G); % 1/d, based on k = 0.3
+%   k_J = num2str(0.3 * par.p_M/ par.E_G); % 1/d, based on k = 0.3
+k_J = num2str(0.02); % 1/d, based on experience
   ind_0 = 9 + strfind(pars_init, 'par.k_J = '); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
   pars_init = [pars_init(1:ind_0), k_J, ';', pars_init(ind_1:end)];
 
   % release k_J
+  % fix f_J
   ind_0 = 8 + strfind(pars_init, 'free.k_J'); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
-  pars_init = [pars_init(1:ind_0), ' = 1;' , pars_init(ind_1:end)];
+  pars_init = [pars_init(1:ind_0), ' = 0;' , pars_init(ind_1:end)];
   
   % reduce initial estimate for kap
-  pars_init = strrep(pars_init, 'par.kap = ', 'par.kap = 0.9*');
+%   pars_init = strrep(pars_init, 'par.kap = ', 'par.kap = 0.9*');
+  pars_init = strrep(pars_init, 'par.kap = ', 'par.kap = 0.7;');
   
+%   % fix kap
+%   ind_0 = 8 + strfind(pars_init, 'free.kap'); ind_1 =  strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(1) - 2;
+%   pars_init = [pars_init(1:ind_0), ' = 0;' , pars_init(ind_1:end)];
+
+
   % fix t_R at data.tR
   t_R = num2str(data.tR);
   ind_0 = 9 + strfind(pars_init, 'par.t_R = '); ind_1 = strfind(pars_init(ind_0:end), ';'); ind_1 = ind_0 + ind_1(2);
@@ -180,9 +205,10 @@ for i=1:n % scan entries
   txt_EHx = strrep(txt_EHx, 'puberty', 'fledging');
   ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '2*', pars_init(ind+1:end)];
   %
-  ind = 20 + strfind(pars_init, '%% other parameters');
+  ind = 21 + strfind(pars_init, '%% other parameters');
   pars_init  = [pars_init(1:ind), txt_EHx, pars_init(ind+1:end)];
-    
+  pars_init = strrep(pars_init, 'par.t_0', '% par.t_0');  
+
   %% edit predict
   
   % TC (some entries do not use TC_ab)
@@ -191,22 +217,35 @@ for i=1:n % scan entries
          '  TC = tempcorr(temp.am, T_ref, T_A); kT_M = TC * k_M;', char(13), char(13)];
   predict = [predict(1:ind_0), txt, predict(ind_1:end)];
   
-  % aT_b
-  ind_0 = -1 + strfind(predict, 'aT_b'); ind_1 = strfind(predict, '% d,'); 
-  predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ TC_ab;      ', predict(ind_1(1):end)];
-  
+  %  t_0:
+%   ind_0 = -1 + strfind(predict, 'aT_b'); ind_1 = strfind(predict, '% d,'); 
+%   predict = [predict(1:ind_0), 'aT_b = t_0 + t_b/ k_M/ TC_ab;      ', predict(ind_1(1):end)];
+predict = strrep(predict, 'aT_b = t_0 + t_b/ k_M/ TC_ab;', 'aT_b = tau_b/ k_M/ TC_ab;');
+predict = strrep(predict, 'aT_b = t_0 + tT_b;', 'aT_b = tT_b;');
+predict = strrep(predict, 'tT_b = t_b/ k_M/ TC_ab;', 'tT_b = tau_b/ k_M/ TC_ab;');
+predict = strrep(predict, 'if t_0 < 0', 'if E_Hx < 0');
+
   if fullEdit
   % insert prediction for tx
   ind_0 = -2 + strfind(predict, 'pars_tp')'; ind_1 = -1+strfind(predict, '[t_p')'; txt_pars_tx = predict(ind_0(1):ind_1(1));
   txt_pars_tx = strrep(txt_pars_tx, 'tp', 'tx'); txt_pars_tx = strrep(txt_pars_tx, 'v_Hp', 'v_Hx');
-  txt = ['t_x = get_tp(pars_tx, f); % -, scaled time', char(13)];
+%   txt = ['t_x = get_tp(pars_tx, f); % -, scaled time', char(13)];
+  txt = ['[tau_x, ~,~,~,info] = get_tp(pars_tx, f); if info == 0; prdData = []; return; end', char(13)];
   predict = [predict(1:ind_0(1)-1), txt_pars_tx, txt, predict(ind_0(1):end)];
+  predict = strrep(predict, '[t_p, t_b, l_p, l_b, info] = get_tp(pars_tp, f);', '[tau_p, tau_b, l_p, l_b, info] = get_tp(pars_tp, f); if info == 0; prdData = []; return; end');
+
   %
   ind_0 = strfind(predict, '% fledging/puberty'); ind_1 = -2 + strfind(predict, '% ultimate');
-  txt = ['% fledging', char(13), '  tT_x = (t_x - t_b)/ kT_M;         % d, time since birth at fledging', char(13), char(13)];
-  txt = [txt, '  % puberty', char(13), '  tT_p = (t_p - t_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
+  txt = ['% fledging', char(13), '  tT_x = (tau_x - tau_b)/ kT_M;         % d, time since birth at fledging', char(13), char(13)];
+  txt = [txt, '  % puberty', char(13), '  tT_p = (tau_p - tau_b)/ kT_M;         % d, time since birth at puberty', char(13), char(13)];
   predict = [predict(1:ind_0), txt, predict(ind_1:end)];
   
+  predict = strrep(predict, 't_m =', 'tau_m =');
+  predict = strrep(predict, 'aT_m = t_m/ kT_M', 'aT_m = tau_m/ kT_M');
+  predict = strrep(predict, '1 + f * w', '1 + f * ome');
+  predict = strrep(predict, 'w_m =', 'ome_m =');
+  predict = strrep(predict, '1 + f * w_m', '1 + f * ome_m');
+
   % add prediction for tx to output list
   ind = -2 + strfind(predict, 'prdData.tp');
   predict = [predict(1:ind), ' prdData.tx = tT_x;', char(13), predict(ind:end)];
