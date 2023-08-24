@@ -201,7 +201,7 @@ for i=1:n % scan entries
 %   ind = ind_0 + 1 + strfind(pars_init(ind_0:end), ' = '); pars_init = [pars_init(1:ind), '2*', pars_init(ind+1:end)];
 
   % other parameters 
-  ind = 21 + strfind(pars_init, '%% other parameters');
+  ind = 21+ strfind(pars_init, '%% other parameters');
   pars_init  = [pars_init(1:ind), txt_EHx, pars_init(ind+1:end)];
   pars_init = strrep(pars_init, 'par.t_0', '% par.t_0');  
 
@@ -221,6 +221,11 @@ for i=1:n % scan entries
   pars_init = strrep(pars_init, 'free.kap   = 1;', 'free.kap   = 0;');
   pars_init = strrep(pars_init, 'free.p_M   = 0;', 'free.p_M   = 1;');
   pars_init = strrep(pars_init, 'free.E_Hp  = 0;', 'free.E_Hp  = 1;');
+
+% fix some errors from previous edits:
+ pars_init = strrep(pars_init, 'ppar.E_Hx =', 'par.E_Hx =');
+  pars_init = strrep(pars_init, 'ar.f =', 'par.f =');
+    pars_init = strrep(pars_init, 'ppar.f =', 'par.f =');
   
   %% edit predict
   
@@ -259,9 +264,11 @@ predict = strrep(predict, 'if t_0 < 0', 'if E_Hx < 0');
   
   predict = strrep(predict, 't_m =', 'tau_m =');
   predict = strrep(predict, 'aT_m = t_m/ kT_M', 'aT_m = tau_m/ kT_M');
+  predict = strrep(predict, 'aT_m = t_m/ k_M/ TC;', 'aT_m = tau_m/ kT_M');
   predict = strrep(predict, '1 + f * w', '1 + f * ome');
   predict = strrep(predict, 'w_m =', 'ome_m =');
   predict = strrep(predict, '1 + f * w_m', '1 + f * ome_m');
+  predict = strrep(predict, 'EWome_m =', 'EWw_m =');
 
   % add prediction for tx to output list
   ind = -2 + strfind(predict, 'prdData.tp');
