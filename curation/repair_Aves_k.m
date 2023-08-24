@@ -236,8 +236,10 @@ for i=1:n % scan entries
 predict = strrep(predict, 'aT_b = t_0 + t_b/ k_M/ TC_ab;', 'aT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'aT_b = t_0 + t_b/ k_M/ TC;', 'aT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'aT_b = t_0 + t_b/ kT_M;', 'aT_b = tau_b/ k_M/ TC_ab;');
+predict = strrep(predict, 'aT_b = t_0 + t_b/ TC_ab/ k_M;', 'aT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'aT_b = t_0 + tT_b;', 'aT_b = tT_b;');
 predict = strrep(predict, 'tT_b = t_b/ k_M/ TC_ab;', 'tT_b = tau_b/ k_M/ TC_ab;');
+predict = strrep(predict, 'tT_b = t_b/ k_M/ TC;', 'tT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'if t_0 < 0', 'if E_Hx < 0');
 
   if fullEdit
