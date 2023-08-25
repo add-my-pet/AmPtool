@@ -130,8 +130,8 @@ for i=1:n % scan entries
   T_typical = num2str(get_T_Aves(metaData.order));
   % change temperatures if wanted
    fprintf('The typical body temperature for this order is %s C\n', T_typical) 
-  tempChange = input(['T for this order is ', T_typical, '; Change body temparatures? (y/n) '],'s');
-  if strcmp(tempChange,'y') 
+%   tempChange = input(['T for this order is ', T_typical, '; Change body temparatures? (y/n) '],'s');
+%   if strcmp(tempChange,'y') 
     % get T_typical
 %     if ~contains(mydata, 'embryo')  
 
@@ -160,7 +160,7 @@ for i=1:n % scan entries
         if contains(mydata, 'embryo') 
             fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please double check the temperatures \n') 
         end
-  end
+%   end
 
   %% edit pars_init
     
@@ -221,6 +221,8 @@ for i=1:n % scan entries
   pars_init = strrep(pars_init, 'free.kap   = 1;', 'free.kap   = 0;');
   pars_init = strrep(pars_init, 'free.p_M   = 0;', 'free.p_M   = 1;');
   pars_init = strrep(pars_init, 'free.E_Hp  = 0;', 'free.E_Hp  = 1;');
+pars_init = strrep(pars_init, 'free.v     = 1', 'free.v     = 0');
+pars_init = strrep(pars_init, 'free.v    = 1', 'free.v     = 0');
 
 % fix some errors from previous edits:
  pars_init = strrep(pars_init, 'ppar.E_Hx =', 'par.E_Hx =');
