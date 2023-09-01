@@ -47,11 +47,11 @@ function set_free(my_pet, mode, pars_free)
       case 0
         if any(strcmp(par,pars_free)); pars_init(ind_free)='1'; end
       case 1
-        if any(contains(par,'f_')) || any(strcmp(par,pars_free)); pars_init(ind_free)='1'; end
+        if any(contains(par,'f_')) || any(contains(par,'f1_')) || any(contains(par,'f2_')) || any(strcmp(par,pars_free)); pars_init(ind_free)='1'; end
       case 2
         if any(strcmp(par,[pars_core,pars_free])); pars_init(ind_free)='1'; end
       case 3
-        if any(contains(par,'f_')) || any(strcmp(par,[pars_core,pars_free])); pars_init(ind_free)='1'; end
+        if any(contains(par,'f_')) || any(contains(par,'f1_')) || any(contains(par,'f2_')) || any(strcmp(par,[pars_core,pars_free])); pars_init(ind_free)='1'; end
       otherwise
     end
   end
