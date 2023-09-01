@@ -44,11 +44,11 @@ WD = cdCur; cd '../../deblab/add_my_pet/Aves_k/Struthio_camelus'; % first bird
 % set estim options
 global pets
 estim_options('default'); 
-estim_options('max_step_number', 5e2); 
+estim_options('max_step_number', 1e1); 
 estim_options('max_fun_evals', 5e3); 
 
 estim_options('pars_init_method', 2); 
-estim_options('results_output', 3); 
+estim_options('results_output', 0); 
 estim_options('method', 'nm'); 
 
 n = length(entries);
@@ -157,6 +157,14 @@ for i=1:n % scan entries
 %       fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please edit temperatures by hand\n') 
 %       fprintf('The typical body temperature for this order is %s C\n', T_typical) 
 %     end
+
+mydata = strrep(mydata, 'data.psd.t_0', '%data.psd.t_0'); 
+mydata = strrep(mydata, 'data.psd.s_H', '%data.psd.s_H'); 
+mydata = strrep(mydata, 'data.psd.k', '%data.psd.k'); 
+mydata = strrep(mydata, 'data.psd.p_M', '%data.psd.p_M');
+mydata = strrep(mydata, 'data.psd.v', '%data.psd.v'); 
+
+
         if contains(mydata, 'embryo') 
             fprintf('Warning from repair_Aves_k: mydata contains the word embryo, please double check the temperatures \n') 
         end
@@ -218,20 +226,34 @@ for i=1:n % scan entries
   % free or fix parameter values
   % set initial estimate for v
 %   pars_init = strrep(pars_init, 'free.v     = 0;', 'free.v     = 1;');
-  pars_init = strrep(pars_init, 'free.kap   = 1;', 'free.kap   = 0;');
-  pars_init = strrep(pars_init, 'free.p_M   = 0;', 'free.p_M   = 1;');
-  pars_init = strrep(pars_init, 'free.E_Hp  = 0;', 'free.E_Hp  = 1;');
-pars_init = strrep(pars_init, 'free.v     = 1', 'free.v     = 0');
-pars_init = strrep(pars_init, 'free.v    = 1', 'free.v     = 0');
+%   pars_init = strrep(pars_init, 'free.kap   = 1;', 'free.kap   = 0;');
+%   pars_init = strrep(pars_init, 'free.p_M   = 0;', 'free.p_M   = 1;');
+%   pars_init = strrep(pars_init, 'free.E_Hp  = 0;', 'free.E_Hp  = 1;');
+% pars_init = strrep(pars_init, 'free.v     = 1', 'free.v     = 0');
+% pars_init = strrep(pars_init, 'free.v    = 1', 'free.v     = 0');
 
 % fix some errors from previous edits:
  pars_init = strrep(pars_init, 'ppar.E_Hx =', 'par.E_Hx =');
-  pars_init = strrep(pars_init, 'ar.f =', 'par.f =');
-    pars_init = strrep(pars_init, 'ppar.f =', 'par.f =');
-  
+%  pars_init = strrep(pars_init, 'ar.f =', 'par.f =');
+%  pars_init = strrep(pars_init, 'ppar.f =', 'par.f =');
+%  pars_init = strrep(pars_init, 'ar.del_M', 'par.del_M');
+%  pars_init = strrep(pars_init, 'ppar.del_M', 'par.del_M');
+%  pars_init = strrep(pars_init, 'ar.del_l', 'par.del_l');
+%  pars_init = strrep(pars_init, 'ppar.del_l', 'par.del_l');
+ pars_init = strrep(pars_init, 'ar.', 'par.');
+ pars_init = strrep(pars_init, 'ppar.', 'par.');
+pars_init = strrep(pars_init, 'metaPpar.model', 'metaPar.model');
+pars_init = strrep(pars_init, 'txtPpar.', 'txtPar.');
+pars_init = strrep(pars_init, 'metaPpar.model', 'metaPar.model');
+
+
+
   %% edit predict
   
   % TC (some entries do not use TC_ab)
+  predict = strrep(predict, 'TC_ab = tempcorr(temp.ab, T_ref, T_A);', '');
+predict = strrep(predict, '% fledging ', '% fledging/puberty');
+
   ind_0 = -1 + strfind(predict, 'TC'); ind_1 = -2 + strfind(predict, '% zero');
   txt = ['TC_ab = tempcorr(temp.ab, T_ref, T_A);', char(13), ...
          '  TC = tempcorr(temp.am, T_ref, T_A); kT_M = TC * k_M;', char(13), char(13)];
@@ -248,6 +270,12 @@ predict = strrep(predict, 'aT_b = t_0 + tT_b;', 'aT_b = tT_b;');
 predict = strrep(predict, 'tT_b = t_b/ k_M/ TC_ab;', 'tT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'tT_b = t_b/ k_M/ TC;', 'tT_b = tau_b/ k_M/ TC_ab;');
 predict = strrep(predict, 'if t_0 < 0', 'if E_Hx < 0');
+predict = strrep(predict, 'if t_0 <0', 'if E_Hx < 0');
+predict = strrep(predict, 'if t_0< 0', 'if E_Hx < 0');
+predict = strrep(predict, '* w_m)', '* ome_m)');
+predict = strrep(predict, '* w)', '* ome)');
+predict = strrep(predict, '1 + w_m * e)', '1 + ome_m * e)');
+predict = strrep(predict, 'L.^3 * w_m .* de)', 'L.^3 * ome_m .* de)');
 
   if fullEdit
   % insert prediction for tx
@@ -290,10 +318,10 @@ predict = strrep(predict, 'if t_0 < 0', 'if E_Hx < 0');
   edit(['predict_',my_pet,'.m'])
   
   pets = {my_pet};
-
-  fprintf('type dbcont to proceed to the next species or dbquit \n'); 
-  fprintf('type estim_pars; mat2pars_init to estimate \n'); 
-  keyboard
+estim_pars; mat2pars_init;
+%   fprintf('type dbcont to proceed to the next species or dbquit \n'); 
+% %   fprintf('type estim_pars; mat2pars_init to estimate \n'); 
+%   dbdkeyboard
 
      
   % close source files in editor
