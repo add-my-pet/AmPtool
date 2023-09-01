@@ -21,7 +21,8 @@ function [factor_cur, flds] = setweights_clr(my_pet)
   % * flds: cell string with fieldnames of all data sets
   
   %% Remarks
-  % see setweights_all and setweights_tW for comparable functions
+  % this function assumes that all weight overwrites in mydata are in one block, 
+  % for data and speudo-data, so not mixed with other commands.
   
   %% Examples
   % setweights_clr('Martialia_hyadesi'); on the assumption that mydata_Martialia_hyadesi.m is in the current dir
@@ -37,21 +38,20 @@ function [factor_cur, flds] = setweights_clr(my_pet)
   fnm = [fnm, '.m'];
   mydata = fileread(fnm);
   
-  % remove weight changes of real data
+  % remove weight changes
   ind_w = strfind(mydata, 'weights = setweights(data, []);'); 
   ind_w = ind_w + 0 + strfind(mydata(ind_w:end), char(10)); ind_w = ind_w(1);
-  ind = strfind(mydata, '%% set pseudodata'); 
-  mydata(ind_w:ind-2) = [];
-  
-  % remove weight changes of pseudo data
-  n_psd  = strfind(mydata, 'weights.psd'); % weight changes in pseudo-data
-  for i=1:n_psd % scan pseudo-data fields
-    ind = strfind(mydata,'weights.psd');
-    if ~isempty(ind) % remove current setting
-      ind_1 = strfind(mydata(ind:end), char(10)); mydata(ind:ind-1+ind_1(1)) = [];
-    end 
-  end
-
+  % first pseudo data
+  ind = strfind(mydata, 'weights.psd'); 
+  ind_0 = ind(1)-1; 
+  ind_1 = ind(end) + strfind(mydata(ind(end):end), ';'); ind_1 = ind_1(1);
+  mydata(ind_0:ind_1) = [];
+  % now real data
+  ind = strfind(mydata, 'weights.'); 
+  ind_0 = ind(1); 
+  ind_1 = ind(end) + strfind(mydata(ind(end):end), ';'); ind_1 = ind_1(1)+1;
+  mydata(ind_0:ind_1) = [];
+    
   % restore zero settings of real data
   for i=1:n % scan fields
     if factor_cur(i) == 0

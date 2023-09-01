@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>setweights_clr</h1><!--introduction--><p>clears all weights changes in a mydata-file</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Examples</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../setweights_clr.m"><b>setweights_clr</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Weight-coefficients can only be set in mydata files by specifying multiplication factors on default settings. The function removes all weight changes in a mydata-file., except if the factors zero</p><p>Input</p><div><ul><li>my_pet: string with entry-name for loading/writing mydata_my_pet</li></ul></div><p>Output</p><div><ul><li>factor_cur: vector with current multipliers for weights of all data sets</li><li>flds: cell string with fieldnames of all data sets</li></ul></div><h2 id="5">Remarks</h2><p>see setweights_all and setweights_tW for comparable functions</p><h2 id="6">Examples</h2><p>setweights_clr('Martialia_hyadesi'); on the assumption that mydata_Martialia_hyadesi.m is in the current dir</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>setweights_clr</h1><!--introduction--><p>clears all weights changes in a mydata-file</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Examples</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="../setweights_clr.m"><b>setweights_clr</b></a> (my_pet)</p><h2 id="4">Description</h2><p>Weight-coefficients can only be set in mydata files by specifying multiplication factors on default settings. The function removes all weight changes in a mydata-file., except if the factors zero</p><p>Input</p><div><ul><li>my_pet: string with entry-name for loading/writing mydata_my_pet</li></ul></div><p>Output</p><div><ul><li>factor_cur: vector with current multipliers for weights of all data sets</li><li>flds: cell string with fieldnames of all data sets</li></ul></div><h2 id="5">Remarks</h2><p>this function assumes that all weight overwrites in mydata are in one block, for data and speudo-data, so not mixed with other commands.</p><h2 id="6">Examples</h2><p>setweights_clr('Martialia_hyadesi'); on the assumption that mydata_Martialia_hyadesi.m is in the current dir</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% setweights_clr
 % clears all weights changes in a mydata-file
@@ -92,7 +92,8 @@ function [factor_cur, flds] = setweights_clr(my_pet)
   % * flds: cell string with fieldnames of all data sets
   
   %% Remarks
-  % see setweights_all and setweights_tW for comparable functions
+  % this function assumes that all weight overwrites in mydata are in one block, 
+  % for data and speudo-data, so not mixed with other commands.
   
   %% Examples
   % setweights_clr('Martialia_hyadesi'); on the assumption that mydata_Martialia_hyadesi.m is in the current dir
@@ -108,21 +109,20 @@ function [factor_cur, flds] = setweights_clr(my_pet)
   fnm = [fnm, '.m'];
   mydata = fileread(fnm);
   
-  % remove weight changes of real data
+  % remove weight changes
   ind_w = strfind(mydata, 'weights = setweights(data, []);'); 
   ind_w = ind_w + 0 + strfind(mydata(ind_w:end), char(10)); ind_w = ind_w(1);
-  ind = strfind(mydata, '%% set pseudodata'); 
-  mydata(ind_w:ind-2) = [];
-  
-  % remove weight changes of pseudo data
-  n_psd  = strfind(mydata, 'weights.psd'); % weight changes in pseudo-data
-  for i=1:n_psd % scan pseudo-data fields
-    ind = strfind(mydata,'weights.psd');
-    if ~isempty(ind) % remove current setting
-      ind_1 = strfind(mydata(ind:end), char(10)); mydata(ind:ind-1+ind_1(1)) = [];
-    end 
-  end
-
+  % first pseudo data
+  ind = strfind(mydata, 'weights.psd'); 
+  ind_0 = ind(1)-1; 
+  ind_1 = ind(end) + strfind(mydata(ind(end):end), ';'); ind_1 = ind_1(1);
+  mydata(ind_0:ind_1) = [];
+  % now real data
+  ind = strfind(mydata, 'weights.'); 
+  ind_0 = ind(1); 
+  ind_1 = ind(end) + strfind(mydata(ind(end):end), ';'); ind_1 = ind_1(1)+1;
+  mydata(ind_0:ind_1) = [];
+    
   % restore zero settings of real data
   for i=1:n % scan fields
     if factor_cur(i) == 0
