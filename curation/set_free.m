@@ -49,11 +49,13 @@ function set_free(my_pet, mode, pars_free)
       case 1
         if any(contains(par,'f')); pars_init(ind_free)='1'; end
         if any(strcmp(par,['f',pars_free])); pars_init(ind_free)='0'; end
+        if any(strcmp(par,['T_ref',pars_free])); pars_init(ind_free)='0'; end
       case 2
         if any(strcmp(par,[pars_core,pars_free])); pars_init(ind_free)='1'; end
       case 3
-        if any(contains(par,'f')); pars_init(ind_free)='1'; end
-        if any(strcmp(par,['f',pars_free])); pars_init(ind_free)='0'; end
+        if any(contains(par,'f')); pars_init(ind_free)='1'; end % sets parameters with the letter f to 1
+        if any(strcmp(par,['f',pars_free])); pars_init(ind_free)='0'; end % sets f to 0
+        if any(strcmp(par,['T_ref',pars_free])); pars_init(ind_free)='0'; end % sets T_ref to 0
         if any(strcmp(par,[pars_core,pars_free])); pars_init(ind_free)='1'; end
     end
   end
