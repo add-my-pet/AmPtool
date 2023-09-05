@@ -46,7 +46,6 @@ close all;
 global pets
 entries = select('Aves');
 n = length(entries);
-% j = 596
 
 for i= j:n % scan entries
   my_pet = entries{i}; 
@@ -62,61 +61,48 @@ pets = {my_pet};
 % setweights_clr('Dryocopus_martius');
 setweights_tW(my_pet,  0.1); % set weights of tW to 0.1
 
-
-
 estim_options('default'); 
 estim_options('max_fun_evals', 5e3); 
 estim_options('pars_init_method', 2); 
-estim_options('results_output', 3); 
+estim_options('results_output', 0); 
 
-estim_options('method', 'no');  estim_pars; mat2pars_init; % prepares pars_init for protocol
+estim_options('method', 'no');  estim_pars; mat2pars_init; % prepares pars_init for protocols
 
 estim_options('method', 'nm');   estim_options('report', 1); 
 estim_options('max_step_number', 5e2); 
 
 estim_options('pars_init_method', 1); 
 
-fprintf('protocol A \n'); 
-set_free(my_pet, 0, {'z','z_m','E_Hb','E_Hx','E_Hp'})
+fprintf('A) intesive params kap, v, and k_J, aux params, fixed \n'); 
+set_free(my_pet, 0, {'z','z_m','p_M', 'E_G','E_Hb','E_Hx','E_Hp','h_a'});
 estim_pars; estim_pars; estim_pars; %estim_pars; estim_pars; 
 mat2pars_init;
 
-fprintf('protocol B \n'); 
-estim_options('max_step_number', 400); 
-set_free(my_pet, 1)% 1 all free settings are 0, except f_*
-estim_options('results_output', 3); estim_options('report', 1); 
+fprintf('B) all free settings are 0, except pars_core \n'); 
+set_free(my_pet, 2); % 2 all free settings are 0, except pars_core
 estim_pars; mat2pars_init;
 
-fprintf('protocol C\n'); 
-set_free(my_pet, 0, {'z','z_m','v','kap','p_M','k_J','E_G','E_Hb','E_Hx','E_Hp','h_a', 'del_M', 'del_l','del_X'})
-estim_pars; estim_pars
-mat2pars_init;
-
-fprintf('protocol D \n'); 
-estim_options('max_step_number', 400); 
-set_free(my_pet, 1) % 1 all free settings are 0, except f_*
-estim_options('pars_init_method', 2); 
-estim_options('results_output', 3); estim_options('report', 1); 
+fprintf('C) all free settings are 0, except f_* \n'); 
+estim_options('max_step_number', 300); 
+set_free(my_pet, 1); % 1 all free settings are 0, except f_*
 estim_pars; mat2pars_init;
 
-% fprintf('protocol E \n'); 
-% estim_options('max_step_number', 300); 
-% set_free(my_pet, 2) % 2 all free settings are 0, except pars_core
-% estim_options('pars_init_method', 1); 
-% estim_pars;
+fprintf('D) all free settings are 0, except pars_core \n'); estim_options('max_step_number', 500); 
+set_free(my_pet, 2); % 2 all free settings are 0, except pars_core
+estim_pars; mat2pars_init;
 
-fprintf('protocol E \n');
-estim_options('max_step_number', 500); 
-set_free(my_pet, 3)% 3 all free settings are 0, except f_* and core_pars
-estim_options('results_output', 3); estim_options('report', 1); 
-estim_pars;
-mat2pars_init;
+fprintf('E) all free settings are 0, except f_* \n'); estim_options('max_step_number', 300); 
+set_free(my_pet, 1); % 1 all free settings are 0, except f_*
+estim_pars; mat2pars_init;
 
-% Code that may produce an error
-% catch exception
-%     fprintf('%g: %s\n', i, [num2str(j),': ','error: ',my_pet]);
-% end
-% 
+fprintf('F) all free settings are 0, except pars_core \n'); estim_options('max_step_number', 500); 
+set_free(my_pet, 2); % 2 all free settings are 0, except pars_core
+estim_pars; mat2pars_init;
+
+fprintf('G) all free settings are 0, except f_* \n'); estim_options('max_step_number', 300); 
+set_free(my_pet, 1); % 1 all free settings are 0, except f_*
+estim_pars; mat2pars_init;
+
 %   fprintf('type dbcont to proceed to the next species or dbquit \n'); 
 % %   fprintf('type estim_pars; mat2pars_init to estimate \n'); 
 %   keyboard
