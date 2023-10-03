@@ -58,7 +58,7 @@ for i=1:n % scan entries
   cdEntr(my_pet,0); % cd to add_my_pet/entries/my_pet and load source files
   pets = {my_pet}; 
   
-  estim_options('method', 'nm'); 
+  estim_options('method', 'no'); 
   %estim_options('pars_init_method', 1); 
   estim_pars; 
   mat2pars_init

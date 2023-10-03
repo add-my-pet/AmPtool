@@ -32,18 +32,40 @@ par.t_R = 365;       free.t_R   = 1;   units.t_R = 'd';          label.t_R = 'ti
   [t_p, t_b, l_p, l_b, info] = get_tp(pars_tp, f); % -, scaled times & lengths
 
   m_Em_m = y_E_V * E_m_m/ E_G;         % mol/mol, reserve capacity 
-  ome_m = m_Em_m * w_E/ w_V;             % -, contribution of reserve to weight
+  ome_m = m_Em_m * w_E/ w_V;           % -, contribution of reserve to weight
 
+for i=2:size(data.tW,1); if data.tW(i,1)<=data.tW(i-1,1); data.tW(i,1)=data.tW(i-1,1)+1e-8; end; end
+
+%% set weights for all real data
+weights = setweights(data, []);
+weights.tW = weights.tW * 2;
+weights.tp = 5;
+weights.Wwb = 5;
+weights.Wwi = 5;
+weights.Ri = 5;
+weights.ab = 5;
+
+par.f_05 = 3.6671;    free.f_05  = 1;   units.f_05 = '-';         label.f_05 = 'scaled functional response for tW data at 05 d'; 
+par.f_15 = 0.93115;   free.f_15  = 1;   units.f_15 = '-';         label.f_15 = 'scaled functional response for tW data at 15 d'; 
+
+  % life cycle
+  pars_tx = [g; k; l_T; v_Hb; v_Hx];  % compose parameter vector
+  tau_x = get_tp(pars_tx, f); 
+  pars_tp = [g; k; l_T; v_Hb; v_Hp];  % compose parameter vector
+  [tau_p, tau_b, l_p, l_b, info] = get_tp(pars_tp, f);  % -, scaled times & lengths
+  if ~info; prdData = []; return; end
+
+  tf(:,1) = tf(:,1) * kT_M;
 
   % time-weight
-  tvel = get_tp(pars_tp, f_tW, [], tW(:,1)*kT_M);
+  tvel = get_tp(pars_tp, tf, [tau_b 1 l_b], tW(:,1)*kT_M);
   EWw = (L_m * tvel(:,4)).^3 .* (1 + tvel(:,3) * ome);   % g, weight
   %
   % female
-  [tvel, t_p, t_b, l_p, l_b] = get_tp(pars_tp, f_tW, [], tWw_f(:,1)*kT_M);
+  [tvel, t_p, t_b, l_p, l_b] = get_tp(pars_tp, tf, [tau_b 1 l_b], tW_f(:,1)*kT_M);
   EWw_f = (L_m * tvel(:,4)).^3 .* (1 + tvel(:,3) * ome);   % g, weight
   % male
-  tvel = get_tp(pars_tpm, f_tW, [t_b, f_tW*z/z_m, l_b*z/z_m], tWw_m(:,1)*kT_M);
+  tvel = get_tp(pars_tpm, tf, [t_b, z/z_m, l_b*z/z_m], tW_m(:,1)*kT_M);
   EWw_m = (L_mm * tvel(:,4)).^3 .* (1 + tvel(:,3) * ome_m); % g, weight
 
 
