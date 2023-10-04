@@ -4,4 +4,5 @@ Sebastes_mentella
 Sebastes_minor
 Sebastes_rastrelliger
 Sebastes_rufus
+Sebastes_schlegelii
 Sebastes_taczanowskii

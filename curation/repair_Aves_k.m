@@ -39,7 +39,7 @@ function repair_Aves_k(entries)
 % If i is lost. but entry nm_i is in the the Matlab editor, recover i by 
 % nm=select('Aves'); ind=1:length(nm); i = ind(strcmp(nm_i,nm)); nm(1:i-1)=[]; repair_Aves_k(nm); 
 
-WD = cdCur; cd '../../deblab/add_my_pet/Aves_k/Struthio_camelus'; % first bird
+WD = cdCur; cd '../../deblab/add_my_pet/entries/Struthio_camelus'; % first bird
  
 % set estim options
 global pets
@@ -57,9 +57,6 @@ for i=1:n % scan entries
   fprintf('%g: %s\n', i, my_pet);
   cd(['../',my_pet]);
 
-  load(['results_', my_pet], 'par')
-  if ~(par.T_ref == 293.15)
-  % close source files in editor
   editorTabs = matlab.desktop.editor.getAll;
   editorTabs(2:end).close;
 
@@ -336,7 +333,8 @@ estim_pars;
   fprintf('type dbcont to proceed to the next species or dbquit \n'); 
 %   fprintf('type estim_pars; mat2pars_init to estimate \n'); 
   keyboard
-end
+  
+  run_collection(my_pet)
 end
 cd(WD)
 end
