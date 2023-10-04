@@ -5,14 +5,14 @@ function estim_Aves_k(j)
 % created 2023/07/26 by Bas Kooijman
 
 %% Syntax
-% <repair_Aves_k  *repair_Aves_k*>(entries)
+% <estim_Aves_k  *estim_Aves_k*>(j)
 
 %% Description
-% Edit 3 source files, load them in Matlab editor and run estim_pars; leave run_my_pet unused
+% Edit 3 source files, load them in Matlab editor and run script for estimating pars; leave run_my_pet unused
 %
 % Input:
 %
-% * entries: cell string with one or more entries
+% * j: scalar with number in a list from select('Aves')
 
 %% Remarks
 % the Matlab editor should only contain this file, loading and removing source files is automatic
