@@ -84,7 +84,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'http://lsid.speciesfile.org/urn:lsid:Aphid.speciesfile.org:TaxonName:'
     'https://diptera.info/search.php?stext=id_diptera&search=Search&method=OR&forum_id=0&stype=photos'
     'http://www.nhm.ac.uk/our-science/data/lepindex/detail/?taxonno='
-    'https://www.fishbase.se/summary/'
+    'https://www.fishbase.de/summary/'
     'https://amphibiaweb.org/cgi/amphib_query?rel-common_name=like&where-scientific_name='
     'https://reptile-database.reptarium.cz/species?'
     'https://avibase.bsc-eoc.org/species.jsp?lang=EN&avibaseid='
