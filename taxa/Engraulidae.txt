@@ -1,7 +1,2 @@
-Anchoa
-Cetengraulis
-Coilia
-Encrasicholina
-Engraulis
-Stolephorus
-Thryssa
+Coiliinae
+Engraulinae
