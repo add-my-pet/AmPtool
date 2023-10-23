@@ -1,2 +1,3 @@
 Platycephalus_fuscus
 Platycephalus_indicus
+Platycephalus_speculator

@@ -1,5 +1,6 @@
-Kyphosidae
-Elassomatidae
 Centrarchidae
+Elassomatidae
+Kyphosidae
+Latridae
 Percichthyidae
 Terapontidae

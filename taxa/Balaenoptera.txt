@@ -1,4 +1,5 @@
 Balaenoptera_acutorostrata
+Balaenoptera_borealis
+Balaenoptera_edeni
 Balaenoptera_musculus
 Balaenoptera_physalus
-Balaenoptera_borealis
