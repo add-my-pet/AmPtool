@@ -2,3 +2,4 @@ Loricarioidea
 Siluroidea
 Bagroidea
 Ictaluroidea
+Doradoidea
