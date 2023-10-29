@@ -5,6 +5,7 @@ Cynoscion
 Larimichthys
 Macrodon
 Micropogonias
+Plagioscion
 Pogonias
 Sciaena
 Sciaenops

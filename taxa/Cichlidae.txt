@@ -1,6 +1,7 @@
 Acarichthys
 Amatitlania
 Amphilophus
+Cichla
 Coptodon
 Mayaheros
 Oreochromis
