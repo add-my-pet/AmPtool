@@ -1,5 +1,6 @@
 Ariidae
 Bagridae
+Claroteidae
 Pangasiidae
 Pimelodidae
 Schilbeidae
