@@ -1,2 +1,6 @@
-Sillago_robusta
+Sillago_aeolus
 Sillago_bassensis
+Sillago_flindersi
+Sillago_japonica
+Sillago_robusta
+Sillago_sihama
