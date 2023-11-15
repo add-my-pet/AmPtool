@@ -1,6 +1,10 @@
 Sillago_aeolus
 Sillago_bassensis
+Sillago_burrus
+Sillago_ciliata
 Sillago_flindersi
 Sillago_japonica
 Sillago_robusta
+Sillago_schomburgkii
 Sillago_sihama
+Sillago_vittata
