@@ -42,7 +42,8 @@ if isempty(dataSet_nFig) % make sure that dataSet_nFig is filled properly
   get_dataSet_nFig(data, auxData, metaData)
 end
   
-path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/'; % path to figs
+%path = 'https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/entries/'; % path to figs
+path = '../../entries/'; % path to figs
 
 % Remove underscore and capitalize first letter of english :
 speciesprintnm = [strrep(metaData.species, '_', ' '), ' '];
@@ -92,10 +93,10 @@ fprintf(oid, '<!--   use "contentFull" for 1 column                          -->
 fprintf(oid, '<!--   use "content" if you want two columns"                  -->\n');
 fprintf(oid, '<!--------------------------------------------------------------->\n\n');	
 
-fprintf(oid, '<div id = "main">\n');
-fprintf(oid, '  <div id = "main-wrapper">\n');
+fprintf(oid, '<div id="main">\n');
+fprintf(oid, '  <div id="main-wrapper">\n');
 fprintf(oid, '    <div id="contentFull">\n');
-fprintf(oid, '      <H1 id = "portaltop">Predictions & Data for this entry</H1>\n\n');	
+fprintf(oid, '      <H1 id="portaltop">Predictions & Data for this entry</H1>\n\n');	
 
 fclose(oid);
 
@@ -318,7 +319,7 @@ end
 
 % bibliography:
 fprintf(oid, '      <p>\n');
-fprintf(oid, '      <h3 style="clear:both" class="pet"><a class="link" href = "%s_bib.bib" target = "_blank">Bibliography</a></h3>\n', metaData.species);
+fprintf(oid, '      <h3 style="clear:both" class="pet"><a class="link" href="%s_bib.bib" target = "_blank">Bibliography</a></h3>\n', metaData.species);
 fprintf(oid, '      <div w3-include-html="%s_bib.html"></div>\n', metaData.species);
   
 % Citation:
