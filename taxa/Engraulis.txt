@@ -1,4 +1,5 @@
 Engraulis_anchoita
+Engraulis_capensis
 Engraulis_encrasicolus
 Engraulis_japonicus
 Engraulis_ringens
