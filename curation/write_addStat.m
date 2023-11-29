@@ -39,6 +39,16 @@ function [allStat, info] = write_addStat(taxa, T, f)
     taxa = {taxa};
   end
   
+  % check for double names in select
+  taxa_src = select; n_taxa_src = length(taxa_src); 
+  [~, double] = unique(taxa_src,'stable');
+  ind_double = setdiff(1:n_taxa_src,double);
+  if ~isempty(ind_double)
+    fprintf('Warning from write_addStat_loc: select has double entries\n');
+    taxa_src(ind_double)
+    return
+  end
+
   % check if all members of taxa are in select('Animalia')
   n = length(taxa); taxa_src = select; absent = 0; info = true;
   for i = 1:n

@@ -45,6 +45,16 @@ function popStat = write_popStat_loc(varargin)
   n_spec = length(varargin); 
   cd(['../../deblab/add_my_pet/entries_web/',varargin{1}])
   
+  % check for double names in select
+  entries = select; n_entries = length(entries); 
+  [~, double] = unique(entries,'stable');
+  ind_double = setdiff(1:n_entries,double);
+  if ~isempty(ind_double)
+    fprintf('Warning from write_popStat_loc: select has double entries\n');
+    entries(ind_double)
+    return
+  end
+  
   for i = 1:n_spec
     cd(['../',varargin{i}])
     load([varargin{i}, '_pop.mat']) % creates variable popStat
@@ -98,7 +108,7 @@ function popStat = write_popStat_loc(varargin)
   
   popStat = locPopStat; % copy collection popStat back in variable popStat
   % check if length of popStat corresponds with number of entries in lists-of-lists
-  entries = select; n_entries = length(entries); n_popStat = length(fields(popStat));
+  flds_popStat = fields(popStat); n_popStat = length(flds_popStat);
   if ~(n_popStat == n_entries)
     fprintf(['Warning from write_popStat_loc:  popStat has ', num2str(n_popStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
   end
