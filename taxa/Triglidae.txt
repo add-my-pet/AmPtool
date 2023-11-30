@@ -1,4 +1,6 @@
 Chelidonichthys
 Eutrigla
+Trigla
 Lepidotrigla
 Prionotus
+Bellator
