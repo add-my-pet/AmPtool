@@ -1,6 +1,2 @@
-Chelidonichthys
-Eutrigla
-Trigla
-Lepidotrigla
-Prionotus
-Bellator
+Prionotinae
+Triglinae

@@ -1,2 +1,6 @@
 Chelidonichthys_capensis
+Chelidonichthys_cuculus
+Chelidonichthys_kumu
+Chelidonichthys_lastoviza
 Chelidonichthys_lucerna
+Chelidonichthys_queketti
