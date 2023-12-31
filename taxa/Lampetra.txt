@@ -1,2 +1,4 @@
-Lampetra_planeri
 Lampetra_aepyptera
+Lampetra_fluviatilis
+Lampetra_lanceolata
+Lampetra_planeri
