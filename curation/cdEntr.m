@@ -26,7 +26,7 @@ if ~contains(my_pet,'_')
   if contains(my_pet,' ')
     my_pet = strrep(my_pet,' ','_'); n = 1; nms = {my_pet};
   else
-    nms = select(my_pet); n = length(my_pet);
+    nms = select(my_pet); n = length(nms);
   end
 else
   nms = {my_pet}; n = 1;
