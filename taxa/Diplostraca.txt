@@ -2,4 +2,4 @@ Anomopoda
 Ctenopoda
 Haplopoda
 Onychopoda
-Spinicaudata
+Conchostraca
