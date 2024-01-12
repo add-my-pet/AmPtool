@@ -1,4 +1,6 @@
 Bosminidae
 Chydoridae
 Daphniidae
+Eurycercidae
+Macrothricidae
 Moinidae
