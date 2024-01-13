@@ -1,6 +1,8 @@
+Daphnia_ambigua
 Daphnia_cephalata
 Daphnia_cucullata
 Daphnia_longispina
+Daphnia_lumholtzi
 Daphnia_hyalina
 Daphnia_magna
 Daphnia_pulex
