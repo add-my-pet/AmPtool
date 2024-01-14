@@ -1,6 +1,2 @@
-Alonella
-Chydorus
-Coronatella
-Leydigia
-Oxyurella
-Pleuroxus
+Aloninae
+Chydorinae
