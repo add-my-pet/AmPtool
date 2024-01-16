@@ -1,13 +1,15 @@
 Daphnia_carinata
 Daphnia_cephalata
 Daphnia_magna
+Daphnia_projecta
 Daphnia_similus
 
 Daphnia_ambigua
 Daphnia_cucullata
 Daphnia_galatea
+Daphnia_hyalina
 Daphnia_longispina
 Daphnia_lumholtzi
-Daphnia_hyalina
 Daphnia_middendorffiana
 Daphnia_pulex
+Daphnia_schoedleri
