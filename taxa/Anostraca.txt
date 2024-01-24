@@ -1,7 +1,2 @@
-Artemiidae
-Branchinectidae
-Branchipodidae
-Chirocephalidae
-Streptocephalidae
-Tanymastigidae
-Thamnocephalidae
+Artemiina
+Anostracina
