@@ -11,5 +11,6 @@ Daphnia_hyalina
 Daphnia_longispina
 Daphnia_lumholtzi
 Daphnia_middendorffiana
+Daphnia_parvula
 Daphnia_pulex
 Daphnia_schoedleri
