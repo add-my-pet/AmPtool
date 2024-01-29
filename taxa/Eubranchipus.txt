@@ -1,5 +1,6 @@
 Eubranchipus_bundyi
 Eubranchipus_grubii
+Eubranchipus_holmanii
 Eubranchipus_oregonus
 Eubranchipus_serratus
 Eubranchipus_vernalis
