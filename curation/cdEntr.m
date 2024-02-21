@@ -41,6 +41,8 @@ for i=1:n
   if exist('ed', 'var')
     if ed==1
       edit(['mydata_', my_pet, '.m'])
+    elseif ed==3
+      edit(['predict_', my_pet, '.m'])
     else
       edit(['mydata_', my_pet, '.m'])
       edit(['pars_init_', my_pet, '.m'])
