@@ -1,4 +1,9 @@
 Trematomus_bernacchii
+Trematomus_eulepidotus
 Trematomus_hansoni
+Trematomus_lepidorhinus
+Trematomus_loennbergii
 Trematomus_newnesi
+Trematomus_nicolai
 Trematomus_pennellii
+Trematomus_scotti
