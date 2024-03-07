@@ -1,6 +1,6 @@
-Thunnus_orientalis
-Thunnus_thynnus
+Thunnus_alalunga
+Thunnus_albacares
 Thunnus_maccoyii
 Thunnus_obesus
-Thunnus_albacares
-Thunnus_alalunga
+Thunnus_orientalis
+Thunnus_thynnus

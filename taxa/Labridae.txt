@@ -1,9 +1,11 @@
 Achoerodus
-Semicossyphus
-Symphodus
-Coris
-Labrus
 Bodianus
 Centrolabrus
+Coris
 Ctenolabrus
+Labrus
+Semicossyphus
+Symphodus
+Tautoga
 Tautogolabrus
+
