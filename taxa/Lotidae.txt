@@ -1,6 +1,7 @@
 Brosme
-Ciliata
-Gaidropsarus
 Lota
 Molva
+Ciliata
+Enchelyopus
+Gaidropsarus
 

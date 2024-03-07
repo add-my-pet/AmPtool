@@ -1,2 +1,9 @@
+Epinephelus_aeneus
+Epinephelus_areolatus
+Epinephelus_caninus
+Epinephelus_fasciatus
+Epinephelus_guttatus
 Epinephelus_marginatus
 Epinephelus_morio
+Epinephelus_ongus
+Epinephelus_radiatus

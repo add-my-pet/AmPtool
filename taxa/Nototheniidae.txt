@@ -1,4 +1,3 @@
-Notothenia
-Patagonotothen
-Pleuragramma
-Dissostichus
+Pleuragrammatinae
+Nototheniinae
+Trematominae

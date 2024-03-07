@@ -1,3 +1,5 @@
 Osteoglossidae
 Notopteridae
 Arapaimidae
+Mormyridae
+Gymnarchidae

@@ -1,7 +1,8 @@
 Gadidae
-Merlucciidae
-Macrouridae
-Ranicipitidae
-Phycidae
 Lotidae
+Macrouridae
+Merlucciidae
 Moridae
+Muraenolepididae
+Phycidae
+Ranicipitidae

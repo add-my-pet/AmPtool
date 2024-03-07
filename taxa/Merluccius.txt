@@ -1,5 +1,6 @@
-Merluccius_merluccius
-Merluccius_hubbsi
-Merluccius_polli
-Merluccius_senegalensis
 Merluccius_capensis
+Merluccius_hubbsi
+Merluccius_merluccius
+Merluccius_polli
+Merluccius_productus
+Merluccius_senegalensis

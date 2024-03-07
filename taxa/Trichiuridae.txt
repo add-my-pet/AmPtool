@@ -1,2 +1,3 @@
-Trichiurus
 Aphanopus
+Lepidopus
+Trichiurus

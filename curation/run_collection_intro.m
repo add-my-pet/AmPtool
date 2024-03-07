@@ -125,10 +125,10 @@ cdCur;
 
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 if ismac || isunix
-  system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+  system('SyncBackPro -silent AmP2VU -i  AmP2IUEM -i'); 
 else
-  system('powershell SyncBackPro AmP2VU -i'); 
-  system('powershell SyncBackPro AmP2IUEM -i'); 
+  system('powershell SyncBackPro -silent AmP2VU -i'); 
+  system('powershell SyncBackPro -silent AmP2IUEM -i'); 
   %system('powershell SyncBackPro AmP2VU -i'); 
 end
 

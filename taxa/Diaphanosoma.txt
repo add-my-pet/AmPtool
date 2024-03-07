@@ -1,1 +1,4 @@
 Diaphanosoma_brachyurum
+Diaphanosoma_excisum
+Diaphanosoma_sarsi
+Diaphanosoma_senegal

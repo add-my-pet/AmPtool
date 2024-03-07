@@ -26,6 +26,7 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
 % The traits must be in allStat for all my_pets (not all traits are present for all models in allStat and NaN's can occur). 
 % See DEBtool_M/lib/pet/statistics_st for possible traits.
 % The distance measures are DEBtool_M/lib/regr/lossfuction_sb or lossfuction_su.
+% The traits are at T_typical, but at T_ref for primary parameters
 
 %% Example of use
 % dist = dist_traits(select('Ctenophora'),{'p_M';'v';'a_b'});

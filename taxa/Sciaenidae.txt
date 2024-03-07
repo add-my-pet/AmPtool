@@ -5,7 +5,9 @@ Cynoscion
 Larimichthys
 Macrodon
 Micropogonias
+Plagioscion
 Pogonias
+Pseudotolithus
 Sciaena
 Sciaenops
 Stellifer

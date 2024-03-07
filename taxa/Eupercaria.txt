@@ -16,6 +16,6 @@ Priacanthiformes
 Caproiformes
 Lophiiformes
 Tetraodontiformes
-Pempheriformes
+Acropomatiformes
 Centrarchiformes
 Perciformes
