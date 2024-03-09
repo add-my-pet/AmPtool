@@ -3,4 +3,5 @@ Dasyatis
 Hypanus
 Maculabatis
 Neotrygon
+Pteroplatytrygon
 Urogymnus

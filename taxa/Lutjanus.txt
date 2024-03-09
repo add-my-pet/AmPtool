@@ -6,6 +6,7 @@ Lutjanus_griseus
 Lutjanus_guttatus
 Lutjanus_kasmira
 Lutjanus_malabaricus
+Lutjanus_purpureus
 Lutjanus_sebae
 Lutjanus_synagris
 Lutjanus_vitta
