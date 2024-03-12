@@ -4,10 +4,12 @@ Atractoscion
 Cynoscion
 Larimichthys
 Macrodon
+Menticirrhus
 Micropogonias
 Plagioscion
 Pogonias
 Pseudotolithus
+Roncador
 Sciaena
 Sciaenops
 Stellifer
