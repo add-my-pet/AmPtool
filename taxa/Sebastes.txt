@@ -2,6 +2,7 @@ Sebastes_auriculatus
 Sebastes_capensis
 Sebastes_mentella
 Sebastes_minor
+Sebastes_norvegicus
 Sebastes_rastrelliger
 Sebastes_rufus
 Sebastes_schlegelii
