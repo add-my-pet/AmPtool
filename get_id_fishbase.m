@@ -26,7 +26,7 @@ function id = get_id_fishbase(my_pet, open)
 %% Example of use
 % id = get_id_fishbase('Squalus_acanthias',1)
 
-address = 'https://fishbase.mnhn.fr/summary/';
+address = 'https://www.fishbase.de/summary/';
 if ~exist('open','var')
   open = 0;
 end
