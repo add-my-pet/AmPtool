@@ -9,3 +9,4 @@ Sebastes_rastrelliger
 Sebastes_rufus
 Sebastes_schlegelii
 Sebastes_taczanowskii
+Sebastes_viviparus
