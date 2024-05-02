@@ -4,3 +4,4 @@ Thunnus_maccoyii
 Thunnus_obesus
 Thunnus_orientalis
 Thunnus_thynnus
+Thunnus_tonggol
