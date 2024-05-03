@@ -1,6 +1,4 @@
-Katsuwonus
-Rastrelliger
-Sarda
-Scomber
-Scomberomorus
-Thunnus
+Scombrini
+Scomberomorini
+Sardini
+Thunnini
