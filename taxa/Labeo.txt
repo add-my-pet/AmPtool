@@ -1,4 +1,5 @@
 Labeo_bata
 Labeo_calbasu
 Labeo_catla
+Labeo_niloticus
 Labeo_rohita

@@ -1,2 +1,4 @@
-Scomber_scombrus
+Scomber_australasicus
+Scomber_colias
 Scomber_japonicus
+Scomber_scombrus

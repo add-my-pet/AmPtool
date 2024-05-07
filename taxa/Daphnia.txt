@@ -2,6 +2,7 @@ Daphnia_carinata
 Daphnia_cephalata
 Daphnia_magna
 Daphnia_projecta
+Daphnia_similoides
 Daphnia_similus
 
 Daphnia_ambigua

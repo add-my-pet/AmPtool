@@ -1,2 +1,3 @@
 Pagrus_auriga
+Pagrus_major
 Pagrus_pagrus

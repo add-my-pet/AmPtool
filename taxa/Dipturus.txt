@@ -1,6 +1,7 @@
 Dipturus_batis
 Dipturus_chinensis
 Dipturus_innominatus
+Dipturus_kwangtungensis
 Dipturus_laevis
 Dipturus_oxyrinchus
 Dipturus_pullopunctatus

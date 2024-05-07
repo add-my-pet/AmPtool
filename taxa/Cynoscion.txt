@@ -1,2 +1,5 @@
+Cynoscion_jamaicensis
+Cynoscion_leiarchus
 Cynoscion_nebulosus
 Cynoscion_othonopterus
+Cynoscion_regalis

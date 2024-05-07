@@ -1,6 +1,8 @@
 Acanthopagrus
 Archosargus
 Diplodus
+Evynnis
 Pagrus
+Parargyrops
 Rhabdosargus
 Sparus

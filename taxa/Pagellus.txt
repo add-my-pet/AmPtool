@@ -1,2 +1,4 @@
-Pagellus_erythrinus
 Pagellus_acarne
+Pagellus_bellottii
+Pagellus_bogaraveo
+Pagellus_erythrinus

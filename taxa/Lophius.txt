@@ -1,3 +1,5 @@
-Lophius_piscatorius
+Lophius_americanus
 Lophius_budegassa
+Lophius_litulon
+Lophius_piscatorius
 Lophius_vomerinus
