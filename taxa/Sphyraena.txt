@@ -1,2 +1,7 @@
 Sphyraena_argentea
 Sphyraena_barracuda
+Sphyraena_chrysotaenia
+Sphyraena_flavicauda
+Sphyraena_jello
+Sphyraena_sphyraena
+Sphyraena_viridensis
