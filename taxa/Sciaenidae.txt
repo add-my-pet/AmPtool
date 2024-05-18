@@ -7,6 +7,7 @@ Larimichthys
 Macrodon
 Menticirrhus
 Micropogonias
+Otolithoides
 Plagioscion
 Pogonias
 Protonibea

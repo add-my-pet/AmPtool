@@ -1,4 +1,5 @@
 Paralichthys_californicus
+Paralichthys_dentatus
 Paralichthys_lethostigma
 Paralichthys_olivaceus
 Paralichthys_orbignyanus
