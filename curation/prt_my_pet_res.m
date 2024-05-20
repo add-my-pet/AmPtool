@@ -116,7 +116,7 @@ prdData    = rmfield_wtxt(prdData, 'psd');
 txtData    = rmfield_wtxt(txtData, 'psd');
 
 %  table for zero-variate data sets:
-, 'w+'fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Zero-variate_data.html">Zero-variate data</a></h2>\n');
+fprintf(oid, '      <h2><a class="link" target = "_blank" href="https://add-my-pet.github.io/DEBportal/docs/Zero-variate_data.html">Zero-variate data</a></h2>\n');
 fprintf(oid, '      <table id="t01">\n');
 fprintf(oid,['        <tr class="head"><th>Data</th> <th>Observed</th> <th>Predicted</th> ' ...
     '<th><a href="https://add-my-pet.github.io/DEBportal/docs/AmPestimation.html" target="_blank">(RE)</a></th> '...
