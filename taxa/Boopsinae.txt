@@ -3,3 +3,4 @@ Lagodon
 Oblada
 Sarpa
 Spicara
+Spondyliosoma
