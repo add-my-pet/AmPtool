@@ -1,5 +1,7 @@
+Symphodus_cinereus
 Symphodus_mediterraneus
 Symphodus_melops
+Symphodus_ocellatus
 Symphodus_roissali
 Symphodus_rostratus
 Symphodus_tinca
