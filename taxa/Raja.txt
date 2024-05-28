@@ -1,8 +1,10 @@
+Raja_asterias
 Raja_brachyura
 Raja_clavata
 Raja_microocellata
 Raja_miraletus
 Raja_montagui
+Raja_polystigma
 Raja_radula
 Raja_texana
 Raja_undulata
