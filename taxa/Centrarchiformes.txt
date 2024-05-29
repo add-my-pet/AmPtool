@@ -2,5 +2,6 @@ Centrarchidae
 Elassomatidae
 Kyphosidae
 Latridae
+Oplegnathidae
 Percichthyidae
 Terapontidae
