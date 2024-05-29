@@ -1,4 +1,6 @@
 Rhizoprionodon_acutus
 Rhizoprionodon_lalandii
+Rhizoprionodon_oligolinx
+Rhizoprionodon_porosus
 Rhizoprionodon_taylori
 Rhizoprionodon_terraenovae
