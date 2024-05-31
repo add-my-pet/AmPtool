@@ -3,5 +3,6 @@ Electrona
 Gymnoscopelus
 Krefftichthys
 Myctophum
+Protomyctophum
 Symbolophorus
 Tarletonbeania
