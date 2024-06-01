@@ -1,8 +1,9 @@
 Ceratoscopelus
 Diaphus
+Lampanyctodes
+Lampanyctus
+Lepidophanes
 Nannobrachium
+Notoscopelus
 Stenobrachius
 Triphoturus
-Lampanyctodes
-Notoscopelus
-Lepidophanes
