@@ -1,2 +1,3 @@
-Notoscopelus_resplendens
 Notoscopelus_elongatus
+Notoscopelus_kroyeri
+Notoscopelus_resplendens
