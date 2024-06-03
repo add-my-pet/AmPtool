@@ -1,4 +1,5 @@
 Caranx
 Decapterus
 Parastromateus
+Selar
 Trachurus
