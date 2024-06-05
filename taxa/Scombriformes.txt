@@ -1,6 +1,8 @@
 Arripidae
-Scombridae
-Trichiuridae
 Bramidae
-Pomatomidae
+Centrolophidae
 Gempylidae
+Pomatomidae
+Scombridae
+Stromateidae
+Trichiuridae
