@@ -1,4 +1,6 @@
 Stolephorus_carpentariae
 Stolephorus_commersonnii
+Stolephorus_indicus
 Stolephorus_insularis
 Stolephorus_nelsoni
+Stolephorus_waitei
