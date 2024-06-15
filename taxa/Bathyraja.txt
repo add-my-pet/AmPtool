@@ -10,4 +10,5 @@ Bathyraja_maculata
 Bathyraja_magellanica
 Bathyraja_minispinosa
 Bathyraja_parmifera
+Bathyraja_taranetzi
 Bathyraja_trachura

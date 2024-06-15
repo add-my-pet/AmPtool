@@ -5,8 +5,10 @@ Carcharhinus_brachyurus
 Carcharhinus_brevipinna
 Carcharhinus_cautus
 Carcharhinus_coatesi
+Carcharhinus_dussumieri
 Carcharhinus_falciformis
 Carcharhinus_fitzroyensis
+Carcharhinus_galapagensis
 Carcharhinus_isodon
 Carcharhinus_leucas
 Carcharhinus_limbatus
