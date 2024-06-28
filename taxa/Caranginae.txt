@@ -1,5 +1,6 @@
 Alepes
 Atropus
+Atule
 Caranx
 Decapterus
 Megalaspis
