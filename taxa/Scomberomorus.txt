@@ -1,5 +1,7 @@
 Scomberomorus_cavalla
 Scomberomorus_commerson
+Scomberomorus_guttatus
+Scomberomorus_lineolatus
 Scomberomorus_maculatus
 Scomberomorus_plurilineatus
 Scomberomorus_sierra
