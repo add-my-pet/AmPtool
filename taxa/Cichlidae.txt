@@ -1,9 +1,4 @@
-Acarichthys
-Amatitlania
-Amphilophus
-Cichla
-Coptodon
-Gymnogeophagus
-Mayaheros
-Oreochromis
-Pterophyllum
+Cichlasomatinae
+Cichlinae
+Geophaginae
+Pseudocrenilabrinae
