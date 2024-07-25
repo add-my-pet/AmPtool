@@ -1,2 +1,3 @@
 Notothenia_coriiceps
-Notothenia_rossi
+Notothenia_neglecta
+Notothenia_rossii
