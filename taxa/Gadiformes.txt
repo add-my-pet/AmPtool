@@ -1,6 +1,7 @@
 Gadidae
 Lotidae
 Macrouridae
+Macruronidae
 Merlucciidae
 Moridae
 Muraenolepididae
