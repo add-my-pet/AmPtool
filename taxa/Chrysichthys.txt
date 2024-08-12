@@ -1,2 +1,3 @@
 Chrysichthys_auratus
 Chrysichthys_nigrodigitatus
+Chrysichthys_walkeri
