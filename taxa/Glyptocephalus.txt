@@ -1,3 +1,4 @@
 Glyptocephalus_cynoglossus
 Glyptocephalus_kitaharae
 Glyptocephalus_stelleri
+Glyptocephalus_zachirus
