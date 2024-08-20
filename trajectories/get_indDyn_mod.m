@@ -305,8 +305,8 @@ switch model
 end
   
 % observable quantities
-% Lw = ELHR(:,2);               % cm, physical length del_M is not packed in par
-Ww = ELHR(:,2) + ELHR(:,1) * w_E/ mu_E/ d_E; % g, wet weight
+% Lw = ELHR(:,2)/del_M;               % cm, physical length del_M is not packed in par
+Ww = ELHR(:,2).^3 + ELHR(:,1) * w_E/ mu_E/ d_E; % g, wet weight
 N = kap_R * ELHR(:,4)/E_0; % #, cumulated number of eggs
 JX = (w_X/(kap_X*mu_X*d_X)) * pAMGD(:,1); % g/d, food consumed
 JO = - 32 * JM(3,:)';    % g O2/d,  O2 consumption 
