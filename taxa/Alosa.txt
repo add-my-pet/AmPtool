@@ -2,6 +2,8 @@ Alosa_aestivalis
 Alosa_alabamae
 Alosa_alosa
 Alosa_chrysochloris
+Alosa_fallax
+Alosa_immaculata
 Alosa_mediocris
 Alosa_sapidissima
 Alosa_saposchnikowii

@@ -1,8 +1,5 @@
+Scombroidei
+Stromateoidei
 Arripidae
 Bramidae
-Centrolophidae
-Gempylidae
 Pomatomidae
-Scombridae
-Stromateidae
-Trichiuridae

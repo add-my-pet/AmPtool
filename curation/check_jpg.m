@@ -32,10 +32,11 @@ function check_jpg(info)
 %% Example of use
 % check_jpg
 
+WD = cdCur;
+
 if ~exist('info','var')
   info = 0;
 end
-
 if ~(info == 1)
   tree = list_taxa('', 1); n_tree = length(tree); % cell string with node names of tree, excluding entries
 end
@@ -139,3 +140,5 @@ if info > 0
     diff
   end
 end
+
+cd(WD);

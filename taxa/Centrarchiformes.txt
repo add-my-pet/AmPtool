@@ -1,5 +1,7 @@
 Centrarchidae
+Cirrhitidae
 Elassomatidae
+Girellidae
 Kyphosidae
 Latridae
 Oplegnathidae

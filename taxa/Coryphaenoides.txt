@@ -1,2 +1,7 @@
-Coryphaenoides_rupestris
 Coryphaenoides_acrolepis
+Coryphaenoides_armatus
+Coryphaenoides_brevibarbis
+Coryphaenoides_carapinus
+Coryphaenoides_guentheri
+Coryphaenoides_mediterraneus
+Coryphaenoides_rupestris
