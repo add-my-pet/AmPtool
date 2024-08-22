@@ -9,6 +9,7 @@ Sebastes_goodei
 Sebastes_hopkinsi
 Sebastes_levis
 Sebastes_maliger
+Sebastes_melanops
 Sebastes_melanostomus
 Sebastes_mentella
 Sebastes_miniatus
@@ -18,6 +19,7 @@ Sebastes_norvegicus
 Sebastes_ovalis
 Sebastes_paucispinis
 Sebastes_rastrelliger
+Sebastes_rosaceus
 Sebastes_rosenblatti
 Sebastes_rufus
 Sebastes_saxicola
