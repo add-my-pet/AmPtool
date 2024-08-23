@@ -1,7 +1,11 @@
 Sebastes_alutus
+Sebastes_atrovirens
 Sebastes_auriculatus
 Sebastes_capensis
+Sebastes_carnatus
+Sebastes_caurinus
 Sebastes_chlorostictus
+Sebastes_chrysomelas
 Sebastes_constellatus
 Sebastes_elongatus
 Sebastes_flavidus
@@ -15,9 +19,11 @@ Sebastes_mentella
 Sebastes_miniatus
 Sebastes_minor
 Sebastes_mystinus
+Sebastes_nebulosus
 Sebastes_norvegicus
 Sebastes_ovalis
 Sebastes_paucispinis
+Sebastes_pinniger
 Sebastes_rastrelliger
 Sebastes_rosaceus
 Sebastes_rosenblatti
