@@ -1,14 +1,18 @@
+Sebastes_aleutianus
 Sebastes_alutus
 Sebastes_atrovirens
 Sebastes_auriculatus
 Sebastes_borealis
+Sebastes_brevispinis
 Sebastes_capensis
 Sebastes_carnatus
 Sebastes_caurinus
 Sebastes_chlorostictus
 Sebastes_chrysomelas
 Sebastes_constellatus
+Sebastes_crameri
 Sebastes_elongatus
+Sebastes_entomelas
 Sebastes_flavidus
 Sebastes_goodei
 Sebastes_hopkinsi
@@ -27,6 +31,7 @@ Sebastes_nudus
 Sebastes_ovalis
 Sebastes_paucispinis
 Sebastes_pinniger
+Sebastes_polyspinis
 Sebastes_rastrelliger
 Sebastes_rosaceus
 Sebastes_rosenblatti
@@ -37,4 +42,7 @@ Sebastes_schlegelii
 Sebastes_semicinctus
 Sebastes_serranoides
 Sebastes_taczanowskii
+Sebastes_variabilis
+Sebastes_variegatus
 Sebastes_viviparus
+Sebastes_zacentrus
