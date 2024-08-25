@@ -11,8 +11,11 @@ Sebastes_chlorostictus
 Sebastes_chrysomelas
 Sebastes_constellatus
 Sebastes_crameri
+Sebastes_diaconus
 Sebastes_elongatus
+Sebastes_emphaeus
 Sebastes_entomelas
+Sebastes_fasciatus
 Sebastes_flavidus
 Sebastes_goodei
 Sebastes_hopkinsi
@@ -32,7 +35,9 @@ Sebastes_ovalis
 Sebastes_paucispinis
 Sebastes_pinniger
 Sebastes_polyspinis
+Sebastes_proriger
 Sebastes_rastrelliger
+Sebastes_reedi
 Sebastes_rosaceus
 Sebastes_rosenblatti
 Sebastes_ruberrimus
