@@ -7,6 +7,7 @@ Sebastes_brevispinis
 Sebastes_capensis
 Sebastes_carnatus
 Sebastes_caurinus
+Sebastes_cheni
 Sebastes_chlorostictus
 Sebastes_chrysomelas
 Sebastes_constellatus
@@ -19,6 +20,7 @@ Sebastes_fasciatus
 Sebastes_flavidus
 Sebastes_goodei
 Sebastes_hopkinsi
+Sebastes_inermis
 Sebastes_koreanus
 Sebastes_levis
 Sebastes_maliger
@@ -49,5 +51,6 @@ Sebastes_serranoides
 Sebastes_taczanowskii
 Sebastes_variabilis
 Sebastes_variegatus
+Sebastes_ventricosus
 Sebastes_viviparus
 Sebastes_zacentrus
