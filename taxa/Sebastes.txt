@@ -2,6 +2,7 @@ Sebastes_aleutianus
 Sebastes_alutus
 Sebastes_atrovirens
 Sebastes_auriculatus
+Sebastes_babcocki
 Sebastes_borealis
 Sebastes_brevispinis
 Sebastes_capensis
