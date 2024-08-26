@@ -17,6 +17,7 @@ Sebastes_diaconus
 Sebastes_diploproa
 Sebastes_elongatus
 Sebastes_emphaeus
+Sebastes_ensifer
 Sebastes_entomelas
 Sebastes_fasciatus
 Sebastes_flavidus
@@ -51,6 +52,7 @@ Sebastes_saxicola
 Sebastes_schlegelii
 Sebastes_semicinctus
 Sebastes_serranoides
+Sebastes_simulator
 Sebastes_taczanowskii
 Sebastes_variabilis
 Sebastes_variegatus
