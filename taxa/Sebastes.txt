@@ -2,6 +2,7 @@ Sebastes_aleutianus
 Sebastes_alutus
 Sebastes_atrovirens
 Sebastes_auriculatus
+Sebastes_aurora
 Sebastes_babcocki
 Sebastes_borealis
 Sebastes_brevispinis
@@ -38,6 +39,7 @@ Sebastes_nebulosus
 Sebastes_norvegicus
 Sebastes_nudus
 Sebastes_ovalis
+Sebastes_owstoni
 Sebastes_paucispinis
 Sebastes_pinniger
 Sebastes_polyspinis
@@ -54,8 +56,10 @@ Sebastes_semicinctus
 Sebastes_serranoides
 Sebastes_simulator
 Sebastes_taczanowskii
+Sebastes_umbrosus
 Sebastes_variabilis
 Sebastes_variegatus
 Sebastes_ventricosus
 Sebastes_viviparus
+Sebastes_wilsoni
 Sebastes_zacentrus
