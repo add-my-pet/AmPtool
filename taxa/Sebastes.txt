@@ -54,6 +54,7 @@ Sebastes_saxicola
 Sebastes_schlegelii
 Sebastes_semicinctus
 Sebastes_serranoides
+Sebastes_serriceps
 Sebastes_simulator
 Sebastes_taczanowskii
 Sebastes_umbrosus
@@ -61,5 +62,6 @@ Sebastes_variabilis
 Sebastes_variegatus
 Sebastes_ventricosus
 Sebastes_viviparus
+Sebastes_vulpes
 Sebastes_wilsoni
 Sebastes_zacentrus
