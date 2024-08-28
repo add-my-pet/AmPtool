@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdEntr</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="1">cdEntr</h2><p>cd to the add_my_pet/entries/my_pet directory abd optional load files in editor</p><h2 id="3">Syntax</h2><p>WD = <a href="../cdEntr.m"><b>cdEntr</b></a> (my_pet, ed)</p><h2 id="4">Description</h2><p>cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor</p><p>Input</p><div><ul><li>my_pet: string or cellstring with name(s) of entry</li><li>ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files</li></ul></div><p>Output</p><div><ul><li>WD: current path</li></ul></div><h2 id="5">Remarks</h2><p>Intended use: * cdEntr('Daphnia_magna'); * WD = cdEntr('Daphnia_magna',0); cd(WD); * cdEntr('Daphnia',1) * cdEntr(select('Daphnia'),1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdEntr</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="1">cdEntr</h2><p>cd to the add_my_pet/entries/my_pet directory abd optional load files in editor</p><h2 id="3">Syntax</h2><p>WD = <a href="../cdEntr.m"><b>cdEntr</b></a> (my_pet, ed)</p><h2 id="4">Description</h2><p>cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor</p><p>Input</p><div><ul><li>my_pet: string or cellstring with name(s) of entry</li><li>ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files</li></ul></div><p>Output</p><div><ul><li>WD: current path</li></ul></div><h2 id="5">Remarks</h2><p>Intended use:</p><div><ul><li>cdEntr('Daphnia_magna');</li><li>WD = cdEntr('Daphnia_magna',0); cd(WD);</li><li>cdEntr('Daphnia',1)</li><li>cdEntr(select('Daphnia'),1)</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% cdEntr
 % cd to the add_my_pet/entries/my_pet directory abd optional load files in editor
@@ -92,6 +92,7 @@ function WD = cdEntr(my_pet, ed)
 
 %% Remarks
 % Intended use: 
+%
 % * cdEntr('Daphnia_magna');
 % * WD = cdEntr('Daphnia_magna',0); cd(WD); 
 % * cdEntr('Daphnia',1) 

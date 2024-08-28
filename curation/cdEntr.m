@@ -21,6 +21,7 @@ function WD = cdEntr(my_pet, ed)
 
 %% Remarks
 % Intended use: 
+%
 % * cdEntr('Daphnia_magna');
 % * WD = cdEntr('Daphnia_magna',0); cd(WD); 
 % * cdEntr('Daphnia',1) 
