@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>cdEntr</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-08-27"><meta name="DC.source" content="cdEntr.m"><style type="text/css">
+      --><title>cdEntr</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-08-28"><meta name="DC.source" content="cdEntr.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,22 +67,23 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdEntr</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="1">cdEntr</h2><p>cd to the add_my_pet/entries/my_pet directory</p><h2 id="3">Syntax</h2><p>WD = <a href="../cdEntr.m"><b>cdEntr</b></a> (my_pet, ed)</p><h2 id="4">Description</h2><p>cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor</p><div><ul><li>my_pet: string with name of entry</li><li>ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files</li></ul></div><p>Output</p><div><ul><li>WD: current path</li></ul></div><h2 id="5">Remarks</h2><p>Intended use: WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">cdEntr</a></li><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="1">cdEntr</h2><p>cd to the add_my_pet/entries/my_pet directory abd optional load files in editor</p><h2 id="3">Syntax</h2><p>WD = <a href="../cdEntr.m"><b>cdEntr</b></a> (my_pet, ed)</p><h2 id="4">Description</h2><p>cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor</p><p>Input</p><div><ul><li>my_pet: string or cellstring with name(s) of entry</li><li>ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files</li></ul></div><p>Output</p><div><ul><li>WD: current path</li></ul></div><h2 id="5">Remarks</h2><p>Intended use: * cdEntr('Daphnia_magna'); * WD = cdEntr('Daphnia_magna',0); cd(WD); * cdEntr('Daphnia',1) * cdEntr(select('Daphnia'),1)</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% cdEntr
-% cd to the add_my_pet/entries/my_pet directory
+% cd to the add_my_pet/entries/my_pet directory abd optional load files in editor
 
 function WD = cdEntr(my_pet, ed)
-% created 2021/02/22 by Bas Kooijman
+% created 2021/02/22 by Bas Kooijman, modified 2024/01/06
 
 %% Syntax
 % WD = <../cdEntr.m *cdEntr*> (my_pet, ed)
 
 %% Description
-% cd to the add_my_pet/entries/my_pet directory and open source files in
-% Matlab editor
+% cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor
 %
-% * my_pet: string with name of entry
+% Input
+% 
+% * my_pet: string or cellstring with name(s) of entry
 % * ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files
 %
 % Output
@@ -90,18 +91,39 @@ function WD = cdEntr(my_pet, ed)
 % * WD: current path 
 
 %% Remarks
-% Intended use: WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)
+% Intended use: 
+% * cdEntr('Daphnia_magna');
+% * WD = cdEntr('Daphnia_magna',0); cd(WD); 
+% * cdEntr('Daphnia',1) 
+% * cdEntr(select('Daphnia'),1)
 
-WD = pwd; cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
+if iscell(my_pet)
+  nms = my_pet; n = length(nms);  
+elseif contains(my_pet,'_')
+  nms = {my_pet}; n = 1; 
+elseif contains(my_pet,' ')
+  my_pet = strrep(my_pet,' ','_'); nms = {my_pet}; n = 1;
+else
+  nms = select(my_pet); n = length(nms);
+end
 
-if exist('ed', 'var')
-  if ed==1
-    edit(['mydata_', my_pet, '.m'])
-  else
-    edit(['mydata_', my_pet, '.m'])
-    edit(['pars_init_', my_pet, '.m'])
-    edit(['predict_', my_pet, '.m'])
-    edit(['run_', my_pet, '.m'])
+WD = pwd; % copy to output
+
+for i=1:n
+  my_pet = nms{i};
+  cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
+
+  if exist('ed', 'var')
+    if ed==1
+      edit(['mydata_', my_pet, '.m'])
+    elseif ed==3
+      edit(['predict_', my_pet, '.m'])
+    else
+      edit(['mydata_', my_pet, '.m'])
+      edit(['pars_init_', my_pet, '.m'])
+      edit(['predict_', my_pet, '.m'])
+      edit(['run_', my_pet, '.m'])
+    end
   end
 end
 
