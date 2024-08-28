@@ -11,7 +11,7 @@ function WD = cdEntr(my_pet, ed)
 % cd to the add_my_pet/entries/my_pet directory and open source files in Matlab editor
 % if nm exists, birdsoftheworld will be opened
 %
-% * my_pet: string with name of entry
+% * my_pet: string or cellstring with name(s) of entry
 % * ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files
 %
 % Output
@@ -20,16 +20,18 @@ function WD = cdEntr(my_pet, ed)
 
 %% Remarks
 % Intended use: 
-% * WD = cdEntr('Daphnia_magna',0); ..code.. cd(WD)
+% * cdEntr('Daphnia_magna',0) or cdEntr('Daphnia',1) or cdEntr(select('Daphnia'),1)
 
-if ~contains(my_pet,'_')
+if iscell(my_pet)
+  nms = my_pet; n = length(nms);  
+elseif contains(my_pet,'_')
+  nms = {my_pet}; n = 1; 
+else
   if contains(my_pet,' ')
     my_pet = strrep(my_pet,' ','_'); n = 1; nms = {my_pet};
   else
     nms = select(my_pet); n = length(nms);
   end
-else
-  nms = {my_pet}; n = 1;
 end
 
 WD = pwd;
