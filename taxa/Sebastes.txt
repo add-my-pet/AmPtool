@@ -12,8 +12,10 @@ Sebastes_caurinus
 Sebastes_cheni
 Sebastes_chlorostictus
 Sebastes_chrysomelas
+Sebastes_ciliatus
 Sebastes_constellatus
 Sebastes_crameri
+Sebastes_dallii
 Sebastes_diaconus
 Sebastes_diploproa
 Sebastes_elongatus
@@ -57,6 +59,7 @@ Sebastes_serranoides
 Sebastes_serriceps
 Sebastes_simulator
 Sebastes_taczanowskii
+Sebastes_thompsoni
 Sebastes_umbrosus
 Sebastes_variabilis
 Sebastes_variegatus
