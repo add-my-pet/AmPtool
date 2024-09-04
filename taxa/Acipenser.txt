@@ -1,4 +1,5 @@
 Acipenser_brevirostrum
+Acipenser_dabryanus
 Acipenser_fulvescens
 Acipenser_gueldenstaedtii
 Acipenser_medirostris
@@ -6,6 +7,8 @@ Acipenser_nudiventris
 Acipenser_oxyrinchus
 Acipenser_persicus
 Acipenser_ruthenus
+Acipenser_schrenckii
+Acipenser_sinensis
 Acipenser_stellatus
 Acipenser_sturio
 Acipenser_transmontanus
