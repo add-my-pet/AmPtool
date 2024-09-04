@@ -7,3 +7,4 @@ Epinephelus_marginatus
 Epinephelus_morio
 Epinephelus_ongus
 Epinephelus_radiatus
+Epinephelus_rivulatus
