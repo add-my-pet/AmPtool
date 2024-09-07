@@ -1,4 +1,5 @@
 Prionotus_albirostris
 Prionotus_carolinus
 Prionotus_evolans
+Prionotus_punctatus
 Prionotus_stephanophrys
