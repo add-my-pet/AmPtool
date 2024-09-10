@@ -1,2 +1,3 @@
-Platichthys_stellatus
+Platichthys_flesus
 Platichthys_bicoloratus
+Platichthys_stellatus
