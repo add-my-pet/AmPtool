@@ -1,15 +1,16 @@
 %% list_taxa
-% gets ordered list of all taxa
+% gets ordered list of all taxa and optionally count AmP members
 
 %%
-function ol = list_taxa (taxon, level)
-% created 2016/02/25 by Bas Kooijman, modified 2018/06/14
+function [ol, n_c] = list_taxa (taxon, level, count)
+% created 2016/02/25 by Bas Kooijman, modified 2018/06/14, 2024.09/11
 
 %% Syntax
-% ol = <../list_taxa.m *list_taxa*> (taxon, level) 
+% ol = <../list_taxa.m *list_taxa*> (taxon, level, count) 
 
 %% Description
-% gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection 
+% gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection.
+% if count is specified, the order is by number of AmP members of the taxa
 %
 % Input:
 % 
@@ -25,9 +26,12 @@ function ol = list_taxa (taxon, level)
 %    6 classes only (match with allStat.mat, but does not work for Reptilia)
 %    7 phyla only (match with allStat.mat)
 %
+% * count: optional scalar with lower bound for counting members
+%
 % Output:
 % 
-% * cell string with alphabetically ordered list
+% * ol: cell string with alphabetically ordered list
+% * n_c: vector with number of members; is empty if count is not specified
 
 %% Remarks
 % The classification follows that of Wikipedia
@@ -37,6 +41,7 @@ function ol = list_taxa (taxon, level)
 % * ol = list_taxa('Deuterostomata',4)
 % * ol = list_taxa({},7)
 % * ol = list_taxa('Arthropoda')
+% * [ol, n] = list_taxa({},3,10); prt_tab({ol n},{'genus', 'n'},'genera',1) 
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';
@@ -91,6 +96,18 @@ function ol = list_taxa (taxon, level)
   end
   
   cd(WD)                    % goto original path
+  
+  % count members
+  n_c = [];
+  if exist('count','var') && count >= 0
+    n = length(ol); n_c = zeros(n,1);
+    for i = 1:n
+      n_c(i) = length(select(ol{i}));
+    end  
+    sel = n_c >= count;
+    ol = ol(sel); n_c = n_c(sel);
+    [n_c, ind] = sort(n_c,'descend'); ol = ol(ind);
+  end
 
 end
 
