@@ -5,5 +5,6 @@ Escualosa
 Ethmalosa
 Herklotsichthys
 Hilsa
+Konosirus
 Opisthonema
 Sardinella
