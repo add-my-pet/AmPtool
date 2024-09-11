@@ -3,7 +3,7 @@
 
 %%
 function [ol, n_c] = list_taxa (taxon, level, count)
-% created 2016/02/25 by Bas Kooijman, modified 2018/06/14, 2024.09/11
+% created 2016/02/25 by Bas Kooijman, modified 2018/06/14, 2024/09/11
 
 %% Syntax
 % ol = <../list_taxa.m *list_taxa*> (taxon, level, count) 
