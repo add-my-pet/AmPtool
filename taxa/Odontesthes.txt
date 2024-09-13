@@ -1,2 +1,4 @@
 Odontesthes_argentinensis
 Odontesthes_bonariensis
+Odontesthes_nigricans
+Odontesthes_regia
