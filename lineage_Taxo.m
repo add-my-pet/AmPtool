@@ -2,7 +2,7 @@
 % gets lineage of a species in Taxonomicon
 
 %%
-function [lineage rank] = lineage_Taxo(my_pet)
+function [lineage, rank, lineage_short, rank_short] = lineage_Taxo(my_pet)
 % created 2018/01/30 by Bas Kooijman
 
 %% Syntax
@@ -24,7 +24,7 @@ function [lineage rank] = lineage_Taxo(my_pet)
 % <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
 
 %% Example of use
-% [lin rank] = lineage_Taxo('Daphnia_magna')
+% [lin, rank] = lineage_Taxo('Daphnia_magna')
 
 id_Taxo = get_id_Taxo(my_pet);
 if isempty(id_Taxo)
@@ -59,16 +59,20 @@ end
 
 lineage(end) = {my_pet}; rank(end) = {'Species'};
 
-[j i] = ismember('Animalia', lineage); 
-if ~j
-  fprintf(['Warning from lineage_Taxo: ', my_pet, ' is not classified as belonging to Animalia\n'])
-else  
-  rank(1:i-1) = []; lineage(1:i-1) = [];
-end
-
 n_lin = length(lineage);
 for i=1:n_lin
   lineage(i) = strrep(lineage(i), '<b>', '');
   lineage(i) = strrep(lineage(i), '</b>', '');
   rank(i) = strrep(rank(i), '<i>', '');
 end
+
+[j, i] = ismember('Animalia', lineage); 
+if ~j
+  fprintf(['Warning from lineage_Taxo: ', my_pet, ' is not classified as belonging to Animalia\n'])
+else  
+  rank(1:i-1) = []; lineage(1:i-1) = [];
+end
+
+rank_short = {'Class';'Order';'Family';'Genus'};
+[~, ind] = ismember(rank_short,rank);
+lineage_short = lineage(ind);

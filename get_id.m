@@ -3,7 +3,7 @@
 
 %%
 function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
-% created 2021/08/3 by Bas Kooijman
+% created 2021/08/3 by Bas Kooijman, modified 2024/09/14
 
 %% Syntax
 % [id, id_txt, my_pet_acc] = <../get_id.m *get_id*>(my_pet, open, tab)
@@ -11,7 +11,10 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 %% Description
 % Gets identifiers for all websites that AmP uses for this taxon. 
 % Some websites apply to all animals, others only for particular taxa.
-% The lineage is taken from CoL.
+% The lineage is taken from CoL till 2024/09, then after from Taxo.
+% CoL no longer supports automatized searching; insert the species-name in the search-field of the CoL-site that is opened in your browser and
+% copy the id in the address field (top-line of your browser) to Matlab.
+% ITIS also changed, and no longer supports taxon id's as it seems. AmP will remove the links to ITIS soon. 
 %
 % Input:
 %
@@ -93,21 +96,25 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://genomics.senescence.info/species/entry.php?species='};
     
   my_pet = strrep(my_pet, ' ', '_'); 
-  [lin, rank, id_CoL, name_status, my_pet_acc] = lineage_CoL(my_pet); 
-  if isempty(id_CoL)
-    id = ''; id_txt = ''; return
-  else
-    if ~strcmp(name_status,'accepted name')
-      if contains(my_pet_acc,'(')
-        my_pet_acc = my_pet; % don't replace name if subgenus is part of the accepted name
-      elseif ~strcmp(my_pet, my_pet_acc)
-        fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
-      end
-    end
-  end
+%   [lin, rank, id_CoL, name_status, my_pet_acc] = lineage_CoL(my_pet); 
+%   if isempty(id_CoL)
+%     id = ''; id_txt = ''; return
+%   else
+%     if ~strcmp(name_status,'accepted name')
+%       if contains(my_pet_acc,'(')
+%         my_pet_acc = my_pet; % don't replace name if subgenus is part of the accepted name
+%       elseif ~strcmp(my_pet, my_pet_acc)
+%         fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
+%       end
+%     end
+%   end
+
+  [~, ~, lin, rank] = lineage_Taxo(my_pet); 
      
   select_id(1:7) = true; id = cell(23,1); id_txt = cell(23,1);
-  id{1} = id_CoL; id_txt{1} = 'id_CoL';
+  my_pet_acc = my_pet;
+  web 'https://www.catalogueoflife.org/data/search?facet=rank&facet=issue&facet=status&facet=nomStatus&facet=nameType&facet=field&facet=authorship&facet=extinct&facet=environment&limit=50&offset=0&sortBy=taxonomic' -browser
+  id{1} = input("id_CoL (between strophs): "); id_txt{1} = 'id_CoL';
   id{2} = get_id_ITIS(my_pet_acc); id_txt{2} = 'id_ITIS';
   if isempty(id{2}) && ~strcmp(my_pet,my_pet_acc); id{2} = get_id_ITIS(my_pet); end
   id{3} = get_id_EoL(my_pet_acc); id_txt{3} = 'id_EoL';
@@ -126,77 +133,63 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     select_id(8) = true;
     id{7} = get_id_molluscabase(my_pet_acc); id_txt{8} = 'id_molluscabase';
     if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_molluscabase(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Scorpiones')
+  elseif ismember(lin(ismember(rank,'Order')), 'Scorpiones')
     select_id(9) = true;
     id{9} = get_id_scorpion(my_pet_acc); id_txt{9} = 'id_scorpion';
     if isempty(id{9}) && ~strcmp(my_pet,my_pet_acc); id{9} = get_id_scorpion(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Araneae')
+  elseif ismember(lin(ismember(rank,'Order')), 'Araneae')
     select_id(10) = true;
     id{10} = get_id_spider(my_pet_acc); id_txt{10} = 'id_spider';
     if isempty(id{10}) && ~strcmp(my_pet,my_pet_acc); id{10} = get_id_spider(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), 'Entognatha')
+  elseif ismember(lin(ismember(rank,'Class')), 'Entognatha')
     select_id(11) = true;
     id{11} = get_id_collembola(my_pet_acc); id_txt{11} = 'id_collembola';
     if isempty(id{11}) && ~strcmp(my_pet,my_pet_acc); id{11} = get_id_collembola(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Orthoptera')
+  elseif ismember(lin(ismember(rank,'Order')), 'Orthoptera')
     select_id(12) = true;
     id{12} = get_id_orthoptera(my_pet_acc); id_txt{12} = 'id_orthoptera';
     if isempty(id{12}) && ~strcmp(my_pet,my_pet_acc); id{12} = get_id_orthoptera(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Phasmatodea')
+  elseif ismember(lin(ismember(rank,'Order')), 'Phasmatodea')
     select_id(13) = true;
     id{13} = get_id_phasmida(my_pet_acc); id_txt{13} = 'id_phasmida';
     if isempty(id{13}) && ~strcmp(my_pet,my_pet_acc); id{13} = get_id_phasmida(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Family')), 'Aphididae')
+  elseif ismember(lin(ismember(rank,'Family')), 'Aphididae')
     select_id(14) = true;
     id{14} = get_id_aphid(my_pet_acc); id_txt{14} = 'id_aphid';
     if isempty(id{14}) && ~strcmp(my_pet,my_pet_acc); id{14} = get_id_aphid(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Diptera')
+  elseif ismember(lin(ismember(rank,'Order')), 'Diptera')
     select_id(15) = true;
     id{15} = get_id_diptera(my_pet_acc); id_txt{15} = 'id_diptera';
     if isempty(id{15}) && ~strcmp(my_pet,my_pet_acc); id{15} = get_id_diptera(my_pet); end
     address{15} = strrep(address{15}, 'id_diptera', id{15});
-  end
-  if ismember(lin(ismember(rank,'Order')), 'Lepidoptera')
+  elseif ismember(lin(ismember(rank,'Order')), 'Lepidoptera')
     select_id(16) = true;
     id{8} = get_id_diptera(my_pet_acc); id_txt{16} = 'id_lepidoptera';
     if isempty(id{16}) && ~strcmp(my_pet,my_pet_acc); id{16} = get_id_lepidoptera(my_pet); end
     address{16} = strrep(address{16}, 'id_diptera', id{16});
-  end
-  if ismember(lin(ismember(rank,{'Class','Gigaclass'})), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
+  elseif ismember(lin(ismember(rank,{'Class','Gigaclass'})), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
     select_id(17) = true;
     id{17} = get_id_fishbase(my_pet_acc); id_txt{17} = 'id_fishbase';
     if isempty(id{17}) && ~strcmp(my_pet,my_pet_acc); id{17} = get_id_fishbase(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), 'Amphibia') 
+  elseif ismember(lin(ismember(rank,'Class')), 'Amphibia') 
     select_id(18) = true;
     id{18} = get_id_amphweb(my_pet_acc); id_txt{18} = 'id_amphweb';
     if isempty(id{18}) && ~strcmp(my_pet,my_pet_acc); id{18} = get_id_amphweb(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), {'Reptilia','Squamata','Testudines','Crocodilia'}) 
+  elseif ismember(lin(ismember(rank,'Class')), {'Reptilia','Squamata','Testudines','Crocodilia'}) 
     select_id(19) = true;
     id{19} = get_id_ReptileDB(my_pet_acc); id_txt{19} = 'id_ReptileDB';
     if isempty(id{19}) && ~strcmp(my_pet,my_pet_acc); id{19} = get_id_ReptileDB(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), 'Aves') 
+  elseif ismember(lin(ismember(rank,'Class')), 'Aves') 
     select_id(20:21) = true;
     id{20} = get_id_avibase(my_pet_acc); id_txt{20} = 'id_avibase';
     id{21} = get_id_birdlife(my_pet_acc); id_txt{21} = 'id_birdlife';
     if isempty(id{20}) && ~strcmp(my_pet,my_pet_acc); id{20} = get_id_avibase(my_pet); end
     if isempty(id{21}) && ~strcmp(my_pet,my_pet_acc); id{21} = get_id_birdlife(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), 'Mammalia') 
+  elseif ismember(lin(ismember(rank,'Class')), 'Mammalia') 
     select_id(22) = true;
     id{22} = get_id_MSW3(my_pet_acc); id_txt{22} = 'id_msw3';
     if isempty(id{22}) && ~strcmp(my_pet,my_pet_acc); id{22} = get_id_MSW3(my_pet); end
-  end
-  if ismember(lin(ismember(rank,'Class')), {'Amphibia','Reptilia','Squamata','Testudines','Crocodilia','Aves','Mammalia'}) 
+  elseif ismember(lin(ismember(rank,'Class')), {'Amphibia','Reptilia','Squamata','Testudines','Crocodilia','Aves','Mammalia'}) 
     select_id(23) = true;
     id{23} = get_id_AnAge(my_pet_acc); id_txt{23} = 'id_AnAge';
     if isempty(id{23})  && ~strcmp(my_pet,my_pet_acc); id{23} = get_id_AnAge(my_pet); end

@@ -27,7 +27,7 @@ function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pe
 %% Remarks
 % You must be connected for using this function,
 % <lineage.html *lineage*> gives a similar result for AmP entries, but here only a limited set.
-% Empty results not necessarily means that the name is wrong, e.g. Daphnia magna
+% Empty results not necessarily mean that the name is wrong, e.g. Daphnia magna
 
 %% Example of use
 % lineage_CoL('Passer_domesticus')
