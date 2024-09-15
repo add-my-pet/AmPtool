@@ -1,5 +1,6 @@
 Thunnus_alalunga
 Thunnus_albacares
+Thunnus_atlanticus
 Thunnus_maccoyii
 Thunnus_obesus
 Thunnus_orientalis
