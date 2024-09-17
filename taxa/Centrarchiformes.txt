@@ -7,4 +7,5 @@ Kyphosidae
 Latridae
 Oplegnathidae
 Percichthyidae
+Sinipercidae
 Terapontidae

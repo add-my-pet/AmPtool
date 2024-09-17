@@ -75,4 +75,6 @@ end
 
 rank_short = {'Class';'Order';'Family';'Genus'};
 [~, ind] = ismember(rank_short,rank);
-lineage_short = lineage(ind);
+lineage_short = lineage(max(1,ind));
+for i=1:4; if ind(i)==0; lineage_short{i} = ''; end; end
+
