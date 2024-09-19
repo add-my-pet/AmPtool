@@ -8,3 +8,5 @@ Sardinella_longiceps
 Sardinella_maderensis
 Sardinella_melanura
 Sardinella_sindensis
+Sardinella_tawilis
+Sardinella_zunasi
