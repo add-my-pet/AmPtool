@@ -1,6 +1,7 @@
-Labeoninae
-Torinae
-Smiliogastrinae
-Cyprininae
-Schizopygopsinae
+Barbinae
 Cultrinae
+Cyprininae
+Labeoninae
+Schizopygopsinae
+Smiliogastrinae
+Torinae
