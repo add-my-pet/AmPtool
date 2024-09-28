@@ -14,7 +14,7 @@ function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pe
 %
 % Input:
 %
-% * my_pet: character string with name of an entry
+% * my_pet: character string with name of an entry or CoL-code
 %
 % Output:
 %
