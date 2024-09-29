@@ -63,7 +63,11 @@ n_lin = length(lineage);
 for i=1:n_lin
   lineage(i) = strrep(lineage(i), '<b>', '');
   lineage(i) = strrep(lineage(i), '</b>', '');
-  rank(i) = strrep(rank(i), '<i>', '');
+  if ~isempty(rank{i}) && ~contains(rank{i},'<aclass')
+    rank(i) = strrep(rank(i), '<i>', '');
+  else
+    rank{i} = 'nill';
+  end
 end
 
 [j, i] = ismember('Animalia', lineage); 

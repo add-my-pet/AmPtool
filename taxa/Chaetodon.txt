@@ -1,6 +1,14 @@
+Chaetodon_auriga
+Chaetodon_austriacus
 Chaetodon_baronessa
 Chaetodon_citrinellus
+Chaetodon_fasciatus
 Chaetodon_larvatus
 Chaetodon_lunulatus
+Chaetodon_melapterus
 Chaetodon_miliaris
+Chaetodon_paucifasciatus
+Chaetodon_pictus
+Chaetodon_semilarvatus
 Chaetodon_trifascialis
+Chaetodon_trifasciatus

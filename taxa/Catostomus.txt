@@ -1,6 +1,7 @@
 Catostomus_catostomus
 Catostomus_columbianus
 Catostomus_commersonii
+Catostomus_discobolus
 Catostomus_latipinnis
 Catostomus_macrocheilus
 Catostomus_microps
