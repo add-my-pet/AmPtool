@@ -35,7 +35,7 @@ end
 try
   % AphiaID suggested by Bart Vanhoorne info@marinespecies.org
   url = webread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
-  id = url.valid_AphiaID;
+  id = num2str(url.valid_AphiaID);
   name_status = url.status;
   accepted_name = url.valid_name;
   

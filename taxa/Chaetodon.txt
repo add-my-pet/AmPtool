@@ -5,10 +5,12 @@ Chaetodon_citrinellus
 Chaetodon_fasciatus
 Chaetodon_larvatus
 Chaetodon_lunulatus
+Chaetodon_marleyi
 Chaetodon_melapterus
 Chaetodon_miliaris
 Chaetodon_paucifasciatus
 Chaetodon_pictus
 Chaetodon_semilarvatus
+Chaetodon_speculum
 Chaetodon_trifascialis
 Chaetodon_trifasciatus
