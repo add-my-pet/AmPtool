@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>get_id_WoRMS</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-09-30"><meta name="DC.source" content="get_id_WoRMS.m"><style type="text/css">
+      --><title>lineage_WoRMS</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-09-30"><meta name="DC.source" content="lineage_WoRMS.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,60 +67,51 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>get_id_WoRMS</h1><!--introduction--><p>gets id of accepted species name in World Register of Marine Species</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[id, name_status, accepted_name] = <a href="../get_id_WoRMS.m"><b>get_id_WoRMS</b></a>(my_pet, open)</p><h2 id="4">Description</h2><p>Gets identifier for the accepted species name in the World Register of Marine Species</p><p>Input:</p><div><ul><li>my_pet: character string with name of a taxon</li><li>open: optional boolean for opening in browser (default: 0)</li></ul></div><p>Output:</p><div><ul><li>id: character string with id of accepted name in WoRMS</li><li>name_status: character status of the name my_pet in WoRMS</li><li>accepted_name: character string with accepted name</li></ul></div><h2 id="5">Remarks</h2><p>Outputs empty strings if identification was not successful.</p><h2 id="6">Example of use</h2><p>[id, stat, nm] = get_id_WoRMS('Squalus_acanthias')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>lineage_WoRMS</h1><!--introduction--><p>gets lineage of a species in WoRMS</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[lineage, rank] = <a href="../lineage_WoRMS.m"><b>lineage_WoRMS</b></a>(my_pet)</p><h2 id="4">Description</h2><p>Gets lineage of species from WoRMS</p><p>Input:</p><div><ul><li>my_pet: character string with name of an entry</li></ul></div><p>Output:</p><div><ul><li>lineage: (5,1) cell array with {phylum;class;order;family;genus}</li><li>rank: (5,1) cell array with {'Phylum';'Class';'Order';'Family';'Genus'}</li></ul></div><h2 id="5">Remarks</h2><div><ul><li><a href="lineage.html"><b>lineage</b></a> gives a similar result for AmP entries, and <a href="lineage_CoL.html"><b>lineage_CoL</b></a> for the Catalog of Life</li><li><a href="lineage_Taxo.html"><b>lineage_Taxo</b></a> gives a similar result for the Taxonomicon</li></ul></div><h2 id="6">Example of use</h2><p>[lin, rank] = lineage_WoRMS('Daphnia_magna')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% get_id_WoRMS
-% gets id of accepted species name in World Register of Marine Species
+%% lineage_WoRMS
+% gets lineage of a species in WoRMS
 
 %%
-function [id, name_status, accepted_name] = get_id_WoRMS(my_pet, open)
-% created 2021/08/01 by Bas Kooijman, modified 2021/08/26
+function [lineage, rank] = lineage_WoRMS(my_pet)
+% created 2018/01/30 by Bas Kooijman
 
 %% Syntax
-% [id, name_status, accepted_name] = <../get_id_WoRMS.m *get_id_WoRMS*>(my_pet, open)
+% [lineage, rank] = <../lineage_WoRMS.m *lineage_WoRMS*>(my_pet)
 
 %% Description
-% Gets identifier for the accepted species name in the World Register of Marine Species
+% Gets lineage of species from WoRMS
 %
 % Input:
 %
-% * my_pet: character string with name of a taxon
-% * open: optional boolean for opening in browser (default: 0)
+% * my_pet: character string with name of an entry
 %
 % Output:
 %
-% * id: character string with id of accepted name in WoRMS
-% * name_status: character status of the name my_pet in WoRMS
-% * accepted_name: character string with accepted name
+% * lineage: (5,1) cell array with {phylum;class;order;family;genus}
+% * rank: (5,1) cell array with {'Phylum';'Class';'Order';'Family';'Genus'}
 
 %% Remarks
-% Outputs empty strings if identification was not successful.
-
+%
+% * <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
+% * <lineage_Taxo.html *lineage_Taxo*> gives a similar result for the Taxonomicon
 %% Example of use
-% [id, stat, nm] = get_id_WoRMS('Squalus_acanthias')
+% [lin, rank] = lineage_WoRMS('Daphnia_magna')
 
-address = 'https://marinespecies.org/aphia.php?p=taxdetails&id=';
-if ~exist('open','var')
-  open = 0;
+if ~isempty(strfind(my_pet, ' '));
+  my_pet = strrep(my_pet,' ','_');
 end
 
-% AphiaID suggested by Bart Vanhoorne info@marinespecies.org
-try
-  url = webread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
-  id = url.valid_AphiaID;
-  name_status = url.status;
-  accepted_name = url.valid_name;
-  
-  if open
-    web([address, id],'-browser');
-  end
+rank = {'Phylum';'Class';'Order';'Family';'Genus'}; lineage = cell(5,1);
 
-catch
-  id = '';
-  name_status = '';
-  accepted_name = '';
+url = webread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
+
+lineage{1} = url.phylum; 
+lineage{2} = url.class; 
+lineage{3} = url.order; 
+lineage{4} = url.family; 
+lineage{5} = url.genus; 
+
 end
-
-
 ##### SOURCE END #####
 --></body></html>

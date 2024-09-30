@@ -6,7 +6,7 @@ function [lineage, rank, lineage_short, rank_short] = lineage_Taxo(my_pet)
 % created 2018/01/30 by Bas Kooijman
 
 %% Syntax
-% [lineage rank] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
+% [lineage, rank, lineage_short, rank_short] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
 
 %% Description
 % Gets lineage of species from the Taxonomicon
@@ -19,10 +19,13 @@ function [lineage, rank, lineage_short, rank_short] = lineage_Taxo(my_pet)
 %
 % * lineage: (n,1) cell array with lineage
 % * rank: (n,1) cell array with ranks
+% * lineage_short: (5,1) cell array with {phylum;class;order;family;genus}
+% * rank_short: (5,1) cell array with {'Phylum';'Class';'Order';'Family';'Genus'}
 
 %% Remarks
-% <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
-
+%
+% * <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
+% * <lineage_WoRMS.html *lineage_WoRMS*> gives a similar result for WoRMS
 %% Example of use
 % [lin, rank] = lineage_Taxo('Daphnia_magna')
 
@@ -77,8 +80,8 @@ else
   rank(1:i-1) = []; lineage(1:i-1) = [];
 end
 
-rank_short = {'Class';'Order';'Family';'Genus'};
+rank_short = {'Phylum';'Class';'Order';'Family';'Genus'};
 [~, ind] = ismember(rank_short,rank);
 lineage_short = lineage(max(1,ind));
-for i=1:4; if ind(i)==0; lineage_short{i} = ''; end; end
+for i=1:5; if ind(i)==0; lineage_short{i} = ''; end; end
 
