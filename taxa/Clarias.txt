@@ -1,3 +1,6 @@
+Clarias_agboyiensis
 Clarias_anguillaris
+Clarias_batrachus
 Clarias_gariepinus
 Clarias_gariepinus_x_Heterobranchus_longifilis
+Clarias_ngamensis
