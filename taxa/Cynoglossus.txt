@@ -6,5 +6,6 @@ Cynoglossus_lida
 Cynoglossus_macrolepidotus
 Cynoglossus_macrostomus
 Cynoglossus_robustus
+Cynoglossus_semifasciatus
 Cynoglossus_senegalensis
 Cynoglossus_zanzibarensis
