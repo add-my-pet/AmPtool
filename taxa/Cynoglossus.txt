@@ -4,6 +4,7 @@ Cynoglossus_canariensis
 Cynoglossus_joyneri
 Cynoglossus_lida
 Cynoglossus_macrolepidotus
+Cynoglossus_macrostomus
 Cynoglossus_robustus
 Cynoglossus_senegalensis
 Cynoglossus_zanzibarensis
