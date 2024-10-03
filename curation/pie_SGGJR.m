@@ -80,7 +80,7 @@ function  pSGGJR = pie_SGGJR (species, model, par, stat, destinationFolder)
     ['p_J ', num2str(p(4), '% 3.2f')], ['p_R ', num2str(p(5), '% 3.2f')]};
   set(gca, 'FontSize', 15, 'Box', 'on')
   %pie3s(p(:,1), 'Bevel', 'Elliptical', 'Labels', txt, 'Explode', [1 0 1 1 1]);
-  pie(p(:,1), [1 0 1 1 1], txt);
+  pie(real(p(:,1)), [1 0 1 1 1], txt);
   colormap(pie_color);
   title({['Puberty at ', T_txt, ', f = 1'], ...
       ['p_A = ', num2str(pA(2), '% 1.3e'), ' J/d,  p_C = ', num2str(pC(2), '% 1.3e'), ' J/d'], ...
