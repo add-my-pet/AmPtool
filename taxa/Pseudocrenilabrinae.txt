@@ -1,4 +1,6 @@
 Copadichromis
 Coptodon
+Ctenopharynx
+Haplochromis
 Oreochromis
 Sarotherodon
