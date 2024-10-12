@@ -4,6 +4,7 @@ Ctenopharynx
 Haplochromis
 Hemichromis
 Lethrinops
+Mylochromis
 Oreochromis
 Sarotherodon
 Tilapia
