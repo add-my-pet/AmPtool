@@ -1,3 +1,4 @@
 Acanthopagrus_australis
 Acanthopagrus_berda
+Acanthopagrus_latus
 Acanthopagrus_schlegelii
