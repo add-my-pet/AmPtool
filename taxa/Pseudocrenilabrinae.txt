@@ -12,5 +12,6 @@ Oreochromis
 Sarotherodon
 Tilapia
 Trematocara
+Tropheus
 Tylochromis
 Xenotilapia
