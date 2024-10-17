@@ -6,6 +6,7 @@ Ctenopharynx
 Haplochromis
 Hemichromis
 Lethrinops
+Limnochromis
 Limnotilapia
 Mylochromis
 Oreochromis

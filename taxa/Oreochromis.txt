@@ -1,4 +1,6 @@
+Oreochromis_andersonii
 Oreochromis_aureus
+Oreochromis_esculentus
 Oreochromis_macrochir
 Oreochromis_mossambicus
 Oreochromis_niloticus
