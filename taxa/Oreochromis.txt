@@ -1,6 +1,10 @@
 Oreochromis_andersonii
 Oreochromis_aureus
 Oreochromis_esculentus
+Oreochromis_karongae
+Oreochromis_lidole
 Oreochromis_macrochir
+Oreochromis_mortimeri
 Oreochromis_mossambicus
 Oreochromis_niloticus
+Oreochromis_squamipinnis
