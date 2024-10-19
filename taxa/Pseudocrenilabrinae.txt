@@ -10,6 +10,9 @@ Limnochromis
 Limnotilapia
 Mylochromis
 Oreochromis
+Pelmatolapia
+Pharyngochromis
+Pseudocrenilabrus
 Sarotherodon
 Tilapia
 Trematocara
