@@ -3,6 +3,8 @@ Acanthochromis
 Amphiprion
 Chromis
 Dascyllus
+Holacanthus
+Hypsypops
 Plectroglyphidodon
 Pomacentrus
 Pycnochromis
