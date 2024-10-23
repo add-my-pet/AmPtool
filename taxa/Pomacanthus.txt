@@ -1,2 +1,4 @@
 Pomacanthus_imperator
 Pomacanthus_maculosus
+Pomacanthus_paru
+Pomacanthus_sexstriatus
