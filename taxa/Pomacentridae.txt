@@ -5,6 +5,7 @@ Chromis
 Dascyllus
 Holacanthus
 Hypsypops
+Parma
 Plectroglyphidodon
 Pomacentrus
 Pycnochromis
