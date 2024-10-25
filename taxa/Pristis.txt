@@ -1,2 +1,6 @@
+Pristis_clavata
+Pristis_microdon
 Pristis_pectinata
 Pristis_perotteti
+Pristis_pristis
+Pristis_zijsron
