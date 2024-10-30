@@ -1,4 +1,5 @@
-Gymnocanthus_herzensteini
 Gymnocanthus_detrisus
-Gymnocanthus_pistilliger
+Gymnocanthus_herzensteini
 Gymnocanthus_intermedius
+Gymnocanthus_pistilliger
+Gymnocanthus_tricuspis
