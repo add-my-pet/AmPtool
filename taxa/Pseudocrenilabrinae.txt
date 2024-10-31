@@ -13,6 +13,7 @@ Oreochromis
 Pelmatolapia
 Pharyngochromis
 Pseudocrenilabrus
+Sargochromis
 Sarotherodon
 Tilapia
 Trematocara
