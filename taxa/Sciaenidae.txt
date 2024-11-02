@@ -10,6 +10,7 @@ Macrodon
 Menticirrhus
 Micropogonias
 Otolithoides
+Paralonchurus
 Plagioscion
 Pogonias
 Protonibea
