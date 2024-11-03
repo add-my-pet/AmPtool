@@ -1,4 +1,5 @@
 Aphanopus
 Eupleurogrammus
 Lepidopus
+Lepturacanthus
 Trichiurus
