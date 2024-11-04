@@ -1,3 +1,7 @@
+Platycephalus_aurimaculatus
 Platycephalus_fuscus
+Platycephalus_grandispinis
 Platycephalus_indicus
+Platycephalus_laevigatus
 Platycephalus_speculator
+Platycephalus_westraliae
