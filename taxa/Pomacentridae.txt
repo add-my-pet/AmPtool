@@ -9,3 +9,4 @@ Parma
 Plectroglyphidodon
 Pomacentrus
 Pycnochromis
+Stegastes
