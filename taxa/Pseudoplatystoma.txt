@@ -1,3 +1,6 @@
 Pseudoplatystoma_corruscans
+Pseudoplatystoma_fasciatum
 Pseudoplatystoma_orinocoense
+Pseudoplatystoma_punctifer
 Pseudoplatystoma_reticulatum
+Pseudoplatystoma_tigrinum
