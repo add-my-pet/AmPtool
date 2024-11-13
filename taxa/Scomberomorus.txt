@@ -1,7 +1,11 @@
+Scomberomorus_brasiliensis
 Scomberomorus_cavalla
 Scomberomorus_commerson
 Scomberomorus_guttatus
 Scomberomorus_lineolatus
 Scomberomorus_maculatus
+Scomberomorus_munroi
+Scomberomorus_niphonius
+Scomberomorus_queenslandicus
 Scomberomorus_plurilineatus
 Scomberomorus_sierra
