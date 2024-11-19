@@ -3,5 +3,6 @@ Macrobrachium_digueti
 Macrobrachium_hancocki
 Macrobrachium_occidentale
 Macrobrachium_panamense
+Macrobrachium_rosenbergii
 Macrobrachium_tenellum
 Macrobrachium_vollenhovenii
