@@ -1,3 +1,9 @@
+Scarus_altipinnis
 Scarus_ferrugineus
+Scarus_forsteni
+Scarus_ghobban
+Scarus_psittacus
 Scarus_rivulatus
+Scarus_rubroviolaceus
+Scarus_schlegeli
 Scarus_taeniopterus
