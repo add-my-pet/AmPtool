@@ -3,6 +3,7 @@ Bodianus
 Centrolabrus
 Coris
 Ctenolabrus
+Halichoeres
 Labrus
 Semicossyphus
 Symphodus
