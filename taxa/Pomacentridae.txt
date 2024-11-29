@@ -2,6 +2,7 @@ Abudefduf
 Acanthochromis
 Amphiprion
 Chromis
+Chrysiptera
 Dascyllus
 Holacanthus
 Hypsypops
