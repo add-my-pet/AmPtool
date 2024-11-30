@@ -7,5 +7,6 @@ Scarus_niger
 Scarus_psittacus
 Scarus_rivulatus
 Scarus_rubroviolaceus
+Scarus_scaber
 Scarus_schlegeli
 Scarus_taeniopterus
