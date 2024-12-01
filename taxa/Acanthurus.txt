@@ -1,5 +1,7 @@
+Acanthurus_leucosternon
 Acanthurus_lineatus
 Acanthurus_nigricans
+Acanthurus_nigricauda
 Acanthurus_nigrofuscus
 Acanthurus_olivaceus
 Acanthurus_triostegus

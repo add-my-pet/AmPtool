@@ -3,7 +3,9 @@ Epinephelus_areolatus
 Epinephelus_caninus
 Epinephelus_fasciatus
 Epinephelus_guttatus
+Epinephelus_hexagonatus
 Epinephelus_marginatus
+Epinephelus_merra
 Epinephelus_morio
 Epinephelus_ongus
 Epinephelus_radiatus
