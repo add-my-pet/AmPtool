@@ -9,6 +9,7 @@ Leiostomus
 Macrodon
 Menticirrhus
 Micropogonias
+Otolithes
 Otolithoides
 Paralonchurus
 Plagioscion
