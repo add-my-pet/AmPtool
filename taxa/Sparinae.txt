@@ -8,6 +8,7 @@ Diplodus
 Evynnis
 Pagrus
 Parargyrops
+Pterogymnus
 Rhabdosargus
 Sparodon
 Sparus
