@@ -2,6 +2,8 @@ Acanthopagrus
 Archosargus
 Argyrops
 Calamus
+Chrysoblephus
+Cymatoceps
 Diplodus
 Evynnis
 Pagrus
