@@ -2,3 +2,5 @@ Dentex_angolensis
 Dentex_congoensis
 Dentex_dentex
 Dentex_gibbosus
+Dentex_macrophthalmus
+Dentex_maroccanus
