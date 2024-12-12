@@ -1,3 +1,7 @@
 Caranx_bucculentus
+Caranx_caballus
+Caranx_caninus
+Caranx_crysos
 Caranx_hippos
 Caranx_ignobilis
+Caranx_lugubris
