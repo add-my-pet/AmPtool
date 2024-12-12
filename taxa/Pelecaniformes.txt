@@ -1,5 +1,3 @@
-Balaenicipitidae
-Pelecanidae
-Scopidae
-Ardeidae
 Threskiornithidae
+Ardeidae
+Pelecani

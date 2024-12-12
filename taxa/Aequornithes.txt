@@ -1,5 +1,2 @@
 Gaviiformes
-Austrodyptornithes
-Ciconiiformes
-Suliformes
-Pelecaniformes
+Feraequornithes
