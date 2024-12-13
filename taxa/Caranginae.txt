@@ -5,6 +5,7 @@ Caranx
 Decapterus
 Megalaspis
 Parastromateus
+Pseudocaranx
 Selar
 Selaroides
 Trachurus
