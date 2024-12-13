@@ -1,4 +1,5 @@
 Trachurus_capensis
+Trachurus_declivis
 Trachurus_japonicus
 Trachurus_mediterraneus
 Trachurus_symmetricus

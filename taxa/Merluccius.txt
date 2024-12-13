@@ -1,4 +1,6 @@
+Merluccius_bilinearis
 Merluccius_capensis
+Merluccius_gayi
 Merluccius_hubbsi
 Merluccius_merluccius
 Merluccius_polli
