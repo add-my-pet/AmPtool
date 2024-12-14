@@ -1,5 +1,7 @@
 Lutjanus_analis
 Lutjanus_bohar
+Lutjanus_buccanella
+Lutjanus_campechanus
 Lutjanus_carponotatus
 Lutjanus_erythropterus
 Lutjanus_fulviflamma
@@ -11,3 +13,4 @@ Lutjanus_purpureus
 Lutjanus_sebae
 Lutjanus_synagris
 Lutjanus_vitta
+Lutjanus_vivanus
