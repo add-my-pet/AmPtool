@@ -5,6 +5,7 @@ Atrobucca
 Bairdiella
 Cynoscion
 Larimichthys
+Larimus
 Leiostomus
 Macrodon
 Menticirrhus
