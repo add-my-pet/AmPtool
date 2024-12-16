@@ -1,3 +1,4 @@
 Siganus_argenteus
+Siganus_luridus
 Siganus_rivulatus
 Siganus_sutor
