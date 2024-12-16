@@ -1,3 +1,4 @@
 Serranus_cabrilla
 Serranus_hepatus
 Serranus_scriba
+Serranus_subligarius
