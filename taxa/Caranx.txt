@@ -5,3 +5,5 @@ Caranx_crysos
 Caranx_hippos
 Caranx_ignobilis
 Caranx_lugubris
+Caranx_melampygus
+Caranx_senegallus
