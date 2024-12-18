@@ -6,3 +6,4 @@ Epinephelides
 Hyporthodus
 Serranus
 Mycteroperca
+Variola
