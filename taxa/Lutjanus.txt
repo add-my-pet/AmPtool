@@ -1,5 +1,7 @@
 Lutjanus_analis
+Lutjanus_argentimaculatus
 Lutjanus_bohar
+Lutjanus_boutton
 Lutjanus_buccanella
 Lutjanus_campechanus
 Lutjanus_carponotatus
@@ -12,5 +14,6 @@ Lutjanus_malabaricus
 Lutjanus_purpureus
 Lutjanus_sebae
 Lutjanus_synagris
+Lutjanus_timoriensis
 Lutjanus_vitta
 Lutjanus_vivanus
