@@ -1,3 +1,6 @@
+Merluccius_albidus
+Merluccius_angustimanus
+Merluccius_australis
 Merluccius_bilinearis
 Merluccius_capensis
 Merluccius_gayi
