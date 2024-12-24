@@ -5,6 +5,7 @@ Gobiosoma
 Gobius
 Amblygobius
 Asterropteryx
+Glossogobius
 Istigobius
 Knipowitschia
 Lepidogobius
