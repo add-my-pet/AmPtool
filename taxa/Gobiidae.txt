@@ -3,6 +3,8 @@ Crystallogobius
 Deltentosteus
 Gobiosoma
 Gobius
+Acanthogobius
+Acentrogobius
 Amblygobius
 Asterropteryx
 Glossogobius
