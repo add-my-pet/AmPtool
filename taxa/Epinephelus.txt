@@ -16,9 +16,11 @@ Epinephelus_marginatus
 Epinephelus_merra
 Epinephelus_morio
 Epinephelus_morrhua
+Epinephelus_multinotatus
 Epinephelus_ongus
 Epinephelus_polyphekadion
 Epinephelus_quoyanus
 Epinephelus_radiatus
 Epinephelus_rivulatus
 Epinephelus_tauvina
+Epinephelus_tukula
