@@ -5,6 +5,7 @@ Cephalopholis_cyanostigma
 Cephalopholis_fulva
 Cephalopholis_microprion
 Cephalopholis_miniata
+Cephalopholis_panamensis
 Cephalopholis_sexmaculata
 Cephalopholis_spiloparaea
 Cephalopholis_urodeta

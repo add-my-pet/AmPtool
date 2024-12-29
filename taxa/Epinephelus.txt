@@ -1,11 +1,16 @@
+Epinephelus_adscensionis
 Epinephelus_aeneus
 Epinephelus_areolatus
 Epinephelus_caninus
+Epinephelus_coioides
 Epinephelus_cyanopodus
+Epinephelus_drummondhayi
 Epinephelus_fasciatus
 Epinephelus_fuscoguttatus
 Epinephelus_guttatus
 Epinephelus_hexagonatus
+Epinephelus_itajara
+Epinephelus_labriformis
 Epinephelus_maculatus
 Epinephelus_marginatus
 Epinephelus_merra
@@ -16,3 +21,4 @@ Epinephelus_polyphekadion
 Epinephelus_quoyanus
 Epinephelus_radiatus
 Epinephelus_rivulatus
+Epinephelus_tauvina
