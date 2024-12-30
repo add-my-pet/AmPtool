@@ -10,5 +10,6 @@ Pagrus
 Parargyrops
 Pterogymnus
 Rhabdosargus
+Sparidentex
 Sparodon
 Sparus

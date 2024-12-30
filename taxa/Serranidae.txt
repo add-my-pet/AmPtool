@@ -3,6 +3,7 @@ Alphestes
 Anyperodon
 Centropristis
 Cephalopholis
+Chromileptes
 Diplectrum
 Epinephelus
 Epinephelides

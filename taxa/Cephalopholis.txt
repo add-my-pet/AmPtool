@@ -8,4 +8,5 @@ Cephalopholis_miniata
 Cephalopholis_panamensis
 Cephalopholis_sexmaculata
 Cephalopholis_spiloparaea
+Cephalopholis_taeniops
 Cephalopholis_urodeta
