@@ -1,3 +1,9 @@
+Mycteroperca_bonaci
+Mycteroperca_fusca
 Mycteroperca_interstitialis
 Mycteroperca_microlepis
+Mycteroperca_olfax
+Mycteroperca_phenax
+Mycteroperca_rosacea
 Mycteroperca_rubra
+Mycteroperca_venenosa

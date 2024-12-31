@@ -8,6 +8,7 @@ Diplectrum
 Epinephelus
 Epinephelides
 Hyporthodus
+Paralabrax
 Plectropomus
 Serranus
 Mycteroperca

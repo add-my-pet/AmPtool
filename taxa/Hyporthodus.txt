@@ -1,4 +1,5 @@
 Hyporthodus_flavolimbatus
+Hyporthodus_nigritus
 Hyporthodus_niveatus
 Hyporthodus_octofasciatus
 Hyporthodus_quernus
