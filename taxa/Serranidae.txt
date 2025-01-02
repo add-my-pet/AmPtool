@@ -1,15 +1,2 @@
-Aethaloperca
-Alphestes
-Anyperodon
-Centropristis
-Cephalopholis
-Chromileptes
-Diplectrum
-Epinephelus
-Epinephelides
-Hyporthodus
-Paralabrax
-Plectropomus
-Serranus
-Mycteroperca
-Variola
+Epinephelinae
+Serraninae

@@ -2,6 +2,7 @@ Achoerodus
 Bodianus
 Centrolabrus
 Cheilinus
+Choerodon
 Coris
 Ctenolabrus
 Halichoeres
