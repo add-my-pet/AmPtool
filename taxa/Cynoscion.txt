@@ -1,4 +1,6 @@
 Cynoscion_albus
+Cynoscion_arenarius
+Cynoscion_guatucupa
 Cynoscion_jamaicensis
 Cynoscion_leiarchus
 Cynoscion_nebulosus
