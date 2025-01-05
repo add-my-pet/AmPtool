@@ -9,6 +9,7 @@ Lutjanus_erythropterus
 Lutjanus_fulviflamma
 Lutjanus_griseus
 Lutjanus_guttatus
+Lutjanus_jocu
 Lutjanus_kasmira
 Lutjanus_malabaricus
 Lutjanus_purpureus
