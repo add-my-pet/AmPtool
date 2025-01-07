@@ -5,6 +5,7 @@ Cynoglossus_joyneri
 Cynoglossus_lida
 Cynoglossus_macrolepidotus
 Cynoglossus_macrostomus
+Cynoglossus_puncticeps
 Cynoglossus_robustus
 Cynoglossus_semifasciatus
 Cynoglossus_senegalensis
