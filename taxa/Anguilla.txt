@@ -1,3 +1,5 @@
 Anguilla_anguilla
 Anguilla_japonica
+Anguilla_mossambica
 Anguilla_nebulosa
+Anguilla_rostrata

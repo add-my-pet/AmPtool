@@ -1,5 +1,8 @@
+Diplodus_annularis
+Diplodus_cadenati
+Diplodus_capensis
+Diplodus_cervinus
+Diplodus_hottentotus
 Diplodus_puntazzo
 Diplodus_sargus
-Diplodus_annularis
 Diplodus_vulgaris
-Diplodus_cervinus

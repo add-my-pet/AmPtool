@@ -1,12 +1,18 @@
 Achoerodus
 Bodianus
 Centrolabrus
+Cheilinus
+Choerodon
 Coris
 Ctenolabrus
+Halichoeres
 Labrus
+Novaculichthys
 Semicossyphus
+Stethojulis
 Symphodus
 Tautoga
 Tautogolabrus
+Thalassoma
 Xyrichtys
 

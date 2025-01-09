@@ -1,2 +1,8 @@
-Cobitis_taenia
+Cobitis_calderoni
+Cobitis_meridionalis
+Cobitis_narentana
+Cobitis_ohridana
 Cobitis_paludica
+Cobitis_simplicispina
+Cobitis_taenia
+Cobitis_turcica

@@ -1,4 +1,6 @@
 Ceriodaphnia_dubia
+Ceriodaphnia_lacustris
 Ceriodaphnia_pulchella
+Ceriodaphnia_quadrangula
 Ceriodaphnia_reticulata
 Ceriodaphnia_silvestrii

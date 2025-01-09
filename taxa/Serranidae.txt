@@ -1,7 +1,2 @@
-Cephalopholis
-Diplectrum
-Epinephelus
-Epinephelides
-Hyporthodus
-Serranus
-Mycteroperca
+Epinephelinae
+Serraninae

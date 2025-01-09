@@ -1,5 +1,6 @@
 Scorpaena_cardinalis
 Scorpaena_elongata
+Scorpaena_guttata
 Scorpaena_maderensis
 Scorpaena_notata
 Scorpaena_porcus

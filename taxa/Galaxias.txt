@@ -1,3 +1,4 @@
+Galaxias_maculatus
+Galaxias_occidentalis
 Galaxias_paucispondylus
 Galaxias_prognathus
-Galaxias_maculatus

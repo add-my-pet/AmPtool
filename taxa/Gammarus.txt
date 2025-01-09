@@ -1,4 +1,5 @@
 Gammarus_fossarum
+Gammarus_minus
 Gammarus_pseudolimnaeus
 Gammarus_pulex
 Gammarus_roeselii

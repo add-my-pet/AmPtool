@@ -1,3 +1,14 @@
+Lethrinus_atkinsoni
+Lethrinus_borbonicus
 Lethrinus_enigmaticus
+Lethrinus_erythracanthus
+Lethrinus_harak
 Lethrinus_lentjan
 Lethrinus_mahsena
+Lethrinus_microdon
+Lethrinus_miniatus
+Lethrinus_nebulosus
+Lethrinus_obsoletus
+Lethrinus_ornatus
+Lethrinus_ravus
+Lethrinus_rubrioperculatus

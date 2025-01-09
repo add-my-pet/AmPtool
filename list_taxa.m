@@ -6,7 +6,7 @@ function [ol, n_c] = list_taxa (taxon, level, count)
 % created 2016/02/25 by Bas Kooijman, modified 2018/06/14, 2024/09/11
 
 %% Syntax
-% ol = <../list_taxa.m *list_taxa*> (taxon, level, count) 
+% [ol, n_c] = <../list_taxa.m *list_taxa*> (taxon, level, count) 
 
 %% Description
 % gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection.
@@ -41,7 +41,7 @@ function [ol, n_c] = list_taxa (taxon, level, count)
 % * ol = list_taxa('Deuterostomata',4)
 % * ol = list_taxa({},7)
 % * ol = list_taxa('Arthropoda')
-% * [ol, n] = list_taxa({},3,10); prt_tab({ol n},{'genus', 'n'},'genera',1) 
+% * [ol, n] = list_taxa('Chondrichthyes',3,10); prt_tab({ol n},{'genus', 'n'},'genera',1) 
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';

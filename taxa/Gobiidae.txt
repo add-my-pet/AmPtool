@@ -3,7 +3,16 @@ Crystallogobius
 Deltentosteus
 Gobiosoma
 Gobius
+Acanthogobius
+Acentrogobius
+Amblygobius
+Asterropteryx
+Bathygobius
+Glossogobius
+Gobionellus
+Istigobius
 Knipowitschia
+Lepidogobius
 Lesueurigobius
 Neogobius
 Pomatoschistus
@@ -11,4 +20,7 @@ Rhinogobiops
 Rhinogobius
 Ponticola
 Sufflogobius
+Trimma
+Trypauchen
+Valenciennea
 Zosterisessor

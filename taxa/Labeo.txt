@@ -1,5 +1,8 @@
+Labeo_altivelis
 Labeo_bata
 Labeo_calbasu
 Labeo_catla
+Labeo_coubie
 Labeo_niloticus
 Labeo_rohita
+Labeo_senegalensis

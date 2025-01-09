@@ -2,7 +2,12 @@ Abudefduf
 Acanthochromis
 Amphiprion
 Chromis
+Chrysiptera
 Dascyllus
+Holacanthus
+Hypsypops
+Parma
 Plectroglyphidodon
 Pomacentrus
 Pycnochromis
+Stegastes

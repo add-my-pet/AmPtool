@@ -2,9 +2,11 @@ Alepes
 Atropus
 Atule
 Caranx
+Chloroscombrus
 Decapterus
 Megalaspis
 Parastromateus
+Pseudocaranx
 Selar
 Selaroides
 Trachurus

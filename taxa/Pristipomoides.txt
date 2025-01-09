@@ -1,1 +1,6 @@
+Pristipomoides_auricilla
 Pristipomoides_filamentosus
+Pristipomoides_flavipinnis
+Pristipomoides_multidens
+Pristipomoides_sieboldii
+Pristipomoides_zonatus

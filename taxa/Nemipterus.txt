@@ -1,6 +1,9 @@
 Nemipterus_bathybius
+Nemipterus_furcosus
 Nemipterus_hexodon
 Nemipterus_japonicus
 Nemipterus_mesoprion
+Nemipterus_nematophorus
 Nemipterus_peronii
 Nemipterus_randalli
+Nemipterus_virgatus

@@ -1,2 +1,4 @@
 Schilbe_intermedius
+Schilbe_mandibularis
 Schilbe_mystus
+Schilbe_uranoscopus

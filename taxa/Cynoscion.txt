@@ -1,5 +1,13 @@
+Cynoscion_albus
+Cynoscion_arenarius
+Cynoscion_guatucupa
 Cynoscion_jamaicensis
 Cynoscion_leiarchus
 Cynoscion_nebulosus
+Cynoscion_nothus
 Cynoscion_othonopterus
 Cynoscion_regalis
+Cynoscion_squamipinnis
+Cynoscion_stolzmanni
+Cynoscion_striatus
+Cynoscion_xanthulus

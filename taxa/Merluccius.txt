@@ -1,6 +1,13 @@
+Merluccius_albidus
+Merluccius_angustimanus
+Merluccius_australis
+Merluccius_bilinearis
 Merluccius_capensis
+Merluccius_gayi
 Merluccius_hubbsi
 Merluccius_merluccius
+Merluccius_paradoxus
+Merluccius_peruanus
 Merluccius_polli
 Merluccius_productus
 Merluccius_senegalensis

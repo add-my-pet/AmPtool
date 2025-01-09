@@ -11,6 +11,7 @@ Daphnia_galatea
 Daphnia_hyalina
 Daphnia_longispina
 Daphnia_lumholtzi
+Daphnia_mendotae
 Daphnia_middendorffiana
 Daphnia_obtusa
 Daphnia_parvula

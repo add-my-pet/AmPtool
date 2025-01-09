@@ -1,5 +1,6 @@
 Naso_brevirostris
 Naso_hexacanthus
+Naso_lituratus
 Naso_tuberosus
 Naso_unicornis
 Naso_vlamingii

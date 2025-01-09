@@ -1,2 +1,4 @@
 Pomacentrus_amboinensis
 Pomacentrus_coelestis
+Pomacentrus_moluccensis
+Pomacentrus_wardi

@@ -2,7 +2,7 @@
 % cd to the add_my_pet/entries/my_pet directory abd optional load files in editor
 
 function WD = cdEntr(my_pet, ed)
-% created 2021/02/22 by Bas Kooijman, modified 2024/01/06
+% created 2021/02/22 by Bas Kooijman, modified 2024/01/06, 2024/12/17
 
 %% Syntax
 % WD = <../cdEntr.m *cdEntr*> (my_pet, ed)
@@ -39,20 +39,28 @@ end
 
 WD = pwd; % copy to output
 
+if ~exist('ed', 'var')
+  cdCur; cd(['../../deblab/add_my_pet/entries/', nms{1}])
+  return
+end
+
 for i=1:n
   my_pet = nms{i};
   cdCur; cd(['../../deblab/add_my_pet/entries/', my_pet])
-
-  if exist('ed', 'var')
-    if ed==1
+  switch ed
+    case 1
       edit(['mydata_', my_pet, '.m'])
-    elseif ed==3
+    case 2
+      edit(['pars_init_', my_pet, '.m'])
+    case 3
       edit(['predict_', my_pet, '.m'])
-    else
+    case 4
+      edit(['run_', my_pet, '.m'])
+    otherwise
       edit(['mydata_', my_pet, '.m'])
       edit(['pars_init_', my_pet, '.m'])
       edit(['predict_', my_pet, '.m'])
       edit(['run_', my_pet, '.m'])
-    end
   end
+end
 end

@@ -1,2 +1,5 @@
 Cirrhinus
 Labeo
+Lobocheilos
+Osteochilus
+Paracrossochilus

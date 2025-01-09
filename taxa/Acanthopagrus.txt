@@ -1,3 +1,7 @@
+Acanthopagrus_arabicus
 Acanthopagrus_australis
 Acanthopagrus_berda
+Acanthopagrus_bifasciatus
+Acanthopagrus_butcheri
+Acanthopagrus_latus
 Acanthopagrus_schlegelii
