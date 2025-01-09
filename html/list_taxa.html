@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>list_taxa</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-03-07"><meta name="DC.source" content="list_taxa.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>list_taxa</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-01-08"><meta name="DC.source" content="list_taxa.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,27 +67,28 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>list_taxa</h1><!--introduction--><p>gets ordered list of all taxa</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>ol = <a href="../list_taxa.m"><b>list_taxa</b></a> (taxon, level)</p><h2 id="4">Description</h2><p>gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection</p><p>Input:</p><div><ul><li>taxon: optional characterstring with name of taxon (default 'Animalia')</li><li>level: optional integer for the level (default: 0)</li></ul></div><pre>  0 all taxa, including leaves
+  </style></head><body><div class="content"><h1>list_taxa</h1><!--introduction--><p>gets ordered list of all taxa and optionally count AmP members</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>[ol, n_c] = <a href="../list_taxa.m"><b>list_taxa</b></a> (taxon, level, count)</p><h2 id="4">Description</h2><p>gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection. if count is specified, the order is by number of AmP members of the taxa</p><p>Input:</p><div><ul><li>taxon: optional characterstring with name of taxon (default 'Animalia')</li><li>level: optional integer for the level (default: 0)</li></ul></div><pre>  0 all taxa, including leaves
   1 all taxa, excluding leaves
   2 leaves (names with "_")
   3 genera only (names before first "_")
   4 families only (names ending on "idae")
   5 orders only (match with allStat.mat)
   6 classes only (match with allStat.mat, but does not work for Reptilia)
-  7 phyla only (match with allStat.mat)</pre><p>Output:</p><div><ul><li>cell string with alphabetically ordered list</li></ul></div><h2 id="5">Remarks</h2><p>The classification follows that of Wikipedia</p><h2 id="6">Example of use</h2><div><ul><li>ol = list_taxa</li><li>ol = list_taxa('Deuterostomata',4)</li><li>ol = list_taxa({},7)</li><li>ol = list_taxa('Arthropoda')</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  7 phyla only (match with allStat.mat)</pre><div><ul><li>count: optional scalar with lower bound for counting members</li></ul></div><p>Output:</p><div><ul><li>ol: cell string with alphabetically ordered list</li><li>n_c: vector with number of members; is empty if count is not specified</li></ul></div><h2 id="5">Remarks</h2><p>The classification follows that of Wikipedia</p><h2 id="6">Example of use</h2><div><ul><li>ol = list_taxa</li><li>ol = list_taxa('Deuterostomata',4)</li><li>ol = list_taxa({},7)</li><li>ol = list_taxa('Arthropoda')</li><li>[ol, n] = list_taxa('Chondrichthyes',3,10); prt_tab({ol n},{'genus', 'n'},'genera',1)</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% list_taxa
-% gets ordered list of all taxa
+% gets ordered list of all taxa and optionally count AmP members
 
 %%
-function ol = list_taxa (taxon, level)
-% created 2016/02/25 by Bas Kooijman, modified 2018/06/14
+function [ol, n_c] = list_taxa (taxon, level, count)
+% created 2016/02/25 by Bas Kooijman, modified 2018/06/14, 2024/09/11
 
 %% Syntax
-% ol = <../list_taxa.m *list_taxa*> (taxon, level) 
+% [ol, n_c] = <../list_taxa.m *list_taxa*> (taxon, level, count) 
 
 %% Description
-% gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection 
+% gets an alphabetically ordered list of all taxa that belong to taxon in the add_my_pet collection.
+% if count is specified, the order is by number of AmP members of the taxa
 %
 % Input:
 % 
@@ -102,9 +104,12 @@ function ol = list_taxa (taxon, level)
 %    6 classes only (match with allStat.mat, but does not work for Reptilia)
 %    7 phyla only (match with allStat.mat)
 %
+% * count: optional scalar with lower bound for counting members
+%
 % Output:
 % 
-% * cell string with alphabetically ordered list
+% * ol: cell string with alphabetically ordered list
+% * n_c: vector with number of members; is empty if count is not specified
 
 %% Remarks
 % The classification follows that of Wikipedia
@@ -114,6 +119,7 @@ function ol = list_taxa (taxon, level)
 % * ol = list_taxa('Deuterostomata',4)
 % * ol = list_taxa({},7)
 % * ol = list_taxa('Arthropoda')
+% * [ol, n] = list_taxa('Chondrichthyes',3,10); prt_tab({ol n},{'genus', 'n'},'genera',1) 
 
   if ~exist('taxon', 'var') || isempty(taxon)
     taxon = 'Animalia';
@@ -168,6 +174,18 @@ function ol = list_taxa (taxon, level)
   end
   
   cd(WD)                    % goto original path
+  
+  % count members
+  n_c = [];
+  if exist('count','var') && count >= 0
+    n = length(ol); n_c = zeros(n,1);
+    for i = 1:n
+      n_c(i) = length(select(ol{i}));
+    end  
+    sel = n_c >= count;
+    ol = ol(sel); n_c = n_c(sel);
+    [n_c, ind] = sort(n_c,'descend'); ol = ol(ind);
+  end
 
 end
 
