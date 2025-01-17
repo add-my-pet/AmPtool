@@ -7,7 +7,9 @@ Coris
 Ctenolabrus
 Halichoeres
 Labrus
+Notolabrus
 Novaculichthys
+Ophthalmolepis
 Semicossyphus
 Stethojulis
 Symphodus
