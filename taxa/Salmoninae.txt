@@ -1,4 +1,5 @@
 Brachymystax
 Oncorhynchus
+Parahucho
 Salmo
 Salvelinus

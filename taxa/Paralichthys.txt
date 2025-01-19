@@ -3,3 +3,4 @@ Paralichthys_dentatus
 Paralichthys_lethostigma
 Paralichthys_olivaceus
 Paralichthys_orbignyanus
+Paralichthys_patagonicus
