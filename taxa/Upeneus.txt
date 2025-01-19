@@ -1,4 +1,6 @@
+Upeneus_japonicus
 Upeneus_moluccensis
+Upeneus_pori
 Upeneus_sulphureus
 Upeneus_tragula
 Upeneus_vittatus
