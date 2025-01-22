@@ -1,1 +1,8 @@
+Stegastes_acapulcoensis
+Stegastes_arcifrons
+Stegastes_beebei
+Stegastes_flavilatus
+Stegastes_fuscus
 Stegastes_nigricans
+Stegastes_planifrons
+Stegastes_rectifraenum
