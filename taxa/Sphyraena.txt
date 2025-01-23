@@ -3,5 +3,8 @@ Sphyraena_barracuda
 Sphyraena_chrysotaenia
 Sphyraena_flavicauda
 Sphyraena_jello
+Sphyraena_obtusata
+Sphyraena_pinguis
+Sphyraena_putnamae
 Sphyraena_sphyraena
 Sphyraena_viridensis
