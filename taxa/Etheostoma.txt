@@ -8,6 +8,7 @@ Etheostoma_coosae
 Etheostoma_cragini
 Etheostoma_flabellare
 Etheostoma_gracile
+Etheostoma_juliae
 Etheostoma_kennicotti
 Etheostoma_microperca
 Etheostoma_nigrum
