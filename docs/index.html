@@ -485,8 +485,8 @@ legend = {...
 	t = linspace(0, 10*365, 5000); % d, time vector
 	tT_0 = 90; % d, phase shift for sinusoidal function for temperature
 	tf_0 = 250; % d, phase shift for sinusoidal function for food
-	T = C2K(21) + 6  sin(2 * pi * (t + tT_0)/ 365); % K, sinusoidal function for temperature
-	f = 0.8 + 0.2  sin(2 * pi * (t + tf_0)/ 365); % -, sunusoidal function for food level
+	T = C2K(21) + 6 * sin(2 * pi * (t + tT_0)/ 365); % K, sinusoidal function for temperature
+	f = 0.8 + 0.2 * sin(2 * pi * (t + tf_0)/ 365); % -, sunusoidal function for food level
 	tT =[t',T']; % d, K, temperature matrix
 	tf =[t',f']; % d, -, food level matrix 
 	simu_my_pet('Megalobulimus_mogianensis', tT ,tf)
