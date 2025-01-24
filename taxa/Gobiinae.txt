@@ -3,6 +3,7 @@ Amblygobius
 Aphia
 Asterropteryx
 Bathygobius
+Eviota
 Glossogobius
 Gobiosoma
 Gobius
