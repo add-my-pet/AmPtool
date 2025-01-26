@@ -4,6 +4,7 @@ Atule
 Caranx
 Chloroscombrus
 Decapterus
+Flavocaranx
 Megalaspis
 Parastromateus
 Pseudocaranx
