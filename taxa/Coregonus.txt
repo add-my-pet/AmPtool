@@ -7,6 +7,8 @@ Coregonus_hoyi
 Coregonus_kiyi
 Coregonus_laurettae
 Coregonus_lavaretus
+Coregonus_macrophthalmus
+Coregonus_muksun
 Coregonus_nasus
 Coregonus_pidschian
 Coregonus_reighardi
