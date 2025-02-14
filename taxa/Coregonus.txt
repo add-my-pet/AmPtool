@@ -11,6 +11,7 @@ Coregonus_macrophthalmus
 Coregonus_muksun
 Coregonus_nasus
 Coregonus_pidschian
+Coregonus_pollan
 Coregonus_reighardi
 Coregonus_sardinella
 Coregonus_ussuriensis

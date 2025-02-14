@@ -1,4 +1,7 @@
+Decapterus_kurroides
 Decapterus_macarellus
 Decapterus_macrosoma
 Decapterus_maruadsi
+Decapterus_punctatus
 Decapterus_russelli
+Decapterus_tabl

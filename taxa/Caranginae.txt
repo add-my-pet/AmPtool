@@ -5,6 +5,7 @@ Caranx
 Chloroscombrus
 Decapterus
 Flavocaranx
+Gnathanodon
 Megalaspis
 Parastromateus
 Pseudocaranx
