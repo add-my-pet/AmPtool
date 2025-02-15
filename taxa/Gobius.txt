@@ -3,3 +3,4 @@ Gobius_niger
 Gobius_ophiocephalus
 Gobius_paganellus
 Gobius_roulei
+Gobius_vittatus
