@@ -6,6 +6,7 @@ Bairdiella
 Cheilotrema
 Cynoscion
 Dendrophysa
+Johnius
 Larimichthys
 Larimus
 Leiostomus
