@@ -1,2 +1,6 @@
+Haemulon_album
 Haemulon_aurolineatum
+Haemulon_flaviguttatum
+Haemulon_maculicauda
 Haemulon_plumierii
+Haemulon_sexfasciatum
