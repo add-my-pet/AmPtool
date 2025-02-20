@@ -1,3 +1,5 @@
 Doryteuthis_gahi
 Doryteuthis_opalescens
 Doryteuthis_pealeii
+Doryteuthis_pleii
+Doryteuthis_sanpaulensis
