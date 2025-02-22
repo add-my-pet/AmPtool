@@ -3,6 +3,7 @@ Brachydeuterus
 Conodon
 Diagramma
 Haemulon
+Haemulopsis
 Orthopristis
 Parapristipoma
 Pomadasys
