@@ -24,7 +24,6 @@ function [del_M, pets] = get_del_M(pets)
 % This function first tries to find mydata_my_pet in local directory entries (typically only for curators); 
 % in failure, it downloads it from the web via powershell function wget.
 % Make sure the your current directory does not have mydata_my_pet.m or pars_init_my_pet.m, since this file will be overwritten and deleted.
-% Some mydata-files make use of csvread; this gives an error since the source files are not copied. 
 
 %% Example of use
 % [del_M, nm] = get_del_M('Lacertidae'); prt_tab({nm, del_M});
