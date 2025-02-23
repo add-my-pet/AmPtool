@@ -47,7 +47,7 @@ function [del_M, pets] = get_del_M(pets)
     load('results_my_pet','par')
     if isfield(par,'del_M'); del_M(i) = par.del_M; end
   end
-  delete('results_my_pet.mat');
+  delete(fnm);
   cd(WD);
 
 end
