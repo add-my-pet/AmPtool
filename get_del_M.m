@@ -44,7 +44,7 @@ function [del_M, pets] = get_del_M(pets)
         system(['powershell wget ', path, my_pet, '/results_', my_pet, '.mat -O ', fnm]);
       end
     end
-    load results_my_pet
+    load('results_my_pet','par')
     if isfield(par,'del_M'); del_M(i) = par.del_M; end
   end
   delete('results_my_pet.mat');
