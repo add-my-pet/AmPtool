@@ -2,4 +2,6 @@ Johnius_belangerii
 Johnius_borneensis
 Johnius_carutta
 Johnius_coitor
+Johnius_distinctus
 Johnius_dussumieri
+Johnius_macrorhynus

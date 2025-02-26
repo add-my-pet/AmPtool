@@ -2,3 +2,4 @@ Lates_calcarifer
 Lates_longispinis
 Lates_mariae
 Lates_niloticus
+Lates_stappersii
