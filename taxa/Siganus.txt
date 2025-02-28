@@ -1,5 +1,6 @@
 Siganus_argenteus
 Siganus_canaliculatus
+Siganus_fuscescens
 Siganus_luridus
 Siganus_rivulatus
 Siganus_sutor
