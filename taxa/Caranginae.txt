@@ -12,4 +12,5 @@ Parastromateus
 Pseudocaranx
 Selar
 Selaroides
+Selene
 Trachurus
