@@ -1,2 +1,5 @@
-Salmo_trutta
+Salmo_lourosensis
+Salmo_marmoratus
+Salmo_obtusirostris
 Salmo_salar
+Salmo_trutta
