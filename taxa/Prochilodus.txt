@@ -1,2 +1,3 @@
 Prochilodus_lineatus
+Prochilodus_magdalenae
 Prochilodus_nigricans

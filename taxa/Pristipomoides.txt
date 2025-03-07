@@ -4,4 +4,5 @@ Pristipomoides_flavipinnis
 Pristipomoides_macrophthalmus
 Pristipomoides_multidens
 Pristipomoides_sieboldii
+Pristipomoides_typus
 Pristipomoides_zonatus
