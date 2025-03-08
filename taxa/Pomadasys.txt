@@ -3,3 +3,4 @@ Pomadasys_argyreus
 Pomadasys_jubelini
 Pomadasys_kaakan
 Pomadasys_striatus
+Pomadasys_stridens
