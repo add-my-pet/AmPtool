@@ -135,11 +135,12 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
 		[var, nm, units, label] = read_allStat('t_g','c_T'); 
 		tg_Tref = var(:,1).*var(:,2);
 	</code></pre>
-	and then print to the console with:
+	and then print to an html-file with:
 	<pre><code class="matlab">
 		prt_tab({nm, tg_Tref},{'name',[label{1}, ', ', units{1,1}]})
 	</code></pre>
-    Oviparous species don't have a pregnancy and so will have value <code>NaN</code> (Not-a-Number).
+	Oviparous species don't have a pregnancy and so will have value <code>NaN</code> (Not-a-Number).
+	The function can also be used to write an csv or Excell file.
     Here is some example code enabling a user to find all entries that have model <code>std</code>:
 	<pre><code class="matlab">
 		[model, nms] = read_allStat('model'); nms(strcmp('std', model))
