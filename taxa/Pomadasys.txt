@@ -1,6 +1,8 @@
 Pomadasys_argenteus
 Pomadasys_argyreus
+Pomadasys_incisus
 Pomadasys_jubelini
 Pomadasys_kaakan
+Pomadasys_maculatus
 Pomadasys_striatus
 Pomadasys_stridens
