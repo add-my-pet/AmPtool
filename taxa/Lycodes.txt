@@ -1,3 +1,5 @@
+Lycodes_frigidus
 Lycodes_pacificus
 Lycodes_raridens
+Lycodes_squamiventer
 Lycodes_vahlii

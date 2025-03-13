@@ -13,8 +13,13 @@ Lutjanus_griseus
 Lutjanus_guttatus
 Lutjanus_jocu
 Lutjanus_kasmira
+Lutjanus_mahogoni
 Lutjanus_malabaricus
 Lutjanus_purpureus
+Lutjanus_quinquelineatus
+Lutjanus_rivulatus
+Lutjanus_russellii
+Lutjanus_sanguineus
 Lutjanus_sebae
 Lutjanus_synagris
 Lutjanus_timoriensis
