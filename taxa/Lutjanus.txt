@@ -6,13 +6,17 @@ Lutjanus_boutton
 Lutjanus_buccanella
 Lutjanus_campechanus
 Lutjanus_carponotatus
+Lutjanus_ehrenbergii
 Lutjanus_erythropterus
 Lutjanus_fulviflamma
+Lutjanus_fulvus
 Lutjanus_gibbus
 Lutjanus_griseus
 Lutjanus_guttatus
 Lutjanus_jocu
+Lutjanus_johnii
 Lutjanus_kasmira
+Lutjanus_lutjanus
 Lutjanus_mahogoni
 Lutjanus_malabaricus
 Lutjanus_purpureus

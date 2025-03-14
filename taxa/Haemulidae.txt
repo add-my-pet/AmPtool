@@ -6,5 +6,6 @@ Haemulon
 Haemulopsis
 Orthopristis
 Parapristipoma
+Plectorhinchus
 Pomadasys
 Rhencus
