@@ -12,6 +12,8 @@ Lethrinus_microdon
 Lethrinus_miniatus
 Lethrinus_nebulosus
 Lethrinus_obsoletus
+Lethrinus_olivaceus
 Lethrinus_ornatus
 Lethrinus_ravus
 Lethrinus_rubrioperculatus
+Lethrinus_xanthochilus
