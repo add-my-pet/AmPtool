@@ -1,11 +1,15 @@
 Lutjanus_adetii
+Lutjanus_alexandrei
 Lutjanus_analis
+Lutjanus_apodus
 Lutjanus_argentimaculatus
+Lutjanus_argentiventris
 Lutjanus_bohar
 Lutjanus_boutton
 Lutjanus_buccanella
 Lutjanus_campechanus
 Lutjanus_carponotatus
+Lutjanus_cyanopterus
 Lutjanus_ehrenbergii
 Lutjanus_erythropterus
 Lutjanus_fulviflamma
@@ -20,6 +24,7 @@ Lutjanus_lutjanus
 Lutjanus_mahogoni
 Lutjanus_malabaricus
 Lutjanus_purpureus
+Lutjanus_peru
 Lutjanus_quinquelineatus
 Lutjanus_rivulatus
 Lutjanus_russellii
