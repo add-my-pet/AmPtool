@@ -16,4 +16,5 @@ Lethrinus_olivaceus
 Lethrinus_ornatus
 Lethrinus_ravus
 Lethrinus_rubrioperculatus
+Lethrinus_variegatus
 Lethrinus_xanthochilus
