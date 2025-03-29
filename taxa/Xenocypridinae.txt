@@ -1,5 +1,7 @@
 Ctenopharyngodon
 Hypophthalmichthys
+Megalobrama
+Parabramis
 Squaliobarbus
 Toxabramis
 Xenocypris
