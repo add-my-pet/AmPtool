@@ -1,3 +1,5 @@
+Planiliza_abu
+Planiliza_haematocheilus
 Planiliza_klunzingeri
 Planiliza_parsia
 Planiliza_subviridis
