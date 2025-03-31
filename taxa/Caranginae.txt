@@ -9,6 +9,7 @@ Gnathanodon
 Kaiwarinus
 Megalaspis
 Parastromateus
+Platycaranx
 Pseudocaranx
 Selar
 Selaroides
