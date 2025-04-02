@@ -1,3 +1,7 @@
 Alburnus_alburnus
 Alburnus_baliki
+Alburnus_belvica
+Alburnus_chalcoides
+Alburnus_mossulensis
 Alburnus_tarichi
+Alburnus_vistonicus
