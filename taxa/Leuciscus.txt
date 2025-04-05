@@ -1,3 +1,6 @@
 Leuciscus_aspius
 Leuciscus_baicalensis
+Leuciscus_chuanchicus
 Leuciscus_idus
+Leuciscus_leuciscus
+Leuciscus_vorax
