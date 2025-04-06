@@ -8,9 +8,12 @@ Blicca
 Chondrostoma
 Iberochondrostoma
 Leuciscus
+Leucos
 Notemigonus
 Pseudochondrostoma
 Rutilus
 Scardinius
+Leucaspius
 Squalius
+Telestes
 
