@@ -15,6 +15,7 @@ Rutilus
 Scardinius
 Leucaspius
 Pseudophoxinus
+Sarmarutilus
 Squalius
 Telestes
 

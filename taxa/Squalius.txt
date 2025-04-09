@@ -1,3 +1,7 @@
+Squalius_alburnoides
+Squalius_carolitertii
 Squalius_cephalus
 Squalius_cii
+Squalius_microlepis
 Squalius_pyrenaicus
+Squalius_svallize
