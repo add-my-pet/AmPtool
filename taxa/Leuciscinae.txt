@@ -10,6 +10,8 @@ Iberochondrostoma
 Leuciscus
 Leucos
 Notemigonus
+Pelasgus
+Pelecus
 Pseudochondrostoma
 Rutilus
 Scardinius
