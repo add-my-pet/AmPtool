@@ -34,7 +34,8 @@ function [members, taxon] = clade(taxa, level, site)
 %   but this does not imply that the species is recognized and accepeted.
 % The second input (i.e. level) only works for species that are in AmP.
 % Print properties of related taxa with e.g. prtStat(clade('Lemmus_trimucronatus'), 'p_M');.
-% Include the tree as well with e.g. [~, taxon]= clade('Lemmus_trimucronatus'); pedigree(taxon, 'p_M') 
+% Include the tree as well with e.g. [~, taxon]= clade('Lemmus_trimucronatus'); pedigree(taxon, 'p_M'). 
+% CoL ceased this type of support, so only Taxonomicon is used
 
 %% Example of use
 % members  = clade({'Gorilla', 'Tupaia'})
@@ -47,7 +48,10 @@ function [members, taxon] = clade(taxa, level, site)
 
 
   if ~exist('site','var') || isempty(site)
-    site = 0; % only CoL
+    site = 1; % only Taxo
+  elseif ~site==1
+    fprintf('Warning form clade: CoL no longer supports this use, Taxonomicon is used instead\n');
+    site = 1;
   end
   
   if ~iscell(taxa)
@@ -102,20 +106,20 @@ function [members, taxon] = clade(taxa, level, site)
        end
       end
       
-      % choose between CoL or Taxo on the basis of smallest number of members
-      if n_members_CoL == 0 && n_members_Taxo == 0
-        members = []; taxon = [];
-      elseif n_members_CoL == 0
-        members = members_Taxo; taxon = taxon_Taxo;
-      elseif n_members_Taxo == 0
-        members = members_CoL; taxon = taxon_CoL;
-      elseif n_members_Taxo < n_members_CoL 
-        members = members_Taxo; taxon = taxon_Taxo;
-        fprintf(['CoL gives ', num2str(n_members_CoL), ' members, Taxo gives ', num2str(n_members_Taxo), ' members\n'])
-      else
-        members = members_CoL; taxon = taxon_CoL;
-        fprintf(['CoL gives ', num2str(n_members_CoL), ' members, Taxo gives ', num2str(n_members_Taxo), ' members\n'])
-      end
+%       % choose between CoL or Taxo on the basis of smallest number of members
+%       if n_members_CoL == 0 && n_members_Taxo == 0
+%         members = []; taxon = [];
+%       elseif n_members_CoL == 0
+%         members = members_Taxo; taxon = taxon_Taxo;
+%       elseif n_members_Taxo == 0
+%         members = members_CoL; taxon = taxon_CoL;
+%       elseif n_members_Taxo < n_members_CoL 
+%         members = members_Taxo; taxon = taxon_Taxo;
+%         fprintf(['CoL gives ', num2str(n_members_CoL), ' members, Taxo gives ', num2str(n_members_Taxo), ' members\n'])
+%       else
+%         members = members_CoL; taxon = taxon_CoL;
+%         fprintf(['CoL gives ', num2str(n_members_CoL), ' members, Taxo gives ', num2str(n_members_Taxo), ' members\n'])
+%       end
       
     else
       if ~exist('level', 'var')

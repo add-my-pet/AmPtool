@@ -6,7 +6,7 @@ function [classification_short, info, my_pet] = lineage_short(taxon, curator)
 % created 2023/06/01 by Bas Kooijman
 
 %% Syntax
-% [classification_short, info, my_pet] = <../lineage_short.m *lineage_short*> (taxon) 
+% [classification_short, info, my_pet] = <../lineage_short.m *lineage_short*> (taxon, curator) 
 
 %% Description
 % gets genus, family, order, class, kingdom to which a particular taxon belongs
@@ -25,8 +25,8 @@ function [classification_short, info, my_pet] = lineage_short(taxon, curator)
 %   - 0, taxon not recognized
 %   - 1, species is in AmP
 %   - 2, genus is in AmP
-%   - 3, genus is not in AmP, but species or genus is in CoL
-% * my_pet: string with AmP entry of which the lineaage is copied
+%   - 3, genus is not in AmP, but species or genus is in Taxo
+% * my_pet: string with AmP entry of which the lineage is copied
 
 %% Remarks
 % The root is Animalia. 
@@ -49,7 +49,8 @@ function [classification_short, info, my_pet] = lineage_short(taxon, curator)
     info = 2;
     my_pet = genus{1};
   else
-    [id_CoL, name_status, accepted_name] = get_id_CoL(taxon);
+    [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(taxon);
+
     if contains(taxon, '_') && ~isempty(id_CoL); info = 1; end
     if isempty(genus); info = 3; end
     clade_my_pet = clade(taxon,1); 

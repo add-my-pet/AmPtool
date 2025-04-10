@@ -2,11 +2,11 @@
 % gets lineage of a species in Taxonomicon
 
 %%
-function [lineage, rank, lineage_short, rank_short] = lineage_Taxo(my_pet)
+function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_pet)
 % created 2018/01/30 by Bas Kooijman
 
 %% Syntax
-% [lineage, rank, lineage_short, rank_short] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
+% [lineage, rank, lineage_short, rank_short, id_Taxo] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
 
 %% Description
 % Gets lineage of species from the Taxonomicon
@@ -21,6 +21,7 @@ function [lineage, rank, lineage_short, rank_short] = lineage_Taxo(my_pet)
 % * rank: (n,1) cell array with ranks
 % * lineage_short: (5,1) cell array with {phylum;class;order;family;genus}
 % * rank_short: (5,1) cell array with {'Phylum';'Class';'Order';'Family';'Genus'}
+% * id_Taxo: string with species-identification code for Taxonomicon
 
 %% Remarks
 %
