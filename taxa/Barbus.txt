@@ -2,6 +2,7 @@ Barbus_balcanicus
 Barbus_barbus
 Barbus_cyclolepis
 Barbus_haasi
+Barbus_lacerta
 Barbus_meridionalis
 Barbus_peloponnesius
 Barbus_plebejus
