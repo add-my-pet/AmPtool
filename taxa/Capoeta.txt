@@ -1,7 +1,9 @@
 Capoeta_antalyensis
 Capoeta_banarescui
+Capoeta_bergamae
 Capoeta_capoeta
 Capoeta_damascina
+Capoeta_fusca
 Capoeta_gracilis
 Capoeta_tinca
 Capoeta_umbla
