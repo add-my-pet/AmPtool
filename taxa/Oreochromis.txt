@@ -7,4 +7,5 @@ Oreochromis_macrochir
 Oreochromis_mortimeri
 Oreochromis_mossambicus
 Oreochromis_niloticus
+Oreochromis_shiranus
 Oreochromis_squamipinnis
