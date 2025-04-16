@@ -6,6 +6,8 @@ Labeo_catla
 Labeo_chrysophekadion
 Labeo_coubie
 Labeo_dussumieri
+Labeo_fimbriatus
+Labeo_gonius
 Labeo_niloticus
 Labeo_rohita
 Labeo_senegalensis
