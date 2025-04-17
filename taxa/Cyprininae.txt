@@ -1,4 +1,5 @@
 Barbonymus
 Cyclocheilichthys
 Cyprinini
+Procypris
 Schizothoracini
