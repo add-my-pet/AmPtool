@@ -3,6 +3,7 @@ Cephalopholis_boenak
 Cephalopholis_cruentata
 Cephalopholis_cyanostigma
 Cephalopholis_fulva
+Cephalopholis_hemistiktos
 Cephalopholis_microprion
 Cephalopholis_miniata
 Cephalopholis_panamensis

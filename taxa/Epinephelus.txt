@@ -26,5 +26,6 @@ Epinephelus_radiatus
 Epinephelus_rivulatus
 Epinephelus_sexfasciatus
 Epinephelus_striatus
+Epinephelus_summana
 Epinephelus_tauvina
 Epinephelus_tukula
