@@ -5,3 +5,4 @@ Coryphaenoides_carapinus
 Coryphaenoides_guentheri
 Coryphaenoides_mediterraneus
 Coryphaenoides_rupestris
+Coryphaenoides_yaquinae
