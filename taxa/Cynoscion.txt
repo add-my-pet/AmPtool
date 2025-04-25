@@ -1,5 +1,6 @@
 Cynoscion_acoupa
 Cynoscion_albus
+Cynoscion_analis
 Cynoscion_arenarius
 Cynoscion_guatucupa
 Cynoscion_jamaicensis
