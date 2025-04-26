@@ -1,7 +1,9 @@
 Diplodus_annularis
+Diplodus_bellottii
 Diplodus_cadenati
 Diplodus_capensis
 Diplodus_cervinus
+Diplodus_holbrookii
 Diplodus_hottentotus
 Diplodus_puntazzo
 Diplodus_sargus
