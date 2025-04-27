@@ -1,9 +1,12 @@
 Epinephelus_adscensionis
 Epinephelus_aeneus
 Epinephelus_areolatus
+Epinephelus_bleekeri
 Epinephelus_caninus
 Epinephelus_coioides
+Epinephelus_costae
 Epinephelus_cyanopodus
+Epinephelus_diacanthus
 Epinephelus_drummondhayi
 Epinephelus_fasciatus
 Epinephelus_fuscoguttatus

@@ -1,6 +1,7 @@
 Chanodichthys
 Ctenopharyngodon
 Culter
+Elopichthys
 Hypophthalmichthys
 Megalobrama
 Parabramis
