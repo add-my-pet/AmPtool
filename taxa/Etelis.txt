@@ -1,2 +1,4 @@
 Etelis_carbunculus
 Etelis_coruscans
+Etelis_oculatus
+Etelis_radiosus
