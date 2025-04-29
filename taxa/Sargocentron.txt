@@ -1,3 +1,4 @@
+Sargocentron_coruscum
 Sargocentron_diadema
 Sargocentron_microstoma
 Sargocentron_rubrum

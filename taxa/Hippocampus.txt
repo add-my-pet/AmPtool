@@ -1,7 +1,10 @@
+Hippocampus_abdominalis
+Hippocampus_comes
 Hippocampus_erectus
 Hippocampus_guttulatus
 Hippocampus_hippocampus
 Hippocampus_kuda
 Hippocampus_reidi
+Hippocampus_trimaculatus
 Hippocampus_whitei
 Hippocampus_zosterae
