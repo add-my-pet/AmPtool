@@ -1,2 +1,3 @@
 Scyliorhinus_canicula
 Scyliorhinus_retifer
+Scyliorhinus_stellaris

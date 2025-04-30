@@ -1,5 +1,6 @@
 Hyporhamphus_australis
 Hyporhamphus_intermedius
+Hyporhamphus_limbatus
 Hyporhamphus_melanochir
 Hyporhamphus_picarti
 Hyporhamphus_regularis
