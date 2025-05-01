@@ -4,4 +4,5 @@ Johnius_carutta
 Johnius_coitor
 Johnius_distinctus
 Johnius_dussumieri
+Johnius_glaucus
 Johnius_macrorhynus

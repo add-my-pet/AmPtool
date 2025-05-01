@@ -1,3 +1,4 @@
 Lampanyctus_crocodilus
+Lampanyctus_macdonaldi
 Lampanyctus_regalis
 Lampanyctus_ritteri
