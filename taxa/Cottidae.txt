@@ -4,6 +4,7 @@ Clinocottus
 Cottus
 Gymnocanthus
 Hemilepidotus
+Leocottus
 Leptocottus
 Oligocottus
 Taurocottus
