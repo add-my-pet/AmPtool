@@ -5,6 +5,7 @@ Clinocottus
 Cottus
 Gymnocanthus
 Hemilepidotus
+Icelus
 Leocottus
 Leptocottus
 Oligocottus
