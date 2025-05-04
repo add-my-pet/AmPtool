@@ -1,7 +1,13 @@
+Lycodes_esmarkii
+Lycodes_eudipleurostictus
 Lycodes_frigidus
+Lycodes_gracilis
 Lycodes_pacificus
+Lycodes_pallidus
 Lycodes_polaris
 Lycodes_raridens
 Lycodes_reticulatus
+Lycodes_rossi
+Lycodes_seminudus
 Lycodes_squamiventer
 Lycodes_vahlii
