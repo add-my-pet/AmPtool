@@ -1,6 +1,3 @@
 Labeobarbus_aeneus
-Luciobarbus_bocagei
 Labeobarbus_bynni
-Luciobarbus_esocinus
-Luciobarbus_graellsii
 Labeobarbus_kimberleyensis

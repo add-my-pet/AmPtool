@@ -1,3 +1,4 @@
 Rhodeus_amarus
+Rhodeus_meridionalis
 Rhodeus_ocellatus
 Rhodeus_sericeus

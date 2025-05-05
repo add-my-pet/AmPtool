@@ -6,5 +6,6 @@ Leucoraja
 Malacoraja
 Okamejei
 Raja
+Rajella
 Rostroraja
 Zearaja
