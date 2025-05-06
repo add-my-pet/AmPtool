@@ -1,2 +1,5 @@
 Macrourus_berglax
+Macrourus_caml
 Macrourus_carinatus
+Macrourus_holotrachys
+Macrourus_whitsoni
