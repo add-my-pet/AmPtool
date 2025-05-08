@@ -1,2 +1,3 @@
 Coelorinchus_caelorhincus
+Coelorinchus_fasciatus
 Coelorinchus_labiatus
