@@ -3,11 +3,13 @@ Artediellus
 Bero
 Clinocottus
 Cottus
+Enophrys
 Gymnocanthus
 Hemilepidotus
 Icelus
 Leocottus
 Leptocottus
+Myoxocephalus
 Oligocottus
 Taurocottus
 Triglops
