@@ -1,4 +1,5 @@
 Parupeneus_barberinus
+Parupeneus_chrysopleuron
 Parupeneus_forsskali
 Parupeneus_heptacantha
 Parupeneus_macronemus
