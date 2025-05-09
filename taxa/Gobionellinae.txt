@@ -3,6 +3,7 @@ Crystallogobius
 Deltentosteus
 Economidichthys
 Gobionellus
+Gobiopterus
 Knipowitschia
 Lepidogobius
 Pomatoschistus
