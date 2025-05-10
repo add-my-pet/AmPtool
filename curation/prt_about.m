@@ -109,7 +109,7 @@ saveas (gca, [path, 'MRE.png'])
 close all
 
 % # of DEB papers in time
-dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:dates(end))'; % requires update via Zotero
+dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
 dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
 surv_dates = surv(dates, 1979); 
 surv_dates([1; end - 1; end],:) = [];    
