@@ -28,7 +28,8 @@ stat = read_allStat('species');
 path = [set_path2server, 'add_my_pet/'];
 
 % cell string with server entries stored on server
-eval(['!Powershell wget ', path, 'entries/ -o txt.html']); txt = fileread('txt.html');
+system(['powershell wget ', path, 'entries/ -O txt.html']); txt = fileread('txt.html');
+% txt = webread([path, 'entries/']);
 head = strfind(txt,'folder.gif'); txt(1:head(1)) = []; 
 n_server = length(strfind(txt,'href="')); server = cell(n_server,1);
 for i = 1:n_server
