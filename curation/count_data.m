@@ -21,7 +21,7 @@ function n = count_data(varargin)
 %
 %    - pseudo data sets
 %    - zero-variate data sets
-%    - uni-variate data sets, 
+%    - uni-variate data sets 
 %    - dependent datasets in uni-variate data
 %    - dependent datapoints in uni-variate data
 
@@ -46,11 +46,12 @@ for i = 1:size(n,1) % scan taxa
   data = rmfield_wtxt(data, 'psd'); % remove psd from structure data
   nms = fieldnmnst_st(data); n_nms = length(nms);
   for j = 1:n_nms % scan zero- and uni-variate data 
-    k = 1 + min(2, size(data.(nms{j}),2));
-    n(i,k) = n(i,k) + 1;
-    if size(data.(nms{j}),2)>1; 
-      n(i,4)=n(i,4)+size(data.(nms{j}),2)-1;
-      n(i,5)=n(i,5)+(size(data.(nms{j}),2)-1)*size(data.(nms{j}),1);
+    if size(data.(nms{j}),1)==1 && size(data.(nms{j}),2)==1
+      n(i,2) = n(i,2) + 1;      
+    else
+      n(i,3) = n(i,3) + 1;      
+      n(i,4) = n(i,4) + size(data.(nms{j}),2)-1;
+      n(i,5) = n(i,5) + (size(data.(nms{j}),2)-1) * size(data.(nms{j}),1);
     end
   end
 end
