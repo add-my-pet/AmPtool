@@ -6,8 +6,8 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>count_data</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-12-24"><meta name="DC.source" content="count_data.m"><style type="text/css">
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+      --><title>count_data</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-05-18"><meta name="DC.source" content="count_data.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
 html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -52,6 +52,7 @@ span.comment { color:#228B22 }
 span.string { color:#A020F0 }
 span.untermstring { color:#B20000 }
 span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
 
 .footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
 .footer p { margin:0px; }
@@ -66,7 +67,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>count_data</h1><!--introduction--><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>n = <a href="../count_data.m"><b>count_data</b></a> (varargin)</p><h2 id="4">Description</h2><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets for entries</p><p>Input</p><div><ul><li>varargin: optional character or cell string with name(s) of taxa (default 'Animalia')</li></ul></div><p>Output</p><div><ul><li>n: (n,3)-matrix with pseudo, zero- and uni-variate data sets</li></ul></div><h2 id="5">Example of use</h2><p>n = count_data('Daphnia_magna')</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>count_data</h1><!--introduction--><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Example of use</a></li></ul></div><h2 id="3">Syntax</h2><p>n = <a href="../count_data.m"><b>count_data</b></a> (varargin)</p><h2 id="4">Description</h2><p>counts number of pseudodata sets, zero-variate data sets and univariate data sets for entries</p><p>Input</p><div><ul><li>varargin: optional character or cell string with name(s) of taxa (default 'Animalia')</li></ul></div><p>Output</p><div><ul><li>n: (n,5)-matrix with</li></ul></div><pre>  - pseudo data sets
+  - zero-variate data sets
+  - uni-variate data sets,
+  - dependent datasets in uni-variate data
+  - dependent datapoints in uni-variate data</pre><h2 id="5">Example of use</h2><p>n = count_data('Daphnia_magna')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% count_data
 % counts number of pseudodata sets, zero-variate data sets and univariate data sets
@@ -87,7 +92,13 @@ function n = count_data(varargin)
 %
 % Output
 %
-% * n: (n,3)-matrix with pseudo, zero- and uni-variate data sets
+% * n: (n,5)-matrix with
+%
+%    - pseudo data sets
+%    - zero-variate data sets
+%    - uni-variate data sets, 
+%    - dependent datasets in uni-variate data
+%    - dependent datapoints in uni-variate data
 
 %% Example of use
 % n = count_data('Daphnia_magna')
@@ -102,7 +113,7 @@ end
 
 WD = pwd;
 
-n = zeros(length(taxa),3); % initiate counting
+n = zeros(length(taxa),5); % initiate counting
 for i = 1:size(n,1) % scan taxa
   cd(['../../entries/', taxa{i}])
   eval(['data = mydata_', taxa{i},';']);
@@ -112,6 +123,10 @@ for i = 1:size(n,1) % scan taxa
   for j = 1:n_nms % scan zero- and uni-variate data 
     k = 1 + min(2, size(data.(nms{j}),2));
     n(i,k) = n(i,k) + 1;
+    if size(data.(nms{j}),2)>1; 
+      n(i,4)=n(i,4)+size(data.(nms{j}),2)-1;
+      n(i,5)=n(i,5)+(size(data.(nms{j}),2)-1)*size(data.(nms{j}),1);
+    end
   end
 end
 

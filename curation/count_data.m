@@ -17,7 +17,13 @@ function n = count_data(varargin)
 %
 % Output
 %
-% * n: (n,3)-matrix with pseudo, zero- and uni-variate data sets
+% * n: (n,5)-matrix with
+%
+%    - pseudo data sets
+%    - zero-variate data sets
+%    - uni-variate data sets, 
+%    - dependent datasets in uni-variate data
+%    - dependent datapoints in uni-variate data
 
 %% Example of use
 % n = count_data('Daphnia_magna')
@@ -32,7 +38,7 @@ end
 
 WD = pwd;
 
-n = zeros(length(taxa),3); % initiate counting
+n = zeros(length(taxa),5); % initiate counting
 for i = 1:size(n,1) % scan taxa
   cd(['../../entries/', taxa{i}])
   eval(['data = mydata_', taxa{i},';']);
@@ -42,6 +48,10 @@ for i = 1:size(n,1) % scan taxa
   for j = 1:n_nms % scan zero- and uni-variate data 
     k = 1 + min(2, size(data.(nms{j}),2));
     n(i,k) = n(i,k) + 1;
+    if size(data.(nms{j}),2)>1; 
+      n(i,4)=n(i,4)+size(data.(nms{j}),2)-1;
+      n(i,5)=n(i,5)+(size(data.(nms{j}),2)-1)*size(data.(nms{j}),1);
+    end
   end
 end
 
