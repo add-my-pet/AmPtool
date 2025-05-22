@@ -13,7 +13,7 @@ function n = shcount_data
 %
 % Output
 %
-% * n: 3-vector with meadian numbers of pseudo, zero- and uni-variate data sets
+% * n: 3-vector with median numbers of pseudo, zero- and uni-variate data sets
 
 %% Example of use
 % n = shcount_data
