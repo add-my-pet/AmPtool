@@ -11,6 +11,11 @@ function [tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod(model, par, tT, tf
   % Obtains predictions for state trajectories and some traits for start of development till death by aging, 
   % in a possibly dynamic environment, using parameters from the AmP collection.
   % These parameter can be overwritten.
+    % The code does not include spawning events, weights do not include
+  % reproduction buffer.
+  % Starvation allows shrinking in structural mass. For other type of
+  % starvation rules the code should be modified.
+
   %
   % Input
   %
@@ -50,16 +55,12 @@ end
 
 TC = tempcorr(mean(tT(:,2)), T_ref, par_T); % -, temperature correction
 switch model        
-    case 'std'
+    case {'std', 'stf', 'sbp','abp'}
         tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hp, h_a/k_M^2, s_G]);     
-    case 'sbp'
-        tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hp, h_a/k_M^2, s_G]);       
     case 'abj'            
-        tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hj, v_Hp, h_a/k_M^2, s_G]);
+        tau_m = get_tm_mod(model, [g, k,  v_Hb, v_Hj, v_Hp, h_a/k_M^2, s_G]);
     case 'asj'            
-        tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hs, v_Hj, v_Hp, h_a/k_M^2, s_G]);
-    case 'abp'            
-        tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hp, h_a/k_M^2, s_G]);        
+        tau_m = get_tm_mod(model, [g, k, v_Hb, v_Hs, v_Hj, v_Hp, h_a/k_M^2, s_G]);   
 end 
   a_m = tau_m/k_M/TC; % d, mean life span 
 
@@ -188,7 +189,7 @@ switch model
         [t3, ELHR3, te, ye, ie] = ode45(@dget_ELHR_abj, [te, tspan(end)], ye+1e-8, options, pars_abj, tTC, tf, NaN, s_M, isterminal);        
         t3(1) = []; ELHR3(1,:) =[];
         if isempty(te)
-            te = NaN; ye(:) = NaN * ones(1,4);
+            te = NaN; ye = NaN * ones(1,4);
             warning('puberty is not reached')
         end
         a_p = te; L_p = ye(2); Ww_p = ye(2)^3 + ye(1) * w_E/mu_E/d_E; % age (d), struc length (cm), weight (g) at puberty
@@ -306,8 +307,12 @@ end
   
 % observable quantities
 % Lw = ELHR(:,2)/del_M;               % cm, physical length del_M is not packed in par
-Ww = ELHR(:,2).^3 + ELHR(:,1) * w_E/ mu_E/ d_E; % g, wet weight
-N = kap_R * ELHR(:,4)/E_0; % #, cumulated number of eggs
+Ww = ELHR(:,2).^3 + ELHR(:,1) * w_E/ mu_E/ d_E; % g, wet weight (reproduction buffer is not included)
+if any(strcmp(model, {'stf','stx'}))
+    N = repmat(NaN, size(Ww,1),1);   % for stf and stx models
+else
+    N = kap_R * ELHR(:,4)/E_0; % #, cumulated number of eggs
+end
 JX = (w_X/(kap_X*mu_X*d_X)) * pAMGD(:,1); % g/d, food consumed
 JO = - 32 * JM(3,:)';    % g O2/d,  O2 consumption 
 % pack output
