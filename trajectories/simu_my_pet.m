@@ -1,7 +1,7 @@
 %% simu_my_pet
 % Simulates individual dynamics using species parameters and environmental data
 %%
-function simu_my_pet_new(species, tT, tf)
+function simu_my_pet(species, tT, tf)
  % created 2023/06/01 by Dina Lika
   %% Syntax
   % tELHR = <../simu_my_pet.m *simu_my_pet*>(species, tT, tX)
@@ -83,7 +83,7 @@ elseif size(tT,1) > 1 && size(tf,1) > 1
 end
 
 % --- Run simulation ---
-[tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod_new(model, par, tT, tf);
+[tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod(model, par, tT, tf);
 n_col = size(tpAMGRD,2);
 
 %% plotting
