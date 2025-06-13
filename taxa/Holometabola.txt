@@ -1,5 +1,6 @@
-Diptera
-Trichoptera
-Lepidoptera
-Hymenoptera
 Coleoptera
+Diptera
+Hymenoptera
+Lepidoptera
+Neuroptera
+Trichoptera
