@@ -2,4 +2,5 @@ Plectropomus_areolatus
 Plectropomus_laevis
 Plectropomus_leopardus
 Plectropomus_maculatus
+Plectropomus_oligocanthus
 Plectropomus_pessuliferus
