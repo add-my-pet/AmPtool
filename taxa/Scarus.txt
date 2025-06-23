@@ -10,3 +10,4 @@ Scarus_rubroviolaceus
 Scarus_scaber
 Scarus_schlegeli
 Scarus_taeniopterus
+Scarus_vetula
