@@ -1,4 +1,5 @@
 Diaphus_dumerilii
+Diaphus_fulgens
 Diaphus_suborbitalis
 Diaphus_theta
 Diaphus_watasei
