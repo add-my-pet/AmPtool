@@ -11,3 +11,4 @@ Plectroglyphidodon
 Pomacentrus
 Pycnochromis
 Stegastes
+Teixeirichthys

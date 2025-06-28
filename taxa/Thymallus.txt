@@ -1,5 +1,6 @@
 Thymallus_arcticus
 Thymallus_baicalensis
+Thymallus_brevirostris
 Thymallus_nigrescens
 Thymallus_thymallus
 Thymallus_tugarinae
