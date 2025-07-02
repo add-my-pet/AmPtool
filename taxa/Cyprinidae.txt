@@ -5,4 +5,5 @@ Cyprininae
 Labeoninae
 Schizopygopsinae
 Smiliogastrinae
+Spinibarbinae
 Torinae

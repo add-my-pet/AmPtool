@@ -3,6 +3,7 @@ Sardinella_albella
 Sardinella_brasiliensis
 Sardinella_fimbriata
 Sardinella_gibbosa
+Sardinella_jussieui
 Sardinella_lemuru
 Sardinella_longiceps
 Sardinella_maderensis
