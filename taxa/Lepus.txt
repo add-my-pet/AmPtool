@@ -1,6 +1,7 @@
-Lepus_europaeus
+Lepus_americanus
 Lepus_californicus
 Lepus_capensis
+Lepus_europaeus
 Lepus_nigricollis
 Lepus_othus
 Lepus_timidus
