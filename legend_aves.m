@@ -27,7 +27,7 @@ function legend = legend_aves
     {'o', 8, 3, [1 0 1], [1 0 0]}, 'Strisores'
     {'o', 8, 3, [1 0 1], [1 1 1]}, 'Columbea'
     % Passerea: edge red
-    {'o', 8, 3, [1 0 0], [0 0 0]}, 'Ardeae'
+    {'o', 8, 3, [1 0 0], [0 0 0]}, 'Elementaves'
     {'o', 8, 3, [1 0 0], [0 0 1]}, 'Afroaves'
     {'o', 8, 3, [1 0 0], [1 0 0]}, 'Australaves'
     %
