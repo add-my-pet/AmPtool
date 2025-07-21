@@ -2,6 +2,7 @@ Acanthis
 Carduelis
 Drepanidini
 Euphonia
+Fringilla
 Haemorhous
 Leucosticte
 Pinicola
