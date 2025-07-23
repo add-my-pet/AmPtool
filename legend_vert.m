@@ -1,15 +1,15 @@
-%% legend_invert
-% specification of legend for invertebrates
+%% legend_vert
+% specification of legend for vertebrates
 
 %
-function legend = legend_invert
+function legend = legend_vert
 % created at 2025/07/08 by Bas Kooijman
 
   %% Syntax
-  % legend = <legend_invert.m *legend_invert*>
+  % legend = <legend_vert.m *legend_vert*>
 
   %% Description
-  % Specifies a legend for invertebrates
+  % Specifies a legend for vertebrates
   %
   % Output
   %
