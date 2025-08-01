@@ -1,3 +1,4 @@
 Plethodon_cinereus
+Plethodon_glutinosus
 Plethodon_jordani
 Plethodon_kentucki
