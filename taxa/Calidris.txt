@@ -1,5 +1,6 @@
 Calidris_alpina
 Calidris_bairdii
+Calidris_canutus
 Calidris_ferruginea
 Calidris_fuscicollis
 Calidris_himantopus
