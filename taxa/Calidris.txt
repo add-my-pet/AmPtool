@@ -10,3 +10,5 @@ Calidris_melanotos
 Calidris_minuta
 Calidris_minutilla
 Calidris_pusilla
+Calidris_tenuirostris
+Calidris_virgata
