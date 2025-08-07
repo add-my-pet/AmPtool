@@ -9,6 +9,7 @@ Calidris_mauri
 Calidris_melanotos
 Calidris_minuta
 Calidris_minutilla
+Calidris_pugnax
 Calidris_pusilla
 Calidris_tenuirostris
 Calidris_virgata
