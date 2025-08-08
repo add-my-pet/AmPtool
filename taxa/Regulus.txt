@@ -1,2 +1,3 @@
-Regulus_regulus
 Regulus_ignicapillus
+Regulus_regulus
+Regulus_satrapa
