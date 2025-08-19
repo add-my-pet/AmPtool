@@ -1,2 +1,4 @@
 Sminthopsis_crassicaudata
 Sminthopsis_macroura
+Sminthopsis_ooldea
+Sminthopsis_virginiae
