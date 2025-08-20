@@ -1,5 +1,2 @@
-Didelphimorphia
-Dasyuromorphia
-Microbiotheria
-Peramelemorphia
-Diprotodontia
+Ameridelphia
+Australidelphia
