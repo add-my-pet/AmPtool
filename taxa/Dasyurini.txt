@@ -2,5 +2,6 @@ Dasyuroides
 Dasycercus
 Dasykaluta
 Dasyurus
+Parantechinus
 Pseudantechinus
 Sarcophilus
