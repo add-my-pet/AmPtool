@@ -1,5 +1,4 @@
-Echinops
-Hemicentetes
-Microgale
-Setifer
-Tenrec
+Geogalinae
+Oryzorictinae
+Tenrecinae
+
