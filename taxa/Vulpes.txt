@@ -1,4 +1,6 @@
 Vulpes_lagopus
+Vulpes_macrotis
+Vulpes_rueppellii
 Vulpes_velox
 Vulpes_vulpes
 Vulpes_zerda
