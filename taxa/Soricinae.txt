@@ -1,4 +1,5 @@
 Blarina
 Cryptotis
 Neomys
+Notiosorex
 Sorex
