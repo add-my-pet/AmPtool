@@ -1,2 +1,6 @@
-Erinaceus
 Atelerix
+Echinosorex
+Erinaceus
+Hemiechinus
+Hylomys
+Paraechinus
