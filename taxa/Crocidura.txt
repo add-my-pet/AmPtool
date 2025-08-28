@@ -1,3 +1,6 @@
 Crocidura_fuscomurina
+Crocidura_olivieri
+Crocidura_poensis
 Crocidura_russula
 Crocidura_suaveolens
+Crocidura_viaria

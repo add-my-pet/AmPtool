@@ -1,3 +1,8 @@
+Sorex_alpinus
 Sorex_araneus
 Sorex_cinereus
+Sorex_coronatus
 Sorex_minutus
+Sorex_ornatus
+Sorex_palustris
+Sorex_vagrans
