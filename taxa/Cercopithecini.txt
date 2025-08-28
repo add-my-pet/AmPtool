@@ -1,3 +1,4 @@
-Miopithecus
-Chlorocebus
 Cercopithecus
+Chlorocebus
+Erythrocebus
+Miopithecus

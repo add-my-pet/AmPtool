@@ -1,4 +1,5 @@
 Cercopithecus_cephus
+Cercopithecus_mitis
 Cercopithecus_neglectus
 Cercopithecus_nictitans
 Cercopithecus_pogonias
