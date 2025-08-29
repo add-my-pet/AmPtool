@@ -1,2 +1,4 @@
+Propithecus_coquereli
 Propithecus_diadema
 Propithecus_tattersalli
+Propithecus_verreauxi
