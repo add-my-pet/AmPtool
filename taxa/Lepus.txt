@@ -1,4 +1,6 @@
+Lepus_alleni
 Lepus_americanus
+Lepus_arcticus
 Lepus_californicus
 Lepus_capensis
 Lepus_europaeus
