@@ -2,4 +2,6 @@ Cavia
 Dolichotis
 Galea
 Hydrochoerus
+Kerodon
 Microcavia
+Pediolagus
