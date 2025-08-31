@@ -3,4 +3,5 @@ Urocitellus_beldingi
 Urocitellus_columbianus
 Urocitellus_elegans
 Urocitellus_mollis
+Urocitellus_parryii
 Urocitellus_richardsonii
