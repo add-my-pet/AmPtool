@@ -1,6 +1,8 @@
 Aethomys
-Micaelamys
 Arvicanthis
-Lemniscomys
-Rhabdomys
 Dasymys
+Lemniscomys
+Micaelamys
+Rhabdomys
+Stochomys
+Thallomys

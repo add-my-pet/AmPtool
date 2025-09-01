@@ -1,6 +1,8 @@
 Baiomys
 Neotoma
 Ochrotomys
-Peromyscus
-Reithrodontomys
 Onychomys
+Peromyscus
+Podomys
+Reithrodontomys
+Scotinomys
