@@ -1,8 +1,9 @@
 Callospermophilus
+Epixerus
+Marmotina
 Otospermophilus
 Poliocitellus
+Spermophilina
+Tamiina
 Urocitellus
 Xerospermophilus
-Tamiina
-Marmotina
-Spermophilina
