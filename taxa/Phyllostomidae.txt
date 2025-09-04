@@ -13,4 +13,9 @@ Macrotus
 Monophyllus
 Phylloderma
 Phyllostomus
+Platyrrhinus
+Rhinophylla
+Sturnira
+Tonatia
 Uroderma
+Vampyressa
