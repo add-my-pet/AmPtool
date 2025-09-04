@@ -7,6 +7,10 @@ Desmodus
 Diaemus
 Diphylla
 Erophylla
+Glossophaga
+Leptonycteris
+Macrotus
+Monophyllus
 Phylloderma
 Phyllostomus
 Uroderma
