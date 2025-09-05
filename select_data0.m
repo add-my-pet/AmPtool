@@ -2,11 +2,11 @@
 % gets list of species that belongs to a taxon and has a specified string in data_0 in its mydata-file
 
 %%
-function [species, nm, sel] = select_data0(varargin)
-% created 2019/03/14 by  Bas Kooijman, modofied 2020/09/03
+function [species, nm, sel, val] = select_data0(varargin)
+% created 2019/03/14 by  Bas Kooijman, modified 2020/09/03, 2025/09/04
 
 %% Syntax
-% [species, nm, sel]  = <../select_data0.m *select_data0*> (varargin) 
+% [species, nm, sel, val]  = <../select_data0.m *select_data0*> (varargin) 
 
 %% Description
 % gets all species in the add_my_pet collection with mydata files that contain a character string in data_0.
@@ -22,6 +22,7 @@ function [species, nm, sel] = select_data0(varargin)
 % * cell string with all species in the add_my_pet collection that belong to that taxon and have a mydata-file that contains str
 % * nm string with names of entries that were subjected to selection
 % * sel vector of bouleans, which entries are selected or not
+% * val vector pf values, with NaN if absent
 
 %% Remarks
 % This function can take a few minutes if 'Animalia' is specified (so all entries are searched), since all mydata-files are read from the web
@@ -54,11 +55,11 @@ function [species, nm, sel] = select_data0(varargin)
     path = [set_path2server, 'add_my_pet/entries/'];
     if length(varargin) == 3 && varargin{3} == true % for curators only
        WD = cdCur; info = true;
-       path = '../../add_my_pet/entries/';
+       path = '../../deblab/add_my_pet/entries/';
     end
   end
   
-  n_spec = length(nm); sel = false(n_spec,1);
+  n_spec = length(nm); sel = false(n_spec,1); val = NaN(n_spec,1);
   for i = 1:n_spec
     fnm = [path, nm{i}, '/mydata_', nm{i}, '.m'];
     if ~info
@@ -66,16 +67,23 @@ function [species, nm, sel] = select_data0(varargin)
         eval(['system(wget -O mydata_my_pet.m ', fnm, ')']);
       else
         eval(['!powershell wget -O mydata_my_pet.m ', fnm]);
-        [~, ~, metaData, ~, ~] = mydata_my_pet;
+        [Data, ~, metaData, ~, ~] = mydata_my_pet;
       end
       delete('mydata_my_pet.m'); 
     else
       cd([path, nm{i}]);
-      eval(['[~, ~, metaData, ~, ~] = mydata_', nm{i},';']);
+      eval(['[Data, ~, metaData, txtData, ~] = mydata_', nm{i},';']);
       cdCur;
     end
     if ismember(str, metaData.data_0)
-      sel(i) = true;
+      try
+        if strcmp('WhitSeym2003',txtData.bibkey.(str)) && ~contains(txtData.comment.(str),'corrected PNAS')
+          sel(i) = true;
+          val(i) = Data.(str);
+        end
+      catch
+        keyboard
+      end
     end
   end
 
