@@ -76,13 +76,10 @@ function [species, nm, sel, val] = select_data0(varargin)
       cdCur;
     end
     if ismember(str, metaData.data_0)
+      sel(i) = true;
       try
-        if strcmp('WhitSeym2003',txtData.bibkey.(str)) && ~contains(txtData.comment.(str),'corrected PNAS')
-          sel(i) = true;
-          val(i) = Data.(str);
-        end
+        val(i) = Data.(str);
       catch
-        keyboard
       end
     end
   end
