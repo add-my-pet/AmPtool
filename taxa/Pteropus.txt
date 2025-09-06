@@ -1,3 +1,5 @@
 Pteropus_alecto
+Pteropus_medius
 Pteropus_poliocephalus
 Pteropus_rufus
+Pteropus_vampyrus
