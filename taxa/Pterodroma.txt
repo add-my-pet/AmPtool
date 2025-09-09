@@ -4,6 +4,7 @@ Pterodroma_hypoleuca
 Pterodroma_incerta
 Pterodroma_leucoptera
 Pterodroma_macroptera
+Pterodroma_mollis
 Pterodroma_nigripennis
 Pterodroma_phaeopygia
 Pterodroma_pycrofti

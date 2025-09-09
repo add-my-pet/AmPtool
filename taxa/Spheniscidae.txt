@@ -2,4 +2,5 @@ Aptenodytes
 Spheniscus
 Eudyptula
 Eudyptes
+Megadyptes
 Pygoscelis
