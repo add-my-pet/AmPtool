@@ -1,5 +1,6 @@
 Bucephala
 Clangula
+Lophodytes
 Mergus
 Somateria
 Melanitta

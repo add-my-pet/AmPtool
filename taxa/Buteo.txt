@@ -1,4 +1,5 @@
 Buteo_brachyurus
+Buteo_buteo
 Buteo_jamaicensis
 Buteo_lagopus
 Buteo_lineatus
