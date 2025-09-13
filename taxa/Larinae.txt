@@ -2,6 +2,7 @@ Chroicocephalus
 Leucophaeus
 Larus
 Ichthyaetus
+Rhodostethia
 Rissa
 Xema
 Creagrus
