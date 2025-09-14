@@ -1,5 +1,6 @@
 Larus_argentatus
 Larus_californicus
+Larus_canus
 Larus_crassirostris
 Larus_delawarensis
 Larus_dominicanus
