@@ -4,6 +4,7 @@ Leptopogon
 Mionectes
 Myiarchus
 Myiozetetes
+Pogonotriccus
 Rhynchocyclus
 Sayornis
 Tolmomyias

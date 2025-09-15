@@ -1,4 +1,5 @@
-Sylviidae
-Paradoxornithidae
-Zosteropidae
 Leiothrichidae
+Paradoxornithidae
+Pellorneidae
+Sylviidae
+Zosteropidae
