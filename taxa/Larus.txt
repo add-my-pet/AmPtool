@@ -6,6 +6,7 @@ Larus_delawarensis
 Larus_dominicanus
 Larus_fuscus
 Larus_glaucescens
+Larus_hyperboreus
 Larus_marinus
 Larus_occidentalis
 Larus_pacificus
