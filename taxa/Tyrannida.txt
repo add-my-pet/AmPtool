@@ -1,4 +1,5 @@
-Pipridae
 Cotingidae
+Onychorhynchidae
+Pipridae
 Tityridae
 Tyrannidae
