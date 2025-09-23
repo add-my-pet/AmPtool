@@ -1,8 +1,4 @@
-Akletos
-Cercomacroides
-Frederickena
-Hafferia
-Myrmotherula
-Oneillornis
-Sakesphorus
-Thamnophilus
+Formicivorini
+Pithyini
+Pyriglenini
+Thamnophilini

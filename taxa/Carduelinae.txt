@@ -4,6 +4,7 @@ Chloris
 Drepanidini
 Haemorhous
 Leucosticte
+Linaria
 Pinicola
 Serinus
 Spinus
