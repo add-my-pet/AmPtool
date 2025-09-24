@@ -1,7 +1,2 @@
-Catharus
-Chlamydochaera
-Geokichla
-Hylocichla
-Myadestes
-Sialia
-Turdus
+Myadestinae
+Turdinae

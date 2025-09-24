@@ -4,4 +4,5 @@ Paradoxornithidae
 Pellorneidae
 Pycnonotidae
 Sylviidae
+Timaliidae
 Zosteropidae

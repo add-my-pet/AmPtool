@@ -1,5 +1,6 @@
 Campylorhynchus
 Catherpes
 Cistothorus
+Thryophilus
 Thryothorus
 Troglodytes
