@@ -4,4 +4,5 @@ Gerygone
 Neosericornis
 Origma
 Pyrrholaemus
+Sericornis
 Smicrornis

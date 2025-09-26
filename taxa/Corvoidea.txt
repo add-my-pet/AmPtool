@@ -1,7 +1,8 @@
-Monarchidae
-Dicruridae
-Paradisaeidae
-Melampittidae
-Laniidae
 Corvidae
+Dicruridae
+Laniidae
+Melampittidae
+Monarchidae
+Paradisaeidae
 Petroicidae
+Rhipiduridae
