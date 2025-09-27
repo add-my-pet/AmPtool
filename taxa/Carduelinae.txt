@@ -6,5 +6,6 @@ Haemorhous
 Leucosticte
 Linaria
 Pinicola
+Pyrrhula
 Serinus
 Spinus
