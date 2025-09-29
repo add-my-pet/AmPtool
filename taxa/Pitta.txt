@@ -1,2 +1,3 @@
 Pitta_iris
+Pitta_moluccensis
 Pitta_versicolor
