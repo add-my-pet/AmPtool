@@ -1,1 +1,3 @@
 Pachycephala_pectoralis
+Pachycephala_schlegelii
+Pachycephala_soror
