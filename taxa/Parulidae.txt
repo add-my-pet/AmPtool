@@ -2,6 +2,7 @@ Basileuterus
 Geothlypis
 Leiothlypis
 Myioborus
+Myiothlypis
 Parkesia
 Protonotaria
 Seiurus
