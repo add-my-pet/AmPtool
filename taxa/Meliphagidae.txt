@@ -3,6 +3,9 @@ Acanthorhynchus
 Gavicalis
 Gliciphila
 Manorina
+Meliphaga
+Melipotes
+Melithreptus
 Philemon
 Prosthemadera
 Ptiloprora
