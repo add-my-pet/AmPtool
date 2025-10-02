@@ -3,6 +3,7 @@ Acanthorhynchus
 Gavicalis
 Gliciphila
 Manorina
+Melidectes
 Meliphaga
 Melipotes
 Melithreptus
