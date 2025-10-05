@@ -2,6 +2,7 @@ Acanthagenys
 Acanthorhynchus
 Gavicalis
 Gliciphila
+Lichmera
 Manorina
 Melidectes
 Meliphaga
