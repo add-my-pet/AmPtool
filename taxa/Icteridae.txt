@@ -5,6 +5,7 @@ Dolichonyx
 Euphagus
 Hypopyrrhus
 Icterus
+Leistes
 Molothrus
 Pseudoleistes
 Quiscalus
