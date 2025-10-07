@@ -1,6 +1,7 @@
 Campylorhynchus
 Catherpes
 Cistothorus
+Henicorhina
 Microcerculus
 Pheugopedius
 Thryophilus
