@@ -4,6 +4,7 @@ Ammomanes
 Calandrella
 Calendulauda
 Certhilauda
+Eremalauda
 Eremophila
 Galerida
 Lullula

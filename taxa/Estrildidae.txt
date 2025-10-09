@@ -1,7 +1,6 @@
-Amandava
-Lonchura
-Neochmia
-Oreostruthus
-Spermestes
-Taeniopygia
-Uraeginthus
+Poephilinae
+Lonchurinae
+Erythrurinae
+Estrildinae
+Amandavinae
+Lagonostictinae
