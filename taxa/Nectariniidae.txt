@@ -2,6 +2,7 @@ Aethopyga
 Anthobaphes
 Arachnothera
 Cinnyris
+Drepanorhynchus
 Hedydipna
 Kurochkinegramma
 Leptocoma
