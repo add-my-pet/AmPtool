@@ -1,5 +1,6 @@
 Catharus
 Chlamydochaera
+Entomodestes
 Geokichla
 Hylocichla
 Turdus
