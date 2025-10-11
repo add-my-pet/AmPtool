@@ -1,7 +1,2 @@
-Dendrocolaptes
-Dendroplex
-Glyphorynchus
-Lepidocolaptes
-Sittasomus
-Xiphocolaptes
-Xiphorhynchus
+Dendrocolaptini
+Sittasomini
