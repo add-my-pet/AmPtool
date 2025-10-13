@@ -1,1 +1,4 @@
 Automolus_melanopezus
+Automolus_ochrolaemus
+Automolus_rufipileatus
+Automolus_subulatus
