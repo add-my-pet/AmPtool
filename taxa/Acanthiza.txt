@@ -1,2 +1,5 @@
 Acanthiza_chrysorrhoa
 Acanthiza_inornata
+Acanthiza_lineata
+Acanthiza_pusilla
+Acanthiza_uropygialis
