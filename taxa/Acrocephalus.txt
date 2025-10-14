@@ -1,4 +1,7 @@
 Acrocephalus_arundinaceus
+Acrocephalus_bistrigiceps
 Acrocephalus_melanopogon
+Acrocephalus_orientalis
 Acrocephalus_palustris
+Acrocephalus_schoenobaenus
 Acrocephalus_scirpaceus
