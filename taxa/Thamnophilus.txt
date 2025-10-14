@@ -1,1 +1,5 @@
+Thamnophilus_atrinucha
 Thamnophilus_caerulescens
+Thamnophilus_doliatus
+Thamnophilus_palliatus
+Thamnophilus_punctatus
