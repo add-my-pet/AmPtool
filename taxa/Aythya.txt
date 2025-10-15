@@ -1,4 +1,5 @@
-Aythya_fuligula
-Aythya_americana
 Aythya_affinis
+Aythya_americana
+Aythya_fuligula
+Aythya_novaeseelandiae
 Aythya_valisineria

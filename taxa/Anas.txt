@@ -1,5 +1,11 @@
 Anas_acuta
+Anas_aucklandica
+Anas_castanea
+Anas_chlorotis
+Anas_crecca
 Anas_diazi
+Anas_gracilis
+Anas_nesiotis
 Anas_platyrhynchos
 Anas_rubripes
 Anas_sparsa
