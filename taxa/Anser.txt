@@ -1,2 +1,3 @@
 Anser_anser
 Anser_caerulescens
+Anser_canagicus

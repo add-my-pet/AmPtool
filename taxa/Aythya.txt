@@ -1,5 +1,7 @@
 Aythya_affinis
 Aythya_americana
+Aythya_collaris
+Aythya_ferina
 Aythya_fuligula
 Aythya_novaeseelandiae
 Aythya_valisineria
