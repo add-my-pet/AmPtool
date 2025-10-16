@@ -1,13 +1,4 @@
-Antrostomus
-Caprimulgus
-Chordeiles
-Eleothreptus
-Eurostopodus
-Lyncornis
-Nyctidromus
-Phalaenoptilus
-Setopagis
-Systellura
-Uropsalis
-
+Caprimulginae
+Chordeilinae
+Eurostopodinae
 

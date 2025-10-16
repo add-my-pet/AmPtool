@@ -1,2 +1,3 @@
 Limosa_haemastica
+Limosa_lapponica
 Limosa_limosa

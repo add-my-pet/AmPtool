@@ -1,3 +1,7 @@
 Phaethornis_augusti
+Phaethornis_guy
+Phaethornis_hispidus
+Phaethornis_koepckeae
 Phaethornis_nattereri
 Phaethornis_ruber
+Phaethornis_superciliosus
