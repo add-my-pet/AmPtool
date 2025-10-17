@@ -1,1 +1,8 @@
 Ducula_pacifica
+Ducula_pinon
+Ducula_pistrinaria
+Ducula_radiata
+Ducula_rubricera
+Ducula_rufigaster
+Ducula_spilorrhoa
+Ducula_zoeae
