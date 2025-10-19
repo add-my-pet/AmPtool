@@ -6,4 +6,5 @@ Falco_mexicanus
 Falco_naumanni
 Falco_peregrinus
 Falco_sparverius
+Falco_subbuteo
 Falco_tinnunculus

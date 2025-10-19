@@ -1,4 +1,5 @@
 Chalcites
 Cacomantis
 Cuculus
+Eudynamys
 Hierococcyx
