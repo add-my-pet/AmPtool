@@ -1,8 +1,2 @@
-Crex
-Fulica
-Gallinula
-Hypotaenidia
-Laterallus
-Porphyrio
-Porzana
-Rallus
+Himantornithinae
+Rallinae

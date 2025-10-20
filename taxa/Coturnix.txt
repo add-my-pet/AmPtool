@@ -1,2 +1,3 @@
 Coturnix_coturnix
 Coturnix_japonica
+Coturnix_pectoralis

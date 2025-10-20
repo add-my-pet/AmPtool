@@ -1,11 +1,8 @@
-Tetraonini
-Perdix
-Phasianus
-
-Pavo
-Polyplectron
-Gallini
 Coturnicini
+Gallini
+Pavo
+Phasianus
+Polyplectron
 
 
 
