@@ -1,3 +1,4 @@
 Ramphastos_dicolorus
 Ramphastos_sulfuratus
 Ramphastos_toco
+Ramphastos_tucanus
