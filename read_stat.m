@@ -64,12 +64,22 @@ function [var, units, label] = read_stat(entries, varargin)
   
   for i = 1:n
     for j = 1:nargin
-      if isfield(allStat.(entries{i}), varargin{j})
+      if isfield(allStat, entries{i}) && isfield(allStat.(entries{i}), varargin{j})
         var{i,j} = allStat.(entries{i}).(varargin{j});
         units{j} = allUnits.(varargin{j});
         label{j} = allLabel.(varargin{j});
       else
         var{i,j} = NaN; 
+        if isfield(allUnits,varargin{j}) 
+          units{j} = allUnits.(varargin{j}); 
+        else
+          units{j} = '';
+        end 
+        if isfield(allLabel,varargin{j})
+          label{j} = allLabel.(varargin{j});
+        else
+          label{j} = ''; 
+        end
       end
     end
   end
