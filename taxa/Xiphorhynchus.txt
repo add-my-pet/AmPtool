@@ -1,1 +1,3 @@
 Xiphorhynchus_elegans
+Xiphorhynchus_guttatus
+Xiphorhynchus_triangularis
