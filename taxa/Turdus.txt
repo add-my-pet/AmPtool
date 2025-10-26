@@ -1,9 +1,16 @@
+Turdus_albicollis
+Turdus_chiguanco
 Turdus_eremita
+Turdus_fuscater
 Turdus_grayi
 Turdus_hauxwelli
+Turdus_ignobilis
 Turdus_iliacus
+Turdus_lawrencii
+Turdus_leucops
 Turdus_merula
 Turdus_migratorius
+Turdus_nigriceps
 Turdus_olivaceus
 Turdus_philomelos
 Turdus_rubrocanus
