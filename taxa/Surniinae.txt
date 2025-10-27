@@ -1,5 +1,6 @@
-Micrathene
 Aegolius
 Athene
-Surnia
 Glaucidium
+Micrathene
+Surnia
+Uroglaux

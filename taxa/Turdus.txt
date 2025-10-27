@@ -13,7 +13,9 @@ Turdus_migratorius
 Turdus_nigriceps
 Turdus_olivaceus
 Turdus_philomelos
+Turdus_poliocephalus
 Turdus_rubrocanus
 Turdus_rufiventris
+Turdus_serranus
 Turdus_torquatus
 Turdus_viscivorus
