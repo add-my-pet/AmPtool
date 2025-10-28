@@ -1,2 +1,4 @@
 Ninox_novaeseelandiae
+Ninox_scutulata
 Ninox_strenua
+Ninox_theomacha

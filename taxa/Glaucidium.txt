@@ -1,2 +1,5 @@
 Glaucidium_brasilianum
+Glaucidium_cuculoides
+Glaucidium_gnoma
+Glaucidium_jardinii
 Glaucidium_nana
