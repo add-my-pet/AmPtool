@@ -1,6 +1,8 @@
+Anthus_campestris
 Anthus_hellmayri
 Anthus_pratensis
 Anthus_rubescens
+Anthus_rufulus
 Anthus_spinoletta
 Anthus_spragueii
 Anthus_trivialis
