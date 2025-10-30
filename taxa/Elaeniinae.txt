@@ -1,8 +1,2 @@
-Camptostoma
-Corythopis
-Elaenia
-Hemitriccus
-Mecocerculus
-Platyrinchus
-Todirostrum
-Zimmerius
+Elaeniini
+Euscarthmini
