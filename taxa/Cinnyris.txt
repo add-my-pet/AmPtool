@@ -1,3 +1,7 @@
+Cinnyris_bifasciatus
+Cinnyris_chloropygius
+Cinnyris_cupreus
 Cinnyris_jugularis
 Cinnyris_osea
 Cinnyris_talatala
+Cinnyris_venustus

@@ -4,6 +4,8 @@ Corvus_caurinus
 Corvus_corax
 Corvus_corone
 Corvus_frugilegus
+Corvus_fuscicapillus
 Corvus_hawaiiensis
 Corvus_ossifragus
+Corvus_ruficollis
 Corvus_splendens

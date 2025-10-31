@@ -1,5 +1,6 @@
 Catharus_bicknelli
 Catharus_dryas
 Catharus_fuscescens
+Catharus_guttatus
 Catharus_minimus
 Catharus_ustulatus
