@@ -1,2 +1,4 @@
 Elaenia_albiceps
+Elaenia_gigas
 Elaenia_obscura
+Elaenia_pallatangae

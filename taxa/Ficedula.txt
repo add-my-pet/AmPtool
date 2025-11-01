@@ -1,3 +1,4 @@
 Ficedula_albicilla
 Ficedula_albicollis
 Ficedula_hypoleuca
+Ficedula_mugimaki

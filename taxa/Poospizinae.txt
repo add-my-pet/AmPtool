@@ -3,4 +3,5 @@ Kleinothraupis
 Microspingus
 Poospiza
 Pseudospingus
+Sphenopsis
 Thlypopsis
