@@ -1,1 +1,6 @@
+Lonchura_fuscans
+Lonchura_maja
+Lonchura_malacca
 Lonchura_oryzivora
+Lonchura_punctulata
+Lonchura_striata

@@ -1,2 +1,4 @@
 Mionectes_macconnelli
 Mionectes_oleagineus
+Mionectes_olivaceus
+Mionectes_striaticollis
