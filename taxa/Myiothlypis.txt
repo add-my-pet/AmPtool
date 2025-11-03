@@ -1,1 +1,6 @@
 Myiothlypis_bivittata
+Myiothlypis_chrysogaster
+Myiothlypis_coronata
+Myiothlypis_fulvicauda
+Myiothlypis_luteoviridis
+Myiothlypis_signata
