@@ -1,2 +1,3 @@
 Ploceus_castaneiceps
 Ploceus_cucullatus
+Ploceus_philippinus

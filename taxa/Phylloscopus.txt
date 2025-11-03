@@ -1,4 +1,7 @@
-Phylloscopus_trochilus
 Phylloscopus_collybita
 Phylloscopus_inornatus
+Phylloscopus_plumbeitarsus
+Phylloscopus_schwarzi
 Phylloscopus_sibilatrix
+Phylloscopus_tenellipes
+Phylloscopus_trochilus
