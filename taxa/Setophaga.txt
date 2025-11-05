@@ -1,11 +1,15 @@
 Setophaga_aestiva
+Setophaga_americana
 Setophaga_caerulescens
 Setophaga_citrina
 Setophaga_coronata
 Setophaga_discolor
+Setophaga_dominica
 Setophaga_kirtlandii
 Setophaga_ruticilla
+Setophaga_palmarum
 Setophaga_petechia
+Setophaga_pinus
 Setophaga_striata
 Setophaga_townsendi
 Setophaga_virens

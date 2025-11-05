@@ -1,1 +1,4 @@
 Sericornis_frontalis
+Sericornis_humilis
+Sericornis_magnirostra
+Sericornis_nouhuysi

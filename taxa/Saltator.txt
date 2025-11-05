@@ -1,1 +1,5 @@
+Saltator_coerulescens
+Saltator_grossus
+Saltator_maximus
+Saltator_orenocensis
 Saltator_striatipectus
