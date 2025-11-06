@@ -1,5 +1,7 @@
 Sporophila_americana
 Sporophila_angolensis
 Sporophila_beltoni
+Sporophila_castaneiventris
 Sporophila_corvina
+Sporophila_nigricollis
 Sporophila_plumbea

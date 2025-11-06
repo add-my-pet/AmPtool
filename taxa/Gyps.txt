@@ -1,3 +1,5 @@
-Gyps_rueppellii
 Gyps_africanus
 Gyps_coprotheres
+Gyps_fulvus
+Gyps_himalayensis
+Gyps_rueppellii
