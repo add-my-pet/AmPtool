@@ -1,5 +1,9 @@
 Hipposideros_armiger
+Hipposideros_cervinus
 Hipposideros_cineraceus
+Hipposideros_diadema
+Hipposideros_galeritus
 Hipposideros_larvatus
+Hipposideros_maggietaylorae
 Hipposideros_pomona
 Hipposideros_speoris
