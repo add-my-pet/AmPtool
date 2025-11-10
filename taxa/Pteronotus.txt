@@ -1,1 +1,4 @@
 Pteronotus_davyi
+Pteronotus_parnellii
+Pteronotus_personatus
+Pteronotus_quadridens
