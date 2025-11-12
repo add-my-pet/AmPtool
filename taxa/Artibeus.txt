@@ -1,3 +1,6 @@
 Artibeus_concolor
 Artibeus_fimbriatus
+Artibeus_hirsutus
+Artibeus_jamaicensis
+Artibeus_lituratus
 Artibeus_watsoni
