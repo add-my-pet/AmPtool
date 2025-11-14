@@ -1,3 +1,5 @@
+Rhinolophus_capensis
+Rhinolophus_clivosus
 Rhinolophus_cornutus
 Rhinolophus_euryale
 Rhinolophus_ferrumequinum

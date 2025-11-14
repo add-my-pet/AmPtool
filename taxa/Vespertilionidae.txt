@@ -1,14 +1,2 @@
-Aeorestes
-Antrozous
-Chalinolobus
-Corynorhinus
-Eptesicus
-Hypsugo
-Myotis
-Nyctalus
-Nycticeius
-Nyctophilus
-Pipistrellus
-Plecotus
-Scotophilus
-Vespertilio
+Myotinae
+Vespertilioninae
