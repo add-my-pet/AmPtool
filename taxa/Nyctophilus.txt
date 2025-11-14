@@ -1,1 +1,4 @@
+Nyctophilus_bifax
+Nyctophilus_corbeni
 Nyctophilus_geoffroyi
+Nyctophilus_gouldi
