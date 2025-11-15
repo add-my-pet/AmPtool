@@ -1,4 +1,5 @@
 Papio_anubis
 Papio_cynocephalus
 Papio_hamadryas
+Papio_papio
 Papio_ursinus

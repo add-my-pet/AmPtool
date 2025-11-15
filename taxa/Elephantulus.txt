@@ -1,4 +1,6 @@
 Elephantulus_brachyrhynchus
+Elephantulus_edwardii
 Elephantulus_intufi
 Elephantulus_myurus
 Elephantulus_rufescens
+Elephantulus_rupestris

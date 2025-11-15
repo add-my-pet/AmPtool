@@ -1,5 +1,8 @@
 Crocidura_fuscomurina
+Crocidura_hildegardeae
+Crocidura_jouvenetae
 Crocidura_leucodon
+Crocidura_luna
 Crocidura_olivieri
 Crocidura_poensis
 Crocidura_russula
