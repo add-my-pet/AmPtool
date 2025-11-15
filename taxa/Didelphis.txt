@@ -1,1 +1,3 @@
+Didelphis_aurita
+Didelphis_marsupialis
 Didelphis_virginiana
