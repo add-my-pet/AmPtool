@@ -1,3 +1,4 @@
 Cercartetus_caudatus
 Cercartetus_concinnus
+Cercartetus_lepidus
 Cercartetus_nanus
