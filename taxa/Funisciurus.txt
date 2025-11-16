@@ -1,1 +1,5 @@
+Funisciurus_anerythrus
 Funisciurus_congicus
+Funisciurus_isabella
+Funisciurus_lemniscatus
+Funisciurus_pyrropus
