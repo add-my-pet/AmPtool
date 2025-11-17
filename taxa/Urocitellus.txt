@@ -5,3 +5,5 @@ Urocitellus_elegans
 Urocitellus_mollis
 Urocitellus_parryii
 Urocitellus_richardsonii
+Urocitellus_townsendii
+Urocitellus_undulatus

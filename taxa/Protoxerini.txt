@@ -2,3 +2,4 @@ Heliosciurus
 Epixerus
 Funisciurus
 Paraxerus
+Protoxerus

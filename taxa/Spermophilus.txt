@@ -1,2 +1,3 @@
 Spermophilus_citellus
+Spermophilus_dauricus
 Spermophilus_xanthoprymnus

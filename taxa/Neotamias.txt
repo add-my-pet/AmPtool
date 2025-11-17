@@ -1,3 +1,7 @@
+Neotamias_alpinus
+Neotamias_merriami
+Neotamias_minimus
 Neotamias_palmeri
 Neotamias_panamintinus
 Neotamias_quadrivittatus
+Neotamias_speciosus

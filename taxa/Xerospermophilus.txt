@@ -1,2 +1,3 @@
 Xerospermophilus_mohavensis
+Xerospermophilus_spilosoma
 Xerospermophilus_tereticaudus
