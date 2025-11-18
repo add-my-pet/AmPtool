@@ -1,2 +1,9 @@
+Sigmodon_alleni
+Sigmodon_fulviventer
+Sigmodon_hirsutus
 Sigmodon_hispidus
+Sigmodon_leucotis
+Sigmodon_mascotensis
 Sigmodon_ochrognathus
+Sigmodon_planifrons
+Sigmodon_toltecus

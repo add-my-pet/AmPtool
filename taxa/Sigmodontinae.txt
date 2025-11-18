@@ -6,5 +6,6 @@ Loxodontomys
 Nectomys
 Oryzomys
 Phyllotis
+Reithrodon
 Sigmodon
 Zygodontomys
