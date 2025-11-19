@@ -1,5 +1,7 @@
-Neotoma_floridana
 Neotoma_albigula
-Neotoma_micropus
-Neotoma_lepida
 Neotoma_cinerea
+Neotoma_floridana
+Neotoma_lepida
+Neotoma_macrotis
+Neotoma_micropus
+Neotoma_stephensi
