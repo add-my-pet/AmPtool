@@ -5,7 +5,9 @@ Eligmodontia
 Loxodontomys
 Nectomys
 Oryzomys
+Oxymycterus
 Phyllotis
 Reithrodon
 Sigmodon
+Transandinomys
 Zygodontomys

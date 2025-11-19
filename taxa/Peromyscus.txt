@@ -1,10 +1,13 @@
+Peromyscus_boylii
 Peromyscus_californicus
 Peromyscus_crinitus
 Peromyscus_eremicus
 Peromyscus_gossypinus
 Peromyscus_interparietalis
+Peromyscus_keeni
 Peromyscus_leucopus
 Peromyscus_maniculatus
+Peromyscus_megalops
 Peromyscus_melanocarpus
 Peromyscus_mexicanus
 Peromyscus_polionotus
