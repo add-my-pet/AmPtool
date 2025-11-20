@@ -1,9 +1,14 @@
 Microtus_abbreviatus
 Microtus_agrestis
 Microtus_arvalis
+Microtus_breweri
 Microtus_cabrerae
 Microtus_californicus
+Microtus_canicaudus
 Microtus_guentheri
+Microtus_longicaudus
+Microtus_maximowiczii
+Microtus_mexicanus
 Microtus_miurus
 Microtus_montanus
 Microtus_ochrogaster
@@ -12,4 +17,7 @@ Microtus_oregoni
 Microtus_pennsylvanicus
 Microtus_pinetorum
 Microtus_richardsoni
+Microtus_socialis
 Microtus_subterraneus
+Microtus_townsendii
+Microtus_xanthognathus
