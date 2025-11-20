@@ -13,7 +13,13 @@ function WD = cdEntr(my_pet, ed)
 % Input
 % 
 % * my_pet: string or cellstring with name(s) of entry
-% * ed: optional identifyer for editing in Matlab: 1 for mydata-file only, else all 4 source files
+% * ed: optional identifyer for editing in Matlab: 
+%
+%    1 mydata-file
+%    2 pars_init-file
+%    3 predict-file
+%    4 run-file
+%    else all 4 source files
 %
 % Output
 %
@@ -23,9 +29,10 @@ function WD = cdEntr(my_pet, ed)
 % Intended use: 
 %
 % * cdEntr('Daphnia_magna');
-% * WD = cdEntr('Daphnia_magna',0); cd(WD); 
 % * cdEntr('Daphnia',1) 
 % * cdEntr(select('Daphnia'),1)
+%
+% Use <../editor2pets.m *editor2pets*> to convert files in Matlab editor to a list of entries
 
 if iscell(my_pet)
   nms = my_pet; n = length(nms);  
