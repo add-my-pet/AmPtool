@@ -2,11 +2,11 @@
 % prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function fileName = prt_id(pets, save)
-% created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04
+function [fileName, pets] = prt_id(pets, save)
+% created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04, 2025/11/22
 
 %% Syntax
-% fileName = <prt_id *prt_id*>(pets, save)
+% [fileName, pets] = <prt_id *prt_id*>(pets, save)
 
 %% Description
 % prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
@@ -14,16 +14,19 @@ function fileName = prt_id(pets, save)
 %
 % Input:
 %
-% * pets: cell array with names of existing entries
+% * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
-% * fileName: string with name of output file
+% * fileName: string with name of output file if input 'save' applies, else empty
+% * pets: cell string with entry names
 
 %% Remarks
 % * This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % * AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% * if input pets is a cell string, output pets is identical
+% * click on a column header to make that column invisible and on the left-most header to let it re-appear 
 % * Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
 % * Check links existing vs new with <check_links.html *check_links*>
 % * If the number of style rules in de header is changed, function undoHide should be edited. 
@@ -32,13 +35,19 @@ function fileName = prt_id(pets, save)
 % prt_id(select('Crustacea'))
 
   
+  if ~exist('pets','var')
+    title = 'Animalia'; pets = select;
+  elseif ischar(pets)
+    title = pets; pets = select(pets);
+  else
+    title = 'Animalia';
+  end  
+
   if ~exist('save','var')
     save = false;
   end
-  
-  if save
-    WD0 = cdCur; cd ../../deblab/add_my_pet/
-  end
+
+  WD0 = cdCur; cd ../../deblab/add_my_pet/
 
   n = length(pets); 
   linkPets = pets; 
@@ -91,7 +100,7 @@ function fileName = prt_id(pets, save)
   cd(WD);
        
   version = datestr(datenum(date),'yyyymmdd');
-  header = {['AmP ', version], 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
+  header = {[title, ' ', version], 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
        'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'};
   val = [linkPets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
@@ -262,7 +271,7 @@ function fileName = prt_id(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName)
+    delete(fileName); fileName = [];
   end  
    
   cd(WD0);

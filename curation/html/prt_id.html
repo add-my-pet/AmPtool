@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="prt_id.m"><style type="text/css">
+      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-11-22"><meta name="DC.source" content="prt_id.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>fileName = <a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses results_my_pet.mat files in local directories of add_my_pet/entries;</li><li>AmP supports 23 websites: 7 general, 16 taxon-specific.</li><li>Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</li><li>Check links existing vs new with <a href="check_links.html"><b>check_links</b></a></li><li>If the number of style rules in de header is changed, function undoHide should be edited.</li></ul></div><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[fileName, pets] = <a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file if input 'save' applies, else empty</li><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses results_my_pet.mat files in local directories of add_my_pet/entries;</li><li>AmP supports 23 websites: 7 general, 16 taxon-specific.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li><li>Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</li><li>Check links existing vs new with <a href="check_links.html"><b>check_links</b></a></li><li>If the number of style rules in de header is changed, function undoHide should be edited.</li></ul></div><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_id
 % prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function fileName = prt_id(pets, save)
-% created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04
+function [fileName, pets] = prt_id(pets, save)
+% created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04, 2025/11/22
 
 %% Syntax
-% fileName = <prt_id *prt_id*>(pets, save)
+% [fileName, pets] = <prt_id *prt_id*>(pets, save)
 
 %% Description
 % prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
@@ -85,16 +85,19 @@ function fileName = prt_id(pets, save)
 %
 % Input:
 %
-% * pets: cell array with names of existing entries
+% * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
-% * fileName: string with name of output file
+% * fileName: string with name of output file if input 'save' applies, else empty
+% * pets: cell string with entry names
 
 %% Remarks
 % * This function uses results_my_pet.mat files in local directories of add_my_pet/entries;
 % * AmP supports 23 websites: 7 general, 16 taxon-specific. 
+% * if input pets is a cell string, output pets is identical
+% * click on a column header to make that column invisible and on the left-most header to let it re-appear 
 % * Repair id of an entry with <repair_id.html *repair_id*>, get existing id's with <get_links.html *get_links*> and new id's with <get_id.html *get_id*>.
 % * Check links existing vs new with <check_links.html *check_links*>
 % * If the number of style rules in de header is changed, function undoHide should be edited. 
@@ -103,18 +106,24 @@ function fileName = prt_id(pets, save)
 % prt_id(select('Crustacea'))
 
   
+  if ~exist('pets','var')
+    title = 'Animalia'; pets = select;
+  elseif ischar(pets)
+    title = pets; pets = select(pets);
+  else
+    title = 'Animalia';
+  end  
+
   if ~exist('save','var')
     save = false;
   end
-  
-  if save
-    WD = cdCur; cd ../../deblab/add_my_pet/
-  end
+
+  WD0 = cdCur; cd ../../deblab/add_my_pet/
 
   n = length(pets); 
   linkPets = pets; 
   for i=1:n
-    linkPets{i} = ['<button onclick="lnk(1,''', pets{i},  ''')">', pets{i}, '</button>']; 
+    linkPets{i} = ['<a onclick="lnk(1,''', pets{i},  ''')">', pets{i}, '</a>']; 
   end
 
   % initiate
@@ -150,25 +159,26 @@ function fileName = prt_id(pets, save)
     id = metaData.links; vars_pull(id);
     flds = fields(id); n_flds = length(flds);
     for j = 1:n_flds
-       nm = strsplit(flds{j}, '_'); nm = nm{2};
-       eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
-       pars = [col.(nm), ',',  idNm,];
-       if ~isempty(id)
-         eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
-       end
+      nm = strsplit(flds{j}, '_'); nm = nm{2};
+      eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
+      pars = [col.(nm), ',',  idNm,];
+      if ~isempty(id)
+        %eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
+        eval([nm,'{i} = ''<a onclick="lnk(', pars, ')">', id, '</a>'';']);
+      end
     end
   end
   cd(WD);
        
   version = datestr(datenum(date),'yyyymmdd');
-  header = {['AmP ', version], 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
+  header = {[title, ' ', version], 'CoL', 'ITIS', 'EoL', 'Wiki', 'ADW', 'Taxo', 'WoRMS', ...
        'molluscabase', 'scorpion', 'spider', 'collembola', 'orthoptera', 'phasmida', 'aphid', 'diptera', 'lepidoptera', ...
        'fishbase' 'amphweb' 'ReptileDB', 'avibase', 'birdlife', 'MSW3', 'AnAge'};
   val = [linkPets, CoL, ITIS, EoL, Wiki, ADW, Taxo, WoRMS, ...
        molluscabase, scorpion, spider, collembola, orthoptera, phasmida, aphid, diptera, lepidoptera, ...
        fishbase, amphweb, ReptileDB, avibase, birdlife, MSW3, AnAge];
    
-  n_rows = length(pets); n_cols = length(header);
+  n_rows = n; n_cols = length(header);
    
   fileName = 'links.html';
   oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
@@ -178,45 +188,63 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
   fprintf(oid, '  <title>%s</title>\n',  'Links');
+  fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
+  fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
   fprintf(oid, '  <style id="myStyleSheet">\n');
+  
+  fprintf(oid, '    body {\n');
+  fprintf(oid, '      background-color: #ffffff;\n');
+  fprintf(oid, '    }\n\n');
+
   fprintf(oid, '    div.tab {\n');
-  fprintf(oid, '      width: 90%%;\n');
   fprintf(oid, '      margin: auto;\n'); 
-  fprintf(oid, '      padding-top: 30px;\n'); 
+  fprintf(oid, '      padding-top: 90px;\n'); % make room for toolbar
   fprintf(oid, '    }\n\n');
     
   fprintf(oid, '    .head {\n');
-  fprintf(oid, '      background-color: #FFE7C6;\n');                   % pink header background
+  fprintf(oid, '      background-color: #ffe7c6;\n'); % pink header background, also part of style.css
+  fprintf(oid, '      color: blue;\n');
   fprintf(oid, '    }\n\n');
 
   fprintf(oid, '    #tabId {\n');
-  fprintf(oid, '      border-style: solid hidden solid hidden;\n');     % border top & bottom only
+  fprintf(oid, '      border-style: solid hidden solid hidden;\n'); % border top & bottom only
   fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
-  fprintf(oid, '    }\n\n');
-
-  fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n');% grey on even rows
-  
-  fprintf(oid, '    button {\n');
-  fprintf(oid, '      background-color: #FFFFFF;\n');
   fprintf(oid, '      color: blue;\n');
-  fprintf(oid, '      font-family: Arial, Helvetica, sans-serif;\n');
-  fprintf(oid, '      font-size: 0.9em;\n');
-  fprintf(oid, '      border-style: none;\n');
   fprintf(oid, '    }\n\n');
 
+  fprintf(oid, '    .Search {\n');
+  fprintf(oid, '      background-image: url(''img/searchicon.png''); /* Add a search icon to input */\n');
+  fprintf(oid, '      background-position: 2px -10px; /* Position the search icon */\n');
+  fprintf(oid, '      background-repeat: no-repeat; /* Do not repeat the icon image */\n');
+  fprintf(oid, '      width: 70%%; /* Width of search field */\n');
+  fprintf(oid, '      font-size: 14px; /* Increase font-size */\n');
+  fprintf(oid, '      padding: 5px 10px 7px 40px; /* Add some padding */\n');
+  fprintf(oid, '      border: 1px solid #ddd; /* Add a grey border */\n');
+  fprintf(oid, '      margin-bottom: 12px; /* Add some space below the input */\n');
+  fprintf(oid, '    }\n\n');
+
+  fprintf(oid, '    tr:nth-child(even){background-color: #f2f2f2}\n\n'); % grey on even rows, also part of style.css
+  
   fprintf(oid, '  </style>\n');
   fprintf(oid, '</head>\n\n');
   fprintf(oid, '<body>\n\n');
-  
+ 
+  load('n_entries', 'n_entries')
+  if n == n_entries 
+    fprintf(oid, '<div w3-include-html="sys/toolbar_links.html"></div>\n\n');
+    
+    fprintf(oid, '    <div id="contentFull">\n\n');
+  end
+
   fprintf(oid, '  <div class="tab">\n');
   fprintf(oid, '  <table id="tabId">\n');
 
   % header
   if ~isempty(header)
     fprintf(oid, '    <tr class="head">\n');
-    fprintf(oid, '       <th><button class="head" onclick="undoHide()">%s</button></th>\n', header{1});
+    fprintf(oid, '       <th><a class="head" onclick="undoHide()">%s</a></th>\n', header{1});
     for j = 2:n_cols
-      fprintf(oid, '       <th><button class="head" onclick="hideCol(%d)">%s</button></th>\n', j, header{j});
+      fprintf(oid, '       <th><a class="head" onclick="hideCol(%d)">%s</a></th>\n', j, header{j});
     end
     fprintf(oid, '    </tr>\n\n');
   end
@@ -237,7 +265,7 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '  <script>\n');
   fprintf(oid, '    function undoHide() {\n');
   fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
-  fprintf(oid, '      if (styleSheet.cssRules.length > 5){\n'); % there are presently 5 style rules (see above)
+  fprintf(oid, '      if (styleSheet.cssRules.length > 6){\n'); % there are presently 6 style rules (see above)
   fprintf(oid, '        styleSheet.deleteRule(0);\n');
   fprintf(oid, '      }\n');
   fprintf(oid, '    }\n\n');
@@ -277,8 +305,34 @@ function fileName = prt_id(pets, save)
   fprintf(oid, '        case 24: window.open("https://genomics.senescence.info/species/entry.php?species=" + id); break;\n');
   fprintf(oid, '        default:\n');
   fprintf(oid, '      }\n');
+  fprintf(oid, '    }\n\n');
+  
+  fprintf(oid, '    function searchList() {\n');
+  fprintf(oid, '      var input, filter, table, tr, td, i;\n');
+  fprintf(oid, '      input = document.getElementById("Species");\n');
+  fprintf(oid, '      filter = input.value.toUpperCase();\n');
+  fprintf(oid, '      table = document.getElementById("tabId");\n');
+  fprintf(oid, '      tr = table.getElementsByTagName("tr");\n');
+  fprintf(oid, '      for (i = 0; i < tr.length; i++) {\n');
+  fprintf(oid, '        td = tr[i].getElementsByTagName("td")[0];\n');
+  fprintf(oid, '        if (td) {\n');
+  fprintf(oid, '          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {\n');
+  fprintf(oid, '            tr[i].style.display = "";\n');
+  fprintf(oid, '          } else {\n');
+  fprintf(oid, '            tr[i].style.display = "none";\n');
+  fprintf(oid, '          }\n');
+  fprintf(oid, '        }\n');
+  fprintf(oid, '      }\n');
   fprintf(oid, '    }\n');
+
   fprintf(oid, '  </script>\n\n');
+
+  if n == n_entries
+    fprintf(oid, '    </div> <!REPLACE_WITH_DASH_DASH end of content REPLACE_WITH_DASH_DASH>\n\n');
+
+    fprintf(oid, '    <div w3-include-html="sys/footer_amp.html"></div>\n');
+    fprintf(oid, '    <script>w3IncludeHTML();</script>\n\n');
+  end
   
   fprintf(oid, '</body>\n');
   fprintf(oid, '</html>\n');
@@ -288,10 +342,10 @@ function fileName = prt_id(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName)
+    delete(fileName); fileName = [];
   end  
    
-  cd(WD);
+  cd(WD0);
 
 end
 

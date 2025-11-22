@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_ecoCodes</h1><!--introduction--><p>prints an html-page with all ecoCodes for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[fileName, pets] = <a href="prt_ecoCodes"><b>prt_ecoCodes</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all ecoCodes for specified AmP entries as present in allStat; Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: character string with names of existing entries or cell string name of taxon</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file</li><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses <a href="read_eco"><b>read_eco</b></a>.</li><li>Repair id of an entry with <a href="repair_ecoCode.html"><b>repair_ecoCode</b></a>.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li></ul></div><h2 id="6">Example</h2><p>prt_ecoCodes('Crustacea')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_ecoCodes</h1><!--introduction--><p>prints an html-page with all ecoCodes for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[fileName, pets] = <a href="prt_ecoCodes"><b>prt_ecoCodes</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all ecoCodes for specified AmP entries as present in allStat; Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file if input 'save' applies, else empty</li><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses <a href="read_eco"><b>read_eco</b></a>.</li><li>Repair id of an entry with <a href="repair_ecoCode.html"><b>repair_ecoCode</b></a>.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li></ul></div><h2 id="6">Example</h2><p>prt_ecoCodes('Crustacea')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_ecoCodes
 % prints an html-page with all ecoCodes for specified AmP entries 
@@ -85,12 +85,12 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 %
 % Input:
 %
-% * pets: character string with names of existing entries or cell string name of taxon
+% * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
-% * fileName: string with name of output file
+% * fileName: string with name of output file if input 'save' applies, else empty
 % * pets: cell string with entry names
 
 %% Remarks
@@ -103,18 +103,7 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 %% Example
 % prt_ecoCodes('Crustacea')
 
-  if ~exist('save','var')
-    save = false;
-  end
-
-  WD0 = cdCur; cd ../../deblab/add_my_pet/
-  
-  if ischar(pets)
-    title = pets; pets = select(pets);
-  else
-    title = 'Animalia';
-  end  
-  
+    
   version = datestr(date_allStat, 'yyyy/mm/dd');
   header = {[title, ' ',  version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
   n_rows = length(pets); n_cols = length(header);

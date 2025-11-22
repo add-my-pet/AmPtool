@@ -14,12 +14,12 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 %
 % Input:
 %
-% * pets: character string with names of existing entries or cell string name of taxon
+% * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
-% * fileName: string with name of output file
+% * fileName: string with name of output file if input 'save' applies, else empty
 % * pets: cell string with entry names
 
 %% Remarks
@@ -32,18 +32,7 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 %% Example
 % prt_ecoCodes('Crustacea')
 
-  if ~exist('save','var')
-    save = false;
-  end
-
-  WD0 = cdCur; cd ../../deblab/add_my_pet/
-  
-  if ischar(pets)
-    title = pets; pets = select(pets);
-  else
-    title = 'Animalia';
-  end  
-  
+    
   version = datestr(date_allStat, 'yyyy/mm/dd');
   header = {[title, ' ',  version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
   n_rows = length(pets); n_cols = length(header);
