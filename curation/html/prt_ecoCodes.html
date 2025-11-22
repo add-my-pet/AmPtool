@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_ecoCodes</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-30"><meta name="DC.source" content="prt_ecoCodes.m"><style type="text/css">
+      --><title>prt_ecoCodes</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-11-22"><meta name="DC.source" content="prt_ecoCodes.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_ecoCodes</h1><!--introduction--><p>prints an html-page with all ecoCodes for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>fileName = <a href="prt_ecoCodes"><b>prt_ecoCodes</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all ecoCodes for specified AmP entries as present in allStat; Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: cell array with names of existing entries</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses <a href="read_eco"><b>read_eco</b></a>.</li><li>Repair id of an entry with <a href="repair_ecoCode.html"><b>repair_ecoCode</b></a>.</li></ul></div><h2 id="6">Example</h2><p>prt_ecoCodes(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_ecoCodes</h1><!--introduction--><p>prints an html-page with all ecoCodes for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[fileName, pets] = <a href="prt_ecoCodes"><b>prt_ecoCodes</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all ecoCodes for specified AmP entries as present in allStat; Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: character string with names of existing entries or cell string name of taxon</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file</li><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses <a href="read_eco"><b>read_eco</b></a>.</li><li>Repair id of an entry with <a href="repair_ecoCode.html"><b>repair_ecoCode</b></a>.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li></ul></div><h2 id="6">Example</h2><p>prt_ecoCodes('Crustacea')</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_ecoCodes
 % prints an html-page with all ecoCodes for specified AmP entries 
 
 %%
-function fileName = prt_ecoCodes(pets, save)
-% created 2022/06/130 by Bas Kooijman
+function [fileName, pets]  = prt_ecoCodes(pets, save)
+% created 2022/06/130 by Bas Kooijman, modified 2025/11/22
 
 %% Syntax
-% fileName = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
+% [fileName, pets] = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
 
 %% Description
 % prints an html-page with all ecoCodes for specified AmP entries as present in allStat; 
@@ -85,28 +85,40 @@ function fileName = prt_ecoCodes(pets, save)
 %
 % Input:
 %
-% * pets: cell array with names of existing entries
+% * pets: character string with names of existing entries or cell string name of taxon
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
 % * fileName: string with name of output file
+% * pets: cell string with entry names
 
 %% Remarks
+%
 % * This function uses <read_eco *read_eco*>.
 % * Repair id of an entry with <repair_ecoCode.html *repair_ecoCode*>.
+% * if input pets is a cell string, output pets is identical
+% * click on a column header to make that column invisible and on the left-most header to let it re-appear 
 
 %% Example
-% prt_ecoCodes(select('Crustacea'))
+% prt_ecoCodes('Crustacea')
 
   if ~exist('save','var')
     save = false;
   end
-         
-  version = datestr(date_allStat, 'yyyy/mm/dd');
-  header = {['AmP ', version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
-  n_rows = length(pets); n_cols = length(header);
+
+  WD0 = cdCur; cd ../../deblab/add_my_pet/
   
+  if ischar(pets)
+    title = pets; pets = select(pets);
+  else
+    title = 'Animalia';
+  end  
+  
+  version = datestr(date_allStat, 'yyyy/mm/dd');
+  header = {[title, ' ',  version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
+  n_rows = length(pets); n_cols = length(header);
+    
   val = [pets, read_eco(pets, {'climate','ecozone','habitat','embryo','migrate','food','gender','reprod'})];
 
   fileName = 'ecoCodes.html';
@@ -201,7 +213,7 @@ function fileName = prt_ecoCodes(pets, save)
   fprintf(oid, '    }\n\n');
       
   fprintf(oid, '    function hideCol(col) {\n');
-  fprintf(oid, '      var table = document.getElementById("tabId");\n');
+  fprintf(oid, '      var table = document.getElementById("tabEco");\n');
   fprintf(oid, '      var styleSheet = document.getElementById("myStyleSheet").sheet;\n\n'); 
   fprintf(oid, '      var rule = "table td:nth-child("+ col +"), table th:nth-child("+ col +") {display: none;}";\n');
   fprintf(oid, '      styleSheet.insertRule(rule);\n');
@@ -211,7 +223,7 @@ function fileName = prt_ecoCodes(pets, save)
   fprintf(oid, '      var input, filter, table, tr, td, i;\n');
   fprintf(oid, '      input = document.getElementById("Species");\n');
   fprintf(oid, '      filter = input.value.toUpperCase();\n');
-  fprintf(oid, '      table = document.getElementById("tabId");\n');
+  fprintf(oid, '      table = document.getElementById("tabEco");\n');
   fprintf(oid, '      tr = table.getElementsByTagName("tr");\n');
   fprintf(oid, '      for (i = 0; i < tr.length; i++) {\n');
   fprintf(oid, '        td = tr[i].getElementsByTagName("td")[0];\n');
@@ -242,8 +254,10 @@ function fileName = prt_ecoCodes(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName)
+    delete(fileName); fileName = [];
   end  
+
+  cd(WD0);
 
 end
 

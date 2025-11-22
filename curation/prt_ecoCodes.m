@@ -2,11 +2,11 @@
 % prints an html-page with all ecoCodes for specified AmP entries 
 
 %%
-function fileName = prt_ecoCodes(pets, save)
-% created 2022/06/130 by Bas Kooijman
+function [fileName, pets]  = prt_ecoCodes(pets, save)
+% created 2022/06/130 by Bas Kooijman, modified 2025/11/22
 
 %% Syntax
-% fileName = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
+% [fileName, pets] = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
 
 %% Description
 % prints an html-page with all ecoCodes for specified AmP entries as present in allStat; 
@@ -14,32 +14,40 @@ function fileName = prt_ecoCodes(pets, save)
 %
 % Input:
 %
-% * pets: cell array with names of existing entries
+% * pets: character string with names of existing entries or cell string name of taxon
 % * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
 %
 % Output:
 %
 % * fileName: string with name of output file
+% * pets: cell string with entry names
 
 %% Remarks
+%
 % * This function uses <read_eco *read_eco*>.
 % * Repair id of an entry with <repair_ecoCode.html *repair_ecoCode*>.
+% * if input pets is a cell string, output pets is identical
+% * click on a column header to make that column invisible and on the left-most header to let it re-appear 
 
 %% Example
-% prt_ecoCodes(select('Crustacea'))
+% prt_ecoCodes('Crustacea')
 
   if ~exist('save','var')
     save = false;
   end
 
-  if save
-    WD0 = cdCur; cd ../../deblab/add_my_pet/
-  end
-         
-  version = datestr(date_allStat, 'yyyy/mm/dd');
-  header = {['AmP ', version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
-  n_rows = length(pets); n_cols = length(header);
+  WD0 = cdCur; cd ../../deblab/add_my_pet/
   
+  if ischar(pets)
+    title = pets; pets = select(pets);
+  else
+    title = 'Animalia';
+  end  
+  
+  version = datestr(date_allStat, 'yyyy/mm/dd');
+  header = {[title, ' ',  version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
+  n_rows = length(pets); n_cols = length(header);
+    
   val = [pets, read_eco(pets, {'climate','ecozone','habitat','embryo','migrate','food','gender','reprod'})];
 
   fileName = 'ecoCodes.html';
@@ -175,7 +183,7 @@ function fileName = prt_ecoCodes(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName)
+    delete(fileName); fileName = [];
   end  
 
   cd(WD0);
