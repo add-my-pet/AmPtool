@@ -2,11 +2,11 @@
 % prints an html-page with all ecoCodes for specified AmP entries 
 
 %%
-function [fileName, pets]  = prt_ecoCodes(pets, save)
+function pets  = prt_ecoCodes(pets, fileName)
 % created 2022/06/130 by Bas Kooijman, modified 2025/11/22
 
 %% Syntax
-% [fileName, pets] = <prt_ecoCodes *prt_ecoCodes*>(pets, save)
+% pets = <prt_ecoCodes *prt_ecoCodes*>(pets, fileName)
 
 %% Description
 % prints an html-page with all ecoCodes for specified AmP entries as present in allStat; 
@@ -15,12 +15,11 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 % Input:
 %
 % * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
-% * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
+% * fileName: optional string with name of output file without extension; default: no output file
 %
 % Output:
 %
-% * fileName: string with name of output file if input 'save' applies, else empty
-% * pets: cell string with entry names
+% * pets: cell array with entry names
 
 %% Remarks
 %
@@ -32,21 +31,30 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
 %% Example
 % prt_ecoCodes('Crustacea')
 
-    
+  if ~exist('pets','var') 
+    pets = select;
+  elseif ischar(pets)
+    pets = select(pets);
+  end  
+
+  if ~exist('fileName','var')
+    save = false; fileName = 'ecoCodes.html'; title = 'ecoCodes';
+  else
+    save = true; fileName = [fileName, '.html']; title = strsplit(fileName,'.'); title = title{1};
+  end
+  
   version = datestr(date_allStat, 'yyyy/mm/dd');
   header = {[title, ' ',  version], 'climate', 'ecozone', 'habitat', 'embryo', 'migrate', 'food', 'gender','reprod'};
   n_rows = length(pets); n_cols = length(header);
     
   val = [pets, read_eco(pets, {'climate','ecozone','habitat','embryo','migrate','food','gender','reprod'})];
-
-  fileName = 'ecoCodes.html';
   oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
 
   % file head
   fprintf(oid, '<!DOCTYPE html>\n');
   fprintf(oid, '<html>\n');
   fprintf(oid, '<head>\n');
-  fprintf(oid, '  <title>%s</title>\n',  'ecoCodes');
+  fprintf(oid, '  <title>%s</title>\n',  title);
   fprintf(oid, '  <link rel="stylesheet" type="text/css" href="sys/style.css">\n');
   fprintf(oid, '  <script src="sys/jscripts.js"></script>\n');
   fprintf(oid, '  <style id="myStyleSheet">\n');
@@ -172,10 +180,8 @@ function [fileName, pets]  = prt_ecoCodes(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName); fileName = [];
+    delete(fileName);
   end  
-
-  cd(WD0);
 
 end
 

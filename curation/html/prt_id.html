@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-11-22"><meta name="DC.source" content="prt_id.m"><style type="text/css">
+      --><title>prt_id</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-11-23"><meta name="DC.source" content="prt_id.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,17 +67,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>[fileName, pets] = <a href="prt_id"><b>prt_id</b></a>(pets, save)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')</li><li>save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)</li></ul></div><p>Output:</p><div><ul><li>fileName: string with name of output file if input 'save' applies, else empty</li><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses results_my_pet.mat files in local directories of add_my_pet/entries;</li><li>AmP supports 23 websites: 7 general, 16 taxon-specific.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li><li>Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</li><li>Check links existing vs new with <a href="check_links.html"><b>check_links</b></a></li><li>If the number of style rules in de header is changed, function undoHide should be edited.</li></ul></div><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+  </style></head><body><div class="content"><h1>prt_id</h1><!--introduction--><p>prints an html-page with all identifiers for specified AmP entries</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example</a></li></ul></div><h2 id="3">Syntax</h2><p>pets = <a href="prt_id"><b>prt_id</b></a>(pets, fileName)</p><h2 id="4">Description</h2><p>prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files Clicking on header labels removes that column; clicking on the first one ("entry") undoes the deletion.</p><p>Input:</p><div><ul><li>pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')</li><li>fileName: optional string with name of output file without extension; default: no output file</li></ul></div><p>Output:</p><div><ul><li>pets: cell string with entry names</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>This function uses results_my_pet.mat files in local directories of add_my_pet/entries;</li><li>AmP supports 23 websites: 7 general, 16 taxon-specific.</li><li>if input pets is a cell string, output pets is identical</li><li>click on a column header to make that column invisible and on the left-most header to let it re-appear</li><li>Repair id of an entry with <a href="repair_id.html"><b>repair_id</b></a>, get existing id's with <a href="get_links.html"><b>get_links</b></a> and new id's with <a href="get_id.html"><b>get_id</b></a>.</li><li>Check links existing vs new with <a href="check_links.html"><b>check_links</b></a></li><li>If the number of style rules in de header is changed, function undoHide should be edited.</li></ul></div><h2 id="6">Example</h2><p>prt_id(select('Crustacea'))</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% prt_id
 % prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function [fileName, pets] = prt_id(pets, save)
+function pets = prt_id(pets, fileName)
 % created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04, 2025/11/22
 
 %% Syntax
-% [fileName, pets] = <prt_id *prt_id*>(pets, save)
+% pets = <prt_id *prt_id*>(pets, fileName)
 
 %% Description
 % prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
@@ -86,11 +86,10 @@ function [fileName, pets] = prt_id(pets, save)
 % Input:
 %
 % * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
-% * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
+% * fileName: optional string with name of output file without extension; default: no output file
 %
 % Output:
 %
-% * fileName: string with name of output file if input 'save' applies, else empty
 % * pets: cell string with entry names
 
 %% Remarks
@@ -104,7 +103,6 @@ function [fileName, pets] = prt_id(pets, save)
 
 %% Example
 % prt_id(select('Crustacea'))
-
   
   if ~exist('pets','var')
     title = 'Animalia'; pets = select;
@@ -114,8 +112,10 @@ function [fileName, pets] = prt_id(pets, save)
     title = 'Animalia';
   end  
 
-  if ~exist('save','var')
-    save = false;
+  if ~exist('fileName','var')
+    save = false; fileName = 'links.html';
+  else
+    save = true; fileName = [fileName, '.html'];
   end
 
   WD0 = cdCur; cd ../../deblab/add_my_pet/
@@ -180,7 +180,6 @@ function [fileName, pets] = prt_id(pets, save)
    
   n_rows = n; n_cols = length(header);
    
-  fileName = 'links.html';
   oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
 
   % file head
@@ -342,7 +341,7 @@ function [fileName, pets] = prt_id(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName); fileName = [];
+    delete(fileName); 
   end  
    
   cd(WD0);

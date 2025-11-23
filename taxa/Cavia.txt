@@ -1,3 +1,4 @@
 Cavia_aperea
+Cavia_magna
 Cavia_porcellus
 Cavia_tschudii

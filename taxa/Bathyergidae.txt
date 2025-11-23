@@ -1,5 +1,6 @@
 Bathyergus
 Cryptomys
+Fukomys
 Georychus
 Heliophobius
 Heterocephalus

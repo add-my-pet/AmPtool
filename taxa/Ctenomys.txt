@@ -1,1 +1,9 @@
+Ctenomys_australis
+Ctenomys_fulvus
+Ctenomys_magellanicus
+Ctenomys_maulinus
+Ctenomys_mendocinus
+Ctenomys_opimus
+Ctenomys_peruanus
 Ctenomys_talarum
+Ctenomys_tuconax

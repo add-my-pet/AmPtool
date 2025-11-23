@@ -2,11 +2,11 @@
 % prints an html-page with all identifiers for specified AmP entries 
 
 %%
-function [fileName, pets] = prt_id(pets, save)
+function pets = prt_id(pets, fileName)
 % created 2021/08/14 by Bas Kooijman, modified 2022/05/17, 2022/06/04, 2025/11/22
 
 %% Syntax
-% [fileName, pets] = <prt_id *prt_id*>(pets, save)
+% pets = <prt_id *prt_id*>(pets, fileName)
 
 %% Description
 % prints an html-page with all identifiers for specified AmP entries as present in results_my_pet.mat files
@@ -15,11 +15,10 @@ function [fileName, pets] = prt_id(pets, save)
 % Input:
 %
 % * pets: optional character string with names of existing entries or cell string name of taxon (default: 'Animalia')
-% * save: optional boolean for saving the table in deblab/add_my_pet/links.html (default 0: do not save)
+% * fileName: optional string with name of output file without extension; default: no output file
 %
 % Output:
 %
-% * fileName: string with name of output file if input 'save' applies, else empty
 % * pets: cell string with entry names
 
 %% Remarks
@@ -33,7 +32,6 @@ function [fileName, pets] = prt_id(pets, save)
 
 %% Example
 % prt_id(select('Crustacea'))
-
   
   if ~exist('pets','var')
     title = 'Animalia'; pets = select;
@@ -43,8 +41,10 @@ function [fileName, pets] = prt_id(pets, save)
     title = 'Animalia';
   end  
 
-  if ~exist('save','var')
-    save = false;
+  if ~exist('fileName','var')
+    save = false; fileName = 'links.html';
+  else
+    save = true; fileName = [fileName, '.html'];
   end
 
   WD0 = cdCur; cd ../../deblab/add_my_pet/
@@ -109,7 +109,6 @@ function [fileName, pets] = prt_id(pets, save)
    
   n_rows = n; n_cols = length(header);
    
-  fileName = 'links.html';
   oid = fopen(fileName, 'w+'); % open file for writing, delete existing content
 
   % file head
@@ -271,7 +270,7 @@ function [fileName, pets] = prt_id(pets, save)
   web(fileName,'-browser') % open html in systems browser
   pause(2)
   if ~save
-    delete(fileName); fileName = [];
+    delete(fileName); 
   end  
    
   cd(WD0);
