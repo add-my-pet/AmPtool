@@ -4,3 +4,4 @@ Chaetodipus_fallax
 Chaetodipus_formosus
 Chaetodipus_hispidus
 Chaetodipus_intermedius
+Chaetodipus_penicillatus

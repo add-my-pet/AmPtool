@@ -1,7 +1,10 @@
-Dipodomys_merriami
+Dipodomys_agilis
 Dipodomys_deserti
 Dipodomys_heermanni
+Dipodomys_merriami
+Dipodomys_microps
 Dipodomys_nitratoides
 Dipodomys_ordii
+Dipodomys_panamintinus
 Dipodomys_spectabilis
 Dipodomys_stephensi

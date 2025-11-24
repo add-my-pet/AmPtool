@@ -1,3 +1,4 @@
+Heteromys_anomalus
 Heteromys_desmarestianus
 Heteromys_pictus
 Heteromys_salvini
