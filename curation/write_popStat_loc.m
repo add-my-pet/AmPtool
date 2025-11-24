@@ -111,6 +111,11 @@ function popStat = write_popStat_loc(varargin)
   flds_popStat = fields(popStat); n_popStat = length(flds_popStat);
   if ~(n_popStat == n_entries)
     fprintf(['Warning from write_popStat_loc:  popStat has ', num2str(n_popStat), ' fields, but lists-of-lists have ', num2str(n_entries), ' entries\n']);
+    diff = setdiff(flds_popStat, entries);
+    if ~isempty(diff)
+      fprintf('Warning from write_popStat_loc: present in popStat, but not in lists-of-lists\n');
+      diff
+    end
   end
   popStat = orderfields(popStat, entries);
   cdAmPdata; save('popStat.mat','popStat'); cd(WD); % run from /AmPtool/curation

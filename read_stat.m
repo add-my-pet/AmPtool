@@ -13,7 +13,7 @@ function [var, units, label] = read_stat(entries, varargin)
 %
 % Input:
 %
-% * entries: string with name of taxon or n-cell string with names of entries
+% * entries: string with name of taxon or n-cell array with names of entries
 % * varargin: names of variables or cell-string with names of variables
 %
 % Output

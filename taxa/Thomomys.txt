@@ -1,2 +1,4 @@
 Thomomys_bottae
 Thomomys_talpoides
+Thomomys_townsendii
+Thomomys_umbrinus

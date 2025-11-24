@@ -1,2 +1,6 @@
+Fukomys_amatus
+Fukomys_anselli
 Fukomys_bocagei
+Fukomys_damarensis
 Fukomys_darlingi
+Fukomys_mechowi
