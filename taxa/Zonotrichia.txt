@@ -1,5 +1,6 @@
 Zonotrichia_albicollis
 Zonotrichia_atricapilla
 Zonotrichia_capensis
+Zonotrichia_lateralis
 Zonotrichia_leucophrys
 Zonotrichia_querula
