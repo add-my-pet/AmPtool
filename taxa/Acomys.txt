@@ -1,1 +1,4 @@
 Acomys_cahirinus
+Acomys_russatus
+Acomys_spinosissimus
+Acomys_subspinosus
