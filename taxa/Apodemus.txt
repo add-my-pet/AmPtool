@@ -1,7 +1,10 @@
 Apodemus_agrarius
 Apodemus_alpicola
 Apodemus_argenteus
+Apodemus_chevrieri
 Apodemus_flavicollis
+Apodemus_mystacinus
 Apodemus_semotus
 Apodemus_speciosus
 Apodemus_sylvaticus
+Apodemus_witherbyi
