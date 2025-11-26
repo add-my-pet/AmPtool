@@ -1,3 +1,5 @@
+Pseudomys_albocinereus
 Pseudomys_australis
 Pseudomys_gracilicaudatus
+Pseudomys_hermannsburgensis
 Pseudomys_novaehollandiae

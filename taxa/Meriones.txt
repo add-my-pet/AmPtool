@@ -1,4 +1,7 @@
+Meriones_crassus
 Meriones_hurrianae
-Meriones_unguiculatus
 Meriones_libycus
+Meriones_meridianus
 Meriones_shawi
+Meriones_tristrami
+Meriones_unguiculatus

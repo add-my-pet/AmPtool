@@ -1,4 +1,7 @@
 Cricetomys
+Macrotarsomys
+Malacothrix
 Mystromys
+Petromyscus
 Saccostomus
 Steatomys
