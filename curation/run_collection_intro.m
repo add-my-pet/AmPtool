@@ -85,7 +85,7 @@ prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_
 prt_authors; % add_my_pet/authors.html
 prt_pars; % add_my_pet/pars.html
 prt_patterns; % add_my_pet/patterns.html
-prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
+prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html 
 prt_about; % add_my_pet/about.html
 prt_ecoCodes(select,'ecoCodes'); % ecoCodes of all entries
 prt_id(select,'links'); % id of all links to html pages
