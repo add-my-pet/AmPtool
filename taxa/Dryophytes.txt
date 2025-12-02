@@ -3,3 +3,5 @@ Dryophytes_chrysoscelis
 Dryophytes_cinereus
 Dryophytes_eximia
 Dryophytes_gratiosa
+Dryophytes_squirellus
+Dryophytes_versicolor
