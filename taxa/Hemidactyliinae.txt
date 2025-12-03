@@ -2,3 +2,6 @@ Batrachoseps
 Bolitoglossa
 Eurycea
 Gyrinophilus
+Isthmura
+Pseudoeurycea
+Pseudotriton
