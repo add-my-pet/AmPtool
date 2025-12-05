@@ -90,7 +90,11 @@ function pets = prt_id(pets, fileName)
     for j = 1:n_flds
       nm = strsplit(flds{j}, '_'); nm = nm{2};
       eval(['id = id_', nm, ';']); idNm = ['''''', id, ''''''];
+      try
       pars = [col.(nm), ',',  idNm,];
+      catch
+          keyboard
+      end
       if ~isempty(id)
         %eval([nm,'{i} = ''<button onclick="lnk(', pars, ')">', id, '</button>'';']);
         eval([nm,'{i} = ''<a onclick="lnk(', pars, ')">', id, '</a>'';']);

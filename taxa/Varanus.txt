@@ -1,5 +1,9 @@
 Varanus_bengalensis
+Varanus_gouldii
 Varanus_indicus
 Varanus_juxtindicus
 Varanus_komodoensis
+Varanus_mertensi
 Varanus_niloticus
+Varanus_panoptes
+Varanus_rosenbergi
