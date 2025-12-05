@@ -1,4 +1,8 @@
+Varanus_acanthurus
 Varanus_bengalensis
+Varanus_brevicauda
+Varanus_caudolineatus
+Varanus_eremius
 Varanus_gouldii
 Varanus_indicus
 Varanus_juxtindicus
@@ -7,3 +11,4 @@ Varanus_mertensi
 Varanus_niloticus
 Varanus_panoptes
 Varanus_rosenbergi
+Varanus_salvator

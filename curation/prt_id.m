@@ -93,6 +93,8 @@ function pets = prt_id(pets, fileName)
       try
       pars = [col.(nm), ',',  idNm,];
       catch
+          fprintf('Warning from prd_id: field-problem in metaData.links\n')
+          fprintf('run_collection(pets{i}); load results_pets{i}\n')          
           keyboard
       end
       if ~isempty(id)
