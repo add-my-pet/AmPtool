@@ -9,7 +9,8 @@ function [NN, n_taxa] = nodes_leaves_root(info)
 % [NB, n_taxa] = <../nodes_leaves_root.m *nodes_leaves_root*>
 
 %% Description
-% counts the number of nodes between leaves and root
+% counts the number of nodes between leaves and root;
+% Warning: this function takes several hours to run
 %
 % Input
 %
@@ -29,8 +30,11 @@ function [NN, n_taxa] = nodes_leaves_root(info)
   taxa = select('Animalia'); n_taxa = length(taxa); nodes = zeros(n_taxa,1);
   for i = 1:n_taxa
     nodes(i) = length(lineage(taxa{i}));
+    %S = sprintf('n = %s',i); fprintf(S); 
+    %fprintf(repmat('\b',1,numel(S))); 
   end
-  
+
+
   % compose histogram
   max_nodes = max(nodes); NN = zeros(max_nodes,2); NN(:,1) = 1:max_nodes;
   for i = 1: max_nodes
@@ -51,5 +55,5 @@ function [NN, n_taxa] = nodes_leaves_root(info)
   set(gca, 'FontSize', 15, 'Box', 'on')
   xlabel('nodes between leaves and root')  
   ylabel('survivor function')
-  saveas(gca, '../../img/AmPtool/nodes_leaves_root.png')
+  saveas(gca, '../../AmPtool/docs/img/nodes_leaves_root.png')
 

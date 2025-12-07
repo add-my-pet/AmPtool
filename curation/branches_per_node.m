@@ -57,6 +57,6 @@ function [NB, n_nodes] = branches_per_node(info)
   xlabel('branches per node')  
   ylabel('survivor function')
   xlim([0 21])
-  saveas(gca, '../../img/AmPtool/branches_per_node.png')
+  saveas(gca, '../../AmPtool/docs/img/branches_per_node.png')
 
  
