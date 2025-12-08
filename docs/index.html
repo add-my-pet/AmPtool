@@ -91,11 +91,13 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       <a href="../curation/html/write_allStat.html"><code>write_allStat</code></a> .
       Only curators who have all entries locally can run this function, however <b>allStat.mat</b> is available for everyone to download and use. 
 	  
-	 <p> For all users: in order to directly read data from  <b>allStat.mat</b> you can make load the data either by typing  <code>load allStat</code> into your matlab console or better still by making use of the function <a href="../html/read_allStat.html"><code>read_allStat</code></a>.
-	 The function <a href="../html/read_allStat.html"><code>read_allStat</code></a> enables accessing the data for specified entries.
+    <p> For all users: in order to directly read data from  <b>allStat.mat</b> you can make load the data either by typing <code>load allStat</code>
+      into your matlab console or better still by making use of the function <a href="../html/read_allStat.html"><code>read_allStat</code></a>.
+    The function <a href="../html/read_allStat.html"><code>read_allStat</code></a> enables accessing the data for specified entries.
     The structure <code>allStat</code> has as first level field names the names of all entries, as specified by <a href="../html/select.html"><code>select</code></a> (see below).
     As the AmP collection grows, lists-of-lists change (see below), so does <code>allStat</code>; these two should be seen as a couple that should not be uncoupled.
-    All rates and times that are not primary parameters are given at temperature <code>T_typical</code>, which is entry-specific (and corresponds to a stylized body temperature for endotherms and a temperature that it typically resides in for ectotherms). 
+    All rates and times that are not primary parameters are given at temperature <code>T_typical</code>, which is entry-specific
+      (and corresponds to a stylized body temperature for endotherms and a temperature that it typically resides in for ectotherms). 
     Users must  use the temperature correction factor <code>c_T</code> to convert to the reference temperatures and temperature parameters to other temperatures.
     The primary parameters are given at <code>T_ref = 20</code> C, but only those with time in their dimensions depend on temperature.
 
@@ -215,7 +217,7 @@ Open Matlab and <a href="https://www.mathworks.com/help/matlab/ref/path.html">se
       <code>treeview_taxa('Cladocera', 'kap')</code>.
     Function <a href="../html/select_taxon.html"><code>select_taxon</code></a> let you choose a taxon from a list of all possibilities.
     If you are not sure about the possible nodes, or want to avoid spelling errors: 
-    <pre>  <code class="matlab">treeview_taxa(select_taxon('Arthropoda', 5))</code></pre> lets you choose from all arthropod orders.
+    <pre><code class="matlab">treeview_taxa(select_taxon('Arthropoda', 5))</code></pre> lets you choose from all arthropod orders.
 
     <p>
     The tree can be read in the direction from leaves to root with the function <a href="../html/lineage.html"><code>lineage</code></a>,
