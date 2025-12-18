@@ -1,18 +1,14 @@
-%% mydata_shstat: demo script for using plotting tool shstat
+%% mydata_shstat: demo function for using plotting tool shstat
 % see prt_pars for more examples of 1D plotting
+% 
+function mydata_shstat(example)
+% created 2016/04/23 by Bas Kooijman; modified 2025/12/18. 
 %
-% Make sure that the lists-of-lists correspond with allStat.mat.
-% Generate updated allStat.mat if necessary (for curators only)
-%   write_allStat(C2K(20),1); % notice that default allStat is at T=T_typical and f=1
-% allStat has fields for the temp-correction c_T, so divide rates by c_T to go from T_typical to T_ref
-%
-% Compose/modify your legend if you wish. You can also do this on-the-fly by selecting an empty legend.
-% mylegend = select_legend; replace legend_* by mylegend in the examples below, to activate this.
-% If your desired legend is close to an existing one, e.g. legend_fish, you can modify it by: mylegend = select_legend(legend_fish)
+% Example of use:
+%   mydata_shstat(3)
 
 close all    % remove any existing figure
 
-example = 4; % edit this number to see the various examples
 switch example
   case 1 % 2D: use default settings
     shstat_options('default');
@@ -24,7 +20,7 @@ switch example
     shstat_options('y_transform', 'none');
     shstat_options('x_label', 'on');
     shstat_options('y_label', 'on');
-    [Hfig Hleg] = shstat({'s_s', 'kap'}, legend_vert, date); % set title, output handle for adding items
+    [Hfig, Hleg] = shstat({'s_s', 'kap'}, legend_vert, date); % set title, output handle for adding items
     
     figure(Hfig) % add items to figure
     kap = linspace(0, 1, 100); ss = kap.^2 .* (1 - kap); 
@@ -48,8 +44,8 @@ switch example
     shstat_options('x_transform', 'none');
     shstat_options('y_transform', 'none');
     shstat_options('z_transform', 'none');
-    [Hfig Hleg] = shstat({'kap', 'ep_min', 's_s'}, legend_vert); % output handle for adding items
-
+    [Hfig, Hleg] = shstat({'kap', 'ep_min', 's_s'}, legend_vert); % output handle for adding items
+    
     figure(Hfig) % add items to figure
     kap = linspace(0, 1, 15)'; f = kap'; ss = kap.^2 .* (1 - kap) * f.^3; % set x,y,z values
     mesh(kap, f, ss'); % add surface to figure
@@ -57,6 +53,7 @@ switch example
     Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
     colormap(Hfig, Colmap) % set color map to add_my_pet colors 
     zlim([0 4/27])
+    view(150,18)
 
   case 5 % 2D: numerical mode because of computations: setting of xlabel and ylabel required
     shstat_options('default');

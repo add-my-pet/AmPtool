@@ -1,5 +1,5 @@
 function mydata_Cephalopoda(fig)
-% figures for KooyAugu2021 on cephalopods
+% figures for KooyAugu2022 on cephalopods
 
 if ~exist('fig','var')
    fig = 1:18;
