@@ -1,4 +1,2 @@
-Nyctibiiformes
-Steatornithiformes
-Podargiformes
-Daedalornithes
+Sedentaves
+Letornithes
