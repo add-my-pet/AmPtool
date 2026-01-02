@@ -1,3 +1,4 @@
+Streptopelia_capicola
 Streptopelia_decaocto
 Streptopelia_roseogrisea
 Streptopelia_tranquebarica
