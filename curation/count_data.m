@@ -36,11 +36,11 @@ else
   taxa = varargin(1);
 end
 
-WD = pwd;
+WD = pwd; cdCur; cd('../../deblab/add_my_pet/entries/Haliclona_oculata');
 
 n = zeros(length(taxa),5); % initiate counting
 for i = 1:size(n,1) % scan taxa
-  cd(['../../entries/', taxa{i}])
+  cd(['../', taxa{i}])
   eval(['data = mydata_', taxa{i},';']);
   n(i,1) = length(fieldnmnst_st(data.psd)); % get number of pseudo data sets
   data = rmfield_wtxt(data, 'psd'); % remove psd from structure data
