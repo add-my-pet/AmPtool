@@ -22,7 +22,7 @@ function legend = legend_aves
     {'o', 8, 3, [0 0 1], [1 1 1]}, 'Galloanserae'
     % Neoaves: edge magenta and red
     {'o', 8, 3, [1 0 1], [0 0 0]}, 'Mirandornithes'
-    {'o', 8, 3, [1 0 1], [0 1 1]}, 'Gruimorphae'
+    {'o', 8, 3, [1 0 1], [0 1 0]}, 'Gruimorphae'
     {'o', 8, 3, [1 0 1], [1 0 1]}, 'Opisthocomiformes'
     {'o', 8, 3, [1 0 1], [0 1 1]}, 'Strisores'
     {'o', 8, 3, [1 0 1], [1 1 1]}, 'Columbea'
