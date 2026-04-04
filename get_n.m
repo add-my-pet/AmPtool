@@ -6,7 +6,7 @@ function [n_taxa, taxa] = get_n(taxa)
 % created 2021/08/13 by Bas Kooijman
 
 %% Syntax
-% [n_taxa, taxa] = <../get_n.m *get_#*>(taxa)
+% [n_taxa, taxa] = <../get_n.m *get_n*>(taxa)
 
 %% Description
 % Writes html table with number of AmP entries
