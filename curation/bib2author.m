@@ -17,9 +17,13 @@ function [author, authKey] = bib2author(my_pet_bib)
 %
 % Output:
 %
+% * author: (k,1)-cell array with author last names
 % * authKey: (n,2)-cell array with author name, bibkey
 
 %% Remarks
+% 
+% * the last names are made unique, but different authora might have the same last name
+% * some items might have many authors; only the first three are included
 
 if ~exist('my_pet_bib','var')
   WD = cdCur; cd ../../; my_pet_bib = 'DEB Library';
