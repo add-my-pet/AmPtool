@@ -38,7 +38,12 @@ item = strfind(my_bib,'@'); n = length(item)-1; authKey = cell(n,2); author = st
 for i=1:n
   bib = my_bib(item(i):item(i+1)); 
   i_0 = 10+strfind(bib,'author = {'); i_1 = strfind(bib,'},'); i_1 = i_1(i_1>i_0); i_1 = i_1(1)-2;
-  authi = bib(i_0:i_1); authi = strsplit(authi,' and '); m = length(authi);
+  authi = bib(i_0:i_1); 
+  if contains(authi,'Alexandre R. R. Péry')
+    bib
+    keyboard
+  end
+  authi = strsplit(authi,' and '); m = length(authi);
   i_0 = 8+strfind(bib,'year = {'); i_1 = strfind(bib,'},'); i_1 = i_1(i_1>i_0); i_1 = i_1(1)-1;
   year = bib(i_0:i_1); 
   for j = 1:m

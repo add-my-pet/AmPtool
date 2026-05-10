@@ -2,6 +2,7 @@ Falco_berigora
 Falco_biarmicus
 Falco_chicquera
 Falco_columbarius
+Falco_eleonorae
 Falco_mexicanus
 Falco_naumanni
 Falco_peregrinus
