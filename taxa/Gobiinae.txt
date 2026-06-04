@@ -4,6 +4,7 @@ Aphia
 Asterropteryx
 Bathygobius
 Eviota
+Favonigobius
 Glossogobius
 Gobiosoma
 Gobius
@@ -14,6 +15,7 @@ Neogobius
 Rhinogobiops
 Padogobius
 Ponticola
+Psammogobius
 Sufflogobius
 Thorogobius
 Trimma
