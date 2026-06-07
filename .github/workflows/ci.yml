@@ -34,7 +34,7 @@ jobs:
           source-folder: .
           select-by-folder: test
           test-results-junit: test-results/results.xml
-          cobertura-code-coverage: coverage/coverage.xml
+          code-coverage-cobertura: coverage/coverage.xml
         env:
           AMPDATA_DIR: ${{ github.workspace }}/AmPdata
 
