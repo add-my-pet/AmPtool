@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [master, remove-perl]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone DEBtool_M
+        run: git clone --depth 1 https://github.com/add-my-pet/DEBtool_M.git DEBtool_M
+
+      - name: Download AmP data
+        run: |
+          mkdir -p AmPdata
+          curl -L -o AmPdata/allStat.mat  https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPdata/allStat.mat
+          curl -L -o AmPdata/allUnits.mat https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPdata/allUnits.mat
+          curl -L -o AmPdata/allLabel.mat https://www.bio.vu.nl/thb/deb/deblab/add_my_pet/AmPdata/allLabel.mat
+
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: R2021a
+
+      - name: Run tests
+        uses: matlab-actions/run-tests@v2
+        with:
+          source-folder: .
+          select-by-folder: test
+          test-results-junit: test-results/results.xml
+          code-coverage-cobertura: coverage/coverage.xml
+        env:
+          AMPDATA_DIR: ${{ github.workspace }}/AmPdata
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: coverage/coverage.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results/results.xml

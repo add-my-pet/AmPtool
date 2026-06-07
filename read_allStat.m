@@ -35,7 +35,7 @@ function [var, entries, units, label] = read_allStat(varargin)
   persistent allStat allUnits allLabel
   
   if isempty(allStat) % ~exist('allStat','var') || isempty(allStat)
-    WD = cdAmPdata; load allStat; cd(WD); % get all parameters and statistics in structure allStat
+    WD = pwd; cd(amp_data_dir()); load allStat; cd(WD); % get all parameters and statistics in structure allStat
     n_fields = length(fieldnames(allStat));
     n_entries = numel(get_taxonomy_cache().species_list('Animalia'));
     if n_fields ~= n_entries
@@ -44,10 +44,10 @@ function [var, entries, units, label] = read_allStat(varargin)
     end
   end
   if isempty(allUnits) %~exist('allUnits','var') || isempty(allUnits)
-    WD = cdAmPdata; load allUnits; cd(WD); % get all units in structure allUnits
+    WD = pwd; cd(amp_data_dir()); load allUnits; cd(WD); % get all units in structure allUnits
   end
   if isempty(allLabel) %~exist('allLabel','var') || isempty(allLabel)
-    WD = cdAmPdata; load allLabel; cd(WD); % get all labels in structure allLabel
+    WD = pwd; cd(amp_data_dir()); load allLabel; cd(WD); % get all labels in structure allLabel
   end
 
   entries = fieldnames(allStat); n_fields = length(entries);
@@ -79,5 +79,16 @@ function [var, entries, units, label] = read_allStat(varargin)
   if num == nargin
     var = cell2mat(var);
   end
-      
 
+end
+
+
+function p = amp_data_dir()
+% Returns the AmP data directory path.
+% Checks AMPDATA_DIR environment variable first (used in CI and testing),
+% then falls back to cdAmPdata() for normal local installations.
+  p = getenv('AMPDATA_DIR');
+  if isempty(p)
+    p = cdAmPdata;   % DEBtool_M function for local installs
+  end
+end
