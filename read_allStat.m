@@ -32,49 +32,61 @@ function [var, entries, units, label] = read_allStat(varargin)
 %% Example of use
 % complete_mre = read_allStat('COMPLETE', 'MRE'); 
   
-  persistent allStat allUnits allLabel entries_cache
+  persistent allStat allUnits allLabel entries_cache field_cache
 
-  if isempty(allStat) % ~exist('allStat','var') || isempty(allStat)
-    WD = pwd; cd(amp_data_dir()); load allStat; cd(WD); % get all parameters and statistics in structure allStat
+  if isempty(allStat)
+    WD = pwd; cd(amp_data_dir()); load allStat; cd(WD);
     entries_cache = fieldnames(allStat);
+    field_cache   = containers.Map('KeyType', 'char', 'ValueType', 'any');
     n_entries = numel(get_taxonomy_cache().species_list('Animalia'));
     if length(entries_cache) ~= n_entries
       fprintf('Warning from read_allStat: allStat has %d fields, but the taxa list has %d entries\n', length(entries_cache), n_entries)
       date_check;
     end
   end
-  if isempty(allUnits) %~exist('allUnits','var') || isempty(allUnits)
-    WD = pwd; cd(amp_data_dir()); load allUnits; cd(WD); % get all units in structure allUnits
+  if isempty(allUnits)
+    WD = pwd; cd(amp_data_dir()); load allUnits; cd(WD);
   end
-  if isempty(allLabel) %~exist('allLabel','var') || isempty(allLabel)
-    WD = pwd; cd(amp_data_dir()); load allLabel; cd(WD); % get all labels in structure allLabel
+  if isempty(allLabel)
+    WD = pwd; cd(amp_data_dir()); load allLabel; cd(WD);
   end
 
   entries = entries_cache; n_fields = length(entries);
 
-  if iscell(varargin{1})    
-    varargin = varargin{:}; % unpack cell string
+  if iscell(varargin{1})
+    varargin = varargin{:};
   end
-  nargin = length(varargin);    
-  var = cell(n_fields,nargin);
+  nargin = length(varargin);
+  var = cell(n_fields, nargin);
   units = cell(nargin,1); label = cell(nargin,1);
-  
-  for i = 1:n_fields
-    for j = 1:nargin
-      if isfield(allStat.(entries{i}), varargin{j})
-        var{i,j} = allStat.(entries{i}).(varargin{j});
-        units{j} = allUnits.(varargin{j});
-        label{j} = allLabel.(varargin{j});
-      else
-        var{i,j} = NaN; 
+
+  for j = 1:nargin
+    fld = varargin{j};
+    if isKey(field_cache, fld)
+      var(:,j) = field_cache(fld);
+    else
+      col = cell(n_fields, 1);
+      for i = 1:n_fields
+        entry_i = allStat.(entries{i});
+        if isfield(entry_i, fld)
+          col{i} = entry_i.(fld);
+        else
+          col{i} = NaN;
+        end
       end
+      field_cache(fld) = col;
+      var(:,j) = col;
+    end
+    if isfield(allUnits, fld)
+      units{j} = allUnits.(fld);
+      label{j} = allLabel.(fld);
     end
   end
-  
+
   % convert cell array to numerical array if possible
   num = 0;
   for j = 1:nargin
-    num = num +  isnumeric(var{1,j});
+    num = num + isnumeric(var{1,j});
   end
   if num == nargin
     var = cell2mat(var);
