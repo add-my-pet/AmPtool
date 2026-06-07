@@ -37,26 +37,15 @@ end
 if ~iscell(code) % if code is char string, convert to cell string
   code = {code};
 end
-n_code = length(code); N_code = zeros(n_code,1);
-for k = 1:n_code
-  N_code(k) = length(code{k});
+n_code = length(code);
+
+if strcmp(var, 'food') || strcmp(var, 'habitat') % strip stage prefix once, outside loop
+  codes = cellfun(@(ci) cellfun(@(s) s(3:end), ci, 'UniformOutput', false), ...
+                  codes, 'UniformOutput', false);
 end
 
-for i = 1:n_entries   % scan entries
-  codes_i = codes{i}; n_codes_i = length(codes_i);
-  for j = 1:n_codes_i % scan codes for entries i
-    for k = 1:n_code  % scan specified codes
-      codes_ij = codes_i{j}; 
-      if strcmp(var,'food') || strcmp(var,'habitat') % remove stage codes
-        codes_ij(1:2) = [];
-      end
-      N = min(N_code(k),length(codes_ij));
-      if strcmp(code{k}, codes_ij(1:N))
-        sel(i) = true;
-        break
-      end
-    end
-  end
+for k = 1:n_code
+  sel = sel | cellfun(@(ci) any(startsWith(ci, code{k})), codes);
 end
 
 taxa = entries(sel); 

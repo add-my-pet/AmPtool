@@ -77,10 +77,11 @@ if ~isKey(taxon_set, node)
   species_list(node) = leaves;
   return
 end
-kids   = children(node);
-leaves = {};
+kids = children(node);
+sub  = cell(numel(kids), 1);
 for i = 1:numel(kids)
-  leaves = [leaves; memo_collect_leaves(kids{i}, children, taxon_set, species_list)]; %#ok<AGROW>
+  sub{i} = memo_collect_leaves(kids{i}, children, taxon_set, species_list);
 end
+leaves = vertcat(sub{:});
 species_list(node) = leaves;
 end

@@ -70,9 +70,9 @@ function shstat_options (key, val)
 	    x_transform = 'log10';
 	    y_transform = 'log10';
 	    z_transform = 'log10';
-        x_label = 'off';
-        y_label = 'off';
-        z_label = 'off';
+        x_label = 'on';
+        y_label = 'on';
+        z_label = 'on';
 
       case 'x_transform'
 	    if ~exist('val','var')

@@ -304,11 +304,11 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       xlabel(label_x)  
       ylabel(label_y)
       
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h = datacursormode(Hfig);
+      entries_txt = strrep(entries, '_', ' ');
       h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
-      
+
       if iscell(legend{1,2})
         Hleg = shlegend(legend,[],[],label_legend);
       else
@@ -326,22 +326,23 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         for j = 1:n_taxa % scan taxa
           i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
           marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3};
-          v1 = val_plot(sel(:,i)==1,1); v2 = val_plot(sel(:,i)==1,2); v3 = val_plot(sel(:,i)==1,3); n_taxai = length(v1);
-          [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort according to v3 to handle overlapping marker plots within a taxon
-          range = [min(v3) 1.1 * max(v3)]; color = color_lava((v3 - range(1))/ (range(2) - range(1))); % set colors accoring to v3
-          val_plot = [v1, v2, v3];
-          for i = 1:n_taxai
-            plot3(v1(i), v2(i), v3(i), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', color(i,:), 'MarkerEdgeColor', color(i,:))
-          end
-        end    
+          ok = sel(:,i)==1 & ~any(isnan(val_plot),2); % exclude NaN rows
+          v1 = val_plot(ok,1); v2 = val_plot(ok,2); v3 = val_plot(ok,3);
+          [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort by v3 for z-order
+          range = [min(v3) 1.1 * max(v3)]; color = color_lava((v3 - range(1))/ (range(2) - range(1)));
+          val_plot(ok,:) = [v1, v2, v3];
+          scatter3(v1, v2, v3, MS^2, color, T, 'filled', 'LineWidth', LW, ...
+                   'MarkerEdgeColor', 'none', 'MarkerFaceAlpha', 0.6)
+        end
       end
       set(gca, 'FontSize', 15, 'Box', 'on')
-      xlabel(label_x)  
+      grid on
+      xlabel(label_x)
       ylabel(label_y)
       zlabel(label_z)
   
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h = datacursormode(Hfig);
+      entries_txt = strrep(entries, '_', ' ');
       h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
 

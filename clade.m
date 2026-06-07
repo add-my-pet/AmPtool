@@ -139,27 +139,26 @@ function [members, taxon] = clade(taxa, level, site)
     return
   end
   
-  for i = 1:n % obtain lineages for all taxa called lin1, lin2, ..
-    lin = lineage(taxa{i});
-    if ~isequal('Animalia', lin{1})
+  lins = cell(n, 1); % obtain lineages for all taxa
+  for i = 1:n
+    lins{i} = lineage(taxa{i});
+    if isempty(lins{i}) || ~isequal('Animalia', lins{i}{1})
       fprintf(['Warning from clade: ', taxa{i}, ' is not recognized \n']);
       members = []; taxon = []; return
     end
-    eval(['lin', num2str(i), ' = lin;']);
   end
-  
-  true = 1; j = 0; % initiate selection process
-  while true
+
+  all_agree = true; j = 0; % initiate selection process
+  while all_agree
     j = j + 1; % step down the lineage
-    taxon = lin1{j};
-    for i = 2 : n % step through taxa
-      eval(['true = isequal(taxon, lin', num2str(i), '{j});']);
-      if ~true
-        break
+    taxon = lins{1}{j};
+    for i = 2:n % step through taxa
+      if ~isequal(taxon, lins{i}{j})
+        all_agree = false; break
       end
     end
   end
-  taxon = lin1{j-1};
+  taxon = lins{1}{j-1};
   
   members = select(taxon); 
 
