@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Clone DEBtool_M
-        run: git clone --depth 1 https://github.com/add-my-pet/DEBtool_M.git ${{ runner.temp }}/DEBtool_M
+        run: git clone --depth 1 https://github.com/add-my-pet/DEBtool_M.git DEBtool_M
 
       - name: Download AmP data
         run: |
@@ -31,9 +31,8 @@ jobs:
       - name: Run tests
         uses: matlab-actions/run-tests@v2
         with:
-          source-folder: |
-            .
-            ${{ runner.temp }}/DEBtool_M
+          source-folder: .
+          select-by-folder: test
           test-results-junit: test-results/results.xml
         env:
           AMPDATA_DIR: ${{ github.workspace }}/AmPdata
