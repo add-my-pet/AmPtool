@@ -117,13 +117,12 @@ end
 % Returns all descendants of node (both intermediate taxa and species leaves),
 % excluding node itself. Uses the children map for an in-memory DFS.
 function nodes = collect_all_nodes(node, TC)
-  nodes = {};
+  nodes = cell(0,1);
   if ~isKey(TC.children, node)
     return  % leaf node: no children
   end
   kids = TC.children(node);
   for i = 1:numel(kids)
-    nodes{end+1} = kids{i}; %#ok<AGROW>
-    nodes = [nodes; collect_all_nodes(kids{i}, TC)]; %#ok<AGROW>
+    nodes = [nodes; kids(i); collect_all_nodes(kids{i}, TC)]; %#ok<AGROW>
   end
 end
