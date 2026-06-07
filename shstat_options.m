@@ -1,174 +1,86 @@
 %% shstat_options
-% Sets options for function 'shstat' one by one.
+% Sets options for function shstat one by one.
 
 %%
-function shstat_options (key, val)
-  %  created at 2016/04/28 by Bas Kooijman
-  
-  %% Syntax
-  % <../shstat_options.m *shstat_options*> (key, val)
-  
-  %% Description
-  % A dual purpose function which :
-  %
-  % Allows to see which options are set.
-  %    Type 'shstat_options' to print to console all of the options 
-  %    (a string called key) and corresponding values (a string called val) or
-  %
-  % Sets options for function <shstat.html *shstat*> 
-  %  Type 'shstat_options('default') to set all of the 6 options at default values
-  %  and/or set the values of each option one at a time. 
-  %
-  % Input
-  %
-  % * no input: print values to screen (use this to see values of options)
-  % * one input: use this to set all of the options to a default:
-  %
-  %   - 'default':  sets options at default values
-  %
-  % * two inputs: (strings key and val) use this to set one by one values for each option)
-  %
-  %   - key 'x_transform', val 'log10',  'none' 
-  %   - key 'y_transform', val 'log10',  'none' 
-  %   - key 'z_transform', val 'log10',  'none'
-  %   - key 'x_label', val 'on',  'off' 
-  %   - key 'y_label', val 'on',  'off'
-  %   - key 'z_label', val 'on',  'off'
-  %
-  % Output
-  %
-  % * no output (however globals are set to values or values are printed to
-  % screen)
+function shstat_options(key, val)
+% created 2016/04/28 by Bas Kooijman; modified 2025/06/08
 
-%% Remarks
-% The function <shstat.html *shstat*> allows making plots in 1 till three
-% dimensions and the function <shstat_options.html *shstat_options*> is
-% allowing the user to define whether or not the x, y and z axis are 10 log
-% transform or not. Values for 'x_transform' are either '1og10' or 'none'
-% (and same applies for y and z transform options). The other option is
-% whether or not to show the labels of each axis on the figure. So in that
-% vein the option 'x_label' is either 'on' or 'off'. The same applies for y
-% and z labels. The shortest way to define all of the options is to set the
-% options to 'default' (in which case log10 transform and showing the axis
-% labels are the defaults) and then define only the options the user needs
-% to set different from default. If the user does not first set the options
-% to 'default' then the user must define values for each of the options
-% before calling function  <shstat.html *shstat*>.
+%% Syntax
+% <../shstat_options.m *shstat_options*> (key, val)
+
+%% Description
+% Sets or prints options for <shstat.html *shstat*>.
+% Options are stored per-session in the root graphics object (no globals).
+%
+% Input
+% * no input: print all current option values to screen
+% * 'default': reset all options to defaults
+% * key, val: set one option (see list below)
+%
+% Available options (key — allowed values):
+%   x_transform   — 'log10' | 'none'
+%   y_transform   — 'log10' | 'none'
+%   z_transform   — 'log10' | 'none'
+%   x_label       — 'on' | 'off'
+%   y_label       — 'on' | 'off'
+%   z_label       — 'on' | 'off'
+%   font_size     — positive number (default 15)
+%   marker_alpha  — 0 to 1 (default 0.6; 1 = opaque)
+%   grid          — 'on' | 'off'
+%   color_scheme  — 'lava' | 'viridis' | 'plasma' | 'cividis'
 
 %% Example of use
-% shstat_options('default'); shstat_options('x_transform', 'none')
+% shstat_options('default')
+% shstat_options('font_size', 12)
+% shstat_options('color_scheme', 'viridis')
 
-    global x_transform y_transform z_transform x_label y_label z_label
-
-    if ~exist('key', 'var')
-      key = 'unknown';
+  if nargin == 0
+    opts = get_opts();
+    fields = fieldnames(opts);
+    for i = 1:numel(fields)
+      v = opts.(fields{i});
+      if ischar(v)
+        fprintf('%s = %s\n', fields{i}, v);
+      else
+        fprintf('%s = %g\n', fields{i}, v);
+      end
     end
-     
-    switch key
-	
-      case 'default'
-	    x_transform = 'log10';
-	    y_transform = 'log10';
-	    z_transform = 'log10';
-        x_label = 'on';
-        y_label = 'on';
-        z_label = 'on';
+    return
+  end
 
-      case 'x_transform'
-	    if ~exist('val','var')
-	      if numel(x_transform) ~= 0
-	        fprintf(['x_transform = ', x_transform,' \n']);  
-	      else
-            fprintf('x_transform = unknown \n');
-	      end	      
-	    else
-	      x_transform = val;
-	    end
+  if strcmp(key, 'default')
+    setappdata(0, 'shstat_opts', shstat_defaults());
+    return
+  end
 
-      case 'y_transform'
-	    if ~exist('val','var')
-	      if numel(y_transform) ~= 0
-	        fprintf(['y_transform = ', y_transform,' \n']);  
-	      else
-            fprintf('y_transform = unknown \n');
-	      end	      
-	    else
-	      y_transform = val;
-        end
+  opts = get_opts();
+  if ~isfield(opts, key)
+    fprintf('Warning from shstat_options: unknown option "%s"\n', key);
+    return
+  end
 
-      case 'z_transform'
-	    if ~exist('val','var')
-	      if numel(z_transform) ~= 0
-	        fprintf(['z_transform = ', z_transform,' \n']);  
-	      else
-            fprintf('z_transform = unknown \n');
-	      end	      
-	    else
-	      z_transform = val;
-        end
-
-      case 'x_label'
-	    if ~exist('val','var')
-	      if numel(x_label) ~= 0
-	        fprintf(['x_label', x_label,' \n']);  
-	      else
-            fprintf('x_label = unknown \n');
-	      end	      
-	    else
-	      x_label = val;
-        end
-
-      case 'y_label'
-	    if ~exist('val','var')
-	      if numel(y_label) ~= 0
-	        fprintf(['y_label', y_label,' \n']);  
-	      else
-            fprintf('y_label = unknown \n');
-	      end	      
-	    else
-	      y_label = val;
-        end
-
-      case 'z_label'
-	    if ~exist('val','var')
-	      if numel(z_label) ~= 0
-	        fprintf(['z_label', z_label,' \n']);  
-	      else
-            fprintf('z_label = unknown \n');
-	      end	      
-	    else
-	      z_label = val;
-	    end
-
-      otherwise 
-	    if numel(x_transform) ~= 0
-          fprintf(['x_transform = ', x_transform,' \n']);
-	    else
-	      fprintf('x_transform = unknown \n');
-	    end	      
-	    if numel(y_transform) ~= 0
-	      fprintf(['y_transform = ', y_transform,' \n']);
-	    else
-	      fprintf('y_transform = unknown \n');
-	    end
-	    if numel(z_transform) ~= 0
-	      fprintf(['z_transform = ', z_transform,' \n']);
-	    else
-	      fprintf('z_transform = unknown \n');
-	    end
- 	    if numel(x_label) ~= 0
-          fprintf(['x_label = ', x_label,' \n']);
-	    else
-	      fprintf('x_label = unknown \n');
-	    end	      
-	    if numel(y_label) ~= 0
-	      fprintf(['y_label = ', y_label,' \n']);
-	    else
-	      fprintf('y_label = unknown \n');
-	    end
-	    if numel(z_label) ~= 0
-	      fprintf(['z_label = ', z_label,' \n']);
-	    else
-	      fprintf('z_label = unknown \n');
-	    end
+  if nargin == 1
+    v = opts.(key);
+    if ischar(v)
+      fprintf('%s = %s\n', key, v);
+    else
+      fprintf('%s = %g\n', key, v);
     end
+  else
+    opts.(key) = val;
+    setappdata(0, 'shstat_opts', opts);
+  end
+end
+
+function opts = get_opts()
+  opts = merge_with_defaults(getappdata(0, 'shstat_opts'));
+end
+
+function opts = merge_with_defaults(stored)
+  opts = shstat_defaults();
+  if isempty(stored), return; end
+  f = fieldnames(stored);
+  for k = 1:numel(f)
+    if isfield(opts, f{k}), opts.(f{k}) = stored.(f{k}); end
+  end
+end
