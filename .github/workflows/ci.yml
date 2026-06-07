@@ -34,8 +34,15 @@ jobs:
           source-folder: .
           select-by-folder: test
           test-results-junit: test-results/results.xml
+          cobertura-code-coverage: coverage/coverage.xml
         env:
           AMPDATA_DIR: ${{ github.workspace }}/AmPdata
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: coverage/coverage.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
