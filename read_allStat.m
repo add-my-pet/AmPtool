@@ -34,8 +34,14 @@ function [var, entries, units, label] = read_allStat(varargin)
   
   persistent allStat allUnits allLabel
   
-  if isempty(allStat) % ~exist('allStat','var') || isempty(allStat) 
+  if isempty(allStat) % ~exist('allStat','var') || isempty(allStat)
     WD = cdAmPdata; load allStat; cd(WD); % get all parameters and statistics in structure allStat
+    n_fields = length(fieldnames(allStat));
+    n_entries = numel(get_taxonomy_cache().species_list('Animalia'));
+    if n_fields ~= n_entries
+      fprintf('Warning from read_allStat: allStat has %d fields, but the taxa list has %d entries\n', n_fields, n_entries)
+      date_check;
+    end
   end
   if isempty(allUnits) %~exist('allUnits','var') || isempty(allUnits)
     WD = cdAmPdata; load allUnits; cd(WD); % get all units in structure allUnits
@@ -43,13 +49,8 @@ function [var, entries, units, label] = read_allStat(varargin)
   if isempty(allLabel) %~exist('allLabel','var') || isempty(allLabel)
     WD = cdAmPdata; load allLabel; cd(WD); % get all labels in structure allLabel
   end
-  
+
   entries = fieldnames(allStat); n_fields = length(entries);
-  load('n_entries', 'n_entries');
-  if ~(n_fields == n_entries)
-    fprintf(['Warning from read_allStat: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
-    date_check;
-  end
 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
