@@ -1,5 +1,8 @@
 *.asv
 
+# Generated cache — rebuilt automatically from taxa/*.txt
+taxa/taxonomy_cache.mat
+
 #Tex generated files#
 *.aux
 *.bbl
