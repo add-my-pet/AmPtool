@@ -47,21 +47,19 @@ function [dist, val] = dist_traits(my_pets, traits, norm)
     dist = 0; val = []; return
   end
 
-  % fill distance matrix
-  if ~exist('norm','var') || isempty(norm)  % lossfuction symmetric bounded
-    for i = 1:n_pets
-      for j = i+1:n_pets
-        dist(i,j) = (val(i,:) - val(j,:)).^2 ./ (val(i,:).^2 + val(j,:).^2) * weights;
-      end
+  % fill distance matrix — vectorised over species pairs, loop only over traits
+  n_traits = size(val, 2);
+  if ~exist('norm','var') || isempty(norm)  % loss function symmetric bounded (F_sb)
+    for k = 1:n_traits
+      v    = val(:,k);
+      dist = dist + weights(k) * (v - v').^2 ./ (v.^2 + v'.^2);
     end
-  else % lossfuction symmetric unbounded
-    for i = 1:n_pets
-      for j = i+1:n_pets
-        dist(i,j) = (val(i,:) - val(j,:)).^2 .* (1./val(i,:).^2 + 1./val(j,:).^2) * weights;
-      end
-    end     
+  else                                       % loss function symmetric unbounded (F_su)
+    for k = 1:n_traits
+      v    = val(:,k);
+      dist = dist + weights(k) * (v - v').^2 .* (1./v.^2 + 1./v'.^2);
+    end
   end
-
-  dist = dist + dist';
+  dist(1:n_pets+1:end) = 0;  % ensure exact zero diagonal (guards against 0/0 for zero-valued traits)
   
 end
