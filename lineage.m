@@ -44,6 +44,6 @@ function classification = lineage(taxon)
     classification{end+1} = node; %#ok<AGROW>
   end
 
-  % Reverse so output runs from Animalia (root) down to taxon
-  classification = fliplr(classification);
+  % Reverse so output runs from Animalia (root) down to taxon, as column to match original
+  classification = fliplr(classification)';
 end
