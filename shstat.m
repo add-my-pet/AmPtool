@@ -330,9 +330,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
           [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort according to v3 to handle overlapping marker plots within a taxon
           range = [min(v3) 1.1 * max(v3)]; color = color_lava((v3 - range(1))/ (range(2) - range(1))); % set colors accoring to v3
           val_plot = [v1, v2, v3];
-          for i = 1:n_taxai
-            plot3(v1(i), v2(i), v3(i), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', color(i,:), 'MarkerEdgeColor', color(i,:))
-          end
+          scatter3(v1, v2, v3, MS^2, color, T, 'filled', 'LineWidth', LW, 'MarkerEdgeColor', 'none')
         end    
       end
       set(gca, 'FontSize', 15, 'Box', 'on')

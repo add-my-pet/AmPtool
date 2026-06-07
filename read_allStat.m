@@ -82,13 +82,3 @@ function [var, entries, units, label] = read_allStat(varargin)
 
 end
 
-
-function p = amp_data_dir()
-% Returns the AmP data directory path.
-% Checks AMPDATA_DIR environment variable first (used in CI and testing),
-% then falls back to cdAmPdata() for normal local installations.
-  p = getenv('AMPDATA_DIR');
-  if isempty(p)
-    p = cdAmPdata;   % DEBtool_M function for local installs
-  end
-end
