@@ -19,8 +19,8 @@ classdef TestReadAllStat < matlab.unittest.TestCase
 
     function testKapInZeroOne(tc)
       var = read_allStat('kap');
-      tc.verifyGreaterThan(nanmin(var), 0);
-      tc.verifyLessThan(nanmax(var), 1);
+      tc.verifyGreaterThan(min(var, [], 'omitnan'), 0);
+      tc.verifyLessThan(max(var, [], 'omitnan'), 1);
     end
 
     function testMultipleVarsReturnMatrix(tc)

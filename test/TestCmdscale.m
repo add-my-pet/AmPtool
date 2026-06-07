@@ -1,4 +1,7 @@
 classdef TestCmdscale < matlab.unittest.TestCase
+  % Uses no toolboxes — pdist/squareform are Statistics Toolbox so replaced
+  % with inline helpers at the bottom of this file.
+
   methods (Test)
 
     function testOutputSizeFullRank(tc)
@@ -10,14 +13,14 @@ classdef TestCmdscale < matlab.unittest.TestCase
     function testEuclideanReconstruction(tc)
       % Distances from 4 known 3D points must be exactly reconstructed
       X  = [0 0 0; 1 0 0; 0 1 0; 0 0 1];
-      D  = squareform(pdist(X));
+      D  = eucdist(X);
       Y  = cmdscale(D);
-      D2 = squareform(pdist(Y));
+      D2 = eucdist(Y);
       tc.verifyEqual(D2, D, 'AbsTol', 1e-10);
     end
 
     function testCollinearEmbeddingIsOneDimensional(tc)
-      % 3 collinear points: 2D MDS should need only 1 non-trivial dimension
+      % 3 collinear points: MDS should need only 1 non-trivial dimension
       D      = [0 1 3; 1 0 2; 3 2 0];
       [~, e] = cmdscale(D);
       n_pos  = sum(e > max(abs(e)) * eps^(3/4));
@@ -25,8 +28,9 @@ classdef TestCmdscale < matlab.unittest.TestCase
     end
 
     function testEigenvaluesNonNegativeForEuclidean(tc)
+      rng(42);
       X      = randn(10, 4);
-      D      = squareform(pdist(X));
+      D      = eucdist(X);
       [~, e] = cmdscale(D);
       tc.verifyGreaterThanOrEqual(min(e), -1e-10);
     end
@@ -38,5 +42,17 @@ classdef TestCmdscale < matlab.unittest.TestCase
       tc.verifyEqual(size(Y, 1), 3);
     end
 
+  end
+end
+
+function D = eucdist(X)
+  % Pairwise Euclidean distance matrix — avoids Statistics Toolbox pdist.
+  n = size(X, 1);
+  D = zeros(n);
+  for i = 1:n
+    for j = i+1:n
+      D(i,j) = norm(X(i,:) - X(j,:));
+      D(j,i) = D(i,j);
+    end
   end
 end
