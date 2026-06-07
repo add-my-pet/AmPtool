@@ -304,11 +304,11 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       xlabel(label_x)  
       ylabel(label_y)
       
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h = datacursormode(Hfig);
+      entries_txt = strrep(entries, '_', ' ');
       h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
-      
+
       if iscell(legend{1,2})
         Hleg = shlegend(legend,[],[],label_legend);
       else
@@ -340,8 +340,8 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       ylabel(label_y)
       zlabel(label_z)
   
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
+      h = datacursormode(Hfig);
+      entries_txt = strrep(entries, '_', ' ');
       h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
       datacursormode on % mouse click on plot
 

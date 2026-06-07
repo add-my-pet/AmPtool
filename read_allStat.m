@@ -32,14 +32,14 @@ function [var, entries, units, label] = read_allStat(varargin)
 %% Example of use
 % complete_mre = read_allStat('COMPLETE', 'MRE'); 
   
-  persistent allStat allUnits allLabel
-  
+  persistent allStat allUnits allLabel entries_cache
+
   if isempty(allStat) % ~exist('allStat','var') || isempty(allStat)
     WD = pwd; cd(amp_data_dir()); load allStat; cd(WD); % get all parameters and statistics in structure allStat
-    n_fields = length(fieldnames(allStat));
+    entries_cache = fieldnames(allStat);
     n_entries = numel(get_taxonomy_cache().species_list('Animalia'));
-    if n_fields ~= n_entries
-      fprintf('Warning from read_allStat: allStat has %d fields, but the taxa list has %d entries\n', n_fields, n_entries)
+    if length(entries_cache) ~= n_entries
+      fprintf('Warning from read_allStat: allStat has %d fields, but the taxa list has %d entries\n', length(entries_cache), n_entries)
       date_check;
     end
   end
@@ -50,7 +50,7 @@ function [var, entries, units, label] = read_allStat(varargin)
     WD = pwd; cd(amp_data_dir()); load allLabel; cd(WD); % get all labels in structure allLabel
   end
 
-  entries = fieldnames(allStat); n_fields = length(entries);
+  entries = entries_cache; n_fields = length(entries);
 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
