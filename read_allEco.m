@@ -28,18 +28,19 @@ function [codes, entries] = read_allEco(varargin)
 % gender_embryo = read_allEco('gender', 'embryo'); 
 % gender = read_allEco('gender'); [sel, nm] = select_01('Testudines'); prt_tab({nm(sel), gender(sel)});
   
-  persistent allStat
+  persistent allStat entries_cache
 
-  if ~exist('allStat','var') || length(allStat) == 0
-    load('allStat','allStat') % get all parameters and statistics in structure allStat
+  if isempty(allStat)
+    WD = pwd; cd(amp_data_dir()); load('allStat', 'allStat'); cd(WD);
+    entries_cache = fieldnames(allStat);
+    n_entries = numel(get_taxonomy_cache().species_list('Animalia'));
+    if length(entries_cache) ~= n_entries
+      fprintf('Warning from read_allEco: allStat has %d fields, but the taxa list has %d entries\n', length(entries_cache), n_entries)
+      date_check;
+    end
   end
 
-  entries = fieldnames(allStat); n_fields = length(entries); 
-  load('n_entries', 'n_entries');
-  if ~(n_fields == n_entries)
-    fprintf(['Warning from read_allEco: allStat has ', num2str(n_fields), ' fields, but the lists-of-lists have ', num2str(n_entries), ' entries\n'])
-    date_check;
-  end
+  entries = entries_cache; n_fields = length(entries);
 
   if iscell(varargin{1})    
     varargin = varargin{:}; % unpack cell string
@@ -53,7 +54,7 @@ function [codes, entries] = read_allEco(varargin)
     end
   end
 
-  codes = cell(n_entries,nargin);
+  codes = cell(n_fields,nargin);
   
   for i = 1:n_fields
     for j = 1:nargin

@@ -72,7 +72,21 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
 %% Example of use
 % see <../mydata_shstat.m *mydata_shstat*>
 
-  global x_transform y_transform z_transform  x_label y_label z_label
+  opts = merge_with_defaults(getappdata(0, 'shstat_opts'));
+  x_transform  = opts.x_transform;
+  y_transform  = opts.y_transform;
+  z_transform  = opts.z_transform;
+  x_label      = opts.x_label;
+  y_label      = opts.y_label;
+  z_label      = opts.z_label;
+  FS                = opts.font_size;
+  marker_alpha      = opts.marker_alpha;
+  marker_size_scale = opts.marker_size_scale;
+  marker_edge_color = opts.marker_edge_color;
+  grid_opt          = opts.grid;
+  color_scheme      = opts.color_scheme;
+  legend_location   = opts.legend_location;
+  datacursor_opt    = opts.datacursor;
 
   % get (x,y,z)-values, units, label
   if isnumeric(vars) % numerical mode, read_allStat is bypassed
@@ -203,7 +217,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   if strcmp (x_transform, 'log10')
     val_plot(:,1) = log10(val_plot(:,1));
     if strcmp(x_label, 'on')
-      label_x = [label_x, ', _{10}log ', symbol_x, ', ', units_x];
+      label_x = ['_{10}log ', label_x, ', ', symbol_x, ', ', units_x];
     else
       label_x = ['_{10}log ', symbol_x, ', ', units_x];
     end
@@ -217,7 +231,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   if n_vars > 1 && strcmp (y_transform, 'log10')
     val_plot(:,2) = log10(val_plot(:,2));
     if strcmp(y_label, 'on')
-      label_y = [label_y, ', _{10}log ', symbol_y, ', ', units_y];
+      label_y = ['_{10}log ', label_y, ', ', symbol_y, ', ', units_y];
     else
       label_y = '';
     end
@@ -231,7 +245,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   if n_vars > 2 && strcmp (z_transform, 'log10')
     val_plot(:,3) = log10(val_plot(:,3));
     if strcmp(z_label, 'on')
-      label_z = [label_z, ', _{10}log ', symbol_z, ', ', units_z];
+      label_z = ['_{10}log ', label_z, ', ', symbol_z, ', ', units_z];
     else
       label_z = '';
     end
@@ -258,7 +272,8 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   switch n_vars
     case 1
         
-      set(gca, 'FontSize', 15, 'Box', 'on', 'YTick', 0:0.2:1)
+      set(gca, 'FontSize', FS, 'Box', 'on', 'YTick', 0:0.2:1)
+      if strcmp(grid_opt, 'on'), grid on; end
       xlabel(label_x)
       ylim([0 1]);
       if strcmp(y_label, 'on')
@@ -278,78 +293,170 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         plot(surv_x(:,1), surv_x(:,2), colfn, 'LineWidth', 2, 'LineStyle', '-')
         xlim([min(surv_x(:,1)) inf]);
         
-      elseif n_taxa > 1 
+      elseif n_taxa > 1
         xlim_min = inf;
+        h_lines = gobjects(n_taxa, 1);
         for j = 1:n_taxa
           i = n_taxa - j + 1; % reverse sequence of plotting to get crossings of lines natural
-          line = legend{i,1}; LT = line{1}; LW = line{2}; LC = line{3};  
+          line = legend{i,1}; LT = line{1}; LW = line{2}; LC = line{3};
           x_median = median(val_plot(sel(:,i)==1,1)); x_min = min(val_plot(sel(:,i)==1,1)');
-          surv_x = surv(val_plot(sel(:,i)==1, 1)); 
+          surv_x = surv(val_plot(sel(:,i)==1, 1));
           plot([x_min; x_median; x_median], [0.5;0.5;0], '-', 'Color',LC, 'Linewidth',1.5, 'LineStyle',':')
-          plot(surv_x(:,1), surv_x(:,2), LT, 'Color',LC, 'Linewidth',LW, 'LineStyle','-')
-          xlim_min = min(xlim_min,min(surv_x(:,1))); 
+          h_lines(j) = plot(surv_x(:,1), surv_x(:,2), LT, 'Color',LC, 'Linewidth',LW, 'LineStyle','-');
+          xlim_min = min(xlim_min,min(surv_x(:,1)));
         end
         xlim([xlim_min inf])
-        Hleg = shllegend(legend); % show line-legend
+        if strcmp(legend_location, 'separate')
+          Hleg = shllegend(legend);
+          position_legend(Hleg, Hfig);
+        else
+          taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
+          Hleg = embed_legend(h_lines, taxon_labels, legend_location, FS);
+        end
       end
       
 
     case 2
+      h_marks = gobjects(n_taxa, 1);
       for j = 1:n_taxa % scan taxa
         i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
-        marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3}; MEC = marker{4}; MFC = marker{5};  
-        plot(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC)
+        marker = legend{i,1}; T = marker{1}; MS = marker{2} * marker_size_scale; LW = marker{3}; MEC = marker{4}; MFC = marker{5};
+        if ~isempty(marker_edge_color), MEC = marker_edge_color; end
+        h_marks(j) = plot(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC);
+        if marker_alpha < 1 && isprop(h_marks(j), 'MarkerFaceAlpha'), h_marks(j).MarkerFaceAlpha = marker_alpha; end
       end
-      set(gca, 'FontSize', 15, 'Box', 'on')
-      xlabel(label_x)  
+      set(gca, 'FontSize', FS, 'Box', 'on')
+      if strcmp(grid_opt, 'on'), grid on; end
+      xlabel(label_x)
       ylabel(label_y)
-      
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
-      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
-      datacursormode on % mouse click on plot
-      
-      if iscell(legend{1,2})
-        Hleg = shlegend(legend,[],[],label_legend);
+
+      if strcmp(datacursor_opt, 'on')
+        h = datacursormode(Hfig);
+        entries_txt = strrep(entries, '_', ' ');
+        h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
+        datacursormode on % mouse click on plot
+      end
+
+      if strcmp(legend_location, 'separate')
+        if iscell(legend{1,2})
+          Hleg = shlegend(legend,[],[],label_legend);
+        else
+          Hleg = shlegend(legend);
+        end
+        position_legend(Hleg, Hfig);
       else
-        Hleg = shlegend(legend);
+        taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
+        Hleg = embed_legend(h_marks, taxon_labels, legend_location, FS);
       end
           
     case 3
+      h_marks3 = gobjects(n_taxa, 1);
+      z_range = [];
       if length(legend{1,1}) == 5 % all markers within a taxon are identical
         for j = 1:n_taxa % scan taxa
           i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
-          marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3}; MEC = marker{4}; MFC = marker{5};  
-          plot3(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), val_plot(sel(:,i)==1,3), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC)
+          marker = legend{i,1}; T = marker{1}; MS = marker{2} * marker_size_scale; LW = marker{3}; MEC = marker{4}; MFC = marker{5};
+          if ~isempty(marker_edge_color), MEC = marker_edge_color; end
+          h_marks3(j) = plot3(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), val_plot(sel(:,i)==1,3), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC);
         end
       else % length(legend{1,1}) == 3, markers within a taxon differ in color, set by third variable
+        % global z-range across all taxa so colours are consistent
+        all_ok = any(sel, 2) & ~any(isnan(val_plot), 2);
+        all_v3 = val_plot(all_ok, 3);
+        z_range = [min(all_v3), 1.1 * max(all_v3)];
         for j = 1:n_taxa % scan taxa
           i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
-          marker = legend{i,1}; T = marker{1}; MS = marker{2}; LW = marker{3};
-          v1 = val_plot(sel(:,i)==1,1); v2 = val_plot(sel(:,i)==1,2); v3 = val_plot(sel(:,i)==1,3); n_taxai = length(v1);
-          [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort according to v3 to handle overlapping marker plots within a taxon
-          range = [min(v3) 1.1 * max(v3)]; color = color_lava((v3 - range(1))/ (range(2) - range(1))); % set colors accoring to v3
-          val_plot = [v1, v2, v3];
-          for i = 1:n_taxai
-            plot3(v1(i), v2(i), v3(i), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', color(i,:), 'MarkerEdgeColor', color(i,:))
-          end
-        end    
+          marker = legend{i,1}; T = marker{1}; MS = marker{2} * marker_size_scale; LW = marker{3};
+          ok = sel(:,i)==1 & ~any(isnan(val_plot),2); % exclude NaN rows
+          v1 = val_plot(ok,1); v2 = val_plot(ok,2); v3 = val_plot(ok,3);
+          [v3, ind] = sort(v3); v1 = v1(ind); v2 = v2(ind); % sort by v3 for z-order
+          color = shstat_colormap(color_scheme, (v3 - z_range(1)) / (z_range(2) - z_range(1)));
+          val_plot(ok,:) = [v1, v2, v3];
+          h3 = scatter3(v1, v2, v3, MS^2, color, T, 'filled', 'LineWidth', LW, 'MarkerEdgeColor', 'none');
+          if marker_alpha < 1, h3.MarkerFaceAlpha = marker_alpha; end
+          h_marks3(j) = h3;
+        end
       end
-      set(gca, 'FontSize', 15, 'Box', 'on')
-      xlabel(label_x)  
+      set(gca, 'FontSize', FS, 'Box', 'on')
+      if strcmp(grid_opt, 'on'), grid on; end
+      xlabel(label_x)
       ylabel(label_y)
       zlabel(label_z)
-  
-      h = datacursormode(Hfig); entries_txt = entries;
-      for i=1:n_entries; entries_txt{i} = strrep(entries_txt{i}, '_' , ' '); end
-      h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
-      datacursormode on % mouse click on plot
 
-      Hleg = shlegend(legend);
-      if length(legend{1,1}) == 3
-        shcolor_lava(range); 
+      if strcmp(datacursor_opt, 'on')
+        h = datacursormode(Hfig);
+        entries_txt = strrep(entries, '_', ' ');
+        h.UpdateFcn = @(obj, event_obj)xylabels(obj, event_obj, entries_txt, val_plot);
+        datacursormode on % mouse click on plot
       end
-      
+
+      if strcmp(legend_location, 'separate')
+        Hleg = shlegend(legend);
+        position_legend(Hleg, Hfig);
+      else
+        taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
+        Hleg = embed_legend(h_marks3, taxon_labels, legend_location, FS);
+      end
+      if ~isempty(z_range)
+        show_color_scale(color_scheme, z_range, label_z, FS);
+      end
+
   end
-  
+
+end
+
+function position_legend(Hleg, Hfig)
+  if isempty(Hleg) || ~isvalid(Hleg), return; end
+  scr      = get(0, 'ScreenSize');           % [1 1 w h] in pixels
+  main_pos = Hfig.Position;                  % [x y w h]
+  leg_pos  = Hleg.Position;
+  new_x    = main_pos(1) + main_pos(3) + 10;
+  new_x    = min(new_x, scr(3) - leg_pos(3));  % clamp to screen right edge
+  new_y    = max(main_pos(2), 1);               % clamp to screen bottom
+  Hleg.Position(1) = new_x;
+  Hleg.Position(2) = new_y;
+end
+
+function opts = merge_with_defaults(stored)
+  opts = shstat_defaults();
+  if isempty(stored), return; end
+  f = fieldnames(stored);
+  for k = 1:numel(f)
+    if isfield(opts, f{k}), opts.(f{k}) = stored.(f{k}); end
+  end
+end
+
+function Hleg = embed_legend(handles, labels, loc, fs)
+  Hleg = legend(handles, labels, 'Location', loc, 'FontSize', fs);
+end
+
+function color = shstat_colormap(scheme, f)
+switch scheme
+  case 'viridis', color = color_viridis(f);
+  case 'plasma',  color = color_plasma(f);
+  case 'cividis', color = color_cividis(f);
+  otherwise,      color = color_lava(f);
+end
+end
+
+function show_color_scale(scheme, range, lbl, FS)
+% Separate figure showing a colour gradient with data-range tick labels.
+% Replicates shcolor_lava behaviour for any colour scheme.
+  n = 256;
+  f = linspace(0, 1, n)';
+  switch scheme
+    case 'viridis', cmap = color_viridis(f);
+    case 'plasma',  cmap = color_plasma(f);
+    case 'cividis', cmap = color_cividis(f);
+    otherwise,      cmap = color_lava(f);
+  end
+  figure;
+  ax = axes('Position', [0.25 0.05 0.2 0.9]);
+  image(ax, permute(cmap, [1 3 2]));   % n-by-1-by-3 truecolor image
+  set(ax, 'YDir', 'normal', 'XTick', [], 'FontSize', FS);
+  n_ticks = 5;
+  tf = linspace(0, 1, n_ticks);
+  set(ax, 'YTick', 1 + tf * (n - 1), ...
+          'YTickLabel', arrayfun(@(v) sprintf('%.3g', range(1) + v*(range(2)-range(1))), tf, 'UniformOutput', false));
+  ylabel(ax, lbl, 'FontSize', FS);
 end
