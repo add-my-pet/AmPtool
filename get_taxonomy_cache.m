@@ -21,21 +21,29 @@ function TC = get_taxonomy_cache()
 % The in-memory copy (persistent variable) is reused within a MATLAB session
 % as long as the count matches, so repeated calls are essentially free.
 
-persistent cache
+persistent cache cache_mat_mtime
 
-taxa_dir  = fullfile(fileparts(which('get_taxonomy_cache.m')), 'taxa');
-n_txt_now = numel(dir(fullfile(taxa_dir, '*.txt')));
+taxa_dir   = fullfile(fileparts(which('get_taxonomy_cache.m')), 'taxa');
+n_txt_now  = numel(dir(fullfile(taxa_dir, '*.txt')));
+cache_file = fullfile(taxa_dir, 'taxonomy_cache.mat');
 
-% Return in-memory cache if it is current
-if ~isempty(cache) && cache.n_txt == n_txt_now
+% Get current .mat modification time (0 if file absent)
+mat_mtime_now = 0;
+if exist(cache_file, 'file') == 2
+  d = dir(cache_file);
+  mat_mtime_now = d.datenum;
+end
+
+% Return in-memory cache if file count and .mat timestamp are unchanged
+if ~isempty(cache) && cache.n_txt == n_txt_now && ...
+    ~isempty(cache_mat_mtime) && cache_mat_mtime == mat_mtime_now
   TC = cache;
   return
 end
 
-% Check whether the file on disk is also current
-cache_file = fullfile(taxa_dir, 'taxonomy_cache.mat');
-needs_build = true;
-if exist(cache_file, 'file') == 2
+% Rebuild .mat if file count changed
+needs_build = (mat_mtime_now == 0) || (exist(cache_file, 'file') ~= 2);
+if ~needs_build
   tmp = load(cache_file, 'n_txt');
   needs_build = (tmp.n_txt ~= n_txt_now);
 end
@@ -45,5 +53,7 @@ if needs_build
 end
 
 cache = load(cache_file);
-TC    = cache;
+d = dir(cache_file);
+cache_mat_mtime = d.datenum;
+TC = cache;
 end

@@ -1,66 +1,65 @@
 %% lineage_CoL
-% gets lineage of a species in Catolog of Life
+% gets lineage of a species in Catalog of Life (via the GBIF backbone)
 
 %%
 function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pet)
-% created 2018/01/05 by Bas Kooijman, modified 2021/04/01, 2021/04/10
+% created 2018/01/05 by Bas Kooijman, modified 2021/04/01, 2021/04/10, 2026/06/11
 
 %% Syntax
 % [lineage, rank, id_CoL, name_status, accepted_name] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
 
 %% Description
-% Gets lineage of species from the Catolog of Life: kingdom, phylum, class, order, family, genus, species. 
-% To this end, the identifier for the accepted taxon name in CoL is obtained with <get_id_CoL.html *get_id_CoL*> 
+% Gets lineage of species from the Catalog of Life: kingdom, phylum, class, order, family, genus, species.
+% The classic CoL web service was retired when CoL moved onto the ChecklistBank platform; this function
+%   now queries the GBIF backbone taxonomy (which is largely CoL-derived) through its name-match service,
+%   which returns the full classification in a single call.
 %
 % Input:
 %
-% * my_pet: character string with name of an entry or CoL-code
+% * my_pet: character string with name of an entry
 %
 % Output:
 %
-% * lineage: (n,1) cell array with lineage
+% * lineage: (n,1) cell array with lineage, ordered root -> species
 % * rank: (n,1) cell array with ranks
-% * id_CoL: identifier for species in CoL
-% * name_status: string that describes the status of the name
-% * accepted_name: string with accepeted name
+% * id_CoL: GBIF backbone usageKey (character string) for the matched taxon
+% * name_status: string that describes the status of the name (e.g. accepted, synonym)
+% * accepted_name: string with accepted scientific name
 
 %% Remarks
-% You must be connected for using this function,
+% You must be connected for using this function.
 % <lineage.html *lineage*> gives a similar result for AmP entries, but here only a limited set.
-% Empty results not necessarily mean that the name is wrong, e.g. Daphnia magna
+% Names of intermediate ranks (genus and up) are single words, as used in AmP; the species slot keeps the
+%   binomial returned by GBIF (with a space), so it will not match AmP species names (which use underscores).
 
 %% Example of use
 % lineage_CoL('Passer_domesticus')
 
-[id_CoL, name_status, accepted_name] = get_id_CoL(my_pet);
-if isempty(id_CoL)
-  lineage = ''; rank = ''; name_status = '';
-  return
-end
+  lineage = {}; rank = {}; id_CoL = ''; name_status = ''; accepted_name = '';
 
-url = urlread(['http://webservice.catalogueoflife.org/col/webservice?id=', id_CoL, '&response=full']);
-i_0 = 17 + strfind(url, '<classification>'); i_1 = strfind(url, '</classification>') - 1;
-if isempty(i_0) || isempty(i_1)
-  lineage = ''; rank = ''; name_status = '';
-  return
-end
-url = url(i_0:i_1(end)); % substring between <classification>...</classification>
-
-
-i_0 = 6 + strfind(url,'<name>'); i_1 = strfind(url,'</name>') - 1; 
-j_0 = 6 + strfind(url,'<rank>'); j_1 = strfind(url,'</rank>') - 1; 
-n = length(i_0); lineage = cell(n+1,1); rank = cell(n+1,1);
-
-for i = 1:n % scan ranks
-  nm = url(i_0(i):i_1(i)); % substring between <name>...</name>
-  if ~strcmp(nm, 'Not assigned')
-    lineage(n-i+1) = {nm}; 
+  name = strrep(my_pet, '_', ' ');
+  opts = weboptions('Timeout', 15, 'ContentType', 'json');
+  try
+    r = webread('https://api.gbif.org/v1/species/match', 'name', name, opts);
+  catch
+    return % not connected, or no response from GBIF
   end
-  nm = url(j_0(i):j_1(i)); % substring between <rank>...</rank>
-  if ~strcmp(nm, 'Not assigned')
-    rank(n-i+1) = {nm}; 
-  end
-end
-lineage(1) = ''; rank(1) = ''; % remove Biota
-lineage(end) = {accepted_name}; rank(end) = {'Species'};
 
+  if ~isfield(r, 'matchType') || strcmp(r.matchType, 'NONE')
+    return % name not found in the backbone
+  end
+
+  ranks = {'kingdom','phylum','class','order','family','genus','species'};
+  Ranks = {'Kingdom','Phylum','Class','Order','Family','Genus','Species'};
+  for i = 1:numel(ranks)
+    if isfield(r, ranks{i}) && ~isempty(r.(ranks{i}))
+      lineage{end+1,1} = r.(ranks{i}); %#ok<AGROW>
+      rank{end+1,1}    = Ranks{i};     %#ok<AGROW>
+    end
+  end
+
+  if isfield(r, 'usageKey');       id_CoL = num2str(r.usageKey);      end
+  if isfield(r, 'status');         name_status = lower(r.status);     end
+  if isfield(r, 'scientificName'); accepted_name = r.scientificName;  end
+
+end

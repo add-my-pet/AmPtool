@@ -322,10 +322,12 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         i = n_taxa - j + 1; % reverse sequence of plotting in case markers overlap
         marker = legend{i,1}; T = marker{1}; MS = marker{2} * marker_size_scale; LW = marker{3}; MEC = marker{4}; MFC = marker{5};
         if ~isempty(marker_edge_color), MEC = marker_edge_color; end
-        h_marks(j) = plot(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), T, 'MarkerSize', MS, 'LineWidth', LW, 'MarkerFaceColor', MFC, 'MarkerEdgeColor', MEC);
+        if sum(sel(:,i)>0)
+          h_marks(j) = plot(val_plot(sel(:,i)==1,1), val_plot(sel(:,i)==1,2), T, 'MarkerSize',MS, 'LineWidth',LW, 'MarkerFaceColor',MFC, 'MarkerEdgeColor',MEC);
+        end
         if marker_alpha < 1 && isprop(h_marks(j), 'MarkerFaceAlpha'), h_marks(j).MarkerFaceAlpha = marker_alpha; end
       end
-      set(gca, 'FontSize', FS, 'Box', 'on')
+      set(gca, 'FontSize',FS, 'Box','on')
       if strcmp(grid_opt, 'on'), grid on; end
       xlabel(label_x)
       ylabel(label_y)

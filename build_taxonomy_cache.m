@@ -44,7 +44,9 @@ for i = 1:n_txt
   lines = lines(~cellfun('isempty', lines));
   children(t) = lines;
   for j = 1:numel(lines)
-    parent(lines{j}) = t;
+    if ~isKey(parent, lines{j})  % first-assignment wins: formal tree beats paraphyletic aliases
+      parent(lines{j}) = t;
+    end
   end
 end
 
@@ -53,9 +55,35 @@ end
 species_list = containers.Map('KeyType', 'char', 'ValueType', 'any');
 memo_collect_leaves('Animalia', children, taxon_set, species_list);
 
+% Detect orphaned taxa: have a .txt file but are unreachable from Animalia
+% because no parent's .txt file lists them as a child.
+orphan_roots = taxon_names(~isKey(parent, taxon_names) & ~strcmp(taxon_names, 'Animalia'));
+if ~isempty(orphan_roots)
+  fprintf('WARNING: %d orphaned taxa found (not reachable from Animalia):\n', numel(orphan_roots));
+  for k = 1:numel(orphan_roots)
+    fprintf('  %s\n', orphan_roots{k});
+  end
+  fprintf('Fix: add each orphan to the correct parent .txt file.\n');
+  fprintf('Orphaned subtrees are included in the cache so select() still works for them.\n');
+  % Still compute species_list for orphaned subtrees so select() works.
+  for k = 1:numel(orphan_roots)
+    memo_collect_leaves(orphan_roots{k}, children, taxon_set, species_list);
+  end
+end
+
 % Build species_set from the complete species list under Animalia
 all_species = species_list('Animalia');
 species_set = containers.Map(all_species, true(numel(all_species), 1));
+
+% Also include species from orphaned subtrees in species_set
+for k = 1:numel(orphan_roots)
+  orphan_species = species_list(orphan_roots{k});
+  for m = 1:numel(orphan_species)
+    if ~isKey(species_set, orphan_species{m})
+      species_set(orphan_species{m}) = true;
+    end
+  end
+end
 
 out_file = fullfile(taxa_dir, 'taxonomy_cache.mat');
 save(out_file, 'n_txt', 'taxon_set', 'species_set', 'parent', 'children', 'species_list');

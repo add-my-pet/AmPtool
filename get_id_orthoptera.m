@@ -3,7 +3,7 @@
 
 %%
 function id = get_id_orthoptera(my_pet, open)
-% created 2021/08/13 by Bas Kooijman
+% created 2021/08/13 by Bas Kooijman, modified 2026/06/11
 
 %% Syntax
 % id = <../get_id_orthoptera.m *get_id_orthoptera*>(my_pet, open)
@@ -21,38 +21,22 @@ function id = get_id_orthoptera(my_pet, open)
 % * id: character string with id in Orthoptera Species File Online
 
 %% Remarks
-% Outputs empty strings if identification was not successful.
+% Outputs empty string if identification was not successful.
+% The CoL web service was retired; the id is now read from the Orthoptera Species File checklist on GBIF.
 
 %% Example of use
 % id = get_id_orthoptera('Locusta_migratoria',1)
 
-address = 'http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=1103075';
-if ~exist('open','var')
+address = 'http://orthoptera.speciesfile.org/Common/basic/Taxa.aspx?TaxonNameID=';
+if ~exist('open','var') || isempty(open)
   open = 0;
 end
 
-my_pet = strrep(my_pet,' ','+');
-my_pet = strrep(my_pet,'_','+');
-
-try
-  url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet]);
-catch
-  id = ''; return
-end
-i_0 = strfind(url, 'Orthoptera.speciesfile.org:TaxonName:');
-if isempty(i_0)
-  id = ''; return
-end
-i_0 = i_0(1) + 37; i_1 = strfind(url(i_0:end),'</online_resource>') - 2 + i_0(1);
-id = url(i_0:i_1(1));
-
-try
-  urlread([address, id]);
-catch
-  id = ''; return
+id = get_id_GBIFdataset(my_pet, 'af66d4cf-0fd2-434b-9334-9806a5efa6f7');
+if isempty(id)
+  return
 end
 
 if open
   web([address, id],'-browser');
 end
-

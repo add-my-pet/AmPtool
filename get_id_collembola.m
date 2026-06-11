@@ -3,7 +3,7 @@
 
 %%
 function id = get_id_collembola(my_pet, open)
-% created 2021/08/12 by Bas Kooijman
+% created 2021/08/12 by Bas Kooijman, modified 2026/06/11
 
 %% Syntax
 % id = <../get_id_collembola.m *get_id_collembola*>(my_pet, open)
@@ -21,36 +21,17 @@ function id = get_id_collembola(my_pet, open)
 % * id: character string with id in collembola
 
 %% Remarks
-% Outputs empty strings if identification was not successful.
+% Currently returns '' (no identification).
+% The id used to be harvested from the CoL web service, which was retired; the collembola.org world checklist
+%   is not available as a GBIF checklist dataset, so no replacement source is wired up yet.
+% TODO: obtain the id by querying collembola.org directly (no API; would require scraping its search pages).
 
 %% Example of use
 % id = get_id_collembola('Isotoma_viridis',1)
 
-address = 'https://www.collembola.org/taxa/';
-if ~exist('open','var')
+if ~exist('open','var') || isempty(open)
   open = 0;
 end
 
-my_pet = strrep(my_pet,' ','+');
-my_pet = strrep(my_pet,'_','+');
-genus = strsplit(my_pet, '+'); genus = genus{1};
-
-my_pet_CoL = strrep(my_pet, '_', '+');
-url = urlread(['http://webservice.catalogueoflife.org/col/webservice?name=', my_pet]);
-i_0 = strfind(url, 'http://www.collembola.org/taxa/');
-if isempty(i_0)
-  id = ''; return
-end
-i_0 = i_0 + 31; i_1 = strfind(url(i_0(1):end),'</online_resource>') - 2 + i_0(1);
-id = [url(i_0(1):i_1(1)), '#', genus];
-
-try
-  urlread([address, id]);
-catch
-  id = ''; return
-end
-
-if open
-  web([address, id],'-browser');
-end
-
+id = '';
+fprintf('Warning from get_id_collembola: no data source available (collembola.org lookup disabled)\n');
