@@ -11,7 +11,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 %% Description
 % Gets identifiers for all websites that AmP uses for this taxon. 
 % Some websites apply to all animals, others only for particular taxa.
-% The lineage is taken from CoL till 2024/09, then after from Taxo.
+% The lineage is taken from CoL (CoL-derived backbone), with the Taxonomicon as fallback.
 % The CoL id is obtained automatically via get_id_CoL (ChecklistBank, latest CoL release).
 % ITIS also changed, and no longer supports taxon id's as it seems. AmP will remove the links to ITIS soon.
 %
@@ -108,7 +108,10 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 %     end
 %   end
 
-  [~, ~, lin, rank] = lineage_Taxo(my_pet); 
+  [lin, rank] = lineage_CoL(my_pet); % prefer CoL (more up-to-date than Taxo)
+  if isempty(lin) % CoL did not recognize the species: fall back to the Taxonomicon
+    [~, ~, lin, rank] = lineage_Taxo(my_pet);
+  end
      
   select_id(1:7) = true; id = cell(23,1); id_txt = cell(23,1);
   my_pet_acc = my_pet;

@@ -21,7 +21,7 @@ function [members, taxon] = clade(taxa, level, site)
 %
 % * taxa: cell string with names of taxa or character string with a single name
 % * level: optional integer with number of nodes up, in the case of a single taxon (default: such that more than 2 members result with smallest number)
-% * site: 0 CoL only, 1 (default) Taxonomicon only, 2 both CoL and Taxonomicon (smallest non-empty clade is used)
+% * site: 0 (default) CoL only, 1 Taxonomicon only, 2 both CoL and Taxonomicon (smallest non-empty clade is used)
 %
 % Output:
 %
@@ -49,7 +49,7 @@ function [members, taxon] = clade(taxa, level, site)
   members = []; taxon = []; % defaults, so the outputs are always assigned
 
   if ~exist('site','var') || isempty(site)
-    site = 1; % default: Taxonomicon only
+    site = 0; % default: CoL only
   end
 
   % normalise to a single char string when only one taxon is given
