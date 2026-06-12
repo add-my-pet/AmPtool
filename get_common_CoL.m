@@ -1,5 +1,5 @@
 %% get_common_CoL
-% gets the common name of a species of given id (via the GBIF backbone)
+% gets the common name of a species of given id from Catalog of Life
 
 %%
 function common = get_common_CoL(id_CoL, language)
@@ -9,13 +9,13 @@ function common = get_common_CoL(id_CoL, language)
 % common = <../get_common_CoL.m *get_common_CoL*>(id_CoL, language)
 
 %% Description
-% Gets the common (vernacular) names of a species of given id.
-% The classic CoL web service was retired; vernacular names are now read from the GBIF backbone, keyed by the
-%   GBIF usageKey that <get_id_CoL.html *get_id_CoL*> returns.
+% Gets the common (vernacular) names of a species of given id from the Catalog of Life.
+% The classic CoL web service was retired; vernacular names are now read from the latest CoL release
+%   (ChecklistBank dataset 3LR), keyed by the CoL id that <get_id_CoL.html *get_id_CoL*> returns.
 %
 % Input:
 %
-% * id_CoL: character string or number with the GBIF backbone usageKey of the species
+% * id_CoL: character string with the CoL id of the species
 % * language: optional string with language name (e.g. 'English') or ISO 639-3 code (e.g. 'eng'); default 'English'
 %
 % Output:
@@ -24,7 +24,7 @@ function common = get_common_CoL(id_CoL, language)
 %
 %% Remarks
 % Get id_CoL with get_id_CoL.
-% Output can be empty if GBIF does not have the common name in the requested language.
+% Output can be empty if CoL does not have the common name in the requested language.
 
 %% Example of use
 % nm = get_common_CoL(get_id_CoL('Passer_domesticus'),'French')
@@ -37,8 +37,11 @@ common = {};
 if isempty(id_CoL)
   return
 end
+if ~ischar(id_CoL)
+  id_CoL = num2str(id_CoL);
+end
 
-% map language name to the ISO 639-3 code GBIF uses; accept a 3-letter code as-is
+% map language name to the ISO 639-3 code CoL uses; accept a 3-letter code as-is
 codes = struct('English','eng', 'French','fra', 'German','deu', 'Spanish','spa', ...
                'Dutch','nld', 'Italian','ita', 'Portuguese','por', 'Russian','rus', ...
                'Chinese','zho', 'Japanese','jpn');
@@ -50,19 +53,17 @@ end
 
 opts = weboptions('Timeout', 15, 'ContentType', 'json');
 try
-  r = webread(['https://api.gbif.org/v1/species/', num2str(id_CoL), '/vernacularNames'], opts);
+  r = webread(['https://api.checklistbank.org/dataset/3LR/taxon/', id_CoL, '/vernacular'], opts);
 catch
   return
 end
 
-if ~isfield(r, 'results') || isempty(r.results)
-  return
-end
-res = r.results; N = numel(res); names = {};
+% r is an array of vernacular-name objects
+N = numel(r); names = {};
 for i = 1:N
-  if iscell(res), item = res{i}; else, item = res(i); end
-  if isfield(item, 'vernacularName') && isfield(item, 'language') && strcmpi(item.language, lang)
-    names{end+1,1} = item.vernacularName; %#ok<AGROW>
+  if iscell(r), item = r{i}; else, item = r(i); end
+  if isfield(item, 'name') && isfield(item, 'language') && strcmpi(item.language, lang)
+    names{end+1,1} = item.name; %#ok<AGROW>
   end
 end
 common = unique(names);

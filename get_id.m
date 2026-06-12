@@ -12,9 +12,8 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 % Gets identifiers for all websites that AmP uses for this taxon. 
 % Some websites apply to all animals, others only for particular taxa.
 % The lineage is taken from CoL till 2024/09, then after from Taxo.
-% CoL no longer supports automatized searching; insert the species-name in the search-field of the CoL-site that is opened in your browser and
-% copy the id in the address field (top-line of your browser) to Matlab.
-% ITIS also changed, and no longer supports taxon id's as it seems. AmP will remove the links to ITIS soon. 
+% The CoL id is obtained automatically via get_id_CoL (ChecklistBank, latest CoL release).
+% ITIS also changed, and no longer supports taxon id's as it seems. AmP will remove the links to ITIS soon.
 %
 % Input:
 %
@@ -113,8 +112,8 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
      
   select_id(1:7) = true; id = cell(23,1); id_txt = cell(23,1);
   my_pet_acc = my_pet;
-  web 'https://www.catalogueoflife.org/data/search?facet=rank&facet=issue&facet=status&facet=nomStatus&facet=nameType&facet=field&facet=authorship&facet=extinct&facet=environment&limit=50&offset=0&sortBy=taxonomic' -browser
-  id{1} = input("id_CoL (between strophs): "); id_txt{1} = 'id_CoL';
+  id{1} = get_id_CoL(my_pet_acc); id_txt{1} = 'id_CoL';
+  if isempty(id{1}) && ~strcmp(my_pet,my_pet_acc); id{1} = get_id_CoL(my_pet); end
   id{2} = get_id_ITIS(my_pet_acc); id_txt{2} = 'id_ITIS';
   if isempty(id{2}) && ~strcmp(my_pet,my_pet_acc); id{2} = get_id_ITIS(my_pet); end
   id{3} = get_id_EoL(my_pet_acc); id_txt{3} = 'id_EoL';
@@ -131,7 +130,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
   select_id(8:23) = false;
   if ismember(lin(ismember(rank,'Phylum')), 'Mollusca')
     select_id(8) = true;
-    id{7} = get_id_molluscabase(my_pet_acc); id_txt{8} = 'id_molluscabase';
+    id{8} = get_id_molluscabase(my_pet_acc); id_txt{8} = 'id_molluscabase';
     if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_molluscabase(my_pet); end
   elseif ismember(lin(ismember(rank,'Order')), 'Scorpiones')
     select_id(9) = true;
@@ -164,7 +163,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     address{15} = strrep(address{15}, 'id_diptera', id{15});
   elseif ismember(lin(ismember(rank,'Order')), 'Lepidoptera')
     select_id(16) = true;
-    id{8} = get_id_diptera(my_pet_acc); id_txt{16} = 'id_lepidoptera';
+    id{16} = get_id_lepidoptera(my_pet_acc); id_txt{16} = 'id_lepidoptera';
     if isempty(id{16}) && ~strcmp(my_pet,my_pet_acc); id{16} = get_id_lepidoptera(my_pet); end
     address{16} = strrep(address{16}, 'id_diptera', id{16});
   elseif ismember(lin(ismember(rank,{'Class','Gigaclass'})), {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'})
@@ -214,3 +213,4 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     prt_tab({id_txt, id}, {'id','code'},'id')
   end
 
+  prt_tab({id_txt,id}, {my_pet_acc,'id'}, my_pet_acc)

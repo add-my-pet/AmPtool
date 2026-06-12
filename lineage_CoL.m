@@ -1,5 +1,5 @@
 %% lineage_CoL
-% gets lineage of a species in Catalog of Life (via the GBIF backbone)
+% gets lineage of a species in Catalog of Life
 
 %%
 function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pet)
@@ -9,10 +9,9 @@ function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pe
 % [lineage, rank, id_CoL, name_status, accepted_name] = <../lineage_CoL.m *lineage_CoL*>(my_pet)
 
 %% Description
-% Gets lineage of species from the Catalog of Life: kingdom, phylum, class, order, family, genus, species.
-% The classic CoL web service was retired when CoL moved onto the ChecklistBank platform; this function
-%   now queries the GBIF backbone taxonomy (which is largely CoL-derived) through its name-match service,
-%   which returns the full classification in a single call.
+% Gets lineage of a species from the Catalog of Life.
+% The classic CoL web service was retired when CoL moved onto ChecklistBank; this function now queries the
+%   latest CoL release (ChecklistBank dataset 3LR) through its name-match service and reads the classification.
 %
 % Input:
 %
@@ -22,44 +21,54 @@ function [lineage, rank, id_CoL, name_status, accepted_name] = lineage_CoL(my_pe
 %
 % * lineage: (n,1) cell array with lineage, ordered root -> species
 % * rank: (n,1) cell array with ranks
-% * id_CoL: GBIF backbone usageKey (character string) for the matched taxon
+% * id_CoL: CoL id (character string) of the matched taxon
 % * name_status: string that describes the status of the name (e.g. accepted, synonym)
-% * accepted_name: string with accepted scientific name
+% * accepted_name: string with the accepted name (underscores for spaces)
 
 %% Remarks
 % You must be connected for using this function.
-% <lineage.html *lineage*> gives a similar result for AmP entries, but here only a limited set.
-% Names of intermediate ranks (genus and up) are single words, as used in AmP; the species slot keeps the
-%   binomial returned by GBIF (with a space), so it will not match AmP species names (which use underscores).
+% <lineage.html *lineage*> gives a similar result for AmP entries.
+% Names of intermediate ranks are single words, as used in AmP; the species slot is the underscored binomial.
 
 %% Example of use
-% lineage_CoL('Passer_domesticus')
+% lineage_CoL('Daphnia_magna')
 
   lineage = {}; rank = {}; id_CoL = ''; name_status = ''; accepted_name = '';
 
   name = strrep(my_pet, '_', ' ');
   opts = weboptions('Timeout', 15, 'ContentType', 'json');
   try
-    r = webread('https://api.gbif.org/v1/species/match', 'name', name, opts);
+    r = webread('https://api.checklistbank.org/dataset/3LR/match/nameusage', 'q', name, opts);
   catch
-    return % not connected, or no response from GBIF
+    return % not connected, or no response
   end
 
-  if ~isfield(r, 'matchType') || strcmp(r.matchType, 'NONE')
-    return % name not found in the backbone
+  if ~(isfield(r, 'match') && ~isempty(r.match) && r.match && isfield(r, 'usage'))
+    return % name not found
   end
+  u = r.usage;
 
-  ranks = {'kingdom','phylum','class','order','family','genus','species'};
-  Ranks = {'Kingdom','Phylum','Class','Order','Family','Genus','Species'};
-  for i = 1:numel(ranks)
-    if isfield(r, ranks{i}) && ~isempty(r.(ranks{i}))
-      lineage{end+1,1} = r.(ranks{i}); %#ok<AGROW>
-      rank{end+1,1}    = Ranks{i};     %#ok<AGROW>
+  if isfield(r, 'id'); id_CoL = r.id; elseif isfield(u, 'id'); id_CoL = u.id; end
+  if isfield(u, 'status'); name_status = u.status; end
+
+  % classification is ordered low -> high and excludes the species; reverse to high -> low (root first)
+  cl = [];
+  if isfield(u, 'classification'); cl = u.classification; end
+  M = numel(cl);
+  for k = M:-1:1
+    if iscell(cl), item = cl{k}; else, item = cl(k); end
+    if isfield(item, 'name') && ~isempty(item.name)
+      lineage{end+1,1} = item.name; %#ok<AGROW>
+      if isfield(item, 'rank'), rank{end+1,1} = item.rank; else, rank{end+1,1} = ''; end %#ok<AGROW>
     end
   end
 
-  if isfield(r, 'usageKey');       id_CoL = num2str(r.usageKey);      end
-  if isfield(r, 'status');         name_status = lower(r.status);     end
-  if isfield(r, 'scientificName'); accepted_name = r.scientificName;  end
-
-end
+  % append the species itself (drop any subgenus in parentheses, e.g. Daphnia (Ctenodaphnia) magna)
+  sp = '';
+  if isfield(u, 'name'); sp = u.name; end
+  sp = strtrim(regexprep(regexprep(sp, '\s*\([^)]*\)\s*', ' '), '\s+', ' '));
+  if ~isempty(sp)
+    accepted_name = strrep(sp, ' ', '_');
+    lineage{end+1,1} = accepted_name;
+    rank{end+1,1} = 'species';
+  end

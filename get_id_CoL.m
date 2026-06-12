@@ -1,5 +1,5 @@
 %% get_id_CoL
-% gets id and name of the corresponding accepted species-name in Catalog of Life (via the GBIF backbone)
+% gets id and name of the corresponding accepted species-name in Catalog of Life
 
 %%
 function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
@@ -9,9 +9,10 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
 % [id_CoL, name_status, accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, open)
 
 %% Description
-% Gets an identifier for an accepted species name.
+% Gets an identifier for an accepted species name in the Catalog of Life.
 % The classic CoL web service was retired when CoL moved onto ChecklistBank; this function now queries the
-%   GBIF backbone taxonomy (largely CoL-derived) through its name-match service.
+%   latest CoL release (ChecklistBank dataset 3LR) through its name-match service. The returned id is a genuine
+%   CoL id (e.g. '59LYB'), as used by https://www.catalogueoflife.org/data/taxon/<id>.
 %
 % Input:
 %
@@ -20,7 +21,7 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
 %
 % Output:
 %
-% * id_CoL: character string with the GBIF backbone usageKey of the matched taxon
+% * id_CoL: character string with the CoL id of the matched (accepted) taxon
 % * name_status: character string with the status of the name (e.g. accepted, synonym)
 % * accepted_name: character string with the accepted name (underscores for spaces)
 
@@ -29,8 +30,9 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
 % If the species is not matched, the genus is tried.
 
 %% Example of use
-% id_CoL = get_id_CoL('Daphnia_magna', 1)
+% id_CoL = get_id_CoL('Tupaia_belangeri', 1)
 
+  address = 'https://www.catalogueoflife.org/data/taxon/';
   if ~exist('open', 'var') || isempty(open)
     open = 0;
   end
@@ -38,18 +40,19 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
   id_CoL = ''; name_status = ''; accepted_name = '';
 
   my_pet = strrep(my_pet, ' ', '_'); % normalise to AmP style
-  name   = strrep(my_pet, '_', ' '); % GBIF expects spaces
+  name   = strrep(my_pet, '_', ' '); % ChecklistBank expects spaces
 
   opts = weboptions('Timeout', 15, 'ContentType', 'json');
   try
-    r = webread('https://api.gbif.org/v1/species/match', 'name', name, opts);
+    r = webread('https://api.checklistbank.org/dataset/3LR/match/nameusage', 'q', name, opts);
   catch
-    fprintf('Warning from get_id_CoL: could not reach GBIF\n');
+    fprintf('Warning from get_id_CoL: could not reach ChecklistBank\n');
     return
   end
 
-  if ~isfield(r, 'matchType') || strcmp(r.matchType, 'NONE')
-    fprintf(['Warning from get_id_CoL: ', my_pet, ' not found\n']);
+  matched = isfield(r, 'match') && ~isempty(r.match) && r.match && isfield(r, 'usage');
+  if ~matched
+    fprintf(['Warning from get_id_CoL: ', my_pet, ' not found in CoL\n']);
     if contains(my_pet, '_') % retry with the genus
       genus = strsplit(my_pet, '_');
       [id_CoL, name_status, accepted_name] = get_id_CoL(genus{1}, open);
@@ -57,20 +60,20 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
     return
   end
 
-  if isfield(r, 'usageKey'); id_CoL = num2str(r.usageKey); end
-  if isfield(r, 'status');   name_status = lower(r.status); end
-  if isfield(r, 'canonicalName') && ~isempty(r.canonicalName)
-    accepted_name = strrep(r.canonicalName, ' ', '_');
-  elseif isfield(r, 'scientificName')
-    accepted_name = strrep(r.scientificName, ' ', '_');
-  end
+  u = r.usage;
+  if isfield(r, 'id'); id_CoL = r.id; elseif isfield(u, 'id'); id_CoL = u.id; end
+  if isfield(u, 'status'); name_status = u.status; end
+  if isfield(u, 'name'); accepted_name = strrep(u.name, ' ', '_'); end
 
-  if isfield(r, 'synonym') && r.synonym
-    fprintf(['Warning from get_id_CoL: ', my_pet, ' not accepted (synonym); accepted name returned\n']);
+  % if a synonym was matched, follow to the accepted taxon when available
+  if strcmpi(name_status, 'synonym') && isfield(u, 'accepted')
+    a = u.accepted;
+    if isfield(a, 'id'); id_CoL = a.id; end
+    if isfield(a, 'name'); accepted_name = strrep(a.name, ' ', '_'); end
   end
 
   if open && ~isempty(id_CoL)
-    web(['https://www.gbif.org/species/', id_CoL], '-browser');
+    web([address, id_CoL], '-browser');
   end
 
 end
