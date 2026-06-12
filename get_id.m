@@ -212,6 +212,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
       end
     end
   end
+  
   if tab
     prt_tab({id_txt, id}, {'id','code'},'id')
   end

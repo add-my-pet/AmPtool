@@ -3,7 +3,7 @@
 
 %%
 function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
-% created 2018/01/05 by Bas Kooijman, modified 2026/06/11
+% created 2018/01/05 by Bas Kooijman, modified 2026/06/12
 
 %% Syntax
 % [id_CoL, name_status, accepted_name] = <../get_id_CoL.m *get_id_CoL*>(my_pet, open)
@@ -52,6 +52,25 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
 
   matched = isfield(r, 'match') && ~isempty(r.match) && r.match && isfield(r, 'usage');
   if ~matched
+    % fallback: search endpoint (match endpoint is too strict for some species)
+    try
+      r2 = webread('https://api.checklistbank.org/dataset/3LR/nameusage/search', ...
+                   'q', name, opts);
+      if isfield(r2, 'result') && ~isempty(r2.result)
+        hit = r2.result{1};
+        if isfield(hit, 'id');    id_CoL = hit.id; end
+        if isfield(hit, 'usage')
+          u = hit.usage;
+          if isfield(u, 'status'); name_status = u.status; end
+          if isfield(u, 'label');  accepted_name = strrep(u.label, ' ', '_'); end
+        end
+        if ~isempty(id_CoL)
+          if open; web([address, id_CoL], '-browser'); end
+          return
+        end
+      end
+    catch
+    end
     fprintf(['Warning from get_id_CoL: ', my_pet, ' not found in CoL\n']);
     if contains(my_pet, '_') % retry with the genus
       genus = strsplit(my_pet, '_');
@@ -63,13 +82,13 @@ function [id_CoL, name_status, accepted_name] = get_id_CoL(my_pet, open)
   u = r.usage;
   if isfield(r, 'id'); id_CoL = r.id; elseif isfield(u, 'id'); id_CoL = u.id; end
   if isfield(u, 'status'); name_status = u.status; end
-  if isfield(u, 'name'); accepted_name = strrep(u.name, ' ', '_'); end
+  if isfield(u, 'label'); accepted_name = strrep(u.label, ' ', '_'); end
 
   % if a synonym was matched, follow to the accepted taxon when available
   if strcmpi(name_status, 'synonym') && isfield(u, 'accepted')
     a = u.accepted;
     if isfield(a, 'id'); id_CoL = a.id; end
-    if isfield(a, 'name'); accepted_name = strrep(a.name, ' ', '_'); end
+    if isfield(a, 'label'); accepted_name = strrep(a.label, ' ', '_'); end
   end
 
   if open && ~isempty(id_CoL)
