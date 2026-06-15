@@ -30,8 +30,8 @@ function run_collection(pets_c,mode)
 % * 1 zip-file is written in ../entries_zip
 
 %% Remarks
-% run_collection_intro to generate about and access files for the collection
-
+% run_collection_intro to generate about and access files for the collection;
+% notice that "pets" is overwritten during "feval(['run_', pets{i}]);"
 %% Example of use
 % * run_collection or 
 % * run_collection('Mola_mola') or
@@ -40,11 +40,11 @@ function run_collection(pets_c,mode)
 % * run_collection('Clitellata',2);
 
 
-if isempty(pets_c)
+if isempty(pets_c) 
   pets_c = select('Animalia');
 elseif ~iscell(pets_c) && ~contains(pets_c,'_')
   pets_c = select(pets_c);
-elseif ~iscell(pets_c) && contains(pets_c,'_')
+elseif ~iscell(pets_c) 
   pets_c = {pets_c};
 end
 
@@ -101,6 +101,8 @@ for i = 1:n_pets
       end
       
     case 2 % only print toolbar
+      load(['results_', pets_c{i}, '.mat'], metaData); % load results_my_pet.mat 
+
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
       filenm = zip_my_pet(pets_c{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
@@ -108,8 +110,22 @@ for i = 1:n_pets
   
       % print files
       cdCur;
-      prt_my_pet_toolbar(pets_c{i}, cur2ewmp);                                          % my_pet_toolbar.html
+      prt_my_pet_toolbar(pets_c{i}, cur2ewmp);                                        % my_pet_toolbar.html
+      prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
        
+    case 3 % only print bib
+      load(['results_', pets_c{i}, '.mat'], metaData); % load results_my_pet.mat 
+
+      cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
+      filenm = zip_my_pet(pets_c{i}, '../entries'); % zip the entry and save
+      % !Rscript zip2DataOne.r
+      doi = 'xxxxxx';
+  
+      % print files
+      cdCur;
+      prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
+      bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
+
   end
   close all
   fclose all;
