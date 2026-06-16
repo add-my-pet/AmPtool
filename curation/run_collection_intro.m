@@ -2,11 +2,11 @@
 % runs functions for collection overhead
 
 %%
-function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06
+function run_collection_intro(entries,mode)
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06, 2026/05/15
 
 %% Syntax
-% <run_collection_intro *run_collection_intro*> (entries)
+% <run_collection_intro *run_collection_intro*> (entries,mode)
 
 %% Description
 % runs functions for collection overhead, but before running this script
@@ -19,15 +19,21 @@ function run_collection_intro(entries)
 %
 % Input:
 %
-% * entries: optional cell array with names of entries. Runs all entries if absent
+% * entries:  optional cell array with entry names, or character string with entry or node names (default 'Animalia')
+% * mode: optional identifier for mode (default 1)
+%
+%   - 1, all
+%   - 2, toolbar only, all pets must exist already
+%   - 3, bib only, all pets must exist already
 %
 % Ouput:
 %
 % * no explicit output, but many files are written
 
 %% Remarks
-% * All variables will be cleared
-% * SyncBackPro is used to copy the following files to server 
+% * All variables will be cleared;
+% * Meant to be run after run_collection
+% * SyncBackPro is used to copy the following files to server
 %
 % * ../about.html
 % * ../authors.html
@@ -57,43 +63,86 @@ function run_collection_intro(entries)
 
 WD = cdCur; % go to AmPtool/curation
 
-if ~exist('entries','var')
-  entries = select;
+if ~exist('entries','var') || isempty(entries) 
+  entries = select('Animalia');
+elseif ~iscell(entries) && ~contains(entries,'_')
+  entries = select(entries);
+elseif ~iscell(entries) 
+  entries = {entries};
+end
+n_entries = length(entries);
+
+if ~exist('mode','var')
+  mode = 1; % all
 end
 
-% allStat and popStat are made persistent and must be overwritten
-save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+switch mode
+    case 1 % all
+      % allStat and popStat are made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
 
-% write add_my_pet/AmPdata/allStat.mat and popStat.mat
-[allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
-if ~info; return; end
-write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
+      % write add_my_pet/AmPdata/allStat.mat and popStat.mat
+      [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
+      if ~info; return; end
+      write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 
-% write add_my_pet/AmPdata/AmPdata.zip
-cdAmPdata; load allUnits; load allLabel
-  zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
-  n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
-cdCur; 
-% write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
-% toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
-prt_toolbar; % 20 toolbars
-prt_specJump; % write sys/specJump.js for navigation
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata; load allUnits; load allLabel
+      zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+      n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
+      
+      cdCur; 
+      % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
+      % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
+      prt_toolbar; % 20 toolbars
+      prt_specJump; % write sys/specJump.js for navigation
 
-prt_species_names; % add_my_pet/species_names.html
-prt_species_list; % add_my_pet/species_list.html
-prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
-prt_authors; % add_my_pet/authors.html
-prt_pars; % add_my_pet/pars.html
-prt_patterns; % add_my_pet/patterns.html
-prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html 
-prt_about; % add_my_pet/about.html
-prt_ecoCodes(select,'ecoCodes'); % ecoCodes of all entries
-prt_id(select,'links'); % id of all links to html pages
-%prt_taxa; % all thumbnails plus sys/taxaSel.js for selection
+      prt_species_names; % add_my_pet/species_names.html
+      prt_species_list; % add_my_pet/species_list.html
+      prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
+      prt_authors; % add_my_pet/authors.html
+      prt_pars; % add_my_pet/pars.html
+      prt_patterns; % add_my_pet/patterns.html
+      prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html 
+      prt_about; % add_my_pet/about.html
+      prt_ecoCodes(select,'ecoCodes'); % ecoCodes of all entries
+      prt_id(select,'links'); % id of all links to links.html page
+      %prt_taxa; % all thumbnails plus sys/taxaSel.js for selection
 
-% cleanup
-delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
-delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
+      % cleanup
+      % allStat and popStat are made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata;
+      zip('AmPdata', {'allStat.mat', 'allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+      
+    case 2 % toolbar only, id_CoL is in allStat
+      cdAmPdata;
+      load allUnits; load allLabel; load allStat 
+      for i=1:n_entries
+        cdEntr(entries{i});
+        load(['results_', entries{i}, '.mat'], 'metaData'); % load results_my_pet.mat 
+        allStat.(entries{i}).id_CoL = metaData.links.id_CoL; % overwrite id_CoL in allStat
+      end
+      
+      cdCur; 
+      % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
+      % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
+      prt_toolbar; % 20 toolbars
+      prt_id(select,'links'); % id of all links to links.html page
+
+      % allStat and is made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata;
+      zip('AmPdata', {'allStat.mat', 'allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+
+    case 3 % bib only
+     % nothing needs to be done since bib-info is not in allStat, 
+     % and run_collection updates entries_web
+end
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
 % and DEBtool_M/docs/sys/, AmPtox/docs/sys

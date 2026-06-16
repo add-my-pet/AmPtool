@@ -2,12 +2,12 @@
 % generates files for AmP website 
 
 %%
-function run_collection(pets_c,mode)
+function run_collection(entries,mode)
 % created 2016/11/13 Bas Kooijman and Starrlight Augustine
 % modified 2017/04/26, 2018/02/13, 2018/03/28, 2018/04/13, 2019/07/21, 2019/12/30, 2020/05/17, 2026/06/15 Bas Kooijman
 
 %% Syntax
-% <../run_collection.m *run_collection*> (varargin)
+% <../run_collection.m *run_collection*> (entries,mode)
 
 %% Description
 % Writes html and bib pages and popStat.mat in entries_web and zip file in entries_zip.
@@ -17,12 +17,12 @@ function run_collection(pets_c,mode)
 %
 % Input:
 %
-% * pets_c: optional cell array with entry names, or character string with entry or node names (default 'Animalia')
+% * entries: optional cell array with entry names, or character string with entry or node names (default 'Animalia')
 % * mode: optional identifier for mode (default 1)
 %
 %   - 1, all
-%   - 2, toolbar only
-%   - 3, bib only
+%   - 2, toolbar only, all pets must exist already
+%   - 3, bib only, all pets must exist already
 %
 % Output:
 %
@@ -31,7 +31,7 @@ function run_collection(pets_c,mode)
 
 %% Remarks
 % run_collection_intro to generate about and access files for the collection;
-% notice that "pets" is overwritten during "feval(['run_', pets{i}]);"
+
 %% Example of use
 % * run_collection or 
 % * run_collection('Mola_mola') or
@@ -39,52 +39,51 @@ function run_collection(pets_c,mode)
 % * run_collection('Clitellata');
 % * run_collection('Clitellata',2);
 
-
-if isempty(pets_c) 
-  pets_c = select('Animalia');
-elseif ~iscell(pets_c) && ~contains(pets_c,'_')
-  pets_c = select(pets_c);
-elseif ~iscell(pets_c) 
-  pets_c = {pets_c};
+if ~exist('entries','var') || isempty(entries) 
+  entries = select('Animalia');
+elseif ~iscell(entries) && ~contains(entries,'_')
+  entries = select(entries);
+elseif ~iscell(entries) 
+  entries = {entries};
 end
 
 if ~exist('mode','var')
   mode = 1; % all
 end
 
-%check_results(pets_c); % warn if parameters in results do not match those in pars_init
+%check_results(entries); % warn if parameters in results do not match those in pars_init
 
 % path setting for curators 
 cur2ew = '../../deblab/add_my_pet/entries_web/'; % path from AmPtool/curation to entries_web
 cur2e  = '../../deblab/add_my_pet/entries/'; % path from AmPtool/curation to entries
 
-n_pets = length(pets_c); % number of entries to scan    
+n_entries = length(entries); % number of entries to scan    
 WD = cdCur;
 
-for i = 1:n_pets
-  cur2ewmp = [cur2ew, pets_c{i},'/']; % path from AmPtool/curation to entries_web/my_pet
-  cur2emp = [cur2e, pets_c{i},'/']; % path from AmPtool/curation to entries/my_pet
+for i = 1:n_entries
+  cur2ewmp = [cur2ew, entries{i},'/']; % path from AmPtool/curation to entries_web/my_pet
+  cur2emp = [cur2e, entries{i},'/']; % path from AmPtool/curation to entries/my_pet
   mkdir(cur2ewmp);
   cd(cur2emp); % goto entry i in dir entries
-  fprintf(' %g : %s \n', i, pets_c{i}); % report progress to screen 
+  fprintf(' %g : %s \n', i, entries{i}); % report progress to screen 
   
   switch mode
     case 1
-      feval(['run_', pets_c{i}]); close all;
-      load(['results_', pets_c{i}, '.mat']); % load results_my_pet.mat 
+      feval(['run_', entries{i}]); close all;
+      load(['results_', entries{i}, '.mat']); % load results_my_pet.mat 
       [data, auxData, metaData, txtData] = feval(['mydata_',metaData.species]); % run mydata_* to create data files
       prdData = feval(['predict_',metaData.species], par, data, auxData); % run predict_* to compute predictions
       prdData = predict_pseudodata(par, data, prdData); % appends new field to prdData with predictions for the pseudo data:  
       delete('*.cache', '*.wn', '*.asv', '*.bib', '*.bbl', '*.html') % delete unwanted and bib files
 
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
-      filenm = zip_my_pet(pets_c{i}, '../entries'); % zip the entry and save
+      filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
       doi = 'xxxxxx';
   
       % print files
       cdCur;
-      prt_my_pet_toolbar(pets_c{i}, cur2ewmp);                                          % my_pet_toolbar.html
+      prt_my_pet_toolbar(entries{i}, cur2ewmp);                                          % my_pet_toolbar.html
       prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
       bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
       prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
@@ -101,23 +100,22 @@ for i = 1:n_pets
       end
       
     case 2 % only print toolbar
-      load(['results_', pets_c{i}, '.mat'], metaData); % load results_my_pet.mat 
+      cdEntr(entries{i});
 
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
-      filenm = zip_my_pet(pets_c{i}, '../entries'); % zip the entry and save
+      filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
       doi = 'xxxxxx';
   
       % print files
       cdCur;
-      prt_my_pet_toolbar(pets_c{i}, cur2ewmp);                                        % my_pet_toolbar.html
-      prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
+      prt_my_pet_toolbar(entries{i}, cur2ewmp);                                        % my_pet_toolbar.html
+      %prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
        
     case 3 % only print bib
-      load(['results_', pets_c{i}, '.mat'], metaData); % load results_my_pet.mat 
-
+      cdEntr(entries{i});
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
-      filenm = zip_my_pet(pets_c{i}, '../entries'); % zip the entry and save
+      filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
       doi = 'xxxxxx';
   

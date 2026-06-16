@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-06"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
+      --><title>run_collection_intro</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2026-06-15"><meta name="DC.source" content="run_collection_intro.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,21 +67,24 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="run_collection_intro"><b>run_collection_intro</b></a> (entries)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* update lists-of-lists in AmPtool/taxa
+  </style></head><body><div class="content"><h1>run_collection_intro</h1><!--introduction--><p>runs functions for collection overhead</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li></ul></div><h2 id="3">Syntax</h2><p><a href="run_collection_intro"><b>run_collection_intro</b></a> (entries,mode)</p><h2 id="4">Description</h2><p>runs functions for collection overhead, but before running this script</p><pre>* update lists-of-lists in AmPtool/taxa
 * update files in add_my_pet/entries/
 * update ../../add_my_pet/img/tree/ by adding *.jpg and *.jpg.txt files
 * run_collection(entries-names) to generate files in add_my_pet/entries_zip and entries_web
-* export bibtex from Zotero to deb/DEB library.bib for the DEBlib picture on add_my_pet/about.html)</pre><p>Input:</p><div><ul><li>entries: optional cell array with names of entries. Runs all entries if absent</li></ul></div><p>Ouput:</p><div><ul><li>no explicit output, but many files are written</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>All variables will be cleared</li><li>SyncBackPro is used to copy the following files to server</li></ul></div><div><ul><li>../about.html</li><li>../authors.html</li><li>../pars.html</li><li>../pie_*.html</li><li>../species_list.html</li><li>../species_names.html</li><li>../links.html</li></ul></div><div><ul><li>../sys/specJump.js</li><li>../sys/species_tree_Animalia.js</li><li>../sys/species_tree_Animalia_search.html &amp; ../sys/toolbar_*.html</li></ul></div><div><ul><li>../AmPdata/AmPdata.zip</li></ul></div><div><ul><li>../img/about/*.png</li><li>../img/pars/*.png</li><li>../img/patterns/*.png</li><li>../img/tree/*.jpg and *.jpg.txt</li></ul></div><div><ul><li>../entries/*</li><li>../entries_web/*</li><li>../entries_zip/*</li></ul></div><div><ul><li>Repository AmPtool is synced with Github</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+* export bibtex from Zotero to deb/DEB library.bib for the DEBlib picture on add_my_pet/about.html)</pre><p>Input:</p><div><ul><li>entries:  optional cell array with entry names, or character string with entry or node names (default 'Animalia')</li><li>mode: optional identifier for mode (default 1)</li></ul></div><pre class="language-matlab">- 1, all
+- 2, toolbar <span class="string">only</span>, all <span class="string">pets</span> <span class="string">must</span> <span class="string">exist</span> <span class="string">already</span>
+- 3, bib <span class="string">only</span>, all <span class="string">pets</span> <span class="string">must</span> <span class="string">exist</span> <span class="string">already</span>
+</pre><p>Ouput:</p><div><ul><li>no explicit output, but many files are written</li></ul></div><h2 id="5">Remarks</h2><div><ul><li>All variables will be cleared;</li><li>Meant to be run after run_collection</li><li>SyncBackPro is used to copy the following files to server</li></ul></div><div><ul><li>../about.html</li><li>../authors.html</li><li>../pars.html</li><li>../pie_*.html</li><li>../species_list.html</li><li>../species_names.html</li><li>../links.html</li></ul></div><div><ul><li>../sys/specJump.js</li><li>../sys/species_tree_Animalia.js</li><li>../sys/species_tree_Animalia_search.html &amp; ../sys/toolbar_*.html</li></ul></div><div><ul><li>../AmPdata/AmPdata.zip</li></ul></div><div><ul><li>../img/about/*.png</li><li>../img/pars/*.png</li><li>../img/patterns/*.png</li><li>../img/tree/*.jpg and *.jpg.txt</li></ul></div><div><ul><li>../entries/*</li><li>../entries_web/*</li><li>../entries_zip/*</li></ul></div><div><ul><li>Repository AmPtool is synced with Github</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% run_collection_intro
 % runs functions for collection overhead
 
 %%
-function run_collection_intro(entries)
-% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06
+function run_collection_intro(entries,mode)
+% created 2016/11/18 by Bas Kooijman, modified 2017/08/16, 2020/06/26, 2021/06/11, 2021/10/06, 2022/06/06, 2026/05/15
 
 %% Syntax
-% <run_collection_intro *run_collection_intro*> (entries)
+% <run_collection_intro *run_collection_intro*> (entries,mode)
 
 %% Description
 % runs functions for collection overhead, but before running this script
@@ -94,15 +97,21 @@ function run_collection_intro(entries)
 %
 % Input:
 %
-% * entries: optional cell array with names of entries. Runs all entries if absent
+% * entries:  optional cell array with entry names, or character string with entry or node names (default 'Animalia')
+% * mode: optional identifier for mode (default 1)
+%
+%   - 1, all
+%   - 2, toolbar only, all pets must exist already
+%   - 3, bib only, all pets must exist already
 %
 % Ouput:
 %
 % * no explicit output, but many files are written
 
 %% Remarks
-% * All variables will be cleared
-% * SyncBackPro is used to copy the following files to server 
+% * All variables will be cleared;
+% * Meant to be run after run_collection
+% * SyncBackPro is used to copy the following files to server
 %
 % * ../about.html
 % * ../authors.html
@@ -132,61 +141,121 @@ function run_collection_intro(entries)
 
 WD = cdCur; % go to AmPtool/curation
 
-if ~exist('entries','var')
-  entries = select;
+if ~exist('entries','var') || isempty(entries) 
+  entries = select('Animalia');
+elseif ~iscell(entries) && ~contains(entries,'_')
+  entries = select(entries);
+elseif ~iscell(entries) 
+  entries = {entries};
+end
+n_entries = length(entries);
+
+if ~exist('mode','var')
+  mode = 1; % all
 end
 
-% allStat and popStat are made persistent and must be overwritten
-save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+switch mode
+    case 1 % all
+      % allStat and popStat are made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
 
-% write add_my_pet/AmPdata/allStat.mat and popStat.mat
-[allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
-if ~info; return; end
-write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
+      % write add_my_pet/AmPdata/allStat.mat and popStat.mat
+      [allStat, info] = write_addStat(entries); % this adds/modifies allStat for selected entries
+      if ~info; return; end
+      write_popStat_loc(entries); % collects entries_web/my_pet_pop.mat files in structure popStat
 
-% write add_my_pet/AmPdata/AmPdata.zip
-cdAmPdata; load allUnits; load allLabel
-  zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
-  n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
-cdCur; 
-% write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
-% toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
-prt_toolbar; % add_my_pet/sys/toolbar_amp.html, toolbar_app.html, toolbar_buget.html, toolbar_entry.html
-% add_my_pet/sys/toolbar_deblab.html and toolbar_subdeblab.html are static
-prt_specJump; % write sys/specJump.js for navigation
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata; load allUnits; load allLabel
+      zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+      n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
+      
+      cdCur; 
+      % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
+      % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
+      prt_toolbar; % 20 toolbars
+      prt_specJump; % write sys/specJump.js for navigation
 
-prt_species_names; % add_my_pet/species_names.html
-prt_species_list; % add_my_pet/species_list.html
-prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
-prt_authors; % add_my_pet/authors.html
-prt_pars; % add_my_pet/pars.html
-prt_patterns; % add_my_pet/patterns.html
-prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html
-prt_about; % add_my_pet/about.html
-prt_id(select,1); % id of all links to html pages
+      prt_species_names; % add_my_pet/species_names.html
+      prt_species_list; % add_my_pet/species_list.html
+      prt_species_tree_taxa_js; % add_my_pet/sys/species_tree_Animalia.js and species_tree_Animalia_search.html javascript for the tree; add_my_pet/species_tree.html itself is static
+      prt_authors; % add_my_pet/authors.html
+      prt_pars; % add_my_pet/pars.html
+      prt_patterns; % add_my_pet/patterns.html
+      prt_pie_SGGJR; % add_my_pet/pie_pSGJRb.html, pie_pSGJRi.html, pie_pSGJRp.html, pie_SGJRb.html 
+      prt_about; % add_my_pet/about.html
+      prt_ecoCodes(select,'ecoCodes'); % ecoCodes of all entries
+      prt_id(select,'links'); % id of all links to links.html page
+      %prt_taxa; % all thumbnails plus sys/taxaSel.js for selection
 
-% cleanup
-delete('..\taxa\*.txt~','..\taxa\*.txt#') % delete emacs backup-files
-delete('..\..\add_my_pet\img\tree\*.txt~','..\..\add_my_pet\img\tree\*.txt#') % delete emacs backup-files
+      % cleanup
+      % allStat and popStat are made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata;
+      zip('AmPdata', {'allStat.mat', 'allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+      
+    case 2 % toolbar only, id_CoL is in allStat
+      cdAmPdata;
+      load allUnits; load allLabel; load allStat 
+      for i=1:n_entries
+        cdEntr(entries{i})
+        load(['results_', entries{i}, '.mat'], metaData); % load results_my_pet.mat 
+        allStat.(entries{i}).id_CoL = metaData.id_CoL; % overwrite id_CoL in allStat
+      end
+      
+      cdCur; 
+      % write toolbars in add_my_pet/sys/ to update dropdown collection/AmPdata
+      % toolbar_AmPtool.html is also written, but moved to AmPtool/docs for syncing with GitHub
+      prt_toolbar; % 20 toolbars
+      prt_id(select,'links'); % id of all links to links.html page
+
+      % allStat and is made persistent and must be overwritten
+      save('temporary.mat','WD','entries'); clear all; load('temporary.mat'); delete('temporary.mat');
+
+      % write add_my_pet/AmPdata/AmPdata.zip
+      cdAmPdata;
+      zip('AmPdata', {'allStat.mat', 'allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+
+    case 3 % bib only
+     % nothing needs to be done since bib-info is not in allStat, 
+     % and run_collection updates entries_web
+end
 
 % sync AmPtool with github to update AmPtool/taxa and AmPtool/docs/index.html 
+% and DEBtool_M/docs/sys/, AmPtox/docs/sys
+cdCur;
 if ismac || isunix
   % system('git status');
-  system('git add ../taxa/* ../docs/*');
+  cd ../; system('git add taxa/* docs/* docs/sys/*');
   system('git commit -am "extension"');
+  system('git push origin master');
+  cd ../DEBtool_M; system('git add docs/sys/*'); % toolbars
+  system('git commit -am "toolbars"');
+  system('git push origin master');
+  cd ../AmPtox; system('git add docs/sys/*');
+  system('git commit -am "toolbars"');
   system('git push origin master');
 else
   % system('powershell git status');
-  system('powershell git add ../taxa/* ../docs/*');
+  cd ../; system('powershell git add taxa/* docs/* docs/sys/*'); % toolbars + taxa
   system('powershell git commit -am "extension"');
   system('powershell git push origin master');
+  cd ../DEBtool_M; system('powershell git add docs/sys/*'); % toolbars
+  system('powershell git commit -am "toolbars"');
+  system('powershell git push origin master');
+  cd ../AmPtox; system('powershell git add docs/sys/*'); % toolbars
+  system('powershell git commit -am "toolbars"');
+  system('powershell git push origin master');
 end
+cdCur;
 
 % mirror to VU and IUEM; this takes 10 min each, but runs in the background
 if ismac || isunix
-  system('SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+  system('SyncBackPro -silent AmP2VU -i  AmP2IUEM -i'); 
 else
-  system('powershell SyncBackPro AmP2VU -i  AmP2IUEM -i'); 
+  system('powershell SyncBackPro -silent AmP2VU -i'); 
+  system('powershell SyncBackPro -silent AmP2IUEM -i'); 
   %system('powershell SyncBackPro AmP2VU -i'); 
 end
 
