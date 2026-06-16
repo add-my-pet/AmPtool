@@ -59,17 +59,3 @@ for i=1:n
 end
 cd(WD)
 end
-
-function run_repair(my_pet)
-% use estim_pars for writing results_my_pet.mat file
-global pets 
-
-pets = {my_pet}; 
-
-estim_options('default'); 
-estim_options('pars_init_method', 2); 
-estim_options('results_output', 0); 
-estim_options('method', 'no'); 
-
-estim_pars; 
-end

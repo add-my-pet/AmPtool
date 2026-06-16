@@ -83,7 +83,7 @@ for i = 1:n_entries
   
       % print files
       cdCur;
-      prt_my_pet_toolbar(entries{i}, cur2ewmp);                                          % my_pet_toolbar.html
+      prt_my_pet_toolbar(entries{i}, cur2ewmp);                                       % my_pet_toolbar.html
       prt_my_pet_bib(metaData.species, metaData.biblist, cur2ewmp);                   % my_pet_bib.bib 
       bib2html([metaData.species, '_bib'], cur2ewmp);                                 % my_pet_bib.html 
       prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
@@ -100,7 +100,7 @@ for i = 1:n_entries
       end
       
     case 2 % only print toolbar
-      cdEntr(entries{i});
+      cdEntr(entries{i}); run_repair(entries{i}); load(['results_',entries{i}], 'metaData');
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
       filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
@@ -112,7 +112,7 @@ for i = 1:n_entries
       %prt_my_pet_cit(metaData, doi, cur2ewmp);                                        % citation.html
        
     case 3 % only print bib
-      cdEntr(entries{i});
+      cdEntr(entries{i}); run_repair(entries{i}); load(['results_',entries{i}], 'metaData');
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
       filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r
