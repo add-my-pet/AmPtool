@@ -63,7 +63,7 @@ WD = cdCur;
 for i = 1:n_entries
   cur2ewmp = [cur2ew, entries{i},'/']; % path from AmPtool/curation to entries_web/my_pet
   cur2emp = [cur2e, entries{i},'/']; % path from AmPtool/curation to entries/my_pet
-  mkdir(cur2ewmp);
+  if mode == 1; mkdir(cur2ewmp); end
   cd(cur2emp); % goto entry i in dir entries
   fprintf(' %g : %s \n', i, entries{i}); % report progress to screen 
   
