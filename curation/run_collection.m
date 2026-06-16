@@ -101,7 +101,6 @@ for i = 1:n_entries
       
     case 2 % only print toolbar
       cdEntr(entries{i});
-
       cd('../../entries_zip'); % goto add_my_pet/entries_zip from  add_my_pet/entries/my_pet
       filenm = zip_my_pet(entries{i}, '../entries'); % zip the entry and save
       % !Rscript zip2DataOne.r

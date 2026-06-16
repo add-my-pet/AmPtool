@@ -1,0 +1,262 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>zip2DataOne</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2026-06-16"><meta name="DC.source" content="zip2DataOne.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>zip2DataOne</h1><!--introduction--><p>inserts a DOI into the mydata file of an AmP entry zip, re-zips, and uploads to DataONE</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Syntax</a></li><li><a href="#4">Description</a></li><li><a href="#5">Remarks</a></li><li><a href="#6">Example of use</a></li><li><a href="#8">compute_md5</a></li></ul></div><h2 id="3">Syntax</h2><p>doi = <a href="../zip2DataOne.m"><b>zip2DataOne</b></a>(zip_path, token)</p><h2 id="4">Description</h2><p>Unpacks an AmP entry zip file, writes the DOI into the mydata file (as metaData.doi), re-zips, then uploads to the KNB member node of DataONE. The DOI encodes the species name and version date from the filename, e.g. Abatus_cordatus_20190117.zip yields   doi:10.5063/AmP.Abatus_cordatus.20190117</p><p>Input:</p><div><ul><li>zip_path: character string with full path to the zip file</li><li>token:    character string with DataONE authentication token</li></ul></div><p>Output:</p><div><ul><li>doi: character string with the minted DOI, or empty string on failure</li></ul></div><h2 id="5">Remarks</h2><p>Requires a DataONE account and API token from <a href="https://search.dataone.org">https://search.dataone.org</a>. The KNB member node (<a href="https://knb.ecoinformatics.org">https://knb.ecoinformatics.org</a>) is used as the upload target; its DOI prefix is 10.5063. A temporary directory is created and removed after upload.</p><h2 id="6">Example of use</h2><p>doi = zip2DataOne('C:\...\entries_zip\Abatus_cordatus_20190117.zip', token)</p><h2 id="8">compute_md5</h2><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% zip2DataOne
+% inserts a DOI into the mydata file of an AmP entry zip, re-zips, and uploads to DataONE
+
+%%
+function doi = zip2DataOne(zip_path, token)
+% created 2026/06/15 by Bas Kooijman
+
+%% Syntax
+% doi = <../zip2DataOne.m *zip2DataOne*>(zip_path, token)
+
+%% Description
+% Unpacks an AmP entry zip file, writes the DOI into the mydata file
+% (as metaData.doi), re-zips, then uploads to the KNB member node of
+% DataONE. The DOI encodes the species name and version date from the
+% filename, e.g. Abatus_cordatus_20190117.zip yields
+%   doi:10.5063/AmP.Abatus_cordatus.20190117
+%
+% Input:
+%
+% * zip_path: character string with full path to the zip file
+% * token:    character string with DataONE authentication token
+%
+% Output:
+%
+% * doi: character string with the minted DOI, or empty string on failure
+
+%% Remarks
+% Requires a DataONE account and API token from https://search.dataone.org.
+% The KNB member node (https://knb.ecoinformatics.org) is used as the
+% upload target; its DOI prefix is 10.5063.
+% A temporary directory is created and removed after upload.
+
+%% Example of use
+% doi = zip2DataOne('C:\...\entries_zip\Abatus_cordatus_20190117.zip', token)
+
+  doi = '';
+
+  % REPLACE_WITH_DASH_DASH- parse species name and date from filename REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  [zip_dir, fname] = fileparts(zip_path);
+  tokens = regexp(fname, '^(.+)_(\d{8})$', 'tokens');
+  if isempty(tokens)
+    fprintf('Warning from zip2DataOne: cannot parse name/date from "%s"\n', fname);
+    return
+  end
+  species = tokens{1}{1};   % e.g. Abatus_cordatus
+  date    = tokens{1}{2};   % e.g. 20190117
+
+  doi = ['doi:10.5063/AmP.' species '.' date];
+
+  if ~isfile(zip_path)
+    fprintf('Warning from zip2DataOne: file not found: %s\n', zip_path);
+    doi = ''; return
+  end
+
+  % REPLACE_WITH_DASH_DASH- unzip to temp directory REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  tmp_dir = fullfile(tempdir, ['zip2DataOne_' species '_' date]);
+  if exist(tmp_dir, 'dir'); rmdir(tmp_dir, 's'); end
+  mkdir(tmp_dir);
+  try
+    unzip(zip_path, tmp_dir);
+  catch ME
+    fprintf('Warning from zip2DataOne: unzip failed for %s\n  %s\n', fname, ME.message);
+    doi = ''; rmdir(tmp_dir, 's'); return
+  end
+
+  % REPLACE_WITH_DASH_DASH- locate mydata file REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+  mydata_file = fullfile(tmp_dir, species, ['mydata_' species '.m']);
+  if ~isfile(mydata_file)
+    fprintf('Warning from zip2DataOne: mydata file not found: %s\n', mydata_file);
+    doi = ''; rmdir(tmp_dir, 's'); return
+  end
+
+  % REPLACE_WITH_DASH_DASH- insert doi into mydata file REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  lines = readlines(mydata_file, 'EmptyLineRule', 'preserve');
+  doi_line = sprintf("metaData.doi = '%s';", doi);
+
+  % check if doi is already present
+  already = any(contains(lines, 'metaData.doi'));
+  if already
+    % update existing line
+    idx = find(contains(lines, 'metaData.doi'), 1);
+    lines(idx) = doi_line;
+  else
+    % insert after metaData.date_acc
+    idx = find(contains(lines, 'metaData.date_acc'), 1);
+    if isempty(idx)
+      fprintf('Warning from zip2DataOne: metaData.date_acc not found in %s\n', mydata_file);
+      doi = ''; rmdir(tmp_dir, 's'); return
+    end
+    lines = [lines(1:idx); doi_line; lines(idx+1:end)];
+  end
+
+  writelines(lines, mydata_file);
+
+  % REPLACE_WITH_DASH_DASH- re-zip REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+  new_zip = fullfile(zip_dir, [fname '.zip']);
+  entry_dir = fullfile(tmp_dir, species);
+  entry_files = dir(fullfile(entry_dir, '*'));
+  entry_files = entry_files(~[entry_files.isdir]);
+  file_paths = fullfile({entry_files.folder}, {entry_files.name});
+  try
+    zip(new_zip, file_paths);
+  catch ME
+    fprintf('Warning from zip2DataOne: re-zip failed for %s\n  %s\n', fname, ME.message);
+    doi = ''; rmdir(tmp_dir, 's'); return
+  end
+
+  % REPLACE_WITH_DASH_DASH- build system metadata (sysmeta) XML REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  file_info = dir(new_zip);
+  file_size = file_info.bytes;
+  checksum  = compute_md5(new_zip);
+  now_str   = datestr(datetime('now', 'TimeZone', 'UTC'), 'yyyy-mm-ddTHH:MM:SSZ');
+
+  sysmeta = sprintf([ ...
+    '<?xml version="1.0" encoding="UTF-8"?>\n' ...
+    '<ns3:systemMetadata xmlns:ns3="http://ns.dataone.org/service/types/v2.0">\n' ...
+    '  <serialVersion>1</serialVersion>\n' ...
+    '  <identifier>%s</identifier>\n' ...
+    '  <formatId>application/zip</formatId>\n' ...
+    '  <size>%d</size>\n' ...
+    '  <checksum algorithm="MD5">%s</checksum>\n' ...
+    '  <submitter>AmP</submitter>\n' ...
+    '  <rightsHolder>AmP</rightsHolder>\n' ...
+    '  <accessPolicy>\n' ...
+    '    <allow><subject>public</subject><permission>read</permission></allow>\n' ...
+    '  </accessPolicy>\n' ...
+    '  <dateUploaded>%s</dateUploaded>\n' ...
+    '  <dateSysMetadataModified>%s</dateSysMetadataModified>\n' ...
+    '</ns3:systemMetadata>\n'], doi, file_size, checksum, now_str, now_str);
+
+  % REPLACE_WITH_DASH_DASH- upload to DataONE KNB member node REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  mn_url   = 'https://knb.ecoinformatics.org/knb/d1/mn/v2/object';
+  boundary = 'REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHAmPDataOneBoundary';
+
+  body_text = [ ...
+    sprintf('REPLACE_WITH_DASH_DASH%s\r\n', boundary) ...
+    'Content-Disposition: form-data; name="pid"\r\n\r\n' ...
+    sprintf('%s\r\n', doi) ...
+    sprintf('REPLACE_WITH_DASH_DASH%s\r\n', boundary) ...
+    'Content-Disposition: form-data; name="sysmeta"; filename="sysmeta.xml"\r\n' ...
+    'Content-Type: application/xml\r\n\r\n' ...
+    sysmeta sprintf('\r\n') ...
+    sprintf('REPLACE_WITH_DASH_DASH%s\r\n', boundary) ...
+    sprintf('Content-Disposition: form-data; name="object"; filename="%s.zip"\r\n', fname) ...
+    'Content-Type: application/zip\r\n\r\n'];
+
+  fid = fopen(new_zip, 'rb');
+  zip_bytes = fread(fid, inf, '*uint8');
+  fclose(fid);
+
+  body_end  = uint8(sprintf('\r\nREPLACE_WITH_DASH_DASH%sREPLACE_WITH_DASH_DASH\r\n', boundary));
+  body_full = [uint8(body_text); zip_bytes; body_end];
+
+  opts = weboptions( ...
+    'Timeout',      60, ...
+    'ContentType',  'text', ...
+    'MediaType',    ['multipart/form-data; boundary=' boundary], ...
+    'HeaderFields', {'Authorization', ['Bearer ' token]});
+
+  try
+    webwrite(mn_url, body_full, opts);
+    fprintf('zip2DataOne: uploaded %s -> %s\n', fname, doi);
+  catch ME
+    fprintf('Warning from zip2DataOne: upload failed for %s\n  %s\n', fname, ME.message);
+    doi = '';
+  end
+
+  % REPLACE_WITH_DASH_DASH- clean up temp directory REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+  rmdir(tmp_dir, 's');
+
+end
+
+%% compute_md5
+function md5 = compute_md5(file_path)
+  import java.security.MessageDigest
+  import java.io.FileInputStream
+  md  = MessageDigest.getInstance('MD5');
+  fis = FileInputStream(file_path);
+  buf = javaArray('byte', 8192);
+  n   = fis.read(buf);
+  while n > 0
+    md.update(buf, 0, n);
+    n = fis.read(buf);
+  end
+  fis.close();
+  bytes = typecast(md.digest(), 'uint8');
+  md5   = sprintf('%02x', bytes);
+end
+
+##### SOURCE END #####
+--></body></html>
