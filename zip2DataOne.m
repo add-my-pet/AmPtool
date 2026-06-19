@@ -186,3 +186,16 @@ function md5 = compute_md5(file_path)
   bytes = typecast(md.digest(), 'uint8');
   md5   = sprintf('%02x', bytes);
 end
+
+% % To run on all entries:
+% token = 'your-dataone-token';
+% for d = {"C:\...\entries_zip", "C:\...\entries_archive"}
+%   zips = dir(fullfile(d{1}, '*.zip'));
+%   for i = 1:numel(zips)
+%     zip2DataOne(fullfile(zips(i).folder, zips(i).name), token);
+%   end
+%   
+% % One thing to confirm before going live: does KNB allow you to specify your own DOI like doi:10.5063/AmP.*, or do they mint the DOI for you? If they mint it, the upload flow changes slightly (you'd call a generateIdentifier endpoint first).
+
+
+end
