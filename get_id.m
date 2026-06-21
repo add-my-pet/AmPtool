@@ -13,7 +13,6 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 % Some websites apply to all animals, others only for particular taxa.
 % The lineage is taken from CoL (CoL-derived backbone), with the Taxonomicon as fallback.
 % The CoL id is obtained automatically via get_id_CoL (ChecklistBank, latest CoL release).
-% ITIS also changed, and no longer supports taxon id's as it seems. AmP will remove the links to ITIS soon.
 %
 % Input:
 %
@@ -29,7 +28,8 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 
 %% Remarks
 % Outputs empty id strings if identification was not successful.
-% Taxonomicon is used for lineage; CoL does not always give standard linnean ranks
+% Taxonomicon is used for lineage; 
+% CoL does not always give standard linnean ranks (e.g. Famili is sometimes missing)
 
 %% Example of use
 % get_id('Passer_domesticus', 1, 1)
@@ -96,19 +96,6 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://genomics.senescence.info/species/entry.php?species='};
     
   my_pet = strrep(my_pet, ' ', '_'); 
-%   [lin, rank, id_CoL, name_status, my_pet_acc] = lineage_CoL(my_pet); 
-%   if isempty(id_CoL)
-%     id = ''; id_txt = ''; return
-%   else
-%     if ~strcmp(name_status,'accepted name')
-%       if contains(my_pet_acc,'(')
-%         my_pet_acc = my_pet; % don't replace name if subgenus is part of the accepted name
-%       elseif ~strcmp(my_pet, my_pet_acc)
-%         fprintf(['Warning from get_id: status of ', my_pet, ' is ', name_status, '; continue with accepted name ', my_pet_acc, '\n'])
-%       end
-%     end
-%   end
-
   [~, ~, lin, rank] = lineage_Taxo(my_pet);
     
   select_id(1:7) = true; id = cell(23,1); id_txt = cell(23,1);
