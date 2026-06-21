@@ -27,6 +27,8 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 %
 % * <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
 % * <lineage_WoRMS.html *lineage_WoRMS*> gives a similar result for WoRMS
+% * Actinopterigii is not a class but a clade in Taxonomicon; the class is called Actinopteri
+
 %% Example of use
 % [lin, rank] = lineage_Taxo('Daphnia_magna')
 
