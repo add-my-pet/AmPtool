@@ -9,9 +9,9 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 % [id, id_txt, my_pet_acc] = <../get_id.m *get_id*>(my_pet, open, tab)
 
 %% Description
-% Gets identifiers for all websites that AmP uses for this taxon. 
+% Gets identifiers for all websites that AmP uses for this taxon.
 % Some websites apply to all animals, others only for particular taxa.
-% The lineage is taken from CoL (CoL-derived backbone), with the Taxonomicon as fallback.
+% The lineage is taken from Taxonomicon.
 % The CoL id is obtained automatically via get_id_CoL (ChecklistBank, latest CoL release).
 %
 % Input:
@@ -28,7 +28,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 
 %% Remarks
 % Outputs empty id strings if identification was not successful.
-% Taxonomicon is used for lineage; 
+% Taxonomicon is used for lineage;
 % CoL does not always give standard linnean ranks (e.g. Famili is sometimes missing)
 
 %% Example of use
@@ -36,7 +36,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 
   if ~exist('open','var')
     open = 0;
-  end 
+  end
   if ~exist('tab','var')
     tab = 0;
   end
@@ -67,10 +67,10 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
      'http://datazone.birdlife.org/'; ...
      'https://www.departments.bucknell.edu/biology/resources/msw3/'; ...
      'https://genomics.senescence.info/'};
-     
+
   address = { ...
   % general addresses
-    'https://www.catalogueoflife.org/data/taxon/'  
+    'https://www.catalogueoflife.org/data/taxon/'
     'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value='
     'https://eol.org/pages/'
     'https://en.wikipedia.org/wiki/'
@@ -94,120 +94,116 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'http://datazone.birdlife.org/species/factsheet/'
     'https://www.departments.bucknell.edu/biology/resources/msw3/browse.asp?s=y&id='
     'https://genomics.senescence.info/species/entry.php?species='};
-    
-  my_pet = strrep(my_pet, ' ', '_'); 
+
+  my_pet = strrep(my_pet, ' ', '_');
   [~, ~, lin, rank] = lineage_Taxo(my_pet);
-    
-  select_id(1:7) = true; id = cell(23,1); id_txt = cell(23,1);
+
+  select_id = false(1, 23);
+  id = cell(23, 1); id_txt = cell(23, 1);
   my_pet_acc = my_pet;
-  id{1} = get_id_CoL(my_pet_acc); id_txt{1} = 'id_CoL';
-  if isempty(id{1}) && ~strcmp(my_pet,my_pet_acc); id{1} = get_id_CoL(my_pet); end
-  id{2} = get_id_ITIS(my_pet_acc); id_txt{2} = 'id_ITIS';
-  if isempty(id{2}) && ~strcmp(my_pet,my_pet_acc); id{2} = get_id_ITIS(my_pet); end
-  id{3} = get_id_EoL(my_pet_acc); id_txt{3} = 'id_EoL';
-  if isempty(id{3}) && ~strcmp(my_pet,my_pet_acc); id{3} = get_id_EoL(my_pet); end
-  id{4} = get_id_Wiki(my_pet_acc); id_txt{4} = 'id_Wiki';
-  if isempty(id{4}) && ~strcmp(my_pet,my_pet_acc); id{4} = get_id_Wiki(my_pet); end
-  id{5} = get_id_ADW(my_pet_acc); id_txt{5} = 'id_ADW';
-  if isempty(id{5}) && ~strcmp(my_pet,my_pet_acc); id{5} = get_id_ADW(my_pet); end
-  id{6} = get_id_Taxo(my_pet_acc); id_txt{6} = 'id_Taxo';
-  if isempty(id{6}) && ~strcmp(my_pet,my_pet_acc); id{6} = get_id_Taxo(my_pet); end
-  id{7} = get_id_WoRMS(my_pet_acc); id_txt{7} = 'id_WoRMS';
-  if isempty(id{7}) && ~strcmp(my_pet,my_pet_acc); id{7} = get_id_WoRMS(my_pet); end
- 
-  select_id(8:23) = false;
+
+  % general ids (always fetched)
+  select_id(1:7) = true;
+  id{1}  = fetch(my_pet_acc, my_pet, @get_id_CoL);    id_txt{1}  = 'id_CoL';
+  id{2}  = fetch(my_pet_acc, my_pet, @get_id_ITIS);   id_txt{2}  = 'id_ITIS';
+  id{3}  = fetch(my_pet_acc, my_pet, @get_id_EoL);    id_txt{3}  = 'id_EoL';
+  id{4}  = fetch(my_pet_acc, my_pet, @get_id_Wiki);   id_txt{4}  = 'id_Wiki';
+  id{5}  = fetch(my_pet_acc, my_pet, @get_id_ADW);    id_txt{5}  = 'id_ADW';
+  id{6}  = fetch(my_pet_acc, my_pet, @get_id_Taxo);   id_txt{6}  = 'id_Taxo';
+  id{7}  = fetch(my_pet_acc, my_pet, @get_id_WoRMS);  id_txt{7}  = 'id_WoRMS';
+
+  % phylum-level taxon-specific ids
   switch lin{1}
     case 'Mollusca'
       select_id(8) = true;
-      id{8} = get_id_molluscabase(my_pet_acc); id_txt{8} = 'id_molluscabase';
-      if isempty(id{8}) && ~strcmp(my_pet,my_pet_acc); id{8} = get_id_molluscabase(my_pet); end
+      id{8} = fetch(my_pet_acc, my_pet, @get_id_molluscabase); id_txt{8} = 'id_molluscabase';
   end
+
+  % class-level taxon-specific ids
   switch lin{2}
     case 'Entognatha'
       select_id(11) = true;
-      id{11} = get_id_collembola(my_pet_acc); id_txt{11} = 'id_collembola';
-      if isempty(id{11}) && ~strcmp(my_pet,my_pet_acc); id{11} = get_id_collembola(my_pet); end
+      id{11} = fetch(my_pet_acc, my_pet, @get_id_collembola); id_txt{11} = 'id_collembola';
     case {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopteri', 'Actinopterygii', 'Actinistia', 'Dipnoi'}
       select_id(17) = true;
-      id{17} = get_id_fishbase(my_pet_acc); id_txt{17} = 'id_fishbase';
-      if isempty(id{17}) && ~strcmp(my_pet,my_pet_acc); id{17} = get_id_fishbase(my_pet); end
+      id{17} = fetch(my_pet_acc, my_pet, @get_id_fishbase); id_txt{17} = 'id_fishbase';
     case 'Amphibia'
       select_id(18) = true;
-      id{18} = get_id_amphweb(my_pet_acc); id_txt{18} = 'id_amphweb';
-      if isempty(id{18}) && ~strcmp(my_pet,my_pet_acc); id{18} = get_id_amphweb(my_pet); end
-    case {'Reptilia','Squamata','Testudines','Crocodilia'} 
+      id{18} = fetch(my_pet_acc, my_pet, @get_id_amphweb); id_txt{18} = 'id_amphweb';
+    case {'Reptilia','Squamata','Testudines','Crocodilia'}
       select_id(19) = true;
-      id{19} = get_id_ReptileDB(my_pet_acc); id_txt{19} = 'id_ReptileDB';
-      if isempty(id{19}) && ~strcmp(my_pet,my_pet_acc); id{19} = get_id_ReptileDB(my_pet); end
+      id{19} = fetch(my_pet_acc, my_pet, @get_id_ReptileDB); id_txt{19} = 'id_ReptileDB';
     case 'Aves'
       select_id(20:21) = true;
-      id{20} = get_id_avibase(my_pet_acc); id_txt{20} = 'id_avibase';
-      id{21} = get_id_birdlife(my_pet_acc); id_txt{21} = 'id_birdlife';
-      if isempty(id{20}) && ~strcmp(my_pet,my_pet_acc); id{20} = get_id_avibase(my_pet); end
-      if isempty(id{21}) && ~strcmp(my_pet,my_pet_acc); id{21} = get_id_birdlife(my_pet); end
+      id{20} = fetch(my_pet_acc, my_pet, @get_id_avibase);  id_txt{20} = 'id_avibase';
+      id{21} = fetch(my_pet_acc, my_pet, @get_id_birdlife); id_txt{21} = 'id_birdlife';
     case 'Mammalia'
       select_id(22) = true;
-      id{22} = get_id_MSW3(my_pet_acc); id_txt{22} = 'id_msw3';
-      if isempty(id{22}) && ~strcmp(my_pet,my_pet_acc); id{22} = get_id_MSW3(my_pet); end
+      id{22} = fetch(my_pet_acc, my_pet, @get_id_MSW3); id_txt{22} = 'id_msw3';
   end
+
+  % order-level taxon-specific ids
   switch lin{3}
     case 'Scorpiones'
       select_id(9) = true;
-      id{9} = get_id_scorpion(my_pet_acc); id_txt{9} = 'id_scorpion';
-      if isempty(id{9}) && ~strcmp(my_pet,my_pet_acc); id{9} = get_id_scorpion(my_pet); end
+      id{9} = fetch(my_pet_acc, my_pet, @get_id_scorpion); id_txt{9} = 'id_scorpion';
     case 'Araneae'
       select_id(10) = true;
-      id{10} = get_id_spider(my_pet_acc); id_txt{10} = 'id_spider';
-      if isempty(id{10}) && ~strcmp(my_pet,my_pet_acc); id{10} = get_id_spider(my_pet); end
+      id{10} = fetch(my_pet_acc, my_pet, @get_id_spider); id_txt{10} = 'id_spider';
     case 'Orthoptera'
       select_id(12) = true;
-      id{12} = get_id_orthoptera(my_pet_acc); id_txt{12} = 'id_orthoptera';
-      if isempty(id{12}) && ~strcmp(my_pet,my_pet_acc); id{12} = get_id_orthoptera(my_pet); end
+      id{12} = fetch(my_pet_acc, my_pet, @get_id_orthoptera); id_txt{12} = 'id_orthoptera';
     case 'Phasmatodea'
       select_id(13) = true;
-      id{13} = get_id_phasmida(my_pet_acc); id_txt{13} = 'id_phasmida';
-      if isempty(id{13}) && ~strcmp(my_pet,my_pet_acc); id{13} = get_id_phasmida(my_pet); end
+      id{13} = fetch(my_pet_acc, my_pet, @get_id_phasmida); id_txt{13} = 'id_phasmida';
     case 'Diptera'
       select_id(15) = true;
-      id{15} = get_id_diptera(my_pet_acc); id_txt{15} = 'id_diptera';
-      if isempty(id{15}) && ~strcmp(my_pet,my_pet_acc); id{15} = get_id_diptera(my_pet); end
-      address{15} = strrep(address{15}, 'id_diptera', id{15});
+      id{15} = fetch(my_pet_acc, my_pet, @get_id_diptera); id_txt{15} = 'id_diptera';
     case 'Lepidoptera'
       select_id(16) = true;
-      id{16} = get_id_lepidoptera(my_pet_acc); id_txt{16} = 'id_lepidoptera';
-      if isempty(id{16}) && ~strcmp(my_pet,my_pet_acc); id{16} = get_id_lepidoptera(my_pet); end
-    address{16} = strrep(address{16}, 'id_diptera', id{16});
+      id{16} = fetch(my_pet_acc, my_pet, @get_id_lepidoptera); id_txt{16} = 'id_lepidoptera';
   end
+
+  % family-level taxon-specific ids
   switch lin{4}
     case 'Aphididae'
       select_id(14) = true;
-      id{14} = get_id_aphid(my_pet_acc); id_txt{14} = 'id_aphid';
-      if isempty(id{14}) && ~strcmp(my_pet,my_pet_acc); id{14} = get_id_aphid(my_pet); end
+      id{14} = fetch(my_pet_acc, my_pet, @get_id_aphid); id_txt{14} = 'id_aphid';
   end
+
+  % tetrapod AnAge ids (second class-level switch, kept separate to avoid case conflicts)
   switch lin{2}
-    case {'Amphibia','Reptilia','Squamata','Testudines','Crocodilia','Aves','Mammalia'} 
+    case {'Amphibia','Reptilia','Squamata','Testudines','Crocodilia','Aves','Mammalia'}
       select_id(23) = true;
-      id{23} = get_id_AnAge(my_pet_acc); id_txt{23} = 'id_AnAge';
-      if isempty(id{23})  && ~strcmp(my_pet,my_pet_acc); id{23} = get_id_AnAge(my_pet); end
+      id{23} = fetch(my_pet_acc, my_pet, @get_id_AnAge); id_txt{23} = 'id_AnAge';
   end
-  id = id(select_id); id_txt = id_txt(select_id); 
-  ind = 1:23; ind = ind(select_id); n = length(id);
-        
+
+  id = id(select_id); id_txt = id_txt(select_id);
+  ind = find(select_id); n = length(id);
+
   if open
     for i = 1:n
+      k = ind(i);
       if isempty(id{i})
-        web(links{ind(i)},'-browser');
+        web(links{k}, '-browser');
+      elseif k == 15  % Diptera: ID is embedded in the URL query string, not appended
+        web(strrep(address{k}, 'id_diptera', id{i}), '-browser');
       else
-        if strfind(address{ind(i)}, 'diptera')
-          web(strrep(address{15}, 'id_diptera', id{i}),'-browser');
-        else
-          web([address{ind(i)}, id{i}],'-browser');
-        end
+        web([address{k}, id{i}], '-browser');
       end
     end
   end
-  
+
   if tab
     prt_tab({id_txt,id}, {my_pet_acc,'id'}, my_pet_acc)
   end
 
+end
+
+%% local helper: try accepted name first, fall back to original if lookup returns empty
+function result = fetch(acc, orig, fn)
+  result = fn(acc);
+  if isempty(result) && ~strcmp(orig, acc)
+    result = fn(orig);
+  end
+end
