@@ -27,7 +27,8 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 %
 % * <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
 % * <lineage_WoRMS.html *lineage_WoRMS*> gives a similar result for WoRMS
-% * Actinopterigii is not a class but a clade in Taxonomicon; the class is called Actinopteri
+% * Actinopterygii is not a class but a clade in Taxonomicon; the class is called Actinopteri
+% * Aves is not a class but a subclass in Taxonomicon; the class is called Reptilia
 
 %% Example of use
 % [lin, rank] = lineage_Taxo('Daphnia_magna')
@@ -89,3 +90,4 @@ lineage_short = lineage(max(1,ind));
 for i=1:5; if ind(i)==0; lineage_short{i} = ''; end; end
 
 if ismember('Aves',lineage); lineage_short{2} = 'Aves'; end % Aves is a subclass in Taxonomicon but a class in AmP
+if ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii'; end % Actinopterigii is a clade in Taxonomicon but a class in AmP
