@@ -97,7 +97,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 
   my_pet = strrep(my_pet, ' ', '_');
   [~, ~, lin, rank] = lineage_Taxo(my_pet);
-
+  
   select_id = false(1, 23);
   id = cell(23, 1); id_txt = cell(23, 1);
   my_pet_acc = my_pet;

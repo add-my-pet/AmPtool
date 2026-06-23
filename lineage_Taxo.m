@@ -88,3 +88,4 @@ rank_short = {'Phylum';'Class';'Order';'Family';'Genus'};
 lineage_short = lineage(max(1,ind));
 for i=1:5; if ind(i)==0; lineage_short{i} = ''; end; end
 
+if ismember('Aves',lineage); lineage_short{2} = 'Aves'; end % Aves is a subclass in Taxonomicon but a class in AmP

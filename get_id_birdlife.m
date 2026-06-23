@@ -3,7 +3,7 @@
 
 %%
 function id = get_id_birdlife(my_pet, open)
-% created 2021/08/02 by Bas Kooijman
+% created 2021/08/02 by Bas Kooijman, modified 2026/06/22
 
 %% Syntax
 % id = <../get_id_birdlife.m *get_id_birdlife*>(my_pet, open)
@@ -22,28 +22,40 @@ function id = get_id_birdlife(my_pet, open)
 
 %% Remarks
 % Outputs empty strings if identification was not successful.
+% The BirdLife DataZone slug format is {common-name}-{genus}-{species},
+% retrieved from the species sitemaps (sitemap-species-1.xml through 6).
 
 %% Example of use
 % get_id_birdlife('Passer_domesticus', 1)
 
-address = 'http://datazone.birdlife.org/species/factsheet/';
+  address = 'https://datazone.birdlife.org/species/factsheet/';
 
-if ~exist('open','var')
-  open = 0;
+  if ~exist('open','var')
+    open = 0;
+  end
+
+  % scientific name fragment at end of slug, e.g. Passer_domesticus -> passer-domesticus
+  sci = lower(strrep(strrep(my_pet, '_', '-'), ' ', '-'));
+
+  id = '';
+  for k = 1:6
+    try
+      xml = webread(['https://datazone.birdlife.org/sitemap-species-', num2str(k), '.xml']);
+    catch
+      continue
+    end
+    % slug ends with the hyphenated scientific name, e.g. house-sparrow-passer-domesticus
+    tok = regexp(xml, ['factsheet/([a-z0-9][a-z0-9-]*-', sci, ')'], 'tokens', 'once');
+    if ~isempty(tok)
+      id = tok{1};
+      break
+    end
+  end
+
+  if open && ~isempty(id)
+    web([address, id], '-browser');
+  elseif open
+    web('https://datazone.birdlife.org', '-browser');
+  end
+
 end
-
-my_pet = strrep(my_pet,'_','+'); 
-my_pet = strrep(my_pet,' ','+'); 
-
-url = urlread(['http://datazone.birdlife.org/quicksearch?qs=', my_pet]);
-i_0 = strfind(url,'factsheet/'); 
-if isempty(i_0)
-  id = ''; return
-end
-i_0 = i_0 + 10; i_1 = strfind(url(i_0(1):end),'"') + i_0(1) - 2;
-id = url(i_0(1): i_1(1));
-
-if open
-  web([address, id],'-browser');
-end
-
