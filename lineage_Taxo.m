@@ -9,7 +9,8 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 % [lineage, rank, lineage_short, rank_short, id_Taxo] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
 
 %% Description
-% Gets lineage of species from the Taxonomicon; lineage_short is edited to comply to AmP for use in get_id
+% Gets lineage of species from the Taxonomicon; class in lineage_short is edited to comply to AmP for use in get_id;
+% order in lineage_short might differ from AmP, but get_d_V and get_N_wasteonly pass phylum and class.
 %
 % Input:
 %
