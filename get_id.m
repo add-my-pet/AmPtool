@@ -29,7 +29,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 %% Remarks
 % Outputs empty id strings if identification was not successful.
 % Taxonomicon is used for lineage;
-% CoL does not always give standard linnean ranks (e.g. Famili is sometimes missing)
+% CoL does not always give standard linnean ranks (e.g. Family is sometimes missing)
 
 %% Example of use
 % get_id('Passer_domesticus', 1, 1)
