@@ -3,7 +3,7 @@
 
 %%
 function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_pet)
-% created 2018/01/30 by Bas Kooijman
+% created 2018/01/30 by Bas Kooijman; modified 2026/06/24
 
 %% Syntax
 % [lineage, rank, lineage_short, rank_short, id_Taxo] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
@@ -37,22 +37,24 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 %% Example of use
 % [lin, rank] = lineage_Taxo('Daphnia_magna')
 
+% initialize outputs for early-return paths
+lineage = []; rank = []; lineage_short = cell(5,1); rank_short = {'Phylum';'Class';'Order';'Family';'Genus'};
+
 if contains(my_pet,' '); my_pet = strrep(my_pet, ' ','_'); end
 
 id_Taxo = get_id_Taxo(my_pet);
 if isempty(id_Taxo)
-  lineage = []; rank = []; 
   return
 end
 
-url = urlread(['http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=', id_Taxo]);
-if ~isempty(strfind(url, 'This unexpected error'))
-  lineage = []; rank = []; 
+url = webread(['http://taxonomicon.taxonomy.nl/TaxonTree.aspx?id=', id_Taxo]);
+if contains(url, 'This unexpected error')
   fprintf('Warning from lineage_Taxo: website Taxonomicon is presently not working properly\n')
   return
 end
+
 % remove all stuff around classification
-url(1:strfind(url, '&#32;') - 1) = []; 
+url(1:strfind(url, '&#32;') - 1) = [];
 url(strfind(url, '<br /></p></div>'):end) = [];
 
 ind = strfind(url, '&#32;'); % find lines for all ranks
@@ -73,7 +75,7 @@ end
 lineage(end) = {my_pet}; rank(end) = {'Species'};
 
 n_lin = length(lineage);
-for i=1:n_lin
+for i = 1:n_lin
   lineage(i) = strrep(lineage(i), '<b>', '');
   lineage(i) = strrep(lineage(i), '</b>', '');
   if ~isempty(rank{i}) && ~contains(rank{i},'<aclass')
@@ -83,21 +85,25 @@ for i=1:n_lin
   end
 end
 
-[j, i] = ismember('Animalia', lineage); 
+[j, i] = ismember('Animalia', lineage);
 if ~j
   fprintf(['Warning from lineage_Taxo: ', my_pet, ' is not classified as belonging to Animalia\n'])
-else  
+else
   rank(1:i-1) = []; lineage(1:i-1) = [];
 end
 
-rank_short = {'Phylum';'Class';'Order';'Family';'Genus'};
-[~, ind] = ismember(rank_short,rank);
-lineage_short = lineage(max(1,ind));
-for i=1:5; if ind(i)==0; lineage_short{i} = ''; end; end
+[~, ind] = ismember(rank_short, rank);
+lineage_short = lineage(max(1, ind));
+for i = 1:5
+  if ind(i) == 0
+    lineage_short{i} = '';
+  end
+end
 
-if ismember('Petromyzonti',lineage); lineage_short{2} = 'Cephalaspidomorphi'; end % Petromyzonti is a class in Taxonomicon but called Cephalaspidomorphi in AmP
-if ismember('Chondrichthyes',lineage); lineage_short{2} = 'Chondrichthyes'; end % Chondrichthyes is a [crown]Class in Taxonomicon but a class in AmPif ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii'; end % Actinopterigii is a clade in Taxonomicon but a class in AmP
-if ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii'; end % Actinopterigii is a clade in Taxonomicon but a class in AmP
-if ismember('Coelacanthi',lineage); lineage_short{2} = 'Actinistia'; end % Coelacanthi is a [crown]Class in Taxonomicon but called Actinistia in AmP
-if ismember('Dipneusti',lineage); lineage_short{2} = 'Dipnoi'; end % Dipneusti is a Class in Taxonomicon but called Dipnoi in AmP
-if ismember('Aves',lineage); lineage_short{2} = 'Aves'; end % Aves is a subclass in Taxonomicon but a class in AmP
+% AmP taxonomy corrections
+if ismember('Petromyzonti',  lineage); lineage_short{2} = 'Cephalaspidomorphi'; end % class in Taxonomicon, called Cephalaspidomorphi in AmP
+if ismember('Chondrichthyes',lineage); lineage_short{2} = 'Chondrichthyes';     end % [crown]Class in Taxonomicon, class in AmP
+if ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii';     end % clade in Taxonomicon, class in AmP
+if ismember('Coelacanthi',   lineage); lineage_short{2} = 'Actinistia';         end % class in Taxonomicon, called Actinistia in AmP
+if ismember('Dipneusti',     lineage); lineage_short{2} = 'Dipnoi';             end % class in Taxonomicon, called Dipnoi in AmP
+if ismember('Aves',          lineage); lineage_short{2} = 'Aves';               end % subclass in Taxonomicon, class in AmP
