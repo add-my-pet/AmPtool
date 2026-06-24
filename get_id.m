@@ -124,7 +124,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     case 'Entognatha'
       select_id(11) = true;
       id{11} = fetch(my_pet_acc, my_pet, @get_id_collembola); id_txt{11} = 'id_collembola';
-    case {'Cephalaspidomorphi', 'Myxini', 'Cyclostomata', 'Chondrichthyes', 'Actinopteri', 'Actinopterygii', 'Actinistia', 'Dipnoi'}
+    case {'Cephalaspidomorphi', 'Myxini', 'Chondrichthyes', 'Actinopterygii', 'Actinistia', 'Dipnoi'}
       select_id(17) = true;
       id{17} = fetch(my_pet_acc, my_pet, @get_id_fishbase); id_txt{17} = 'id_fishbase';
     case 'Amphibia'

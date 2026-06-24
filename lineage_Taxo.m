@@ -9,7 +9,7 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 % [lineage, rank, lineage_short, rank_short, id_Taxo] = <../lineage_Taxo.m *lineage_Taxo*>(my_pet)
 
 %% Description
-% Gets lineage of species from the Taxonomicon
+% Gets lineage of species from the Taxonomicon; lineage_short is edited to comply to AmP for use in get_id
 %
 % Input:
 %
@@ -27,11 +27,17 @@ function [lineage, rank, lineage_short, rank_short, id_Taxo] = lineage_Taxo(my_p
 %
 % * <lineage.html *lineage*> gives a similar result for AmP entries, and <lineage_CoL.html *lineage_CoL*> for the Catalog of Life
 % * <lineage_WoRMS.html *lineage_WoRMS*> gives a similar result for WoRMS
+% * Petromyzonti in Taxonomicon is called Cephalaspidomorphi in AmP
 % * Actinopterygii is not a class but a clade in Taxonomicon; the class is called Actinopteri
+% * Chondrichthyes is [crown]Class in Taxonomicon but a class in AmP
+% * Dipneusti is a class in Taxonomicon but called Dipnoi in AmP
+% * Coelacanthi is a class in Taxonomicon but called Actinistia in AmP
 % * Aves is not a class but a subclass in Taxonomicon; the class is called Reptilia
 
 %% Example of use
 % [lin, rank] = lineage_Taxo('Daphnia_magna')
+
+if contains(my_pet,' '); my_pet = strrep(my_pet, ' ','_'); end
 
 id_Taxo = get_id_Taxo(my_pet);
 if isempty(id_Taxo)
@@ -89,5 +95,9 @@ rank_short = {'Phylum';'Class';'Order';'Family';'Genus'};
 lineage_short = lineage(max(1,ind));
 for i=1:5; if ind(i)==0; lineage_short{i} = ''; end; end
 
-if ismember('Aves',lineage); lineage_short{2} = 'Aves'; end % Aves is a subclass in Taxonomicon but a class in AmP
+if ismember('Petromyzonti',lineage); lineage_short{2} = 'Cephalaspidomorphi'; end % Petromyzonti is a class in Taxonomicon but called Cephalaspidomorphi in AmP
+if ismember('Chondrichthyes',lineage); lineage_short{2} = 'Chondrichthyes'; end % Chondrichthyes is a [crown]Class in Taxonomicon but a class in AmPif ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii'; end % Actinopterigii is a clade in Taxonomicon but a class in AmP
 if ismember('Actinopterygii',lineage); lineage_short{2} = 'Actinopterygii'; end % Actinopterigii is a clade in Taxonomicon but a class in AmP
+if ismember('Coelacanthi',lineage); lineage_short{2} = 'Actinistia'; end % Coelacanthi is a [crown]Class in Taxonomicon but called Actinistia in AmP
+if ismember('Dipneusti',lineage); lineage_short{2} = 'Dipnoi'; end % Dipneusti is a Class in Taxonomicon but called Dipnoi in AmP
+if ismember('Aves',lineage); lineage_short{2} = 'Aves'; end % Aves is a subclass in Taxonomicon but a class in AmP
