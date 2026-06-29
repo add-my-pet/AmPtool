@@ -88,7 +88,7 @@ switch mode
 
       % write add_my_pet/AmPdata/AmPdata.zip
       cdAmPdata; load allUnits; load allLabel
-      zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat', 'allLabel.mat', 'cdAmPdata.m'}); 
+      zip('AmPdata', {'allStat.mat','popStat.mat','allUnits.mat','allLabel.mat','cdAmPdata.m'}); 
       n_entries = length(fields(allStat)); save('n_entries', 'n_entries')
       
       cdCur; 
