@@ -2,11 +2,11 @@
 % gets id's of all AmP-supported websites
 
 %%
-function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
-% created 2021/08/3 by Bas Kooijman, modified 2024/09/14
+function [id, id_txt, my_pet_acc, lin, rank] = get_id(my_pet, open, tab)
+% created 2021/08/3 by Bas Kooijman, modified 2024/09/14, 2026/07/01
 
 %% Syntax
-% [id, id_txt, my_pet_acc] = <../get_id.m *get_id*>(my_pet, open, tab)
+% [id, id_txt, my_pet_acc, lin, rank] = <../get_id.m *get_id*>(my_pet, open, tab)
 
 %% Description
 % Gets identifiers for all websites that AmP uses for this taxon.
@@ -25,6 +25,8 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
 % * id: vector of cells with id's
 % * id_txt: vector of cells with labels for id's
 % * my_pet_acc: name of accepted species (_ separated)
+% * lin: short lineage
+% * rank: short rank (phylum, class, order, family, genus)
 
 %% Remarks
 % Outputs empty id strings if identification was not successful.
@@ -96,7 +98,7 @@ function [id, id_txt, my_pet_acc] = get_id(my_pet, open, tab)
     'https://genomics.senescence.info/species/entry.php?species='};
 
   my_pet = strrep(my_pet, ' ', '_');
-  [~, ~, lin, rank] = lineage_Taxo(my_pet);
+  [~, ~, lin, rank] = lineage_Taxo(my_pet); rank = lower(rank);
   
   select_id = false(1, 23);
   id = cell(23, 1); id_txt = cell(23, 1);

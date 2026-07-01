@@ -46,7 +46,7 @@ for i = 1:n
       shstat_options('default');
       shstat_options('x_label', 'on');
       shstat_options('y_label', 'on');
-      shlegend(legend_RSED,[],[0.9 0.2]);
+      shlegend(legend_RSED,[],[0.9 0.2],'Animalia');
       saveas(gcf,'legend_RSED.png'); 
       cropWhite('legend_RSED.png');
 
@@ -62,7 +62,7 @@ for i = 1:n
       shstat_options('default');
       shstat_options('x_label', 'on');
       shstat_options('y_label', 'on');
-      shlegend(legend_sauria,[],[0.9 0.2]);
+      shlegend(legend_sauria,[],[0.9 0.2],'Sauropsida');
       saveas(gcf,'legend_sauria.png'); 
       cropWhite('legend_sauria.png');
 
@@ -108,7 +108,7 @@ for i = 1:n
         {'-', 2, [1 0 1]}, 'Cephalopoda'; ....
         {'-', 2, [1 0 0]}, 'Annelida'; ....
       };
-      shllegend(llegend_mol,[],[0.9 0.2]);
+      shllegend(llegend_mol,[],[0.9 0.2],'Lophotrochozoa');
       saveas(gcf,'llegend_mol.png'); cropWhite('llegend_mol');
       
       % p_M
