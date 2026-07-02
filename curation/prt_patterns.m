@@ -99,28 +99,28 @@ for i = 1:n
 
       saveas(Hfig, 'V_pM.png')
 
-    case 5 % Fig 5: log p_M for lophotrochozoa
+    case 5 % Fig 5: log p_M for lochotrochozoa
                       
-      llegend_mol = {... % Lophotrochozoa
+      llegend_loch = {... % Lochotrochozoa
         {'-', 2, [0 0 0]}, 'Lophophorata'; ....
         {'-', 2, [0 0 1]}, 'Bivalvia'; ....
         {'-', 2, [0 1 1]}, 'Gastropoda'; ....
         {'-', 2, [1 0 1]}, 'Cephalopoda'; ....
         {'-', 2, [1 0 0]}, 'Annelida'; ....
       };
-      shllegend(llegend_mol,[],[0.9 0.2],'Lophotrochozoa');
-      saveas(gcf,'llegend_mol.png'); cropWhite('llegend_mol');
+      shllegend(llegend_loch,[],[0.9 0.2],'Lochotrochozoa');
+      saveas(gcf,'llegend_loch.png'); cropWhite('llegend_loch');
       
       % p_M
       shstat_options('default');
       shstat_options('y_transform', 'none'); 
       %
-      Hfig_pM = shstat({'p_M'}, llegend_mol); 
+      Hfig_pM = shstat({'p_M'}, llegend_loch); 
       figure(Hfig_pM)
       xlabel('_{10}log spec somatic maint [p_M], J/d.cm^3')
       ylabel('survivor function')
-      title(['\it Lophotrochozoa @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
-      saveas(gcf,'pM_mol.png')
+      title(['\it Lochotrochozoa @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
+      saveas(gcf,'pM_loch.png')
 
     case 6 % Fig 6: log p_M for mammals
         
