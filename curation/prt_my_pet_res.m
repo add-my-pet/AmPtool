@@ -228,8 +228,7 @@ if n_fig > 0
       n = length(ref); REF = ref{1}; % number of references    
       for j = 2:n; REF = [REF,', ',ref{j}]; end
     end
-    %
-    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', name, fig, labels, re, REF);        
+    fprintf(oid, '        <tr><td>%s</td> <td>%s</td> %s <td>(%3.4g)</td> <td>%s</td></tr>\n', name, fig, labels, re, REF);
   end
   fprintf(oid, '      </table>\n\n'); 
   

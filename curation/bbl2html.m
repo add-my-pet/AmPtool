@@ -88,6 +88,7 @@ for i = 1:n_bib % scan bibitems
   bibitem_i = strrep(bibitem_i, '{\O}',  '&Oslash;');
   bibitem_i = strrep(bibitem_i, '\.{u}', '&uring;');
   bibitem_i = strrep(bibitem_i, '{\ae}', '&aelig;');
+  bibitem_i = strrep(bibitem_i, '{\aa}', '&aring;');
   bibitem_i = strrep(bibitem_i, '{\ss}', '&szlig;');
   bibitem_i = strrep(bibitem_i, '\alpha','&alpha;');
   bibitem_i = strrep(bibitem_i, '\beta', '&beta;');
