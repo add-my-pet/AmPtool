@@ -35,7 +35,7 @@ close all
 if exist('index','var')
   i_close = false;
 else
-  index = 1:6; i_close = true;
+  index = 1:11; i_close = true;
 end
 n = length(index);  
 
@@ -57,6 +57,8 @@ for i = 1:n
       figure(Hfig) 
       xlabel('_{10}log max adult weight, g')      
       ylabel('_{10}log O_2 consumption, mol/d')
+
+      saveas(gcf,'Ww_JO.png'); 
 
     case 2 % Fig 2: log W - log dW
       shstat_options('default');
@@ -99,7 +101,7 @@ for i = 1:n
 
       saveas(Hfig, 'V_pM.png')
 
-    case 5 % Fig 5: log p_M for lochotrochozoa
+    case 5 % Fig 5: log p_M for lophotrochozoa
                       
       llegend_loph = {... % Lophotrochozoa
         {'-', 2, [0 0 0]}, 'Lophophorata'; ....
@@ -120,6 +122,7 @@ for i = 1:n
       xlabel('_{10}log spec somatic maint [p_M], J/d.cm^3')
       ylabel('survivor function')
       title(['\it Lophotrochozoa @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
+
       saveas(gcf,'pM_loph.png')
 
     case 6 % Fig 6: log p_M for mammals
@@ -147,7 +150,9 @@ for i = 1:n
       ylabel('survivor function, -')
       title(['\it mammalia @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
       xlim([0.7 4])
-      set(gca, 'FontSize', 15, 'Box', 'on')
+      grid 'on'
+      set(gca, 'FontSize',15, 'Box','on')
+
       saveas(gcf,'pM_mam_food.png')
 
     case 7 % Fig 7: kap_ss_kapRA: kapRA = pRi/ pAi for invertebrates
@@ -178,6 +183,7 @@ for i = 1:n
       set(gca, 'FontSize',25, 'Box','on')
       set(gcf, 'WindowState','maximized')
       pause(0.5);  % wait for the resize to actually happen
+
       % saveas(gcf,'kap_ss_kapRA_invert.fig')
       saveas(gcf,'kap_ss_kapRA_invert.png')
        
@@ -208,6 +214,7 @@ for i = 1:n
       set(gca, 'FontSize',25, 'Box','on')
       set(gcf, 'WindowState','maximized')
       pause(0.5);  % wait for the resize to actually happen
+      
       %saveas(gcf,'kap_ss_kapRA_vert.fig')
       saveas(gcf,'kap_ss_kapRA_vert.png')
 
@@ -230,6 +237,7 @@ for i = 1:n
      title(['\it aquatic chain @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
      set(gca, 'FontSize', 15, 'Box', 'on')
      xlim([0,4/27]); ylim([0,1]);
+     
      saveas(gcf,'ss_CrusClupSela.png')
 
    case 10 % Fig 10: ss distribution in food chains
@@ -258,6 +266,7 @@ for i = 1:n
      title(['\it terrestrial chain @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
      set(gca, 'FontSize', 15, 'Box', 'on')
      xlim([0,4/27]); ylim([0,1]);
+     
      saveas(gcf,'ss_HexaPassHier.png'); 
      
    case 11 % Fig 11: ss distribution in food chains
@@ -277,6 +286,7 @@ for i = 1:n
      title(['\it rodents & carnivorans @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
      xlabel('supply stress, s_s')
      xlim([0,4/27]); ylim([0,1]);
+     
      saveas(gcf,'ss_rodent.png')
  
   end
