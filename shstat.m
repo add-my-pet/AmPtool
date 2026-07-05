@@ -102,13 +102,13 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
     n_vars = length(vars);
     switch n_vars
       case 1
-        [val entries units label] = read_allStat(vars{1});
+        [val, entries, units, label] = read_allStat(vars{1});
         units_x = units{1}; label_x = label{1}; 
       case 2
-        [val entries units label] = read_allStat(vars{1},vars{2});
+        [val, entries, units, label] = read_allStat(vars{1},vars{2});
         units_x = units{1}; units_y = units{2}; label_x = label{1}; label_y = label{2};
       case 3
-        [val entries units label] = read_allStat(vars{1},vars{2},vars{3});
+        [val, entries, units, label] = read_allStat(vars{1},vars{2},vars{3});
         units_x = units{1}; units_y = units{2}; units_z = units{3}; label_x = label{1}; label_y = label{2}; label_z = label{3};       
     end
     n_entries = length(entries); 
@@ -163,7 +163,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         return
       end
       missing = entries(isnan(sum(val(any(sel,2),:),2))); % determine missing entries
-      label_legend = [label_title, ' ',type];            % append date to default legend title
+      label_legend = [label_title, ' ',type];             % append date to default legend title
       label_title = [label_title, ' ', datestr(date,26)]; % append date to default figure title
 
     else                   % taxa legend
@@ -414,7 +414,7 @@ function position_legend(Hleg, Hfig)
   leg_pos  = Hleg.Position;
   new_x    = main_pos(1) + main_pos(3) + 10;
   new_x    = min(new_x, scr(3) - leg_pos(3));  % clamp to screen right edge
-  new_y    = max(main_pos(2), 1);               % clamp to screen bottom
+  new_y    = max(main_pos(2), 1);              % clamp to screen bottom
   Hleg.Position(1) = new_x;
   Hleg.Position(2) = new_y;
 end
