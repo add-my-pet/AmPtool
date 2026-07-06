@@ -2,7 +2,7 @@
 % Obtains predictions using parameters and environmental data
 
 %%
-function [tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod_test_DL(model, par, tT, tf, isStageFood)
+function [tELHR, tWNXO, tpAMGRD, aLW, aLWc]  = get_indDyn_mod(model, par, tT, tf, isStageFood)
  % created 2023/06/01, modified 2026/07/06 by Dina Lika
  % stx model provided by Brecht Stechele 2026/05/06
 
