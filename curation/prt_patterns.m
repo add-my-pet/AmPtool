@@ -51,14 +51,14 @@ for i = 1:n
       cropWhite('legend_RSED.png');
 
       cWJO = read_allStat('c_T', 'Ww_i', 'J_Oi'); c_T = cWJO(:,1); W = cWJO(:,2); JO = cWJO(:,3);
-      [Hfig, Hleg] = shstat([W, JO ./ c_T], legend_RSED, datestr(datenum(date),'yyyy/mm/dd')); 
+      Hfig = shstat([W, JO ./ c_T], legend_RSED, datestr(datenum(date),'yyyy/mm/dd')); 
       set(gca, 'FontSize', 15, 'Box', 'on')
 
       figure(Hfig) 
       xlabel('_{10}log max adult weight, g')      
       ylabel('_{10}log O_2 consumption, mol/d')
 
-      saveas(gcf,'Ww_JO.png'); 
+      saveas(gcf,'W_JO.png'); 
 
     case 2 % Fig 2: log W - log dW
       shstat_options('default');
@@ -117,11 +117,10 @@ for i = 1:n
       shstat_options('default');
       shstat_options('y_transform', 'none'); 
       %
-      Hfig_pM = shstat({'p_M'}, llegend_loph); 
+      Hfig_pM = shstat({'p_M'}, llegend_loph, ['lophotrochozoa @ ',datestr(datenum(date),'yyyy/mm/dd')]); 
       figure(Hfig_pM)
       xlabel('_{10}log spec somatic maint [p_M], J/d.cm^3')
       ylabel('survivor function')
-      title(['\it Lophotrochozoa @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
 
       saveas(gcf,'pM_loph.png')
 
@@ -167,13 +166,16 @@ for i = 1:n
       kapRA = get_kapRA(read_allStat({'p_Am','p_M','k_J','E_Hp','s_M','kap','L_i'})); 
       kap_ss_kapRA = [read_allStat({'kap','s_s'}),kapRA(:,1)];
 
-      Hfig_invert = shstat(kap_ss_kapRA, legend_invert, ['invertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
+      n = length(select); n_vert = length(select('Vertebrata')); n_invert = n - n_vert;
+      Hfig_invert = shstat(kap_ss_kapRA, legend_invert, [num2str(n_invert), ' invertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
       figure(Hfig_invert) % add items to figure
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
       mesh(kap,ss,kapRA'); % add surface to figure
       kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy); % curve in kapRA=0 plane
-      plot3(kap_xy,ss_xy,0*kap_xy); % curve in kapRA=0 plane
+      plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % curve in kapRA=0 plane
+      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % maximum
+      for j=1:20; ind=max(1,(j-1)*5+(0:5)); plot3(kap(ind),ss(ind),kapRA(ind), '-', 'color',color_lava(kapRA(ind(3)))); end
       xlim([0 1]); ylim([0 4/27]); zlim([0 1]);
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
@@ -184,7 +186,7 @@ for i = 1:n
       set(gcf, 'WindowState','maximized')
       pause(0.5);  % wait for the resize to actually happen
 
-      % saveas(gcf,'kap_ss_kapRA_invert.fig')
+      % saveas(gcf,'kap_ss_kapRA_invert.fig') % allows to be rotated on screen
       saveas(gcf,'kap_ss_kapRA_invert.png')
        
     case 8 % Fig 8: kap_ss_kapRA: kapRA = pRi/ pAi for vertebrates
@@ -199,12 +201,15 @@ for i = 1:n
       kapRA = get_kapRA(read_allStat({'p_Am','p_M','k_J','E_Hp','s_M','kap','L_i'})); 
       kap_ss_kapRA = [read_allStat({'kap','s_s'}),kapRA(:,1)];
        
-      Hfig_vert = shstat(kap_ss_kapRA, legend_vert, ['vertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
+      n_vert = length(select('Vertebrata')); 
+      Hfig_vert = shstat(kap_ss_kapRA, legend_vert, [num2str(n_vert), ' vertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
       figure(Hfig_vert) % add items to figure
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
       mesh(kap,ss,kapRA'); % add surface to figure
-      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy); % curve in kapRA=0 plane
+      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % curve in kapRA=0 plane
+      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % maximum
+      for j=1:20; ind=max(1,(j-1)*5+(0:5)); plot3(kap(ind),ss(ind),kapRA(ind), '-', 'color',color_lava(kapRA(ind(3)))); end
       xlim([0 1]); ylim([0 4/27]); zlim([0 1]);
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
@@ -215,7 +220,7 @@ for i = 1:n
       set(gcf, 'WindowState','maximized')
       pause(0.5);  % wait for the resize to actually happen
       
-      %saveas(gcf,'kap_ss_kapRA_vert.fig')
+      %saveas(gcf,'kap_ss_kapRA_vert.fig') % allows to be rotated on screen
       saveas(gcf,'kap_ss_kapRA_vert.png')
 
    case 9 % Fig 9: ss distribution in food chains
@@ -231,10 +236,9 @@ for i = 1:n
      shstat_options('x_transform', 'none');
      shstat_options('y_label', 'on'); % if 'off' (default), no `survivor function' shown on yaxis
      %
-     Hfig_ss = shstat({'s_s'}, llegend); 
+     Hfig_ss = shstat({'s_s'}, llegend, ['aquatic chain @ ',datestr(datenum(date),'yyyy/mm/dd')]); 
      figure(Hfig_ss)
      xlabel('supply stress, s_s')
-     title(['\it aquatic chain @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
      set(gca, 'FontSize', 15, 'Box', 'on')
      xlim([0,4/27]); ylim([0,1]);
      
@@ -260,10 +264,9 @@ for i = 1:n
      shstat_options('y_label', 'on'); % if 'off' (default), no `survivor function' shown on yaxis
      %
      Hfig_ss = shstat({'s_s'}, llegend);  
-     shstat(ss_pass_Ci, {'b','b'}, '', Hfig_ss);
+     shstat(ss_pass_Ci, {'b','b'}, ['terrestrial chain @ ',datestr(datenum(date),'yyyy/mm/dd')], Hfig_ss);
      figure(Hfig_ss)
      xlabel('supply stress, s_s')
-     title(['\it terrestrial chain @ ',datestr(datenum(date),'yyyy/mm/dd')], 'FontSize',15, 'FontWeight','normal'); 
      set(gca, 'FontSize', 15, 'Box', 'on')
      xlim([0,4/27]); ylim([0,1]);
      
