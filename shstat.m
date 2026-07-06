@@ -265,14 +265,14 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   end
   
   if exist('label_title', 'var') && ~isempty(label_title)
-    title(label_title)
+    title(['\it ', label_title], 'FontSize',15, 'FontWeight','normal')
   end
 
   hold on
   switch n_vars
     case 1
         
-      set(gca, 'FontSize', FS, 'Box', 'on', 'YTick', 0:0.2:1)
+      set(gca, 'FontSize',FS, 'Box','on', 'YTick',0:0.2:1)
       if strcmp(grid_opt, 'on'), grid on; end
       xlabel(label_x)
       ylim([0 1]);
