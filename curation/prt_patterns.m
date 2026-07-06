@@ -172,18 +172,28 @@ for i = 1:n
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
       mesh(kap,ss,kapRA'); % add surface to figure
-      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy); % curve in kapRA=0 plane
+      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy); % isocline for kapRA=0 in (kap,ss)-plane 
       plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % curve in kapRA=0 plane
-      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % maximum
+      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % max curve on mesh
       for j=1:20; ind=max(1,(j-1)*5+(0:5)); plot3(kap(ind),ss(ind),kapRA(ind), '-', 'color',color_lava(kapRA(ind(3)))); end
+      plot3(kap,ss,0*kapRA, ':k'); % projection of max curve in (kap,ss)-plane      
+      ss = linspace(1e-8, 4/27, 50); kap = (2*ss).^(1/3); cur = ones(6,1); % prepare curtain
+      for j=1:50 % plot curtain
+        kapRA = linspace(0,1 - kap(j) - ss(j)/kap(j)^2,50);
+        for k=1:10
+         ind=max(1,(k-1)*5+(0:5)); 
+         plot3(kap(j)*cur,ss(j)*cur,kapRA(ind), ':', 'color',color_lava(kapRA(ind(3)))); 
+        end
+      end
+      kap = linspace(0, 1, 100); plot3(kap,0*kap,0*kap, ':k'); 
       xlim([0 1]); ylim([0 4/27]); zlim([0 1]);
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
       colormap(Hfig_invert, Colmap) % set color map to add_my_pet colors 
       caxis([0 1]) % range for colormap
-      view(150,18)
+      view(150,18) % set the azimuth and elevation angles
       set(gca, 'FontSize',25, 'Box','on')
-      set(gcf, 'WindowState','maximized')
+      set(gcf, 'WindowState','maximized') % first full screen to reduce rel marker size
       pause(0.5);  % wait for the resize to actually happen
 
       % saveas(gcf,'kap_ss_kapRA_invert.fig') % allows to be rotated on screen
@@ -207,17 +217,27 @@ for i = 1:n
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
       mesh(kap,ss,kapRA'); % add surface to figure
-      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % curve in kapRA=0 plane
-      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % maximum
+      kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % isocline for kapRA=0 in (kap,ss)-plane 
+      ss = linspace(1e-8, 4/27, 100); kap = (2*ss).^(1/3); kapRA = 1 - kap - ss./kap.^2; % max curve on mesh
       for j=1:20; ind=max(1,(j-1)*5+(0:5)); plot3(kap(ind),ss(ind),kapRA(ind), '-', 'color',color_lava(kapRA(ind(3)))); end
-      xlim([0 1]); ylim([0 4/27]); zlim([0 1]);
+      plot3(kap,ss,0*kapRA, ':k'); % projection of max curve in (kap,ss)-plane      
+      ss = linspace(1e-8, 4/27, 50); kap = (2*ss).^(1/3); cur = ones(6,1); % curtain
+      for j=1:50 
+        kapRA = linspace(0,1 - kap(j) - ss(j)/kap(j)^2,50);
+        for k=1:10
+         ind=max(1,(k-1)*5+(0:5)); 
+         plot3(kap(j)*cur,ss(j)*cur,kapRA(ind), ':', 'color',color_lava(kapRA(ind(3)))); 
+        end
+      end
+      kap = linspace(0, 1, 100); plot3(kap,0*kap,0*kap, ':k') 
+      xlim([0 1]); ylim([0 4/27]); zlim([0 1]); % clip
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
       colormap(Hfig_vert, Colmap) % set color map to add_my_pet colors 
       caxis([0 1]) % range for colormap
-      view(150,18)
+      view(150,18) % set the azimuth and elevation angles
       set(gca, 'FontSize',25, 'Box','on')
-      set(gcf, 'WindowState','maximized')
+      set(gcf, 'WindowState','maximized') % first full screen to reduce rel marker size
       pause(0.5);  % wait for the resize to actually happen
       
       %saveas(gcf,'kap_ss_kapRA_vert.fig') % allows to be rotated on screen
