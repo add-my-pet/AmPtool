@@ -156,6 +156,16 @@ for i = 1:n
 
     case 7 % Fig 7: kap_ss_kapRA: kapRA = pRi/ pAi for invertebrates
         
+      legend_invert_0 = {... % for projection of points on (kap,ss)-plane
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Radiata'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Xenacoelomorpha'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Spiralia'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Ecdysozoa'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Echinodermata'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Cephalochordata'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Tunicata'
+      };
+
       shlegend(legend_invert,[],[0.9 0.2],'Invertebrata');
       saveas(gcf,'legend_invert.png'); cropWhite('legend_invert.png');
 
@@ -165,9 +175,11 @@ for i = 1:n
       shstat_options('z_transform', 'none');
       kapRA = get_kapRA(read_allStat({'p_Am','p_M','k_J','E_Hp','s_M','kap','L_i'})); 
       kap_ss_kapRA = [read_allStat({'kap','s_s'}),kapRA(:,1)];
+      kap_ss_0 = kap_ss_kapRA; kap_ss_0(:,3) = 0; % for projections
 
+      Hfig_invert = shstat(kap_ss_0, legend_invert_0); % projections of points first
       n = length(select); n_vert = length(select('Vertebrata')); n_invert = n - n_vert;
-      Hfig_invert = shstat(kap_ss_kapRA, legend_invert, [num2str(n_invert), ' invertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
+      Hfig_invert = shstat(kap_ss_kapRA, legend_invert, [num2str(n_invert), ' invertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')],Hfig_invert); % set title, output handle for adding items   
       figure(Hfig_invert) % add items to figure
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
@@ -185,7 +197,7 @@ for i = 1:n
          plot3(kap(j)*cur,ss(j)*cur,kapRA(ind), ':', 'color',color_lava(kapRA(ind(3)))); 
         end
       end
-      kap = linspace(0, 1, 100); plot3(kap,0*kap,0*kap, ':k'); 
+      plot3([0;1],[0;0],[0;0], ':k'); 
       xlim([0 1]); ylim([0 4/27]); zlim([0 1]);
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];
@@ -200,6 +212,18 @@ for i = 1:n
       saveas(gcf,'kap_ss_kapRA_invert.png')
        
     case 8 % Fig 8: kap_ss_kapRA: kapRA = pRi/ pAi for vertebrates
+      legend_vert_0 = {... % for projection of points on (kap,ss)-plane
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Cyclostomata'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Chondrichthyes'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Actinopterygii'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Latimeria'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Dipnoi'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Amphibia'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Lepidosauria'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Aves'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Archelosauria'
+        {'o', 4, 1, [0.8 0.8 0.8], [0.8 0.8 0.8]}, 'Mammalia'
+      };
         
       Hleg = shlegend(legend_vert,[],[0.9 0.2],'Vertebrata');
       print(Hleg,'legend_vert.png', '-dpng','-r300'); cropWhite('legend_vert.png');
@@ -210,11 +234,10 @@ for i = 1:n
       shstat_options('z_transform', 'none');
       kapRA = get_kapRA(read_allStat({'p_Am','p_M','k_J','E_Hp','s_M','kap','L_i'})); 
       kap_ss_kapRA = [read_allStat({'kap','s_s'}),kapRA(:,1)];
+      kap_ss_0 = kap_ss_kapRA; kap_ss_0(:,3) = 0; % for projections
        
-      n_vert = length(select('Vertebrata')); 
-      Hfig_vert = shstat(kap_ss_kapRA, legend_vert, [num2str(n_vert), ' vertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')]); % set title, output handle for adding items   
+      Hfig_vert = shstat(kap_ss_0, legend_vert_0); % projections of points first 
       figure(Hfig_vert) % add items to figure
-      xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); kapRA = 1 - kap*ones(1,50) - kap.^-2*ss; % set x,y,z values
       mesh(kap,ss,kapRA'); % add surface to figure
       kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % isocline for kapRA=0 in (kap,ss)-plane 
@@ -229,7 +252,10 @@ for i = 1:n
          plot3(kap(j)*cur,ss(j)*cur,kapRA(ind), ':', 'color',color_lava(kapRA(ind(3)))); 
         end
       end
-      kap = linspace(0, 1, 100); plot3(kap,0*kap,0*kap, ':k') 
+      plot3([0;1],[0;0],[0;0], ':k') 
+      n_vert = length(select('Vertebrata')); 
+      Hfig_vert = shstat(kap_ss_kapRA, legend_vert, [num2str(n_vert), ' vertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')], Hfig_vert); % set title, output handle for adding items
+      xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('\kappa_R^A, -');
       xlim([0 1]); ylim([0 4/27]); zlim([0 1]); % clip
       % define colormap for mesh: k->b->m->r->white
       Colmap = [0 0 0; 0 0 .5; 0 0 1; .5 0 1; 1 0 1; 1 0 .5; 1 0 0; 1 .25 .25; 1 .5 .5; 1 .75 .75];

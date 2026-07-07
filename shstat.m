@@ -3,7 +3,7 @@
 
 %%
 function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title, Hfig)
-% created 2016/04/23 by Bas Kooijman; modified 2017/04/20, 2017/10/14, 2018/01/22
+% created 2016/04/23 by Bas Kooijman; modified 2017/04/20, 2017/10/14, 2018/01/22, 2026/07/07
 
 %% Syntax
 % [Hfig, Hleg, val, entries, missing] =  <../shstat.m *shstat*>(vars, legend, label_title, Hfig)
@@ -395,6 +395,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       if strcmp(legend_location, 'separate')
         Hleg = shlegend(legend);
         position_legend(Hleg, Hfig);
+        figure(Hfig); % leave Hfig as current handle
       else
         taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
         Hleg = embed_legend(h_marks3, taxon_labels, legend_location, FS);
