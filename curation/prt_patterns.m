@@ -24,8 +24,9 @@ function prt_patterns(index)
 %
 % * All figures are closed automatically if input is not specified. 
 % * For presentation on the web, write png files in 
-% /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
+%   /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
 % * Display in entries_admin/patterns.html
+% * If anti-alias does not work and makers look strange, restore with "opengl hardware" in Matlab window (without "")  
 
 WD = cdCur; % set work directory and goto AmP/curation
 cd('../../deblab/add_my_pet/img/patterns/');
@@ -53,8 +54,8 @@ for i = 1:n
       xlabel('_{10}log max adult weight, g')      
       ylabel('_{10}log O_2 consumption, mol/d')
 
-      saveas(Hfig,'W_JO.png'); 
-      saveas(Hleg,'legend_RSED.png'); cropWhite('legend_RSED') 
+      exportgraphics(Hfig,'W_JO.png', 'Resolution',300);
+      exportgraphics(Hleg,'legend_RSED.png', 'Resolution',300); cropWhite('legend_RSED')
 
     case 2 % Fig 2: log W - log dW
       shstat_options('default');
@@ -67,8 +68,8 @@ for i = 1:n
       xlabel('_{10}log weight at max growth, g')      
       ylabel('_{10}log max growth, g/d')
 
-      saveas(Hfig, 'W_dW.png')
-      saveas(Hleg, 'legend_sauria.png'); cropWhite('legend_sauria')
+      exportgraphics(Hfig, 'W_dW.png', 'Resolution',300)
+      exportgraphics(Hleg, 'legend_sauria.png', 'Resolution',300); cropWhite('legend_sauria')
 
     case 3 % Fig 3: log {p_Am} - log [E_m] ({p_Am} is given at T_ref)
       shstat_options('default');
@@ -77,7 +78,7 @@ for i = 1:n
       xlabel('_{10}log spec assimilation, \{p_{Am}\}, J/d.cm^2')      
       ylabel('_{10}log max reserve capacity, [E_m], J/cm^3')
 
-      saveas(Hfig, 'pAm_Em.png')
+      exportgraphics(Hfig, 'pAm_Em.png', 'Resolution',300)
       %saveas(Hleg, 'legend_RSED.png'); cropWhite('legend_RSED')
 
     case 4 % Fig 4: log V_m - log [p_M] ([p_M] is given at T_ref)
@@ -88,7 +89,7 @@ for i = 1:n
       xlabel('_{10}log ultimate structural volume, cm^3')      
       ylabel('_{10}log spec som maint, J/d.cm^3')
 
-      saveas(Hfig, 'V_pM.png')
+      exportgraphics(Hfig, 'V_pM.png', 'Resolution',300)
       %saveas(Hleg, 'legend_RSED.png'); cropWhite('legend_RSED')
 
     case 5 % Fig 5: log p_M for lophotrochozoa
@@ -108,8 +109,8 @@ for i = 1:n
       xlabel('_{10}log spec somatic maint [p_M], J/d.cm^3')
       ylabel('survivor function')
 
-      saveas(Hfig_pM,'pM_loph.png')
-      saveas(Hleg_pM,'llegend_loph.png'); cropWhite('llegend_loph')
+      exportgraphics(Hfig_pM,'pM_loph.png', 'Resolution',300)
+      exportgraphics(Hleg_pM,'llegend_loph.png', 'Resolution',300); cropWhite('llegend_loph')
       
     case 6 % Fig 6: log p_M for mammals
         
@@ -138,7 +139,7 @@ for i = 1:n
       grid 'on'
       set(gca, 'FontSize',15, 'Box','on')
 
-      saveas(gcf,'pM_mam_food.png')
+      exportgraphics(gcf,'pM_mam_food.png', 'Resolution',300)
 
     case 7 % Fig 7: kap_ss_fmin for invertebrates
         
@@ -211,7 +212,7 @@ for i = 1:n
       pause(0.5);  % wait for the resize to actually happen
 
       % saveas(Hfig,'kap_ss_fmin_invert.fig') % allows to be rotated on screen
-      saveas(Hfig,'kap_ss_fmin_invert.png')
+      exportgraphics(Hfig,'kap_ss_fmin_invert.png', 'Resolution',300)
       %saveas(Hleg,'legend_invert.png'); cropWhite('legend_invert')
        
     case 8 % Fig 8: kap_ss_kapRA: kapRA = pRi/ pAi for invertebrates
@@ -270,8 +271,8 @@ for i = 1:n
       pause(0.5);  % wait for the resize to actually happen
 
       % saveas(Hfig,'kap_ss_kapRA_invert.fig') % allows to be rotated on screen
-      saveas(Hfig,'kap_ss_kapRA_invert.png')
-      saveas(Hleg,'legend_invert.png'); cropWhite('legend_invert')
+      exportgraphics(Hfig,'kap_ss_kapRA_invert.png', 'Resolution',300)
+      exportgraphics(Hleg,'legend_invert.png', 'Resolution',300); cropWhite('legend_invert')
        
     case 9 % Fig 9: kap_ss_fmin for vertebrates
       legend_vert_0 = {... % for projection of points on (kap,ss)-plane
@@ -339,7 +340,7 @@ for i = 1:n
       pause(0.5);  % wait for the resize to actually happen
       
       %saveas(Hfig,'kap_ss_fmin_vert.fig') % allows to be rotated on screen
-      saveas(Hfig,'kap_ss_fmin_vert.png')
+      exportgraphics(Hfig,'kap_ss_fmin_vert.png', 'Resolution',300)
       %saveas(Hleg,'legend_vert.png'); cropWhite('legend_vert');
 
     case 10 % Fig 10: kap_ss_kapRA: kapRA = pRi/ pAi for vertebrates
@@ -400,8 +401,8 @@ for i = 1:n
       pause(0.5);  % wait for the resize to actually happen
       
       %saveas(Hfig,'kap_ss_kapRA_vert.fig') % allows to be rotated on screen
-      saveas(Hfig,'kap_ss_kapRA_vert.png')
-      saveas(Hleg,'legend_vert.png'); cropWhite('legend_vert');
+      exportgraphics(Hfig,'kap_ss_kapRA_vert.png', 'Resolution',300)
+      exportgraphics(Hleg,'legend_vert.png', 'Resolution',300); cropWhite('legend_vert');
 
    case 11 % Fig 11: ss distribution in food chains
      llegend = {...
@@ -419,8 +420,8 @@ for i = 1:n
      xlabel('supply stress, s_s')
      xlim([0,4/27]); ylim([0,1]);
      
-     saveas(Hfig,'ss_CrusClupSela.png')
-     saveas(Hleg,'llegend_CrusClupSela.png'); cropWhite('llegend_CrusClupSela');
+     exportgraphics(Hfig,'ss_CrusClupSela.png', 'Resolution',300)
+     exportgraphics(Hleg,'llegend_CrusClupSela.png', 'Resolution',300); cropWhite('llegend_CrusClupSela');
 
    case 12 % Fig 12: ss distribution in food chains
      llegend = {...
@@ -446,7 +447,7 @@ for i = 1:n
      xlabel('supply stress, s_s')
      xlim([0,4/27]); ylim([0,1]);
      
-     saveas(Hfig,'ss_HexaPassHier.png'); 
+     exportgraphics(Hfig,'ss_HexaPassHier.png', 'Resolution',300);
      
    case 13 % Fig 13: ss distribution in food chains
      llegend_rodent = {...
@@ -464,8 +465,8 @@ for i = 1:n
      xlabel('supply stress, s_s')
      xlim([0,4/27]); ylim([0,1]);
      
-     saveas(Hfig,'ss_rodent.png')
-     saveas(Hleg,'llegend_rodent.png'); cropWhite('llegend_rodent')
+     exportgraphics(Hfig,'ss_rodent.png', 'Resolution',300)
+     exportgraphics(Hleg,'llegend_rodent.png', 'Resolution',300); cropWhite('llegend_rodent')
      
  
   end
