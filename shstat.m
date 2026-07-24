@@ -3,7 +3,7 @@
 
 %%
 function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title, Hfig)
-% created 2016/04/23 by Bas Kooijman; modified 2017/04/20, 2017/10/14, 2018/01/22
+% created 2016/04/23 by Bas Kooijman; modified 2017/04/20, 2017/10/14, 2018/01/22, 2026/07/07
 
 %% Syntax
 % [Hfig, Hleg, val, entries, missing] =  <../shstat.m *shstat*>(vars, legend, label_title, Hfig)
@@ -87,7 +87,15 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   color_scheme      = opts.color_scheme;
   legend_location   = opts.legend_location;
   datacursor_opt    = opts.datacursor;
-
+  
+  if ~exist('label_title','var')
+    label_legend = ''; label_title = '';
+  elseif iscell(label_title)
+    label_legend = label_title{2}; label_title = label_title{1};
+  else
+    label_legend = '';
+  end
+  
   % get (x,y,z)-values, units, label
   if isnumeric(vars) % numerical mode, read_allStat is bypassed
     val = vars;
@@ -265,14 +273,14 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
   end
   
   if exist('label_title', 'var') && ~isempty(label_title)
-    title(label_title)
+    title(['\it ', label_title], 'FontSize',15, 'FontWeight','normal')
   end
 
   hold on
   switch n_vars
     case 1
         
-      set(gca, 'FontSize', FS, 'Box', 'on', 'YTick', 0:0.2:1)
+      set(gca, 'FontSize',FS, 'Box','on', 'YTick',0:0.2:1)
       if strcmp(grid_opt, 'on'), grid on; end
       xlabel(label_x)
       ylim([0 1]);
@@ -307,7 +315,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
         end
         xlim([xlim_min inf])
         if strcmp(legend_location, 'separate')
-          Hleg = shllegend(legend);
+          Hleg = shllegend(legend,[],[0.9 0.2],label_legend);
           position_legend(Hleg, Hfig);
         else
           taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
@@ -340,11 +348,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       end
 
       if strcmp(legend_location, 'separate')
-        if iscell(legend{1,2})
-          Hleg = shlegend(legend,[],[],label_legend);
-        else
-          Hleg = shlegend(legend);
-        end
+        Hleg = shlegend(legend,[],[0.9 0.2],label_legend);
         position_legend(Hleg, Hfig);
       else
         taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
@@ -379,7 +383,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
           h_marks3(j) = h3;
         end
       end
-      set(gca, 'FontSize', FS, 'Box', 'on')
+      set(gca, 'FontSize',FS, 'Box','on')
       if strcmp(grid_opt, 'on'), grid on; end
       xlabel(label_x)
       ylabel(label_y)
@@ -393,7 +397,7 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       end
 
       if strcmp(legend_location, 'separate')
-        Hleg = shlegend(legend);
+        Hleg = shlegend(legend,[],[0.9 0.2],label_legend); 
         position_legend(Hleg, Hfig);
       else
         taxon_labels = strrep(legend(end:-1:1, 2), '_', ' ');
@@ -404,6 +408,10 @@ function [Hfig, Hleg, val, entries, missing] = shstat(vars, legend, label_title,
       end
 
   end
+
+  % leave the main plot as the current figure, regardless of any separate legend
+  % or colour-scale figure spawned above, so callers can saveas(gcf, ...) the plot
+  if ~isempty(Hfig) && isvalid(Hfig), figure(Hfig); end
 
 end
 
@@ -428,8 +436,8 @@ function opts = merge_with_defaults(stored)
   end
 end
 
-function Hleg = embed_legend(handles, labels, loc, fs)
-  Hleg = legend(handles, labels, 'Location', loc, 'FontSize', fs);
+function Hleg = embed_legend(handles, labels, loc, FS)
+  Hleg = legend(handles, labels, 'Location', loc, 'FontSize', FS);
 end
 
 function color = shstat_colormap(scheme, f)
