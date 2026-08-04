@@ -2,9 +2,9 @@
 % generates  plots for patterns for display on patterns.html
 
 %%
-function prt_patterns(index)
+function prt_patterns(index,path)
 %% created 2016/12/31 by Bas Kooijman
-% modified 2021/02/20
+% modified 2021/02/20,2026/07/31
 
 %% Syntax
 % <../prt_patterns *prt_patterns*>
@@ -26,10 +26,18 @@ function prt_patterns(index)
 % * For presentation on the web, write png files in 
 %   /home/websites/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img/patterns
 % * Display in entries_admin/patterns.html
-% * If anti-alias does not work and makers look strange, restore with "opengl hardware" in Matlab window (without "")  
+% * If anti-alias does not work and makers look jagged, restore with "opengl hardware" in Matlab window (without "")  
+% * Use "opengl info" to inspect settings
 
-WD = cdCur; % set work directory and goto AmP/curation
-cd('../../deblab/add_my_pet/img/patterns/');
+if ~exist('path','var')
+  WD = cdCur; % set work directory and goto AmP/curation
+  cd('../../deblab/add_my_pet/img/patterns/');
+elseif isempty(path)
+  WD = pwd;
+else
+  WD = pwd;
+  cd path
+end
 
 close all
 
@@ -164,15 +172,6 @@ for i = 1:n
       Hfig = shstat(kap_ss_0, legend_invert_0); % projections of points first
       n = length(select); n_vert = length(select('Vertebrata')); n_invert = n - n_vert;
       [Hfig, Hleg] = shstat(kap_ss_fmin, legend_invert, {[num2str(n_invert), ' invertebrates @ ',datestr(datenum(date),'yyyy/mm/dd')],'Invertebrata'},Hfig);    
-
-%       % mesh
-%       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('f_{min}, -');
-%       kap = linspace(.005,1,50)'; ss = linspace(1e-8, 4/27, 50); 
-%       fmin = (ones(50,1)*ss./(kap.^2.*(1-kap)*ones(1,50))).^(1/3); % set x,y,z values
-%       mesh(kap,ss-0.005,fmin'); % add surface to figure, avoid that points disappear behind the mesh
-%       kap_xy = linspace(0,1,100)'; ss_xy= kap_xy.^2.*(1-kap_xy); plot3(kap_xy,ss_xy,0*kap_xy); % isocline for kapRA=0 in (kap,ss)-plane 
-%       plot3(kap_xy,ss_xy,0*kap_xy, 'k-'); % curve in fmin=0 plane
-%       plot3(kap_xy,ss_xy,1+0*kap_xy, '-', 'color',[1 .8 .8]); % curve in fmin=1 plane
 
       % mesh
       xlabel('\kappa, -'); ylabel('s_s, -'); zlabel('f_{min}, -'); n=50;
