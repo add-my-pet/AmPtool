@@ -2,14 +2,18 @@
 % generates ../about.html, ../img/png's
 
 %%
-function prt_about
-% created 2016/02/23 by Bas Kooijman; modified 2016/04/26, 2016/06/02, 2016/10/24, 2017/10/13, 2018/02/28, 2021/02/20
+function prt_about(fig)
+% created 2016/02/23 by Bas Kooijman; modified 2016/04/26, 2016/06/02, 2016/10/24, 2017/10/13, 2018/02/28, 2021/02/20, 2026/08/12
 
 %% Syntax
-% <../prt_about *prt_about*>
+% <../prt_about *prt_about*>(fig)
 
 %% Description
 % Runs plotting routines, creates png-files and link them in an html-file
+%
+% Input:
+%
+%  * fig: optional scalar or vector with numbers of cases (default: all)
 %
 % Output: 
 %
@@ -27,108 +31,119 @@ function prt_about
 % * file is written in ../../add_my_pet_web/about.html
 
 %% Remarks
+%
 % * First run write_allStat
 % * Don't forget to refresh species_tree_js with prt_species_tree_js.m
 %   This is done automatically in run_collection_intro
-% * Don't forget to refresh ../../DEB Library.bib by exporting in Bibtex-mode from Zotero
 % * After running prt_about, copy png files to 
 %   /mnt/group-new/bio.vu.nl/webroot/thb/deb/deblab/add_my_pet/img
 % * and about.html file to
 %   /mnt/group-new/www.bio.vu.nl/webroot/thb/deb/deblab/add_my_pet
 % to present them on the web.
 
+if ~exist('fig','var')
+  n = 5; fig = 1:n; % all figs + html
+else
+  n = length(fig);
+end
+  
+
 WD = cdCur;
 path = '../../deblab/add_my_pet/img/about/';
 
-% write pies for taxa and models
-close all
-pie_Animalia;
-tightfig;
-saveas (gca, [path, 'pie_Animalia.png'])
-close all
-%
-pie_model;
-tightfig;
-saveas (gca, [path, 'pie_model.png'])
-close all
+for i = 1:n
+  switch fig(i)
 
-% # of entries in time
-dates_subm = get_date_subm;
-surv_dates_subm = [0 2009 ; surv(dates_subm, 2009)]; 
-surv_dates_subm([end - 1; end],:) = [];    
-n_subm = size(surv_dates_subm, 1)/2 - 2;
-plot(surv_dates_subm(:,1), n_subm * (1 - surv_dates_subm(:,2)), 'b', 'Linewidth', 2)
-hold on
-%
-[dates, entries_new, dates_new] = get_date_acc;
-surv_dates = [0 2009 ; surv(dates, 2009)]; 
-surv_dates([end - 1; end],:) = [];    
-n = size(surv_dates, 1)/2 - 2;
-%    
-plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'r', 'Linewidth', 2)
-set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('time, yr')
-ylabel('# of AmP entries')
-xlim([2009; max(dates)])
-title([num2str(length(dates)), ' @ ', datestr(date,26)])
-saveas (gca, [path, 'entries.png'])
-close all
+    case 1 % write pies for taxa and models
+      close all
+      pie_Animalia;
+      tightfig;
+      saveas (gca, [path, 'pie_Animalia.png'])
+      close all
+      %
+      pie_model;
+      tightfig;
+      saveas (gca, [path, 'pie_model.png'])
+      close all
 
-% COMPLETE, MRE plots
-CMS = read_allStat('COMPLETE', 'MRE', 'SMSE'); n_entries = size(CMS,1);
-C_median = median(CMS(:,1)); M_median = median(CMS(:,2)); S_median = median(CMS(:,3));
-plot(CMS(:,1), CMS(:,2), '.b', 'MarkerSize', 20)
-set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('COMPLETE'); ylabel('MRE')
-saveas (gca, [path, 'COMPLETE_MRE.png'])
-close all
-%
-plot(CMS(:,2), CMS(:,3), '.b', 'MarkerSize', 20)
-set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('MRE'); ylabel('SMSE')
-xlim([0 0.55]); ylim([0 0.55])
-saveas (gca, [path, 'MRE_SMSE.png'])
-close all
-%
-surv_COMPLETE = surv(CMS(:,1),0);
-plot([0; C_median; C_median], [0.5;0.5;0], 'r', surv_COMPLETE(:,1), surv_COMPLETE(:,2), 'b', 'Linewidth', 2)
-set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('COMPLETE'); ylabel('survivor function')
-saveas (gca, [path, 'COMPLETE.png'])
-close all
-%
-surv_MRE = surv(CMS(:,2),0);
-plot([0; M_median; M_median], [0.5;0.5;0], 'b', surv_MRE(:,1), surv_MRE(:,2), 'b', 'Linewidth', 2)
-surv_SMSE = surv(CMS(:,3),0); hold on
-plot([0; S_median; S_median], [0.5;0.5;0], 'r', surv_SMSE(:,1), surv_SMSE(:,2), 'r', 'Linewidth', 2)
-set(gca, 'FontSize', 15, 'Box', 'on')
-xlabel('\color{red}{SMSE}\color{black}{,} \color{blue}{MRE}')
-ylabel('survivor function')
-xlim([0 0.55])
-saveas (gca, [path, 'MRE.png'])
-close all
+    case 2 % # of entries in time
+      dates_subm = get_date_subm;
+      surv_dates_subm = [0 2009 ; surv(dates_subm, 2009)]; 
+      surv_dates_subm([end - 1; end],:) = [];    
+      n_subm = size(surv_dates_subm, 1)/2 - 2;
+      plot(surv_dates_subm(:,1), n_subm * (1 - surv_dates_subm(:,2)), 'b', 'Linewidth', 2)
+      hold on
+      %
+      [dates, entries_new, dates_new] = get_date_acc;
+      surv_dates = [0 2009 ; surv(dates, 2009)]; 
+      surv_dates([end - 1; end],:) = [];    
+      n_entr = size(surv_dates, 1)/2 - 2;
+      %    
+      plot(surv_dates(:,1), n_entr * (1 - surv_dates(:,2)), 'r', 'Linewidth', 2)
+      set(gca, 'FontSize', 15, 'Box', 'on')
+      xlabel('time, yr')
+      ylabel('# of AmP entries')
+      xlim([2009; max(dates)])
+      title([num2str(length(dates)), ' @ ', datestr(date,26)])
+      saveas (gca, [path, 'entries.png'])
+      close all
 
-% # of DEB papers in time
-dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
-dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
-surv_dates = surv(dates, 1979); 
-surv_dates([1; end - 1; end],:) = [];    
-n = 1 + size(surv_dates, 1)/2;
-%    
-yyaxis right
-plot(yrs+0.5, sum(dates(1:end-1)'==yrs,2), 'r', 'Linewidth', 2)
-ylabel('DEB publication rate, #/yr')
-yyaxis left
-plot(surv_dates(:,1), n * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
-ylabel('DEB publications, #')
-xlabel('time, yr')
-xlim([1979; max(dates)])
-set(gca, 'FontSize', 15, 'Box', 'on')
-title([num2str(n), ' @ ', datestr(date,26)])
-saveas (gca, [path, 'DEBlib.png'])
-close all
+  case 3 % COMPLETE, MRE plots
+    CMS = read_allStat('COMPLETE', 'MRE', 'SMSE'); n_entries = size(CMS,1);
+    C_median = median(CMS(:,1)); M_median = median(CMS(:,2)); S_median = median(CMS(:,3));
+    plot(CMS(:,1), CMS(:,2), '.b', 'MarkerSize', 20)
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel('COMPLETE'); ylabel('MRE')
+    saveas (gca, [path, 'COMPLETE_MRE.png'])
+    close all
+    %
+    plot(CMS(:,2), CMS(:,3), '.b', 'MarkerSize', 20)
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel('MRE'); ylabel('SMSE')
+    xlim([0 0.55]); ylim([0 0.55])
+    saveas (gca, [path, 'MRE_SMSE.png'])
+    close all
+    %
+    surv_COMPLETE = surv(CMS(:,1),0);
+    plot([0; C_median; C_median], [0.5;0.5;0], 'r', surv_COMPLETE(:,1), surv_COMPLETE(:,2), 'b', 'Linewidth', 2)
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel('COMPLETE'); ylabel('survivor function')
+    saveas (gca, [path, 'COMPLETE.png'])
+    close all
+    %
+    surv_MRE = surv(CMS(:,2),0);
+    plot([0; M_median; M_median], [0.5;0.5;0], 'b', surv_MRE(:,1), surv_MRE(:,2), 'b', 'Linewidth', 2)
+    surv_SMSE = surv(CMS(:,3),0); hold on
+    plot([0; S_median; S_median], [0.5;0.5;0], 'r', surv_SMSE(:,1), surv_SMSE(:,2), 'r', 'Linewidth', 2)
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    xlabel('\color{red}{SMSE}\color{black}{,} \color{blue}{MRE}')
+    ylabel('survivor function')
+    xlim([0 0.55])
+    saveas (gca, [path, 'MRE.png'])
+    close all
 
-% Write about.html
+  case 4 % # of DEB papers in time
+    n_date = export_zotero_bibtex; % export DEB library for Zotero
+    dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
+    dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
+    surv_dates = surv(dates, 1979); 
+    surv_dates([1; end - 1; end],:) = [];    
+    %n_date = 1 + size(surv_dates, 1)/2;
+    %    
+    yyaxis right
+    plot(yrs+0.5, sum(dates(1:end-1)'==yrs,2), 'r', 'Linewidth', 2)
+    ylabel('DEB publication rate, #/yr')
+    yyaxis left
+    plot(surv_dates(:,1), n_date * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
+    ylabel('DEB publications, #')
+    xlabel('time, yr')
+    xlim([1979; max(dates)])
+    set(gca, 'FontSize', 15, 'Box', 'on')
+    title([num2str(n_date), ' @ ', datestr(date,26)])
+    saveas (gca, [path, 'DEBlib.png'])
+    close all
+
+  case 5 % Write about.html
 path = 'entries_web/'; % path to entries
 fid_about = fopen('../../deblab/add_my_pet/about.html', 'w+'); % open file for writing, delete existing content
 
@@ -354,5 +369,7 @@ fprintf(fid_about, '</div> <!-- main -->\n\n');
 fprintf(fid_about, '</body>\n');
 fprintf(fid_about, '</html>\n');
 fclose(fid_about);
+  end
+end
 
 cd(WD);
