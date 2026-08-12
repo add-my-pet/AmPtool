@@ -144,13 +144,14 @@ end
 pars_UE0 = [V_Hb; g; k_J; k_M; v];
 switch model
    case {'stf','stx'}  
-       [U0, Lb, info] = initial_scaled_reserve_foetus(f_init, pars_UE0);
+       f_foetus = 1;
+       [U0, Lb, info] = initial_scaled_reserve_foetus(f_foetus, pars_UE0);
        E_0 = U0 * p_Am;    % J, energy in embryo reserve
    otherwise
        U_E0 = initial_scaled_reserve(f_init, pars_UE0);
        E_0  = U_E0 * p_Am; % J, energy in egg
 end
-ELHR0 = [E_0, 1e-4, 0, 0]; % initial conditions at fertilization
+ELHR0 = [E_0, 1e-20, 0, 0]; % initial conditions at fertilization
 
 switch model
     case 'std'
@@ -221,6 +222,8 @@ switch model
         elseif length(te) == 2
             te(3) = NaN; ye(3,:) = NaN * ones(1,4);
             warning('puberty is not reached')
+        elseif length(te)~=3
+            warning('event detection was not successful \n')
         end
         a_b = te(1); a_x = te(2); a_p = te(3);
         L_b = ye(1,2); L_x = ye(2,2); L_p = ye(3,2);
