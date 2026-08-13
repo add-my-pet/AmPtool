@@ -15,7 +15,10 @@ function total = export_DEBlib
 %
 % * total: # of bib items
 % * file written in dir deb, starting from AmPtool/curation: ../../DEB Library.bib
-
+%
+%% Remarks
+% used in prt_about(4)
+%
 %% Example of use
 % export_DEBlib
 
