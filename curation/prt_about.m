@@ -123,7 +123,7 @@ for i = 1:n
     close all
 
   case 4 % # of DEB papers in time
-    n_date = export_zotero_bibtex; % export DEB library for Zotero
+    n_date = export_DEBlib; % export DEB library from Zotero
     dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
     dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
     surv_dates = surv(dates, 1979); 
