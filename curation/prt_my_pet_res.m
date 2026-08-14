@@ -207,7 +207,7 @@ if n_fig > 0
       sets = metaData.grp; n_sets = length(sets);
       for j=1:n_sets
         if ismember(dataSet,metaData.grp.sets{j})
-          txt = metaData.grp.subtitle{str2double(nFig{j})};
+          if isfield(metaData.grp,'subtitle'); txt = metaData.grp.subtitle{str2double(nFig{j})}; end
         end
       end
     end
