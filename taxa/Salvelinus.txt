@@ -4,4 +4,7 @@ Salvelinus_fontinalis
 Salvelinus_leucomaenis
 Salvelinus_malma
 Salvelinus_namaycush
+Salvelinus_namaycush_lean
+Salvelinus_namaycush_siscowet
 Salvelinus_willoughbii
+ 

@@ -18,6 +18,7 @@ function WD = cdCur
 % Intended use: WD = cdCur; ..code.. cd(WD)
 
 WD = pwd; path = which('cdCur'); 
+
 if ismac
  ind = strfind(path,'/'); 
 else

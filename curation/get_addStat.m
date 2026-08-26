@@ -51,10 +51,14 @@ function allStat = get_addStat(entries, T, f)
       cd (['../', entries{i}])
       fprintf([num2str(i), ': ', entries{i}, '\n']); % show progress on screen (takes some time)
 
-      allStat.(entries{i}) = addStat(entries{i}); 
+      allStat.(entries{i}) = addStat(entries{i});
     end
-  catch 
+  catch err
     disp(['Warning from get_addStat: Statistics of entry ', entries{i},' could not be extracted'])
+    disp(['  Reason: ', err.message])
+    if ~isempty(err.stack)
+      disp(['  at ', err.stack(1).name, ' (line ', num2str(err.stack(1).line), ')'])
+    end
     keyboard
   end
    
