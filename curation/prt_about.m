@@ -123,24 +123,27 @@ for i = 1:n
     close all
 
   case 4 % # of DEB papers in time
-    n_date = export_DEBlib; % export DEB library from Zotero
-    dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
-    dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
-    surv_dates = surv(dates, 1979); 
-    surv_dates([1; end - 1; end],:) = [];    
-    %n_date = 1 + size(surv_dates, 1)/2;
-    %    
-    yyaxis right
-    plot(yrs+0.5, sum(dates(1:end-1)'==yrs,2), 'r', 'Linewidth', 2)
-    ylabel('DEB publication rate, #/yr')
-    yyaxis left
-    plot(surv_dates(:,1), n_date * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
-    ylabel('DEB publications, #')
-    xlabel('time, yr')
-    xlim([1979; max(dates)])
-    set(gca, 'FontSize', 15, 'Box', 'on')
-    title([num2str(n_date), ' @ ', datestr(date,26)])
-    saveas (gca, [path, 'DEBlib.png'])
+    try
+      n_date = export_DEBlib; % export DEB library from Zotero
+      dates = get_date_DEB('../../DEB Library.bib'); yrs = (1981:max(dates))'; % requires update via Zotero
+      dates = [dates; (datenum(date) - datenum('01-Jan-000'))/365.25];
+      surv_dates = surv(dates, 1979); 
+      surv_dates([1; end - 1; end],:) = [];    
+      %n_date = 1 + size(surv_dates, 1)/2;
+      %    
+      yyaxis right
+      plot(yrs+0.5, sum(dates(1:end-1)'==yrs,2), 'r', 'Linewidth', 2)
+      ylabel('DEB publication rate, #/yr')
+      yyaxis left
+      plot(surv_dates(:,1), n_date * (1 - surv_dates(:,2)), 'b', 'Linewidth', 2)
+      ylabel('DEB publications, #')
+      xlabel('time, yr')
+      xlim([1979; max(dates)])
+      set(gca, 'FontSize', 15, 'Box', 'on')
+      title([num2str(n_date), ' @ ', datestr(date,26)])
+      saveas (gca, [path, 'DEBlib.png'])
+    catch
+    end
     close all
 
   case 5 % Write about.html
