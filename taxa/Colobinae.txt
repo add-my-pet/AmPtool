@@ -1,4 +1,5 @@
 Colobus
 Nasalis
 Rhinopithecus
+Semnopithecus
 Trachypithecus
