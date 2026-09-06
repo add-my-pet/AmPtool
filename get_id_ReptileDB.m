@@ -39,7 +39,12 @@ end
 genus = nm{1}; species = nm{2};
 id = ['genus=', genus, '&species=', species];
 
-check = urlread([address, id]);
+try
+  check = urlread([address, id], 'Timeout', 10);
+catch
+  fprintf('warning from get_id_ReptileDB: webread failed\n');
+  id = ''; return
+end
 if ~isempty(strfind(check,'was not found'))
   id = ''; return
 end

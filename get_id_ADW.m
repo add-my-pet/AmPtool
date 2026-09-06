@@ -32,24 +32,25 @@ if ~exist('open','var')
   open = 0;
 end
 
-id = strrep(my_pet,' ','_'); 
+id = strrep(my_pet,' ','_');
 
 try
-  url = urlread([address, id, '/']);
+  url = urlread([address, id, '/'], 'Timeout', 10);
 catch
+  fprintf('warning from get_id_ADW: webread failed\n');
   id = ''; return
 end
 
 if isempty(url) || contains(url, 'Sorry') 
   try
-    url = urlread([address, id, '/classification/']);
+    url = urlread([address, id, '/classification/'], 'Timeout', 10);
   catch
     id = get_synonym(get_id_CoL(my_pet));
     try
-      url = urlread([address, id, '/']);
+      url = urlread([address, id, '/'], 'Timeout', 10);
       if isempty(url) || contains(url,'Sorry')
         try
-          url = urlread([address, id, '/classification/']);
+          url = urlread([address, id, '/classification/'], 'Timeout', 10);
           if isempty(url); id = ''; return; end
         catch
           id = ''; return

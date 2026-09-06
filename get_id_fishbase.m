@@ -33,7 +33,12 @@ end
 
 id = strrep(my_pet,'_','-'); 
 id = strrep(id,' ','-'); 
-check = urlread([address, id]);
+try
+  check = urlread([address, id], 'Timeout', 10);
+catch
+  fprintf('warning from get_id_fishbase: webread failed\n');
+  id = []; return
+end
 if ~isempty(strfind(check,'Species name is not in the public version of FishBase'))
   id = []; return
 end

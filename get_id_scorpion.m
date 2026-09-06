@@ -44,8 +44,9 @@ family = lineage{ismember(rank,'Family')};
 id = lower([family, '.php']);
 
 try
-  urlread([address, id]);
+  urlread([address, id], 'Timeout', 10);
 catch
+  fprintf('warning from get_id_scorpion: webread failed\n');
   id = ''; return
 end
 

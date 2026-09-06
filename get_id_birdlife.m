@@ -38,9 +38,12 @@ function id = get_id_birdlife(my_pet, open)
   sci = lower(strrep(strrep(my_pet, '_', '-'), ' ', '-'));
 
   id = '';
+  opts = weboptions('Timeout', 10);
+  reached = false;
   for k = 1:6
     try
-      xml = webread(['https://datazone.birdlife.org/sitemap-species-', num2str(k), '.xml']);
+      xml = webread(['https://datazone.birdlife.org/sitemap-species-', num2str(k), '.xml'], opts);
+      reached = true;
     catch
       continue
     end
@@ -50,6 +53,10 @@ function id = get_id_birdlife(my_pet, open)
       id = tok{1};
       break
     end
+  end
+
+  if ~reached
+    fprintf('warning from get_id_birdlife: webread failed\n');
   end
 
   if open && ~isempty(id)

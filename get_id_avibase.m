@@ -34,7 +34,12 @@ end
 my_pet = strrep(my_pet,'_','+'); 
 my_pet = strrep(my_pet,' ','+'); 
 
-url = urlread(['https://avibase.bsc-eoc.org/search.jsp?pg=search&qstr=', my_pet]);
+try
+  url = urlread(['https://avibase.bsc-eoc.org/search.jsp?pg=search&qstr=', my_pet], 'Timeout', 10);
+catch
+  fprintf('warning from get_id_avibase: webread failed\n');
+  id = ''; return
+end
 
 if isempty(strfind(url,'Search results')) % single or no result
   i_0 = strfind(url,'avibaseid='); if isempty(i_0); id = ''; return; end

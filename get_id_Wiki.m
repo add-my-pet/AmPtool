@@ -35,11 +35,12 @@ my_pet = strrep(my_pet,' ','_');
 id = my_pet;
 
 try
-  url = urlread([address, id]);
+  url = urlread([address, id], 'Timeout', 10);
   if ~isempty(strfind(url, 'not have an article'))
     id = '';
   end
 catch
+  fprintf('warning from get_id_Wiki: webread failed\n');
   id = '';
 end
 
@@ -51,7 +52,7 @@ if isempty(id)
   end
   if ~isempty(id_syn)
     try
-      url = urlread([address, id_syn]);
+      url = urlread([address, id_syn], 'Timeout', 10);
       if ~isempty(strfind(url, 'not have an article'))
         id = '';
       else
@@ -66,7 +67,7 @@ end
 if isempty(id)
   id = strsplit(my_pet,'_'); id = id{1};
   try
-    urlread([address, id]);
+    urlread([address, id], 'Timeout', 10);
   catch
     id = ''; return
   end

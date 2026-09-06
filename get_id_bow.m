@@ -57,7 +57,12 @@ if exist('id','var')
 end
 
 % open and read specieslist
-url = urlread('https://birdsoftheworld.org/bow/specieslist');
+try
+  url = urlread('https://birdsoftheworld.org/bow/specieslist', 'Timeout', 10);
+catch
+  fprintf('warning from get_id_bow: webread failed\n');
+  id_bow = {}; return
+end
 
 % extract all id's
 i_0 = 19+strfind(url,'href="/bow/species/'); % start index
@@ -87,7 +92,7 @@ for i=1:n % scan all id's
 %   end
  
   % get date
-  url = urlread([address, id_bow{i,1}, '/cur/breeding']);
+  url = urlread([address, id_bow{i,1}, '/cur/breeding'], 'Timeout', 10);
   id_bow{i,4} = url(31+i_0(1):40+i_0(1)); % date of type 2020/03/04
   
   % get species name

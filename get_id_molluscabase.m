@@ -41,6 +41,7 @@ opts = weboptions('Timeout', 15, 'ContentType', 'text');
 try % WoRMS returns the bare AphiaID, 204 (no content) if not found, or -999 if ambiguous
   res = webread(['https://www.marinespecies.org/rest/AphiaIDByName/', urlname, '?marine_only=false'], opts);
 catch
+  fprintf('warning from get_id_molluscabase: webread failed\n');
   return
 end
 

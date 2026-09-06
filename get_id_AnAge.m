@@ -34,7 +34,7 @@ end
 id = strrep(my_pet,' ','_');  
 
 try
-  check = urlread([address, id]);
+  check = urlread([address, id], 'Timeout', 10);
   if ~isempty(strfind(check, 'not found'))
     id = ''; return
   end

@@ -33,7 +33,12 @@ end
 
 id = strrep(my_pet,'_','+'); 
 id = strrep(id,' ','+'); 
-check = urlread(strrep(address, 'id_diptera', id));
+try
+  check = urlread(strrep(address, 'id_diptera', id), 'Timeout', 10);
+catch
+  fprintf('warning from get_id_diptera: webread failed\n');
+  id = ''; return
+end
 if ~isempty(strfind(check,'0 Photos found'))
   id = ''; return
 end

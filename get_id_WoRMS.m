@@ -32,9 +32,10 @@ if ~exist('open','var')
   open = 0;
 end
 
+opts = weboptions('Timeout', 10);
 try
   % AphiaID suggested by Bart Vanhoorne info@marinespecies.org
-  url = webread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false']);
+  url = webread(['https://www.marinespecies.org/rest/AphiaRecordsByName/', strrep(my_pet, '_', '%20'), '?marine_only=0&like=false'], opts);
   id = num2str(url.valid_AphiaID);
   name_status = url.status;
   accepted_name = url.valid_name;
@@ -45,6 +46,7 @@ try
   end
 
 catch
+  fprintf('warning from get_id_WoRMS: webread failed\n');
   id = '';
   name_status = '';
   accepted_name = '';

@@ -36,16 +36,18 @@ my_pet = strrep(my_pet, ' ', '_');
 my_pet_ITIS = strrep(my_pet, '_', '%20');
 
 try
-  url = urlread(['https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=', my_pet_ITIS, '&search_kingdom=Animal&search_span=containing&categories=All&source=html&search_credRating=All']);
+  url = urlread(['https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=', my_pet_ITIS, '&search_kingdom=Animal&search_span=containing&categories=All&source=html&search_credRating=All'], 'Timeout', 10);
 catch
+  fprintf('warning from get_id_ITIS: webread failed\n');
   id = ''; return
 end
 i_0 = strfind(url, 'search_value=');
 if isempty(i_0)
   my_pet = get_synonym(my_pet); my_pet_ITIS = strrep(my_pet, '_', '%20');
   try
-    url = urlread(['https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=', my_pet_ITIS, '&search_kingdom=Animal&search_span=containing&categories=All&source=html&search_credRating=All']);
+    url = urlread(['https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=Scientific_Name&search_value=', my_pet_ITIS, '&search_kingdom=Animal&search_span=containing&categories=All&source=html&search_credRating=All'], 'Timeout', 10);
   catch
+    fprintf('warning from get_id_ITIS: webread failed\n');
     id = ''; return
   end
   i_0 = strfind(url, 'search_value=');
@@ -60,7 +62,7 @@ if ~isempty(i_1)
 end
 
 try
-  url = urlread([address, id]);
+  url = urlread([address, id], 'Timeout', 10);
 catch
   id = ''; return
 end

@@ -38,12 +38,17 @@ elseif ~isempty(strfind(my_pet, ' '));
 else
   nm = my_pet;
 end
-if iscell(nm)
-  url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
-  title = ['"', nm{1}, ' ', nm{2}, '"'];
-else
-  url = urlread(['https://eol.org/api/search/1.0.json?q=',nm]);
-  title = ['"', nm, '"'];
+try
+  if iscell(nm)
+    url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}], 'Timeout', 10);
+    title = ['"', nm{1}, ' ', nm{2}, '"'];
+  else
+    url = urlread(['https://eol.org/api/search/1.0.json?q=',nm], 'Timeout', 10);
+    title = ['"', nm, '"'];
+  end
+catch
+  fprintf('warning from get_id_EoL: webread failed\n');
+  id = ''; return
 end
 i_1 = strfind(url,['"title":',title]); 
 if isempty(i_1)
@@ -51,8 +56,13 @@ if isempty(i_1)
   if isempty(my_pet)
     id = ''; return
   end
-  nm = strsplit(my_pet,'_'); 
-  url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}]);
+  nm = strsplit(my_pet,'_');
+  try
+    url = urlread(['https://eol.org/api/search/1.0.json?q=',nm{1},'%2B',nm{2}], 'Timeout', 10);
+  catch
+    fprintf('warning from get_id_EoL: webread failed\n');
+    id = ''; return
+  end
   title = ['"', nm{1}, ' ', nm{2}, '"'];
   i_1 = strfind(url,['"title":',title]); 
   if isempty(i_1)
@@ -62,12 +72,13 @@ end
 i_0 = 5 + strfind(url(1:i_1),'"id":'); i_1 = i_0(end)+strfind(url(i_0(end):end),',') - 2;
 id = url(i_0(end):i_1(1));
 
-% check 
+% check that the page exists, but keep the id if the check cannot be completed
+% (a network hiccup here must not discard an id already found by the search)
 if ~isempty(id)
     try
-      url = urlread(['https://eol.org/pages/',id]);
+      urlread(['https://eol.org/pages/',id], 'Timeout', 10);
     catch
-      id = '';
+      fprintf('warning from get_id_EoL: could not verify page, keeping id\n');
     end
 end
 
