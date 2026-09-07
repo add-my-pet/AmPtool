@@ -1,5 +1,6 @@
 Colobus
 Nasalis
+Pygathrix
 Rhinopithecus
 Semnopithecus
 Trachypithecus
