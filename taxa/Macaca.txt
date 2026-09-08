@@ -1,10 +1,13 @@
 Macaca_arctoides
 Macaca_fascicularis
 Macaca_fuscata
+Macaca_maura
 Macaca_mulatta
 Macaca_nemestrina
 Macaca_nigra
+Macaca_ochreata
 Macaca_radiata
 Macaca_silenus
 Macaca_sinica
 Macaca_sylvanus
+Macaca_thibetana

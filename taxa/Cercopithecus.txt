@@ -1,8 +1,11 @@
 Cercopithecus_ascanius
+Cercopithecus_campbelli
 Cercopithecus_cephus
 Cercopithecus_diana
+Cercopithecus_erythrogaster
 Cercopithecus_mitis
 Cercopithecus_mona
 Cercopithecus_neglectus
 Cercopithecus_nictitans
 Cercopithecus_pogonias
+Cercopithecus_wolfi

@@ -1,2 +1,3 @@
 Semnopithecus_entellus
+Semnopithecus_johnii
 Semnopithecus_vetulus

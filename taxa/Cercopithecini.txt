@@ -1,4 +1,5 @@
 Allenopithecus
+Allochrocebus
 Cercopithecus
 Chlorocebus
 Erythrocebus

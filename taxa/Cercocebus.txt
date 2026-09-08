@@ -1,2 +1,3 @@
+Cercocebus_agilis
 Cercocebus_galeritus
 Cercocebus_torquatus
