@@ -1,4 +1,7 @@
+Hylobates_abbotti
 Hylobates_agilis
+Hylobates_albibarbis
+Hylobates_funereus
 Hylobates_klossii
 Hylobates_lar
 Hylobates_moloch

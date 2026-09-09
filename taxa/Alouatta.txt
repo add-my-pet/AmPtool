@@ -1,1 +1,6 @@
+Alouatta_caraya
+Alouatta_guariba
 Alouatta_palliata
+Alouatta_pigra
+Alouatta_sara
+Alouatta_seniculus

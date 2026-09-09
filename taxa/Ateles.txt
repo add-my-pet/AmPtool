@@ -1,2 +1,6 @@
+Ateles_belzebuth
+Ateles_chamek
+Ateles_fusciceps
 Ateles_geoffroyi
+Ateles_marginatus
 Ateles_paniscus
