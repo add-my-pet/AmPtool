@@ -1,2 +1,4 @@
-Pithecia_pithecia
+Pithecia_aequatorialis
+Pithecia_irrorata
 Pithecia_monachus
+Pithecia_pithecia

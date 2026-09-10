@@ -1,5 +1,6 @@
 Callimico
 Callithrix
+Cebuella
 Leontopithecus
 Leontocebus
 Saguinus

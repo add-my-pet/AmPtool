@@ -1,2 +1,3 @@
 Plecturocebus_cupreus
 Plecturocebus_donacophilus
+Plecturocebus_moloch

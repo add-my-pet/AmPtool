@@ -1,1 +1,4 @@
+Aotus_azarae
+Aotus_lemurinus
 Aotus_trivirgatus
+Aotus_vociferans
