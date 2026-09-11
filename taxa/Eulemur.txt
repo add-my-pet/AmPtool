@@ -1,3 +1,6 @@
+Eulemur_coronatus
 Eulemur_flavifrons
 Eulemur_fulvus
+Eulemur_macaco
 Eulemur_mongoz
+Eulemur_rubriventer

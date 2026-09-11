@@ -2,3 +2,5 @@ Euoticus
 Galago
 Galagoides
 Otolemur
+Paragalago
+Sciurocheirus

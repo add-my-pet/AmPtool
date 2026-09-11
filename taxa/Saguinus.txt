@@ -1,2 +1,8 @@
+Saguinus_bicolor
 Saguinus_geoffroyi
+Saguinus_imperator
+Saguinus_labiatus
+Saguinus_leucopus
+Saguinus_midas
+Saguinus_mystax
 Saguinus_oedipus
