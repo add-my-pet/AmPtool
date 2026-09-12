@@ -2,3 +2,4 @@ Arctocebus
 Loris
 Nycticebus
 Perodicticus
+Xanthonycticebus
