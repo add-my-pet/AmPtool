@@ -1,1 +1,3 @@
 Hapalemur_alaotrensis
+Hapalemur_aureus
+Hapalemur_griseus
