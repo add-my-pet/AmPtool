@@ -1,6 +1,7 @@
 Synodontis_batensoda
 Synodontis_clarias
 Synodontis_membranaceus
+Synodontis_multipunctatus
 Synodontis_nebulosus
 Synodontis_schall
 Synodontis_zambezensis
