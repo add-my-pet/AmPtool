@@ -245,7 +245,8 @@ fprintf(fid_about, '        <a href="entries_web/Archaeopteryx_lithographica/Arc
 fprintf(fid_about, '        <a href="entries_web/Thylacinus_cynocephalus/Thylacinus_cynocephalus_res.html">thylacine</a>, \n');
 fprintf(fid_about, '        <a href="entries_web/Pinguinus_impennis/Pinguinus_impennis_res.html">great auk</a> and \n');
 fprintf(fid_about, '        <a href="entries_web/Hydrodamalis_gigas/Hydrodamalis_gigas_res.html">Steller''s sea cow</a>, \n');
-fprintf(fid_about, '        <a href="entries_web/Mammuthus_primigenius/Mammuthus_primigenius_res.html">wooly mammoth</a>. \n');
+fprintf(fid_about, '        <a href="entries_web/Mammuthus_primigenius/Mammuthus_primigenius_res.html">wooly mammoth</a>, \n');
+fprintf(fid_about, '        <a href="entries_web/Otodus_megalodon/Otodus_megalodon_res.html">megalodon</a>. \n');
 fprintf(fid_about, '      Needless to say, however: more data generally reduces uncertainty in parameter values.\n\n');
 
 fprintf(fid_about, '      <h2 class="clear">Data completeness and mean relative errors\n');  
