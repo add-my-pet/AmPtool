@@ -1,5 +1,6 @@
-Pyralidae
 Bombycidae
-Sphingidae
-Nymphalidae
+Gelechiidae
 Noctuidae
+Nymphalidae
+Pyralidae
+Sphingidae
