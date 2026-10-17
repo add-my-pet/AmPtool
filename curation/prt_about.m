@@ -342,7 +342,7 @@ fprintf(fid_about, '      </div>\n\n');
 fprintf(fid_about, '      <h2 class="clear">DEB publications in time</h2>\n\n');
 
 fprintf(fid_about, '      <div class="sidelement">\n');
-fprintf(fid_about, '        <img src="img/about/DEBlib.png" width="350px">\n');
+fprintf(fid_about, '        <img src="img/about/DEBlib.png" width="350px" style="margin-left:-20px;">\n');
 fprintf(fid_about, '        <div class="caption">\n');
 fprintf(fid_about, '          Publications in which DEB theory plays a substantial role.\n');
 fprintf(fid_about, '          <a href="https://www.zotero.org/groups/500643/deb_library/" target="_blank">They can be found in the DEB library on Zotero</a>, \n');
