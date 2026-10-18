@@ -2,7 +2,7 @@ Lepidosauria
 Testudines
 Crocodilia
 Pterosauria
-Saurischia
+Sauropodomorpha
 Ornithischia
 Tyrannosauridae
 Archaeopterygidae
