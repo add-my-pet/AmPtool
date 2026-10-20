@@ -43,8 +43,29 @@ for i = 1:n_txt
   lines = strtrim(strsplit(raw, {char(10), char(13)}));
   lines = lines(~cellfun('isempty', lines));
   children(t) = lines;
+end
+
+% Assign parents by walking the formal tree down from Animalia, so that taxa
+% also listed in orphaned groupings (e.g. Reptilia) keep their lineage to Animalia
+queue = {'Animalia'};
+while ~isempty(queue)
+  t = queue{1}; queue(1) = [];
+  if ~isKey(children, t); continue; end
+  kids = children(t);
+  for j = 1:numel(kids)
+    if ~isKey(parent, kids{j}) && ~strcmp(kids{j}, 'Animalia')
+      parent(kids{j}) = t;
+      queue{end+1} = kids{j}; %#ok<AGROW>
+    end
+  end
+end
+
+% Nodes that only occur in orphaned subtrees get their parent from the orphan file
+for i = 1:n_txt
+  t = taxon_names{i};
+  lines = children(t);
   for j = 1:numel(lines)
-    if ~isKey(parent, lines{j})  % first-assignment wins: formal tree beats paraphyletic aliases
+    if ~isKey(parent, lines{j})
       parent(lines{j}) = t;
     end
   end

@@ -1,8 +1,9 @@
 Lepidosauria
-Testudines
-Crocodilia
+Diapsida
 Pterosauria
 Sauropodomorpha
 Ornithischia
 Tyrannosauridae
+Dromaeosauridae
+Troodontidae
 Archaeopterygidae
