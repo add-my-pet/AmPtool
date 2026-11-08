@@ -5,5 +5,4 @@ Fringillidae
 Thraupidae
 Passerellidae
 Parulidae
-Icteriidae
 Icteridae

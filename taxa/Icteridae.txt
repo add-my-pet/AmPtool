@@ -3,5 +3,6 @@ Amblycercinae
 Cacicinae
 Dolichonychinae
 Icterinae
+Icteria
 Sturnellinae
 Xanthocephalinae

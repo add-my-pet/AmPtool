@@ -1,2 +1,3 @@
 Trichoglossus_euteles
 Trichoglossus_haematodus
+Trichoglossus_histrio

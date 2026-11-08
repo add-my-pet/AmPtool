@@ -2,8 +2,8 @@ Cecropis
 Delichon
 Tachycineta
 Hirundo
-Notiochelidon
 Petrochelidon
 Progne
+Pygochelidon
 Riparia
 Stelgidopteryx

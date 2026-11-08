@@ -1,5 +1,6 @@
 Cacatua_galerita
 Cacatua_ophthalmica
+Cacatua_leadbeateri
 Cacatua_moluccensis
 Cacatua_pastinator
 Cacatua_tenuirostris
