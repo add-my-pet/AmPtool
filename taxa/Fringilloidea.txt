@@ -1,8 +1,2 @@
-Calcariidae
-Emberizidae
-Cardinalidae
+Emberizidea
 Fringillidae
-Thraupidae
-Passerellidae
-Parulidae
-Icteridae
