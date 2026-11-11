@@ -1,6 +1,7 @@
 Otus
 Asio
 Bubo
+Ketupa
 Psiloscops
 Megascops
 Strix

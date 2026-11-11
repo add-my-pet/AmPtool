@@ -1,5 +1,4 @@
 Bubo_bengalensis
 Bubo_bubo
-Bubo_lacteus
 Bubo_scandiacus
 Bubo_virginianus

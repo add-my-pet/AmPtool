@@ -1,2 +1,4 @@
 Accipiter
+Astur
 Circus
+Tachyspiza

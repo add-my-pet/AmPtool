@@ -116,6 +116,11 @@ function popStat = write_popStat_loc(varargin)
       fprintf('Warning from write_popStat_loc: present in popStat, but not in lists-of-lists\n');
       diff
     end
+    diff = setdiff(entries, flds_popStat);
+    if ~isempty(diff)
+      fprintf('Warning from write_popStat_loc: present in lists-of-lists, but not in popStat\n');
+      diff
+    end
   end
   popStat = orderfields(popStat, entries);
   cdAmPdata; save('popStat.mat','popStat'); cd(WD); % run from /AmPtool/curation
