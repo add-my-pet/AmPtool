@@ -1,1 +1,2 @@
 Spodoptera_frugiperda
+Spodoptera_littoralis
