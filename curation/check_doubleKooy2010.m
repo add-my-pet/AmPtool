@@ -1,5 +1,5 @@
-%% check_eco
-% Checks eco labels 
+%% check_doubleKooy2010
+% Checks bouble bib keys Kooy2010
 
 %%
 function nm = check_doubleKooy2010(taxon)
