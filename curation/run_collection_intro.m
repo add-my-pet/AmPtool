@@ -157,7 +157,7 @@ if ismac || isunix
   system('git push origin master');
   cd ../AmPtox; system('git add docs/sys/*');
   system('git commit -am "toolbars"');
-  system('git push origin master');
+  system('git push origin HEAD'); % AmPtox uses branch main, not master
 else
   % system('powershell git status');
   cd ../; system('powershell git add taxa/* docs/* docs/sys/*'); % toolbars + taxa
@@ -168,7 +168,7 @@ else
   system('powershell git push origin master');
   cd ../AmPtox; system('powershell git add docs/sys/*'); % toolbars
   system('powershell git commit -am "toolbars"');
-  system('powershell git push origin master');
+  system('powershell git push origin HEAD'); % AmPtox uses branch main, not master
 end
 cdCur;
 
